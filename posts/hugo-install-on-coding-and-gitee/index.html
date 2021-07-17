@@ -1,0 +1,1523 @@
+<!doctype html><html lang=zh-cn><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=robots content="noodp"><meta http-equiv=x-ua-compatible content="IE=edge, chrome=1"><title>hugo部署到coding&gitee&备份源码 - Bore's Notes</title><meta name=description content="本站主要用来收集整理资料、记录笔记，方便自己查询使用。"><meta property="og:title" content="hugo部署到coding&gitee&备份源码"><meta property="og:description" content="1. 本地操作 1.1. 安装GIt 本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量： 右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用"><meta property="og:type" content="article"><meta property="og:url" content="https://bore.vip/posts/hugo-install-on-coding-and-gitee/"><meta property="og:image" content="https://bore.vip/logo.png"><meta property="article:section" content="posts"><meta property="article:published_time" content="2020-05-13T09:42:25+08:00"><meta property="article:modified_time" content="2020-05-13T09:42:25+08:00"><meta name=twitter:card content="summary_large_image"><meta name=twitter:image content="https://bore.vip/logo.png"><meta name=twitter:title content="hugo部署到coding&gitee&备份源码"><meta name=twitter:description content="1. 本地操作 1.1. 安装GIt 本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量： 右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用"><meta name=application-name content="Bore's Note"><meta name=apple-mobile-web-app-title content="Bore's Note"><meta name=theme-color content="#ffffff"><meta name=msapplication-TileColor content="#da532c"><link rel="shortcut icon" type=image/x-icon href=/favicon.ico><link rel=icon type=image/png sizes=32x32 href=/favicon-32x32.png><link rel=icon type=image/png sizes=16x16 href=/favicon-16x16.png><link rel=apple-touch-icon sizes=180x180 href=/apple-touch-icon.png><link rel=mask-icon href=/safari-pinned-tab.svg color=#5bbad5><link rel=manifest href=/site.webmanifest><link rel=canonical href=https://bore.vip/posts/hugo-install-on-coding-and-gitee/><link rel=prev href=https://bore.vip/posts/hexo-backup/><link rel=next href=https://bore.vip/posts/hugo-install-on-centos/><link rel=stylesheet href=/lib/normalize/normalize.min.css><link rel=stylesheet href=/css/style.min.css><link rel=stylesheet href=/lib/fontawesome-free/all.min.css><link rel=stylesheet href=/lib/animate/animate.min.css><script type=application/ld+json>{"@context":"http://schema.org","@type":"BlogPosting","headline":"hugo部署到coding\u0026gitee\u0026备份源码","inLanguage":"zh-CN","mainEntityOfPage":{"@type":"WebPage","@id":"https:\/\/bore.vip\/posts\/hugo-install-on-coding-and-gitee\/"},"genre":"posts","keywords":"hugo","wordcount":7219,"url":"https:\/\/bore.vip\/posts\/hugo-install-on-coding-and-gitee\/","datePublished":"2020-05-13T09:42:25+08:00","dateModified":"2020-05-13T09:42:25+08:00","publisher":{"@type":"Organization","name":""},"author":{"@type":"Person","name":"bore"},"description":""}</script></head><body header-desktop=fixed header-mobile=auto><script type=text/javascript>(window.localStorage&&localStorage.getItem('theme')?localStorage.getItem('theme')==='dark':'auto'==='auto'?window.matchMedia('(prefers-color-scheme: dark)').matches:'auto'==='dark')&&document.body.setAttribute('theme','dark')</script><div id=mask></div><div class=wrapper><header class=desktop id=header-desktop><div class=header-wrapper><div class=header-title><a href=/ title="Bore's Notes">Bore's Notes</a></div><div class=menu><div class=menu-inner><a class=menu-item href=/>首页 </a><a class=menu-item href=/categories/>分类 </a><a class=menu-item href=/tags/>标签 </a><a class=menu-item href=/posts/>归档 </a><a class=menu-item href=/about/>关于 </a><a class=menu-item href=/links/>友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id=search-desktop><input type=text placeholder=搜索文章标题或内容... id=search-input-desktop>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-desktop title=搜索><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-desktop title=清空><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-desktop><i class="fas fa-spinner fa-fw fa-spin"></i></span>
+</span><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题><i class="fas fa-adjust fa-fw"></i></a></div></div></div></header><header class=mobile id=header-mobile><div class=header-container><div class=header-wrapper><div class=header-title><a href=/ title="Bore's Notes">Bore's Notes</a></div><div class=menu-toggle id=menu-toggle-mobile><span></span><span></span><span></span></div></div><div class=menu id=menu-mobile><div class=search-wrapper><div class="search mobile" id=search-mobile><input type=text placeholder=搜索文章标题或内容... id=search-input-mobile>
+<a href=javascript:void(0); class="search-button search-toggle" id=search-toggle-mobile title=搜索><i class="fas fa-search fa-fw"></i></a>
+<a href=javascript:void(0); class="search-button search-clear" id=search-clear-mobile title=清空><i class="fas fa-times-circle fa-fw"></i></a>
+<span class="search-button search-loading" id=search-loading-mobile><i class="fas fa-spinner fa-fw fa-spin"></i></span></div><a href=javascript:void(0); class=search-cancel id=search-cancel-mobile>取消</a></div><a class=menu-item href=/ title>首页</a><a class=menu-item href=/categories/ title>分类</a><a class=menu-item href=/tags/ title>标签</a><a class=menu-item href=/posts/ title>归档</a><a class=menu-item href=/about/ title>关于</a><a class=menu-item href=/links/ title>友链</a><a href=javascript:void(0); class="menu-item theme-switch" title=切换主题>
+<i class="fas fa-adjust fa-fw"></i></a></div></div></header><div class="search-dropdown desktop"><div id=search-dropdown-desktop></div></div><div class="search-dropdown mobile"><div id=search-dropdown-mobile></div></div><main class=main><div class=container><div class=toc id=toc-auto><h2 class=toc-title>目录</h2><div class=toc-content id=toc-content-auto></div></div><article class="page single"><h1 class="single-title animated flipInX">hugo部署到coding&gitee&备份源码</h1><div class=post-meta><div class=post-meta-line><span class=post-author><a href=https://bore.vip title=Author target=_blank rel="noopener noreferrer author" class=author><i class="fas fa-user-circle fa-fw"></i>bore</a></span>&nbsp;<span class=post-category>收录于 <a href=/categories/%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0/><i class="far fa-folder fa-fw"></i>建站笔记</a></span></div><div class=post-meta-line><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime=2020-05-13>2020-05-13</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 7219 字&nbsp;
+<i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 15 分钟&nbsp;</div></div><div class="details toc" id=toc-static kept><div class="details-summary toc-title"><span>目录</span>
+<span><i class="details-icon fas fa-angle-right"></i></span></div><div class="details-content toc-content" id=toc-content-static><nav id=TableOfContents><ul><li><a href=#1-本地操作>1. 本地操作</a><ul><li><a href=#11-安装git>1.1. 安装GIt</a></li><li><a href=#12-配置ssh-公钥>1.2. 配置SSH 公钥</a></li><li><a href=#13-初始化-hugo>1.3. 初始化 Hugo</a><ul><li><a href=#131-安装hugo>1.3.1. 安装hugo</a></li><li><a href=#132-创建并配置站点>1.3.2. 创建并配置站点</a></li><li><a href=#133-添加主题>1.3.3. 添加主题</a></li><li><a href=#134-配置configtoml>1.3.4. 配置config.toml</a></li><li><a href=#135-设置文章模板>1.3.5. 设置文章模板</a></li><li><a href=#136-新建关于页面>1.3.6. 新建“关于”页面</a></li><li><a href=#137-启动博客的本地预览>1.3.7. 启动博客的本地预览</a></li></ul></li></ul></li><li><a href=#2-部署到coding>2. 部署到coding</a><ul><li><a href=#21-coding上的操作>2.1. coding上的操作</a></li><li><a href=#22-提交本地仓库>2.2. 提交本地仓库</a></li><li><a href=#23-解决404错误>2.3. 解决404错误</a></li><li><a href=#24-自动备份脚本>2.4. 自动备份脚本</a></li></ul></li><li><a href=#3-部署到gitee>3. 部署到gitee</a><ul><li><a href=#31-提交本地仓库>3.1. 提交本地仓库</a></li><li><a href=#32-备份hugo源码>3.2. 备份hugo源码</a></li></ul></li><li><a href=#4-备份hugo源码>4. 备份hugo源码</a><ul><li><a href=#41-备份到gitee-backup分支>4.1. 备份到gitee backup分支</a></li><li><a href=#42-备份到github-master分支>4.2. 备份到github master分支</a></li></ul></li><li><a href=#5-总结>5. 总结</a></li><li><a href=#6-参考链接>6. 参考链接</a></li></ul></nav></div></div><div class=content id=content><h2 id=1-本地操作>1. 本地操作</h2><h3 id=11-安装git>1.1. 安装GIt</h3><p>本地需要安装 <a href=https://git-scm.com/ target=_blank rel="noopener noreferrer">Git</a> ，安装过程略。安装完git后还要配置环境变量：
+右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>D:\Program Files\Git\bin
+D:\Program Files\Git\mingw64\libexec\git-core
+D:\Program Files\Git\mingw64\bin
+</code></pre></td></tr></table></div></div><h3 id=12-配置ssh-公钥>1.2. 配置SSH 公钥</h3><p>Windows 上安装 <a href=https://git-for-windows.github.io/ target=_blank rel="noopener noreferrer">Git for Windows</a> 之后在开始菜单里打开 Git Bash 输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git config --global user.name &#34;你的用户名&#34;
+git config --global user.email &#34;你的电子邮箱&#34;
+</code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cd ~
+mkdir .ssh
+cd .ssh
+ssh-keygen -t rsa
+</code></pre></td></tr></table></div></div><p>在系统当前用户文件夹下生成了私钥 <code>id_rsa</code> 和公钥 <code>id_rsa.pub</code>。</p><h3 id=13-初始化-hugo>1.3. 初始化 Hugo</h3><h4 id=131-安装hugo>1.3.1. 安装hugo</h4><p>windows10下安装hugo，可以参照Hugo官方手册的方法，这里讲一个相对简单稳定的方法。</p><p>1.下载hugo程序压缩包：前往https://github.com/gohugoio/hugo/releases下载和自己系统版本相符合的hugo程序压缩包。(建议下载hugo_extended版本)</p><p>2.解压到某个文件夹中（路径不要有中文，而且自己要记得文件夹的路径），最好是不常改动的文件夹下边，以防文件被误删或者丢失。</p><p>3.添加hugo到系统环境变量PATH中</p><ul><li>找到“系统环境变量”的设置位置，在开始菜单的搜索栏搜索环境变量</li><li>添加用户环境变量，依此：点击环境变量，找到用户变量中的path，点击编辑，然后点击新建，在使用浏览按钮选中文件夹，即可使用hugo。（选中到hugo.exe所在的文件夹即可，不需要选中hugo.exe，貌似添加完系统变量，要重启电脑才能在Git Bash里运行hugo）</li><li>接下来，为了万无一失，还是要检查一下hugo是否安装完成。以管理员方式打开cmd命令窗口，然后输入以下指令：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo version
+</code></pre></td></tr></table></div></div><p>如果得到如下响应，（即显示版本信息），说明安装成功，接下来就可以玩转hugo了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>Hugo Static Site Generator v0.70.0/extended windows/amd64 BuildDate: unknown
+</code></pre></td></tr></table></div></div><h4 id=132-创建并配置站点>1.3.2. 创建并配置站点</h4><blockquote><p>以下命令均在&rsquo;Git Bash&rsquo;中运行</p></blockquote><p>进入你想存放 Hugo 网站文件夹的目录，执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo new site blog  
+</code></pre></td></tr></table></div></div><h4 id=133-添加主题>1.3.3. 添加主题</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt
+</code></pre></td></tr></table></div></div><p>附更新主题命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>cd ./themes/LoveIt/
+git pull
+</code></pre></td></tr></table></div></div><p>配置主题</p><p>将 根目录\themes\even\exampleSite路径下的config.toml文件复制到根目录下，覆盖掉根目录下的config.toml文件。然后，我们在notepad++中打开并对其作一定的修改就可以直接使用。</p><h4 id=134-配置configtoml>1.3.4. 配置config.toml</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
+</span><span class=lnt>183
+</span><span class=lnt>184
+</span><span class=lnt>185
+</span><span class=lnt>186
+</span><span class=lnt>187
+</span><span class=lnt>188
+</span><span class=lnt>189
+</span><span class=lnt>190
+</span><span class=lnt>191
+</span><span class=lnt>192
+</span><span class=lnt>193
+</span><span class=lnt>194
+</span><span class=lnt>195
+</span><span class=lnt>196
+</span><span class=lnt>197
+</span><span class=lnt>198
+</span><span class=lnt>199
+</span><span class=lnt>200
+</span><span class=lnt>201
+</span><span class=lnt>202
+</span><span class=lnt>203
+</span><span class=lnt>204
+</span><span class=lnt>205
+</span><span class=lnt>206
+</span><span class=lnt>207
+</span><span class=lnt>208
+</span><span class=lnt>209
+</span><span class=lnt>210
+</span><span class=lnt>211
+</span><span class=lnt>212
+</span><span class=lnt>213
+</span><span class=lnt>214
+</span><span class=lnt>215
+</span><span class=lnt>216
+</span><span class=lnt>217
+</span><span class=lnt>218
+</span><span class=lnt>219
+</span><span class=lnt>220
+</span><span class=lnt>221
+</span><span class=lnt>222
+</span><span class=lnt>223
+</span><span class=lnt>224
+</span><span class=lnt>225
+</span><span class=lnt>226
+</span><span class=lnt>227
+</span><span class=lnt>228
+</span><span class=lnt>229
+</span><span class=lnt>230
+</span><span class=lnt>231
+</span><span class=lnt>232
+</span><span class=lnt>233
+</span><span class=lnt>234
+</span><span class=lnt>235
+</span><span class=lnt>236
+</span><span class=lnt>237
+</span><span class=lnt>238
+</span><span class=lnt>239
+</span><span class=lnt>240
+</span><span class=lnt>241
+</span><span class=lnt>242
+</span><span class=lnt>243
+</span><span class=lnt>244
+</span><span class=lnt>245
+</span><span class=lnt>246
+</span><span class=lnt>247
+</span><span class=lnt>248
+</span><span class=lnt>249
+</span><span class=lnt>250
+</span><span class=lnt>251
+</span><span class=lnt>252
+</span><span class=lnt>253
+</span><span class=lnt>254
+</span><span class=lnt>255
+</span><span class=lnt>256
+</span><span class=lnt>257
+</span><span class=lnt>258
+</span><span class=lnt>259
+</span><span class=lnt>260
+</span><span class=lnt>261
+</span><span class=lnt>262
+</span><span class=lnt>263
+</span><span class=lnt>264
+</span><span class=lnt>265
+</span><span class=lnt>266
+</span><span class=lnt>267
+</span><span class=lnt>268
+</span><span class=lnt>269
+</span><span class=lnt>270
+</span><span class=lnt>271
+</span><span class=lnt>272
+</span><span class=lnt>273
+</span><span class=lnt>274
+</span><span class=lnt>275
+</span><span class=lnt>276
+</span><span class=lnt>277
+</span><span class=lnt>278
+</span><span class=lnt>279
+</span><span class=lnt>280
+</span><span class=lnt>281
+</span><span class=lnt>282
+</span><span class=lnt>283
+</span><span class=lnt>284
+</span><span class=lnt>285
+</span><span class=lnt>286
+</span><span class=lnt>287
+</span><span class=lnt>288
+</span><span class=lnt>289
+</span><span class=lnt>290
+</span><span class=lnt>291
+</span><span class=lnt>292
+</span><span class=lnt>293
+</span><span class=lnt>294
+</span><span class=lnt>295
+</span><span class=lnt>296
+</span><span class=lnt>297
+</span><span class=lnt>298
+</span><span class=lnt>299
+</span><span class=lnt>300
+</span><span class=lnt>301
+</span><span class=lnt>302
+</span><span class=lnt>303
+</span><span class=lnt>304
+</span><span class=lnt>305
+</span><span class=lnt>306
+</span><span class=lnt>307
+</span><span class=lnt>308
+</span><span class=lnt>309
+</span><span class=lnt>310
+</span><span class=lnt>311
+</span><span class=lnt>312
+</span><span class=lnt>313
+</span><span class=lnt>314
+</span><span class=lnt>315
+</span><span class=lnt>316
+</span><span class=lnt>317
+</span><span class=lnt>318
+</span><span class=lnt>319
+</span><span class=lnt>320
+</span><span class=lnt>321
+</span><span class=lnt>322
+</span><span class=lnt>323
+</span><span class=lnt>324
+</span><span class=lnt>325
+</span><span class=lnt>326
+</span><span class=lnt>327
+</span><span class=lnt>328
+</span><span class=lnt>329
+</span><span class=lnt>330
+</span><span class=lnt>331
+</span><span class=lnt>332
+</span><span class=lnt>333
+</span><span class=lnt>334
+</span><span class=lnt>335
+</span><span class=lnt>336
+</span><span class=lnt>337
+</span><span class=lnt>338
+</span><span class=lnt>339
+</span><span class=lnt>340
+</span><span class=lnt>341
+</span><span class=lnt>342
+</span><span class=lnt>343
+</span><span class=lnt>344
+</span><span class=lnt>345
+</span><span class=lnt>346
+</span><span class=lnt>347
+</span><span class=lnt>348
+</span><span class=lnt>349
+</span><span class=lnt>350
+</span><span class=lnt>351
+</span><span class=lnt>352
+</span><span class=lnt>353
+</span><span class=lnt>354
+</span><span class=lnt>355
+</span><span class=lnt>356
+</span><span class=lnt>357
+</span><span class=lnt>358
+</span><span class=lnt>359
+</span><span class=lnt>360
+</span><span class=lnt>361
+</span><span class=lnt>362
+</span><span class=lnt>363
+</span><span class=lnt>364
+</span><span class=lnt>365
+</span><span class=lnt>366
+</span><span class=lnt>367
+</span><span class=lnt>368
+</span><span class=lnt>369
+</span><span class=lnt>370
+</span><span class=lnt>371
+</span><span class=lnt>372
+</span><span class=lnt>373
+</span><span class=lnt>374
+</span><span class=lnt>375
+</span><span class=lnt>376
+</span><span class=lnt>377
+</span><span class=lnt>378
+</span><span class=lnt>379
+</span><span class=lnt>380
+</span><span class=lnt>381
+</span><span class=lnt>382
+</span><span class=lnt>383
+</span><span class=lnt>384
+</span><span class=lnt>385
+</span><span class=lnt>386
+</span><span class=lnt>387
+</span><span class=lnt>388
+</span><span class=lnt>389
+</span><span class=lnt>390
+</span><span class=lnt>391
+</span><span class=lnt>392
+</span><span class=lnt>393
+</span><span class=lnt>394
+</span><span class=lnt>395
+</span><span class=lnt>396
+</span><span class=lnt>397
+</span><span class=lnt>398
+</span><span class=lnt>399
+</span><span class=lnt>400
+</span><span class=lnt>401
+</span><span class=lnt>402
+</span><span class=lnt>403
+</span><span class=lnt>404
+</span><span class=lnt>405
+</span><span class=lnt>406
+</span><span class=lnt>407
+</span><span class=lnt>408
+</span><span class=lnt>409
+</span><span class=lnt>410
+</span><span class=lnt>411
+</span><span class=lnt>412
+</span><span class=lnt>413
+</span><span class=lnt>414
+</span><span class=lnt>415
+</span><span class=lnt>416
+</span><span class=lnt>417
+</span><span class=lnt>418
+</span><span class=lnt>419
+</span><span class=lnt>420
+</span><span class=lnt>421
+</span><span class=lnt>422
+</span><span class=lnt>423
+</span><span class=lnt>424
+</span><span class=lnt>425
+</span><span class=lnt>426
+</span><span class=lnt>427
+</span><span class=lnt>428
+</span><span class=lnt>429
+</span><span class=lnt>430
+</span><span class=lnt>431
+</span><span class=lnt>432
+</span><span class=lnt>433
+</span><span class=lnt>434
+</span><span class=lnt>435
+</span><span class=lnt>436
+</span><span class=lnt>437
+</span><span class=lnt>438
+</span><span class=lnt>439
+</span><span class=lnt>440
+</span><span class=lnt>441
+</span><span class=lnt>442
+</span><span class=lnt>443
+</span><span class=lnt>444
+</span><span class=lnt>445
+</span><span class=lnt>446
+</span><span class=lnt>447
+</span><span class=lnt>448
+</span><span class=lnt>449
+</span><span class=lnt>450
+</span><span class=lnt>451
+</span><span class=lnt>452
+</span><span class=lnt>453
+</span><span class=lnt>454
+</span><span class=lnt>455
+</span><span class=lnt>456
+</span><span class=lnt>457
+</span><span class=lnt>458
+</span><span class=lnt>459
+</span><span class=lnt>460
+</span><span class=lnt>461
+</span><span class=lnt>462
+</span><span class=lnt>463
+</span><span class=lnt>464
+</span><span class=lnt>465
+</span><span class=lnt>466
+</span><span class=lnt>467
+</span><span class=lnt>468
+</span><span class=lnt>469
+</span><span class=lnt>470
+</span><span class=lnt>471
+</span><span class=lnt>472
+</span><span class=lnt>473
+</span><span class=lnt>474
+</span><span class=lnt>475
+</span><span class=lnt>476
+</span><span class=lnt>477
+</span><span class=lnt>478
+</span><span class=lnt>479
+</span><span class=lnt>480
+</span><span class=lnt>481
+</span><span class=lnt>482
+</span><span class=lnt>483
+</span><span class=lnt>484
+</span><span class=lnt>485
+</span><span class=lnt>486
+</span><span class=lnt>487
+</span><span class=lnt>488
+</span><span class=lnt>489
+</span><span class=lnt>490
+</span><span class=lnt>491
+</span><span class=lnt>492
+</span><span class=lnt>493
+</span><span class=lnt>494
+</span><span class=lnt>495
+</span><span class=lnt>496
+</span><span class=lnt>497
+</span><span class=lnt>498
+</span><span class=lnt>499
+</span><span class=lnt>500
+</span><span class=lnt>501
+</span><span class=lnt>502
+</span><span class=lnt>503
+</span><span class=lnt>504
+</span><span class=lnt>505
+</span><span class=lnt>506
+</span><span class=lnt>507
+</span><span class=lnt>508
+</span><span class=lnt>509
+</span><span class=lnt>510
+</span><span class=lnt>511
+</span><span class=lnt>512
+</span><span class=lnt>513
+</span><span class=lnt>514
+</span><span class=lnt>515
+</span><span class=lnt>516
+</span><span class=lnt>517
+</span><span class=lnt>518
+</span><span class=lnt>519
+</span><span class=lnt>520
+</span><span class=lnt>521
+</span><span class=lnt>522
+</span><span class=lnt>523
+</span><span class=lnt>524
+</span><span class=lnt>525
+</span><span class=lnt>526
+</span><span class=lnt>527
+</span><span class=lnt>528
+</span><span class=lnt>529
+</span><span class=lnt>530
+</span><span class=lnt>531
+</span><span class=lnt>532
+</span><span class=lnt>533
+</span><span class=lnt>534
+</span><span class=lnt>535
+</span><span class=lnt>536
+</span><span class=lnt>537
+</span><span class=lnt>538
+</span><span class=lnt>539
+</span><span class=lnt>540
+</span><span class=lnt>541
+</span><span class=lnt>542
+</span><span class=lnt>543
+</span><span class=lnt>544
+</span><span class=lnt>545
+</span><span class=lnt>546
+</span><span class=lnt>547
+</span><span class=lnt>548
+</span><span class=lnt>549
+</span><span class=lnt>550
+</span><span class=lnt>551
+</span><span class=lnt>552
+</span><span class=lnt>553
+</span><span class=lnt>554
+</span><span class=lnt>555
+</span><span class=lnt>556
+</span><span class=lnt>557
+</span><span class=lnt>558
+</span><span class=lnt>559
+</span><span class=lnt>560
+</span><span class=lnt>561
+</span><span class=lnt>562
+</span><span class=lnt>563
+</span><span class=lnt>564
+</span><span class=lnt>565
+</span><span class=lnt>566
+</span><span class=lnt>567
+</span><span class=lnt>568
+</span><span class=lnt>569
+</span><span class=lnt>570
+</span><span class=lnt>571
+</span><span class=lnt>572
+</span><span class=lnt>573
+</span><span class=lnt>574
+</span><span class=lnt>575
+</span><span class=lnt>576
+</span><span class=lnt>577
+</span><span class=lnt>578
+</span><span class=lnt>579
+</span><span class=lnt>580
+</span><span class=lnt>581
+</span><span class=lnt>582
+</span><span class=lnt>583
+</span><span class=lnt>584
+</span><span class=lnt>585
+</span><span class=lnt>586
+</span><span class=lnt>587
+</span><span class=lnt>588
+</span><span class=lnt>589
+</span><span class=lnt>590
+</span><span class=lnt>591
+</span><span class=lnt>592
+</span><span class=lnt>593
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>baseURL = &#34;https://bore.vip&#34;
+# [en, zh-cn, fr, ...] 设置默认的语言
+defaultContentLanguage = &#34;zh-cn&#34;
+# 网站语言, 仅在这里 CN大写
+languageCode = &#34;zh-CN&#34;
+# 是否包括中日韩文字
+hasCJKLanguage = true
+# 主题
+theme = &#34;LoveIt&#34;
+# 网站标题
+title = &#34;Bore&#39;s Note&#34;
+# 是否使用 robots.txt
+enableRobotsTXT = true
+# 是否使用 git 信息
+enableGitInfo = true
+# 是否使用 emoji 代码
+enableEmoji = true
+
+# 菜单配置
+[menu]
+  [[menu.main]]
+    identifier = &#34;posts&#34;
+    # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+    pre = &#34;&#34;
+    # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+    post = &#34;&#34;
+    name = &#34;归档&#34;
+    url = &#34;/posts/&#34;
+    # 当你将鼠标悬停在此菜单链接上时, 将显示的标题
+    title = &#34;&#34;
+    weight = 4
+  [[menu.main]]
+    identifier = &#34;home&#34;
+    pre = &#34;&#34;
+    post = &#34;&#34;
+    name = &#34;首页&#34;
+    url = &#34;/&#34;
+    title = &#34;&#34;
+    weight = 1
+  [[menu.main]]
+    identifier = &#34;tags&#34;
+    pre = &#34;&#34;
+    post = &#34;&#34;
+    name = &#34;标签&#34;
+    url = &#34;/tags/&#34;
+    title = &#34;&#34;
+    weight = 3
+  [[menu.main]]
+    identifier = &#34;categories&#34;
+    pre = &#34;&#34;
+    post = &#34;&#34;
+    name = &#34;分类&#34;
+    url = &#34;/categories/&#34;
+    title = &#34;&#34;
+    weight = 2
+  [[menu.main]]
+    identifier = &#34;about&#34;
+    pre = &#34;&#34;
+    post = &#34;&#34;
+    name = &#34;关于&#34;
+    url = &#34;/about/&#34;
+    title = &#34;&#34;
+    weight = 5
+	
+[params]
+  #  LoveIt 主题版本
+  version = &#34;0.2.X&#34;
+  # 网站描述
+  description = &#34;本站主要用来收集整理资料、记录笔记，方便自己查询使用。&#34;
+  # 网站关键词
+  keywords = [&#34;个人博客&#34;, &#34;个人网站&#34;,&#34;Bore&#39;s Note&#34;,&#34;hugo&#34;]
+  # 网站默认主题样式 (&#34;light&#34;, &#34;dark&#34;, &#34;auto&#34;)
+  defaultTheme = &#34;auto&#34;
+  # 公共 git 仓库路径，仅在 enableGitInfo 设为 true 时有效
+  gitRepo = &#34;https://github.com/iwyang/hugo&#34;
+  #  哪种哈希函数用来 SRI, 为空时表示不使用 SRI
+  # (&#34;sha256&#34;, &#34;sha384&#34;, &#34;sha512&#34;, &#34;md5&#34;)
+  fingerprint = &#34;&#34;
+  #  日期格式
+  dateFormat = &#34;2006-01-02&#34;
+  # 网站图片, 用于 Open Graph 和 Twitter Cards
+  images = [&#34;/logo.png&#34;]
+
+  #  应用图标配置
+  [params.app]
+    # 当添加到 iOS 主屏幕或者 Android 启动器时的标题, 覆盖默认标题
+    title = &#34;Bore&#39;s Note&#34;
+    # 是否隐藏网站图标资源链接
+    noFavicon = false
+    # 更现代的 SVG 网站图标, 可替代旧的 .png 和 .ico 文件
+    svgFavicon = &#34;&#34;
+    # Android 浏览器主题色
+    themeColor = &#34;#ffffff&#34;
+    # Safari 图标颜色
+    iconColor = &#34;#5bbad5&#34;
+    # Windows v8-10磁贴颜色
+    tileColor = &#34;#da532c&#34;
+
+  #  搜索配置
+  [params.search]
+    enable = true
+    # 搜索引擎的类型 (&#34;lunr&#34;, &#34;algolia&#34;)
+    type = &#34;algolia&#34;
+    # 文章内容最长索引长度
+    contentLength = 4000
+    # 搜索框的占位提示语
+    placeholder = &#34;&#34;
+    #  最大结果数目
+    maxResultLength = 10
+    #  结果内容片段长度
+    snippetLength = 50
+    #  搜索结果中高亮部分的 HTML 标签
+    highlightTag = &#34;em&#34;
+    #  是否在搜索索引中使用基于 baseURL 的绝对路径
+    absoluteURL = false
+    [params.search.algolia]
+      index = &#34;hugo&#34;
+      appID = &#34;R7GU8Q3PGK&#34;
+      searchKey = &#34;03cd2f39cefdd4b40deed2f1222ad496&#34;
+
+  # 页面头部导航栏配置
+  [params.header]
+    # 桌面端导航栏模式 (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)
+    desktopMode = &#34;fixed&#34;
+    # 移动端导航栏模式 (&#34;fixed&#34;, &#34;normal&#34;, &#34;auto&#34;)
+    mobileMode = &#34;auto&#34;
+    #  页面头部导航栏标题配置
+    [params.header.title]
+      # LOGO 的 URL
+      logo = &#34;&#34;
+      # 标题名称
+      name = &#34;Bore&#39;s Note&#34;
+      # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
+      pre = &#34;&#34;
+      # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
+      post = &#34;&#34;
+      #  是否为标题显示打字机动画
+      typeit = false
+
+  # 页面底部信息配置
+  [params.footer]
+    enable = true
+    #  自定义内容 (支持 HTML 格式)
+    custom = &#39;&#39;
+    #  是否显示 Hugo 和主题信息
+    hugo = true
+    #  是否显示版权信息
+    copyright = true
+    #  是否显示作者
+    author = true
+    # 网站创立年份
+    since = 2020
+    # ICP 备案信息，仅在中国使用 (支持 HTML 格式)
+    icp = &#34;&#34;
+    # 许可协议信息 (支持 HTML 格式)
+    license = &#39;&lt;a rel=&#34;license external nofollow noopener noreffer&#34; href=&#34;https://creativecommons.org/licenses/by-nc/4.0/&#34; target=&#34;_blank&#34;&gt;CC BY-NC 4.0&lt;/a&gt;&#39;
+
+  #  Section (所有文章) 页面配置
+  [params.section]
+    # section 页面每页显示文章数量
+    paginate = 10000
+    # 日期格式 (月和日)
+    dateFormat = &#34;01-02&#34;
+    # RSS 文章数目
+    rss = 10
+
+  #  List (目录或标签) 页面配置
+  [params.list]
+    # list 页面每页显示文章数量
+    paginate = 10000
+    # 日期格式 (月和日)
+    dateFormat = &#34;01-02&#34;
+    # RSS 文章数目
+    rss = 10
+
+  # 主页配置
+  [params.home]
+    #  RSS 文章数目
+    rss = 10
+    # 主页个人信息
+    [params.home.profile]
+      enable = true
+      # Gravatar 邮箱，用于优先在主页显示的头像
+      gravatarEmail = &#34;&#34;
+      # 主页显示头像的 URL
+      avatarURL = &#34;/images/avatar.jpg&#34;
+      #  主页显示的网站标题 (支持 HTML 格式)
+      title = &#34;&#34;
+      # 主页显示的网站副标题
+      subtitle = &#34;一花一世界，一叶一菩提&#34;
+      # 是否为副标题显示打字机动画
+      typeit = true
+      # 是否显示社交账号
+      social = false
+      #  免责声明 (支持 HTML 格式)
+      disclaimer = &#34;&#34;
+    # 主页文章列表
+    [params.home.posts]
+      enable = true
+      # 主页每页显示文章数量
+      paginate = 6
+      #  被 params.page 中的 hiddenFromHomePage 替代
+      # 当你没有在文章前置参数中设置 &#34;hiddenFromHomePage&#34; 时的默认行为
+      defaultHiddenFromHomePage = false
+
+  # 作者的社交信息设置
+  [params.social]
+    GitHub = &#34;&#34;
+    Linkedin = &#34;&#34;
+    Twitter = &#34;&#34;
+    Instagram = &#34;&#34;
+    Facebook = &#34;&#34;
+    Telegram = &#34;&#34;
+    Medium = &#34;&#34;
+    Gitlab = &#34;&#34;
+    Youtubelegacy = &#34;&#34;
+    Youtubecustom = &#34;&#34;
+    Youtubechannel = &#34;&#34;
+    Tumblr = &#34;&#34;
+    Quora = &#34;&#34;
+    Keybase = &#34;&#34;
+    Pinterest = &#34;&#34;
+    Reddit = &#34;&#34;
+    Codepen = &#34;&#34;
+    FreeCodeCamp = &#34;&#34;
+    Bitbucket = &#34;&#34;
+    Stackoverflow = &#34;&#34;
+    Weibo = &#34;&#34;
+    Odnoklassniki = &#34;&#34;
+    VK = &#34;&#34;
+    Flickr = &#34;&#34;
+    Xing = &#34;&#34;
+    Snapchat = &#34;&#34;
+    Soundcloud = &#34;&#34;
+    Spotify = &#34;&#34;
+    Bandcamp = &#34;&#34;
+    Paypal = &#34;&#34;
+    Fivehundredpx = &#34;&#34;
+    Mix = &#34;&#34;
+    Goodreads = &#34;&#34;
+    Lastfm = &#34;&#34;
+    Foursquare = &#34;&#34;
+    Hackernews = &#34;&#34;
+    Kickstarter = &#34;&#34;
+    Patreon = &#34;&#34;
+    Steam = &#34;&#34;
+    Twitch = &#34;&#34;
+    Strava = &#34;&#34;
+    Skype = &#34;&#34;
+    Whatsapp = &#34;&#34;
+    Zhihu = &#34;&#34;
+    Douban = &#34;&#34;
+    Angellist = &#34;&#34;
+    Slidershare = &#34;&#34;
+    Jsfiddle = &#34;&#34;
+    Deviantart = &#34;&#34;
+    Behance = &#34;&#34;
+    Dribbble = &#34;&#34;
+    Wordpress = &#34;&#34;
+    Vine = &#34;&#34;
+    Googlescholar = &#34;&#34;
+    Researchgate = &#34;&#34;
+    Mastodon = &#34;&#34;
+    Thingiverse = &#34;&#34;
+    Devto = &#34;&#34;
+    Gitea = &#34;&#34;
+    XMPP = &#34;&#34;
+    Matrix = &#34;&#34;
+    Bilibili = &#34;&#34;
+    Email = &#34;&#34;
+    RSS = false 
+
+  #  文章页面配置
+  [params.page]
+    #  是否在主页隐藏一篇文章
+    hiddenFromHomePage = false
+    #  是否在搜索结果中隐藏一篇文章
+    hiddenFromSearch = false
+    #  是否使用 twemoji
+    twemoji = false
+    # 是否使用 lightgallery
+    lightgallery = false
+    #  是否使用 ruby 扩展语法
+    ruby = true
+    #  是否使用 fraction 扩展语法
+    fraction = true
+    #  是否使用 fontawesome 扩展语法
+    fontawesome = true
+    # 是否在文章页面显示原始 Markdown 文档链接
+    linkToMarkdown = true
+    #  是否在 RSS 中显示全文内容
+    rssFullText = false
+    #  目录配置
+    [params.page.toc]
+      # 是否使用目录
+      enable = true
+      #  是否保持使用文章前面的静态目录
+      keepStatic = false
+      # 是否使侧边目录自动折叠展开
+      auto = true
+    #  代码配置
+    [params.page.code]
+      # 是否显示代码块的复制按钮
+      copy = true
+      # 默认展开显示的代码行数
+      maxShownLines = 10
+    #  KaTeX 数学公式
+    [params.page.math]
+      enable = true
+      # 默认块定界符是 $$ ... $$ 和 \\[ ... \\]
+      blockLeftDelimiter = &#34;&#34;
+      blockRightDelimiter = &#34;&#34;
+      # 默认行内定界符是 $ ... $ 和 \\( ... \\)
+      inlineLeftDelimiter = &#34;&#34;
+      inlineRightDelimiter = &#34;&#34;
+      # KaTeX 插件 copy_tex
+      copyTex = true
+      # KaTeX 插件 mhchem
+      mhchem = true
+    #  Mapbox GL JS 配置
+    [params.page.mapbox]
+      # Mapbox GL JS 的 access token
+      accessToken = &#34;&#34;
+      # 浅色主题的地图样式
+      lightStyle = &#34;mapbox://styles/mapbox/light-v9&#34;
+      # 深色主题的地图样式
+      darkStyle = &#34;mapbox://styles/mapbox/dark-v9&#34;
+      # 是否添加 NavigationControl
+      navigation = true
+      # 是否添加 GeolocateControl
+      geolocate = true
+      # 是否添加 ScaleControl
+      scale = true
+      # 是否添加 FullscreenControl
+      fullscreen = true
+    #  文章页面的分享信息设置
+    [params.page.share]
+      enable = false
+      Twitter = false
+      Facebook = false
+      Linkedin = false
+      Whatsapp = true
+      Pinterest = false
+      Tumblr = false
+      HackerNews = false
+      Reddit = false
+      VK = false
+      Buffer = false
+      Xing = true
+      Line = false
+      Instapaper = false
+      Pocket = false
+      Digg = false
+      Stumbleupon = false
+      Flipboard = false
+      Weibo = true
+      Renren = false
+      Myspace = false
+      Blogger = false
+      Baidu = true
+      Odnoklassniki = false
+      Evernote = false
+      Skype = false
+      Trello = false
+      Mix = false
+    #  评论系统设置
+    [params.page.comment]
+      enable = true
+      # Disqus 评论系统设置
+      [params.page.comment.disqus]
+        # 
+        enable = false
+        # Disqus 的 shortname，用来在文章中启用 Disqus 评论系统
+        shortname = &#34;&#34;
+      # Gitalk 评论系统设置
+      [params.page.comment.gitalk]
+        # 
+        enable = false
+        owner = &#34;&#34;
+        repo = &#34;&#34;
+        clientId = &#34;&#34;
+        clientSecret = &#34;&#34;
+      # Valine 评论系统设置
+      [params.page.comment.valine]
+        enable = true
+        appId = &#34;CNeyW3xuBg8PWJwDI0ig1AE2-MdYXbMMI&#34;
+        appKey = &#34;HrJsI7Cl93RIa8Cks5qtkSsE&#34;
+        placeholder = &#34;在这里留下足迹吧!&#34;
+        avatar = &#34;mp&#34;
+        meta= [&#39;nick&#39;,&#39;mail&#39;]
+        pageSize = 10
+        lang = &#34;&#34;
+        visitor = true
+        recordIP = true
+        highlight = true
+        enableQQ = false
+        serverURLs = &#34;&#34;
+        #  emoji 数据文件名称, 默认是 &#34;google.yml&#34;
+        # (&#34;apple.yml&#34;, &#34;google.yml&#34;, &#34;facebook.yml&#34;, &#34;twitter.yml&#34;)
+        # 位于 &#34;themes/LoveIt/assets/data/emoji/&#34; 目录
+        # 可以在你的项目下相同路径存放你自己的数据文件:
+        # &#34;assets/data/emoji/&#34;
+        emoji = &#34;&#34;
+      # Facebook 评论系统设置
+      [params.page.comment.facebook]
+        enable = false
+        width = &#34;100%&#34;
+        numPosts = 10
+        appId = &#34;&#34;
+        languageCode = &#34;zh_CN&#34;
+      #  Telegram Comments 评论系统设置
+      [params.page.comment.telegram]
+        enable = false
+        siteID = &#34;&#34;
+        limit = 5
+        height = &#34;&#34;
+        color = &#34;&#34;
+        colorful = true
+        dislikes = false
+        outlined = false
+      #  Commento 评论系统设置
+      [params.page.comment.commento]
+        enable = false
+      #  Utterances 评论系统设置
+      [params.page.comment.utterances]
+        enable = false
+        # owner/repo
+        repo = &#34;&#34;
+        issueTerm = &#34;pathname&#34;
+        label = &#34;&#34;
+        lightTheme = &#34;github-light&#34;
+        darkTheme = &#34;github-dark&#34;
+    #  第三方库配置
+    [params.page.library]
+      [params.page.library.css]
+        # someCSS = &#34;some.css&#34;
+        # 位于 &#34;assets/&#34;
+        # 或者
+        # someCSS = &#34;https://cdn.example.com/some.css&#34;
+      [params.page.library.js]
+        # someJavascript = &#34;some.js&#34;
+        # 位于 &#34;assets/&#34;
+        # 或者
+        # someJavascript = &#34;https://cdn.example.com/some.js&#34;
+    #  页面 SEO 配置
+    [params.page.seo]
+      # 图片 URL
+      images = []
+      # 出版者信息
+      [params.page.seo.publisher]
+        name = &#34;&#34;
+        logoUrl = &#34;&#34;
+
+  #  TypeIt 配置
+  [params.typeit]
+    # 每一步的打字速度 (单位是毫秒)
+    speed = 100
+    # 光标的闪烁速度 (单位是毫秒)
+    cursorSpeed = 1000
+    # 光标的字符 (支持 HTML 格式)
+    cursorChar = &#34;|&#34;
+    # 打字结束之后光标的持续时间 (单位是毫秒, &#34;-1&#34; 代表无限大)
+    duration = -1
+
+  # 网站验证代码，用于 Google/Bing/Yandex/Pinterest/Baidu
+  [params.verification]
+    google = &#34;&#34;
+    bing = &#34;&#34;
+    yandex = &#34;&#34;
+    pinterest = &#34;&#34;
+    baidu = &#34;&#34;
+
+  #  网站 SEO 配置
+  [params.seo]
+    # 图片 URL
+    image = &#34;&#34;
+    # 缩略图 URL
+    thumbnailUrl = &#34;&#34;
+
+  #  网站分析配置
+  [params.analytics]
+    enable = false
+    # Google Analytics
+    [params.analytics.google]
+      id = &#34;&#34;
+      # 是否匿名化用户 IP
+      anonymizeIP = true
+    # Fathom Analytics
+    [params.analytics.fathom]
+      id = &#34;&#34;
+      # 自行托管追踪器时的主机路径
+      server = &#34;&#34;
+
+  #  Cookie 许可配置
+  [params.cookieconsent]
+    enable = false
+    # 用于 Cookie 许可横幅的文本字符串
+    [params.cookieconsent.content]
+      message = &#34;&#34;
+      dismiss = &#34;&#34;
+      link = &#34;&#34;
+
+  #  第三方库文件的 CDN 设置
+  [params.cdn]
+    # CDN 数据文件名称, 默认不启用
+    # (&#34;jsdelivr.yml&#34;)
+    # 位于 &#34;themes/LoveIt/assets/data/cdn/&#34; 目录
+    # 可以在你的项目下相同路径存放你自己的数据文件:
+    # &#34;assets/data/cdn/&#34;
+    data = &#34;&#34;
+
+  #  兼容性设置
+  [params.compatibility]
+    # 是否使用 Polyfill.io 来兼容旧式浏览器
+    polyfill = false
+    # 是否使用 object-fit-images 来兼容旧式浏览器
+    objectFit = false
+
+# Hugo 解析文档的配置
+[markup]
+  # 语法高亮设置
+  [markup.highlight]
+    codeFences = true
+    guessSyntax = true
+    lineNos = true
+    lineNumbersInTable = true
+    # false 是必要的设置
+    # (https://github.com/dillonzq/LoveIt/issues/158)
+    noClasses = false
+  # Goldmark 是 Hugo 0.60 以来的默认 Markdown 解析库
+  [markup.goldmark]
+    [markup.goldmark.extensions]
+      definitionList = true
+      footnote = true
+      linkify = true
+      strikethrough = true
+      table = true
+      taskList = true
+      typographer = true
+    [markup.goldmark.renderer]
+      # 是否在文档中直接使用 HTML 标签
+      unsafe = true
+  # 目录设置
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 6
+
+# 作者配置
+[author]
+  name = &#34;bore&#34;
+  email = &#34;iwyang@qq.com&#34;
+  link = &#34;https://bore.vip&#34;
+
+# 网站地图配置
+[sitemap]
+  changefreq = &#34;weekly&#34;
+  filename = &#34;sitemap.xml&#34;
+  priority = 0.5
+
+# Permalinks 配置
+[Permalinks]
+  # posts = &#34;:year/:month/:filename&#34;
+  posts = &#34;:filename&#34;
+
+# 隐私信息配置
+[privacy]
+  #  Google Analytics 相关隐私 (被 params.analytics.google 替代)
+  [privacy.googleAnalytics]
+    # ...
+  [privacy.twitter]
+    enableDNT = true
+  [privacy.youtube]
+    privacyEnhanced = true
+
+# 用于输出 Markdown 格式文档的设置
+[mediaTypes]
+  [mediaTypes.&#34;text/plain&#34;]
+    suffixes = [&#34;md&#34;]
+
+# 用于输出 Markdown 格式文档的设置
+[outputFormats.MarkDown]
+  mediaType = &#34;text/plain&#34;
+  isPlainText = true
+  isHTML = false
+
+# 用于 Hugo 输出文档的设置
+[outputs]
+  # 
+  home = [&#34;HTML&#34;, &#34;RSS&#34;, &#34;JSON&#34;]
+  page = [&#34;HTML&#34;, &#34;MarkDown&#34;]
+  section = [&#34;HTML&#34;, &#34;RSS&#34;]
+  taxonomy = [&#34;HTML&#34;, &#34;RSS&#34;]
+  taxonomyTerm = [&#34;HTML&#34;]
+</code></pre></td></tr></table></div></div><h4 id=135-设置文章模板>1.3.5. 设置文章模板</h4><p>为了更好的使用附加功能，我们提前修改一下模板。这样，每次使用新建一篇文档时候就省去很多麻烦事。
+使用Typora文档工具打开themes/tranquilpeak/archetypes中的post.md直接替换为以下的模板：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>---
+title: &#34;{{ replace .Name &#34;-&#34; &#34; &#34; | title }}&#34;
+date: {{ .Date }}
+lastmod: {{ .Date }}
+draft: false
+weight: false
+categories: [&#34;&#34;]
+tags: [&#34;&#34;] 
+</code></pre></td></tr></table></div></div><p>　接下来在根目录下使用以下命令生成一篇文档吧：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo new post/XXXX.md
+</code></pre></td></tr></table></div></div><h4 id=136-新建关于页面>1.3.6. 新建“关于”页面</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo new about.md
+</code></pre></td></tr></table></div></div><p><code>config.toml</code>相应位置添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>[[menu.main]]
+  name = &#34;关于&#34;
+  weight = 50
+  identifier = &#34;about&#34;
+  url = &#34;/about/&#34;
+</code></pre></td></tr></table></div></div><h4 id=137-启动博客的本地预览>1.3.7. 启动博客的本地预览</h4><p>建议在配置文件中设置好主题，或者使用 –t指令指定主题，在站点的根目录下使用命令进行本地启动，本地启动的命令如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>hugo server -D
+</code></pre></td></tr></table></div></div><p>使用浏览器打开 http://localhost:1313 预览。</p><h2 id=2-部署到coding>2. 部署到coding</h2><h3 id=21-coding上的操作>2.1. coding上的操作</h3><p>操作和部署到github大同小异，首先要在coding上开通pages静态网站服务，注意以下几点：</p><ul><li>配置SSH公钥时要勾选启用推送权限。</li><li>开启Coding Pages 服务，要先在<code>项目设置—功能开关</code>里开启持续集成和持续部署。然后进行实名认证：右上角—团队管理—团队设置—高级设置。</li><li>删除项目，点左下角—项目设置—更多。</li><li>添加自定义域名，添加cname记录，指向给你的网址。线路选默认。这样就保证国内线路走coding。</li><li>注意：一定要选首选的域名，并且非首选域名要勾选跳转至首选域名，不然有些第三方服务数据会统计不到一起。</li><li>开启 HTTPS，要先去域名 DNS 把 GitHub 的解析暂停掉，然后再重新申请 SSL 证书，然后开启强制 HTTPS 访问。（不然会申请失败）</li></ul><h3 id=22-提交本地仓库>2.2. 提交本地仓库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rm -rf public/*
+hugo
+cd public
+git remote rm origin
+git init
+git remote add origin git@e.coding.net:iwyang/hugo/hugo.git
+git add .
+git commit -m &#34;Add a new post&#34;
+git push --force origin master
+</code></pre></td></tr></table></div></div><h3 id=23-解决404错误>2.3. 解决404错误</h3><p>可是当你push完hugo生成的静态页面源码到你的repo中后点Coding给你分配的访问地址后却返回的是404页面，其实解决这个问题也很简单，就是点一下上图中的立即部署就行了。</p><h3 id=24-自动备份脚本>2.4. 自动备份脚本</h3><p>为了后续更新方便起见，可以在根目录新建一个一键自动部署脚本，命名为<code>deploy.sh</code>（如果对配置不做大的改动（例如：更换主题等），后续的更新可以使用以下脚本）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+<span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to gitee...\033[0m&#34;</span>
+
+<span class=c1># Removing existing files</span>
+rm -rf public/*
+<span class=c1># Build the project</span>
+hugo
+<span class=c1># Go To Public folder</span>
+<span class=nb>cd</span> public
+git add .
+
+<span class=c1># Commit changes.</span>
+<span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;rebuilding site `date`&#34;</span>
+<span class=k>if</span> <span class=o>[</span> <span class=nv>$#</span> -eq <span class=m>1</span> <span class=o>]</span>
+  <span class=k>then</span> <span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span>
+<span class=k>fi</span>
+git commit -m <span class=s2>&#34;</span><span class=nv>$msg</span><span class=s2>&#34;</span>
+
+<span class=c1># Push source and build repos.</span>
+git push origin master --force
+
+<span class=c1># Come Back up to the Project Root</span>
+<span class=nb>cd</span> ..
+</code></pre></td></tr></table></div></div><p>创建完脚本以后，不要忘了加权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>chmod 777 xxx
+</code></pre></td></tr></table></div></div><hr><p>附网上找到的另外两个部署脚本：</p><p>官方脚本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+<span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to GitHub...\033[0m&#34;</span>
+
+<span class=c1># Build the project.</span>
+hugo <span class=c1># if using a theme, replace with `hugo -t &lt;YOURTHEME&gt;`</span>
+
+<span class=c1># Go To Public folder</span>
+<span class=nb>cd</span> public
+<span class=c1># Add changes to git.</span>
+git add .
+
+<span class=c1># Commit changes.</span>
+<span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;rebuilding site `date`&#34;</span>
+<span class=k>if</span> <span class=o>[</span> <span class=nv>$#</span> -eq <span class=m>1</span> <span class=o>]</span>
+  <span class=k>then</span> <span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span>
+<span class=k>fi</span>
+git commit -m <span class=s2>&#34;</span><span class=nv>$msg</span><span class=s2>&#34;</span>
+
+<span class=c1># Push source and build repos.</span>
+git push origin master --force
+
+<span class=c1># Come Back up to the Project Root</span>
+<span class=nb>cd</span> ..
+</code></pre></td></tr></table></div></div><p>另外一个脚本：</p><p>（如果用上面的自动部署脚本出现问题，可以试试这个，不过这个脚本部署时经常会导致部分页面丢失，还不知道原因）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-bash data-lang=bash><span class=cp>#!/bin/bash
+</span><span class=cp></span>
+<span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to Coding...\033[0m&#34;</span>
+
+<span class=c1># Removing existing files</span>
+rm -rf public/*
+<span class=c1># Build the project</span>
+hugo
+<span class=c1># Go To Public folder</span>
+<span class=nb>cd</span> public
+git remote rm origin
+git init
+git remote add origin git@e.coding.net:iwyang/hugo.git
+git add .
+
+<span class=c1># Commit changes.</span>
+<span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;rebuilding site `date`&#34;</span>
+<span class=k>if</span> <span class=o>[</span> <span class=nv>$#</span> -eq <span class=m>1</span> <span class=o>]</span>
+  <span class=k>then</span> <span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span>
+<span class=k>fi</span>
+git commit -m <span class=s2>&#34;</span><span class=nv>$msg</span><span class=s2>&#34;</span>
+
+<span class=c1># Push source and build repos.</span>
+git push origin master --force
+
+<span class=c1># Come Back up to the Project Root</span>
+<span class=nb>cd</span> ..
+</code></pre></td></tr></table></div></div><hr><h2 id=3-部署到gitee>3. 部署到gitee</h2><p>和部署到coding大同小异，但需要注意以下几点：</p><p>免费版gitee page不支持绑定域名、不支持自动部署，并且上传了代码服务里才有gitee pages选项。还有关于首页地址见官方文档：</p><blockquote><p>如何创建一个首页访问地址不带二级目录的 pages，如ipvb.gitee.io？</p></blockquote><p>答：如果你想你的 pages 首页访问地址不带二级目录，如ipvb.gitee.io，你需要建立一个与自己个性地址同名的仓库，如 <a href=https://gitee.com/ipvb>https://gitee.com/ipvb</a> 这个用户，想要创建一个自己的站点，但不想以子目录的方式访问，想以ipvb.gitee.io直接访问，那么他就可以创建一个名字为ipvb的仓库 <a href=https://gitee.com/ipvb/ipvb>https://gitee.com/ipvb/ipvb</a> 部署完成后，就可以以 <a href=https://ipvb.gitee.io>https://ipvb.gitee.io</a> 进行访问了。</p><h3 id=31-提交本地仓库>3.1. 提交本地仓库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>rm -rf public/*
+hugo
+cd public
+git remote rm origin
+git init
+git remote add origin git@gitee.com:iwyang/iwyang.git
+git add .
+git commit -m &#34;Add a new post&#34;
+git push origin master --force
+</code></pre></td></tr></table></div></div><h3 id=32-备份hugo源码>3.2. 备份hugo源码</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git remote rm origin
+git init
+git checkout -b backup
+git add .
+git commit -m &#34;备份源码&#34;
+git remote add origin git@gitee.com:iwyang/iwyang.git
+git push origin backup --force
+</code></pre></td></tr></table></div></div><h2 id=4-备份hugo源码>4. 备份hugo源码</h2><h3 id=41-备份到gitee-backup分支>4.1. 备份到gitee backup分支</h3><p>在gitee上新建一个backup的分支，然后把下面代码加到<code>deploy.sh</code>末尾，这种方法有个问题，那就是themes等几个文件夹无法备份，因为这几个关联的仓库不一样，不过content文件夹备份了就行。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git remote rm origin
+git init
+git checkout -b backup
+git add .
+git commit -m &#34;备份源码&#34;
+git remote add origin git@gitee.com:iwyang/iwyang.git
+git push --force origin backup
+</code></pre></td></tr></table></div></div><hr><p>PS: <strong>如果执行第三步<code>git checkout -b backup</code>后，提示<code>fatal: A branch named 'backup' already exists.</code>，则执行以下操作：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git branch -D backup    #删除分支:必须切换到其他的分之下才可操作
+git checkout -b backup  #切换分支
+</code></pre></td></tr></table></div></div><h3 id=42-备份到github-master分支>4.2. 备份到github master分支</h3><p>按理说备份到私人仓库为好，可为了<code>GitInfo</code>以及<code>lastmod</code>生效，需要新建一个公共仓库。（注意要先备份源码到github上，再部署public里的网页到服务器上，为了方便，需要在自动部署脚本里作相应设置）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git remote rm origin
+git init
+git add .
+git commit -m &#34;备份源码&#34;
+git remote add origin git@github.com:iwyang/hugo.git
+git push --force origin master
+</code></pre></td></tr></table></div></div><hr><blockquote><p>PS:这里<code>Git Bash</code>开头会报错：<code>warning: LF will be replaced by CRLF</code>，解决方法：在<code>git add .</code>前面添加：</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>git config --global core.autocrlf false
+</code></pre></td></tr></table></div></div><p>最终效果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback># backup
+git config --global core.autocrlf false
+git add .
+git commit -m &#34;备份源码&#34;
+git remote add origin git@github.com:iwyang/hugo-backup.git
+git push origin master --force
+</code></pre></td></tr></table></div></div><p>在自动部署脚本里也要作相应修改。</p><hr><p>然后在<code>config.toml</code>里作如下修改</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>enableGitInfo = true
+gitRepo = &#34;https://github.com/iwyang/hugo-backup&#34;
+</code></pre></td></tr></table></div></div><h2 id=5-总结>5. 总结</h2><p>最好不要反复切换部署仓库，否则git会出现以下错误提示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre class=chroma><code class=language-fallback data-lang=fallback>remote: error: The last gc run reported the following. Please correct the root cause
+remote: and remove gc.log.
+remote: Automatic cleanup will not be performed until the file is removed.
+remote:
+remote: warning: There are too many unreachable loose objects; run &#39;git prune&#39; to remove them.
+</code></pre></td></tr></table></div></div><p>查资料，原来是自己本地一些 “悬空对象”太多(git删除分支或者清空stash的时候，这些其实还没有真正删除，成为悬空对象，我们可以使用merge命令可以从中恢复一些文件)</p><p>解决方法：</p><p>1.输入命令：<code>git fsck --lost-found</code>，可以看到好多“dangling commit”</p><p>2.清空他们：<code>git gc --prune=now</code>，完成</p><hr><p><strong>其他</strong>：如果将文章由hexo换成hugo，部署在<code>github</code>时，有5篇文章会导致报错：《Hexo Next主题进阶写作技巧 》、《Hexo-NexT (v7.7.2) 主题配置》、《Hexo-NexT 新建友链页面》、《hexo版本升级》、《markdown基本语法》。</p><h2 id=6-参考链接>6. 参考链接</h2><ul><li><a href=https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C target=_blank rel="noopener noreferrer">1.Hugo+github搭建个人博客 (windows10)</a></li><li><a href=https://zhuanlan.zhihu.com/p/57361697 target=_blank rel="noopener noreferrer">2.如何利用 GitHub Pages 和 Hugo 轻松搭建个人博客？</a></li><li><a href=https://blog.olowolo.com/post/hugo-quick-start/ target=_blank rel="noopener noreferrer">3.Hugo 从入门到会用</a></li><li><a href=https://gitee.com/help/articles/4136#article-header0 target=_blank rel="noopener noreferrer">4.码云Pages</a></li><li><a href=https://blog.csdn.net/persist_xyz/article/details/88619036 target=_blank rel="noopener noreferrer">5.git运行突然提示 remote: error: The last gc run reported the following</a></li></ul></div><div class=post-footer id=post-footer><div class=post-info><div class=post-info-line><div class=post-info-mod><span>更新于 2020-05-13</span></div><div class=post-info-license></div></div><div class=post-info-line><div class=post-info-md><span><a class=link-to-markdown href=/posts/hugo-install-on-coding-and-gitee/index.md target=_blank rel="noopener noreferrer">阅读原始文档</a></span></div><div class=post-info-share><span></span></div></div></div><div class=post-info-more><section class=post-tags><i class="fas fa-tags fa-fw"></i>&nbsp;<a href=/tags/hugo/>hugo</a></section><section><span><a href=javascript:void(0); onclick=window.history.back()>返回</a></span>&nbsp;|&nbsp;<span><a href=/>主页</a></span></section></div><div class=post-nav><a href=/posts/hexo-backup/ class=prev rel=prev title=hexo通过git备份&还原源码><i class="fas fa-angle-left fa-fw"></i>hexo通过git备份&还原源码</a>
+<a href=/posts/hugo-install-on-centos/ class=next rel=next title=Hugo部署到centos服务器>Hugo部署到centos服务器<i class="fas fa-angle-right fa-fw"></i></a></div></div><div id=comments><div id=utterances></div><noscript>Please enable JavaScript to view the comments powered by <a href=https://utteranc.es/>Utterances</a>.</noscript></div></article></div></main><footer class=footer><div class=footer-container><div class=footer-line>由 <a href=https://gohugo.io/ target=_blank rel="noopener noreferrer" title="Hugo 0.85.0">Hugo</a> 强力驱动 | 主题 - <a href=https://github.com/sunt-programator/CodeIT target=_blank rel="noopener noreferrer" title="CodeIT 0.2.10"><i class="fas fa-laptop-code fa-fw"></i> CodeIT</a></div><div class=footer-line><i class="far fa-copyright fa-fw"></i><span itemprop=copyrightYear>2020 - 2021</span><span class=author itemprop=copyrightHolder>&nbsp;<a href=https://bore.vip target=_blank rel="noopener noreferrer">bore</a></span>&nbsp;|&nbsp;<span class=license><a rel="license external nofollow noopener noreffer" href=https://creativecommons.org/licenses/by-nc/4.0/ target=_blank>CC BY-NC 4.0</a></span></div></div></footer></div><div id=fixed-buttons><a href=# id=back-to-top class=fixed-button title=回到顶部><i class="fas fa-arrow-up fa-fw"></i>
+</a><a href=# id=view-comments class=fixed-button title=查看评论><i class="fas fa-comment fa-fw"></i></a></div><link rel=stylesheet href=/lib/katex/katex.min.css><link rel=stylesheet href=/lib/katex/copy-tex.min.css><script type=text/javascript src=/lib/smooth-scroll/smooth-scroll.min.js></script><script type=text/javascript src=/lib/autocomplete/autocomplete.min.js></script><script type=text/javascript src=/lib/algoliasearch/algoliasearch-lite.umd.min.js></script><script type=text/javascript src=/lib/lazysizes/lazysizes.min.js></script><script type=text/javascript src=/lib/clipboard/clipboard.min.js></script><script type=text/javascript src=/lib/katex/katex.min.js></script><script type=text/javascript src=/lib/katex/auto-render.min.js></script><script type=text/javascript src=/lib/katex/copy-tex.min.js></script><script type=text/javascript src=/lib/katex/mhchem.min.js></script><script type=text/javascript>window.config={code:{copyTitle:"复制到剪贴板",maxShownLines:10},comment:{utterances:{darkTheme:"github-dark",issueTerm:"title",label:"",lightTheme:"github-light",repo:"iwyang/comments"}},math:{delimiters:[{display:!0,left:"$$",right:"$$"},{display:!0,left:"\\[",right:"\\]"},{display:!1,left:"$",right:"$"},{display:!1,left:"\\(",right:"\\)"}],strict:!1},search:{algoliaAppID:"R7GU8Q3PGK",algoliaIndex:"hugo",algoliaSearchKey:"03cd2f39cefdd4b40deed2f1222ad496",highlightTag:"em",maxResultLength:10,noResultsFound:"没有找到结果",snippetLength:50,type:"algolia"}}</script><script type=text/javascript src=/js/theme.min.js></script></body></html>
