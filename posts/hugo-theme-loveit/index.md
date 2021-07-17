@@ -630,7 +630,7 @@ enableEmoji = true
 
 将`根目录\archetypes`下的`default.md`修改如下：
 
-```
+```yaml
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 slug: ""
 date: {{ .Date }}
