@@ -1,6 +1,5 @@
 # 友情链接
 
-
 <div class="flink" id="article-container">
 <div class="friend-list-div" >
 {{< friend name="ConstOwn" url="https://blog.juanertu.com" logo="https://cdn.jsdelivr.net/gh/iwyang/pic/20200729225923.jpg" word="能与你一起成长，我荣幸之至。" >}}
