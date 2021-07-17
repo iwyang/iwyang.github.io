@@ -1,0 +1,23 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>excel - 标签 - Bore&#39;s Notes</title>
+        <link>https://bore.vip/tags/excel/</link>
+        <description>excel - 标签 - Bore&#39;s Notes</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>iwyang@qq.com (bore)</managingEditor>
+            <webMaster>iwyang@qq.com (bore)</webMaster><lastBuildDate>Mon, 29 Jun 2020 13:54:25 &#43;0800</lastBuildDate><atom:link href="https://bore.vip/tags/excel/" rel="self" type="application/rss+xml" /><item>
+    <title>Excel查找重复项</title>
+    <link>https://bore.vip/posts/excel-find-repeat/</link>
+    <pubDate>Mon, 29 Jun 2020 13:54:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/excel-find-repeat/</guid>
+    <description><![CDATA[这里以Excel 2019为例。 首先选中表格相应区域。 依次选择开始—条件格式—突出显示单元格规则—重复值。 重复的单元格会突出显示，修改重复项后]]></description>
+</item><item>
+    <title>Excel如何随机排</title>
+    <link>https://bore.vip/posts/excel-rank-random/</link>
+    <pubDate>Sat, 23 May 2020 11:38:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/excel-rank-random/</guid>
+    <description><![CDATA[首先打开需要操作的知excel表格。 然后在E2单元个中输入“=”号，添加辅助函数rand。 在E2单元格回车，专在E2单元格右下角下拉复制函数]]></description>
+</item><item>
+    <title>Excel表格调整分页打印内容</title>
+    <link>https://bore.vip/posts/excel-fen-ye/</link>
+    <pubDate>Mon, 18 May 2020 21:31:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/excel-fen-ye/</guid>
+    <description><![CDATA[依次选择视图—分页预览，单击选中后，我们看到文档多出了几条蓝色的实线，分出了第1页、第2页。如果我们想要调整打印的内容，只需要按住鼠标左键，]]></description>
+</item></channel>
+</rss>

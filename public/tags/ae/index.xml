@@ -1,0 +1,13 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>AE - 标签 - Bore&#39;s Notes</title>
+        <link>https://bore.vip/tags/ae/</link>
+        <description>AE - 标签 - Bore&#39;s Notes</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>iwyang@qq.com (bore)</managingEditor>
+            <webMaster>iwyang@qq.com (bore)</webMaster><lastBuildDate>Sun, 06 Jun 2021 10:02:25 &#43;0800</lastBuildDate><atom:link href="https://bore.vip/tags/ae/" rel="self" type="application/rss+xml" /><item>
+    <title>AE学习笔记</title>
+    <link>https://bore.vip/posts/ae-tips/</link>
+    <pubDate>Sun, 06 Jun 2021 10:02:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/ae-tips/</guid>
+    <description><![CDATA[按住Alt键不放， 单击快捷工具栏里的工具， 可快速切换同一个菜单栏上的子工具。（如把横排文字切换成竖排） 图层属性快捷键：中心点（A）、位移（P]]></description>
+</item></channel>
+</rss>

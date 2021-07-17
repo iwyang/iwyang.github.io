@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>halo - 标签 - Bore&#39;s Notes</title>
+        <link>https://bore.vip/tags/halo/</link>
+        <description>halo - 标签 - Bore&#39;s Notes</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>iwyang@qq.com (bore)</managingEditor>
+            <webMaster>iwyang@qq.com (bore)</webMaster><lastBuildDate>Sun, 26 Jul 2020 21:49:25 &#43;0800</lastBuildDate><atom:link href="https://bore.vip/tags/halo/" rel="self" type="application/rss+xml" /><item>
+    <title>halo定时备份的方法</title>
+    <link>https://bore.vip/posts/halo-backup/</link>
+    <pubDate>Sun, 26 Jul 2020 21:49:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/halo-backup/</guid>
+    <description><![CDATA[在网上查询了一下halo定时备份有三种方案：邮箱和Dropbox，以及github。 1. 备份到QQ邮箱 1.1. 安装邮件发送依赖组件 1.1.1. Centos 7 1 yum install sendmail mailx -y]]></description>
+</item><item>
+    <title>在Centos服务器部署Halo</title>
+    <link>https://bore.vip/posts/centos-halo/</link>
+    <pubDate>Fri, 24 Jul 2020 10:21:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/centos-halo/</guid>
+    <description><![CDATA[本教程以 CentOS 7.x 为例，配置并运行 Halo，其他 Linux 发行版大同小异。 1. 写在前面 具备一定的 Linux 基础。 如需域名绑定，请先保证已经正确解析 IP，以及确认服务]]></description>
+</item></channel>
+</rss>

@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="robots" content="noodp" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+        <title>hexo利用Github Action自动构建博客 - Bore&#39;s Notes</title><meta name="description" content="本站主要用来收集整理资料、记录笔记，方便自己查询使用。"><meta property="og:title" content="hexo利用Github Action自动构建博客" />
+<meta property="og:description" content="1. 准备两个仓库 建立两个GitHub仓库，分别叫hexo（私有的）和你的GitHub用户名.github.io（公有的）。前者用来存储博客源文" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://bore.vip/posts/hexo-github-action/" /><meta property="og:image" content="https://bore.vip/logo.png"/><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2020-07-07T19:11:25+08:00" />
+<meta property="article:modified_time" content="2020-07-07T19:11:25+08:00" />
+
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://bore.vip/logo.png"/>
+
+<meta name="twitter:title" content="hexo利用Github Action自动构建博客"/>
+<meta name="twitter:description" content="1. 准备两个仓库 建立两个GitHub仓库，分别叫hexo（私有的）和你的GitHub用户名.github.io（公有的）。前者用来存储博客源文"/>
+<meta name="application-name" content="Bore&#39;s Note">
+<meta name="apple-mobile-web-app-title" content="Bore&#39;s Note"><meta name="theme-color" content="#ffffff"><meta name="msapplication-TileColor" content="#da532c"><link rel="shortcut icon" type="image/x-icon" href="/favicon.ico" />
+        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png"><link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png"><link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5"><link rel="manifest" href="/site.webmanifest"><link rel="canonical" href="https://bore.vip/posts/hexo-github-action/" /><link rel="prev" href="https://bore.vip/posts/hugo-github-action/" /><link rel="next" href="https://bore.vip/posts/zfx-si-fen/" /><link rel="stylesheet" href="/lib/normalize/normalize.min.css"><link rel="stylesheet" href="/css/style.min.css"><link rel="stylesheet" href="/lib/fontawesome-free/all.min.css"><link rel="stylesheet" href="/lib/animate/animate.min.css"><script type="application/ld+json">
+    {
+        "@context": "http://schema.org",
+        "@type": "BlogPosting",
+        "headline": "hexo利用Github Action自动构建博客",
+        "inLanguage": "zh-CN",
+        "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "https:\/\/bore.vip\/posts\/hexo-github-action\/"
+        },"genre": "posts","keywords": "hexo","wordcount":  1157 ,
+        "url": "https:\/\/bore.vip\/posts\/hexo-github-action\/","datePublished": "2020-07-07T19:11:25+08:00","dateModified": "2020-07-07T19:11:25+08:00","publisher": {
+            "@type": "Organization",
+            "name": ""},"author": {
+                "@type": "Person",
+                "name": "bore"
+            },"description": ""
+    }
+    </script></head>
+    <body header-desktop="fixed" header-mobile="auto"><script type="text/javascript">(window.localStorage && localStorage.getItem('theme') ? localStorage.getItem('theme') === 'dark' : ('auto' === 'auto' ? window.matchMedia('(prefers-color-scheme: dark)').matches : 'auto' === 'dark')) && document.body.setAttribute('theme', 'dark');</script>
+
+        <div id="mask"></div><div class="wrapper"><header class="desktop" id="header-desktop">
+    <div class="header-wrapper">
+        <div class="header-title">
+            <a href="/" title="Bore&#39;s Notes">Bore&#39;s Notes</a>
+        </div>
+        <div class="menu">
+            <div class="menu-inner"><a class="menu-item" href="/"> 首页 </a><a class="menu-item" href="/categories/"> 分类 </a><a class="menu-item" href="/tags/"> 标签 </a><a class="menu-item" href="/posts/"> 归档 </a><a class="menu-item" href="/about/"> 关于 </a><a class="menu-item" href="/links/"> 友链 </a><span class="menu-item delimiter"></span><span class="menu-item search" id="search-desktop">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-desktop">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-desktop" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-desktop" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-desktop">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </span><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                    <i class="fas fa-adjust fa-fw"></i>
+                </a>
+            </div>
+        </div>
+    </div>
+</header><header class="mobile" id="header-mobile">
+    <div class="header-container">
+        <div class="header-wrapper">
+            <div class="header-title">
+                <a href="/" title="Bore&#39;s Notes">Bore&#39;s Notes</a>
+            </div>
+            <div class="menu-toggle" id="menu-toggle-mobile">
+                <span></span><span></span><span></span>
+            </div>
+        </div>
+        <div class="menu" id="menu-mobile"><div class="search-wrapper">
+                    <div class="search mobile" id="search-mobile">
+                        <input type="text" placeholder="搜索文章标题或内容..." id="search-input-mobile">
+                        <a href="javascript:void(0);" class="search-button search-toggle" id="search-toggle-mobile" title="搜索">
+                            <i class="fas fa-search fa-fw"></i>
+                        </a>
+                        <a href="javascript:void(0);" class="search-button search-clear" id="search-clear-mobile" title="清空">
+                            <i class="fas fa-times-circle fa-fw"></i>
+                        </a>
+                        <span class="search-button search-loading" id="search-loading-mobile">
+                            <i class="fas fa-spinner fa-fw fa-spin"></i>
+                        </span>
+                    </div>
+                    <a href="javascript:void(0);" class="search-cancel" id="search-cancel-mobile">
+                        取消
+                    </a>
+                </div><a class="menu-item" href="/" title="">首页</a><a class="menu-item" href="/categories/" title="">分类</a><a class="menu-item" href="/tags/" title="">标签</a><a class="menu-item" href="/posts/" title="">归档</a><a class="menu-item" href="/about/" title="">关于</a><a class="menu-item" href="/links/" title="">友链</a><a href="javascript:void(0);" class="menu-item theme-switch" title="切换主题">
+                <i class="fas fa-adjust fa-fw"></i>
+            </a></div>
+    </div>
+</header>
+<div class="search-dropdown desktop">
+    <div id="search-dropdown-desktop"></div>
+</div>
+<div class="search-dropdown mobile">
+    <div id="search-dropdown-mobile"></div>
+</div>
+<main class="main">
+                <div class="container"><div class="toc" id="toc-auto">
+            <h2 class="toc-title">目录</h2>
+            <div class="toc-content" id="toc-content-auto"></div>
+        </div><article class="page single"><h1 class="single-title animated flipInX">hexo利用Github Action自动构建博客</h1><div class="post-meta">
+            <div class="post-meta-line"><span class="post-author"><a href="https://bore.vip" title="Author" target="_blank" rel="noopener noreferrer author" class="author"><i class="fas fa-user-circle fa-fw"></i>bore</a></span>&nbsp;<span class="post-category">收录于 <a href="/categories/%E5%BB%BA%E7%AB%99%E7%AC%94%E8%AE%B0/"><i class="far fa-folder fa-fw"></i>建站笔记</a></span></div>
+            <div class="post-meta-line"><i class="far fa-calendar-alt fa-fw"></i>&nbsp;<time datetime="2020-07-07">2020-07-07</time>&nbsp;<i class="fas fa-pencil-alt fa-fw"></i>&nbsp;约 1157 字&nbsp;
+                <i class="far fa-clock fa-fw"></i>&nbsp;预计阅读 3 分钟&nbsp;</div>
+        </div><div class="details toc" id="toc-static"  kept="">
+                <div class="details-summary toc-title">
+                    <span>目录</span>
+                    <span><i class="details-icon fas fa-angle-right"></i></span>
+                </div>
+                <div class="details-content toc-content" id="toc-content-static"><nav id="TableOfContents">
+  <ul>
+    <li><a href="#1-准备两个仓库">1. 准备两个仓库</a></li>
+    <li><a href="#2-准备秘钥">2. 准备秘钥</a>
+      <ul>
+        <li><a href="#21-生成公钥">2.1. 生成公钥</a></li>
+        <li><a href="#22-上传id_rsapub">2.2. 上传id_rsa.pub</a></li>
+        <li><a href="#23-上传id_rsa">2.3. 上传id_rsa</a></li>
+      </ul>
+    </li>
+    <li><a href="#3-配置-github-actions">3. 配置 GitHub Actions</a></li>
+    <li><a href="#4-推送到远端">4. 推送到远端</a>
+      <ul>
+        <li><a href="#41-配置hexo的_configyml">4.1. 配置Hexo的_config.yml</a></li>
+        <li><a href="#42-修改主题文件夹">4.2. 修改主题文件夹</a></li>
+        <li><a href="#43-提交源码">4.3. 提交源码</a></li>
+      </ul>
+    </li>
+    <li><a href="#5-总结">5. 总结</a></li>
+    <li><a href="#6-参考链接">6. 参考链接</a></li>
+  </ul>
+</nav></div>
+            </div><div class="content" id="content"><h2 id="1-准备两个仓库">1. 准备两个仓库</h2>
+<p>建立两个GitHub仓库，分别叫<code>hexo</code>（私有的）和<code>你的GitHub用户名.github.io</code>（公有的）。前者用来存储博客源文件，后者用于挂载GitHub Pages。</p>
+<h2 id="2-准备秘钥">2. 准备秘钥</h2>
+<h3 id="21-生成公钥">2.1. 生成公钥</h3>
+<p>Windows 上安装 <a href="https://git-for-windows.github.io/" target="_blank" rel="noopener noreferrer">Git for Windows</a> 之后在开始菜单里打开 Git Bash 输入：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git config --global user.name &#34;你的用户名&#34;
+git config --global user.email &#34;你的电子邮箱&#34;
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">cd ~
+mkdir .ssh
+cd .ssh
+ssh-keygen -t rsa
+</code></pre></td></tr></table>
+</div>
+</div><p>在系统当前用户文件夹下生成了私钥 <code>id_rsa</code> 和公钥 <code>id_rsa.pub</code>。</p>
+<h3 id="22-上传id_rsapub">2.2. 上传id_rsa.pub</h3>
+<p>在右上角个人账户依次点击<code>Settings</code>-&gt;<code>SSH and GPG keys</code>添加刚刚生成的公钥，名称随意。</p>
+<h3 id="23-上传id_rsa">2.3. 上传id_rsa</h3>
+<p>在<code>hexo</code>源码仓库的<code>Settings</code>-&gt;<code>Secrets</code>里添加刚刚生成的私钥，名称为 <code>ACTION_DEPLOY_KEY</code>。</p>
+<h2 id="3-配置-github-actions">3. 配置 GitHub Actions</h2>
+<p>在博客根目录新建<code>.github/workflows/gh_pages.yml</code>文件。代码如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">name: Deploy Blog
+
+on: [push] # 当有新push时运行
+
+jobs:
+  build: # 一项叫做build的任务
+
+    runs-on: ubuntu-latest # 在最新版的Ubuntu系统下运行
+    
+    steps:
+    - name: Checkout # 将仓库内master分支的内容下载到工作目录
+      uses: actions/checkout@v1 # 脚本来自 https://github.com/actions/checkout
+      
+    - name: Use Node.js 10.x # 配置Node环境
+      uses: actions/setup-node@v1 # 配置脚本来自 https://github.com/actions/setup-node
+      with:
+        node-version: &#34;10.x&#34;
+    
+    - name: Setup Hexo env
+      env:
+        ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+      run: |
+        # set up private key for deploy
+        mkdir -p ~/.ssh/
+        echo &#34;$ACTION_DEPLOY_KEY&#34; | tr -d &#39;\r&#39; &gt; ~/.ssh/id_rsa # 配置秘钥
+        chmod 600 ~/.ssh/id_rsa
+        ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts
+        # set git infomation
+        git config --global user.name &#39;iwyang&#39; # 换成你自己的邮箱和名字
+        git config --global user.email &#39;455343442@qq.com&#39;
+        # install dependencies
+        npm i -g hexo-cli # 安装hexo
+        npm i
+  
+    - name: Deploy
+      run: |
+        # publish
+        hexo generate &amp;&amp; hexo deploy # 执行部署程序
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="4-推送到远端">4. 推送到远端</h2>
+<h3 id="41-配置hexo的_configyml">4.1. 配置Hexo的_config.yml</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">deploy:
+  type: git
+  repo:
+    gitee: git@github.com:iwyang/iwyang.github.io.git
+  branch: master
+</code></pre></td></tr></table>
+</div>
+</div><h3 id="42-修改主题文件夹">4.2. 修改主题文件夹</h3>
+<p>将主题文件夹里的<code>.git</code>、<code>gitignore</code>、<code>.github</code>等文件夹都删除。</p>
+<h3 id="43-提交源码">4.3. 提交源码</h3>
+<p>今后只需备份源码到<code>hexo</code>源码分支，<code>gitbub action</code>就会自动部署博客到<code>iwyang.github.io</code>仓库。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">git init
+git remote add origin git@github.com:iwyang/hexo.git
+git add .
+git commit -m &#34;备份源码&#34;
+git push --force origin master
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="5-总结">5. 总结</h2>
+<p>也可以只准备一个仓库<code>iwyang.github.io</code>，利用两个分支来备份。例如利用<code>hexo</code>分支备份源码，<code>github action</code>利用<code>master</code>分支部署博客。<code>workflows</code>做相应调整：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre class="chroma"><code class="language-fallback" data-lang="fallback">name: CI
+on:
+  push:
+    branches:
+      - hexo
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v1
+        with:
+          ref: hexo
+      - name: Use Node.js ${{ matrix.node_version }}
+        uses: actions/setup-node@v1
+        with:
+          version: ${{ matrix.node_version }}
+      - name: Setup hexo
+        env:
+          ACTION_DEPLOY_KEY: ${{ secrets.ACTION_DEPLOY_KEY }}
+        run: |
+          mkdir -p ~/.ssh/
+          echo &#34;$ACTION_DEPLOY_KEY&#34; &gt; ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com &gt;&gt; ~/.ssh/known_hosts
+          git config --global user.email &#34;455343442@qq.com&#34;
+          git config --global user.name &#34;iwyang&#34;
+          npm install hexo-cli -g
+          npm install
+      - name: Hexo deploy
+        run: |
+          hexo clean
+          hexo d
+</code></pre></td></tr></table>
+</div>
+</div><p>网上还有通过webhook来自动部署到服务器，不过还是觉得用<code>git hook</code>部署到服务器较好。</p>
+<h2 id="6-参考链接">6. 参考链接</h2>
+<ul>
+<li><a href="https://juejin.im/post/5da03d5e6fb9a04e046bc3a2" target="_blank" rel="noopener noreferrer">1.用 GitHub Actions 自动化发布Hexo网站到 GitHub Pages</a></li>
+<li><a href="https://segmentfault.com/a/1190000022360769" target="_blank" rel="noopener noreferrer">2.GitHub Actions 自动部署 Hexo</a></li>
+<li><a href="https://blog.cugxuan.cn/2019/03/23/Git/Use-Webhook-To-Update-Blog/" target="_blank" rel="noopener noreferrer">3使用 webhook 自动更新博客</a></li>
+<li><a href="https://jsonpop.cn/posts/27f296b8/" target="_blank" rel="noopener noreferrer">4.Hexo使用Webhooks构建自动部署程序</a></li>
+<li><a href="http://devgou.com/article/Git-WebHooks/" target="_blank" rel="noopener noreferrer">5.WebHooks</a></li>
+</ul>
+</div><div class="post-footer" id="post-footer">
+    <div class="post-info">
+        <div class="post-info-line">
+            <div class="post-info-mod">
+                <span>更新于 2020-07-07</span>
+            </div>
+            <div class="post-info-license"></div>
+        </div>
+        <div class="post-info-line">
+            <div class="post-info-md"><span>
+                            <a class="link-to-markdown" href="/posts/hexo-github-action/index.md" target="_blank" rel="noopener noreferrer">阅读原始文档</a>
+                        </span></div>
+            <div class="post-info-share">
+                <span></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="post-info-more">
+        <section class="post-tags"><i class="fas fa-tags fa-fw"></i>&nbsp;<a href="/tags/hexo/">hexo</a></section>
+        <section>
+            <span><a href="javascript:void(0);" onclick="window.history.back();">返回</a></span>&nbsp;|&nbsp;<span><a href="/">主页</a></span>
+        </section>
+    </div>
+
+    <div class="post-nav"><a href="/posts/hugo-github-action/" class="prev" rel="prev" title="hugo利用Github Action自动构建博客"><i class="fas fa-angle-left fa-fw"></i>hugo利用Github Action自动构建博客</a>
+            <a href="/posts/zfx-si-fen/" class="next" rel="next" title="把一个正方形平分成四份">把一个正方形平分成四份<i class="fas fa-angle-right fa-fw"></i></a></div>
+</div>
+<div id="comments"><div id="utterances"></div><noscript>
+                Please enable JavaScript to view the comments powered by <a href="https://utteranc.es/">Utterances</a>.
+            </noscript></div></article></div>
+            </main><footer class="footer">
+        <div class="footer-container"><div class="footer-line">由 <a href="https://gohugo.io/" target="_blank" rel="noopener noreferrer" title="Hugo 0.85.0">Hugo</a> 强力驱动 | 主题 - <a href="https://github.com/sunt-programator/CodeIT" target="_blank" rel="noopener noreferrer" title="CodeIT 0.2.10"><i class="fas fa-laptop-code fa-fw"></i> CodeIT</a>
+                </div><div class="footer-line"><i class="far fa-copyright fa-fw"></i><span itemprop="copyrightYear">2020 - 2021</span><span class="author" itemprop="copyrightHolder">&nbsp;<a href="https://bore.vip" target="_blank" rel="noopener noreferrer">bore</a></span>&nbsp;|&nbsp;<span class="license"><a rel="license external nofollow noopener noreffer" href="https://creativecommons.org/licenses/by-nc/4.0/" target="_blank">CC BY-NC 4.0</a></span></div>
+        </div>
+    </footer></div>
+
+        <div id="fixed-buttons"><a href="#" id="back-to-top" class="fixed-button" title="回到顶部">
+                <i class="fas fa-arrow-up fa-fw"></i>
+            </a><a href="#" id="view-comments" class="fixed-button" title="查看评论">
+                <i class="fas fa-comment fa-fw"></i>
+            </a>
+        </div><link rel="stylesheet" href="/lib/katex/katex.min.css"><link rel="stylesheet" href="/lib/katex/copy-tex.min.css"><script type="text/javascript" src="/lib/smooth-scroll/smooth-scroll.min.js"></script><script type="text/javascript" src="/lib/autocomplete/autocomplete.min.js"></script><script type="text/javascript" src="/lib/algoliasearch/algoliasearch-lite.umd.min.js"></script><script type="text/javascript" src="/lib/lazysizes/lazysizes.min.js"></script><script type="text/javascript" src="/lib/clipboard/clipboard.min.js"></script><script type="text/javascript" src="/lib/katex/katex.min.js"></script><script type="text/javascript" src="/lib/katex/auto-render.min.js"></script><script type="text/javascript" src="/lib/katex/copy-tex.min.js"></script><script type="text/javascript" src="/lib/katex/mhchem.min.js"></script><script type="text/javascript">window.config={"code":{"copyTitle":"复制到剪贴板","maxShownLines":10},"comment":{"utterances":{"darkTheme":"github-dark","issueTerm":"title","label":"","lightTheme":"github-light","repo":"iwyang/comments"}},"math":{"delimiters":[{"display":true,"left":"$$","right":"$$"},{"display":true,"left":"\\[","right":"\\]"},{"display":false,"left":"$","right":"$"},{"display":false,"left":"\\(","right":"\\)"}],"strict":false},"search":{"algoliaAppID":"R7GU8Q3PGK","algoliaIndex":"hugo","algoliaSearchKey":"03cd2f39cefdd4b40deed2f1222ad496","highlightTag":"em","maxResultLength":10,"noResultsFound":"没有找到结果","snippetLength":50,"type":"algolia"}};</script><script type="text/javascript" src="/js/theme.min.js"></script></body>
+</html>

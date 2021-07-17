@@ -1,0 +1,18 @@
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+    <channel>
+        <title>图床 - 标签 - Bore&#39;s Notes</title>
+        <link>https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/</link>
+        <description>图床 - 标签 - Bore&#39;s Notes</description>
+        <generator>Hugo -- gohugo.io</generator><language>zh-CN</language><managingEditor>iwyang@qq.com (bore)</managingEditor>
+            <webMaster>iwyang@qq.com (bore)</webMaster><lastBuildDate>Tue, 21 Jul 2020 16:32:25 &#43;0800</lastBuildDate><atom:link href="https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/" rel="self" type="application/rss+xml" /><item>
+    <title>GitHub&#43;jsDelivr&#43;PicGo&#43;typecho打造免费高速图床</title>
+    <link>https://bore.vip/posts/github-jsdelivr-picgo-typecho/</link>
+    <pubDate>Tue, 21 Jul 2020 16:32:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/github-jsdelivr-picgo-typecho/</guid>
+    <description><![CDATA[1. 配置github 1.1. 新建公共仓库 新建一个公共仓库，例如我建的仓库地址：https://github.com/iwyang/pic，注意一定要]]></description>
+</item><item>
+    <title>Gitee&#43;Picgo&#43;Typecho搭建图床</title>
+    <link>https://bore.vip/posts/gitee-picgo-typecho/</link>
+    <pubDate>Sat, 06 Jun 2020 08:59:25 &#43;0800</pubDate><author>iwyang@qq.com</author><dc:creator>bore</dc:creator><guid>https://bore.vip/posts/gitee-picgo-typecho/</guid>
+    <description><![CDATA[1. 配置gitee 1.1. 新建公共仓库 新建一个公共仓库，例如我建的仓库地址：https://gitee.com/iwyang/pics，注意一定要勾]]></description>
+</item></channel>
+</rss>
