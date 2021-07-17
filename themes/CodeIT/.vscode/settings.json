@@ -1,0 +1,10 @@
+{
+  "files.associations": {
+    ".huskyrc": "json",
+    ".stylelintrc": "json",
+    ".lintstagedrc": "json",
+    ".all-contributorsrc": "json",
+  },
+  "terminal.integrated.fontFamily": "FiraCode NF",
+  "editor.fontLigatures": true
+}
