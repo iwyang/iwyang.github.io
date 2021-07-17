@@ -891,13 +891,15 @@ seo:
 
 1. `layouts/shortcodes/`下面新建`friend.html`文件：
 
+注意这里我将原来的`<a target="_blank" href={{ .Get "url"  | safeURL }} title={{ .Get "name" }} >`改成了` <a target="_blank" href={{ .Get "url"  | safeURL }} title={{ .Get "word" }} >`
+
 ```html
 {{ if .IsNamedParams }}
     {{- $src := .Get "logo" -}}
     {{- $small := .Get "logo_small" | default $src -}}
     {{- $large := .Get "logo_large" | default $src -}}
     <div class="friend-div">
-        <a target="_blank" href={{ .Get "url"  | safeURL }} title={{ .Get "name" }} >
+        <a target="_blank" href={{ .Get "url"  | safeURL }} title={{ .Get "word" }} >
             <img class="lazyload"
                  src="/svg/loading.min.svg"
                  data-src={{ $src | safeURL }}
