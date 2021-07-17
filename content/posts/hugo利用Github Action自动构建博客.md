@@ -110,6 +110,42 @@ jobs:
           PUBLISH_DIR: ./public
 ```
 
+2021.7.17：目前使用下面的：
+
+```yaml
+name: GitHub Page Deploy
+
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2
+      # with:
+      # submodules: true  # Fetch Hugo themes (true OR recursive)
+      # fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Build Hugo
+        run: hugo --minify && npm install atomic-algolia --save && npm run algolia
+
+      - name: Deploy Hugo to gh-pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./public
+        # cname:
+```
+
 ## 4. 推送到远端
 
 ### 4.1. 修改主题文件夹
@@ -331,44 +367,6 @@ jobs:
           SERVER_IP: ${{ secrets.SSH_HOST }} # use pre-configured ssh_host value (e.g., IP or domain.com）
           USERNAME: ${{ secrets.SSH_USERNAME }} # use pre-configured ssh_username value
           SERVER_DESTINATION: /var/www/xxx/ # put your repo files on this directory of the remote server
-```
-
----
-
-2021.7.17：目前使用下面的：
-
-```yaml
-name: GitHub Page Deploy
-
-on:
-  push:
-    branches:
-      - develop
-jobs:
-  build-deploy:
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout master
-        uses: actions/checkout@v2
-      # with:
-      # submodules: true  # Fetch Hugo themes (true OR recursive)
-      # fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
-      - name: Setup Hugo
-        uses: peaceiris/actions-hugo@v2
-        with:
-          hugo-version: 'latest'
-          extended: true
-
-      - name: Build Hugo
-        run: hugo --minify && npm install atomic-algolia --save && npm run algolia
-
-      - name: Deploy Hugo to gh-pages
-        uses: peaceiris/actions-gh-pages@v3
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          PUBLISH_BRANCH: master
-          PUBLISH_DIR: ./public
-        # cname:
 ```
 
 ---
