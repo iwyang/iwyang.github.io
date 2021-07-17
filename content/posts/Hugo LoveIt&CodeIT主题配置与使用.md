@@ -752,7 +752,9 @@ seo:
 
 > 在前辈大佬的基础上，为本博客使用的主题实现友链卡片功能，并加入简单的移动页面适配。代码借鉴来自 [kissshot](https://github.com/kkkgo/hugo-friendlinks/) 和 [数学小兵儿](https://github.com/MatNoble/hugo-shortcodes-sets/) 两位大佬。
 
-#### 2.4.1. 代码部分
+#### 2.4.1. 第一种方法
+
+##### 2.4.1.1.  代码部分
 
 `LoveIt/layouts/shortcodes/` 下面新建 `friend.html` 文件：
 
@@ -872,7 +874,7 @@ seo:
 @import "../_partial/_single/friend";
 ```
 
-#### 2.4.2. 展示效果
+##### 2.4.1.2. 展示效果
 
 使用示例：
 
@@ -886,12 +888,200 @@ seo:
 
 ![](https://cdn.jsdelivr.net/gh/iwyang/pic/20210717161923.png)
 
-更多内容可查看官方文档：
 
-+ [主题文档 - 基本概念](https://hugoloveit.com/zh-cn/theme-documentation-basics/)
 
-+ [主题文档 - 内容](https://hugoloveit.com/zh-cn/theme-documentation-content/)
+#### 2.5. 第二种方法
+
+2021.7.17 目前采用的就是这种方法。
+
+##### 2.5.1. 代码
+
+**注意：后面说的`assets`和`layouts`目录都不是`themes/LoveIt/\*`下的，而是`博客根目录/*`**
+
+1. `layouts/shortcodes/`下面新建`friend.html`文件：
+
+```html
+{{ if .IsNamedParams }}
+    {{- $src := .Get "logo" -}}
+    {{- $small := .Get "logo_small" | default $src -}}
+    {{- $large := .Get "logo_large" | default $src -}}
+    <div class="friend-div">
+        <a target="_blank" href={{ .Get "url"  | safeURL }} title={{ .Get "name" }} >
+            <img class="lazyload"
+                 src="/svg/loading.min.svg"
+                 data-src={{ $src | safeURL }}
+                 alt={{ .Get "name" }}
+                 data-sizes="auto"
+                 data-srcset="{{ $small | safeURL }}, {{ $src | safeURL }} 1.5x, {{ $large | safeURL }} 2x" />
+            <span class="friend-name">{{ .Get "name" }}</span>
+            <span class="friend-info">{{ .Get "word" }}</span>
+        </a>
+    </div>
+{{ end }}
+```
+
+2. `assets/css/_partial/_single/`下面新建`_friend.scss`文件：
+
+```scss
+#article-container {
+ word-wrap: break-word;
+ overflow-wrap: break-word
+}
+   
+#article-container a {
+ color: #49b1f5
+}
+   
+#article-container a:hover {
+ text-decoration: underline
+}
+   
+#article-container img {
+ margin: 0 auto .8rem
+}
+   
+.flink#article-container .friend-list-div > .friend-div a .friend-info,
+.flink#article-container .friend-list-div > .friend-div a .friend-name {
+ overflow: hidden;
+ -o-text-overflow: ellipsis;
+ text-overflow: ellipsis;
+ white-space: nowrap
+}
+   
+.flink#article-container .friend-list-div {
+ overflow: auto;
+ padding: 10px 10px 0;
+ text-align: center;
+}
+.flink#article-container .friend-list-div > .friend-div {
+ position: relative;
+ float: left;
+ overflow: hidden;
+ margin: 15px 7px;
+ width: calc(100% / 3 - 15px);
+ height: 90px;
+ border-radius: 8px;
+ line-height: 17px;
+ -webkit-transform: translateZ(0)
+}
+   
+@media screen and (max-width: 1100px) {
+ .flink#article-container .friend-list-div > .friend-div {
+  width: calc(50% - 15px) !important
+ }
+   
+@media screen and (max-width: 600px) {
+ .flink#article-container .friend-list-div > .friend-div {
+  width: calc(100% - 15px) !important
+ }
+}
+}
+   
+.flink#article-container .friend-list-div > .friend-div:hover {
+ background: rgba(87, 142, 224, 0.15);
+}
+   
+.flink#article-container .friend-list-div > .friend-div:hover img {
+ -webkit-transform: rotate(360deg);
+ -moz-transform: rotate(360deg);
+ -o-transform: rotate(360deg);
+ -ms-transform: rotate(360deg);
+ transform: rotate(360deg)
+}
+   
+.flink#article-container .friend-list-div > .friend-div:before {
+ position: absolute;
+ top: 0;
+ right: 0;
+ bottom: 0;
+ left: 0;
+ z-index: -1;
+ background: var(--text-bg-hover);
+ content: '';
+ -webkit-transition: -webkit-transform .3s ease-out;
+ -moz-transition: -moz-transform .3s ease-out;
+ -o-transition: -o-transform .3s ease-out;
+ -ms-transition: -ms-transform .3s ease-out;
+ transition: transform .3s ease-out;
+ -webkit-transform: scale(0);
+ -moz-transform: scale(0);
+ -o-transform: scale(0);
+ -ms-transform: scale(0);
+ transform: scale(0)
+}
+.flink#article-container .friend-list-div > .friend-div:hover:before,
+.flink#article-container .friend-list-div > .friend-div:focus:before,
+.flink#article-container .friend-list-div > .friend-div:active:before {
+ -webkit-transform: scale(1);
+ -moz-transform: scale(1);
+ -o-transform: scale(1);
+ -ms-transform: scale(1);
+ transform: scale(1)
+}
+.flink#article-container .friend-list-div > .friend-div a {
+ color: var(--font-color);
+ text-decoration: none
+}
+   
+.flink#article-container .friend-list-div > .friend-div a img{
+ float: left;
+ margin: 15px 10px;
+ width: 60px;
+ height: 60px;
+ border-radius: 35px;
+ -webkit-transition: all .3s;
+ -moz-transition: all .3s;
+ -o-transition: all .3s;
+ -ms-transition: all .3s;
+ transition: all .3s
+}
+   
+.flink#article-container .friend-list-div > .friend-div a .friend-name {
+ display: block;
+ padding: 16px 10px 0 0;
+ height: 40px;
+ font-weight: 700;
+ font-size: 20px
+}
+   
+.flink#article-container .friend-list-div > .friend-div a .friend-info {
+ display: block;
+ padding: 1px 10px 1px 0;
+ height: 50px;
+ font-size: 13px
+}
+```
+
+3. 拷贝`themes/LoveIt/assets/css/_page/_single.scss`到`assets/css/_page/_single.scss`，并引入下面一行：
+
+```scss
+@import "../_partial/_single/friend";
+```
+
+##### 2.5.2. 预览
+
+先自行在`config.toml`中配置友情链接，然后 md 文件中写如下代码：
+
+```markdown
+<div class="flink" id="article-container">
+<div class="friend-list-div" >
+
+{{</* friend name="友链名" url="友链地址" logo="友链图标链接" word="友链描述" */>}}
+{{</* friend name="友链名" url="友链地址" logo="友链图标链接" word="友链描述" */>}}
+...
+
+</div>
+</div>
+```
+
+> **注意：两个 div 不能少！！**
+
+![](https://cdn.jsdelivr.net/gh/iwyang/pic/20210717220844.jpg)
+
+
 
 ## 4. 参考链接
 
-+ [Hugo 篇四：添加友链卡片 shortcodes](https://blog.233so.com/2020/04/friend-link-shortcodes-for-hugo-loveit/)
++ [1.Hugo 篇四：添加友链卡片 shortcodes](https://blog.233so.com/2020/04/friend-link-shortcodes-for-hugo-loveit/)
++ [2.Hugo 添加友情链接页面](https://reb.mallotec.com/post/9e9c31ab/)
+
