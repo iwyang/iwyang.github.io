@@ -7,7 +7,7 @@ draft: false
 toc: false
 weight: false
 categories: ["学习笔记"]
-tags: ["实用工具"]
+tags: ["tips"]
 ---
 
 使用方法：
