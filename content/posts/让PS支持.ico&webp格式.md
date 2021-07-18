@@ -1,7 +1,7 @@
 ---
 title: "让PS支持.ico&webp格式"
 slug: "install-ico-plugin-in-photoshop-CC"
-date: 2020-05-15T00:43:25+08:00
+date: 2021-07-14T00:43:25+08:00
 lastmod: 2020-05-15T00:43:25+08:00
 draft: false
 toc: true
