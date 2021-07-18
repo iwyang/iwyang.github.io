@@ -12,7 +12,7 @@ title = "Bore's Notes"
 # 是否使用 robots.txt
 enableRobotsTXT = true
 # 是否使用 git 信息
-enableGitInfo = false
+enableGitInfo = true
 # 是否使用 emoji 代码
 enableEmoji = true
 
