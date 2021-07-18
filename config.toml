@@ -276,8 +276,8 @@ enableEmoji = true
     XMPP = ""
     Matrix = ""
     Bilibili = "iwyang"
-    Email = "xxxx@xxxx.com"
-    RSS = true
+    Email = "iwyang@qq.com"
+    RSS = false
     # CodeIT 新增 | 0.1.2 Open Researcher and Contributor ID
     Orcid = ""
 
