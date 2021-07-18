@@ -381,7 +381,7 @@ enableEmoji = true
       enable = true
       # Disqus 评论系统设置
       [params.page.comment.disqus]
-        enable = true
+        enable = false
         # Disqus 的 shortname，用来在文章中启用 Disqus 评论系统
         shortname = ""
       # Gitalk 评论系统设置
@@ -393,7 +393,7 @@ enableEmoji = true
         clientSecret = ""
       # Valine 评论系统设置
       [params.page.comment.valine]
-        enable = false
+        enable = true
         appId = ""
         appKey = ""
         placeholder = ""
