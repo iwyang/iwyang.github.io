@@ -21,7 +21,7 @@ enableEmoji = true
   [[menu.main]]
     identifier = "posts"
     # 你可以在名称 (允许 HTML 格式) 之前添加其他信息, 例如图标
-    pre = ""
+    pre = "<i class='fa fa-fw fa-archive'></i>"
     # 你可以在名称 (允许 HTML 格式) 之后添加其他信息, 例如图标
     post = ""
     name = "归档"
@@ -31,7 +31,7 @@ enableEmoji = true
     weight = 4
   [[menu.main]]
     identifier = "home"
-    pre = ""
+    pre = "<i class='fa fa-fw fa-home'></i>"
     post = ""
     name = "首页"
     url = "/"
@@ -39,7 +39,7 @@ enableEmoji = true
     weight = 1
   [[menu.main]]
     identifier = "categories"
-    pre = ""
+    pre = "<i class='fa fa-fw fa-th'></i>"
     post = ""
     name = "分类"
     url = "/categories/"
@@ -47,7 +47,7 @@ enableEmoji = true
     weight = 2
   [[menu.main]]
     identifier = "tags"
-    pre = ""
+    pre = "<i class='fas fa-tags fa-fw'></i>"
     post = ""
     name = "标签"
     url = "/tags/"
@@ -55,7 +55,7 @@ enableEmoji = true
     weight = 3
     [[menu.main]]
     identifier = "about"
-    pre = ""
+    pre = "<i class='fa fa-fw fa-user'></i>"
     post = ""
     name = "关于"
     url = "/about/"
@@ -63,7 +63,7 @@ enableEmoji = true
     weight = 5
   [[menu.main]]
     identifier = "links"
-    pre = ""
+    pre = "<i class='fas fa-link fa-fw'></i>"
     post = ""
     name = "友链"
     url = "/links/"
