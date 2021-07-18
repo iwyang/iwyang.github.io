@@ -5,10 +5,7 @@
 
 ### 1.1. 申请证书
 
-1. 登录阿里云[SSl证书控制台](https://yundunnext.console.aliyun.com/?spm=a2c4g.11186623.2.13.775345eav2PxV4&p=cas#/overview/cn-hangzhou)
-2. 在SSL证书页面，单击购买证书。
-3. 域名类型选单域名，证书类型选`DV SSL`，加密等级选择免费版。
-4. 接下来按操作进行，具体可参考：[最新阿里云申请免费SSL证书教程](https://yq.aliyun.com/articles/637307)
+查看：[申请免费DV试用证书](https://help.aliyun.com/document_detail/156645.html)
 
 
 ### 1.2. 安装证书
