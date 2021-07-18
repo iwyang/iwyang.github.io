@@ -633,7 +633,10 @@ enableEmoji = true
   taxonomyTerm = ["HTML"]
 ```
 
-**注意**：如果固定链接设置为`posts = "/posts/:slug"`，文章的分类和标签都不能为空，否则会报错！
+**注意**：
+
+1. 如果固定链接设置为`posts = "/posts/:slug"`，文章的分类和标签都不能为空，否则会报错！
+2. 如果要在菜单前面加图标，格式是`pre = "<i class='fa fa-fw fa-home'></i>"`，`'fa fa-fw fa-home'`是单引号，不是双引号。
 
 ### 2.2. 默认文章模板的修改
 
