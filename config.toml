@@ -393,7 +393,7 @@ enableEmoji = true
         clientSecret = ""
       # Valine 评论系统设置
       [params.page.comment.valine]
-        enable = true
+        enable = false
         appId = ""
         appKey = ""
         placeholder = ""
@@ -434,7 +434,7 @@ enableEmoji = true
         enable = false
       # Utterances 评论系统设置
       [params.page.comment.utterances]
-        enable = false
+        enable = true
         # owner/repo
         repo = "iwyang/comments"
         issueTerm = "title"
