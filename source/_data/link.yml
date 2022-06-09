@@ -1,0 +1,81 @@
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Upptime
+      link: https://iwyang.github.io/check
+      avatar: /img/link-img/upptime.jpg
+      descr: 利用Github Actions检测网站运行状态。
+    - name: ConstOwn
+      link: https://blog.juanertu.com
+      avatar: /img/link-img/constown.jpg
+      descr: 能与你一起成长，我荣幸之至。
+    - name: 小丁的个人博客
+      link: https://tding.top
+      avatar: /img/link-img/ding.jpg
+      descr: 世间所有的相遇，都是久别重逢。
+    - name: Xu's Blog
+      link: https://hasaik.com
+      avatar: /img/link-img/xu.jpg
+      descr: 简单不先于复杂，而是在复杂之后
+    - name: Takagi
+      link: https://lixingyong.com
+      avatar: /img/link-img/takagi.jpg
+      descr: Takagi是啥呀？？当然是最喜欢的Takagi了吖ヾ(≧∇≦*)ゝ
+    - name: IILeeのBlog
+      link: https://www.iilee.cn/
+      avatar: /img/link-img/iilee.jpg
+      descr: 所以，看不到光，算是不幸吗？需要光才是真正的不幸吧。
+    - name: Bill Yang's Blog
+      link: https://blog.bill.moe
+      avatar: /img/link-img/bill.jpg
+      descr: 这辈子都不可能更新的。
+    - name: 若只如初见
+      link: https://joyli.net.cn/
+      avatar: /img/link-img/ruo.jpg
+      descr: 世间所有的相遇，都是久别重逢。
+    - name: Sanarous
+      link: https://bestzuo.cn
+      avatar: /img/link-img/sanarous.jpg
+      descr: Dream it possible, make it possible
+    - name: 大大的小蜗牛
+      link: https://eallion.com/
+      avatar: /img/link-img/eallion.jpg
+      descr: 机会总是垂青于有准备的人。
+    - name: guole's Blog
+      link: https://guole.fun/
+      avatar: /img/link-img/guo.png
+      descr: 保持理智，相信明天。
+    - name: cywhat’s blog
+      link: https://cywhat.cn
+      avatar: /img/link-img/cywhat.jpg
+      descr: 一位摸爬滚打的测开Dog. 
+    - name:  Akilarの糖果屋
+      link: https://akilar.top
+      avatar: /img/link-img/akilar.jpg
+      descr: 期待您的光临！       
+    - name:  Nekolas's Blog
+      link: https://blog.nekolas.cafe/
+      avatar: /img/link-img/nekolas.jpg
+      descr: 欢迎加入锈栓抵抗军
+    - name:  知行记
+      link: https://baozi.fun/
+      avatar: /img/link-img/baozi.jpg
+      descr: 知行记Xue主题作者     
+      
+# - class_name: 網站
+  # class_desc: 值得推薦的網站
+  # link_list:
+    # - name: Youtube
+      # link: https://www.youtube.com/
+      # avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+      # descr: 視頻網站
+    # - name: Weibo
+      # link: https://www.weibo.com/
+      # avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+      # descr: 中國最大社交分享平台
+    # - name: Twitter
+      # link: https://twitter.com/
+      # avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+      # descr: 社交分享平台
+
+
