@@ -139,5 +139,5 @@ deploy:
   repo:
     github: git@github.com:iwyang/iwyang.github.io.git
     fwq: git@104.224.191.88:hexo.git
-    gitee: git@gitee.com:iwyang/iwyang.git
+#    gitee: git@gitee.com:iwyang/iwyang.git
   branch: master
