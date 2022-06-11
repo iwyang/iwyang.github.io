@@ -7,7 +7,6 @@ tags:
   - nginx
 abbrlink: a5658b36
 date: 2022-05-29 05:55:31
-updated: 2022-05-29 20:32:32
 ---
 
 >因为我们转发的是TCP流，因此nginx需要安装ngx_stream_core_module模块(以下简称stream模块)；我们还需要做一个SSL证书前置，需要ngx_stream_ssl_preread_module 模块。要查看这些模块是否被编译进了Nginx，可以使用Nginx -V命令进行查看。
