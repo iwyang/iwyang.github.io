@@ -104,7 +104,7 @@ EOF
 根据实际需求，改成下面模样：
 
 ```
-vi halo_email_backup.sh
+vi email.sh
 ```
 
 ```js
@@ -140,7 +140,7 @@ crontab -e
 ```
 
 ```bash
-01 00 * * * /root/halo_email_backup.sh
+01 00 * * * /root/email.sh
 ```
 
 意思是每天凌晨0:01运行这个脚本。

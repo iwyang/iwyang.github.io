@@ -226,8 +226,6 @@ wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
 vi /etc/systemd/system/halo.service
 ```
 4.修改配置
-+ `YOUR_JAR_PATH`：Halo 运行包的绝对路径，例如 /home/halo/app/halo.jar，注意：此路径不支持 ~ 符号。
-+ `USER`：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 User=USER。
 
 ### 下载 Halo 官方的 halo.service 模板
 ```
@@ -237,11 +235,13 @@ wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
 下载完成之后，我们还需要对其进行修改。
 
 ```bash
-# 修改 halo.service
-sudo vim /etc/systemd/system/halo.service
+sudo vi /etc/systemd/system/halo.service
 ```
 
 打开之后我们可以看到
+
++ `YOUR_JAR_PATH`：Halo 运行包的绝对路径，例如 `/root/app/halo.jar`，注意：此路径不支持 ~ 符号。
++ `USER`：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 **User=USER**。
 
 ```conf
 [Unit]
@@ -735,6 +735,12 @@ server {
   }
 }
 ```
+重启 Nginx 生效：
+
+```
+systemctl restart nginx
+```
+
 5. 使用 webroot 自动生成证书
 
 Certbot 支持多种不同的「插件」来获取证书，这里选择使用 webroot 插件，它可以在不停止 Web 服务器的前提下自动生成证书，使用 --webroot 参数指定网站的根目录。
@@ -825,6 +831,8 @@ server {
   listen [::]:80;
   listen 127.0.0.1:443 ssl http2 proxy_protocol;
   listen [::]:443 ssl http2;
+  set_real_ip_from 127.0.0.1;
+  real_ip_header proxy_protocol;
   server_name bore.vip www.bore.vip;
   if ($host != 'bore.vip' ) {
       rewrite ^/(.*)$ https://bore.vip/$1 permanent;

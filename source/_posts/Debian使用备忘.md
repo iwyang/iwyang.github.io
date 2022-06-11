@@ -140,6 +140,9 @@ sudo systemctl restart postfix
 echo "This is the body of the email" | mail -s "This is the subject line" your_email_address
 ```
 6. debian 彻底删除posfix 然后重新安装
+
+如果安装出错，先彻底删除posfix 然后重新安装
+
 + 关闭 service postfix start
 ```bash
 service postfix  stop
