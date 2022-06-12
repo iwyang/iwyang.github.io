@@ -111,7 +111,7 @@ sudo systemctl restart vsftpd
 
 ## 配置 Github actions
 
-在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码如下：
+在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码（**不添加缓存**）如下：最好使用下面添加了缓存的。
 
 ```yaml
 name: GitHub Page Deploy
@@ -156,7 +156,58 @@ jobs:
           server-dir: /var/www/hexo/
 ```
 
+**添加缓存：**
 
+```yaml
+name: GitHub Page Deploy
+
+on:
+  push:
+    branches:
+      - develop
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2.3.4
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.5.0
+        with:
+          hugo-version: 'latest'
+          extended: true
+          
+      - name: Cache resources # 缓存 resource 文件加快生成速度
+        uses: actions/cache@v2
+        with:
+          path: resources
+         # 检查照片文件变化
+          key: ${{ runner.os }}-hugocache-${{ hashFiles('content/**/*') }}
+          restore-keys: ${{ runner.os }}-hugocache-
+
+      - name: Build Hugo
+        run: hugo --minify --gc
+
+      - name: Deploy Hugo to gh-pages
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./public
+        # cname:
+        
+      - name: Deploy Hugo to Server
+        uses: SamKirkland/FTP-Deploy-Action@4.1.0
+        with:
+          server: 104.224.191.88
+          username: git
+          password: ${{ secrets.FTP_MIRROR_PASSWORD }}
+          local-dir: ./public/
+          server-dir: /var/www/hexo/
+```
 
 ### 提交源码
 
@@ -316,4 +367,5 @@ git submodule update --recursive --remote
 + [5.解决git@github.com: Permission denied (publickey). Could not read from remote repository](https://blog.csdn.net/ywl470812087/article/details/104459288)
 + [6.GIT 子模块](https://yihui.org/cn/2017/03/git-submodule/)
 + [7.子模块](https://zj-git-guide.readthedocs.io/zh_CN/stable/basic/%E5%AD%90%E6%A8%A1%E5%9D%97.html)
++ [8.Stack主题 + GitHub Action](https://blog.zhixuan.dev/posts/ce103e3b/)
 

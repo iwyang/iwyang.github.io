@@ -308,7 +308,7 @@ sudo systemctl restart vsftpd
 
 ### 配置 Github actions
 
-在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码如下：
+在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码（不添加缓存）如下：最好使用下面添加了缓存的。
 
 ```bash
 name: GitHub Page Deploy
@@ -351,6 +351,59 @@ jobs:
           password: ${{ secrets.FTP_MIRROR_PASSWORD }}
           local-dir: ./public/
           server-dir: /var/www/blog/
+```
+
+**添加缓存：**
+
+```yaml
+name: GitHub Page Deploy
+
+on:
+  push:
+    branches:
+      - hugo
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout master
+        uses: actions/checkout@v2.3.4
+        with:
+          submodules: true  # Fetch Hugo themes (true OR recursive)
+          fetch-depth: 0    # Fetch all history for .GitInfo and .Lastmod
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v2.5.0
+        with:
+          hugo-version: 'latest'
+          extended: true
+          
+      - name: Cache resources # 缓存 resource 文件加快生成速度
+        uses: actions/cache@v2
+        with:
+          path: resources
+         # 检查照片文件变化
+          key: ${{ runner.os }}-hugocache-${{ hashFiles('content/**/*') }}
+          restore-keys: ${{ runner.os }}-hugocache-          
+
+      - name: Build Hugo
+        run: hugo --minify --gc
+
+      - name: Deploy Hugo to gh-pages
+        uses: peaceiris/actions-gh-pages@v3.8.0
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: master
+          PUBLISH_DIR: ./public
+        # cname:
+        
+      - name: Deploy Hugo to Server
+        uses: SamKirkland/FTP-Deploy-Action@4.3.0
+        with:
+          server: 104.224.191.88
+          username: root
+          password: ${{ secrets.FTP_MIRROR_PASSWORD }}
+          local-dir: ./public/
+          server-dir: /usr/share/nginx/html/
 ```
 
 ## 提交源码
@@ -621,3 +674,6 @@ sudo systemctl restart vsftpd
 [3.SamKirkland](https://github.com/SamKirkland)/[FTP-Deploy-Action](https://github.com/SamKirkland/FTP-Deploy-Action)
 
 [4.vsftpd参数设置，并允许root账户登录ftp](https://blog.csdn.net/weixin_43782998/article/details/109163384)
+
+[5.Stack主题 + GitHub Action](https://blog.zhixuan.dev/posts/ce103e3b/)
+
