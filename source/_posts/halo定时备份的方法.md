@@ -40,6 +40,9 @@ sudo apt install postfix
 ```
 在安装过程即将结束时，您将看到一个类似于下图中的窗口的窗口。默认选项是`Internet Site`。这是本教程的推荐选项，请按`TAB`，然后按`ENTER`。
 之后，您将获得另一个窗口，就像下一个图像中的窗口一样。该系统邮件名称应该是一样的，你分配给服务器，当你在创造它的名字。如果它显示子域`subdomain.example.com`，请将其更改为`ust example.com`。完成后，按`TAB`，然后`ENTER`。
+
+
+
 ### 修改附件发送大小限制
 
 看下现在邮件的大小限制：
@@ -114,25 +117,24 @@ echo "Blog date"|mail -s "Backup$(date +%Y-%m-%d)" -a web_$(date +"%Y%m%d").tar.
 rm -f web_$(date +"%Y%m%d").tar.gz
 ```
 上面代码中最后的`rm -f web_$(date +"%Y%m%d").tar.gz`，表示删除本地的临时文件。
->**注意**在Debian下要讲`-a` 改成 `-A`（如下）
+>**注意**在**Debian**下要讲`-a` 改成 `-A`（如下）
 
 ```diff
-- tar zcvf web_$(date +"%Y%m%d").tar.gz /root/.halo
-echo "Blog date"|mail -s "Backup$(date +%Y-%m-%d)" -a web_$(date +"%Y%m%d").tar.gz 455343442@qq.com
-+ tar zcvf web_$(date +"%Y%m%d").tar.gz /root/.halo
-echo "Blog date"|mail -s "Backup$(date +%Y-%m-%d)" -A web_$(date +"%Y%m%d").tar.gz 455343442@qq.com
+- echo "Blog date"|mail -s "Backup$(date +%Y-%m-%d)" -a web_$(date +"%Y%m%d").tar.gz 455343442@qq.com
++ echo "Blog date"|mail -s "Backup$(date +%Y-%m-%d)" -A web_$(date +"%Y%m%d").tar.gz 455343442@qq.com
+```
 
-### 设置定时任务
+#### 设置定时任务
 
-#### 赋予文件执行权限
+##### 赋予文件执行权限
 
 ```bash
-chmod +x /root/halo_email_backup.sh
+chmod +x /root/email.sh
 ```
 
 运行的时候就输入下面的代码即可：`./halo_email_backup.sh`
 
-#### 设定自动任务
+##### 设定自动任务
 
 ```bash
 crontab -e
@@ -152,7 +154,7 @@ crontab -e
 
 在这里，应用类型选择`Dropbox API`，数据存储类型选择`App folder`，然后`命名`创建。然后切换到`Permissions`选项卡，勾选相应权限。最后记录下`App key`，`App secret`，下面要用。
 
-![dropbox_uploader](https://bore.vip/upload/2022/05/dropbox_uploader.jpg)
+![](../img/halo%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E7%9A%84%E6%96%B9%E6%B3%95/dropbox_uploader.jpg)
 
 ### 下载dropbox_uploader.sh
 
