@@ -308,7 +308,7 @@ sudo systemctl restart vsftpd
 
 ### 配置 Github actions
 
-在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码（不添加缓存）如下：最好使用下面添加了缓存的。
+在博客根目录新建`.github/workflows/gh_pages.yml`文件。代码（**不添加缓存**）如下：最好使用下面添加了缓存的。
 
 ```bash
 name: GitHub Page Deploy
@@ -361,7 +361,7 @@ name: GitHub Page Deploy
 on:
   push:
     branches:
-      - hugo
+      - develop
 jobs:
   build-deploy:
     runs-on: ubuntu-latest
@@ -405,6 +405,60 @@ jobs:
           local-dir: ./public/
           server-dir: /usr/share/nginx/html/
 ```
+
+**第三方：**
+
+```bash
+name: GitHub Page
+
+on:
+    push:
+        branches:
+            - master # master 更新触发
+
+jobs:
+    deploy:
+        runs-on: ubuntu-18.04
+        steps:
+            - uses: actions/checkout@v2
+              with:
+                  submodules: true # clone submodules
+                  fetch-depth: 0 # 克隆所有历史信息
+
+            - name: Setup Hugo
+              uses: peaceiris/actions-hugo@v2
+              with:
+                  hugo-version: "0.87.0" # Hugo 版本
+                  extended: true # hugo插件版 Stack主题 必须启用
+
+            - name: Cache resources # 缓存 resource 文件加快生成速度
+              uses: actions/cache@v2
+              with:
+                  path: resources
+                  # 检查照片文件变化
+                  key: ${{ runner.os }}-hugocache-${{ hashFiles('content/**/*') }}
+                  restore-keys: ${{ runner.os }}-hugocache-
+
+            - name: Build # 生成网页 删除无用 resource 文件 削减空行
+              run: hugo --minify --gc
+
+            - name: Deploy # 部署到 GitHub Page
+              uses: peaceiris/actions-gh-pages@v3
+              with:
+                  # 如果在同一个仓库下使用请使用 github_token 并注释 deploy_key
+                  # github_token: ${{ secrets.GITHUB_TOKEN }}
+                  deploy_key: ${{ secrets.ACTIONS_DEPLOY_KEY }}
+
+                  # 如果在同一个仓库请注释
+                  external_repository: # 你的 GitHub page 仓库 example/example.github.io
+
+                  publish_dir: ./public
+                  user_name: "github-actions[bot]"
+                  user_email: "github-actions[bot]@users.noreply.github.com"
+                  full_commit_message: Deploy from ${{ github.repository }}@${{ github.sha }} 🚀
+```
+
+
 
 ## 提交源码
 
