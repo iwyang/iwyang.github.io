@@ -68,8 +68,11 @@ vi /etc/ftpusers
 sudo systemctl restart vsftpd
 ```
 6. 解决Nginx出现403 forbidden
+
+如果网站根目录在`/usr/share/nginx/html/`，则执行：
+
 ```bash
-chmod -R 777 /data/www/
+chmod -R 777 /usr/share/nginx
 ```
 7. 限制用户登录（未启用）
 
