@@ -11,6 +11,13 @@ top_img:
     display: none;
   }
 </style>
+## 壁纸
+
+<div class="gallery-group-main">
+{% galleryGroup '常用' '常用的壁纸' '/gallery/wallpaper' ../../img/wallpaper/faded.jpg %}
+{% galleryGroup '风景' '好看的风景' '/gallery/landscape' ../../img/风景/sea.jpg %}
+</div>
+
 ## 骑行
 
 <div class="gallery-group-main">
