@@ -14,7 +14,7 @@ top_img:
 ## 壁纸
 
 <div class="gallery-group-main">
-{% galleryGroup '常用' '常用的壁纸' '/gallery/wallpaper' ../../img/wallpaper/faded.jpg %}
+{% galleryGroup '常用' '常用的壁纸' '/gallery/wallpaper' ../../img/wallpaper/sunshine.jpg %}
 {% galleryGroup '风景' '好看的风景' '/gallery/landscape' ../../img/风景/sea.jpg %}
 </div>
 

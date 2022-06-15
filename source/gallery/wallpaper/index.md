@@ -20,5 +20,7 @@ type: galleryGroup
 
 ![Boy Standing under Tree at Sunset](../../img/wallpaper/tree.jpg)
 
+![sunshine](../../img/wallpaper/sunshine.jpg)
+
 {% endgallery %}
 
