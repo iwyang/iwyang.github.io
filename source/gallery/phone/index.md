@@ -1,5 +1,5 @@
 ---
-title: 好看的风景
+title: 手机壁纸
 comments: false
 date: 2021-10-08 22:53:46
 reward:
@@ -12,13 +12,15 @@ type: galleryGroup
     display: none;
   }
 </style>
-## 好看的风景
+## 手机壁纸
 
 {% gallery %}
 
-![snow](../../img/风景/snow.jpeg)
+![snow](../../img/phone/blue.jpg)
 
-![sea](../../img/风景/sea.jpg)
+![galaxy](../../img/phone/galaxy.jpg)
+
+![xingxing](../../img/phone/xingxing.jpg)
 
 {% endgallery %}
 

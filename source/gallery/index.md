@@ -14,8 +14,8 @@ top_img:
 ## 壁纸
 
 <div class="gallery-group-main">
-{% galleryGroup '常用' '常用的壁纸' '/gallery/wallpaper' ../../img/wallpaper/sunshine.jpg %}
-{% galleryGroup '风景' '好看的风景' '/gallery/landscape' ../../img/风景/sea.jpg %}
+{% galleryGroup '桌面壁纸' '好看的桌面壁纸' '/gallery/wallpaper' ../../img/wallpaper/sea.jpg %}
+{% galleryGroup '手机壁纸' '好看的手机壁纸' '/gallery/phone' ../../img/phone/blue.jpg %}
 </div>
 
 ## 骑行

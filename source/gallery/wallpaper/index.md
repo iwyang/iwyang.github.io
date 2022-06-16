@@ -1,5 +1,5 @@
 ---
-title: 常用的壁纸
+title: 桌面壁纸
 comments: false
 date: 2021-10-08 22:53:46
 reward:
@@ -12,7 +12,7 @@ type: galleryGroup
     display: none;
   }
 </style>
-## 常用的壁纸
+## 桌面壁纸
 
 {% gallery %}
 
@@ -21,6 +21,10 @@ type: galleryGroup
 ![Boy Standing under Tree at Sunset](../../img/wallpaper/tree.jpg)
 
 ![sunshine](../../img/wallpaper/sunshine.jpg)
+
+![sea](../../img/wallpaper/sea.jpg)
+
+![snow](../../img/wallpaper/snow.jpg)
 
 {% endgallery %}
 
