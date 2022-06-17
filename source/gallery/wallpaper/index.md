@@ -1,5 +1,5 @@
 ---
-title: 桌面壁纸
+title: 电脑壁纸
 comments: false
 date: 2021-10-08 22:53:46
 reward:
@@ -12,7 +12,7 @@ type: galleryGroup
     display: none;
   }
 </style>
-## 桌面壁纸
+## 电脑壁纸
 
 {% gallery %}
 

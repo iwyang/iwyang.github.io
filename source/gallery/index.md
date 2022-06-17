@@ -14,7 +14,7 @@ top_img:
 ## 壁纸
 
 <div class="gallery-group-main">
-{% galleryGroup '桌面壁纸' '好看的桌面壁纸' '/gallery/wallpaper' ../../img/wallpaper/sea.jpg %}
+{% galleryGroup '电脑壁纸' '好看的电脑壁纸' '/gallery/wallpaper' ../../img/wallpaper/sea.jpg %}
 {% galleryGroup '手机壁纸' '好看的手机壁纸' '/gallery/phone' ../../img/phone/blue.jpg %}
 </div>
 
