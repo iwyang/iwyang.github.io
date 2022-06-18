@@ -735,6 +735,86 @@ xxxxxx
 {% endflink %}
 ```
 
+## 引入Aplayer播放音乐
+
+**PS：未测试**
+
+1. 在博客根目录[Blogroot]下打开终端，运行以下指令安装hexo-tag-aplayer插件：
+
+   ```bash
+   npm install hexo-tag-aplayer --save
+   ```
+
+2. 在站点配置文件`[Blogroot]\_config.yml`中新增配置项，建议直接加在最底下：
+
+   ```yaml
+   # APlayer
+   # https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md
+   aplayer:
+     meting: true
+     asset_inject: false
+   ```
+
+3. 修改主题配置文件`[Blogroot]\_config.butterfly.yml`中关于Aplayer的配置内容
+
+   ```yaml
+   # Inject the css and script (aplayer/meting)
+   aplayerInject:
+     enable: true
+     per_page: true
+   ```
+
+4. 在主题配置文件`[Blogroot]\_config.butterfly.yml`的inject配置项中添加Aplayer的容器。
+
+   ```yaml
+   inject:
+     head:
+     bottom:
+       - <div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div>
+   ```
+
+5. 在博客根目录`[Blogroot]`下打开终端，运行以下指令
+
+   ```bash
+   hexo clean
+   hexo generate
+   hexo server
+   ```
+
+6. 关于更换歌单的问题，大部分同学都因为只更改了data-id的值，所以出现歌单加载不出的情况，此处需要注意，data-id、data-server、data-type分别对应了`歌单的id，歌单的服务商、歌单的类型`~~（感觉自己说了废话）~~，所以需要确认这三项是一一对应的。
+
+   
+
+   如图中所示，找到网易云歌单的url，`https://music.163.com/#/playlist?id=4907060762`,此处的palylist对应的就是data-type的值，id就是data-id的值，而网易云的data-server为netease，这个可以通过Aplayer的插件文档查阅到。**只有三个参数对应正确才能正常加载歌单。**
+
+7. Aplayer的网易云歌单接口时不时的会挂掉，所以如果你确定你配置正确，但是歌单还是没有出现。不妨去看看其他人的站点是不是也没有Aplayer标签了来判断是Aplayer本身接口的问题还是自己配置出错的问题。
+
+8. 配置成功后会发现Aplayer的吸底标签一直占据着左下角的一片空间，对手机端阅读不太友好，可以添加一下CSS样式使其自动缩进隐藏。在 `[Blogroot]\themes\butterfly\source\css\custom.css`中(没有这个文件就按照路径自己新建)添加如下内容：
+
+   ```css
+   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body {
+     left: -66px !important;
+     /* 默认情况下缩进左侧66px，只留一点箭头部分 */
+   }
+   
+   .aplayer.aplayer-fixed.aplayer-narrow .aplayer-body:hover {
+     left: 0 !important;
+     /* 鼠标悬停是左侧缩进归零，完全显示按钮 */
+   }
+   ```
+
+   9.不要忘了到主题配置文件引入自定义样式，修改`[Blogroot]_config.butterfly.yml`的`inject`配置项：
+
+   ```diff
+     inject:
+       head:
+   +     - <link rel="stylesheet" href="/css/custom.css"  media="defer" onload="this.media='all'">
+       bottom:
+         - <div class="aplayer no-destroy" data-id="5183531430" data-server="netease" data-type="playlist" data-fixed="true" data-mini="true" data-listFolded="false" data-order="random" data-preload="none" data-autoplay="false" muted></div>
+   ```
+
+   10.更多自定义样式魔改内容详见站内教程：[Custom Beautify](https://akilar.top/posts/ebf20e02/)
+
 ## 引入自定义 css
 
 在站点配置文件 blog/_config.blog.yml 中，搜索定位到 inject，插入以下内容：
@@ -968,7 +1048,7 @@ List||fas fa-list||hide:
 
 地址：[Tag Plugins Plus](https://akilar.top/posts/615e2dec)
 
-# hexo设置skip_render
+## hexo设置skip_render
 
 hexo设置skip_render, 指定不进行渲染的文件或文件夹
 
@@ -1003,4 +1083,5 @@ skip_render:
 + [Butterfly 安装文档(一) 快速开始](https://butterfly.js.org/posts/21cfbf15/)
 + [我的 Blog 美化日记 ——Hexo+Butterfly](https://guole.fun/posts/butterfly-custom/)
 + [hexo设置skip_render, 指定不进行渲染的文件或文件夹](https://www.jianshu.com/p/76220131c7e9)
++ [引入Aplayer播放音乐](https://akilar.top/posts/3afa069a/)
 
