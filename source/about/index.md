@@ -21,6 +21,11 @@ top_img:
 
 {% timeline %}  
 
+<!-- timeline 2022-06-24 -->
+`hexo-butterfly`主题升级到`v4.3.0`。
+
+<!-- endtimeline -->
+
 <!-- timeline 2022-05-03 -->
 `hexo-butterfly`主题升级到`v4.2.0`。
 
