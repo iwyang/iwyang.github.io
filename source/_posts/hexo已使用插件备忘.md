@@ -6,6 +6,7 @@ tags:
   - hexo
 abbrlink: 6b1d45d4
 date: 2020-04-26 21:24:16
+cover: false
 ---
 
 ## Hexo 一键部署插件

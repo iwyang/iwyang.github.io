@@ -7,6 +7,7 @@ tags:
   - tips
 abbrlink: a88a84c4
 date: 2020-05-17 04:32:25
+cover: false
 ---
 
 1.按住alt键，拖动直线，会拉出一个尖点。

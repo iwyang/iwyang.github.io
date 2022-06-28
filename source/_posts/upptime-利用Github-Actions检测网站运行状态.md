@@ -6,6 +6,7 @@ tags:
   - github
 abbrlink: b32c2189
 date: 2021-08-02 00:05:13
+cover: false
 ---
 
 ## 创建 upptime 源

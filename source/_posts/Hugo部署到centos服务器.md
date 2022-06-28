@@ -7,6 +7,7 @@ tags:
   - 服务器
 abbrlink: 99e0f84a
 date: 2020-05-13 10:05:25
+cover: false
 ---
 
  服务器环境：Centos 8 x64

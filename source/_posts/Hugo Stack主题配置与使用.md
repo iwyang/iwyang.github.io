@@ -1,13 +1,12 @@
 ---
 title: Hugo Stack主题配置与使用
-url: 'https://bore.vip/archives/hugo-stack'
 categories:
   - 技术
 tags:
   - hugo
 abbrlink: 3bf3725e
 date: 2021-07-24 01:15:26
-updated: 2022-06-03 10:28:30
+cover: false
 ---
 
 

@@ -6,6 +6,7 @@ tags:
   - 服务器
 abbrlink: '69e88054'
 date: 2020-05-18 06:06:25
+cover: false
 ---
 
 ##  安装 Xfce 桌面环境

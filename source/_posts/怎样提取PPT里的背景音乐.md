@@ -6,6 +6,7 @@ tags:
   - ppt
 abbrlink: fceaf4e8
 date: 2021-11-17 11:08:52
+cover: false
 ---
 
 1.确保PPT扩展名为`.pptx`

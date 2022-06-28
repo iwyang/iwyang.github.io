@@ -6,6 +6,7 @@ tags:
   - hexo
 abbrlink: '35679e29'
 date: 2020-04-26 12:03:16
+cover: false
 ---
 <div class="note info"><p>2020.8.1 Hexo 5.0后要将主题配置文件复制到站点根目录，然后重命名为 _config.next.yml</p></div>
 

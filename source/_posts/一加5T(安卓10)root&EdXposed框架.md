@@ -6,6 +6,7 @@ tags:
   - tips
 abbrlink: a2a9d239
 date: 2020-07-10 10:34:25
+cover: false
 ---
 
  首先保障手机已解锁，一加5T解锁教程：[一加5T解锁、root、刷机教程](https://www.oneplusbbs.com/forum.php?mod=viewthread&tid=3829403)

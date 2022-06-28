@@ -6,7 +6,7 @@ tags:
   - linux
 abbrlink: 9eb70758
 date: 2022-05-29 01:12:45
-cover: 
+cover: false
 ---
 
 由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。

@@ -6,6 +6,7 @@ tags:
   - hugo
 abbrlink: c3be6469
 date: 2020-05-14 16:19:25
+cover: false
 ---
 
 最好首先克隆`github`上的源码。

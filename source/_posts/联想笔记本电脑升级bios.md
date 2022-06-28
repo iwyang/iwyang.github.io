@@ -6,6 +6,7 @@ tags:
   - win10
 abbrlink: bb464c3c
 date: 2020-05-26 10:25:25
+cover: false
 ---
 
  2020.5.26　已升级安装最新bios版本：

@@ -6,6 +6,7 @@ tags:
   - 服务器
 abbrlink: 8e36690d
 date: 2020-05-18 07:33:25
+cover: false
 ---
 
 接上篇[Centos8安装xfce&vnc](https://bore.vip/post/centos8-xfce-vnc/)，接下来记下，怎样在centos 服务器上挂机。

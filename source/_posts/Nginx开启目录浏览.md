@@ -6,6 +6,7 @@ tags:
   - nginx
 abbrlink: d3052efc
 date: 2020-05-24 11:51:25
+cover: false
 ---
 
  系统为centos8

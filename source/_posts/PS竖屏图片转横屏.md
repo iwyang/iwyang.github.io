@@ -6,6 +6,7 @@ tags:
   - ps
 abbrlink: 5f14ae6
 date: 2021-08-08 03:42:17
+cover: false
 ---
 
 PS竖屏图片转横屏方法有多种，这里记录一下：

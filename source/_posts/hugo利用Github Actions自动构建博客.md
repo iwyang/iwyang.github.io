@@ -7,6 +7,7 @@ tags:
   - github
 abbrlink: 23eeae2f
 date: 2020-07-06 09:19:19
+cover: false
 ---
 
 ## 初始化 GitHub 仓库

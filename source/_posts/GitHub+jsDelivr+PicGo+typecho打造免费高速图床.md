@@ -5,7 +5,8 @@ categories:
 tags:
   - 图床
 abbrlink: 407b2bc4
-date: 2020-07-21 08:32:2
+date: 2020-07-21 08:32:00
+cover: false
 ---
 
 >2022.5.17 因为`jsdelivr`不再稳定，此法已失效。现在还是利用`typecho`将插入到文章的图片自动复制到`/source/img/`文件夹下，方法如下:

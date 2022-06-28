@@ -6,6 +6,7 @@ tags:
   - hexo
 abbrlink: b7fa73bc
 date: 2020-04-27 16:27:11
+cover: false
 ---
 ### 1. 更换电脑、重装系统  
 

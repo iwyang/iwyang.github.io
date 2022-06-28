@@ -6,6 +6,7 @@ tags:
   - 服务器
 abbrlink: 9c35b5ba
 date: 2020-06-06 11:34:25
+cover: false
 ---
 
 ## 安装vsftpd

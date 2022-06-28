@@ -6,6 +6,7 @@ tags:
   - github
 abbrlink: 4e8cacb0
 date: 2021-08-17 04:06:13
+cover: false
 ---
 
  首先确保`gitee`账户已绑定邮箱，并且要关注`gitee`公众号，并绑定了自己的账号。

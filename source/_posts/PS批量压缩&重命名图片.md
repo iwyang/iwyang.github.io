@@ -6,6 +6,7 @@ tags:
   - ps
 abbrlink: 31774ac
 date: 2020-08-11 01:59:25
+cover: false
 ---
 
 ## 创建重命名动作

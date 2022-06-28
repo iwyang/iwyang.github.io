@@ -6,6 +6,7 @@ tags:
   - hugo
 abbrlink: ca21a352
 date: 2021-08-09 00:54:56
+cover: false
 ---
 
 最近一两天又在折腾主题，这回是[Hugo-PaperMod](https://git.io/hugopapermod)主题，虽然还没打算换，但还是记录一下吧。

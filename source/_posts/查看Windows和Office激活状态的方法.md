@@ -11,7 +11,7 @@ sticky:
 keywords:
 description:
 top_img:
-cover:
+cover: false
 typora-root-url: ..
 ---
 

@@ -6,6 +6,7 @@ tags:
   - hugo
 abbrlink: 34f7482e
 date: 2020-06-03 15:17:25
+cover: false
 ---
 
   本文以 [Loveit](https://github.com/dillonzq/LoveIt)主题为例进行说明，记录一下怎样在hugo添加[Algolia](https://www.algolia.com/)搜索以及自动化上传索引文件的方法。

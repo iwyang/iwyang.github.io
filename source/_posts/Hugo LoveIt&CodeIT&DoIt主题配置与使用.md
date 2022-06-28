@@ -6,6 +6,7 @@ tags:
   - hugo
 abbrlink: dd06a4b1
 date: 2020-06-03 14:44:25
+cover: false
 ---
 
   ## 安装主题

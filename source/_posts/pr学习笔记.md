@@ -11,7 +11,7 @@ sticky:
 keywords:
 description:
 top_img:
-cover:
+cover: false
 ---
 
  决定把pr系统地过一遍，看能不能坚持下来。

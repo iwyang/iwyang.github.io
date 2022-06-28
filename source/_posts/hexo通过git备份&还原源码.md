@@ -6,6 +6,7 @@ tags:
   - hexo
 abbrlink: c5bb486d
 date: 2020-05-10 15:09:25
+cover: false
 ---
 
  上回做过[hexo迁移笔记](https://bore.vip/archives/a0c508c1.html)，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。
