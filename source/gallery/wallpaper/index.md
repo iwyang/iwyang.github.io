@@ -24,7 +24,5 @@ type: galleryGroup
 
 ![sea](../../img/wallpaper/sea.jpg)
 
-![snow](../../img/wallpaper/snow.jpg)
-
 {% endgallery %}
 
