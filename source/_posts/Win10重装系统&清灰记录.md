@@ -69,3 +69,7 @@ UMA Frame Butter Size      [自动]
 ```
 
 估计是直接将显存由`4g`直接改成`自动`，第二项没有设置为`Game Mode`而导致黑屏，无法点亮。
+
+## 常见问题
+
+Windows开始菜单绝对路径：`C:\ProgramData\Microsoft\Windows\Start Menu\Programs`
