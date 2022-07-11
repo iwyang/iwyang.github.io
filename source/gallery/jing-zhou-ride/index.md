@@ -20,7 +20,7 @@ type: galleryGroup
 
 ![](../../img/荆州行/2.jpg)
 
-![](../../img/荆州行/1.jpg)
+![](../../img/荆州行/3.jpg)
 
 {% endgallery %}
 

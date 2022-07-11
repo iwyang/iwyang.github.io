@@ -28,8 +28,10 @@ top_img:
 ## 骑行
 
 <div class="gallery-group-main">
+{% galleryGroup '火车站' '60KM（2022.4）' '/gallery/huochezhan' ../img/huochezhan/1.jpg %}
 {% galleryGroup '荆州行' '第一个100Km（2019.5）' '/gallery/jing-zhou-ride' ../img/荆州行/2.jpg %}
 </div>
+
 
 
 ## 太和小学2019级
