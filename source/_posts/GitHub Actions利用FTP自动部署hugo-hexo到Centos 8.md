@@ -5,6 +5,7 @@ categories:
 tags:
   - 服务器
   - hugo
+  - hexo
   - github
 abbrlink: c7ccd27d
 date: 2021-08-15 08:39:34
@@ -63,12 +64,22 @@ systemctl disable firewalld.service
 
 **为了图方便，可以直接将网站目录改为FTP家目录。**
 
-Nginx 默认把网页文件存在 `/var/www/html` 目录。为了方便期间，我们在 `/var/www/` 目录下为每个站点创建一个文件夹。
+为了方便期间，我们在 `/var/www/` 目录下为每个站点创建一个文件夹。
 
 ```bash
 sudo mkdir -p /var/www/blog
 sudo chown -R $USER:$USER /var/www/blog
 sudo chmod -R 755 /var/www
+```
+
++ 解决Nginx出现403 forbidden
+
+如果后面利用FTP上传网页后，出现`403 Forbidden`，解决方法：
+
+假设网站根目录在`/var/www/blog/`，则执行：
+
+```shell
+chmod -R 777 /var/www
 ```
 
 ### 配置 nginx
@@ -216,6 +227,8 @@ openssl x509 -noout -dates -in /etc/letsencrypt/live/bore.vip/cert.pem
 ```
 
 ### 安装vsftpd
+
+Debian查看：[Debian安装vsftpd](/archives/9eb70758/#Debian安装vsftpd)，Centos参考下面的。
 
 ```bash
 sudo yum install vsftpd -y
