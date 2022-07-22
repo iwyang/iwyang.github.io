@@ -42,19 +42,24 @@ vim颜色太花眼了，所以最后把它卸载：
 apt remove vim -y
 ```
 ## Debian安装vsftpd
-1. 安装命令：
+1.安装命令：
+
 ```bash
 sudo apt install vsftpd -y
 ```
-2. 安装软件包后，启动vsftpd，并使其能够在引导时自动启动：
+2.安装软件包后，启动vsftpd，并使其能够在引导时自动启动：
+
 ```bash
 sudo systemctl start vsftpd
 sudo systemctl enable vsftpd
 ```
-3. 编辑`vsftpd.conf`
+3.编辑`vsftpd.conf`
+
 ```bash
 vi /etc/vsftpd.conf
 ```
+---
+
 （1）去掉`write_enable=YES`前面的注释，使用户可以上传文件。
 
 （2）要仅允许某些用户登录FTP服务器，请在文件末尾添加以下行：
@@ -95,26 +100,28 @@ systemctl disable firewalld.service
 sudo systemctl restart vsftpd
 ```
 
-4. 设置允许root登录
+---
+
+4.设置允许root登录
 
 ```bash
 vi /etc/ftpusers
 ```
 文件中的root前加`#`
 
-5. 重启vsftpd服务
+5.重启vsftpd服务
 
 ```bash
 sudo systemctl restart vsftpd
 ```
-6. 解决Nginx出现403 forbidden
+6.解决Nginx出现403 forbidden
 
 j假设网站根目录在`/var/www/blog/`，则执行：
 
 ```bash
 chmod -R 777 /var/www
 ```
-7. 限制用户登录（未启用）
+7.限制用户登录（未启用）
 
 要仅允许某些用户登录FTP服务器，请在文件末尾添加以下几行：
 ```bash
