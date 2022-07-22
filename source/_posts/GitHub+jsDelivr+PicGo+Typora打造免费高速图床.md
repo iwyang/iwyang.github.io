@@ -1,5 +1,5 @@
 ---
-title: GitHub+jsDelivr+PicGo+typecho打造免费高速图床
+title: GitHub+jsDelivr+PicGo+Typora打造免费高速图床
 categories:
   - 技术
 tags:

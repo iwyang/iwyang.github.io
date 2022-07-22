@@ -1,5 +1,5 @@
 ---
-title: Gitee+Picgo+Typecho搭建图床
+title: Gitee+Picgo+Typora搭建图床
 categories:
   - 技术
 tags:

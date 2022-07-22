@@ -12,22 +12,24 @@ cover: false
 由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。
 
 ## putty保存登录账号和密码
-1. 创建一个桌面快捷方式。
+1.创建一个桌面快捷方式。
 
-2. 进入快捷方式属性，修改目标，在后面加上 -ssh -l 用户名 -pw 密码 -i session标识 -P 端口号 IP地址。例如 "C:\Program Files\PuTTY\putty.exe" -ssh -l root -pw 123456 -i "yuanchengserver1" -P 22 142.16.187.129
+2.进入快捷方式属性，修改目标，在后面加上 -ssh -l 用户名 -pw 密码 -i session标识 -P 端口号 IP地址。例如 "C:\Program Files\PuTTY\putty.exe" -ssh -l root -pw 123456 -i "yuanchengserver1" -P 22 142.16.187.129
+
 ```
 E:\软件\putty.exe -ssh -l root -pw password -i "yansvps" -P 22 ip
 ```
-3. 然后，通过快捷方式就可以直接登录了~
+3.然后，通过快捷方式就可以直接登录了~
 
 PS：`putty`没有[FinalShell](https://www.hostbuf.com/)好用。
 
 ## `vi`无法正常使用
-1. 先安装`vim`：
+1.先安装`vim`：
+
 ```bash
 apt install vim -y
 ```
-2. 修改`vimrc.tiny`
+2.修改`vimrc.tiny`
 `vi /etc/vim/vimrc.tiny` 将其中的语句 `set compatible` 修改为 `set nocompatible` ，非兼容模式下可以解决方向键变ABCD的问题。
 
 在刚才那句话后面再加一句 `set backspace=2` 来解决退格键无法使用的问题。
@@ -36,12 +38,18 @@ vi /etc/vim/vimrc.tiny
 set nocompatible
 set backspace=2
 ```
-3. 卸载`vim`
+3.卸载`vim`
 vim颜色太花眼了，所以最后把它卸载：
+
 ```bash
 apt remove vim -y
 ```
+
+
 ## Debian安装vsftpd
+
+
+
 1.安装命令：
 
 ```bash
@@ -138,18 +146,21 @@ echo "admin" | sudo tee -a /etc/vsftpd/user_list
 ```
 
 ## Debian 9上安装和配置Postfix邮件
-1. 安装 mailtuils:
+1.安装 mailtuils:
+
 ```bash
 sudo apt install mailutils -y
 ```
-2. 安装postfix后缀:
+2.安装postfix后缀:
+
 ```bash
 sudo apt install postfix
 ```
 在安装过程即将结束时，您将看到一个类似于下图中的窗口的窗口。默认选项是`Internet Site`。这是本教程的推荐选项，请按`TAB`，然后按`ENTER`。
 之后，您将获得另一个窗口，就像下一个图像中的窗口一样。该系统邮件名称应该是一样的，你分配给服务器，当你在创造它的名字。如果它显示子域`subdomain.example.com`，请将其更改为`ust example.com`。完成后，按`TAB`，然后`ENTER`。
 
-3. 配置Postfix
+3.配置Postfix
+
 ```bash
 vi /etc/postfix/main.cf
 ```
@@ -181,15 +192,17 @@ mydestination = $myhostname, example.com, localhost.com, , localhost
 mydestination = $myhostname, localhost.$your_domain, $your_domain
 . . .
 ```
-4. 重启Postfix。
+4.重启Postfix。
+
 ```bash
 sudo systemctl restart postfix
 ```
-5. 测试SMTP服务器
+5.测试SMTP服务器
+
 ```bash
 echo "This is the body of the email" | mail -s "This is the subject line" your_email_address
 ```
-6. debian 彻底删除posfix 然后重新安装
+6.debian 彻底删除posfix 然后重新安装
 
 如果安装出错，先彻底删除posfix 然后重新安装
 
