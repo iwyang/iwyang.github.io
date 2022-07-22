@@ -140,10 +140,16 @@ cover: false
 
 以后在Typora里插入本地图片时，它会利用PicGo自动帮你上传到github，并替换本地图片地址为github地址。
 
-## Typora下载地址
+## Typora下载地址&皮肤
+
+下载地址：
 
 + [Typora 1.3.8](https://www.ghxi.com/typora.html)
 + [123pan](http://www.123pan.com/s/HQeA-UX1Sh)
+
+皮肤：
+
++ [DrakeTyporaTheme](https://github.com/liangjingkanji/DrakeTyporaTheme)
 
 ## 参考链接
 
