@@ -112,10 +112,21 @@ sudo systemctl restart vsftpd
 
 4.设置允许root登录
 
++ 将`root`添加到允许的FTP用户列表中：
+
+```bash
+echo "root" | sudo tee -a /etc/vsftpd/user_list
+```
+
++ 修改`/etc/vsftpd/user_list`和`/etc/ftpusers`两个设置文件脚本，将root账户前加上`#`号变为注释
+
+```bash
+vi /etc/vsftpd/user_list
+```
+
 ```bash
 vi /etc/ftpusers
 ```
-文件中的root前加`#`
 
 5.重启vsftpd服务
 
