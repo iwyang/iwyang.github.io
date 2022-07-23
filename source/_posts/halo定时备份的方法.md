@@ -447,9 +447,9 @@ scp .halo.zip root@137.220.43.191:/root/
 
 意思是将当前目录下`.halo.ip`文件上传到服务器`/root/目录下`。
 
-## wordpress常用命令
+## wordpress相关
 
-<div class="note primary">附录：wordpress常用mysql命令</div>
+### wordpress常用mysql命令
 
 ```yaml
 # 1.删除数据库
@@ -473,6 +473,90 @@ UPDATE wp_options SET option_value="https://new_url/" WHERE option_name = "siteu
 
 ---
 
+### Debian 10 五分钟/一键安装Wordpress
+
+```bash
+#Debian8下载脚本
+wget http://w3.gubo.org/pubfiles/tylemp/10/tylemp.sh 
+#安装稳定版Nginx+PHP+MariaDB
+bash tylemp.sh stable
+#安装wordpress，www.yourdomain.com即为你的域名
+bash tylemp.sh wordpress www.yourdomain.com 
+```
+
+命令列表
+
+```bash
+bash tylemp.sh system # 优化系统，删除不需要组件，dropbear替代sshd 
+bash tylemp.sh exim4 # 更轻量级邮件系统 
+bash tylemp.sh mysql # 安装mysql 
+bash tylemp.sh nginx # 安装nginx，默认一个进程，可调整
+bash tylemp.sh php # 安装php，包含php5-gd，可使用验证码
+bash tylemp.sh stable # 安装上面所有，软件是debian官方stable源，版本较旧
+bash tylemp.sh wordpress www.yourdomain.com # 一键安装wordpress, 数据库自动配置好。 
+bash tylemp.sh vhost www.yourdomain.com # 一键安装静态虚拟主机。
+bash tylemp.sh dhost www.yourdomain.com # 一键安装动态虚拟主机，方便直接上传网站程序。
+bash tylemp.sh typecho www.yourdomain.com # 安装typecho，提供数据库名，密码等自主添加完成安装
+bash tylemp.sh phpmyadmin www.yourdomain.com # 一键安装phpmyadmin 数据库管理软件，用http://www.yourdomain.com/phpMyAdmin访问 
+bash tylemp.sh addnginx 2 #调整nginx进程，这里2表示调整后的进程数，请根据vps配置（cpu核心数）更改
+bash tylemp.sh sshport 22022 #更改ssh端口号22022，建议更改10000以上端口。重启后生效。
+bash tylemp.sh rainloop www.yourdomain.com  # 增加Gmail的web客户端一键安装
+bash tylemp.sh carbon www.yourdomain.com  # 增加Carbon Forum的一键安装
+```
+
+### 修改 WordPress 上传文件大小限制
+
+1.查找php.ini配置文件
+
+```
+find / -name "php.ini"
+```
+
+会出现两个结果，修改类似`/etc/php/7.3/fpm/php.ini`
+
+
+
+2.修改 `php.ini`
+
+```
+vi /etc/php/7.3/fpm/php.ini
+```
+
+在其中搜索并修改以下配置：
+
+```bash
+upload_max_filesize = 512M
+post_max_size = 512M
+max_execution_time = 3000
+```
+
+这里配置上限为 512 MB，同时增加了最大处理时间。
+
+
+
+3.修改 nginx.conf
+
+```
+vi /etc/nginx/conf.d/blog.bore.vip.conf
+```
+
+在 `http` 或 `server` 配置下添加
+
+```
+client_max_body_size 512M;
+```
+
+这里配置上限为 512 MB。
+
+
+
+4.重启nginx和php
+
+```
+service nginx restart
+service php7.3-fpm restart
+```
+
 ## `nginx`: command not found 解决方案
 
 只需要输入`source /etc/profile` ，让配置文件重新生效一下即可。
@@ -488,3 +572,5 @@ UPDATE wp_options SET option_value="https://new_url/" WHERE option_name = "siteu
 + [7.CentOs8系统安装mailx发邮件](https://blog.csdn.net/jia12216/article/details/106098267)
 + [8.Impossible to unlink](https://github.com/andreafabrizi/Dropbox-Uploader/issues/459)
 + [9.如何在Debian 9上安装和配置Postfix作为仅发送SMTP服务](https://cloud.tencent.com/developer/article/1363216)
++ [10.Debian LNMP/LEMP/WordPress一键脚本](https://www.gubo.org/debian-lemp-script/)
++ [11.修改 WordPress 上传文件大小限制](https://blog.nex3z.com/2020/07/14/%E4%BF%AE%E6%94%B9-wordpress-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/)
