@@ -5,7 +5,7 @@ categories:
 tags:
   - tips
 comments: true
-cover: false
+cover: ../img/cover/notepad.jpg
 abbrlink: ef06a4ae
 date: 2022-07-13 17:43:13
 sticky:
