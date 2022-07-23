@@ -11,7 +11,7 @@ sticky:
 keywords:
 description:
 top_img:
-cover: false
+cover: ../img/cover/iptv.jpg
 ---
 
 1.搜索`2022 直播源`。
