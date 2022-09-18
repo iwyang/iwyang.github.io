@@ -76,6 +76,16 @@ docker-compose up -d
 
 待补充
 
+5.一些 Docker Compose 常用命令：
+
+```
+docker-compose restart  # 重启容器
+docker-compose stop     # 暂停容器
+docker-compose down     # 删除容器
+docker-compose pull     # 更新镜像
+docker-compose exec artalk bash # 进入容器
+```
+
 ## 配置域名访问
 
 ```
