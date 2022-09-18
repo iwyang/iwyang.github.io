@@ -133,7 +133,7 @@ rm -f web_$(date +"%Y%m%d").tar.gz
 chmod +x /root/email.sh
 ```
 
-运行的时候就输入下面的代码即可：`./halo_email_backup.sh`
+运行的时候就输入下面的代码即可：`./email.sh`
 
 ##### 设定自动任务
 

@@ -242,6 +242,10 @@ server
 注意：上面的`{content}`  需要先删除，然后点击旁边的 `{}` 插入变量（插入的变量颜色是蓝色）。不能直接填写！！！
 {% endnote %}
 
+## 定时备份数据库
+
+参考：[halo 定时备份的方法](/archives/3a4bd17/)
+
 ## 参考链接
 
 [Hi，Memos](https://immmmm.com/hi-memos/)
