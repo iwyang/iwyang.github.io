@@ -11,7 +11,28 @@ cover: ../img/cover/debian.jpg
 
 由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。
 
+## 调整时区
+
+如果你不知道服务器当前时间，可以使用下面的命令，查看当前时间：
+
+```
+date -R
+```
+
+修改当前时区为上海：
+
+```
+sudo timedatectl set-timezone Asia/Shanghai
+```
+
+再次不带任何选项参数调用 timedatectl 命令，打印系统当前设置的时区即可：
+
+```
+timedatectl
+```
+
 ## putty保存登录账号和密码
+
 1.创建一个桌面快捷方式。
 
 2.进入快捷方式属性，修改目标，在后面加上 -ssh -l 用户名 -pw 密码 -i session标识 -P 端口号 IP地址。例如 "C:\Program Files\PuTTY\putty.exe" -ssh -l root -pw 123456 -i "yuanchengserver1" -P 22 142.16.187.129
