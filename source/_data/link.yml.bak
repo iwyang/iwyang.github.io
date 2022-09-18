@@ -1,0 +1,119 @@
+- class_name: 实用工具
+  class_desc: 好用的在线工具
+  link_list:
+    - name: 佐糖
+      link: https://picwish.cn/
+      avatar: /img/link-img/tool/zuotang.jpg
+      descr: 免费在线抠图神器_证件照换底色
+    - name: V视频助手
+      link: http://v.ranks.xin/
+      avatar: /img/link-img/tool/shipin.jpg
+      descr: 一键下载在线视频
+    - name: 声咖
+      link: https://shengka.ai.sogou.com/
+      avatar: /img/link-img/tool/shengka.jpg
+      descr: 智能、快捷、高效的音视频创作平台
+    - name: PDF派
+      link: https://www.pdfpai.com/
+      avatar: /img/link-img/tool/pdf.jpg
+      descr: pdf转word_pdf转换成excel_pdf转换成ppt _纬来PDF转换器
+    - name: 智影
+      link: https://zenvideo.qq.com/
+      avatar: /img/link-img/tool/zhiying.jpg
+      descr: 集素材搜集、视频剪辑、渲染导出和发布于一体的免费在线剪辑平台    
+
+- class_name: 友情链接
+  class_desc: 那些人，那些事
+  link_list:
+    - name: Upptime
+      link: https://iwyang.github.io/check
+      avatar: /img/link-img/upptime.jpg
+      descr: 利用Github Actions检测网站运行状态。
+    - name: ConstOwn
+      link: https://blog.juanertu.com
+      avatar: /img/link-img/constown.jpg
+      descr: 能与你一起成长，我荣幸之至。
+    - name: 小丁的个人博客
+      link: https://tding.top
+      avatar: /img/link-img/ding.jpg
+      descr: 世间所有的相遇，都是久别重逢。
+    - name: Xu's Blog
+      link: https://hasaik.com
+      avatar: /img/link-img/xu.jpg
+      descr: 简单不先于复杂，而是在复杂之后
+    - name: Takagi
+      link: https://lixingyong.com
+      avatar: /img/link-img/takagi.jpg
+      descr: Takagi是啥呀？？当然是最喜欢的Takagi了吖ヾ(≧∇≦*)ゝ
+    - name: IILeeのBlog
+      link: https://www.iilee.cn/
+      avatar: /img/link-img/iilee.jpg
+      descr: 所以，看不到光，算是不幸吗？需要光才是真正的不幸吧。
+    - name: Bill Yang's Blog
+      link: https://blog.bill.moe
+      avatar: /img/link-img/bill.jpg
+      descr: 这辈子都不可能更新的。
+    - name: 若只如初见
+      link: https://joyli.net.cn/
+      avatar: /img/link-img/ruo.jpg
+      descr: 世间所有的相遇，都是久别重逢。
+    - name: Sanarous
+      link: https://bestzuo.cn
+      avatar: /img/link-img/sanarous.jpg
+      descr: Dream it possible, make it possible
+    - name: 大大的小蜗牛
+      link: https://eallion.com/
+      avatar: /img/link-img/eallion.jpg
+      descr: 机会总是垂青于有准备的人。
+    - name: guole's Blog
+      link: https://guole.fun/
+      avatar: /img/link-img/guo.png
+      descr: 保持理智，相信明天。
+    - name: cywhat’s blog
+      link: https://cywhat.cn
+      avatar: /img/link-img/cywhat.jpg
+      descr: 一位摸爬滚打的测开Dog. 
+    - name:  Akilarの糖果屋
+      link: https://akilar.top
+      avatar: /img/link-img/akilar.jpg
+      descr: 期待您的光临！       
+    - name:  Nekolas's Blog
+      link: https://blog.nekolas.cafe/
+      avatar: /img/link-img/nekolas.jpg
+      descr: 欢迎加入锈栓抵抗军
+    - name:  知行记
+      link: https://baozi.fun/
+      avatar: /img/link-img/baozi.jpg
+      descr: 知行记Xue主题作者     
+    - name:  小康博客
+      link: https://www.antmoe.com/
+      avatar: /img/link-img/xiaokang.jpg
+      descr: 一个收藏回忆与分享技术的地方！
+    - name:  张洪Heo
+      link: https://blog.zhheo.com/
+      avatar: /img/link-img/heo.jpg
+      descr: 分享设计与科技生活      
+    - name:  木木木木木
+      link: https://immmmm.com/
+      avatar: /img/link-img/mumu.jpg
+      descr: 木木老师       
+    - name:  Sianx's Blog
+      link: https://sianx.com
+      avatar: /img/link-img/sianx.jpg
+      descr: 总之岁月漫长, 然而值得等待。
+    - name:  Leonus
+      link: https://blog.leonus.cn/
+      avatar: /img/link-img/leonus.jpg
+      descr: 进一寸有进一寸的欢喜。     
+    - name:  Eurkon
+      link: https://blog.eurkon.com
+      avatar: https://blog.eurkon.com/images/user/avatar.jpg
+      descr: 不只是代码的搬运工          
+    - name:  六月长河
+      link: https:/charlie-king.github.io
+      avatar: /img/link-img/kingpo.jpg
+      descr: 记录，分享，生活与技术的时光印记！
+    - name:  心流
+      link: https://blog.panghai.top/
+      avatar: /img/link-img/panghai.jpg
+      descr: 保持谨慎，保持乐观      

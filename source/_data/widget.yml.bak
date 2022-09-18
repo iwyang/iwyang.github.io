@@ -1,0 +1,28 @@
+top:
+  - class_name: latestBB
+    id_name:
+    name: Ispeak
+    icon: fas fa-bolt
+    order: 2
+    html: |
+      <div class="swiper-container swiper-container-aside">
+        <div class="swiper-wrapper swiper-weapper-aside"></div>
+      </div>
+      <a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+      <script>
+        window.kkBBConfig = {
+          limit: 10,
+          blog:'/say/',
+          api_url: 'https://kkapi.bore.vip',
+          author: '62e664654423f520964e0d43'            
+        }
+      </script>
+      <script src="https://cdn1.tianli0.top/npm/iwyang@1.1.2/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+bottom:  
+  - class_name: 
+    id_name: weibo
+    name: 微博热搜
+    icon: fa-brands fa-weibo
+    order: -2
+    html: <link rel="stylesheet" href="/css/weibo.css"><div id="weiboContent"><img src="https://bu.dusays.com/2022/05/01/626e88f349943.gif"></div><script src="/js/weibo.js"></script>       
