@@ -67,16 +67,58 @@ docker-compose up -d
 **Docker Compose**
 
 ```
+cd memos
 docker-compose down
+cp -r /root/.memos /root/.memos.archive  
 docker-compose pull
 docker-compose up -d
+docker image prune 
+```
+
+> `cp`  事先备份，以防万一
+>
+>`prune` 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像
+
+提示：
+
+```
+WARNING! This will remove all dangling images.
+Are you sure you want to continue? [y/N] 
 ```
 
 **Docker**
 
-待补充
+```yaml
+docker stop memos
 
-5.一些 Docker Compose 常用命令：
+docker rm -f memos
+
+cp -r /root/data/docker_data/memos/.memos /root/data/docker_data/memos/.memos.archive  # 万事先备份，以防万一
+
+docker pull neosmemo/memos:latest  # 拉取最新镜像
+
+docker run -it -d \
+  --name memos \
+  --publish 5230:5230 \
+  --volume /root/data/docker_data/memos/.memos/:/var/opt/memos \
+  neosmemo/memos:latest \
+  --mode prod \
+  --port 5230
+```
+
+> `/root/data/docker_data/memos/.memos/`这个可以换成你自己服务器的路径；
+
+5.卸载
+
+```
+docker stop memos
+
+docker rm -f memos  # 停止容器，此时不会删除映射到本地的数据
+
+rm -rf /root/data/docker_data/memos  # 完全删除映射到本地的数据
+```
+
+6.一些 Docker Compose 常用命令：
 
 ```
 docker-compose restart  # 重启容器
@@ -263,3 +305,5 @@ server
 [Hi，Memos](https://immmmm.com/hi-memos/)
 
 [搭建属于你自己的 flomo 应用 :Memos](https://1900.live/build_your_own_flomo_applications/)
+
+[好玩儿的Docker项目](https://blog.laoda.de/archives/docker-install-memos)
