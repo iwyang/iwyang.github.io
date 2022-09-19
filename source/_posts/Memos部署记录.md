@@ -75,7 +75,7 @@ docker-compose up -d
 
 > 可选命令：
 >
-> `cp -r /root/.memos /root/.memos.archive`  事先备份，以防万一
+> `cp -r /root/.memos /root/.memos.archive`  事先备份，以防万一（将`/root/.memos`文件夹下的数据库复制到`/root/.memos.archive`文件夹下）
 >
 > `docker image prune ` 用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像
 >
