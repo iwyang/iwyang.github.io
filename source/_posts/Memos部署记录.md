@@ -68,23 +68,23 @@ docker-compose up -d
 
 ```
 cd memos
-docker-compose down
-cp -r /root/.memos /root/.memos.archive  
+docker-compose down  
 docker-compose pull
 docker-compose up -d
-docker image prune 
 ```
 
-> `cp`  事先备份，以防万一
+> 可选命令：
 >
->`prune` 命令用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像
-
-提示：
-
-```
-WARNING! This will remove all dangling images.
-Are you sure you want to continue? [y/N] 
-```
+> `cp -r /root/.memos /root/.memos.archive`  事先备份，以防万一
+>
+> `docker image prune ` 用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像
+>
+> 提示：
+>
+> ```
+> WARNING! This will remove all dangling images.
+> Are you sure you want to continue? [y/N] 
+> ```
 
 **Docker**
 
