@@ -9,7 +9,25 @@ date: 2020-08-10 10:52:25
 cover: false
 ---
 
+## 更改时区
 
+如果你不知道服务器当前时间，可以使用下面的命令，查看当前时间：
+
+```
+date -R
+```
+
+修改当前时区为上海：
+
+```
+sudo timedatectl set-timezone Asia/Shanghai
+```
+
+再次不带任何选项参数调用 `timedatectl `命令，打印系统当前设置的时区即可：
+
+```
+timedatectl
+```
 
 ## 查看定时任务
 
