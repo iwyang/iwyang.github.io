@@ -18,11 +18,6 @@ top_img:
 ## 建站历史 
 
 {% timeline %}  
-<!-- timeline 2022-09-19-->
-
-搭建了[Memos](https://me.bore.vip/u/101)
-
-<!-- endtimeline -->
 
 <!-- timeline 2022-08-02-->
 

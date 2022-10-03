@@ -11,7 +11,7 @@ menu:
   生活||fa-solid fa-mug-hot||hide:   
     相册: /gallery/ || fas fa-image   
     说说: /say/ || far fa-comment-dots
-    memos: https://me.bore.vip/u/101 || fa fa-pencil-square-o  
+    memos: https://me.bore.vip/u/101 || fa-solid fa-pen-to-square
   社交||fas fa-compass||hide:
     友链: /link/ || fas fa-link
     友圈: /fcircle/ || fas fa-user-friends
