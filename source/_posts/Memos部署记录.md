@@ -296,6 +296,103 @@ server
 
 3.`#tag `后面必须有个空格才能创建tag
 
+## 首页轮播
+
+> API 调用最新 10 条 memos 在博客首页轮播显示。
+
+```html
+<div id="bber-talk"></div>
+<style>
+#bber-talk{display:-webkit-flex;display:flex;width:100%;line-height:35px;height:45px;max-width:760px;text-align:left;padding:5px 15px;margin:20px 0;position: relative;background-color: var(--light-header);border-radius:8px;font-size:15px;overflow:hidden;}
+#bber-talk svg{fill: currentColor;vertical-align: middle;display: inline;margin-right:5px;margin-top: -4px;}
+.talk-wrap{width:100%;}
+.talk-list{margin: 0;height: 35px;}
+.talk-list li {list-style:none;margin-bottom:10px;width: 100%;white-space: nowrap;text-overflow: ellipsis;overflow: hidden;zoom: 1;}
+.talk-list li .datetime{margin-right:2px;}
+.talk-list li a{text-decoration:none;}
+.dark-theme #bber-talk{background-color: var(--dark-header);}
+.dark-theme .talk-list{color: var(--dark-color);}
+@media only screen and (max-width:683px) {
+	#bber-talk{margin:2em 1em 1em;width:94%;}
+}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.5/dayjs.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.5/locale/zh-cn.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.5/plugin/relativeTime.js"></script>
+<script>dayjs.locale('zh-cn');dayjs.extend(window.dayjs_plugin_relativeTime)</script>
+<script>
+var bbUrl = "https://me.edui.fun/api/memo?creatorId=101&limit=10"
+fetch(bbUrl).then(res => res.json()).then( resdata =>{
+    var result = '',resultAll="",data = resdata.data
+    console.log(data)
+    for(var i=0;i < data.length;i++){
+        var bbTime = dayjs.unix(data[i].createdTs).fromNow()
+        var bbCont = data[i].content
+        var newbbCont = bbCont.replace(/(https?:[^:<>"]*\/)([^:<>"]*)(\.((png!thumbnail)|(png)|(jpg)|(webp)|(jpeg)|(gif))(!blogimg)?)/g,' 🌅 ')
+        var newbbCont = newbbCont.replace(/\bhttps?:\/\/(?!\S+(?:jpe?g|png|bmp|gif|webp|jfif|gif))\S+/g,' 🔗 ')
+        result += `<li class="item"><span class="datetime">${bbTime}</span>： <a href="https://me.edui.fun/u/101" target="_blank">${newbbCont}</a></li>`;
+    }
+    var bbDom = document.querySelector('#bber-talk');
+    var bbBefore = `<span class="index-talk-icon"><svg viewBox="0 0 1024 1024" width="21" height="21"><path d="M184.32 891.667692c-12.603077 0-25.206154-2.363077-37.809231-7.876923-37.021538-14.966154-59.864615-49.624615-59.864615-89.009231v-275.692307c0-212.676923 173.292308-385.969231 385.969231-385.969231h78.76923c212.676923 0 385.969231 173.292308 385.969231 385.969231 0 169.353846-137.846154 307.2-307.2 307.2H289.083077l-37.021539 37.021538c-18.904615 18.116923-43.323077 28.356923-67.741538 28.356923zM472.615385 195.347692c-178.018462 0-322.953846 144.935385-322.953847 322.953846v275.692308c0 21.267692 15.753846 29.144615 20.48 31.507692 4.726154 2.363077 22.055385 7.876923 37.021539-7.08923l46.473846-46.473846c6.301538-6.301538 14.178462-9.452308 22.055385-9.452308h354.461538c134.695385 0 244.184615-109.489231 244.184616-244.184616 0-178.018462-144.935385-322.953846-322.953847-322.953846H472.615385z"></path><path d="M321.378462 512m-59.076924 0a59.076923 59.076923 0 1 0 118.153847 0 59.076923 59.076923 0 1 0-118.153847 0Z"></path><path d="M518.301538 512m-59.076923 0a59.076923 59.076923 0 1 0 118.153847 0 59.076923 59.076923 0 1 0-118.153847 0Z"></path><path d="M715.224615 512m-59.076923 0a59.076923 59.076923 0 1 0 118.153846 0 59.076923 59.076923 0 1 0-118.153846 0Z"></path></svg></span><div class="talk-wrap"><ul class="talk-list">`
+    var bbAfter = `</ul></div>`
+    resultAll = bbBefore + result + bbAfter
+    bbDom.innerHTML = resultAll;
+});
+setInterval(function() {
+    for (var s, n = document.querySelector(".talk-list"), e = n.querySelectorAll(".item"), t = 0; t < e.length; t++)
+    setTimeout(function() {
+      n.appendChild(e[0])
+    },1000)
+},1000)
+</script>
+```
+
+## 单页部署代码
+
+> 已做 js 文件调用处理，找个页面丢入以下 html + js + css 即可。当然，得先部署个 [Memos](https://immmmm.com/hi-memos/)，或者，找个好朋友开个 id 也可以。
+
+```html
+<div id="bber"></div>
+<script type="text/javascript">
+  var bbMemos = {
+    memos : 'https://me.edui.fun/',//修改为自己的 apiurl，末尾有 / 斜杠
+    limit : '',//默认每次显示 10条 
+    creatorId:'' ,//默认为 101用户 https://demo.usememos.com/u/101
+    domId: '',//默认为 <div id="bber"></div>
+  }
+</script>
+<script src="https://immmmm.com/bb-lmm.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/Tokinx/ViewImage/view-image.min.js"></script>
+<script src="https://fastly.jsdelivr.net/gh/Tokinx/Lately/lately.min.js"></script>
+```
+
+样式代码供参考：
+
+```css
+#bber{margin-top:1em;}
+.timeline ul {margin:0;}
+.timeline ul li {background:#3b3d42;list-style-type:none;position:relative;width:3px;margin-left:1em;padding:0.8em 0 2em;}
+.timeline ul li::after {transform: rotate(45deg);content:'';background-color: #3b3d42;display: block;position: absolute;top: 10px;left: -5px;width: 0.8em;height: 0.8em;outline:15px solid #fff;}
+.timeline ul li div {position:relative;top:-13px;left:1em;width:670px;padding:0px 16px 0px;}
+.timeline ul li p.datatime{color: #fafafa;font-size: 0.75em;font-style: italic;background-color: #3b3d42;display: inline-block;padding:0.25em 1em 0.2em 1em;}
+.timeline ul li p.datacont{white-space: pre-wrap;margin:0.65em 0 0.3em;}
+.timeline ul li p.datacont img{display:block;max-height:340px !important;}
+.timeline ul li p.datacont img[src*="emotion"]{display:inline-block;width:auto;}
+.timeline ul li p.datafrom{color: #aaa;font-size: 0.75em !important;font-style: italic;}
+.timeline ul li p{margin:0;font-size:16px;letter-spacing:1px;color: #3b3d42;}
+.timeline ul li p.datacont .img{cursor: pointer;border:1px solid #3b3d42;max-width:20rem;margin:6px 0 6px 0;}
+button{border-radius:0;}
+.dark-theme .timeline ul li div p{color:#fafafa;}
+.dark-theme .timeline ul li div p svg{fill:#fafafa;}
+.dark-theme .timeline ul li p.datafrom{color: #aaa;}
+.dark-theme .timeline ul li{background:#3b3d42;}
+.dark-theme .timeline ul li::after{outline: 15px solid #2f2f2f;}
+@media (max-width:860px) {
+  .timeline ul li{margin-left:0;}
+  .timeline ul li div{width:calc(100vw - 75px);left:30px;}
+}
+```
+
 ## 定时备份数据库
 
 参考：[halo 定时备份的方法](/archives/3a4bd17/)
@@ -303,6 +400,8 @@ server
 ## 参考链接
 
 [Hi，Memos](https://immmmm.com/hi-memos/)
+
+[哔哔点啥 By Memos](https://immmmm.com/bb-by-memos/)
 
 [搭建属于你自己的 flomo 应用 :Memos](https://1900.live/build_your_own_flomo_applications/)
 
