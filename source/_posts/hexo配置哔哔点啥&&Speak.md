@@ -1104,3 +1104,5 @@ npm run preview
 [申请免费的 MongoDB 数据库 | Discuss 开源免费评论系统](https://discuss.js.org/guide/Get-MongoDB-DataBase.html)
 
 [在安卓手机上快捷发送说说(哔哔)](https://blog.leonus.cn/2022/talkInAndroid.html)
+
+[KKapi+ISpeak说说页面部署](https://braindance.top/posts/kkapi+ispeak%E8%AF%B4%E8%AF%B4%E9%A1%B5%E9%9D%A2%E9%83%A8%E7%BD%B2/)
