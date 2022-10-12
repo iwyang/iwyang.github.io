@@ -21,7 +21,7 @@ top_img:
 
 <!-- timeline 2022-10-12-->
 
-在 [@Braindance](https://braindance.top/) 的帮助下，搭建了小康 speak 服务器部署版
+在 [@Braindance](https://braindance.top/) 的帮助下，成功搭建小康[Speak](/say)服务器部署版
 
 <!-- endtimeline -->
 
