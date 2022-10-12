@@ -453,7 +453,94 @@ display: none;
 
   + [iSpeak](http://github.com/kkfive/iSpeak/)
 
-> 首先要参考上面官方文档搭建好API、后台管理等内容。然后再弄前端。
+> 首先要参考上面官方文档搭建好API、后台管理等内容。然后再弄前端。Vercel搭建见官方文档，**下面主要记录服务器部署。**
+
+### Docker 安装 MongoDB
+
+1.先安装docker，参考：[Debian 10 安装 Docker & Docker Compose](/archives/9755dbc8/)
+
+2.取最新版的 MongoDB 镜像
+
+```bash
+docker pull mongo:latest
+```
+
+3.查看本地镜像，使用以下命令来查看是否已安装了 mongo：
+
+```
+docker images
+```
+
+4.运行容器
+
+```bash
+docker run -d --name mongodb \
+	-p 27017:27017 \
+	-v /my/own/datadir:/data/db \
+	-e MONGO_INITDB_ROOT_USERNAME=mongoadmin \
+	-e MONGO_INITDB_ROOT_PASSWORD=secret \
+	mongo
+```
+
+之后可以使用工具测试一下连接。如`navicat`
+
+### kkapi 部署
+
+1.首先克隆项目源码 `git clone https://ghproxy.com/https://github.com/kkfive/kkapi-open.git`
+
+2.接下来项目需要安装的工具 `yarn` 和 `pm2`，分别是 `apt install npm -y` `npm i yarn -g` `npm i pm2 -g`
+
+3.**升级node版本**，仓库给的构建版本是16+的，node版本过低，下一步会出错，最后一步项目无法启动。
+
+```
+node --version
+curl -fsSL https://deb.nodesource.com/setup_current.x | sudo -E bash -
+sudo apt install nodejs -y
+node --version
+```
+
+上面操作会安装最新版的node，安装nodeV16：`curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -`
+
+4.然后安装项目所需依赖 `yarn install`
+
+5.之后再执行 `yarn build` 编译项目。~~这里我的小鸡顶不住编译所以自己在本地编译传上去了。~~
+
+6.在项目文件夹创建环境变量文件，格式如
+
+```
+vi local.env
+```
+
+```bash
+PORT=3000
+DATABASE_URL=mongodb://127.0.0.1:27017/kkpaiopen?authSource=admin
+DATABASE_USER=mongoadmin
+DATABASE_PASSWORD=secret
+# 加密密钥 测试
+SECRETKEY=xxxxxxxxxxxxxxx
+```
+
+7.使用 `pm2` 使用守护线程启动项目 `pm2 start pm2.json`
+
+我启动项目遇到了 `[PM2][WARN] Expect “restart_delay” to be a typeof [object Number], but now is [object String]` 错误，这个错误原因是作者的 pm2.json 中的 `restart_delay` 值是字符串类型 `60s` 改成数值 `60` 就可以了。
+
+8.测试项目是否成功启动 可以使用 `lsof -i:端口` 查看端口是否被监听判断项目是否成功启动。没成功的原因大概率是因为数据库连接地址、数据库账号密码不正确。
+
+9.创建初始化用户 `curl http://127.0.0.1:3000/api/user/init?userName=bore` 创建的默认用户名和密码是 `bore` 和 `123456`，这个用户名密码用来登陆可视化的管理后台，并且用户似乎**只能拥有一个**。
+
+10.更新项目
+
+进入项目并执行一下命令：
+
+```bash
+git pull
+yarn build
+pm2 restart pm2.json
+```
+
+### kkapiadmin（可视化管理后台）
+
+见官方文档：[kkapi后台配置](https://kkapi.js.org/guide/admin/setup.html)
 
 ## 前端
 
