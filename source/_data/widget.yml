@@ -13,8 +13,8 @@ top:
         window.kkBBConfig = {
           limit: 10,
           blog:'/say/',
-          api_url: 'https://kkapi.bore.vip',
-          author: '62e664654423f520964e0d43'            
+          api_url: 'https://me.bore.vip:1314',
+          author: '6346b770fb75634116945e94'            
         }
       </script>
       <script src="https://cdn1.tianli0.top/npm/iwyang@1.1.3/speak/butterfly-speak-swiper@1.1.0.min.js"></script>

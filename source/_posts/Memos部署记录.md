@@ -177,12 +177,19 @@ mkdir -p /data/wwwroot/me.bore.vip
 
 ```
 sudo apt-get install letsencrypt -y
+```
+
+```
 certbot certonly --webroot -w /data/wwwroot/me.bore.vip -d me.bore.vip -m 455343442@qq.com --agree-tos
 ```
 
 3.编辑 Nginx
 
 **（1）未启用端口复用：**
+
+```
+vi /etc/nginx/conf.d/memos.conf
+```
 
 ```
 server
@@ -273,6 +280,10 @@ server
 ```
 
 4.重启Nginx、xr
+
+## 证书自动续期
+
+参考：[自动续期](/archives/58fed3fc/#使用-webroot-自动生成证书-1)
 
 ## 安卓快捷方式发送Memos
 

@@ -484,13 +484,26 @@ docker run -d --name mongodb \
 
 之后可以使用工具测试一下连接。如`navicat`
 
+5.使容器开机启动
+
+```
+docker update --restart=always mongodb
+```
+
 ### kkapi 部署
 
 1.首先克隆项目源码 `git clone https://ghproxy.com/https://github.com/kkfive/kkapi-open.git`
 
-2.接下来项目需要安装的工具 `yarn` 和 `pm2`，分别是 `apt install npm -y` `npm i yarn -g` `npm i pm2 -g`
+2.接下来j进入项目目录，安装项目需要安装的工具 `yarn` 和 `pm2`，分别是 :
 
-3.**升级node版本**，仓库给的构建版本是16+的，node版本过低，下一步会出错，最后一步项目无法启动。
+```
+cd kkapi-open
+apt install npm -y
+npm i yarn -g
+npm i pm2 -g
+```
+
+3.**升级node版本**，仓库给的构建版本是16+的，node版本过低，下一步会出错，最后一步项目无法启动。(上面安装npm时默认会安装低版本node，所以要更新node版本)
 
 ```
 node --version
@@ -538,9 +551,32 @@ yarn build
 pm2 restart pm2.json
 ```
 
+11.备份
+
+`/my/own/datadir` 这一段就是数据库的文件，把这个打包搞走就行，然后换到新地方以后，部署mongodb数据库还要对应上。
+
+定时备份数据库，参考：[halo 定时备份的方法](https://bore.vip/archives/3a4bd17/)
+
+### 配置域名访问
+
+参考：
+
+[配置域名访问](/archives/d5e37958/#配置域名访问)
+
+[申请 SSL 证书](/archives/d5e37958/#申请SSL证书)
+
+[SSL证书自动续期](/archives/58fed3fc/#使用-webroot-自动生成证书-1)
+
+**注意修改反代端口号，如果SSL443端口不能用，将`listen 443`改成`listen 1314`**
+
 ### kkapiadmin（可视化管理后台）
 
 见官方文档：[kkapi后台配置](https://kkapi.js.org/guide/admin/setup.html)
+
+之后登录就是用前面初始化的用户名密码，进入后台以后可以修改密码。登陆后台以后需要设置：
+
+- ISpeak 标签。因为发布说说是需要选择标签的，标签中的背景颜色值是**十六进制的颜色**代码
+- 添加用户token。**需要注意！！！**，添加的token的**标题**只能是 `speak` 不能是其他的，否则发布说说时会提示token不存在，发布时验证的就是字段为 `speak` 的token的值。
 
 ## 前端
 

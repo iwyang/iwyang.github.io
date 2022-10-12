@@ -38,8 +38,8 @@ aside: false
     ispeak
       .init({
         el: '#ispeak',
-        api: 'https://kkapi.bore.vip/',
-        author: '62e664654423f520964e0d43',
+        api: 'https://me.bore.vip:1314/',
+        author: '6346b770fb75634116945e94',
         pageSize: 10,
         loading_img: 'https://bu.dusays.com/2022/05/01/626e88f349943.gif',
         speakPage: '/say',
