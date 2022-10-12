@@ -19,6 +19,12 @@ top_img:
 
 {% timeline %}  
 
+<!-- timeline 2022-10-12-->
+
+在 [@Braindance](https://braindance.top/) 的帮助下，搭建了小康 speak 服务器部署版
+
+<!-- endtimeline -->
+
 <!-- timeline 2022-08-02-->
 
 1.搭建小康[Speak](/say)
@@ -41,7 +47,7 @@ top_img:
 <!-- endtimeline -->
 
 <!-- timeline 2021-08-17 -->
-在一位热心网友的帮助下，成功搭建好`说说`页面。
+在[@老麦](https://iamlm.com/)的帮助下，成功搭建好`说说`页面。
 
 <!-- endtimeline -->
 
