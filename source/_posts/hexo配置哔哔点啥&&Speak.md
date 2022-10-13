@@ -15,7 +15,7 @@ cover: false
 {% endnote %}
 
 {% note warning flat %}
-2022.8.28 Vercel崩了，要绑定个二级域名才能用。
+2022.8.28 Vercel崩了，要绑定个二级域名才能用。或者使用服务器部署版。
 {% endnote %}
 
 ## 服务部署
