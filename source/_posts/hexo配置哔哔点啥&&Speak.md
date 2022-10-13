@@ -492,7 +492,11 @@ docker update --restart=always mongodb
 
 ### kkapi 部署
 
-1.首先克隆项目源码 `git clone https://ghproxy.com/https://github.com/kkfive/kkapi-open.git`
+1.首先克隆项目源码 
+
+```bash
+git clone https://ghproxy.com/https://github.com/kkfive/kkapi-open.git
+```
 
 2.接下来j进入项目目录，安装项目需要安装的工具 `yarn` 和 `pm2`，分别是 :
 
