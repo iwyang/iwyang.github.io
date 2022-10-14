@@ -4,19 +4,18 @@ date: 2022-08-02 10:55:04
 comments: false
 aside: true
 ---
-<!-- 挂载友链朋友圈的容器 -->
-
-<div class="post-content">
-<div id="cf-container">与主机通讯中……</div>
-</div>
-<!-- 加样式和功能代码 -->
-<!-- 将apiurl改成你后端生成的api地址 -->
-
-<script type="text/javascript">
-  var fdataUser = {
-    apiurl: 'https://f.bore.vip/'
-  }
+<div id="app"></div>
+<script>
+    let UserConfig = {
+        // 填写你的api地址
+        private_api_url: 'https://f.bore.vip/',
+        // 点击加载更多时，一次最多加载几篇文章，默认10
+        page_turning_number: 10,
+        // 头像加载失败时，默认头像地址
+        error_img: 'https://sdn.geekzu.org/avatar/57d8260dfb55501c37dde588e7c3852c',
+        // 进入页面时第一次的排序规则
+        sort_rule: 'created'
+    }
 </script>
-<link rel="stylesheet" href="https://cdn1.tianli0.top/gh/lmm214/immmmm/themes/hello-friend/static/fcircle-beta.css">
-
-<script type="text/javascript" src="https://cdn1.tianli0.top/gh/lmm214/immmmm/themes/hello-friend/static/fcircle-beta.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/app.min.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/bundle.js"></script>
