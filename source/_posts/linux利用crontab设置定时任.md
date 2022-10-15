@@ -156,8 +156,17 @@ crontab时间举例：
 0 23-7 * * * /etc/init.d/smb restart
 ```
 
+## 开机自动运行脚本
+
+```bash
+@reboot /root/s.sh
+```
+
+更多查看：[开机启动 kkapi](/archives/6c31209c/#开机启动kkapi)
+
 ## 参考链接
 
 + [1.Linux之crontab定时任务](https://blog.csdn.net/qq_22823581/article/details/80783835)
 + [2.crontab 定时任务](https://linuxtools-rst.readthedocs.io/zh_CN/latest/tool/crontab.html)
 + [3.crontab 每天，每月，每年   定时启动](https://blog.csdn.net/qq_22823581/article/details/80783835)
++ [4.Linux系统如何设置开机自动运行脚本](https://www.cnblogs.com/yychuyu/p/13095732.html)

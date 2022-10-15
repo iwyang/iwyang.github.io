@@ -555,13 +555,45 @@ yarn build
 pm2 restart pm2.json
 ```
 
-11.备份
+**11.备份**
 
 `/my/own/datadir` 这一段就是数据库的文件，把这个打包搞走就行，然后换到新地方以后，部署mongodb数据库还要对应上。
 
 **首先完整搭建好（要初始化账号，能访问后台，这时后台会显示什么都没有），然后删除`my`文件夹，将备份的数据库文件夹上传到相应目录，重启容器即可登录后台，查看到原来的数据了。**
 
 定时备份数据库，参考：[halo 定时备份的方法](https://bore.vip/archives/3a4bd17/)
+
+### 开机启动kkapi
+
+1.编辑脚本
+
+```bash
+vi s.sh
+```
+
+```js
+#!/bin/bash
+cd /root/kkapi-open
+/usr/local/bin/pm2 start pm2.json
+```
+
+2.赋予脚本执行权限
+
+```bash
+chmod +x /root/s.sh
+```
+
+运行的时候就输入下面的代码即可：`./s.sh`
+
+3.设定开机自动运行脚本
+
+```bash
+crontab -e
+```
+
+```bash
+@reboot /root/s.sh
+```
 
 ### 配置域名访问
 
