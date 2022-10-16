@@ -864,11 +864,9 @@ css_prefix: true
 inject:
   head:
     # - <link rel="stylesheet" href="/xxx.css">
-    - <link rel="stylesheet" href="/css/custom.css">
-    - <link rel="stylesheet" href="/css/weibo.css">    
+    - <link rel="stylesheet" href="/css/custom.css">  
   bottom:
-    # - <script src="xxxx"></script>
-     - <script src="/js/weibo.js"></script>    
+    # - <script src="xxxx"></script>   
 
 # CDN
 # Don't modify the following settings unless you know how they work
