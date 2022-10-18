@@ -407,6 +407,10 @@ button{border-radius:0;}
 
 参考：[halo 定时备份的方法](/archives/3a4bd17/)
 
+## 总结
+
+感觉还是小康speak和Butterfly主题更搭，况且小康speak也可以独立部署，所以还是用前者吧！
+
 ## 参考链接
 
 [Hi，Memos](https://immmmm.com/hi-memos/)
