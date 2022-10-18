@@ -20,7 +20,6 @@ top_img:
 >
 > 仓库地址：https://github.com/usememos/memos
 >
-> 成品：https://me.bore.vip/u/101
 
 ## Docker部署
 
