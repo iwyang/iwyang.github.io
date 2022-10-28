@@ -2,7 +2,7 @@ name: Sync to Gitee
 
 on:
   push:
-    branches: backup666
+    branches: backup
 jobs:
   build:
     runs-on: ubuntu-latest
