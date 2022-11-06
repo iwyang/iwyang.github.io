@@ -283,9 +283,11 @@ categories: [""]
 tags: [""]
 ```
 
-## 显示右侧工具栏分类目录
+## ~~显示右侧工具栏分类目录~~
 
-参考 https://github.com/CaiJimmy/hugo-theme-stack/issues/169
+~~参考 https://github.com/CaiJimmy/hugo-theme-stack/issues/169~~
+
+> 最新版主题已默认开启分类目录工具栏
 
 1. Create `categories.html` in layouts/partials/widget
 
