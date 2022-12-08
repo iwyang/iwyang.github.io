@@ -1,27 +1,3 @@
-# - class_name: 实用工具
-  # class_desc: 好用的在线工具
-  # link_list:
-    # - name: 佐糖
-      # link: https://picwish.cn/
-      # avatar: /img/link-img/tool/zuotang.jpg
-      # descr: 免费在线抠图神器_证件照换底色
-    # - name: V视频助手
-      # link: http://v.ranks.xin/
-      # avatar: /img/link-img/tool/shipin.jpg
-      # descr: 一键下载在线视频
-    # - name: 声咖
-      # link: https://shengka.ai.sogou.com/
-      # avatar: /img/link-img/tool/shengka.jpg
-      # descr: 智能、快捷、高效的音视频创作平台
-    # - name: PDF派
-      # link: https://www.pdfpai.com/
-      # avatar: /img/link-img/tool/pdf.jpg
-      # descr: pdf转word_pdf转换成excel_pdf转换成ppt _纬来PDF转换器
-    # - name: 智影
-      # link: https://zenvideo.qq.com/
-      # avatar: /img/link-img/tool/zhiying.jpg
-      # descr: 集素材搜集、视频剪辑、渲染导出和发布于一体的免费在线剪辑平台    
-
 - class_name: 友情链接
   class_desc: 那些人，那些事
   link_list:
