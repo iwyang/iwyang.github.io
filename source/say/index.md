@@ -14,7 +14,7 @@ aside: false
 />
 <link
   rel="stylesheet"
-  href="https://cdn1.tianli0.top/npm/ispeak@4.3.3/style.css"
+  href="https://unpkg.com/ispeak@4.3.3/style.css"
 />
 
 <style>
@@ -27,7 +27,7 @@ aside: false
 </style>
 <script src="https://cdn.staticfile.org/highlight.js/10.6.0/highlight.min.js"></script>
 <script src="https://cdn.staticfile.org/marked/2.0.0/marked.min.js"></script>
-<script src="https://cdn1.tianli0.top/npm/ispeak@4.3.3/ispeak.umd.js"></script>
+<script src="https://unpkg.com/ispeak@4.3.3/ispeak.umd.js"></script>
 <script>
   var head = document.getElementsByTagName('head')[0]
   var meta = document.createElement('meta')
@@ -38,8 +38,8 @@ aside: false
     ispeak
       .init({
         el: '#ispeak',
-        api: 'https://me.bore.vip:1314/',
-        author: '6346b770fb75634116945e94',
+        api: 'https://kkapi.bore.vip/',
+        author: '62e664654423f520964e0d43',
         pageSize: 10,
         loading_img: 'https://bu.dusays.com/2022/05/01/626e88f349943.gif',
         speakPage: '/say',
