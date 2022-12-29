@@ -19,12 +19,6 @@ top_img:
 
 {% timeline %}  
 
-<!-- timeline 2022-10-12-->
-
-在 [@Braindance](https://braindance.top/) 的帮助下，成功搭建小康[Speak](/say)服务器部署版
-
-<!-- endtimeline -->
-
 <!-- timeline 2022-08-02-->
 
 1.搭建小康[Speak](/say)
