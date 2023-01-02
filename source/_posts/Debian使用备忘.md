@@ -188,7 +188,22 @@ userlist_deny=NO
 echo "admin" | sudo tee -a /etc/vsftpd/user_list
 ```
 
+## 开启80、443端口
+
+```
+iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+```
+
+````
+service iptables save
+````
+
+```
+service iptables restart
+```
+
 ## Debian 9上安装和配置Postfix邮件
+
 1.安装 mailtuils:
 
 ```bash
