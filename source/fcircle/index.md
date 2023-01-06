@@ -4,7 +4,7 @@ date: 2022-08-02 10:55:04
 comments: false
 aside: true
 ---
-<div id="app"></div>
+<div id="hexo-circle-of-friends-root"></div>
 <script>
     let UserConfig = {
         // 填写你的api地址
@@ -17,5 +17,6 @@ aside: true
         sort_rule: 'created'
     }
 </script>
-<script type="text/javascript" src="https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/app.min.js"></script>
-<script type="text/javascript" src="https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/bundle.js"></script>
+
+<script type="text/javascript" src="https://npm.elemecdn.com/fcircle-theme-yyyz@1.0.5/dist/app.min.js"></script>
+<script type="text/javascript" src="https://npm.elemecdn.com/fcircle-theme-yyyz@1.0.5/dist/bundle.js"></script>
