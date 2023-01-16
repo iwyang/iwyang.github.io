@@ -14,7 +14,7 @@ menu:
   社交||fas fa-compass||hide:
     友链: /link/ || fas fa-link
     友圈: /fcircle/ || fas fa-user-friends
-    关于: /about/ || fas fa-heart    
+    关于: /about/ || fas fa-heart       
  
 nav:
   logo: # image
