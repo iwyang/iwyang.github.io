@@ -14,7 +14,7 @@ aside: false
 />
 <link
   rel="stylesheet"
-  href="https://unpkg.com/ispeak@4.3.3/style.css"
+  href="/img/js/speak/style.css"
 />
 
 <style>
@@ -27,7 +27,7 @@ aside: false
 </style>
 <script src="https://cdn.staticfile.org/highlight.js/10.6.0/highlight.min.js"></script>
 <script src="https://cdn.staticfile.org/marked/2.0.0/marked.min.js"></script>
-<script src="https://unpkg.com/ispeak@4.3.3/ispeak.umd.js"></script>
+<script src="/img/js/speak/ispeak.umd.js"></script>
 <script>
   var head = document.getElementsByTagName('head')[0]
   var meta = document.createElement('meta')
