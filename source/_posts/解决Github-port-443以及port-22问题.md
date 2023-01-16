@@ -62,6 +62,12 @@ chmod 600 config
 ssh git@github.com
 ```
 
+三、Please make sure you have the correct access rights and the repository exist
+
+如果即使已经添加本地公钥到github，还提示以上错误，并且执行`ssh -T git@github.com`提示22端口关闭，解决方法见上。
+
+
+
 参考链接：
 
 [1.解决 Failed to connect to github.com port 443](https://blog.csdn.net/Hodors/article/details/103226958)
