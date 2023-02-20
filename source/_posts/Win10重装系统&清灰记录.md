@@ -9,7 +9,7 @@ date: 2020-05-24 06:36:25
 cover: false
 ---
 
-<div class="note primary">Fn+F2进入bios，Fn+F12选择启动顺序。</div>
+<div class="note primary">Fn+F2进入bios，Fn+F12选择启动顺序。</div> 
 
 ### ~~原版系统~~
 
