@@ -1,11 +1,13 @@
 ---
 title: chatgpt使用方法
-categories: [技术]
-tags: [chatgpt]
+categories:
+  - 技术
+tags:
+  - chatgpt
 comments: true
-cover: false
+cover: /img/cover/chatgpt.jpg
+abbrlink: 692a32c1
 date: 2023-03-05 20:21:02
-abbrlink:
 sticky:
 keywords:
 description:
