@@ -55,3 +55,17 @@ explain 解释
 7.（1）请写出十个吸引人的关于泡咖啡的Instagram post标题
 
 （2）请写出“文章标题”Instagram post内文
+
+8.角色脚本：https://github.com/f/awesome-chatgpt-prompts
+
+接下来都以中文来回答
+
+9.脚本应用程序：https://github.com/lencx/ChatGPT
+
+（1）加载脚本
+
+preference—control center—language model—sync custom—sync （点击sync后，就会把所有脚本加载）
+
+（2）输入“/”选择相应角色
+
+> 先带入角色再回答问题会更专业？
