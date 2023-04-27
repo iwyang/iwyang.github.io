@@ -61,6 +61,12 @@ docker-compose up -d
 
 通过访问 `localhost:5230` 即可打开 Memos，首次安装会提示注册用户，请记牢您的而密码。数据文件默认存储在 **`~/.memos`** 中。
 
+> PS：如果使用vultr，注意由于默认vultr什么端口都没有开放，安装后要记得要开放5230端口：
+
+```
+iptables -I INPUT -p tcp --dport 5230 -j ACCEPT
+```
+
 4.**更新**。删除现有容器，拉取最新镜像，然后重新创建容器即可。
 
 **Docker Compose**
