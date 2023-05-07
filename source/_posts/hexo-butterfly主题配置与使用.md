@@ -1368,6 +1368,12 @@ skip_render:
     - 'demo/**'
 ```
 
+## 更新记录
+
+2023.5.7
+
++ Commits on Apr 10, 2023
+
 ## 参考链接
 
 + [Butterfly 安装文档(一) 快速开始](https://butterfly.js.org/posts/21cfbf15/)
