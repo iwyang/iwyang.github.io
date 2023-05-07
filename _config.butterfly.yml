@@ -37,9 +37,9 @@ code_word_wrap: false
 social:
   # fab fa-github: https://github.com/xxxxx || Github || '#24292e'
    fas fa-envelope: mailto:455343442@qq.com || Email || '#4a7dbe'
-   # fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=455343442&website=www.oicqzone.com || QQ   
-   fa-brands fa-bilibili: https://space.bilibili.com/20475120 || Bilibili
-   fas fa-rss: /rss2.xml || RSS   
+   # fab fa-qq: tencent://AddContact/?fromId=45&fromSubId=1&subcmd=all&uin=455343442&website=www.oicqzone.com || QQ    
+   fa-brands fa-bilibili: https://space.bilibili.com/20475120 || Bilibili 
+   fas fa-rss: /rss2.xml || RSS
 
 # Image (圖片設置)
 # --------------------------------------
