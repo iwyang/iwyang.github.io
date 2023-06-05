@@ -100,4 +100,8 @@
     - name: 爱吃肉的猫
       link: https://meuicat.com/
       avatar: /img/link-img/mao.jpg
-      descr: 有肉有猫有生活.     
+      descr: 有肉有猫有生活.   
+    - name: JACK 小桔子的小屋
+      link: https://www.jackxjz.com/
+      avatar: /img/link-img/jack.png
+      descr: 一个分享科技 / 日常的网站       
