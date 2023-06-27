@@ -32,7 +32,6 @@ top_img:
 
 <div class="gallery-group-main">
 {% galleryGroup '2022秋季趣味运动会' '那些精彩的瞬间' '/gallery/sport2022autumn' ../img/2022秋季趣味运动会/1.jpg %}
-{% galleryGroup '2022春季趣味运动会' '那些精彩的瞬间' '/gallery/sport2022spring' ../img/2022春季趣味运动会/1.jpg %}
 {% galleryGroup '2021秋季趣味运动会' '那些精彩的瞬间' '/gallery/sport2021autumn' ../img/2021秋季趣味运动会/1.jpg %}
 {% galleryGroup '2021春季趣味运动会' '那些精彩的瞬间' '/gallery/sport2021spring' ../img/2021春季趣味运动会/3.jpg %}
 {% galleryGroup '2019秋季趣味运动会' '那些精彩的瞬间' '/gallery/sport2019autumn' ../img/2019秋季趣味运动会/1.jpg %}
