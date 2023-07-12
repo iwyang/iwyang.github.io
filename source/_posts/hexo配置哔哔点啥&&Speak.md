@@ -1157,6 +1157,24 @@ npm run preview
 
 进入后台新增即可。**更多发送方式查看：[发送方式](https://kkapi-doc.vercel.app/posts/ispeak/send-mode.html)**
 
+## speak&&twikoo&&Verce域名绑定
+
+`Vercel崩了，要绑定个二级域名才能用`
+
+1. speak首页轮播api地址：`\source\_data\widget.yml`，改为可以访问的api url
+
+2. speak页面api地址：`\source\say\index.md`，改为可以访问的api url
+
+3. 安卓快捷方式speak api地址，改为可以访问的api url
+
+4. speak后台管理github秘钥：VITE_GLOB_API_URL改为可以访问的api url
+
+5. twikoo envId地址：`_config.butterfly.yml`，改为可以访问的url
+
+6. 友链朋友圈api地址：`\source\fcircle\index.md`，改为可以访问的api url
+
+   
+
 ## 参考链接
 
 [「哔哔点啥」微信公众号 2.0](https://immmmm.com/bb-by-wechat-pro/)
