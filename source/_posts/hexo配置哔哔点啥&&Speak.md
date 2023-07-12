@@ -1169,9 +1169,11 @@ npm run preview
 
 4. speak后台管理github秘钥：VITE_GLOB_API_URL改为可以访问的api url
 
-5. twikoo envId地址：`_config.butterfly.yml`，改为可以访问的url
+5. speak后台、speak url发布 访问url，改为可以访问的url（还未更改）
 
-6. 友链朋友圈api地址：`\source\fcircle\index.md`，改为可以访问的api url
+6. twikoo envId地址：`_config.butterfly.yml`，改为可以访问的url
+
+7. 友链朋友圈api地址：`\source\fcircle\index.md`，改为可以访问的api url
 
    
 
