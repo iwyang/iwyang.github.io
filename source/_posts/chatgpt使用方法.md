@@ -161,3 +161,13 @@ ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则
 **16.写电脑自动化程式**
 
 **17.Newbing**
+
+### 附：bwg无法使用chatgpt
+
+解决方法：
+
+1. 把VPS的IP伪装成家用IP。用warp来伪装，原理就是把VPS的出口流量转发到另一个IP（由cloudfare免费提供）上进行代理。
+   具体操作：在VPS上`bash <(curl -fsSL git.io/warp.sh) d`
+2. 直接用一个解锁chatgpt的机场，例如[https://songshuyun.top。](https://songshuyun.top./)
+
+参考：[Chat GPT是不是](https://github.com/Alvin9999/new-pac/issues/1407)
