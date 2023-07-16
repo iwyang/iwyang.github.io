@@ -72,7 +72,7 @@ name: Sync Fork
 
 on:
   schedule:
-    - cron: '* */24 * * *' # 每天一次
+    - cron: '* */48 * * *' # 每两天一次
   workflow_dispatch: # on button click
 
 jobs:
@@ -88,6 +88,8 @@ jobs:
           base: master
           head: master
 ```
+
+`* */48 * * *`改成`* */24 * * *`每一天运行一次，(不懂问`chatgpt`，然后要验证它的答案，它有时给出的答案是错误的。)
 
 ## 创建github访问token
 
