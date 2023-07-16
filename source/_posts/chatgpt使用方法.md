@@ -172,6 +172,8 @@ ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则
 
 参考：[Chat GPT是不是](https://github.com/Alvin9999/new-pac/issues/1407)
 
+> PS：有些脚本自带分流
+
 ### 附2：ChatGPT 设置定时任务
 
 查看：[ChatGPT 设置定时任务](/archives/964093b3/#ChatGPT设置定时任务)
