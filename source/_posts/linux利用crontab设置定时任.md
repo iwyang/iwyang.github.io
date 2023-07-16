@@ -168,6 +168,8 @@ crontab时间举例：
 
 ## ChatGPT设置定时任务
 
+> PS：ChatGPT有时给出的答案可能是错误的，需要验证：[crontab guru](https://crontab.guru/)
+
 **1.提问：每隔2天运行一次**
 
 回答：要设置一个每隔2天运行一次的cron作业，你可以使用以下cron表达式：

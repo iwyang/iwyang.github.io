@@ -89,7 +89,9 @@ jobs:
           head: master
 ```
 
-`* */24 * * *`改成`* */48 * * *`每两天运行一次，(不懂问`chatgpt`，然后要验证它的答案，它有时给出的答案是错误的。)
+`* */24 * * *`改成`* */48 * * *`每两天运行一次
+
+> PS：ChatGPT有时给出的答案可能是错误的，需要验证：[crontab guru](https://crontab.guru/)
 
 ## 创建github访问token
 
