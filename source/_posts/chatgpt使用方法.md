@@ -162,7 +162,7 @@ ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则
 
 **17.Newbing**
 
-### 附：bwg无法使用chatgpt
+### 附1：bwg无法使用chatgpt
 
 解决方法：
 
@@ -171,3 +171,7 @@ ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则
 2. 直接用一个解锁chatgpt的机场，例如[https://songshuyun.top。](https://songshuyun.top./)
 
 参考：[Chat GPT是不是](https://github.com/Alvin9999/new-pac/issues/1407)
+
+### 附2：ChatGPT 设置定时任务
+
+查看：[ChatGPT 设置定时任务](/archives/964093b3/#ChatGPT设置定时任务)
