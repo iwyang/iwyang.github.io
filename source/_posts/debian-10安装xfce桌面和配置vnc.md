@@ -19,6 +19,12 @@ top_img:
 默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。
 在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。
 
+
+
+0.如果新装系统，参考:[`vi` 无法正常使用](/archives/9eb70758/#vi无法正常使用)
+
+
+
 1.用SSH连接到你的服务器后，更新你的软件包列表。
 
 ```sql
@@ -40,6 +46,8 @@ sudo apt install xfce4 xfce4-goodies
 ```sql
 sudo apt install tightvncserver
 ```
+
+> 如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:`sudo apt install tightvncserver`
 
 4.为了在安装后完成VNC服务器的初始配置，使用`vncserver` 命令来设置安全密码并创建初始配置文件。
 
@@ -183,7 +191,7 @@ sudo vi /etc/systemd/system/vncserver@.service
 
 在文件中添加以下几行。请确保修改`User` 、`Group` 、`WorkingDirectory` ，以及`PIDFILE` 中的用户名，以符合你的用户名。
 
-**官方：**
+**官方：**(如果要用下面配置，先参考：[Initial Server Setup with Debian 10](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-10)，进行设置用户名、防火墙等操作)
 
 ```bash
 [Unit]
@@ -315,6 +323,14 @@ sudo apt install fonts-wqy-zenhei
 
 6.重启
 
+## Debian 10安装firefox
+
+```
+sudo apt update
+sudo apt upgrade
+sudo apt install firefox-esr -y
+```
+
 ## 附：第二种作为系统服务运行VNC
 
 1.创建systemd服务文件：使用命令 `sudo nano /etc/systemd/system/tightvncserver@.service`创建一个新的systemd服务文件。
@@ -385,3 +401,5 @@ WantedBy=multi-user.target
 + [ubuntu vnc开机启动](https://juejin.cn/s/ubuntu%20vnc%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8)
 
 + [Initial Server Setup with Debian 10](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-10)
+
++ [How to Install and Configure VNC on Debian 11](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-11)
