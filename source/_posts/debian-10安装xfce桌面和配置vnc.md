@@ -331,6 +331,162 @@ sudo apt upgrade
 sudo apt install firefox-esr -y
 ```
 
+## Debian 10安装wine 7.0
+
+> 貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，**根本就没必要装wine**，不过还是记录以下
+
+### Step 1: Prerequsiteis
+
+In order to run Winehq, You need to enable i386 architecture on your Debian system. Also, import the GPG key to your system by which the wine packages are signed.
+
+```
+sudo dpkg --add-architecture i386  
+wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - 
+```
+
+Use one of the following commands to enable the Wine apt repository in your system based on your operating system and version.
+
+```
+sudo apt -y install gnupg2 software-properties-common
+sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/ 
+```
+
+### Step 2: Install Wine on Debian 10
+
+Your system is ready to install Winehq. Update the apt information with the newly added repositories. Execute the following commands. The `--install-recommends` option will install all the recommended packages by **winehq-stable** on your system.
+
+```
+sudo apt update 
+sudo apt install --install-recommends winehq-stable 
+```
+
+The wine packages are installed under /opt/wine-stable directory. So set the wine bin directory to the **PATH** environment to access commands system-wide.
+
+```
+export PATH=$PATH:/opt/wine-stable/bin 
+```
+
+### Step 3: Check Wine Version
+
+Wine installation successfully completed. Use the following command to check the version of wine installed on your system
+
+```
+wine --version 
+
+wine-7.0
+```
+
+### How to Use Wine (Optional)
+
+To use wine we need to log in to the Debian desktop system. After that download a windows .exe file like [PuTTY ](http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html)on your system and open it with Wine as below screenshot or use the following command.
+
+```
+wine ~/Downloads/putty.exe 
+```
+
+## Debian 11安装wine 8.0
+
+### Step 1: Enable 32 bit architecture
+
+If you’re running a 64-bit system, enable support for 32-bit applications.
+
+```
+sudo dpkg --add-architecture i386
+```
+
+The command above won’t return any output.
+
+### Step 2: Add WineHQ repository
+
+We will pull the latest Wine packages from WineHQ repository that is added manually.
+
+First, import GPG key:
+
+```
+sudo apt update
+sudo apt -y install gnupg2 software-properties-common
+wget -nc https://dl.winehq.org/wine-builds/winehq.key
+sudo apt-key add winehq.key
+```
+
+You should receive “**OK**” in the output.
+
+
+
+Add the Wine repository by running the following command:
+
+
+
+```
+sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/
+```
+
+The command will add repository to line */etc/apt/sources.list* file.
+
+Update APT package index after:
+
+```
+sudo apt update
+```
+
+### Using OBS repository (Alternative)
+
+You can also use OBS repository instead of the official repository. Add Wine OBS repository as shown below:
+
+
+
+**Debian 11:**
+
+```
+wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | sudo apt-key add -    
+echo "deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./" | sudo tee /etc/apt/sources.list.d/wine-obs.list
+```
+
+### Step 3: Install Wine on Debian 11|10|9
+
+After configuration of the APT repository, the final step is the actual installation of Wine on Debian.
+
+Then install Wine from Stable branch:
+
+```
+sudo apt update
+sudo apt install --install-recommends winehq-stable
+```
+
+The wine packages are installed under /opt/wine-stable directory. So set the wine bin directory to the **PATH** environment to access commands system-wide.
+
+```
+export PATH=$PATH:/opt/wine-stable/bin 
+```
+
+After installation. verify version installed.
+
+```
+$ wine --version
+wine-8.0
+```
+
+### Step 4: Using Wine on Debian
+
+For basic usage of wine, check help page.
+
+```
+$ wine --help
+```
+
+Example below is used to run [Notepad++ editor](https://github.com/notepad-plus-plus/notepad-plus-plus/releases) on Linux.
+
+```
+cd ~/Downloads
+VER=$(curl -s https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest | grep tag_name | cut -d '"' -f 4 | sed 's/v//g')
+wget https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v${VER}/npp.${VER}.Installer.exe
+wine ./npp.${VER}.Installer.exe
+```
+
+
+
+Follow installation prompts like for any other Windows application.
+
 ## 附：第二种作为系统服务运行VNC
 
 1.创建systemd服务文件：使用命令 `sudo nano /etc/systemd/system/tightvncserver@.service`创建一个新的systemd服务文件。
@@ -403,3 +559,7 @@ WantedBy=multi-user.target
 + [Initial Server Setup with Debian 10](https://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-10)
 
 + [How to Install and Configure VNC on Debian 11](https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-11)
+
++ [How To Install Wine 7.0 on Debian 10 ](https://tecadmin.net/install-wine-on-debian-10-buster/)
+
++ [How To Install Wine 8 on Debian 11](https://computingforgeeks.com/how-to-install-wine-on-debian/?expand_article=1)
