@@ -1,5 +1,5 @@
 ---
-title: debian 10安装xfce桌面和配置vnc
+title: debian 10安装xfce桌面和配置vnc和wine
 categories:
   - 技术
 tags:
