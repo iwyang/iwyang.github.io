@@ -80,4 +80,8 @@
     - name: JACK 小桔子的小屋
       link: https://www.jackxjz.com/
       avatar: /img/link-img/jack.png
-      descr: 一个分享科技 / 日常的网站       
+      descr: 一个分享科技 / 日常的网站  
+    - name: 我不是咕咕鸽
+      link: https://blog.laoda.de/
+      avatar: /img/link-img/laoda.jpg
+      descr: 服务器折腾不完全指南，定期分享一些好玩的东西，不定期记录生活。         
