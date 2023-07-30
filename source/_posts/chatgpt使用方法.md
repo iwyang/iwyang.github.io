@@ -236,3 +236,5 @@ sed -i 's/:.*//' example.txt
 ```
 
 这样会直接在 `example.txt` 文件上进行修改。
+
+> PS：合并txt（cmd上操作）： `type *txt>>all.txt`
