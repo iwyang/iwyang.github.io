@@ -30,6 +30,12 @@ npm update hexo-theme-butterfly
 
 如果无法升级，先修改`package.json`，然后执行以上命令。
 
+图标无法显示：
+
+```powershell
+npm i hexo-butterfly-extjs
+```
+
 ## Front-matter
 
 ### Post Front-matter
