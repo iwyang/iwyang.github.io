@@ -1,0 +1,393 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>halo定时备份的方法 | Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="在网上查询了一下halo定时备份有三种方案：邮箱和Dropbox，以及github。 备份到QQ邮箱安装邮件发送依赖组件Centos 71yum install sendmail mailx -y  Centos 8123yum -y install postfix sendmail-cf mailxservice postfix startsudo systemctl enable postf">
+<meta property="og:type" content="article">
+<meta property="og:title" content="halo定时备份的方法">
+<meta property="og:url" content="https://bore.vip/archives/3a4bd17/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:description" content="在网上查询了一下halo定时备份有三种方案：邮箱和Dropbox，以及github。 备份到QQ邮箱安装邮件发送依赖组件Centos 71yum install sendmail mailx -y  Centos 8123yum -y install postfix sendmail-cf mailxservice postfix startsudo systemctl enable postf">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/avatar.jpg">
+<meta property="article:published_time" content="2020-07-26T05:49:25.000Z">
+<meta property="article:modified_time" content="2023-09-03T12:30:56.415Z">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="halo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/archives/3a4bd17/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'halo定时备份的方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2023-09-03 20:30:56'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">halo定时备份的方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2020-07-26T05:49:25.000Z" title="发表于 2020-07-26 13:49:25">2020-07-26</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2023-09-03T12:30:56.415Z" title="更新于 2023-09-03 20:30:56">2023-09-03</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.4k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>13分钟</span></span></div></div></div><article class="post-content" id="article-container"><p> 在网上查询了一下halo定时备份有三种方案：邮箱和Dropbox，以及github。</p>
+<h2 id="备份到QQ邮箱"><a href="#备份到QQ邮箱" class="headerlink" title="备份到QQ邮箱"></a>备份到QQ邮箱</h2><h3 id="安装邮件发送依赖组件"><a href="#安装邮件发送依赖组件" class="headerlink" title="安装邮件发送依赖组件"></a><strong>安装邮件发送依赖组件</strong></h3><h4 id="Centos-7"><a href="#Centos-7" class="headerlink" title="Centos 7"></a>Centos 7</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yum install sendmail mailx -y</span><br></pre></td></tr></table></figure>
+
+<h4 id="Centos-8"><a href="#Centos-8" class="headerlink" title="Centos 8"></a>Centos 8</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum -y install postfix sendmail-cf mailx</span><br><span class="line">service postfix start</span><br><span class="line">sudo systemctl <span class="built_in">enable</span> postfix</span><br></pre></td></tr></table></figure>
+<h4 id="Debian"><a href="#Debian" class="headerlink" title="Debian"></a>Debian</h4><ol>
+<li>安装 mailtuils:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install mailutils -y</span><br></pre></td></tr></table></figure></li>
+<li>安装postfix后缀:<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install postfix</span><br></pre></td></tr></table></figure>
+在安装过程即将结束时，您将看到一个类似于下图中的窗口的窗口。默认选项是<code>Internet Site</code>。这是本教程的推荐选项，请按<code>TAB</code>，然后按<code>ENTER</code>。<br>之后，您将获得另一个窗口，就像下一个图像中的窗口一样。该系统邮件名称应该是一样的，你分配给服务器，当你在创造它的名字。如果它显示子域<code>subdomain.example.com</code>，请将其更改为<code>ust example.com</code>。完成后，按<code>TAB</code>，然后<code>ENTER</code>。</li>
+</ol>
+<h3 id="修改附件发送大小限制"><a href="#修改附件发送大小限制" class="headerlink" title="修改附件发送大小限制"></a>修改附件发送大小限制</h3><p>看下现在邮件的大小限制：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo postconf message_size_limit</span><br></pre></td></tr></table></figure>
+
+<div class="note info">message_size_limit = 20480000</div>
+
+<p>差不多是10M，放大20倍，应该差不多了。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo postconf -e <span class="string">&quot;message_size_limit = 204800000&quot;</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="获得-amp-编辑备份脚本"><a href="#获得-amp-编辑备份脚本" class="headerlink" title="获得&amp;编辑备份脚本"></a>获得&amp;编辑备份脚本</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wget https://raw.githubusercontent.com/iwyang/scripts/master/halo_email_backup.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="创建备份文件夹"><a href="#创建备份文件夹" class="headerlink" title="创建备份文件夹"></a>创建备份文件夹</h4><div class="note primary">如果选择将文件备份到临时目录的话，这步可跳过，直接修改脚本即可。我直接跳过了这一步。</div>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">mkdir</span> -p /home/back</span><br></pre></td></tr></table></figure>
+
+<h4 id="修改脚本"><a href="#修改脚本" class="headerlink" title="修改脚本"></a>修改脚本</h4><p>脚本原来模样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line"># 进入到备份文件夹</span><br><span class="line">cd /home/back</span><br><span class="line">#压缩网站数据</span><br><span class="line">tar zcvf <span class="title function_">web_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span> 网站目录</span><br><span class="line"># 导出数据库到备份文件夹内</span><br><span class="line">mysqldump -uroot -p数据库密码 数据库名称 &gt; <span class="title function_">web_data_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">sql</span></span><br><span class="line"># 以附件形式发送数据库到指定邮箱</span><br><span class="line">echo <span class="string">&quot;Blog date&quot;</span>|mail -s <span class="string">&quot;Backup$(date +%Y-%m-%d)&quot;</span> -a <span class="title function_">web_data_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">sql</span> 收件人邮箱</span><br><span class="line"># 删除本地<span class="number">3</span>天前的数据</span><br><span class="line">rm -rf <span class="title function_">web_$</span>(date -d -3day +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span> <span class="title function_">web_data_$</span>(date -d -3day +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">sql</span></span><br><span class="line"># 登录<span class="variable constant_">FTP</span></span><br><span class="line">lftp ftp地址 -u ftp用户名,ftp密码 &lt;&lt; <span class="variable constant_">EOF</span></span><br><span class="line"># 进入<span class="variable constant_">FTP</span>根目录</span><br><span class="line">cd ftp根目录文件夹</span><br><span class="line"># 删除<span class="number">3</span>天前备份文件</span><br><span class="line">mrm <span class="title function_">web_$</span>(date -d -3day +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line">mrm <span class="title function_">web_data_$</span>(date -d -3day +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">sql</span></span><br><span class="line"># 上传当天备份文件</span><br><span class="line">mput <span class="title function_">web_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line">mput <span class="title function_">web_data_$</span>(date -d -3day +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">sql</span></span><br><span class="line">bye</span><br><span class="line"><span class="variable constant_">EOF</span></span><br></pre></td></tr></table></figure>
+
+<p>根据实际需求，改成下面模样：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi email.sh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line">cd /tmp</span><br><span class="line">tar zcvf <span class="title function_">web_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span> /root/.<span class="property">halo</span></span><br><span class="line">echo <span class="string">&quot;Blog date&quot;</span>|mail -s <span class="string">&quot;Backup$(date +%Y-%m-%d)&quot;</span> -a <span class="title function_">web_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span> <span class="number">455343442</span>@qq.<span class="property">com</span></span><br><span class="line">rm -f <span class="title function_">web_$</span>(date +<span class="string">&quot;%Y%m%d&quot;</span>).<span class="property">tar</span>.<span class="property">gz</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中最后的<code>rm -f web_$(date +&quot;%Y%m%d&quot;).tar.gz</code>，表示删除本地的临时文件。</p>
+<blockquote>
+<p><strong>注意</strong>在<strong>Debian</strong>下要讲<code>-a</code> 改成 <code>-A</code>（如下）</p>
+</blockquote>
+<figure class="highlight diff"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="deletion">- echo &quot;Blog date&quot;|mail -s &quot;Backup$(date +%Y-%m-%d)&quot; -a web_$(date +&quot;%Y%m%d&quot;).tar.gz 455343442@qq.com</span></span><br><span class="line"><span class="addition">+ echo &quot;Blog date&quot;|mail -s &quot;Backup$(date +%Y-%m-%d)&quot; -A web_$(date +&quot;%Y%m%d&quot;).tar.gz 455343442@qq.com</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="设置定时任务"><a href="#设置定时任务" class="headerlink" title="设置定时任务"></a>设置定时任务</h4><h5 id="赋予文件执行权限"><a href="#赋予文件执行权限" class="headerlink" title="赋予文件执行权限"></a>赋予文件执行权限</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /root/email.sh</span><br></pre></td></tr></table></figure>
+
+<p>运行的时候就输入下面的代码即可：<code>./email.sh</code></p>
+<h5 id="设定自动任务"><a href="#设定自动任务" class="headerlink" title="设定自动任务"></a>设定自动任务</h5><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">01 00 * * * /root/email.sh</span><br></pre></td></tr></table></figure>
+
+<p>意思是每天凌晨0:01运行这个脚本。</p>
+<h2 id="备份到Dropbox"><a href="#备份到Dropbox" class="headerlink" title="备份到Dropbox"></a>备份到Dropbox</h2><h3 id="创建Dropbox应用"><a href="#创建Dropbox应用" class="headerlink" title="创建Dropbox应用"></a>创建Dropbox应用</h3><p>首先，需要创建一个Dropbox应用，可以从该网址进行创建：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.dropbox.com/developers/apps/create">https://www.dropbox.com/developers/apps/create</a></p>
+<p>在这里，应用类型选择<code>Dropbox API</code>，数据存储类型选择<code>App folder</code>，然后<code>命名</code>创建。然后切换到<code>Permissions</code>选项卡，勾选相应权限。最后记录下<code>App key</code>，<code>App secret</code>，下面要用。</p>
+<p><img src="/../img/halo%E5%AE%9A%E6%97%B6%E5%A4%87%E4%BB%BD%E7%9A%84%E6%96%B9%E6%B3%95/dropbox_uploader.jpg"></p>
+<h3 id="下载dropbox-uploader-sh"><a href="#下载dropbox-uploader-sh" class="headerlink" title="下载dropbox_uploader.sh"></a>下载dropbox_uploader.sh</h3><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/andreafabrizi/Dropbox-Uploader/">dropbox_uploader</a> 是一个第三方Dropbox备份脚本，首先下载脚本：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">curl <span class="string">&quot;https://raw.githubusercontent.com/andreafabrizi/Dropbox-Uploader/master/dropbox_uploader.sh&quot;</span> -o dropbox_uploader.sh</span><br></pre></td></tr></table></figure>
+
+<p>然后，为该脚本添加执行权限：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x dropbox_uploader.sh</span><br></pre></td></tr></table></figure>
+
+<p>执行该脚本，绑定APP：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dropbox_uploader.sh</span><br></pre></td></tr></table></figure>
+<p>在终端里输入<code>App key</code>，<code>App secret</code>，接着会返回一个网址，浏览器打开，复制得到的<code>token</code>，最后在终端里完成绑定。</p>
+<p>之后可以执行下面的命令测试上传，提示Done就是绑定成功了：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./dropbox_uploader.sh upload /etc/passwd /backup/passwd.old</span><br></pre></td></tr></table></figure>
+<p>如果报错<code>unlink</code>,先执行命令<code>rm ~/.dropbox_uploader</code>，删除相应文件夹，然后删除上面申请的APP。按上面的操作重新申请</p>
+<p>APP、重新绑定，一般第二次申请就会成功。</p>
+<h3 id="编写备份脚本"><a href="#编写备份脚本" class="headerlink" title="编写备份脚本"></a>编写备份脚本</h3><p>编写定时备份脚本，取名为<code>backup.sh</code>。代码原来模样如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi backup.sh</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line"><span class="variable constant_">SCRIPT_DIR</span>=<span class="string">&quot;/root&quot;</span> #这个改成你存放刚刚下载下来的dropbox_uploader.<span class="property">sh</span>的文件夹位置</span><br><span class="line"><span class="variable constant_">DROPBOX_DIR</span>=<span class="string">&quot;/backup&quot;</span> #这个改成你的备份文件想要放在<span class="title class_">Dropbox</span>下面的文件夹名称，如果不存在，脚本会自动创建</span><br><span class="line"><span class="variable constant_">BACKUP_SRC</span>=<span class="string">&quot;/home/wwwroot /usr/local/nginx/conf&quot;</span> #这个是你想要备份的本地服务器上的文件，不同的目录用空格分开</span><br><span class="line"><span class="variable constant_">BACKUP_DST</span>=<span class="string">&quot;/tmp&quot;</span> #这个是你暂时存放备份压缩文件的地方，一般用/tmp即可</span><br><span class="line"><span class="variable constant_">MYSQL_SERVER</span>=<span class="string">&quot;localhost&quot;</span> #这个是你mysql服务器的地址，一般填这个本地地址即可</span><br><span class="line"><span class="variable constant_">MYSQL_USER</span>=<span class="string">&quot;mysqluser&quot;</span> #这个是你mysql的用户名名称，比如root或admin之类的</span><br><span class="line"><span class="variable constant_">MYSQL_PASS</span>=<span class="string">&quot;password&quot;</span> #这个是你mysql用户的密码</span><br><span class="line"># 下面的一般不用改了</span><br><span class="line"><span class="variable constant_">NOW</span>=$(date +<span class="string">&quot;%Y.%m.%d&quot;</span>)</span><br><span class="line"><span class="variable constant_">DESTFILE</span>=<span class="string">&quot;$BACKUP_DST/$NOW.tar.gz&quot;</span></span><br><span class="line"># 备份mysql数据库并和其它备份文件一起压缩成一个文件</span><br><span class="line">mysqldump -u $MYSQL_USER -h $MYSQL_SERVER -p$MYSQL_PASS --all-databases &gt; <span class="string">&quot;$NOW-Databases.sql&quot;</span></span><br><span class="line">echo <span class="string">&quot;数据库备份完成，打包网站数据中...&quot;</span></span><br><span class="line">tar cfzP <span class="string">&quot;$DESTFILE&quot;</span> $BACKUP_SRC <span class="string">&quot;$NOW-Databases.sql&quot;</span></span><br><span class="line">echo <span class="string">&quot;所有数据打包完成，准备上传...&quot;</span></span><br><span class="line"># 用脚本上传到dropbox</span><br><span class="line">$SCRIPT_DIR/dropbox_uploader.<span class="property">sh</span> upload <span class="string">&quot;$DESTFILE&quot;</span> <span class="string">&quot;$DROPBOX_DIR/$NOW.tar.gz&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq <span class="number">0</span> ];then</span><br><span class="line">     echo <span class="string">&quot;上传完成&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">     echo <span class="string">&quot;上传失败，重新尝试&quot;</span></span><br><span class="line">fi</span><br><span class="line"># 删除本地的临时文件</span><br><span class="line">rm -f <span class="string">&quot;$NOW-Databases.sql&quot;</span> <span class="string">&quot;$DESTFILE&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p>根据实际情况改成下面模样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line"><span class="variable constant_">SCRIPT_DIR</span>=<span class="string">&quot;/root&quot;</span> </span><br><span class="line"><span class="variable constant_">DROPBOX_DIR</span>=<span class="string">&quot;/backup&quot;</span> </span><br><span class="line"><span class="variable constant_">BACKUP_SRC</span>=<span class="string">&quot;/root/.halo&quot;</span> </span><br><span class="line"><span class="variable constant_">BACKUP_DST</span>=<span class="string">&quot;/tmp&quot;</span></span><br><span class="line"><span class="variable constant_">NOW</span>=$(date +<span class="string">&quot;%Y.%m.%d&quot;</span>)</span><br><span class="line"><span class="variable constant_">DESTFILE</span>=<span class="string">&quot;$BACKUP_DST/$NOW.tar.gz&quot;</span></span><br><span class="line">echo <span class="string">&quot;打包网站数据中...&quot;</span></span><br><span class="line">tar cfzP <span class="string">&quot;$DESTFILE&quot;</span> $BACKUP_SRC</span><br><span class="line">echo <span class="string">&quot;所有数据打包完成，准备上传...&quot;</span></span><br><span class="line">$SCRIPT_DIR/dropbox_uploader.<span class="property">sh</span> <span class="keyword">delete</span> <span class="string">&quot;$DROPBOX_DIR&quot;</span></span><br><span class="line">$SCRIPT_DIR/dropbox_uploader.<span class="property">sh</span> upload <span class="string">&quot;$DESTFILE&quot;</span> <span class="string">&quot;$DROPBOX_DIR/$NOW.tar.gz&quot;</span></span><br><span class="line"><span class="keyword">if</span> [ $? -eq <span class="number">0</span> ];then</span><br><span class="line">     echo <span class="string">&quot;上传完成&quot;</span></span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">     echo <span class="string">&quot;上传失败，重新尝试&quot;</span></span><br><span class="line">fi</span><br><span class="line">rm -f <span class="string">&quot;$DESTFILE&quot;</span></span><br></pre></td></tr></table></figure>
+
+<p><strong>先用<code>$SCRIPT_DIR/dropbox_uploader.sh delete &quot;$DROPBOX_DIR&quot;</code>删除<code>Dropbox</code>备份文件夹，再上传文件。这样就保证<code>Dropbox</code>永远只有一个最新的备份文件，不用手动删除多余的备份文件了</strong>。</p>
+<hr>
+<p>当然也可以通过脚本设置保留旧数据的时长。如下面一个脚本就是让旧数据在Dropbox保留7天，本地保留10天。（不过觉得没有必要，还是上面的方法简单，下面方法尝试过，老是出现问题，旧数据删除不了，不想折腾了）</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line"> </span><br><span class="line"># 定义需要备份的目录</span><br><span class="line"><span class="variable constant_">WEB_DIR</span>=<span class="regexp">/home/</span>www # 网站数据存放目录</span><br><span class="line"> </span><br><span class="line"># 定义备份存放目录</span><br><span class="line"><span class="variable constant_">DROPBOX_DIR</span>=/$(date +%Y-%m-%d) # <span class="title class_">Dropbox</span>上的备份目录</span><br><span class="line"><span class="variable constant_">LOCAL_BAK_DIR</span>=<span class="regexp">/home/</span>backup # 本地备份文件存放目录</span><br><span class="line"> </span><br><span class="line"># 定义备份文件名称</span><br><span class="line"><span class="title class_">DBBakName</span>=<span class="title function_">DB_$</span>(date +%Y%m%d).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line"><span class="title class_">WebBakName</span>=<span class="title class_">Web</span>_<span class="title function_">$</span>(date +%Y%m%d).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line"> </span><br><span class="line"># 定义旧数据名称</span><br><span class="line"><span class="title class_">Old</span>_DROPBOX_DIR=/$(date -d -7day +%Y-%m-%d)</span><br><span class="line"><span class="title class_">OldDBBakName</span>=<span class="title function_">DB_$</span>(date -d -10day +%Y%m%d).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line"><span class="title class_">OldWebBakName</span>=<span class="title class_">Web</span>_<span class="title function_">$</span>(date -d -10day +%Y%m%d).<span class="property">tar</span>.<span class="property">gz</span></span><br><span class="line"> </span><br><span class="line">cd $LOCAL_BAK_DIR</span><br><span class="line"> </span><br><span class="line">#使用命令导出数据库</span><br><span class="line">mongodump --out $LOCAL_BAK_DIR/mongodb/ --db bastogne</span><br><span class="line"> </span><br><span class="line">#压缩数据库文件合并为一个压缩文件</span><br><span class="line">tar zcf $LOCAL_BAK_DIR/$DBBakName $LOCAL_BAK_DIR/mongodb</span><br><span class="line">rm -rf $LOCAL_BAK_DIR/mongodb</span><br><span class="line"> </span><br><span class="line">#压缩网站数据</span><br><span class="line">cd $WEB_DIR</span><br><span class="line">tar zcf $LOCAL_BAK_DIR/$WebBakName .<span class="comment">/*</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">cd ~</span></span><br><span class="line"><span class="comment">#开始上传</span></span><br><span class="line"><span class="comment">./dropbox_uploader.sh upload $LOCAL_BAK_DIR/$DBBakName $DROPBOX_DIR/$DBBakName</span></span><br><span class="line"><span class="comment">./dropbox_uploader.sh upload $LOCAL_BAK_DIR/$WebBakName $DROPBOX_DIR/$WebBakName</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">#删除旧数据</span></span><br><span class="line"><span class="comment">rm -rf $LOCAL_BAK_DIR/$OldDBBakName $LOCAL_BAK_DIR/$OldWebBakName</span></span><br><span class="line"><span class="comment">./dropbox_uploader.sh delete $Old_DROPBOX_DIR/</span></span><br><span class="line"><span class="comment"> </span></span><br><span class="line"><span class="comment">echo -e &quot;Backup Done!&quot;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="赋予文件执行权限-1"><a href="#赋予文件执行权限-1" class="headerlink" title="赋予文件执行权限"></a>赋予文件执行权限</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x backup.sh</span><br></pre></td></tr></table></figure>
+
+<p>运行的时候就输入下面的代码即可：<code>./backup.sh</code></p>
+<h3 id="设置定时任务-1"><a href="#设置定时任务-1" class="headerlink" title="设置定时任务"></a>设置定时任务</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">02 00 * * * /root/backup.sh</span><br></pre></td></tr></table></figure>
+
+<p>这样，就可以每天凌晨00:02自动备份到Dropbox了。</p>
+<h2 id="备份到github"><a href="#备份到github" class="headerlink" title="备份到github"></a>备份到github</h2><h3 id="准备工作"><a href="#准备工作" class="headerlink" title="准备工作"></a>准备工作</h3><p>首先当然是在服务器上安装<code>GIt</code>，配置<code>ssh公钥</code>，并且在<code>github</code>上添加服务器<code>ssh公钥</code>。具体过程略。</p>
+<h3 id="初始化仓库"><a href="#初始化仓库" class="headerlink" title="初始化仓库"></a>初始化仓库</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root/.halo</span><br><span class="line">git init</span><br><span class="line">git remote add origin git@github.com:iwyang/halo.git</span><br><span class="line">git add .</span><br><span class="line">git commit -m <span class="string">&quot;site backup&quot;</span></span><br><span class="line">git push --force origin master</span><br></pre></td></tr></table></figure>
+
+<hr>
+<p>注意要删除主题文件夹下的<code>.git</code>文件夹，不然的话就无法备份主题了。当然也可以不备份主题，因为主题所有配置选项都在数据库里。如果这样的话，命令要作如下调整：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git add application.yaml upload/ db/</span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="设置定时任务-2"><a href="#设置定时任务-2" class="headerlink" title="设置定时任务"></a>设置定时任务</h3><h4 id="编写备份脚本-1"><a href="#编写备份脚本-1" class="headerlink" title="编写备份脚本"></a>编写备份脚本</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">cd</span> /root</span><br><span class="line">vi github.sh</span><br></pre></td></tr></table></figure>
+
+<p>脚本原来模样：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line">#进入到网站根目录，记得修改为自己的站点</span><br><span class="line">cd /home/xxx.<span class="property">com</span></span><br><span class="line">#将数据库导入到该目录，这里以mysql为例，passwd为数据库密码，typecho为数据库名称，typecho.<span class="property">sql</span>为备份的数据库文件</span><br><span class="line">mysqldump -uroot -ppasswd typecho &gt; typecho.<span class="property">sql</span></span><br><span class="line">git add -A</span><br><span class="line">git commit -m <span class="string">&quot;backsite&quot;</span></span><br><span class="line">git push -u origin master</span><br></pre></td></tr></table></figure>
+
+<p>根据实际情况修改如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line">echo -e <span class="string">&quot;\033[0;32mDeploying updates to github...\033[0m&quot;</span></span><br><span class="line">cd /root/.<span class="property">halo</span></span><br><span class="line">git add .	</span><br><span class="line">git commit -m <span class="string">&quot;site backup&quot;</span></span><br><span class="line">git push --force origin master</span><br></pre></td></tr></table></figure>
+
+<p>为了防止服务器里<code>.git</code>文件夹过大，脚本可以作如下调整：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">#!<span class="regexp">/bin/</span>bash</span><br><span class="line">echo -e <span class="string">&quot;\033[0;32mDeploying updates to github...\033[0m&quot;</span></span><br><span class="line">cd /root/.<span class="property">halo</span></span><br><span class="line">rm -rf .<span class="property">git</span></span><br><span class="line">git init</span><br><span class="line">git remote add origin git@github.<span class="property">com</span>:iwyang/halo.<span class="property">git</span></span><br><span class="line">git add .    </span><br><span class="line">git commit -m <span class="string">&quot;site backup&quot;</span></span><br><span class="line">git push --force origin master</span><br><span class="line">rm -rf .<span class="property">git</span></span><br></pre></td></tr></table></figure>
+
+<h4 id="赋予文件执行权限-2"><a href="#赋予文件执行权限-2" class="headerlink" title="赋予文件执行权限"></a>赋予文件执行权限</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">chmod</span> +x /root/github.sh</span><br></pre></td></tr></table></figure>
+
+<h4 id="设定自动任务-1"><a href="#设定自动任务-1" class="headerlink" title="设定自动任务"></a>设定自动任务</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">crontab -e</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">03</span> <span class="number">00</span> * * * <span class="regexp">/root/gi</span>thub.<span class="property">sh</span></span><br></pre></td></tr></table></figure>
+
+<p>意思是每天凌晨0:03运行这个脚本。</p>
+<h3 id="还原博客"><a href="#还原博客" class="headerlink" title="还原博客"></a>还原博客</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">clone</span> git@github.com:iwyang/halo.git .halo</span><br></pre></td></tr></table></figure>
+
+<p> 接下来就是配置个 Java 环境，下载个 Halo 运行包，配置域名访问。具体可参考<a target="_blank" rel="noopener external nofollow noreferrer" href="https://halo.run/">官方文档</a>。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p><code>halo</code>博客迁移后，最好删除<code>logs</code>文件夹下的日志文件。</p>
+<hr>
+<h2 id="SCP命令"><a href="#SCP命令" class="headerlink" title="SCP命令"></a>SCP命令</h2><h3 id="下载文件"><a href="#下载文件" class="headerlink" title="下载文件"></a>下载文件</h3><p>从服务器下载文件到本地，在<code>Git Bash</code>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp root@104.224.191.88:/root/.ssh/mysite ssh</span><br></pre></td></tr></table></figure>
+
+<p>意思是将服务器<code>/root/.ssh</code>目录下的mysite文件复制到当前路径下<code>ssh</code>文件夹下。</p>
+<h3 id="上传文件"><a href="#上传文件" class="headerlink" title="上传文件"></a>上传文件</h3><p>从本地上传文件到服务器，在<code>Git Bash</code>执行：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">scp .halo.zip root@137.220.43.191:/root/</span><br></pre></td></tr></table></figure>
+
+<p>意思是将当前目录下<code>.halo.ip</code>文件上传到服务器<code>/root/目录下</code>。</p>
+<h2 id="wordpress相关"><a href="#wordpress相关" class="headerlink" title="wordpress相关"></a>wordpress相关</h2><h3 id="wordpress常用mysql命令"><a href="#wordpress常用mysql命令" class="headerlink" title="wordpress常用mysql命令"></a>wordpress常用mysql命令</h3><figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1.删除数据库</span></span><br><span class="line"><span class="string">mysqladmin</span> <span class="string">-u</span> <span class="string">root</span> <span class="string">-p</span> <span class="string">drop</span> <span class="string">wordpress</span></span><br><span class="line"><span class="comment"># 2.新建一个空数据库</span></span><br><span class="line"><span class="string">mysqladmin</span> <span class="string">-u</span> <span class="string">root</span> <span class="string">-p</span> <span class="string">create</span> <span class="string">wordpress</span></span><br><span class="line"><span class="comment"># 3.导入数据</span></span><br><span class="line"><span class="string">mysql</span> <span class="string">-uroot</span> <span class="string">-p”你的密码”</span> <span class="string">wordpress</span> <span class="string">&lt;</span> <span class="string">你的数据sql文件</span></span><br><span class="line"><span class="comment"># 4.更新Url</span></span><br><span class="line"><span class="comment"># 4.1.连接数据库</span></span><br><span class="line"><span class="string">mysql</span> <span class="string">-u</span> <span class="string">root</span> <span class="string">-p</span></span><br><span class="line"><span class="comment"># 4.2. 选择数据库</span></span><br><span class="line"><span class="string">use</span> <span class="string">wordpress</span></span><br><span class="line"><span class="comment"># 4.3.更新URL</span></span><br><span class="line"><span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">wp_options</span> <span class="string">WHERE</span> <span class="string">option_name</span> <span class="string">=</span> <span class="string">&#x27;home&#x27;</span><span class="string">;</span></span><br><span class="line"><span class="string">UPDATE</span> <span class="string">wp_options</span> <span class="string">SET</span> <span class="string">option_value=&quot;https://new_url/&quot;</span> <span class="string">WHERE</span> <span class="string">option_name</span> <span class="string">=</span> <span class="string">&quot;home&quot;</span><span class="string">;</span></span><br><span class="line"></span><br><span class="line"><span class="string">SELECT</span> <span class="string">*</span> <span class="string">FROM</span> <span class="string">wp_options</span> <span class="string">WHERE</span> <span class="string">option_name</span> <span class="string">=</span> <span class="string">&#x27;siteurl&#x27;</span><span class="string">;</span></span><br><span class="line"><span class="string">UPDATE</span> <span class="string">wp_options</span> <span class="string">SET</span> <span class="string">option_value=&quot;https://new_url/&quot;</span> <span class="string">WHERE</span> <span class="string">option_name</span> <span class="string">=</span> <span class="string">&quot;siteurl&quot;</span><span class="string">;</span></span><br></pre></td></tr></table></figure>
+
+<hr>
+<h3 id="Debian-10-五分钟-x2F-一键安装Wordpress"><a href="#Debian-10-五分钟-x2F-一键安装Wordpress" class="headerlink" title="Debian 10 五分钟&#x2F;一键安装Wordpress"></a>Debian 10 五分钟&#x2F;一键安装Wordpress</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#Debian8下载脚本</span></span><br><span class="line">wget http://w3.gubo.org/pubfiles/tylemp/10/tylemp.sh </span><br><span class="line"><span class="comment">#安装稳定版Nginx+PHP+MariaDB</span></span><br><span class="line">bash tylemp.sh stable</span><br><span class="line"><span class="comment">#安装wordpress，www.yourdomain.com即为你的域名</span></span><br><span class="line">bash tylemp.sh wordpress www.yourdomain.com </span><br></pre></td></tr></table></figure>
+
+<p>命令列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">bash tylemp.sh system <span class="comment"># 优化系统，删除不需要组件，dropbear替代sshd </span></span><br><span class="line">bash tylemp.sh exim4 <span class="comment"># 更轻量级邮件系统 </span></span><br><span class="line">bash tylemp.sh mysql <span class="comment"># 安装mysql </span></span><br><span class="line">bash tylemp.sh nginx <span class="comment"># 安装nginx，默认一个进程，可调整</span></span><br><span class="line">bash tylemp.sh php <span class="comment"># 安装php，包含php5-gd，可使用验证码</span></span><br><span class="line">bash tylemp.sh stable <span class="comment"># 安装上面所有，软件是debian官方stable源，版本较旧</span></span><br><span class="line">bash tylemp.sh wordpress www.yourdomain.com <span class="comment"># 一键安装wordpress, 数据库自动配置好。 </span></span><br><span class="line">bash tylemp.sh vhost www.yourdomain.com <span class="comment"># 一键安装静态虚拟主机。</span></span><br><span class="line">bash tylemp.sh dhost www.yourdomain.com <span class="comment"># 一键安装动态虚拟主机，方便直接上传网站程序。</span></span><br><span class="line">bash tylemp.sh typecho www.yourdomain.com <span class="comment"># 安装typecho，提供数据库名，密码等自主添加完成安装</span></span><br><span class="line">bash tylemp.sh phpmyadmin www.yourdomain.com <span class="comment"># 一键安装phpmyadmin 数据库管理软件，用http://www.yourdomain.com/phpMyAdmin访问 </span></span><br><span class="line">bash tylemp.sh addnginx 2 <span class="comment">#调整nginx进程，这里2表示调整后的进程数，请根据vps配置（cpu核心数）更改</span></span><br><span class="line">bash tylemp.sh sshport 22022 <span class="comment">#更改ssh端口号22022，建议更改10000以上端口。重启后生效。</span></span><br><span class="line">bash tylemp.sh rainloop www.yourdomain.com  <span class="comment"># 增加Gmail的web客户端一键安装</span></span><br><span class="line">bash tylemp.sh carbon www.yourdomain.com  <span class="comment"># 增加Carbon Forum的一键安装</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="修改-WordPress-上传文件大小限制"><a href="#修改-WordPress-上传文件大小限制" class="headerlink" title="修改 WordPress 上传文件大小限制"></a>修改 WordPress 上传文件大小限制</h3><p>1.查找php.ini配置文件</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">find / -name &quot;php.ini&quot;</span><br></pre></td></tr></table></figure>
+
+<p>会出现两个结果，修改类似<code>/etc/php/7.3/fpm/php.ini</code></p>
+<p>2.修改 <code>php.ini</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/php/7.3/fpm/php.ini</span><br></pre></td></tr></table></figure>
+
+<p>在其中搜索并修改以下配置：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">upload_max_filesize = 512M</span><br><span class="line">post_max_size = 512M</span><br><span class="line">max_execution_time = 3000</span><br></pre></td></tr></table></figure>
+
+<p>这里配置上限为 512 MB，同时增加了最大处理时间。</p>
+<p>3.修改 nginx.conf</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi /etc/nginx/conf.d/blog.bore.vip.conf</span><br></pre></td></tr></table></figure>
+
+<p>在 <code>http</code> 或 <code>server</code> 配置下添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">client_max_body_size 512M;</span><br></pre></td></tr></table></figure>
+
+<p>这里配置上限为 512 MB。</p>
+<p>4.重启nginx和php</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">service nginx restart</span><br><span class="line">service php7.3-fpm restart</span><br></pre></td></tr></table></figure>
+
+<h2 id="nginx-command-not-found-解决方案"><a href="#nginx-command-not-found-解决方案" class="headerlink" title="nginx: command not found 解决方案"></a><code>nginx</code>: command not found 解决方案</h2><p>只需要输入<code>source /etc/profile</code> ，让配置文件重新生效一下即可。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.moerats.com/archives/69/">1.Linux 每日自动备份到FTP及数据库通过邮箱发送方法</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://blog.sina.com.cn/s/blog_7edf8b9f0100to4p.html">2.fetchmail: SMTP error: 552 5.3.4 Message size exceeds fixed limit</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="http://sufaming.com/?p=189">3.如何将服务器上的网站数据定时自动备份到Dropbox</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.moerats.com/archives/858/">4.Linux 定时备份服务器&#x2F;网站数据到Github私人仓库</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.runoob.com/mysql/mysql-tutorial.html">5.MySQL 教程</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://precisionsec.com/changing-the-wordpress-site-url-using-the-mysql-command-line/">6.Changing the WordPress site URL using the MySQL command line</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.csdn.net/jia12216/article/details/106098267">7.CentOs8系统安装mailx发邮件</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/andreafabrizi/Dropbox-Uploader/issues/459">8.Impossible to unlink</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://cloud.tencent.com/developer/article/1363216">9.如何在Debian 9上安装和配置Postfix作为仅发送SMTP服务</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.gubo.org/debian-lemp-script/">10.Debian LNMP&#x2F;LEMP&#x2F;WordPress一键脚本</a></li>
+<li><a target="_blank" rel="noopener external nofollow noreferrer" href="https://blog.nex3z.com/2020/07/14/%E4%BF%AE%E6%94%B9-wordpress-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6/">11.修改 WordPress 上传文件大小限制</a></li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/halo/">halo</a></div><div class="post_share"></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">30</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">3</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的博客</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.iwyang.eu.org',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E5%88%B0QQ%E9%82%AE%E7%AE%B1"><span class="toc-number">1.</span> <span class="toc-text">备份到QQ邮箱</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E9%82%AE%E4%BB%B6%E5%8F%91%E9%80%81%E4%BE%9D%E8%B5%96%E7%BB%84%E4%BB%B6"><span class="toc-number">1.1.</span> <span class="toc-text">安装邮件发送依赖组件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Centos-7"><span class="toc-number">1.1.1.</span> <span class="toc-text">Centos 7</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Centos-8"><span class="toc-number">1.1.2.</span> <span class="toc-text">Centos 8</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Debian"><span class="toc-number">1.1.3.</span> <span class="toc-text">Debian</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%99%84%E4%BB%B6%E5%8F%91%E9%80%81%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="toc-number">1.2.</span> <span class="toc-text">修改附件发送大小限制</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%8E%B7%E5%BE%97-amp-%E7%BC%96%E8%BE%91%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">1.3.</span> <span class="toc-text">获得&amp;编辑备份脚本</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E5%88%9B%E5%BB%BA%E5%A4%87%E4%BB%BD%E6%96%87%E4%BB%B6%E5%A4%B9"><span class="toc-number">1.3.1.</span> <span class="toc-text">创建备份文件夹</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E8%84%9A%E6%9C%AC"><span class="toc-number">1.3.2.</span> <span class="toc-text">修改脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.3.3.</span> <span class="toc-text">设置定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%B5%8B%E4%BA%88%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90"><span class="toc-number">1.3.3.1.</span> <span class="toc-text">赋予文件执行权限</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#%E8%AE%BE%E5%AE%9A%E8%87%AA%E5%8A%A8%E4%BB%BB%E5%8A%A1"><span class="toc-number">1.3.3.2.</span> <span class="toc-text">设定自动任务</span></a></li></ol></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E5%88%B0Dropbox"><span class="toc-number">2.</span> <span class="toc-text">备份到Dropbox</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9B%E5%BB%BADropbox%E5%BA%94%E7%94%A8"><span class="toc-number">2.1.</span> <span class="toc-text">创建Dropbox应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BDdropbox-uploader-sh"><span class="toc-number">2.2.</span> <span class="toc-text">下载dropbox_uploader.sh</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC"><span class="toc-number">2.3.</span> <span class="toc-text">编写备份脚本</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%B5%8B%E4%BA%88%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90-1"><span class="toc-number">2.4.</span> <span class="toc-text">赋予文件执行权限</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-1"><span class="toc-number">2.5.</span> <span class="toc-text">设置定时任务</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%A4%87%E4%BB%BD%E5%88%B0github"><span class="toc-number">3.</span> <span class="toc-text">备份到github</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C"><span class="toc-number">3.1.</span> <span class="toc-text">准备工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E4%BB%93%E5%BA%93"><span class="toc-number">3.2.</span> <span class="toc-text">初始化仓库</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1-2"><span class="toc-number">3.3.</span> <span class="toc-text">设置定时任务</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%BC%96%E5%86%99%E5%A4%87%E4%BB%BD%E8%84%9A%E6%9C%AC-1"><span class="toc-number">3.3.1.</span> <span class="toc-text">编写备份脚本</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%B5%8B%E4%BA%88%E6%96%87%E4%BB%B6%E6%89%A7%E8%A1%8C%E6%9D%83%E9%99%90-2"><span class="toc-number">3.3.2.</span> <span class="toc-text">赋予文件执行权限</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E8%AE%BE%E5%AE%9A%E8%87%AA%E5%8A%A8%E4%BB%BB%E5%8A%A1-1"><span class="toc-number">3.3.3.</span> <span class="toc-text">设定自动任务</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E8%BF%98%E5%8E%9F%E5%8D%9A%E5%AE%A2"><span class="toc-number">3.4.</span> <span class="toc-text">还原博客</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">4.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SCP%E5%91%BD%E4%BB%A4"><span class="toc-number">5.</span> <span class="toc-text">SCP命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8B%E8%BD%BD%E6%96%87%E4%BB%B6"><span class="toc-number">5.1.</span> <span class="toc-text">下载文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6"><span class="toc-number">5.2.</span> <span class="toc-text">上传文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#wordpress%E7%9B%B8%E5%85%B3"><span class="toc-number">6.</span> <span class="toc-text">wordpress相关</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#wordpress%E5%B8%B8%E7%94%A8mysql%E5%91%BD%E4%BB%A4"><span class="toc-number">6.1.</span> <span class="toc-text">wordpress常用mysql命令</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Debian-10-%E4%BA%94%E5%88%86%E9%92%9F-x2F-%E4%B8%80%E9%94%AE%E5%AE%89%E8%A3%85Wordpress"><span class="toc-number">6.2.</span> <span class="toc-text">Debian 10 五分钟&#x2F;一键安装Wordpress</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-WordPress-%E4%B8%8A%E4%BC%A0%E6%96%87%E4%BB%B6%E5%A4%A7%E5%B0%8F%E9%99%90%E5%88%B6"><span class="toc-number">6.3.</span> <span class="toc-text">修改 WordPress 上传文件大小限制</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nginx-command-not-found-%E8%A7%A3%E5%86%B3%E6%96%B9%E6%A1%88"><span class="toc-number">7.</span> <span class="toc-text">nginx: command not found 解决方案</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">8.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/a4ea1c26/" title="PS制作打印字体效果">PS制作打印字体效果</a><time datetime="2023-06-22T07:15:15.000Z" title="发表于 2023-06-22 15:15:15">2023-06-22</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://twikoo.iwyang.eu.org',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://twikoo.iwyang.eu.org',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
