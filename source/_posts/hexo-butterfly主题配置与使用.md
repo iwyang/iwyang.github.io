@@ -834,6 +834,32 @@ inject:
 
 ### H1~H6 小风车样式修改
 
+方法一：
+
+找到主题配置文件`_config.butterfly.yml`
+
+1.把beautify的title-prefix-icon处修改为:'\f863'
+
+（如果没有开启图标功能则需要将enable设置为true）
+
+```yaml
+beautify:
+  enable: true
+  title-prefix-icon: '\f863'
+```
+
+2.在inject的head处引入以下文件:
+
+```yaml
+inject:
+  head:
+    - "<style>#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }</style>"
+```
+
+重新部署，启动，就可以看到效果啦。
+
+方法二：
+
 1.主题目录：
 
 ```diff
@@ -968,6 +994,10 @@ h1::before, h2::before, h3::before, h4::before, h5::before, h6::before {
     animation: ccc 3.2s linear infinite ;
 }
 ```
+
+
+
+
 
 ### 修改标题前图标为闪电
 
@@ -1391,4 +1421,5 @@ skip_render:
 + [引入Aplayer播放音乐](https://akilar.top/posts/3afa069a/)
 + [微博热搜api使用与自建](https://blog.leonus.cn/2022/weibo.html)
 + [Butterfly 微博热搜侧边栏](https://blog.eurkon.com/post/38b005e1.html)
++ [Hexo小标题旋转风车设置](https://cnhuazhu.top/butterfly/2021/02/24/Hexo%E9%AD%94%E6%94%B9/Hexo%E5%B0%8F%E6%A0%87%E9%A2%98%E6%97%8B%E8%BD%AC%E9%A3%8E%E8%BD%A6%E8%AE%BE%E7%BD%AE/)
 
