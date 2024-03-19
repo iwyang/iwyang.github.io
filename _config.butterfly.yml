@@ -270,6 +270,7 @@ aside:
     sort_order: # Don't modify the setting unless you know how it works
   card_post_series:
     enable: true
+    series_title: false # The title shows the series name    
     orderBy: 'date' # Order by title or date
     order: -1 # Sort of order. 1, asc for ascending; -1, desc for descending 
 
@@ -937,7 +938,7 @@ CDN:
   third_party_provider: local
 
   # Add version number to url, true or false
-  version: false
+  version: true
   
   # Custom format
   # For example: https://cdn.staticfile.org/${cdnjs_name}/${version}/${min_cdnjs_file}
@@ -993,7 +994,7 @@ CDN:
     # snackbar:
     # snackbar_css:
     # translate:
-     twikoo: https://cdn.staticfile.org/twikoo/1.6.17/twikoo.all.min.js
+     twikoo: https://cdn.staticfile.org/twikoo/1.6.31/twikoo.all.min.js
     # typed:
     # utils:
     # valine:
