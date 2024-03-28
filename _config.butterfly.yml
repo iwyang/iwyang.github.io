@@ -487,7 +487,7 @@ facebook_comments:
 # https://github.com/imaegoo/twikoo
 twikoo:
   # envId: https://twikoo-lake.vercel.app
-  envId: https://twikoo.iwyang.eu.org 
+  envId: https://t.bore.vip
   region:
   visitor: false
   option:

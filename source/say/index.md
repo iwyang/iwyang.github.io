@@ -38,7 +38,7 @@ aside: false
     ispeak
       .init({
         el: '#ispeak',
-        api: 'https://kkapi.iwyang.eu.org/',
+        api: 'https://kkapi.bore.vip/',
         author: '62e664654423f520964e0d43',
         pageSize: 10,
         loading_img: 'https://bu.dusays.com/2022/05/01/626e88f349943.gif',

@@ -13,7 +13,7 @@ top:
         window.kkBBConfig = {
           limit: 10,
           blog:'/say/',
-          api_url: 'https://kkapi.iwyang.eu.org',
+          api_url: 'https://kkapi.bore.vip',
           author: '62e664654423f520964e0d43'            
         }
       </script>
