@@ -211,7 +211,7 @@
   window.kkBBConfig = {
     limit: 10,
     blog:'/say/',
-    api_url: 'https://kkapi.iwyang.eu.org',
+    api_url: 'https://kkapi.bore.vip',
     author: '62e664654423f520964e0d43'            
   }
 </script>
@@ -240,7 +240,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
     const countELement = document.getElementById('twikoo-count')
     if(!countELement) return
     twikoo.getCommentsCount({
-      envId: 'https://twikoo.iwyang.eu.org',
+      envId: 'https://t.bore.vip',
       region: '',
       urls: [window.location.pathname],
       includeReply: false
@@ -254,7 +254,7 @@ document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-
   const init = () => {
     twikoo.init(Object.assign({
       el: '#twikoo-wrap',
-      envId: 'https://twikoo.iwyang.eu.org',
+      envId: 'https://t.bore.vip',
       region: '',
       onCommentLoaded: () => {
         btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
