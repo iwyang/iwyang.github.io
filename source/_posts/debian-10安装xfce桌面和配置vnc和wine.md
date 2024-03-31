@@ -14,6 +14,10 @@ description:
 top_img:
 ---
 
+{% note warning flat %}
+Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+{% endnote %}
+
 ## 安装桌面环境和VNC服务器
 
 默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。

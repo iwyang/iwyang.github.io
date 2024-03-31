@@ -11,6 +11,29 @@ cover: ../img/cover/debian.jpg
 
 由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。
 
+{% note warning flat %}
+Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+{% endnote %}
+
+## **Debian 更新报错的解决方法**
+
+一台很老的Debian使用apt-get update的时候，出现一下报错。
+
+**解决方法**
+
+```bash
+apt-get update --allow-releaseinfo-change
+apt-get upgrade
+```
+
+**提示**：Unable to fetch some archives, maybe run apt-get update or try with --fix-missing?
+
+**解决方法**（问chatgpt）：
+
+```bash
+apt-get update --fix-missing
+```
+
 ## 调整时区
 
 如果你不知道服务器当前时间，可以使用下面的命令，查看当前时间：

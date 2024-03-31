@@ -14,6 +14,10 @@ description:
 top_img:
 ---
 
+{% note warning flat %}
+Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+{% endnote %}
+
 ## 安装 Docker
 
 1.首先，更新现有的软件包列表：
