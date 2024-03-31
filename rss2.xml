@@ -56,7 +56,10 @@
         
           
           
-      <description>&lt;h2 id=&quot;安装桌面环境和VNC服务器&quot;&gt;&lt;a href=&quot;#安装桌面环境和VNC服务器&quot; class=&quot;headerlink&quot; title=&quot;安装桌面环境和VNC服务器&quot;&gt;&lt;/a&gt;安装桌面环境和VNC服务器&lt;/h2&gt;&lt;p&gt;默认情况下，Debian</description>
+      <description>&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安装桌面环境和VNC服务器&quot;&gt;&lt;a</description>
           
         
       
@@ -228,8 +231,10 @@
         
           
           
-      <description>&lt;h2 id=&quot;安装-Docker&quot;&gt;&lt;a href=&quot;#安装-Docker&quot; class=&quot;headerlink&quot; title=&quot;安装 Docker&quot;&gt;&lt;/a&gt;安装 Docker&lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
-&lt;figure</description>
+      <description>&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安装-Docker&quot;&gt;&lt;a href=&quot;#安装-Docker&quot;</description>
           
         
       
@@ -372,7 +377,7 @@
           
           
       <description>&lt;p&gt;由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。&lt;/p&gt;
-&lt;h2 id=&quot;调整时区&quot;&gt;&lt;a href=&quot;#调整时区&quot; class=&quot;headerlink&quot;</description>
+&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10</description>
           
         
       
