@@ -88,6 +88,12 @@ Log file is /home/sammy/.vnc/your_hostname:1.log
 
 接下来，配置它以启动Xfce并通过图形界面访问服务器。
 
+5.提示`执行子进程“dbus-launch”失败`
+
+```
+sudo apt-get install dbus-x11
+```
+
 ## 配置VNC服务器
 
 VNC服务器需要知道启动时要执行哪些命令。具体来说，VNC需要知道它应该连接到哪个图形桌面。
