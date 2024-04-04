@@ -93,7 +93,7 @@ apt remove vim -y
 ## Debian安装vsftpd
 
 {% note warning no-icon %}
-传输大文件慢，可以用transmission下载完后，配合nginx开启目录浏览，配置好SSL使用
+传输大文件慢，可以用transmission下载完后，配合nginx开启目录浏览，配置好SSL使用；也可以用[terminal](https://www.terminal.icu/)(ssh工具)上传下载文件，finashell也行。
 {% endnote %}
 
 0.开启21端口：
