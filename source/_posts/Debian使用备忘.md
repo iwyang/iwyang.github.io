@@ -92,6 +92,10 @@ apt remove vim -y
 
 ## Debian安装vsftpd
 
+{% note warning no-icon %}
+传输大文件慢，可以用transmission下载完后，配合nginx开启目录浏览，配置好SSL使用
+{% endnote %}
+
 0.开启21端口：
 
 ```bash
@@ -362,6 +366,143 @@ wget https://github.com/ronggang/transmission-web-control/raw/master/release/ins
 bash install-tr-control-cn.sh
 ```
 
+## 配置nginx以及SSL
+
+### 安装nginx
+
+```bash
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+### 配置nginx
+
+```yaml
+server {
+  listen  80 ;
+  listen [::]:80;
+  root /home/admin;
+  server_name example.com;
+  access_log  /var/log/nginx/hexo_access.log;
+  error_log   /var/log/nginx/hexo_error.log;
+  error_page 404 =  /404.html;
+  location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {
+    root /home/admin;
+    access_log   off;
+    expires      1d;
+  }
+  location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {
+    root /home/admin;
+    access_log   off;
+    expires      10m;
+  }
+  location / {
+    root /home/admin;
+    if (-f $request_filename) {
+    rewrite ^/(.*)$  /$1 break;
+    }
+  }
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+ }
+ 
+  autoindex on;                        
+  autoindex_exact_size off;            
+  autoindex_localtime on;              
+  charset utf-8,gbk;
+}
+```
+
+### debian11配置证书
+
+#### 安装 Certbot
+
+```bash
+sudo apt-get install letsencrypt -y
+```
+
+#### 使用 webroot 自动生成证书
+
+```bash
+certbot certonly --webroot -w /home/admin -d example.com -m 455343442@qq.com --agree-tos
+```
+
+#### 编辑`Nginx`
+
+```
+vi /etc/nginx/conf.d/ftp.conf
+```
+
+```yaml
+server {
+    listen 80;
+    listen [::]:80;
+    root /home/admin;
+    server_name  example.com;
+
+    listen 443 ssl; # managed by Certbot
+
+    # RSA certificate
+    ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem; # managed by Certbot
+
+
+    # Redirect non-https traffic to https
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+	
+	  autoindex on;                        
+      autoindex_exact_size off;            
+      autoindex_localtime on;              
+      charset utf-8,gbk;
+}
+```
+
+测试配置是否有问题：
+
+```
+nginx -t
+```
+
+重启 Nginx 生效：
+
+```
+systemctl restart nginx
+```
+
+#### 自动续期
+
+Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。
+
+先运行以下命令来测试证书的自动更新：
+
+```
+certbot renew --dry-run
+```
+
+如果一切正常，就可以编辑 crontab 定期运行以下命令：
+
+```
+crontab -e
+```
+
+```
+30 2 * */2 * /usr/bin/certbot renew --quiet && /bin/systemctl restart nginx
+```
+
+查看证书有效期的命令：
+
+```
+openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
+```
+
+
+
+
+
 ## 附录
 
 ### `vsftpd.conf`注释
@@ -472,4 +613,5 @@ anon_root=/data/ftpdata
 + [4.putty保存登录账号和密码](https://zhuanlan.zhihu.com/p/83730878)
 + [5.如何在Debian 9上使用VSFTPD设置FTP服务器](https://www.myfreax.com/how-to-setup-ftp-server-with-vsftpd-on-debian-9/)
 + [6.Ubuntu安装Transmission并美化WEB UI实操教程](https://cloud.tencent.com/developer/article/1946063)
++ [7.Update: Using Free Let’s Encrypt SSL/TLS Certificates with NGINX](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/)
 
