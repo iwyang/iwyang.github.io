@@ -555,11 +555,74 @@ chmod 777 /home/admin
 systemctl daemon-reload
 ```
 
-5.最后把下载路径设置到**`/home/Downloads`**就OK了！
+5.最后把下载路径设置到`/home/Downloads`就OK了！
 
-#### 配置nginx开启目录浏览
+## 配置nginx开启目录浏览
 
 将qt下载目录结合nginx开启目录浏览，便于下载。
+
+### 安装 nginx
+
+```
+sudo apt install nginx -y
+sudo systemctl start nginx
+sudo systemctl enable nginx
+```
+
+### 配置 nginx
+
+```yaml
+server {
+  listen  80 ;
+  listen [::]:80;
+  root /home/admin;
+  server_name example.com;
+  access_log  /var/log/nginx/hexo_access.log;
+  error_log   /var/log/nginx/hexo_error.log;
+  error_page 404 =  /404.html;
+  location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {
+    root /home/admin;
+    access_log   off;
+    expires      1d;
+  }
+  location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {
+    root /home/admin;
+    access_log   off;
+    expires      10m;
+  }
+  location / {
+    root /home/admin;
+    if (-f $request_filename) {
+    rewrite ^/(.*)$  /$1 break;
+    }
+  }
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+ }
+ 
+  autoindex on;                        
+  autoindex_exact_size off;            
+  autoindex_localtime on;              
+  charset utf-8,gbk;
+}
+```
+
+### 配置 SSL 证书
+
+#### 安装 Certbot
+
+```
+sudo apt-get install letsencrypt -y
+```
+
+#### 使用 webroot 自动生成证书
+
+```
+certbot certonly --webroot -w /home/admin -d example.com -m 455343442@qq.com --agree-tos
+```
+
+#### 编辑 `Nginx`
 
 ```
 vi /etc/nginx/conf.d/ftp.conf
@@ -598,6 +661,32 @@ server {
 
 ```
 systemctl restart nginx
+```
+
+#### 自动续期
+
+Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。
+
+先运行以下命令来测试证书的自动更新：
+
+```
+certbot renew --dry-run
+```
+
+如果一切正常，就可以编辑 crontab 定期运行以下命令：
+
+```
+crontab -e
+```
+
+```
+30 2 * */2 * /usr/bin/certbot renew --quiet && /bin/systemctl restart nginx
+```
+
+查看证书有效期的命令：
+
+```
+openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
 ```
 
 ## Nginx反代qbittorrent-nox的Web-GUI
