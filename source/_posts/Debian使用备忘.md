@@ -505,27 +505,14 @@ openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
 
 ## 安装`qbittorrent-nox`
 
+**1.**安装qbittorrent-nox
+
 ```yaml
 apt update 
 apt install qbittorrent-nox -y
 ```
 
-### 配置qbittorrent-nox进程守护
-
-**1.** 添加专属的`qbittorrent-nox`用户组
-
-```yaml
-adduser --system --group qbittorrent-nox # Debian 11及旧版本
-adduser --home /home/qbittorrent-nox --system --group qbittorrent-nox # Debian 12新版本
-```
-
-**2.** 将当前用户添加进`qbittorrent-nox`用户组中，注意: "your-username"是你当前用户的名字，比如root账户就是root，ubuntu账户就是ubuntu，可以通过命令`whoami`获取。
-
-```yaml
-adduser your-username qbittorrent-nox
-```
-
-**3.** 新建systemd文件，如下所示：
+**2.** 新建systemd文件，如下所示：
 
 ```bash
 vi /etc/systemd/system/qbittorrent-nox.service
@@ -536,17 +523,14 @@ vi /etc/systemd/system/qbittorrent-nox.service
 Description=qBittorrent Command Line Client
 After=network.target
 [Service]
-Type=forking
-User=qbittorrent-nox
-Group=qbittorrent-nox
-UMask=007
-ExecStart=/usr/bin/qbittorrent-nox -d --webui-port=8080
+User=root
+ExecStart=/usr/bin/qbittorrent-nox
 Restart=on-failure
 [Install]
 WantedBy=multi-user.target
 ```
 
-**4.** 启用进程守护，直接执行以下命令就行了，最后一条命令执行完，出现`active`关键字就说明一切都如预期的那样跑起来了。
+**3.** 启用进程守护，直接执行以下命令就行了，最后一条命令执行完，出现`active`关键字就说明一切都如预期的那样跑起来了。
 
 ```
 systemctl daemon-reload
@@ -558,31 +542,72 @@ systemctl status qbittorrent-nox
 至此，在浏览器中输入服务器的IP和qbittorrent-nox的端口就可以进入了，例如[http://1.1.1.1:8080](http://1.1.1.1:8080/)，这里的1.1.1.1是服务器的IP，8080是刚才进程守护文件中写入的端口。用户名是admin，用户密码：adminadmin。
 强烈建议进去之后，立马修改用户名和用户密码！！！具体位置在`tool>options>webui`这里，还可以修改成中文。
 
-### 修改下载目录
-
-1.设置选项里修改下载目录为：`/home/admin/`
-
-2.修改权限：
+**4.** 修改下载目录和设置权限
 
 ```
-sudo chmod 755 /home/admin
-sudo chown -R qbittorrent-nox: /home/admin
+mkdir /home/admin
+chmod 777 /home/admin
 ```
 
-3.重启qbittorrent-nox
+重启qbittorrent-nox：
 
 ```
 systemctl daemon-reload
 ```
 
-### Nginx反代qbittorrent-nox的Web-GUI
+5.最后把下载路径设置到**`/home/Downloads`**就OK了！
 
-#### 修改监听地址
+#### 配置nginx开启目录浏览
+
+将qt下载目录结合nginx开启目录浏览，便于下载。
+
+```
+vi /etc/nginx/conf.d/ftp.conf
+```
+
+```
+server {
+    listen 80;
+    listen [::]:80;
+    root /home/admin;
+    server_name  ftp.bore.vip;
+
+    listen 443 ssl; # managed by Certbot
+
+    # RSA certificate
+    ssl_certificate /etc/letsencrypt/live/ftp.bore.vip/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/ftp.bore.vip/privkey.pem; # managed by Certbot
+
+
+    # Redirect non-https traffic to https
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+
+
+    location / {
+        root /home/admin;
+        autoindex on;                        
+        autoindex_exact_size off;            
+        autoindex_localtime on;              
+        charset utf-8,gbk;
+    }
+}
+
+```
+
+```
+systemctl restart nginx
+```
+
+## Nginx反代qbittorrent-nox的Web-GUI
+
+### 修改监听地址
 
 http+非标端口，总让人强迫症犯了，所以搞了个SSL和Nginx反代，让qbittorrent-nox的Web-GUI看起来舒服一些。
 首先，在`tool>options>webui`中，将监听的IP地址从`*`改成`127.0.0.1`，然后执行重启命令`systemctl restart qbittorrent-nox`以生效。这样只有服务器本地才能访问，其他都不行(网页打不开，待后面配置好域名才能访问)
 
-#### 安装 nginx
+### 安装 nginx
 
 ```yaml
 sudo apt install nginx -y
@@ -590,7 +615,7 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
-#### 配置 nginx
+### 配置 nginx
 
 ```
 vi /etc/nginx/conf.d/default.conf
@@ -656,7 +681,7 @@ server {
                 http2_push_preload on;
 ```
 
-##### 配置 Nginx http 80 端口
+### 配置 Nginx http 80 端口
 
 为了使下面申请证书时能访问 [http://bore.vip/.well-known/acme-challenge/… 这个链接，首先配置好](http://bore.vip/.well-known/acme-challenge/…这个链接，首先配置好)
 
@@ -740,24 +765,24 @@ nginx -t
 systemctl restart nginx
 ```
 
-#### debian11 配置SSL证书
+### 配置SSL证书
 
 实际上，我还添加了SSL（需要先注释掉server中的`listen 80 default_server;`和`listen [::]:80 default_server;`两行
 ）。整体示例如下，就不细说了，可以对照着自己配置文件修改。如果不熟悉的，强烈建议使用`Let's Encrypt`等一键SSL/TLS程序添加SSL功能。
 
-##### 安装 Certbot
+#### 安装 Certbot
 
 ```
 sudo apt-get install letsencrypt -y
 ```
 
-##### 使用 webroot 自动生成证书
+#### 使用 webroot 自动生成证书
 
 ```
 certbot certonly --webroot -w /usr/share/nginx/html -d example.com -m 455343442@qq.com --agree-tos
 ```
 
-##### 编辑 `Nginx`
+#### 编辑 `Nginx`
 
 ```
 vi /etc/nginx/conf.d/default.conf
@@ -817,7 +842,7 @@ nginx -t
 systemctl restart nginx
 ```
 
-##### 自动续期
+#### 自动续期
 
 Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。
 
@@ -955,4 +980,5 @@ anon_root=/data/ftpdata
 + [6.Ubuntu安装Transmission并美化WEB UI实操教程](https://cloud.tencent.com/developer/article/1946063)
 + [7.Update: Using Free Let’s Encrypt SSL/TLS Certificates with NGINX](https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/)
 + 8.[Debian 11安装qbittorrent-nox并设置Nginx反代](https://pa.ci/210.html)
++ [9.Debian安装qbittorrent-nox](https://zxqme.com/archives/143/)
 
