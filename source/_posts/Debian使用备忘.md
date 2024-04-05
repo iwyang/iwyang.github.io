@@ -15,6 +15,10 @@ cover: ../img/cover/debian.jpg
 Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
 {% endnote %}
 
+{% note primary no-icon %}
+推荐使用terminal(ssh 工具) ，[finashell](https://www.hostbuf.com/) 也行。
+{% endnote %}
+
 ## **Debian 更新报错的解决方法**
 
 ~~一台很老的Debian使用apt-get update的时候，出现一下报错。~~（非必要，不要更新）
@@ -307,11 +311,9 @@ apt autoremove
 
 ## ~~安装Transmission~~
 
-```
 {% note primary no-icon %}
 速度不及下面的qbittorrent
 {% endnote %}
-```
 
 1.安装
 
