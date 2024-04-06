@@ -1,16 +1,18 @@
 ---
 title: Alist挂载网盘
-categories: [技术]
-tags: [linux]
+categories:
+  - 技术
+tags:
+  - linux
 comments: true
-cover: false
+cover: /img/cover/alist.jpg
+abbrlink: c6592a10
+typora-root-url: ..
 date: 2024-04-06 17:19:21
-abbrlink:
 sticky:
 keywords:
 description:
 top_img:
-typora-root-url: ..
 ---
 
  
@@ -316,7 +318,19 @@ crontab -e
 openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
 ```
 
-参考链接：
+## 修改配置文件
+
+```
+vi /root/alist/data/config.json
+```
+
+你可能注意到了，其中有 cert_file和key_file两条配置，正对应着上次申请证书最后输出的`Certificate is saved at:`和`Key is saved at:`，把后面的文件路径填进去，就配置好证书文件了
+
+```
+systemctl restart alist
+```
+
+## 参考链接
 
 [1.Alist 挂载阿里云盘、百度网盘、迅雷云盘、123网盘等](https://www.freedidi.com/7539.html)
 
