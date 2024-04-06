@@ -557,7 +557,7 @@ chmod 777 /home/admin
 systemctl daemon-reload
 ```
 
-5.最后把下载路径设置到`/home/Downloads`就OK了！
+5.最后把下载路径设置到`/home/admin`就OK了！
 
 ## 配置nginx开启目录浏览
 
@@ -630,7 +630,7 @@ certbot certonly --webroot -w /home/admin -d example.com -m 455343442@qq.com --a
 vi /etc/nginx/conf.d/ftp.conf
 ```
 
-```
+```yaml
 server {
     listen 80;
     listen [::]:80;
@@ -706,58 +706,19 @@ sudo systemctl start nginx
 sudo systemctl enable nginx
 ```
 
+### 新建网站目录
+
+为了便于申请证书，需要新建反代网站目录，**一定不要在`/root`目录上新建**
+
+```
+mkdir -p /var/www/qt
+cp /usr/share/nginx/html/* /var/www/qt
+```
+
 ### 配置 nginx
 
 ```
-vi /etc/nginx/conf.d/default.conf
-```
-
-**原文件如下：**
-
-```yaml
-server {
-    listen       80;
-    server_name  localhost;
-
-    #access_log  /var/log/nginx/host.access.log  main;
-
-    location / {
-        root   /usr/share/nginx/html;
-        index  index.html index.htm;
-    }
-
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
-    #location ~ \.php$ {
-    #    root           html;
-    #    fastcgi_pass   127.0.0.1:9000;
-    #    fastcgi_index  index.php;
-    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-    #    include        fastcgi_params;
-    #}
-
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
-    #
-    #location ~ /\.ht {
-    #    deny  all;
-    #}
-}
+vi /etc/nginx/conf.d/qt.conf
 ```
 
 修改配置文件，将`server_name _;`中的`_`改成域名，在`location /`中注释掉`try_files $uri $uri/ =404;`（debian11上没有这一行，不用注释），并将以下内容写入`location /字段`：
@@ -774,9 +735,7 @@ server {
 
 ### 配置 Nginx http 80 端口
 
-为了使下面申请证书时能访问 [http://bore.vip/.well-known/acme-challenge/… 这个链接，首先配置好](http://bore.vip/.well-known/acme-challenge/…这个链接，首先配置好)
-
-Nginx 80 端口，保证上述网址能顺利访问，从而顺利申请证书。所以在 nginx 配置的 server 节点下添加：
+为了使下面申请证书时能访问 http://bore.vip/.well-known/acme-challenge/… 这个链接，首先配置好http://bore.vip/.well-known/acme-challenge/…这个链接，首先配置好Nginx 80 端口，保证上述网址能顺利访问，从而顺利申请证书。所以在 nginx 配置的 server 节点下添加：
 
 ```
 location ~ /.well-known {
@@ -794,7 +753,7 @@ server {
     #access_log  /var/log/nginx/host.access.log  main;
 
     location / {
-        root   /usr/share/nginx/html;
+        root   /var/www/qt;
         index  index.html index.htm;
 		
 		proxy_pass http://127.0.0.1:8080/;
@@ -809,38 +768,6 @@ server {
     location ~ /.well-known {
     allow all;
 }
-
-    #error_page  404              /404.html;
-
-    # redirect server error pages to the static page /50x.html
-    #
-    error_page   500 502 503 504  /50x.html;
-    location = /50x.html {
-        root   /usr/share/nginx/html;
-    }
-
-    # proxy the PHP scripts to Apache listening on 127.0.0.1:80
-    #
-    #location ~ \.php$ {
-    #    proxy_pass   http://127.0.0.1;
-    #}
-
-    # pass the PHP scripts to FastCGI server listening on 127.0.0.1:9000
-    #
-    #location ~ \.php$ {
-    #    root           html;
-    #    fastcgi_pass   127.0.0.1:9000;
-    #    fastcgi_index  index.php;
-    #    fastcgi_param  SCRIPT_FILENAME  /scripts$fastcgi_script_name;
-    #    include        fastcgi_params;
-    #}
-
-    # deny access to .htaccess files, if Apache's document root
-    # concurs with nginx's one
-    #
-    #location ~ /\.ht {
-    #    deny  all;
-    #}
 }
 ```
 
@@ -870,55 +797,52 @@ sudo apt-get install letsencrypt -y
 #### 使用 webroot 自动生成证书
 
 ```
-certbot certonly --webroot -w /usr/share/nginx/html -d example.com -m 455343442@qq.com --agree-tos
+certbot certonly --webroot -w /var/www/qt -d qt.bore.vip -m 455343442@qq.com --agree-tos
 ```
 
 #### 编辑 `Nginx`
 
 ```
-vi /etc/nginx/conf.d/default.conf
+vi /etc/nginx/conf.d/qt.conf
 ```
 
 ```yaml
 server {
-        #listen 80;
-        #listen [::]:80;
- 
-        root /usr/share/nginx/html;
- 
-        # Add index.php to the list if you are using PHP
-        index index.html index.htm index.nginx-debian.html;
- 
-        server_name qt.bore.vip; # 此处的示例域名为qbt.example.com
- 
-        location / {
-                #try_files $uri $uri/ =404;
- 
-                proxy_pass http://127.0.0.1:8080/;
-                proxy_http_version 1.1;
-                proxy_set_header X-Forwarded-Host $http_host;
-                proxy_set_header X-Real-IP $remote_addr;
-                proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-                proxy_set_header X-Forwarded-Proto $scheme;
-                http2_push_preload on;
-        }
+    listen       80;
+    server_name  qt.bore.vip;
+	root /var/www/qt;
+        
+	# Add index.php to the list if you are using PHP
+     index index.html index.htm index.nginx-debian.html;
+    #access_log  /var/log/nginx/host.access.log  main;
 
-location ~ /.well-known {
+    location / {
+		proxy_pass http://127.0.0.1:8080/;
+        proxy_http_version 1.1;
+        proxy_set_header X-Forwarded-Host $http_host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        http2_push_preload on;
+    }
+    
+    location ~ /.well-known {
     allow all;
 }
- 
+
         listen 443 ssl; # managed by Certbot
 
         # RSA certificate
         ssl_certificate /etc/letsencrypt/live/qt.bore.vip/fullchain.pem; # managed by Certbot
         ssl_certificate_key /etc/letsencrypt/live/qt.bore.vip/privkey.pem; # managed by Certbot
 
-
-    # Redirect non-https traffic to https
+	
+	    # Redirect non-https traffic to https
     if ($scheme != "https") {
         return 301 https://$host$request_uri;
     } # managed by Certbot
 }
+
 ```
 
 测试配置是否有问题：
