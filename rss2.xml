@@ -15,8 +15,36 @@
     <atom:link href="https://bore.vip/rss2.xml" rel="self" type="application/rss+xml"/>
     
     <description></description>
-    <pubDate>Sun, 03 Sep 2023 12:48:01 GMT</pubDate>
+    <pubDate>Sat, 06 Apr 2024 10:20:10 GMT</pubDate>
     <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Alist挂载网盘</title>
+      <link>https://bore.vip/archives/c6592a10/</link>
+      <guid>https://bore.vip/archives/c6592a10/</guid>
+      <pubDate>Sat, 06 Apr 2024 09:19:21 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：&lt;a href=&quot;https://github.com/alist-org/alist&quot;&gt;https://github.com/alist-org/alist&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AList</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/linux/">linux</category>
+      
+      
+      <comments>https://bore.vip/archives/c6592a10/#disqus_thread</comments>
+      
+    </item>
     
     <item>
       <title>彻底卸载onedrive</title>
@@ -563,34 +591,6 @@
       
       
       <comments>https://bore.vip/archives/9a366c6/#disqus_thread</comments>
-      
-    </item>
-    
-    <item>
-      <title>hexo butterfly主题配置与使用</title>
-      <link>https://bore.vip/archives/5b629e16/</link>
-      <guid>https://bore.vip/archives/5b629e16/</guid>
-      <pubDate>Fri, 04 Feb 2022 01:20:42 GMT</pubDate>
-      
-        
-        
-          
-          
-      <description>&lt;p&gt;开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：&lt;a class=&quot;btn-beautify blue larger&quot; href=&quot;https://butterfly.js.org/&quot; 
-  title=&quot;Butterfly&quot;&gt;&lt;i</description>
-          
-        
-      
-      
-      
-      
-      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
-      
-      
-      <category domain="https://bore.vip/tags/hexo/">hexo</category>
-      
-      
-      <comments>https://bore.vip/archives/5b629e16/#disqus_thread</comments>
       
     </item>
     
