@@ -21,6 +21,8 @@ top_img:
 
 **AList 文档：https://alist.nn.ci/zh/guide/**
 
+本地启动（在alist所在目录打开cmd）：`alist server`
+
 ## 安装
 
 默认安装在 `/opt/alist` 中。 自定义安装路径，将安装路径作为第二个参数添加，必须是绝对路径（如果路径以 alist 结尾，则直接安装到给定路径，否则会安装在给定路径 alist 目录下），如 安装到 `/root`：
