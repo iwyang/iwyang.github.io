@@ -14,6 +14,18 @@ description:
 top_img:
 ---
 
+  **如果使用中转api key，代理地址一定要填如下形式（/v1/chat/completions一定要加上），才能在wx某模块正常使用。**
+
+````
+https://api.xty.app/v1/chat/completions
+````
+
+**不同的客户端需要填写不同的BASE_URL, 请尝试如下地址**
+
+https://api.chatgptid.net/ 或https://api.chatgptid.net/v1 或https://api.chatgptid.net/v1/chat/completions
+
+---
+
 0.解释的更简单些
 
 1.请帮我用两句话总结以下内容：  
