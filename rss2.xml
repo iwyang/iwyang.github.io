@@ -200,10 +200,8 @@
         
           
           
-      <description>&lt;p&gt;0.解释的更简单些&lt;/p&gt;
-&lt;p&gt;1.请帮我用两句话总结以下内容：  &lt;/p&gt;
-&lt;p&gt;2.请帮我（用悲伤的语气）改写以下内容：&lt;/p&gt;
-&lt;p&gt;3.利用以下内容：</description>
+      <description>&lt;p&gt;  &lt;strong&gt;如果使用中转api key，代理地址一定要填如下形式（&amp;#x2F;v1&amp;#x2F;chat&amp;#x2F;completions一定要加上），才能在wx某模块正常使用。&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight</description>
           
         
       
