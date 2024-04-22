@@ -573,6 +573,10 @@ sudo systemctl enable nginx
 
 ### 配置 nginx
 
+```
+vi /etc/nginx/conf.d/qt.conf
+```
+
 ```yaml
 server {
   listen  80 ;
@@ -748,13 +752,13 @@ location ~ /.well-known {
 ```yaml
 server {
     listen       80;
+	root   /var/www/qt;
+    index index.html index.htm index.nginx-debian.html;
     server_name  qt.bore.vip;
 
     #access_log  /var/log/nginx/host.access.log  main;
 
     location / {
-        root   /var/www/qt;
-        index  index.html index.htm;
 		
 		proxy_pass http://127.0.0.1:8080/;
         proxy_http_version 1.1;
@@ -799,6 +803,20 @@ sudo apt-get install letsencrypt -y
 ```
 certbot certonly --webroot -w /var/www/qt -d qt.bore.vip -m 455343442@qq.com --agree-tos
 ```
+
+----
+
+如果提示404错误：
+
+```
+sudo chmod 755 /var/www/qt
+systemctl restart nginx
+systemctl restart qbittorrent-nox
+```
+
+RN可能要多申请几遍证书，bwg一次就成功了。
+
+---
 
 #### 编辑 `Nginx`
 
