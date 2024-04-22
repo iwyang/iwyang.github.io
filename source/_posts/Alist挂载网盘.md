@@ -317,7 +317,7 @@ crontab -e
 查看证书有效期的命令：
 
 ```
-openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
+openssl x509 -noout -dates -in /etc/letsencrypt/live/alist.bore.vip/cert.pem
 ```
 
 ## 修改配置文件
