@@ -302,6 +302,15 @@ ssh -L 5901:127.0.0.1:5901 -C -N -l sammy your_server_ip
 
 然后用你的VNC客户端软件建立一个新的连接，`localhost:5901` ，连接到你的机器。
 
+## Too many authentication failures VNC server
+
+解决方法：
+
+```
+vncserver -kill :1
+vncserver
+```
+
 ## xfce4 设置中文
 
 1.安装locales并配置
