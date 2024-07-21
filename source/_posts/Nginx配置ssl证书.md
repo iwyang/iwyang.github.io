@@ -387,8 +387,10 @@ server {
     listen 80;
     listen [::]:80;
     root /var/www/hexo;
-    server_name  bore.vip;
-
+    server_name  bore.vip www.bore.vip;
+    if ($host != 'bore.vip' ) {
+      rewrite ^/(.*)$ https://bore.vip/$1 permanent;
+    }
     listen 443 ssl; # managed by Certbot
 
     # RSA certificate
