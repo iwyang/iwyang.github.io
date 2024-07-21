@@ -380,6 +380,30 @@ certbot certonly --webroot -w /var/www/hexo -d bore.vip -m 455343442@qq.com --ag
 ```bash
 vi /etc/nginx/conf.d/hexo.conf
 ```
+**hexo用：**
+
+```yaml
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/hexo;
+    server_name  bore.vip;
+
+    listen 443 ssl; # managed by Certbot
+
+    # RSA certificate
+    ssl_certificate /etc/letsencrypt/live/bore.vip/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/bore.vip/privkey.pem; # managed by Certbot
+
+
+    # Redirect non-https traffic to https
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    } # managed by Certbot
+}
+
+```
+
 现在用的：
 
 ```bash
