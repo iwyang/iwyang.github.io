@@ -60,11 +60,7 @@
     - name:  枫叶
       link: https://blog.aqcoder.cn/
       avatar: /img/link-img/aqcoder.jpg
-      descr: 分享知识，认识世界
-    - name:  轻笑Chuckle
-      link: https://www.chuckle.top
-      avatar: /img/link-img/chuckle.jpg
-      descr: 宁静致远,倾尘轻笑    
+      descr: 分享知识，认识世界   
     - name:  lyshark
       link: https://www.lyshark.com/
       avatar: /img/link-img/lyshark.png
@@ -73,10 +69,6 @@
       link: https://meuicat.com/
       avatar: /img/link-img/mao.jpg
       descr: 有肉有猫有生活.   
-    - name: JACK 小桔子的小屋
-      link: https://www.jackxjz.com/
-      avatar: /img/link-img/jack.png
-      descr: 一个分享科技 / 日常的网站  
     - name: 我不是咕咕鸽
       link: https://blog.laoda.de/
       avatar: /img/link-img/laoda.jpg
