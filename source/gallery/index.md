@@ -31,6 +31,7 @@ top_img:
 ## 太和小学2019级
 
 <div class="gallery-group-main">
+{% galleryGroup '2024春季趣味运动会' '那些精彩的瞬间' '/gallery/sport2024spring' ../img/2024春季趣味运动会/1.jpg %}
 {% galleryGroup '2022秋季趣味运动会' '那些精彩的瞬间' '/gallery/sport2022autumn' ../img/2022秋季趣味运动会/1.jpg %}
 {% galleryGroup '2021秋季趣味运动会' '那些精彩的瞬间' '/gallery/sport2021autumn' ../img/2021秋季趣味运动会/1.jpg %}
 {% galleryGroup '2021春季趣味运动会' '那些精彩的瞬间' '/gallery/sport2021spring' ../img/2021春季趣味运动会/3.jpg %}
