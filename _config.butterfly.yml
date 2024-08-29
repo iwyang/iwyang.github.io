@@ -238,7 +238,8 @@ aside:
       link: https://github.com/iwyang
   card_announcement:
     enable: true
-    content: 欢迎访问我的博客
+    #content: 欢迎访问我的博客
+    content: 我生本无乡，心安是归处
   card_recent_post:
     enable: true
     limit: 5 # if set 0 will show all
