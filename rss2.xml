@@ -1,0 +1,596 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0"
+  xmlns:atom="http://www.w3.org/2005/Atom"
+  xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Bore&#39;s Notes</title>
+    <link>https://bore.vip/</link>
+    
+    <image>
+      <url>https://bore.vip/icon.png</url>
+      <title>Bore&#39;s Notes</title>
+      <link>https://bore.vip/</link>
+    </image>
+    
+    <atom:link href="https://bore.vip/rss2.xml" rel="self" type="application/rss+xml"/>
+    
+    <description></description>
+    <pubDate>Mon, 22 Apr 2024 11:22:25 GMT</pubDate>
+    <generator>http://hexo.io/</generator>
+    
+    <item>
+      <title>Alist挂载网盘</title>
+      <link>https://bore.vip/archives/c6592a10/</link>
+      <guid>https://bore.vip/archives/c6592a10/</guid>
+      <pubDate>Sat, 06 Apr 2024 09:19:21 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：&lt;a href=&quot;https://github.com/alist-org/alist&quot;&gt;https://github.com/alist-org/alist&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;AList</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/linux/">linux</category>
+      
+      
+      <comments>https://bore.vip/archives/c6592a10/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>彻底卸载onedrive</title>
+      <link>https://bore.vip/archives/e0c4249b/</link>
+      <guid>https://bore.vip/archives/e0c4249b/</guid>
+      <pubDate>Sun, 03 Sep 2023 12:41:26 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;1、通过组策略编辑器来禁用OneDrive。点击任务栏上的Contana搜索框并输入“组策略”，在最佳匹配结果中选择“编辑组策略”控制面板项，进入到本地组策略编辑器环境，如图：&lt;/p&gt;
+&lt;p&gt;2、在组策略编辑器窗口左侧栏内，依次定位到“计算机配置→管理模板→Windows组</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/win10/">win10</category>
+      
+      
+      <comments>https://bore.vip/archives/e0c4249b/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>debian 10安装xfce桌面和配置vnc和wine</title>
+      <link>https://bore.vip/archives/26d4b8da/</link>
+      <guid>https://bore.vip/archives/26d4b8da/</guid>
+      <pubDate>Tue, 18 Jul 2023 11:36:29 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安装桌面环境和VNC服务器&quot;&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/linux/">linux</category>
+      
+      
+      <comments>https://bore.vip/archives/26d4b8da/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>利用Github Actions自动同步Fork</title>
+      <link>https://bore.vip/archives/12dd937c/</link>
+      <guid>https://bore.vip/archives/12dd937c/</guid>
+      <pubDate>Thu, 13 Jul 2023 10:02:15 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;虽然Github自带一个Sync Fork的按钮，但是每次都自己点总是麻烦的，所以有人搞了个Github Action来做这件事，&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/github/">github</category>
+      
+      
+      <comments>https://bore.vip/archives/12dd937c/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>office更改默认字体</title>
+      <link>https://bore.vip/archives/144e85ab/</link>
+      <guid>https://bore.vip/archives/144e85ab/</guid>
+      <pubDate>Sun, 02 Jul 2023 13:02:25 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;  这里以&lt;code&gt;office2021&lt;/code&gt;为例&lt;/p&gt;
+&lt;h3 id=&quot;word&quot;&gt;&lt;a href=&quot;#word&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/excel/">excel</category>
+      
+      <category domain="https://bore.vip/tags/word/">word</category>
+      
+      <category domain="https://bore.vip/tags/ppt/">ppt</category>
+      
+      
+      <comments>https://bore.vip/archives/144e85ab/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>PS制作打印字体效果</title>
+      <link>https://bore.vip/archives/a4ea1c26/</link>
+      <guid>https://bore.vip/archives/a4ea1c26/</guid>
+      <pubDate>Thu, 22 Jun 2023 07:15:15 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/ps/">ps</category>
+      
+      
+      <comments>https://bore.vip/archives/a4ea1c26/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>chatgpt使用方法</title>
+      <link>https://bore.vip/archives/692a32c1/</link>
+      <guid>https://bore.vip/archives/692a32c1/</guid>
+      <pubDate>Sun, 05 Mar 2023 12:21:02 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;  &lt;strong&gt;如果使用中转api key，代理地址一定要填如下形式（&amp;#x2F;v1&amp;#x2F;chat&amp;#x2F;completions一定要加上），才能在wx某模块正常使用。&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&quot;highlight</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/chatgpt/">chatgpt</category>
+      
+      
+      <comments>https://bore.vip/archives/692a32c1/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Memos部署记录</title>
+      <link>https://bore.vip/archives/d5e37958/</link>
+      <guid>https://bore.vip/archives/d5e37958/</guid>
+      <pubDate>Tue, 20 Sep 2022 11:44:19 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
+&lt;p&gt;官网：&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/hexo/">hexo</category>
+      
+      
+      <comments>https://bore.vip/archives/d5e37958/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Debian 10 安装 Docker &amp; Docker Compose</title>
+      <link>https://bore.vip/archives/9755dbc8/</link>
+      <guid>https://bore.vip/archives/9755dbc8/</guid>
+      <pubDate>Mon, 22 Aug 2022 09:56:32 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+&lt;/div&gt;
+
+&lt;h2 id=&quot;安装-Docker&quot;&gt;&lt;a href=&quot;#安装-Docker&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/docker/">docker</category>
+      
+      
+      <comments>https://bore.vip/archives/9755dbc8/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>配眼镜攻略</title>
+      <link>https://bore.vip/archives/c71649d1/</link>
+      <guid>https://bore.vip/archives/c71649d1/</guid>
+      <pubDate>Wed, 17 Aug 2022 00:38:34 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;注：本攻略来自网上&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;整理的攻略：中国：明月 法国：依视路 德国：蔡司，罗敦司得 日本：豪雅，精工 韩国：凯米&lt;br&gt;网店：宝岛，（​宝岛眼​镜官方旗舰店）依视路（依视路旗舰店），蔡司（Zeiss</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/tips/">tips</category>
+      
+      
+      <comments>https://bore.vip/archives/c71649d1/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>解决网页视频播放器进度条禁止拖动</title>
+      <link>https://bore.vip/archives/82f1bd2/</link>
+      <guid>https://bore.vip/archives/82f1bd2/</guid>
+      <pubDate>Mon, 08 Aug 2022 05:09:22 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;blockquote&gt;
+&lt;p&gt;本文转自：&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/tips/">tips</category>
+      
+      
+      <comments>https://bore.vip/archives/82f1bd2/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Notepad++批量修改文件内容</title>
+      <link>https://bore.vip/archives/ef06a4ae/</link>
+      <guid>https://bore.vip/archives/ef06a4ae/</guid>
+      <pubDate>Wed, 13 Jul 2022 09:43:13 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;所需软件：&lt;a class=&quot;btn-beautify blue larger&quot; href=&quot;https://notepad-plus-plus.org/downloads/&quot; 
+  title=&quot;Notepad++&quot;&gt;&lt;i class=&quot;far</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/tips/">tips</category>
+      
+      
+      <comments>https://bore.vip/archives/ef06a4ae/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>求阴影部分面积</title>
+      <link>https://bore.vip/archives/313793f1/</link>
+      <guid>https://bore.vip/archives/313793f1/</guid>
+      <pubDate>Tue, 28 Jun 2022 15:18:14 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;题型一&quot;&gt;&lt;a href=&quot;#题型一&quot; class=&quot;headerlink&quot; title=&quot;题型一&quot;&gt;&lt;/a&gt;题型一&lt;/h2&gt;&lt;p&gt;&lt;img</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%95%99%E5%AD%A6/">教学</category>
+      
+      
+      <category domain="https://bore.vip/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/">练习题</category>
+      
+      <category domain="https://bore.vip/tags/%E9%98%B4%E5%BD%B1%E9%9D%A2%E7%A7%AF/">阴影面积</category>
+      
+      
+      <comments>https://bore.vip/archives/313793f1/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Debian使用备忘</title>
+      <link>https://bore.vip/archives/9eb70758/</link>
+      <guid>https://bore.vip/archives/9eb70758/</guid>
+      <pubDate>Sat, 28 May 2022 17:12:45 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。&lt;/p&gt;
+&lt;div class=&quot;note warning flat&quot;&gt;&lt;p&gt;Debian10</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/linux/">linux</category>
+      
+      
+      <comments>https://bore.vip/archives/9eb70758/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>Halo-theme-joe2.0 使用文档&amp;&amp;样式指南</title>
+      <link>https://bore.vip/archives/2df9228b/</link>
+      <guid>https://bore.vip/archives/2df9228b/</guid>
+      <pubDate>Wed, 25 May 2022 13:27:46 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;本文参考： &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://bbchin.com/archives/halo-theme-joe20&quot;&gt;Halo-theme-joe2.0 食用文档&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/halo/">halo</category>
+      
+      
+      <comments>https://bore.vip/archives/2df9228b/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>2022年春季运动会</title>
+      <link>https://bore.vip/archives/c01c3cb7/</link>
+      <guid>https://bore.vip/archives/c01c3cb7/</guid>
+      <pubDate>Sat, 30 Apr 2022 06:27:25 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;用AE做了一个电子相册。&lt;/p&gt;
+&lt;div align=center class=&quot;aspect-ratio&quot;&gt;
+    &lt;iframe</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/pr/">pr</category>
+      
+      <category domain="https://bore.vip/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/">电子相册</category>
+      
+      <category domain="https://bore.vip/tags/%E8%A7%86%E9%A2%91/">视频</category>
+      
+      
+      <comments>https://bore.vip/archives/c01c3cb7/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>观看IPTV的方法</title>
+      <link>https://bore.vip/archives/bf1a1de4/</link>
+      <guid>https://bore.vip/archives/bf1a1de4/</guid>
+      <pubDate>Mon, 11 Apr 2022 13:32:56 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt;1.搜索&lt;code&gt;2022</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/tips/">tips</category>
+      
+      
+      <comments>https://bore.vip/archives/bf1a1de4/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>pr学习笔记</title>
+      <link>https://bore.vip/archives/968db8c4/</link>
+      <guid>https://bore.vip/archives/968db8c4/</guid>
+      <pubDate>Thu, 17 Mar 2022 15:06:45 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;p&gt; 决定把pr系统地过一遍，看能不能坚持下来。&lt;/p&gt;
+&lt;p&gt;1.源窗口，&lt;code&gt;i&lt;/code&gt;标记入点，&lt;code&gt;o&lt;/code&gt;标记出点，可以将需要的一小段素材拖到视频轨道。     </description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/pr/">pr</category>
+      
+      
+      <comments>https://bore.vip/archives/968db8c4/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>查看Windows和Office激活状态的方法</title>
+      <link>https://bore.vip/archives/23a66736/</link>
+      <guid>https://bore.vip/archives/23a66736/</guid>
+      <pubDate>Sun, 13 Mar 2022 12:21:47 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;win10&quot;&gt;&lt;a href=&quot;#win10&quot; class=&quot;headerlink&quot; title=&quot;win10&quot;&gt;&lt;/a&gt;win10&lt;/h2&gt;&lt;p&gt;使用命令查看Windows</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/win10/">win10</category>
+      
+      
+      <comments>https://bore.vip/archives/23a66736/#disqus_thread</comments>
+      
+    </item>
+    
+    <item>
+      <title>利用企业微信实现twikoo新消息提醒&amp;&amp;数据导出等</title>
+      <link>https://bore.vip/archives/9a366c6/</link>
+      <guid>https://bore.vip/archives/9a366c6/</guid>
+      <pubDate>Sun, 06 Feb 2022 01:27:38 GMT</pubDate>
+      
+        
+        
+          
+          
+      <description>&lt;h2 id=&quot;注册企业微信&quot;&gt;&lt;a href=&quot;#注册企业微信&quot; class=&quot;headerlink&quot;</description>
+          
+        
+      
+      
+      
+      
+      <category domain="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/">技术</category>
+      
+      
+      <category domain="https://bore.vip/tags/hexo/">hexo</category>
+      
+      
+      <comments>https://bore.vip/archives/9a366c6/#disqus_thread</comments>
+      
+    </item>
+    
+  </channel>
+</rss>

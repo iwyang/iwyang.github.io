@@ -1,0 +1,452 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>debian 10安装xfce桌面和配置vnc和wine | Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。   安装桌面环境和VNC服务器默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="debian 10安装xfce桌面和配置vnc和wine">
+<meta property="og:url" content="https://bore.vip/archives/26d4b8da/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:description" content="Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。   安装桌面环境和VNC服务器默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/cover/xfce.jpg">
+<meta property="article:published_time" content="2023-07-18T11:36:29.000Z">
+<meta property="article:modified_time" content="2024-04-24T11:25:46.488Z">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="linux">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/cover/xfce.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/archives/26d4b8da/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'debian 10安装xfce桌面和配置vnc和wine',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2024-04-24 19:25:46'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">debian 10安装xfce桌面和配置vnc和wine</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2024-04-24T11:25:46.488Z" title="更新于 2024-04-24 19:25:46">2024-04-24</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">3.6k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>14分钟</span></span></div></div></div><article class="post-content" id="article-container"><div class="note warning flat"><p>Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。</p>
+</div>
+
+<h2 id="安装桌面环境和VNC服务器"><a href="#安装桌面环境和VNC服务器" class="headerlink" title="安装桌面环境和VNC服务器"></a>安装桌面环境和VNC服务器</h2><p>默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。<br>在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。</p>
+<p>0.如果新装系统，参考:<a href="/archives/9eb70758/#vi%E6%97%A0%E6%B3%95%E6%AD%A3%E5%B8%B8%E4%BD%BF%E7%94%A8"><code>vi</code> 无法正常使用</a></p>
+<p>1.用SSH连接到你的服务器后，更新你的软件包列表。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt <span class="keyword">update</span></span><br></pre></td></tr></table></figure>
+
+<p>2.现在在你的服务器上安装Xfce桌面环境，以及<code>xfce4-goodies</code> 包。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install xfce4 xfce4<span class="operator">-</span>goodies</span><br></pre></td></tr></table></figure>
+
+<p>在安装过程中，你可能会被提示为Xfce选择一个默认的显示管理器。显示管理器是一个允许你通过图形界面选择和登录到桌面环境的程序。你只有在用VNC客户端连接时才会使用Xfce，在这些Xfce会话中，你已经以你的非root Debian用户身份登录了。所以在本教程中，你对显示管理器的选择并不重要。选择其中一个，然后按<code>ENTER</code> 。</p>
+<p>3.安装完成后，安装TightVNC服务器。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install tightvncserver</span><br></pre></td></tr></table></figure>
+
+<blockquote>
+<p>如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:<code>sudo apt install tightvncserver</code></p>
+</blockquote>
+<p>4.为了在安装后完成VNC服务器的初始配置，使用<code>vncserver</code> 命令来设置安全密码并创建初始配置文件。</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver</span><br></pre></td></tr></table></figure>
+
+<p>接下来会有一个提示，要求输入并验证一个密码，以便远程访问你的机器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Output</span><br><span class="line">You will require a password to access your desktops.</span><br><span class="line"></span><br><span class="line">Password:</span><br><span class="line">Verify:</span><br></pre></td></tr></table></figure>
+
+<p>密码的长度必须在六到八个字符之间。超过八个字符的密码将被自动截断。</p>
+<p>一旦你验证了密码，你可以选择创建一个仅供查看的密码。使用只查看密码登录的用户将不能用鼠标或键盘控制VNC实例。如果你想用你的VNC服务器向其他人演示一些东西，这是一个有用的选项，但这不是必需的。<code>Would you like to enter a view-only password (y/n)? n</code></p>
+<p>然后，该过程为服务器创建必要的默认配置文件和连接信息。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">OutputWould you like to enter a view-only password (y/n)? n</span><br><span class="line">xauth:  file /home/sammy/.Xauthority does not exist</span><br><span class="line"></span><br><span class="line">New &#x27;X&#x27; desktop is your_hostname:1</span><br><span class="line"></span><br><span class="line">Creating default startup script /home/sammy/.vnc/xstartup</span><br><span class="line">Starting applications specified in /home/sammy/.vnc/xstartup</span><br><span class="line">Log file is /home/sammy/.vnc/your_hostname:1.log</span><br></pre></td></tr></table></figure>
+
+<p>接下来，配置它以启动Xfce并通过图形界面访问服务器。</p>
+<p>5.提示<code>执行子进程“dbus-launch”失败</code></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install dbus-x11</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置VNC服务器"><a href="#配置VNC服务器" class="headerlink" title="配置VNC服务器"></a>配置VNC服务器</h2><p>VNC服务器需要知道启动时要执行哪些命令。具体来说，VNC需要知道它应该连接到哪个图形桌面。</p>
+<p>这些命令位于你的主目录下<code>.vnc</code> 文件夹中一个名为<code>xstartup</code> 的配置文件中。启动脚本是在上一步运行<code>vncserver</code> 命令时创建的，但你将创建自己的脚本来启动Xfce桌面。</p>
+<p>当VNC第一次被设置时，它在端口<code>5901</code> ，启动一个默认的服务器实例。这个端口被称为<em>显示端口</em>，VNC称其为<code>:1</code> 。VNC可以在其他显示端口启动多个实例，如<code>:2</code> 、<code>:3</code> ，等等。</p>
+<p>因为你要改变VNC服务器的配置方式，所以首先用以下命令停止运行在端口<code>5901</code> 的VNC服务器实例。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
+
+<p>以下是针对你的服务器环境的PID的输出。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Output</span><br><span class="line">Killing Xtightvnc process ID 17648</span><br></pre></td></tr></table></figure>
+
+<p>在你修改<code>xstartup</code> 文件之前，先备份原文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mv ~/.vnc/xstartup ~/.vnc/xstartup.bak</span><br></pre></td></tr></table></figure>
+
+<p>现在创建一个新的<code>xstartup</code> 文件并在你喜欢的文本编辑器中打开它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
+
+<p>只要你启动或重新启动VNC服务器，该文件中的命令就会自动执行。如果你的桌面环境还没有启动，你需要VNC来启动它。在该文件中添加以下命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/bin/bash</span></span><br><span class="line">xrdb <span class="variable">$HOME</span>/.Xresources</span><br><span class="line">startxfce4 &amp;</span><br></pre></td></tr></table></figure>
+
+<p>下面简要介绍一下每一行的作用。</p>
+<ul>
+<li><code>#!/bin/bash</code>:第一行是一个<a href="https://link.juejin.cn/?target=https://en.wikipedia.org/wiki/Shebang_(Unix)" rel="external nofollow noreferrer">shebang</a>。在*nix平台上的可执行纯文本文件中，shebang告诉系统将该文件传递给哪个解释器来执行。在这个例子中，你要把文件传给Bash解释器。这将使每一个连续的行被当作命令来执行，按顺序进行。</li>
+<li><code>xrdb $HOME/.Xresources</code>:这个命令告诉VNC的GUI框架读取用户的<code>.Xresources</code> 文件。<code>.Xresources</code> ，用户可以在这里对图形桌面的某些设置进行修改，比如终端颜色、光标主题和字体渲染。</li>
+<li><code>startxfce4 &amp;</code>:这个命令告诉服务器启动Xfce。在这里你可以找到所有你需要的图形软件，以便舒适地管理你的服务器。</li>
+</ul>
+<p>当你完成后，保存并退出你的编辑器。如果你使用的是<code>nano</code> ，你可以通过按<code>CTRL+X</code> ，然后按<code>Y</code> ，再按<code>ENTER</code> 。</p>
+<p>为了确保VNC服务器能够正确使用这个新的启动文件，你需要使它可执行。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo chmod +x ~/.vnc/xstartup</span><br></pre></td></tr></table></figure>
+
+<p>现在，重新启动VNC服务器。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver</span><br></pre></td></tr></table></figure>
+
+<p>输出结果将类似于以下内容。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Output</span><br><span class="line">New &#x27;X&#x27; desktop is your_hostname:1</span><br><span class="line"></span><br><span class="line">Starting applications specified in /home/sammy/.vnc/xstartup</span><br><span class="line">Log file is /home/sammy/.vnc/your_hostname:1.log</span><br></pre></td></tr></table></figure>
+
+<h2 id="配置防火墙"><a href="#配置防火墙" class="headerlink" title="配置防火墙"></a>配置防火墙</h2><p>如果你Debian 11正在运行防火墙，并且使用<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.myfreax.com/how-to-setup-a-firewall-with-ufw-on-debian-10/">ufw</a>作为<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.myfreax.com/how-to-setup-a-firewall-with-ufw-on-debian-10/">防火墙</a>管理工具。则需要打开端口5901的连接。</p>
+<p>如果你显示端口是<code>:2</code>。则需要打开端口5902的连接，以此类推，请随时添加你需要允许的端口。</p>
+<p>在本教程中我们将打开端口5901，运行ufw命令<code>sudo ufw allow 5901</code>。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo ufw allow 5901</span><br></pre></td></tr></table></figure>
+
+<p>配置到位后，你就可以从你的本地机器连接到VNC服务器了。</p>
+<h2 id="安全地连接VNC桌面"><a href="#安全地连接VNC桌面" class="headerlink" title="安全地连接VNC桌面"></a>安全地连接VNC桌面</h2><p>这部分内容参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-10#step-3-connecting-the-vnc-desktop-securely">Step 3 — Connecting the VNC Desktop Securely</a></p>
+<p>我直接用的：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.realvnc.com/en/connect/download/viewer/">VNC Viewer</a></p>
+<h2 id="作为系统服务运行VNC"><a href="#作为系统服务运行VNC" class="headerlink" title="作为系统服务运行VNC"></a>作为系统服务运行VNC</h2><p>接下来，你将把VNC服务器设置为一个systemd服务。你可以像其他服务一样，根据需要启动、停止和重启它。这也将确保VNC在你的服务器重启时也能启动。</p>
+<p>首先，用你喜欢的文本编辑器创建一个名为<code>/etc/systemd/system/vncserver@.service</code> 的新单元文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo vi /etc/systemd/system/vncserver@.service</span><br></pre></td></tr></table></figure>
+
+<p>名字后面的<code>@</code> 符号将让你传入一个参数，你可以在服务配置中使用。你将用它来指定你在管理服务时要使用的VNC显示端口。</p>
+<p>在文件中添加以下几行。请确保修改<code>User</code> 、<code>Group</code> 、<code>WorkingDirectory</code> ，以及<code>PIDFILE</code> 中的用户名，以符合你的用户名。</p>
+<p><strong>官方：</strong>(如果要用下面配置，先参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-10">Initial Server Setup with Debian 10</a>，进行设置用户名、防火墙等操作)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Start TightVNC server at startup</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">User=sammy</span><br><span class="line">Group=sammy</span><br><span class="line">WorkingDirectory=/home/sammy</span><br><span class="line"></span><br><span class="line">PIDFile=/home/sammy/.vnc/%H:%i.pid</span><br><span class="line">ExecStartPre=-/usr/bin/vncserver -<span class="built_in">kill</span> :%i &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">ExecStart=/usr/bin/vncserver -depth 24 -geometry 1280x800 :%i</span><br><span class="line">ExecStop=/usr/bin/vncserver -<span class="built_in">kill</span> :%i</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p><strong>修改为：</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Start TightVNC server at startup</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">User=root</span><br><span class="line">Group=root</span><br><span class="line">WorkingDirectory=/root</span><br><span class="line"></span><br><span class="line">PIDFile=/root/.vnc/%H:%i.pid</span><br><span class="line">ExecStartPre=-/usr/bin/vncserver -<span class="built_in">kill</span> :%i &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">ExecStart=/usr/bin/vncserver -depth 24 -geometry 1280x800 :%i</span><br><span class="line">ExecStop=/usr/bin/vncserver -<span class="built_in">kill</span> :%i</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>如果VNC已经在运行，<code>ExecStartPre</code> 命令会停止它。<code>ExecStart</code> 命令启动VNC，并将色深设置为24位色，分辨率为1280x800。你也可以修改这些启动选项以满足你的需要。完成后保存并关闭该文件。</p>
+<p>接下来，让系统知道这个新的单元文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl daemon-reload</span><br></pre></td></tr></table></figure>
+
+<p>然后，启用该单元文件。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl enable vncserver@1.service</span><br></pre></td></tr></table></figure>
+
+<p><code>@</code> 后面的<code>1</code> 标志着服务应该出现在哪个显示号码上，在这种情况下，默认的<code>:1</code> ，正如在 中讨论的那样。</p>
+<p>如果VNC服务器的当前实例仍在运行，请停止它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br></pre></td></tr></table></figure>
+
+<p>然后像启动其他systemd服务一样启动它。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl start vncserver@1</span><br></pre></td></tr></table></figure>
+
+<p>你可以用下面的命令来验证它是否启动。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl status vncserver@1</span><br></pre></td></tr></table></figure>
+
+<p>如果启动正确，输出结果将类似于下面。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">Output</span><br><span class="line">● vncserver@1.service - Start TightVNC server at startup</span><br><span class="line">Loaded: loaded (/etc/systemd/system/vncserver@.service; enabled; vendor preset: enabled)</span><br><span class="line">Active: active (running) since Fri 2022-08-19 16:21:36 UTC; 5s ago</span><br><span class="line">Process: 24469 ExecStartPre=/usr/bin/vncserver -kill :1 &gt; /dev/null 2&gt;&amp;1 (code=exited, status=2)</span><br><span class="line">Process: 24474 ExecStart=/usr/bin/vncserver -depth 24 -geometry 1280x800 -localhost :1 (code=exited, status=0/SUCCESS)</span><br><span class="line">Main PID: 24482 (Xtightvnc)</span><br><span class="line">. . .</span><br></pre></td></tr></table></figure>
+
+<p>当你重新启动机器时，你的VNC服务器就可以使用了。</p>
+<p>再次启动你的SSH隧道。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">ssh -L 5901:127.0.0.1:5901 -C -N -l sammy your_server_ip</span><br></pre></td></tr></table></figure>
+
+<p>然后用你的VNC客户端软件建立一个新的连接，<code>localhost:5901</code> ，连接到你的机器。</p>
+<h2 id="Too-many-authentication-failures-VNC-server"><a href="#Too-many-authentication-failures-VNC-server" class="headerlink" title="Too many authentication failures VNC server"></a>Too many authentication failures VNC server</h2><p>解决方法：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">vncserver -kill :1</span><br><span class="line">vncserver</span><br></pre></td></tr></table></figure>
+
+<h2 id="xfce4-设置中文"><a href="#xfce4-设置中文" class="headerlink" title="xfce4 设置中文"></a>xfce4 设置中文</h2><p>1.安装locales并配置</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install locales</span><br><span class="line">sudo dpkg-reconfigure locales</span><br></pre></td></tr></table></figure>
+
+<p>进入语言设置界面，其中，空格键为选取&#x2F;取消，Tab键为切换到确认选择。</p>
+<p>2.通过方向键与空格键选择语言编码en_US.UTF8，zh_CN GB2312，zh_CN GBK GBK，zh_CN UTF-8 UTF-8</p>
+<p>3.然后按Tab选择<OK>，回车进入下一个界面，选择 <code>zh_CN UTF-8 UTF-8</code>为默认系统环境，回车。</p>
+<p>4.为当前用户配置默认语言为中文zh_CN UTF-8 UTF-8</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.bashrc</span><br><span class="line">在.bashrc最后添加一行</span><br><span class="line">export LANG=zh_CN.UTF-8</span><br></pre></td></tr></table></figure>
+
+<p>5.安装中文字体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt install fonts-wqy-zenhei</span><br></pre></td></tr></table></figure>
+
+<p>6.重启</p>
+<h2 id="Debian-10安装firefox"><a href="#Debian-10安装firefox" class="headerlink" title="Debian 10安装firefox"></a>Debian 10安装firefox</h2><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt upgrade</span><br><span class="line">sudo apt install firefox-esr -y</span><br></pre></td></tr></table></figure>
+
+<h2 id="Debian-10安装wine-7-0"><a href="#Debian-10安装wine-7-0" class="headerlink" title="Debian 10安装wine 7.0"></a>Debian 10安装wine 7.0</h2><blockquote>
+<p>貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，<strong>根本就没必要装wine</strong>，不过还是记录以下</p>
+</blockquote>
+<h3 id="Step-1-Prerequsiteis"><a href="#Step-1-Prerequsiteis" class="headerlink" title="Step 1: Prerequsiteis"></a>Step 1: Prerequsiteis</h3><p>In order to run Winehq, You need to enable i386 architecture on your Debian system. Also, import the GPG key to your system by which the wine packages are signed.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --add-architecture i386  </span><br><span class="line">wget -qO - https://dl.winehq.org/wine-builds/winehq.key | sudo apt-key add - </span><br></pre></td></tr></table></figure>
+
+<p>Use one of the following commands to enable the Wine apt repository in your system based on your operating system and version.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt -y install gnupg2 software-properties-common</span><br><span class="line">sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/ </span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-2-Install-Wine-on-Debian-10"><a href="#Step-2-Install-Wine-on-Debian-10" class="headerlink" title="Step 2: Install Wine on Debian 10"></a>Step 2: Install Wine on Debian 10</h3><p>Your system is ready to install Winehq. Update the apt information with the newly added repositories. Execute the following commands. The <code>--install-recommends</code> option will install all the recommended packages by <strong>winehq-stable</strong> on your system.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update </span><br><span class="line">sudo apt install --install-recommends winehq-stable </span><br></pre></td></tr></table></figure>
+
+<p>The wine packages are installed under &#x2F;opt&#x2F;wine-stable directory. So set the wine bin directory to the <strong>PATH</strong> environment to access commands system-wide.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/opt/wine-stable/bin </span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-3-Check-Wine-Version"><a href="#Step-3-Check-Wine-Version" class="headerlink" title="Step 3: Check Wine Version"></a>Step 3: Check Wine Version</h3><p>Wine installation successfully completed. Use the following command to check the version of wine installed on your system</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wine --version </span><br><span class="line"></span><br><span class="line">wine-7.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="How-to-Use-Wine-Optional"><a href="#How-to-Use-Wine-Optional" class="headerlink" title="How to Use Wine (Optional)"></a>How to Use Wine (Optional)</h3><p>To use wine we need to log in to the Debian desktop system. After that download a windows .exe file like <a target="_blank" rel="noopener external nofollow noreferrer" href="http://www.chiark.greenend.org.uk/~sgtatham/putty/download.html">PuTTY </a>on your system and open it with Wine as below screenshot or use the following command.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wine ~/Downloads/putty.exe </span><br></pre></td></tr></table></figure>
+
+<h2 id="Debian-11安装wine-8-0"><a href="#Debian-11安装wine-8-0" class="headerlink" title="Debian 11安装wine 8.0"></a>Debian 11安装wine 8.0</h2><h3 id="Step-1-Enable-32-bit-architecture"><a href="#Step-1-Enable-32-bit-architecture" class="headerlink" title="Step 1: Enable 32 bit architecture"></a>Step 1: Enable 32 bit architecture</h3><p>If you’re running a 64-bit system, enable support for 32-bit applications.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg --add-architecture i386</span><br></pre></td></tr></table></figure>
+
+<p>The command above won’t return any output.</p>
+<h3 id="Step-2-Add-WineHQ-repository"><a href="#Step-2-Add-WineHQ-repository" class="headerlink" title="Step 2: Add WineHQ repository"></a>Step 2: Add WineHQ repository</h3><p>We will pull the latest Wine packages from WineHQ repository that is added manually.</p>
+<p>First, import GPG key:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt -y install gnupg2 software-properties-common</span><br><span class="line">wget -nc https://dl.winehq.org/wine-builds/winehq.key</span><br><span class="line">sudo apt-key add winehq.key</span><br></pre></td></tr></table></figure>
+
+<p>You should receive “<strong>OK</strong>” in the output.</p>
+<p>Add the Wine repository by running the following command:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-add-repository https://dl.winehq.org/wine-builds/debian/</span><br></pre></td></tr></table></figure>
+
+<p>The command will add repository to line <em>&#x2F;etc&#x2F;apt&#x2F;sources.list</em> file.</p>
+<p>Update APT package index after:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br></pre></td></tr></table></figure>
+
+<h3 id="Using-OBS-repository-Alternative"><a href="#Using-OBS-repository-Alternative" class="headerlink" title="Using OBS repository (Alternative)"></a>Using OBS repository (Alternative)</h3><p>You can also use OBS repository instead of the official repository. Add Wine OBS repository as shown below:</p>
+<p><strong>Debian 11:</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wget -O- -q https://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11/Release.key | sudo apt-key add -    </span><br><span class="line">echo &quot;deb http://download.opensuse.org/repositories/Emulators:/Wine:/Debian/Debian_11 ./&quot; | sudo tee /etc/apt/sources.list.d/wine-obs.list</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-3-Install-Wine-on-Debian-11-10-9"><a href="#Step-3-Install-Wine-on-Debian-11-10-9" class="headerlink" title="Step 3: Install Wine on Debian 11|10|9"></a>Step 3: Install Wine on Debian 11|10|9</h3><p>After configuration of the APT repository, the final step is the actual installation of Wine on Debian.</p>
+<p>Then install Wine from Stable branch:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">sudo apt update</span><br><span class="line">sudo apt install --install-recommends winehq-stable</span><br></pre></td></tr></table></figure>
+
+<p>The wine packages are installed under &#x2F;opt&#x2F;wine-stable directory. So set the wine bin directory to the <strong>PATH</strong> environment to access commands system-wide.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">export PATH=$PATH:/opt/wine-stable/bin </span><br></pre></td></tr></table></figure>
+
+<p>After installation. verify version installed.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ wine --version</span><br><span class="line">wine-8.0</span><br></pre></td></tr></table></figure>
+
+<h3 id="Step-4-Using-Wine-on-Debian"><a href="#Step-4-Using-Wine-on-Debian" class="headerlink" title="Step 4: Using Wine on Debian"></a>Step 4: Using Wine on Debian</h3><p>For basic usage of wine, check help page.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ wine --help</span><br></pre></td></tr></table></figure>
+
+<p>Example below is used to run <a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/notepad-plus-plus/notepad-plus-plus/releases">Notepad++ editor</a> on Linux.</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">cd ~/Downloads</span><br><span class="line">VER=$(curl -s https://api.github.com/repos/notepad-plus-plus/notepad-plus-plus/releases/latest | grep tag_name | cut -d &#x27;&quot;&#x27; -f 4 | sed &#x27;s/v//g&#x27;)</span><br><span class="line">wget https://github.com/notepad-plus-plus/notepad-plus-plus/releases/download/v$&#123;VER&#125;/npp.$&#123;VER&#125;.Installer.exe</span><br><span class="line">wine ./npp.$&#123;VER&#125;.Installer.exe</span><br></pre></td></tr></table></figure>
+
+
+
+<p>Follow installation prompts like for any other Windows application.</p>
+<h2 id="附：第二种作为系统服务运行VNC"><a href="#附：第二种作为系统服务运行VNC" class="headerlink" title="附：第二种作为系统服务运行VNC"></a>附：第二种作为系统服务运行VNC</h2><p>1.创建systemd服务文件：使用命令 <code>sudo nano /etc/systemd/system/tightvncserver@.service</code>创建一个新的systemd服务文件。</p>
+<p>2.编辑systemd服务文件：在文件中填写以下内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=TightVNC server</span><br><span class="line">After=syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=forking</span><br><span class="line">User=&lt;username&gt;</span><br><span class="line">PAMName=login</span><br><span class="line">PIDFile=/home/&lt;username&gt;/.vnc/%H:%i.pid</span><br><span class="line">ExecStartPre=-/usr/bin/vncserver -<span class="built_in">kill</span> :%i &gt; /dev/null 2&gt;&amp;1</span><br><span class="line">ExecStart=/usr/bin/vncserver :%i</span><br><span class="line">ExecStop=/usr/bin/vncserver -<span class="built_in">kill</span> :%i</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p><strong>修改为：</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description<span class="operator">=</span>TightVNC server</span><br><span class="line">After<span class="operator">=</span>syslog.target network.target</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type<span class="operator">=</span>forking</span><br><span class="line"><span class="keyword">User</span><span class="operator">=</span>root</span><br><span class="line">PAMName<span class="operator">=</span>login</span><br><span class="line">PIDFile<span class="operator">=</span><span class="operator">/</span>root<span class="operator">/</span>.vnc<span class="operator">/</span><span class="operator">%</span>H:<span class="operator">%</span>i.pid</span><br><span class="line">ExecStartPre<span class="operator">=</span><span class="operator">-</span><span class="operator">/</span>usr<span class="operator">/</span>bin<span class="operator">/</span>vncserver <span class="operator">-</span>kill :<span class="operator">%</span>i <span class="operator">&gt;</span> <span class="operator">/</span>dev<span class="operator">/</span><span class="keyword">null</span> <span class="number">2</span><span class="operator">&gt;</span><span class="operator">&amp;</span><span class="number">1</span></span><br><span class="line">ExecStart<span class="operator">=</span><span class="operator">/</span>usr<span class="operator">/</span>bin<span class="operator">/</span>vncserver :<span class="operator">%</span>i</span><br><span class="line">ExecStop<span class="operator">=</span><span class="operator">/</span>usr<span class="operator">/</span>bin<span class="operator">/</span>vncserver <span class="operator">-</span>kill :<span class="operator">%</span>i</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy<span class="operator">=</span>multi<span class="operator">-</span>user.target</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>3.重新加载systemd服务：在终端窗口中输入命令 <code>sudo systemctl daemon-reload</code>。</p>
+<p>4.启用VNC Server服务：在终端窗口中输入命令 <code>sudo systemctl enable tightvncserver@1</code></p>
+<p>5.启动VNC Server服务：在终端窗口中输入命令 <code>sudo systemctl start tightvncserver@1</code></p>
+<p>6.检查VNC Server服务状态：在终端窗口中输入命令 <code>systemctl status tightvncserver@1</code>，检查服务是否已启动。</p>
+<p>这样，你就可以在Ubuntu系统开机时自动启动VNC Server服务了。</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>你现在有了一个安全的VNC服务器并在你的Debian 11服务器上运行。现在，您可以通过一个用户友好和熟悉的图形界面来管理您的文件、软件和设置。您还可以远程运行图形化软件，如网页浏览器。</p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-10">How to Install and Configure VNC on Debian 10</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/post/7162831879303856164">如何在Debian 11上安装和配置VNC</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.myfreax.com/how-to-install-and-configure-vnc-on-debian-11/">如何在Debian 11安装VNC</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.cnblogs.com/KylinBlog/p/16588008.html">xfce4 设置中文</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://juejin.cn/s/ubuntu%20vnc%E5%BC%80%E6%9C%BA%E5%90%AF%E5%8A%A8">ubuntu vnc开机启动</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.digitalocean.com/community/tutorials/initial-server-setup-with-debian-10">Initial Server Setup with Debian 10</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://www.digitalocean.com/community/tutorials/how-to-install-and-configure-vnc-on-debian-11">How to Install and Configure VNC on Debian 11</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://tecadmin.net/install-wine-on-debian-10-buster/">How To Install Wine 7.0 on Debian 10 </a></p>
+</li>
+<li><p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://computingforgeeks.com/how-to-install-wine-on-debian/?expand_article=1">How To Install Wine 8 on Debian 11</a></p>
+</li>
+</ul>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/linux/">linux</a></div><div class="post_share"></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">我生本无乡，心安是归处</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E6%A1%8C%E9%9D%A2%E7%8E%AF%E5%A2%83%E5%92%8CVNC%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">1.</span> <span class="toc-text">安装桌面环境和VNC服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AEVNC%E6%9C%8D%E5%8A%A1%E5%99%A8"><span class="toc-number">2.</span> <span class="toc-text">配置VNC服务器</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E9%98%B2%E7%81%AB%E5%A2%99"><span class="toc-number">3.</span> <span class="toc-text">配置防火墙</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E5%85%A8%E5%9C%B0%E8%BF%9E%E6%8E%A5VNC%E6%A1%8C%E9%9D%A2"><span class="toc-number">4.</span> <span class="toc-text">安全地连接VNC桌面</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BD%9C%E4%B8%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8CVNC"><span class="toc-number">5.</span> <span class="toc-text">作为系统服务运行VNC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Too-many-authentication-failures-VNC-server"><span class="toc-number">6.</span> <span class="toc-text">Too many authentication failures VNC server</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#xfce4-%E8%AE%BE%E7%BD%AE%E4%B8%AD%E6%96%87"><span class="toc-number">7.</span> <span class="toc-text">xfce4 设置中文</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debian-10%E5%AE%89%E8%A3%85firefox"><span class="toc-number">8.</span> <span class="toc-text">Debian 10安装firefox</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debian-10%E5%AE%89%E8%A3%85wine-7-0"><span class="toc-number">9.</span> <span class="toc-text">Debian 10安装wine 7.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Prerequsiteis"><span class="toc-number">9.1.</span> <span class="toc-text">Step 1: Prerequsiteis</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Install-Wine-on-Debian-10"><span class="toc-number">9.2.</span> <span class="toc-text">Step 2: Install Wine on Debian 10</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Check-Wine-Version"><span class="toc-number">9.3.</span> <span class="toc-text">Step 3: Check Wine Version</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#How-to-Use-Wine-Optional"><span class="toc-number">9.4.</span> <span class="toc-text">How to Use Wine (Optional)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Debian-11%E5%AE%89%E8%A3%85wine-8-0"><span class="toc-number">10.</span> <span class="toc-text">Debian 11安装wine 8.0</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-1-Enable-32-bit-architecture"><span class="toc-number">10.1.</span> <span class="toc-text">Step 1: Enable 32 bit architecture</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-2-Add-WineHQ-repository"><span class="toc-number">10.2.</span> <span class="toc-text">Step 2: Add WineHQ repository</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Using-OBS-repository-Alternative"><span class="toc-number">10.3.</span> <span class="toc-text">Using OBS repository (Alternative)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-3-Install-Wine-on-Debian-11-10-9"><span class="toc-number">10.4.</span> <span class="toc-text">Step 3: Install Wine on Debian 11|10|9</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Step-4-Using-Wine-on-Debian"><span class="toc-number">10.5.</span> <span class="toc-text">Step 4: Using Wine on Debian</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%99%84%EF%BC%9A%E7%AC%AC%E4%BA%8C%E7%A7%8D%E4%BD%9C%E4%B8%BA%E7%B3%BB%E7%BB%9F%E6%9C%8D%E5%8A%A1%E8%BF%90%E8%A1%8CVNC"><span class="toc-number">11.</span> <span class="toc-text">附：第二种作为系统服务运行VNC</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%80%BB%E7%BB%93"><span class="toc-number">12.</span> <span class="toc-text">总结</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83%E9%93%BE%E6%8E%A5"><span class="toc-number">13.</span> <span class="toc-text">参考链接</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://t.bore.vip',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://t.bore.vip',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.staticfile.org/twikoo/1.6.38/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
