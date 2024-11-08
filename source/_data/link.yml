@@ -68,4 +68,8 @@
     - name: 我不是咕咕鸽
       link: https://blog.laoda.de/
       avatar: /img/link-img/laoda.jpg
-      descr: 服务器折腾不完全指南，定期分享一些好玩的东西，不定期记录生活。         
+      descr: 服务器折腾不完全指南，定期分享一些好玩的东西，不定期记录生活。
+    - name: CWorld Site
+      link: https://cworld.top/
+      avatar: /img/link-img/cworld0.jpg
+      descr: 求知若愚，虚怀若谷     
