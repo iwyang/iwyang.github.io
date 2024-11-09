@@ -1,0 +1,309 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Bore&#39;s Notes">
+<meta property="og:url" content="https://bore.vip/page/7/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/avatar.jpg">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="个人博客,个人网站,hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/page/7/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bore\'s Notes',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-11-09 12:46:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/db6e761/" title="hexo利用Github Actions自动构建博客">hexo利用Github Actions自动构建博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-07T03:11:25.000Z" title="发表于 2020-07-07 11:11:25">2020-07-07</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/github/">github</a></span></div><div class="content">生成公钥Windows 上安装 Git for Windows 之后在开始菜单里打开 Git Bash 输入：
+12git config --global user.name &quot;你的用户名&quot;git config --global user.email &quot;你的电子邮箱&quot;
+
+1234cd ~mkdir .sshcd .sshssh-keygen -t rsa
+
+在系统当前用户文件夹下生成了私钥 id_rsa 和公钥 id_rsa.pub。
+上传id_rsa.pub在右上角个人账户依次点击Settings-&gt;SSH and GPG keys添加刚刚生成的公钥，名称随意。
+上传id_rsa然后在 Settings &gt; Secrets 中新增一个 secret，命名为 DEPLOY_KEY，把私钥 id_rsa 的内容复制进去，供后续使用。
+配置 GitHub Actions第一种在博客根目录新建.github/workflows/gh_pages.yml文件。代码如下：
+123456789101112131415161718192021222 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/23eeae2f/" title="hugo利用Github Actions自动构建博客">hugo利用Github Actions自动构建博客</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-07-06T01:19:19.000Z" title="发表于 2020-07-06 09:19:19">2020-07-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hugo/">hugo</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/github/">github</a></span></div><div class="content">初始化 GitHub 仓库Github上新建一个名为iwyang.github.io的仓库。
+配置ACTIONS_DEPLOY_KEY生成公钥Windows 上安装 Git for Windows 之后在开始菜单里打开 Git Bash 输入：
+12git config --global user.name &quot;你的用户名&quot;git config --global user.email &quot;你的电子邮箱&quot;
+
+1234cd ~mkdir .sshcd .sshssh-keygen -t rsa
+
+在系统当前用户文件夹下生成了私钥 id_rsa 和公钥 id_rsa.pub。
+上传id_rsa.pub点击博客仓库的Settings-&gt;Deploy keys-&gt;add deploy key，Title填写ACTIONS_DEPLOY_KEY，Key填写id_rsa.pub文件的内容。
+上传id_rsa点击博客仓库的Settings-&gt;Secrets-&gt;Add a new secret，Name填写ACTIONS_DEPLOY_KEY， ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/585d2a79/" title="一年级数学下册数图形有几个">一年级数学下册数图形有几个</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-28T22:10:25.000Z" title="发表于 2020-06-29 06:10:25">2020-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">一年级数学</a></span></div><div class="content">
+
+
+思路：以最后一个数三角形有几个为例：
+
+
+首先给小三角形编号：1号、2号、3号。
+先数小三角形有几个：3个
+再数中型三角形（ 把两个小三角形看作一个中型三角形）有几个：1号和2号是一个，2号和3号是一个，合起来是2个。
+大三角形有1个。
+所以一共有：3+2+1&#x3D;6（个）
+
+总结：感觉还是做个flash动画直观一些。
+参考链接：
+1.怎么数一数到底有几个三角形，一年级数学认识图形
+
+2.一年级下数学：如何教孩子数图形的个数，才不会漏数呢？
+
+3.一年级数学-巧数图形
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/859eea1c/" title="Excel查找重复项">Excel查找重复项</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-28T21:54:25.000Z" title="发表于 2020-06-29 05:54:25">2020-06-29</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/excel/">excel</a></span></div><div class="content"> 这里以Excel 2019为例。
+
+首先选中表格相应区域。
+依次选择开始—条件格式—突出显示单元格规则—重复值。
+
+重复的单元格会突出显示，修改重复项后，突出显示自动消失。
+参考链接：excel一列中如何找出重复的数据？
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/6d771a20/" title="信息技术支持下的小学数学创新教学">信息技术支持下的小学数学创新教学</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-26T08:56:10.000Z" title="发表于 2020-06-26 16:56:10">2020-06-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></span></div><div class="content">摘要：在信息化教育的背景下，数学教师应当在推进小学数学创新教学的过程中，果断地应用信息技术，使其成为推进创新的有力助手，如可以使用微课教学，构建直播课堂，打开学习的新空间，并且能够运用多媒体加强线下的教学能力，这会有助于推进创新教学。
+关键词：信息技术；小学数学；创新
+引言：
+在创新教学的前提下，需要分别在教育方式与思维上进行创新，一方面可以整合信息技术，在方式上进行创新，另一方面可以吸收新课改等先进的教育思维，学会从生活中涉及教育，在引导中逐步渗透，这会更利于学生，使其能够慢慢地提升积极性，从而可以实现创新教学的目的。
+一、信息技术对小学数学创新教学的重要性分析
+（一）能够予以充足的工具支持
+从当前信息技术应用在学科教育中的工具类型来看，根据需求和应用途径的不同，会分为若干种类，如视频类、图文类、辅助类等，每种工具都有独特的功能，因此若将信息技术应用在小学数学课程中，可以为创新教学予以充足的工具支持。
+（二）能够予以充足的资源支持
+信息技术工具除了自带某种功能外，还经常与互联网联系在一起，这就意味着使用者可以从互联网中搜集各种想要的资源，因此在推进创新教学中，可以充分运用互联网，结合 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/53b6e946/" title="笔记本硬盘改移动硬盘&amp;分区安装PE">笔记本硬盘改移动硬盘&amp;分区安装PE</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-15T21:51:25.000Z" title="发表于 2020-06-16 05:51:25">2020-06-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content"> 笔记本换SSD后，原来机械硬盘没用了。这时可以将原来的硬盘改成移动硬盘。方法是买一个移动硬盘盒子。下面着重记一下在移动硬盘安装PE的方法。
+1.用DiskGenius给移动硬盘分区：新建一个5G大小的FAT32格式的分区，用来安装PE；硬盘其他空间新建一个NTFS格式的分区，用来存放文件。
+2.打开微PE工具箱，右下角选择安装PE到移动硬盘，第一主分区选择刚才建立的FAT32分区，然后点击立即安装进移动硬盘。
+3.将操作系统等相关文件复制到FAT32分区里，便于安装系统使用。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/1a6c27e2/" title="人声伴奏分离分离神器：Spleeter GUI_v2.5">人声伴奏分离分离神器：Spleeter GUI_v2.5</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-14T21:09:25.000Z" title="发表于 2020-06-15 05:09:25">2020-06-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content">使用方法：
+1.首先安装SpleeterGUI_v2.5.msi，安装到任意位置即可。
+2.然后进入训练模型目录，以管理员模式运行安装SpleeterGUI之后右键管理员模式运行这个.bat。最后相应文件夹会被拷贝到C:\Users\Admin\AppData\Roaming目录下，如果卸载该软件，也要手动删除此文件夹。
+总结：此软件除了消音乐伴奏外，还可以去视频（例如MTV）里的人声。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/b156363c/" title="一年级数学括号最大能填几">一年级数学括号最大能填几</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-06-01T18:02:25.000Z" title="发表于 2020-06-02 02:02:25">2020-06-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">一年级数学</a></span></div><div class="content">求“括号最大能填几”，分两步计算。例如：
+(1)  39-(   )＞14
+
+第一步，先想比14大1的数是几？14+1&#x3D;15；
+
+第二步，再想39减几等于15，39-(   )&#x3D;15，答案是24。
+
+
+(2)  84＞(   )+12
+
+第一步，先想比84小1的数是几，84-1&#x3D;83；
+
+第二步，再想几加12等于83，答案是71。
+
+
+(3)  29+(  )＜46
+
+第一步，先想比46小1的数是几，46-1&#x3D;45，是45。 
+第二步，再想29加几等于45，45-29&#x3D;16，答案是16。
+
+更多有关“括号最大能填几”内容，可查看：括号里最大能填几？
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/96ae2461/" title="一年级数学一图四式问题">一年级数学一图四式问题</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-27T23:20:25.000Z" title="发表于 2020-05-28 07:20:25">2020-05-28</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">一年级数学</a></span></div><div class="content">
+什么是“一图四式”呢？
+给出一个图，写出四个算式，两道加法算式，两道减法算式。这类数学题的目的，是为了训练一年级小学生看图的能力，以及对加减法意义的理解。
+
+口诀：
+12345一图四式题，先来数左边，再来数右边，两道加法题，左边加右边，右边加左边。两位减法题，先来数总数，总数减左边，就等于右边。总数减右边，就等于左边。
+
+参考链接：一年级数学“一图四式”
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/92094531/" title="提高搜索效率的7个小技巧">提高搜索效率的7个小技巧</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-27T00:54:25.000Z" title="发表于 2020-05-27 08:54:25">2020-05-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content">排除关键词方法是：减号+关键词
+功能是：排除一些  不想要的关键词
+例如：锤子 -锤子手机
+精确搜索方法是：给关键词加引号
+功能是：只搜索引号里的字
+指定网站内搜索方法是：site:域名+关键词（此处加号代表空格）
+功能是：在指定网站内搜索
+指定文件格式方法是：filetype:文件格式+关键词（此处加号代表关键词）
+功能是：指定文件格式
+指定标题搜索方法是：intitle:关键词
+功能是：搜索结果必须在标题中
+两种指定范围搜索锤子 intext:苹果:要求搜索结果中有这个关键词。
+allintext:认知心理学 发展心理学 积极心理学 ：要求三个关键词都包括在搜索结果中。
+inurl:关键字：要求在网页url中包含关键词。
+叠加使用site:douban.com 亲密关系 intext:罗兰米勒
+注意事项
+所有的冒号都是半角，也就是英文的冒号而不是中文的冒号。
+
+空格很重要，关键词之间一定要有空格。
+
+提取关键词很重要。
+
+
+参考链接
+搜索效率提升200%！8个小技巧助你快速查资料
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/6/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/8/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">我生本无乡，心安是归处</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">69</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E5%AD%A6/"><span class="card-category-list-name">教学</span><span class="card-category-list-count">23</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/pr/" style="font-size: 1.25em; color: rgb(176, 101, 47)">pr</a><a href="/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/" style="font-size: 1.22em; color: rgb(135, 90, 159)">电子相册</a><a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 1.32em; color: rgb(23, 50, 142)">视频</a><a href="/tags/AE/" style="font-size: 1.15em; color: rgb(60, 21, 145)">AE</a><a href="/tags/excel/" style="font-size: 1.28em; color: rgb(187, 184, 102)">excel</a><a href="/tags/linux/" style="font-size: 1.25em; color: rgb(163, 0, 27)">linux</a><a href="/tags/flash/" style="font-size: 1.15em; color: rgb(0, 152, 78)">flash</a><a href="/tags/tips/" style="font-size: 1.42em; color: rgb(120, 57, 21)">tips</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.25em; color: rgb(154, 144, 44)">服务器</a><a href="/tags/hugo/" style="font-size: 1.38em; color: rgb(141, 110, 136)">hugo</a><a href="/tags/hexo/" style="font-size: 1.45em; color: rgb(167, 102, 116)">hexo</a><a href="/tags/github/" style="font-size: 1.35em; color: rgb(191, 151, 137)">github</a><a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.15em; color: rgb(183, 198, 190)">图床</a><a href="/tags/halo/" style="font-size: 1.22em; color: rgb(101, 150, 174)">halo</a><a href="/tags/docker/" style="font-size: 1.15em; color: rgb(81, 54, 68)">docker</a><a href="/tags/nginx/" style="font-size: 1.18em; color: rgb(160, 71, 158)">nginx</a><a href="/tags/ps/" style="font-size: 1.28em; color: rgb(124, 182, 38)">ps</a><a href="/tags/win10/" style="font-size: 1.28em; color: rgb(75, 123, 19)">win10</a><a href="/tags/chatgpt/" style="font-size: 1.15em; color: rgb(70, 187, 63)">chatgpt</a><a href="/tags/word/" style="font-size: 1.18em; color: rgb(146, 164, 185)">word</a><a href="/tags/ppt/" style="font-size: 1.18em; color: rgb(9, 47, 130)">ppt</a><a href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.38em; color: rgb(116, 96, 54)">一年级数学</a><a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 1.18em; color: rgb(4, 186, 158)">练习题</a><a href="/tags/%E4%B8%89%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.28em; color: rgb(166, 172, 80)">三年级数学</a><a href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" style="font-size: 1.22em; color: rgb(27, 85, 26)">教学反思</a><a href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/" style="font-size: 1.22em; color: rgb(118, 178, 144)">教学设计</a><a href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.35em; color: rgb(171, 145, 51)">二年级数学</a><a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 1.18em; color: rgb(96, 20, 99)">论文</a><a href="/tags/%E9%98%B4%E5%BD%B1%E9%9D%A2%E7%A7%AF/" style="font-size: 1.15em; color: rgb(176, 96, 51)">阴影面积</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">2024年04月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">2023年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">2023年07月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">2023年06月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">2023年03月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">2022年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">2022年08月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">2022年07月</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">92</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-04-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">119.2k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-09T04:46:32.342Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

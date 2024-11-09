@@ -1,0 +1,308 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Bore&#39;s Notes">
+<meta property="og:url" content="https://bore.vip/page/9/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/avatar.jpg">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="个人博客,个人网站,hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/page/9/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bore\'s Notes',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2024-11-09 12:46:33'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/fd505a8d/" title="Win10 修改host文件的方法">Win10 修改host文件的方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-15T09:04:25.000Z" title="发表于 2020-05-15 17:04:25">2020-05-15</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/win10/">win10</a></span></div><div class="content">1.鼠标右键点击桌面左下角的开始菜单，选择“命令提示符（管理员）
+2.在打开的黑色命令提示符窗口中输入 notepad，敲回车；
+3.打开的记事本页面中点右上角的文件，然后点打开
+C:\Windows\System32\drivers\etc\hosts
+4.在打开的host文件中修改你要添加的内容，最后保存。
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/c3be6469/" title="Hugo迁移笔记">Hugo迁移笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-14T08:19:25.000Z" title="发表于 2020-05-14 16:19:25">2020-05-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hugo/">hugo</a></span></div><div class="content">最好首先克隆github上的源码。
+1git clone -b develop git@github.com:iwyang/hugo.git hugo --recursive
+
+ 首先当然是备份博客源文件。
+更换服务器参考：
+
+Hugo部署到centos —服务器操作部分
+Hugo部署到ubuntu —服务器操作部分
+
+更换电脑、重装系统本地操作参考：hugo部署到coding—本地操作部分，重新配置环境，生成公钥。
+注意最后不用初始化hugo，因为我们已经有了博客原文件了。
+服务器上的操作如果是部署到服务器，先将服务器原来的SSH 公钥先删除，再上传新的SSH 公钥。具体操作如下:
+服务器上输入：
+123su gitcd ~/.sshrm -rf authorized_keys
+
+本地Git Bash里输入：
+1ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
+
+如果在git bash中输入ssh git@服务器的IP地址,能够远程登录的话，则表示设置成功了。如若还是要输入密码，就修改目录权限：
+12chmod 600 ~/.ssh/autho ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/58fed3fc/" title="Nginx配置ssl证书">Nginx配置ssl证书</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-13T18:07:25.000Z" title="发表于 2020-05-14 02:07:25">2020-05-14</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/nginx/">nginx</a></span></div><div class="content">启用阿里免费证书申请证书查看：申请免费DV试用证书
+安装证书基本操作参考：在Nginx&#x2F;Tengine服务器上安装证书，这里具体讲下Nginx上的配置。
+1.在nginx根目录（默认为&#x2F;etc&#x2F;nginx）下创建目录cert。
+12cd /etc/nginxmkdir cert
+
+2.把下载的证书两个文件.pem和.key上传到目录cert中。
+3.修改nginx配置文件。vi /etc/nginx/conf.d/hexo.conf
+12345678910111213141516171819202122232425262728293031323334353637383940server &#123;    listen 80;    server_name bore.vip www.bore.vip;    rewrite ^(.*)$ https://$server_name$1 permanent;&#125;server &#123;   listen 443;  root /var/www/hexo;  server_name bore.vip w ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/99e0f84a/" title="Hugo部署到centos服务器">Hugo部署到centos服务器</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-13T02:05:25.000Z" title="发表于 2020-05-13 10:05:25">2020-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/">服务器</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hugo/">hugo</a></span></div><div class="content"> 服务器环境：Centos 8 x64
+本地环境：Win10 x64
+本地操作参考：hugo部署到coding&amp;gitee-本地操作部分
+服务器操作
+注意：这里是参照服务器搭建hexo，所以代码里hexo没有改成hugo，不过这没有任何影响。
+
+准备工作：如果服务器端口不是22，先要更改SSH端口，
+12vi /etc/ssh/sshd_configport 22
+
+然后重启生效。
+首先，在服务器上安装 Git 和 nginx。
+2021.5.27 注意最好不要执行下面第一步升级操作，不然升级到最后一步会卡死，最后导致后面无法启动nginx。
+
+12yum update -yyum install git-core nginx -y
+
+如果是centos 7，先要安装安装epel：yum install epel-release，才能安装nginx。
+Nginx 安装完成后需要手动启动，启动Nginx并设置开机自启：
+12systemctl start nginxsystemctl enable nginx
+
+如果开启了防火墙，记得添加 HTTP 和 HTTPS 端口到防火墙允 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/aa22a796/" title="hugo部署到coding&amp;备份源码">hugo部署到coding&amp;备份源码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-12T17:42:25.000Z" title="发表于 2020-05-13 01:42:25">2020-05-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hugo/">hugo</a></span></div><div class="content">本地操作安装GIt本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量：右键我的电脑 –&gt; 属性，然后点击高级系统设置 –&gt; 环境变量 –&gt; 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:
+123D:\Program Files\Git\binD:\Program Files\Git\mingw64\libexec\git-coreD:\Program Files\Git\mingw64\bin
+
+配置SSH 公钥Windows 上安装 Git for Windows 之后在开始菜单里打开 Git Bash 输入：
+12git config --global user.name &quot;你的用户名&quot;git config --global user.email &quot;你的电子邮箱&quot;
+
+1234cd ~mkdir .sshcd .sshssh-keygen -t rsa
+
+在系统当前用户文件夹下生成了私钥 id_rsa 和公钥 id_rsa.pub。
+初始化 Hugo安装hugowindows1 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/c5bb486d/" title="hexo通过git备份&amp;还原源码">hexo通过git备份&amp;还原源码</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-05-10T07:09:25.000Z" title="发表于 2020-05-10 15:09:25">2020-05-10</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content"> 上回做过hexo迁移笔记，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。
+
+Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。
+
+
+
+
+如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。我们采取的远程仓库部署策略是：使用coding的私人仓库，一个仓库两个分支。仓库即[yourname.coding.me]，一个分支[master]用于托管演示页面，一个分支[backup]用于备份Hexo博客站 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/b7fa73bc/" title="Hexo迁移笔记">Hexo迁移笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-27T08:27:11.000Z" title="发表于 2020-04-27 16:27:11">2020-04-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">1. 更换电脑、重装系统1git clone -b backup git@github.com:iwyang/iwyang.github.io.git blog 
+
+1234cd blognpm install -g hexo-cli	    npm install	hexo s
+
+最后将服务器原来的SSH 公钥先删除，再上传新的SSH 公钥。具体操作如下:
+服务器上输入：
+123su gitcd ~/.sshrm -rf authorized_keys
+
+本地Git Bash里输入：
+1ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
+
+如果在git bash中输入ssh git@服务器的IP地址,能够远程登录的话，则表示设置成功了。如若还是要输入密码，就修改目录权限：
+12chmod 600 ~/.ssh/authorized_keyschmod 700 ~/.ssh
+
+登录成功会提示：
+123$ ssh git@104.224.191.88Last login: Sat Feb 26 02:33:30 2022 from 171.81.15 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/6b1d45d4/" title="hexo已使用插件备忘">hexo已使用插件备忘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-26T13:24:16.000Z" title="发表于 2020-04-26 21:24:16">2020-04-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">Hexo 一键部署插件地址
+hexo-deployer-git
+
+安装配置安装插件：
+1npm install hexo-deployer-git --save
+
+然后修改站点配置文件_config.yml 中的配置：
+123deploy: type: git repo: git@blog.yizhilee.com:hexo.git
+
+Hexo 本地搜索功能地址
+hexo-generator-searchdb
+
+安装配置1npm install hexo-generator-search --save
+
+然后我们修改站点配置_config.yml 文件，添加如下内容：
+1234search:  path: search.xml  field: all  content: true
+
+
+path：索引文件的路径，相对于站点根目录
+field：搜索范围，默认是 post，还可以选择 page、all，设置成 all 表示搜索所有页面
+limit：限制搜索的条目数
+
+然后修改主题配置文件next.yml：
+123local_search:-  enable: false+  enable:  ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/35679e29/" title="Hexo-NexT (v7.7.2) 主题配置">Hexo-NexT (v7.7.2) 主题配置</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-26T04:03:16.000Z" title="发表于 2020-04-26 12:03:16">2020-04-26</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">2020.8.1 Hexo 5.0后要将主题配置文件复制到站点根目录，然后重命名为 _config.next.yml
+
+获取 NexT下载最新 release 版本通常情况下请选择 stable 版本。推荐不熟悉的用户按此方式进行。
+这种方式将仅提供最新的 release 版本（其中不附带 .git 目录）。因此，你无法通过 git 更新这一方式安装的主题。
+
+更新：推荐使用独立的配置文件（数据文件）而不在主题源代码进行更改，便于后续的更新（下载最新版本，替换掉旧版本）。
+站点配置
+设置 hexo 的 next 主题我们在站点的配置文件_config.yml中找到 theme 后修改：theme: next  # 配置成刚下载的next主题
+配置 hexo 网站相关信息12345678# Sitetitle:          # 网站标题subtitle:       # 网站副标题description:    # 描述，介绍网站的keywords:       # 网站的关键字author:         # 博主姓名language: zh-CN # 语言：zh-CN 是简体 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/b33dfdc7/" title="微课的教学设计与制作">微课的教学设计与制作</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-04-25T09:04:26.000Z" title="发表于 2020-04-25 17:04:26">2020-04-25</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%AE%BA%E6%96%87/">论文</a></span></div><div class="content">摘 要当今世界已进入信息时代，在高速发展的信息时代，信息日益成为社会各领域中最活跃、最具有决定意义的因素。信息时代给教育注入了新的生机和活力，也给教育提出了更高的要求。要适应信息时代，教育必须实现信息化。教育信息化要求在教育过程中较全面地运用以计算机、多媒体和网络通讯为基础的现代信息技术，促进教育改革。微课正是在这种背景下产生的。2012年11月，全国首届微课大赛在武汉启动，并已经在全国300多个城市陆续开展。参赛微课上传到云平台，教育资源全国共享，引爆了全国“微课热”。本文主要就微课的教学设计与制作这两个方面进行讨论，希望对微课的发展有一点启示作用。
+【关键词】微课 教学设计 制作
+The instructional design and production of micro-lecture
+AbstractToday, the world has entered the information age. In the rapid development of the information age, information is increasingly becoming the ...</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/8/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/#content-inner">8</a><span class="page-number current">9</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/10/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">我生本无乡，心安是归处</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">69</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E5%AD%A6/"><span class="card-category-list-name">教学</span><span class="card-category-list-count">23</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/pr/" style="font-size: 1.25em; color: rgb(176, 101, 47)">pr</a><a href="/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/" style="font-size: 1.22em; color: rgb(135, 90, 159)">电子相册</a><a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 1.32em; color: rgb(23, 50, 142)">视频</a><a href="/tags/AE/" style="font-size: 1.15em; color: rgb(60, 21, 145)">AE</a><a href="/tags/excel/" style="font-size: 1.28em; color: rgb(187, 184, 102)">excel</a><a href="/tags/linux/" style="font-size: 1.25em; color: rgb(163, 0, 27)">linux</a><a href="/tags/flash/" style="font-size: 1.15em; color: rgb(0, 152, 78)">flash</a><a href="/tags/tips/" style="font-size: 1.42em; color: rgb(120, 57, 21)">tips</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.25em; color: rgb(154, 144, 44)">服务器</a><a href="/tags/hugo/" style="font-size: 1.38em; color: rgb(141, 110, 136)">hugo</a><a href="/tags/hexo/" style="font-size: 1.45em; color: rgb(167, 102, 116)">hexo</a><a href="/tags/github/" style="font-size: 1.35em; color: rgb(191, 151, 137)">github</a><a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.15em; color: rgb(183, 198, 190)">图床</a><a href="/tags/halo/" style="font-size: 1.22em; color: rgb(101, 150, 174)">halo</a><a href="/tags/docker/" style="font-size: 1.15em; color: rgb(81, 54, 68)">docker</a><a href="/tags/nginx/" style="font-size: 1.18em; color: rgb(160, 71, 158)">nginx</a><a href="/tags/ps/" style="font-size: 1.28em; color: rgb(124, 182, 38)">ps</a><a href="/tags/win10/" style="font-size: 1.28em; color: rgb(75, 123, 19)">win10</a><a href="/tags/chatgpt/" style="font-size: 1.15em; color: rgb(70, 187, 63)">chatgpt</a><a href="/tags/word/" style="font-size: 1.18em; color: rgb(146, 164, 185)">word</a><a href="/tags/ppt/" style="font-size: 1.18em; color: rgb(9, 47, 130)">ppt</a><a href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.38em; color: rgb(116, 96, 54)">一年级数学</a><a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 1.18em; color: rgb(4, 186, 158)">练习题</a><a href="/tags/%E4%B8%89%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.28em; color: rgb(166, 172, 80)">三年级数学</a><a href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" style="font-size: 1.22em; color: rgb(27, 85, 26)">教学反思</a><a href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/" style="font-size: 1.22em; color: rgb(118, 178, 144)">教学设计</a><a href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.35em; color: rgb(171, 145, 51)">二年级数学</a><a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 1.18em; color: rgb(96, 20, 99)">论文</a><a href="/tags/%E9%98%B4%E5%BD%B1%E9%9D%A2%E7%A7%AF/" style="font-size: 1.15em; color: rgb(176, 96, 51)">阴影面积</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">2024年04月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">2023年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">2023年07月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">2023年06月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">2023年03月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">2022年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">2022年08月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">2022年07月</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">92</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-04-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">119.2k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2024-11-09T04:46:32.342Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2024 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
