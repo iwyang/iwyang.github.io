@@ -1322,7 +1322,7 @@ function getData() {
 
 查看：https://blog.leonus.cn/2022/weibo.html
 
-## 友链朋友圈
+## ~~友链朋友圈~~（弃用，用下方的）
 
 
 
@@ -1403,6 +1403,173 @@ skip_render:
     - 'demo/*.html'
     - 'demo/**'
 ```
+
+## 配置友链朋友圈
+
++ [Friend-Circle-Lite](https://github.com/willow-god/Friend-Circle-Lite)
++ [文档地址](https://blog.liushen.fun/posts/4dc716ec/)
+
+### 准备工作
+
+博客根目录执行：
+
+```
+npm install js-yaml --save
+
+npm install yamljs
+```
+
+然后在博客根目录添加文件link.js，写入以下代码：
+
+```yaml
+const YML = require('yamljs')
+const fs = require('fs')
+
+const blacklist = ["友站名称1", "友站名称2", "友站名称3"]; // 由于某种原因，不想订阅的列表
+
+let friends = [],
+    data_f = YML.parse(fs.readFileSync('source/_data/link.yml').toString().replace(/(?<=rss:)\s*\n/g, ' ""\n'));
+
+data_f.forEach((entry, index) => {
+    let lastIndex = 2;
+    if (index < lastIndex) {
+        const filteredLinkList = entry.link_list.filter(linkItem => !blacklist.includes(linkItem.name));
+        friends = friends.concat(filteredLinkList);
+    }
+});
+
+// 根据规定的格式构建 JSON 数据
+const friendData = {
+    friends: friends.map(item => {
+        return [item.name, item.link, item.avatar];
+    })
+};
+
+// 将 JSON 对象转换为字符串
+const friendJSON = JSON.stringify(friendData, null, 2);
+
+// 写入 friend.json 文件
+fs.writeFileSync('./source/friend.json', friendJSON);
+
+console.log('friend.json 文件已生成。');
+
+```
+
+按照需求修改其中的黑名单，该黑名单可以用于排除一些采集站之类的灌水文章，其中填写对应站点的名称
+
+### json获取
+
+然后再在根目录执行：
+
+```
+node link.js
+```
+
+你将会在source文件中发现文件friend.json，即为对应格式文件，下面正常hexo三件套即可放置到网站根目录。
+
+为了更加方便，可以在博客根目录添加运行脚本：
+
+```
+#!/bin/bash
+echo -e "\033[0;32mDeploying updates to gitee...\033[0m"
+git add .	
+git commit -m "site backup"
+git push --force origin backup
+node link.js
+hexo clean
+hexo g -d
+```
+
+### action配置
+
++ Fork 本仓库:
+  点击页面右上角的 Fork 按钮，将本仓库复制到你自己的GitHub账号下。
+
++ 配置 Secrets:
+  在你 Fork 的仓库中，依次进入 Settings -> Secrets -> New repository secret，添加以下 Secrets：
+
+PAT_TOKEN: （2024-09-05更新）已弃用，无需添加。
+SMTP_PWD: SMTP 服务器的密码，用于发送电子邮件。
+
+### **配置action权限**：
+
+在设置中，点击action，拉到最下面，勾选Read and write permissions选项并保存，确保action有读写权限。
+
+启用 GitHub Actions:
+GitHub Actions 已经配置好在仓库的 .github/workflows/*.yml 文件中，当到一定时间时将自动执行，也可以手动运行。
+其中，每个action功能如下：
+
+friend_circle_lite.yml实现核心功能，爬取并发送邮箱；
+deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论，并关闭issue；
+设置issue格式：
+这个我已经设置好了，你只需要进行自定义即可。
+
+### 配置选项
+
++ 爬虫相关配置(必选)
+  使用 requests 库实现友链文章的爬取，并将结果存储到根目录下的 all.json 文件中。
+
+```yaml
+spider_settings:
+  enable: true
+  json_url: "https://bore.vip/friend.json"
+  article_count: 5
+  merge_result:
+    enable: true
+    merge_json_url: "https://fc.liushen.fun"
+
+```
+
+enable：开启或关闭，默认开启；
+
+json_url：友链朋友圈通用爬取格式第一种，填写上面生成的json文件网络地址即可。
+
+article_count：每个作者留存文章个数，建议不要太多，五个正好合适。
+
+marge_result：是否合并多个json文件，若为true则会合并指定网络地址和本地地址的json文件，建议在自部署部分使用，如果你有多个结果需要合并也可以使用，该部分需要/all.json和/errors.json地址可访问。
+
+enable：是否启用合并功能，该功能提供与自部署的友链合并功能，可以解决服务器部分国外网站，服务器无法访问的问题
+
+marge_json_path：请填写网络地址的json文件，用于合并，不带最后的斜杠！！！
+
+### 测试
+
+由于在action中请求了github api，有较为严格的限额，所以我将更新后自动执行action的触发器关掉了，防止多次重复请求，你可以自行点击并运行action，如果在Check RSS feeds部分中，获取到了文章,并且正常提交到仓库中，则基本实现友链朋友圈功能。你可以在仓库根目录下找到all.json文件，里面即为所有的文章，程序已经按照时间顺序进行排序。
+
+### 前端部署
+
+vercel 部署完成后，检查对应页面，如果页面中没有数据，且 /all.json 路径无法访问可能是部署到main分支了，可以通过 setting-git-Production Branch ，填写为page并重新进行部署即可。
+
+vercel—Deployments—右上角三点—create development
+
+这样，我们就可以通过地址https://fc.liushen.fun/all.json访问到你的文章内容，并且因为文件非常小，访问体验也非常不错，并且不会因为频繁请求不同api而过量使用vercel提供的edge requests次数。
+
+### 部署到页面
+
+下面在你的页面md文件中直接放置以下内容：
+
+```
+<div id="friend-circle-lite-root"></div>
+<script>
+    if (typeof UserConfig === 'undefined') {
+        var UserConfig = {
+            // 填写你的fc Lite地址
+            private_api_url: 'https://f.bore.vip/',
+            // 点击加载更多时，一次最多加载几篇文章，默认20
+            page_turning_number: 24,
+            // 头像加载失败时，默认头像地址
+            error_img: 'https://pic.imgdb.cn/item/6695daa4d9c307b7e953ee3d.jpg',
+        }
+    }
+</script>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css">
+<script src="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js"></script>
+
+```
+
+注意其中的private_api_url尾部需要/防止拼接路径时出现错误。
+
+hexo三联后，即可查看效果，本站部署的页面你可以通过顶部导航栏直接进入查看效果。
 
 ## 更新记录
 
