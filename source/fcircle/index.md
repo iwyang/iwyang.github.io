@@ -4,21 +4,18 @@ date: 2022-08-02 10:55:04
 comments: false
 aside: true
 ---
-<div id="hexo-circle-of-friends-root"></div>
+<div id="friend-circle-lite-root"></div>
 <script>
-    let UserConfig = {
-        // 填写你的api地址
-        private_api_url: 'https://f.bore.vip/',
-        // 初始加载几篇文章
-        page_init_number: 20,
-        // 点击加载更多时，一次最多加载几篇文章，默认10
-        page_turning_number: 10,
-        // 头像加载失败时，默认头像地址
-        error_img: 'https://sdn.geekzu.org/avatar/57d8260dfb55501c37dde588e7c3852c',
-        // 进入页面时第一次的排序规则
-        sort_rule: 'created',
-        // 本地文章缓存数据过期时间（天）
-        expire_days: 1, 
+    if (typeof UserConfig === 'undefined') {
+        var UserConfig = {
+            // 填写你的fc Lite地址
+            private_api_url: 'https://f.bore.vip/',
+            // 点击加载更多时，一次最多加载几篇文章，默认20
+            page_turning_number: 24,
+            // 头像加载失败时，默认头像地址
+            error_img: 'https://pic.imgdb.cn/item/6695daa4d9c307b7e953ee3d.jpg',
+        }
     }
 </script>
-<script type="text/javascript" src="https://npm.elemecdn.com/fcircle-theme-yyyz@1.0.13/dist/fcircle.min.js"></script>
+<link rel="stylesheet" href="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css">
+<script src="https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js"></script>
