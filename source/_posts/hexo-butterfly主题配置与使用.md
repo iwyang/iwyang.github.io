@@ -16,7 +16,7 @@ cover: false
 
 开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn 'https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}
 
-在你的 Hexo 根目录里：
+在你的 Hexo 根目录里：  
 
 ```powershell
 npm i hexo-theme-butterfly
