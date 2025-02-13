@@ -41,7 +41,7 @@ aside: false
         api: 'https://kkapi.bore.vip/',
         author: '62e664654423f520964e0d43',
         pageSize: 10,
-        loading_img: 'https://bu.dusays.com/2022/05/01/626e88f349943.gif',
+        loading_img: '/img/loading.gif',
         speakPage: '/say',
         githubClientId: 'Iv1.c90b52a4e197df3c',
         hideComment: true,
