@@ -1,5 +1,5 @@
 ---
-title: 查看Windows和Office激活状态的方法
+title: 查看Windows和Office激活状态的方法&&安装方法
 categories:
   - 技术
 tags:
@@ -12,8 +12,12 @@ keywords:
 description:
 top_img:
 cover: false
-typora-root-url: ..
+typora-root-url: 
 ---
+
+## 安装
+
+使用第三方工具Office Tool Plus，搜下载链即可，论坛上也有
 
 ##  win10
 
