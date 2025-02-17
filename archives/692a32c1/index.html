@@ -1,0 +1,387 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>chatgpt使用方法 | Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta name="description" content="如果使用中转api key，代理地址一定要填如下形式（&#x2F;v1&#x2F;chat&#x2F;completions一定要加上），才能在wx某模块正常使用。 1https:&#x2F;&#x2F;api.xty.app&#x2F;v1&#x2F;chat&#x2F;completions  不同的客户端需要填写不同的BASE_URL, 请尝试如下地址 https:&#x2F;&#x2F;api.chatgptid.net&#x2F; 或https:&#x2F;&#x2F;api.ch">
+<meta property="og:type" content="article">
+<meta property="og:title" content="chatgpt使用方法">
+<meta property="og:url" content="https://bore.vip/archives/692a32c1/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:description" content="如果使用中转api key，代理地址一定要填如下形式（&#x2F;v1&#x2F;chat&#x2F;completions一定要加上），才能在wx某模块正常使用。 1https:&#x2F;&#x2F;api.xty.app&#x2F;v1&#x2F;chat&#x2F;completions  不同的客户端需要填写不同的BASE_URL, 请尝试如下地址 https:&#x2F;&#x2F;api.chatgptid.net&#x2F; 或https:&#x2F;&#x2F;api.ch">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/cover/chatgpt.jpg">
+<meta property="article:published_time" content="2023-03-05T12:21:02.000Z">
+<meta property="article:modified_time" content="2025-02-17T12:54:42.717Z">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="chatgpt">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/cover/chatgpt.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/archives/692a32c1/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'chatgpt使用方法',
+  isPost: true,
+  isHome: false,
+  isHighlightShrink: false,
+  isToc: true,
+  postUpdate: '2025-02-17 20:54:42'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="post" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div id="post"><div id="post-info"><h1 class="post-title">chatgpt使用方法</h1><div id="post-meta"><div class="meta-firstline"><span class="post-meta-date"><i class="far fa-calendar-alt fa-fw post-meta-icon"></i><span class="post-meta-label">发表于</span><time class="post-meta-date-created" datetime="2023-03-05T12:21:02.000Z" title="发表于 2023-03-05 20:21:02">2023-03-05</time><span class="post-meta-separator">|</span><i class="fas fa-history fa-fw post-meta-icon"></i><span class="post-meta-label">更新于</span><time class="post-meta-date-updated" datetime="2025-02-17T12:54:42.717Z" title="更新于 2025-02-17 20:54:42">2025-02-17</time></span><span class="post-meta-categories"><span class="post-meta-separator">|</span><i class="fas fa-inbox fa-fw post-meta-icon"></i><a class="post-meta-categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span></div><div class="meta-secondline"><span class="post-meta-separator">|</span><span class="post-meta-wordcount"><i class="far fa-file-word fa-fw post-meta-icon"></i><span class="post-meta-label">字数总计:</span><span class="word-count">2.2k</span><span class="post-meta-separator">|</span><i class="far fa-clock fa-fw post-meta-icon"></i><span class="post-meta-label">阅读时长:</span><span>6分钟</span></span></div></div></div><article class="post-content" id="article-container"><p>  <strong>如果使用中转api key，代理地址一定要填如下形式（&#x2F;v1&#x2F;chat&#x2F;completions一定要加上），才能在wx某模块正常使用。</strong></p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">https://api.xty.app/v1/chat/completions</span><br></pre></td></tr></table></figure>
+
+<p><strong>不同的客户端需要填写不同的BASE_URL, 请尝试如下地址</strong></p>
+<p><a target="_blank" rel="noopener external nofollow noreferrer" href="https://api.chatgptid.net/">https://api.chatgptid.net/</a> 或<a target="_blank" rel="noopener external nofollow noreferrer" href="https://api.chatgptid.net/v1">https://api.chatgptid.net/v1</a> 或<a target="_blank" rel="noopener external nofollow noreferrer" href="https://api.chatgptid.net/v1/chat/completions">https://api.chatgptid.net/v1/chat/completions</a></p>
+<hr>
+<p>0.解释的更简单些</p>
+<p>1.请帮我用两句话总结以下内容：  </p>
+<p>2.请帮我（用悲伤的语气）改写以下内容：</p>
+<p>3.利用以下内容： 将它改写成一首诗</p>
+<p>4.写一篇题为“文章标题”3000字论文，论文末尾附上参考文献</p>
+<p>6.常用指令：</p>
+<p>形容词：</p>
+<p>以中年人语气</p>
+<p>以年轻人语气</p>
+<p>有趣活泼的</p>
+<p>正式的</p>
+<p>7.（1）请写出十个吸引人的关于泡咖啡的Instagram post标题</p>
+<p>（2）请写出“文章标题”Instagram post内文</p>
+<p>8.角色脚本：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/f/awesome-chatgpt-prompts">https://github.com/f/awesome-chatgpt-prompts</a></p>
+<p>接下来都以中文来回答</p>
+<p>9.脚本应用程序：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/lencx/ChatGPT">https://github.com/lencx/ChatGPT</a></p>
+<p>（1）加载脚本</p>
+<p>preference—control center—language model—sync custom—sync （点击sync后，就会把所有脚本加载）</p>
+<p>（2）输入“&#x2F;”选择相应角色</p>
+<p><strong>10.角色扮演法提问</strong>(一个角色，一个聊天室)</p>
+<p>例如：</p>
+<blockquote>
+<p>请你扮演一位语言学习专家，擅长以有趣的方式教导一般人语言效果。我现在正在学习英文，在英文口说方面有困难，请给我五个练习英文口说的意见</p>
+</blockquote>
+<p><strong>11.固定角色设定</strong></p>
+<p>例一：</p>
+<blockquote>
+<p>请扮演一个专业文字编辑跟翻译，帮我归纳及重点整理英文内容，请使用简体中文回复，此规则应用所有我们的对话，规则不需要我再重复。</p>
+</blockquote>
+<p>例二：Email助理</p>
+<blockquote>
+<p>请扮演一个专业英文助理及翻译，帮助我回覆中文或是英文信件，内容要正式，此规则应用接下来所有对话，不需要我再重复</p>
+</blockquote>
+<p>例三：回一封信</p>
+<blockquote>
+<p>请帮我用友善的态度回复以下信件，我刚好那一天有私事不能参加，但很高兴收到邀请，祝活动顺利：”附上原信内容”</p>
+</blockquote>
+<p>例四：程式码老师</p>
+<blockquote>
+<p>请扮演一位Python老师，指导我写出我需要的Python程式码，此规则应用所有我们的对话，规则不需要我再重复。</p>
+</blockquote>
+<p><strong>12.指定作答风格</strong></p>
+<p>范例：目标读者为中老年人的新闻报道</p>
+<blockquote>
+<p>写一篇新闻报道，以中国记者的文笔，生动活泼地介绍过去五个重要的人工智能发展事件给中国的中老年族群，（不要提到“生动活泼地文笔”，不要提到“中老年族群”</p>
+</blockquote>
+<p>范例：目标读者为年轻读者的社群平台贴文 </p>
+<blockquote>
+<p>写一篇社群平台贴文,以年轻人编辑的文笔、非正式、casual的方式、加入大量的emoji ,生动活泼地介绍过去五个重要的人工智能发展的事件给中国的年轻族群</p>
+</blockquote>
+<p>范例：以简短的文字及表格整理作答</p>
+<blockquote>
+<p>请用一段简短的文字，解释什么是大型语言模型，举例三个语言模型及其特色，以表格呈现。</p>
+</blockquote>
+<p><strong>13.长篇文章创作</strong></p>
+<p>角色扮演+架构建立</p>
+<p>（1）范例：指定角色并提案文章标题</p>
+<blockquote>
+<p>请你扮演人工智慧专家，我要写一篇关于人工智慧的发展与AI人型机器人未来对人类生活的影响的长篇文章，这篇文章会发表在个人部落格，请列出十个吸引人的文章标题</p>
+</blockquote>
+<p>修改标题：<code>提供类似“AI人型机器人的崛起：改变未来生活的无限可能＂另外五个版本标题</code></p>
+<p>（1.1）请写出10个关于“即将被AI取代的工作”文章标题</p>
+<p>（2）请写出“AI人型机器人的变革之力：探索未来生活的新篇章”的文章大纲</p>
+<p>（3）请按照上面大纲写出“A部分”的内容</p>
+<p>（4）写文章常用指令：</p>
+<p>rephrase 重写</p>
+<p>lengthen 延伸</p>
+<p>shorten 浓缩</p>
+<p>explain 解释</p>
+<p>pull out keywords 抓关键字</p>
+<p>（5）重写（rephrase）“一段话”</p>
+<p><strong>13.资料归纳整理</strong></p>
+<p>范例：</p>
+<blockquote>
+<p>请扮演一个专业文字编辑及翻译，帮我归纳及重点整理以下新闻，请使用简体中文：“新闻或者是资料内容”</p>
+</blockquote>
+<p>范例：精准翻译并将专有名词原文附于译文后</p>
+<blockquote>
+<p>ChatGFT,请扮演一名专业的翻译者，将以下英文论文段落精地翻译成繁体中文，适用于学术论文。在翻译过程中，对于专有名词和带有引号的字词，请在繁体中文译文后用括号附上英文原文。例如：美德(virtue)丶汤姆(Tom)以及被引号包围的字词如”word”。请确保翻译结果字数不超过N个字，并在必要时将原文分成较小的段落进行翻译。</p>
+<p>“在这里贴上原文”</p>
+<p>根据以上要求，请将这雨个段落分别翻译成繁体中文，并在适当的地方加上英文原文。请注意保持翻译的精准性和一致性，并避免增加原文没有的句子。</p>
+</blockquote>
+<p><strong>14.ChatPDF</strong></p>
+<p><strong>15.ChatGPT标记法</strong>（gpt-4才能使用）</p>
+<p>范例：分批输入大量资料，使用@帮资料编号</p>
+<blockquote>
+<p>我接下来要在多个对话中，提供给你用 「@」编号的文章内容，请先记住，但 请不要摘要，此规则不需我再重复，适 用于接下来你所有回答</p>
+</blockquote>
+<ol>
+<li></li>
+</ol>
+<blockquote>
+<p>先记住@1的文章内容：<br>文章内容</p>
+</blockquote>
+<p>ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则</p>
+<p>2）</p>
+<blockquote>
+<p>综合总结@1@2@3全部内容</p>
+</blockquote>
+<p><strong>16.写电脑自动化程式</strong></p>
+<p><strong>17.Newbing</strong></p>
+<h3 id="附1：bwg无法使用chatgpt"><a href="#附1：bwg无法使用chatgpt" class="headerlink" title="附1：bwg无法使用chatgpt"></a>附1：bwg无法使用chatgpt</h3><p>解决方法：</p>
+<ol>
+<li>把VPS的IP伪装成家用IP。用warp来伪装，原理就是把VPS的出口流量转发到另一个IP（由cloudfare免费提供）上进行代理。<br>具体操作：在VPS上<code>bash &lt;(curl -fsSL git.io/warp.sh) d</code></li>
+<li>直接用一个解锁chatgpt的机场，例如<a target="_blank" rel="noopener external nofollow noreferrer" href="https://songshuyun.top./">https://songshuyun.top。</a></li>
+</ol>
+<p>参考：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/Alvin9999/new-pac/issues/1407">Chat GPT是不是</a></p>
+<blockquote>
+<p>PS：有些脚本自带分流，分流种类：</p>
+<p><strong>IPv6分流</strong>：</p>
+<ul>
+<li>可以指定网站只走IPv6，应用场景【1.Google人机验证 2.流媒体解锁】</li>
+<li>vps需支持IPv6</li>
+</ul>
+<p><strong>WARP分流</strong></p>
+<ul>
+<li>指定网站通过WARP分流 <strong>(如：chatgpt，记得不要设置warp全局，只需要添加openai.com域名即可，不然速度会降低）</strong></li>
+</ul>
+<p><strong>其他分流</strong></p>
+</blockquote>
+<h3 id="附2：ChatGPT-设置定时任务"><a href="#附2：ChatGPT-设置定时任务" class="headerlink" title="附2：ChatGPT 设置定时任务"></a>附2：ChatGPT 设置定时任务</h3><p>查看：<a href="/archives/964093b3/#ChatGPT%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1">ChatGPT 设置定时任务</a></p>
+<h3 id="附3：ChatGPTsed-替换冒号以及冒号后面内容"><a href="#附3：ChatGPTsed-替换冒号以及冒号后面内容" class="headerlink" title="附3：ChatGPTsed 替换冒号以及冒号后面内容"></a>附3：ChatGPTsed 替换冒号以及冒号后面内容</h3><blockquote>
+<p>windows 上使用linux命令，先安装：<a target="_blank" rel="noopener external nofollow noreferrer" href="https://git-scm.com/downloads">Git for Windows</a></p>
+</blockquote>
+<p>提问：<code>sed 替换冒号以及冒号后面内容</code></p>
+<p>在Linux和macOS系统中，你可以使用<code>sed</code>命令来替换冒号以及冒号后面的内容。<code>sed</code>是一个流编辑器，可以用于在文本中执行替换等操作。下面是使用<code>sed</code>命令替换冒号以及冒号后面的内容的示例：</p>
+<p>假设你有一个文本文件名为 <code>example.txt</code>，其内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一段文本: 冒号后面的内容将被删除。</span><br><span class="line">另一段文本: 这也会被删除。</span><br><span class="line">这是没有冒号的文本，不会受影响。</span><br></pre></td></tr></table></figure>
+
+<p>使用<code>sed</code>命令删除冒号以及冒号后面的内容：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed <span class="string">&#x27;s/:.*//&#x27;</span> example.txt &gt; output.txt</span><br></pre></td></tr></table></figure>
+
+<p>执行以上命令后，会生成一个名为 <code>output.txt</code> 的新文件，其内容如下：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">这是一段文本</span><br><span class="line">另一段文本</span><br><span class="line">这是没有冒号的文本，不会受影响。</span><br></pre></td></tr></table></figure>
+
+<p>解释一下<code>sed</code>命令的含义：</p>
+<ul>
+<li><code>s/</code> 表示替换操作的开始。</li>
+<li><code>:</code> 是要查找的文本，即冒号。</li>
+<li><code>.*</code> 表示匹配冒号后的任意字符（包括冒号本身）。</li>
+<li><code>/</code> 用于分隔查找的文本和替换的文本。</li>
+<li>空格后面的是替换的文本，这里我们用空字符串表示删除匹配到的内容。</li>
+<li><code>example.txt</code> 是要处理的输入文件。</li>
+<li><code>&gt; output.txt</code> 表示将输出结果重定向到名为 <code>output.txt</code> 的文件。</li>
+</ul>
+<p>请注意，在执行 <code>sed</code> 命令时，原始文件并没有被直接修改，而是将修改后的内容输出到另一个文件。如果需要直接在原始文件上进行修改，可以使用 <code>-i</code> 参数，不过在使用时要小心，确保备份原始文件以防止数据丢失。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sed -i <span class="string">&#x27;s/:.*//&#x27;</span> example.txt</span><br></pre></td></tr></table></figure>
+
+<p>这样会直接在 <code>example.txt</code> 文件上进行修改。</p>
+<blockquote>
+<p>PS：合并txt（cmd上操作）： <code>type *txt&gt;&gt;all.txt</code></p>
+</blockquote>
+</article><div class="tag_share"><div class="post-meta__tag-list"><a class="post-meta__tags" href="/tags/chatgpt/">chatgpt</a></div><div class="post_share"></div></div><hr class="custom-hr"/><div id="post-comment"><div class="comment-head"><div class="comment-headline"><i class="fas fa-comments fa-fw"></i><span> 评论</span></div></div><div class="comment-wrap"><div><div id="twikoo-wrap"></div></div></div></div></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的博客</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget" id="card-toc"><div class="item-headline"><i class="fas fa-stream"></i><span>目录</span><span class="toc-percentage"></span></div><div class="toc-content"><ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%841%EF%BC%9Abwg%E6%97%A0%E6%B3%95%E4%BD%BF%E7%94%A8chatgpt"><span class="toc-number">1.</span> <span class="toc-text">附1：bwg无法使用chatgpt</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%842%EF%BC%9AChatGPT-%E8%AE%BE%E7%BD%AE%E5%AE%9A%E6%97%B6%E4%BB%BB%E5%8A%A1"><span class="toc-number">2.</span> <span class="toc-text">附2：ChatGPT 设置定时任务</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%99%843%EF%BC%9AChatGPTsed-%E6%9B%BF%E6%8D%A2%E5%86%92%E5%8F%B7%E4%BB%A5%E5%8F%8A%E5%86%92%E5%8F%B7%E5%90%8E%E9%9D%A2%E5%86%85%E5%AE%B9"><span class="toc-number">3.</span> <span class="toc-text">附3：ChatGPTsed 替换冒号以及冒号后面内容</span></a></li></ol></div></div><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="readmode" type="button" title="阅读模式"><i class="fas fa-book-open"></i></button><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button class="close" id="mobile-toc-button" type="button" title="目录"><i class="fas fa-list-ul"></i></button><a id="to_comment" href="#post-comment" title="直达评论"><i class="fas fa-comments"></i></a><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"><script>(() => {
+  const getCount = () => {
+    const countELement = document.getElementById('twikoo-count')
+    if(!countELement) return
+    twikoo.getCommentsCount({
+      envId: 'https://t.bore.vip',
+      region: '',
+      urls: [window.location.pathname],
+      includeReply: false
+    }).then(res => {
+      countELement.textContent = res[0].count
+    }).catch(err => {
+      console.error(err)
+    })
+  }
+
+  const init = () => {
+    twikoo.init(Object.assign({
+      el: '#twikoo-wrap',
+      envId: 'https://t.bore.vip',
+      region: '',
+      onCommentLoaded: () => {
+        btf.loadLightbox(document.querySelectorAll('#twikoo .tk-content img:not(.tk-owo-emotion)'))
+      }
+    }, null))
+
+    
+  }
+
+  const loadTwikoo = () => {
+    if (typeof twikoo === 'object') setTimeout(init,0)
+    else getScript('https://cdn.staticfile.org/twikoo/1.6.40/twikoo.all.min.js').then(init)
+  }
+
+  if ('Twikoo' === 'Twikoo' || !false) {
+    if (false) btf.loadComment(document.getElementById('twikoo-wrap'), loadTwikoo)
+    else loadTwikoo()
+  } else {
+    window.loadOtherComment = loadTwikoo
+  }
+})()</script></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
