@@ -8,7 +8,11 @@ abbrlink: b7fa73bc
 date: 2020-04-27 16:27:11
 cover: false
 ---
-### 1. 更换电脑、重装系统  
+### 1. 更换电脑、重装系统
+
+首先安装安装 Git 和 Node.js  ，然后配置好SSH 公钥，将`id_rsa.pub`上传到博客仓库的 Settings->Deploy keys->add deploy key。
+
+如果提示port 22问题，参考 [port22](/archives/2284a148/?highlight=port)
 
 ```bash
 git clone -b backup git@github.com:iwyang/iwyang.github.io.git blog 
