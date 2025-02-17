@@ -44,11 +44,7 @@
     - name:  Leonus
       link: https://blog.leonus.cn/
       avatar: /img/link-img/leonus.jpg
-      descr: 进一寸有进一寸的欢喜。     
-    - name:  Eurkon
-      link: https://blog.eurkon.com
-      avatar: /img/link-img/eurkon.jpg
-      descr: 不只是代码的搬运工          
+      descr: 进一寸有进一寸的欢喜。             
     - name:  六月长河
       link: https://charlie-king.github.io/
       avatar: /img/link-img/kingpo.jpg
