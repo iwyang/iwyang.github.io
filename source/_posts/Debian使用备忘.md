@@ -559,6 +559,23 @@ systemctl daemon-reload
 
 5.最后把下载路径设置到`/home/admin`就OK了！
 
+## `qbittorrent-nox`忘记密码
+
+`cd / `
+
+`find -name qBittorrent.conf`
+
+```
+systemctl stop qbittorrent-nox
+vi ./.config/qBittorrent/qBittorrent.conf
+```
+
+把配置中的`Password_PBKDF2`删除这一行(vi按`dd`)
+
+```
+systemctl start qbittorrent-nox
+```
+
 ## Nginx反代qbittorrent-nox的Web-GUI
 
 ### 修改监听地址
