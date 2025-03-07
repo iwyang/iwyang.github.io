@@ -9,7 +9,7 @@ date: 2022-05-29 01:12:45
 cover: ../img/cover/debian.jpg
 ---
 
-由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。
+由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。  
 
 {% note warning flat %}
 Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
