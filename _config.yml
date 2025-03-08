@@ -162,4 +162,4 @@ deploy:
   delete: true  # 是否删除目标目录中多余的文件
   verbose: true # 显示详细日志
   ignore_errors: false # 是否忽略错误 
-  branch: master
+  # branch: master
