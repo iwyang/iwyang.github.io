@@ -18,7 +18,9 @@ top_img:
 
 ## 创建workflow
 
-创建新的workflow后在`sync.yml`输入里面的内容：
+创建新的workflow，在仓库右上角点`Add file`，先输入`workflows`文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名`sync.yml`。接着
+
+在`sync.yml`输入里面的内容：
 
 **官方：**
 
@@ -36,7 +38,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.8
+      - uses: tgymnich/fork-sync@v2.0
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
           owner: llvm
@@ -57,7 +59,7 @@ jobs:
   repo-sync:
     runs-on: ubuntu-latest
     steps:
-      - uses: tgymnich/fork-sync@v1.8
+      - uses: tgymnich/fork-sync@v2.0
         with:
           token: ${{ secrets.TOKEN }} #Github Token，记得加入secrets
           owner: ngosang # fork 的上游仓库 user
@@ -81,7 +83,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: tgymnich/fork-sync@v1.8
+      - uses: tgymnich/fork-sync@v2.0
         with:
           token: ${{ secrets.PERSONAL_TOKEN }}
           owner: mack-a
