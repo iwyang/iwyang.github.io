@@ -149,11 +149,11 @@ nofollow:
 # Deployment
 ## Docs: https://hexo.io/docs/one-command-deployment
 deploy:
-  type: git
-  repo:
-    github: git@github.com:iwyang/iwyang.github.io.git
-    # fwq: git@144.34.231.95:hexo.git
-    # gitee: git@gitee.com:iwyang/iwyang.git
+  # type: git
+  # repo:
+    # github: git@github.com:iwyang/iwyang.github.io.git
+    # # fwq: git@144.34.231.95:hexo.git
+    # # gitee: git@gitee.com:iwyang/iwyang.git
   type: rsync
   host: 144.34.231.95
   user: git
