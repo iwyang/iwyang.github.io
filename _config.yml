@@ -154,7 +154,6 @@ deploy:
     github: git@github.com:iwyang/iwyang.github.io.git
     # fwq: git@144.34.231.95:hexo.git
     # gitee: git@gitee.com:iwyang/iwyang.git
-deploy:
   type: rsync
   host: 144.34.231.95
   user: git
