@@ -13,7 +13,7 @@ cover: ../img/cover/debian.jpg
 
 {% note warning flat %}
 Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
-{% endnote %}
+{% endnote %}  
 
 {% note primary no-icon %}
 推荐使用terminal(ssh 工具) ，[finashell](https://www.hostbuf.com/) 也行。
