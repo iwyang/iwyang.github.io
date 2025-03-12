@@ -31,7 +31,7 @@ top_img:
 # Install
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s install /root
 # update
-curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s update /root
+curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s update 
 # Uninstall
 curl -fsSL "https://alist.nn.ci/v3.sh" | bash -s uninstall /root
 ```
