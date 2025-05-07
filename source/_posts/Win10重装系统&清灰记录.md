@@ -51,7 +51,7 @@ cover: false
 
 ~~0.办公室旧电脑安装精简版Win7，出现错误`Windows could not start the installation process`，解决方法：删除分区，重新分区。~~
 
-1.MSVCP120.dll错误
+**1.MSVCP120.dll错误**
 
 重新安装Visual C++ 2013运行库
 这是解决MSVCP120.dll问题最彻底的方法。访问微软官方网站下载vcredist_x86.exe（32位系统）或vcredist_x64.exe（64位系统），运行安装程序并按照提示完成安装。安装完成后建议重启计算机以确保所有更改生效。
