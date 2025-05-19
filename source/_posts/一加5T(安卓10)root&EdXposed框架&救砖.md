@@ -1,5 +1,5 @@
 ---
-title: 一加5T(安卓10)root&EdXposed框架&救砖
+title: 一加5T(安卓10)root&EdXposed框架&救砖&氧OS安装ColorOS的拨号程序
 categories:
   - 技术
 tags:
@@ -58,6 +58,15 @@ cover: false
 
 + 6.不知为什么升级到安卓10后，相机不能用了。以后就暂且用这个包：[终结之作-5T Beta30 纯净优化包](https://www.oneplusbbs.com/thread-4723496-1.html)。（这里好像是在升级到安卓10出现问题后，再卡刷这个包的，不知道能否直接从安卓7卡刷，以后有机会再测试吧，当然要注意`recovery`版本不能太低了，用`twrp-3.3.1`应该没问题）。
 
+## 氧OS安装ColorOS的拨号程序
+
+1. 手机上安装apkmirror installer程序：
+   - 可以直接从play市场搜索【apkmirror installer】
+   - 可以点击跳转play市场下载：https://play.google.com/store/apps/details?id=com.apkmirror.helper.prod
+   - 可以从apk mirror网站下载apkmirror installer：https://www.apkmirror.com/apk/apkmirror/apkmirror-installer-official/
+2. 下载ColorOS拨号安装包（apkm格式）：https://www.apkmirror.com/apk/coloros/odialer/ 。
+3. 使用apkmirror install安装第二步下好的包即可。
+
 ## 手机使用记录
 
 1. 2018年2月买的，用到2021年6月
@@ -67,4 +76,5 @@ cover: false
 
 + [1.OnePlus 5T Android 10 root亲测教程](https://www.oneplusbbs.com/thread-5460360-1.html)
 + [2.完美支持安卓10Xposed框架★EdXposed](https://www.oneplusbbs.com/forum.php?mod=viewthread&tid=4662409)
++ [3.一加手机刷氧OS后，如何安装ColorOS的拨号程序](https://www.daxiaamu.com/8498/)
 
