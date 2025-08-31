@@ -1,0 +1,328 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Bore&#39;s Notes">
+<meta property="og:url" content="https://bore.vip/page/5/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/avatar.jpg">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="个人博客,个人网站,hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/page/5/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bore\'s Notes',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-08-31 13:44:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/68e07e4a/" title="用pr制作《2021年春季运动会》电子相册">用pr制作《2021年春季运动会》电子相册</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-06-02T06:27:25.000Z" title="发表于 2021-06-02 14:27:25">2021-06-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/pr/">pr</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/">电子相册</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%A7%86%E9%A2%91/">视频</a></span></div><div class="content">用pr做了一个电子相册，参考： 使用 Premiere 把照片变成唯美动画效果。
+
+     
+    
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/1cf58c3e/" title="二年级数学下册第五单元《小蝌蚪的成长》教学设计">二年级数学下册第五单元《小蝌蚪的成长》教学设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-23T06:49:25.000Z" title="发表于 2021-04-23 14:49:25">2021-04-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/">教学设计</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content">一、 教学目标：
+1．借助数线和计数器进一步探索并掌握三位数连续退位减法的计算方法，经历与他人交流计算方法的过程，理解多位数减法的计算道理，并能正确计算。
+2．让学生在解决问题的过程中，能独立地进行简单的、有条理的思考，体验数学与日常生活的密切联系，增强应用数学的意识。
+二、教学重点：掌握三位数减三位数连续退位减法的计算方法，初步形成一定的计算能力。
+三、教学难点：经历探索三位数减三位数退位减法计算方法的过程，提高学生在自主探究过程中，解决实际问题的能力。
+四、教学课时：1课时
+五、教学手段：
+六、教学过程：
+（一）创设情境，导入新课
+1.猜谜：大脑袋，长尾巴，儿时无腿水中游。
+后腿伸，前腿到，游来游去找妈妈。     （答案：小蝌蚪）
+2.你们听过“小蝌蚪找妈妈”的故事吗？那么你们猜一猜是不是所有的小蝌蚪都会变成青蛙？事实上在100只小蝌蚪中，只有20只能变成青蛙。所以希望大家今后遇到小蝌蚪，要爱护它。那么今天我们这节课就一起来学习有关小蝌蚪的成长中的数学知识。
+（二）自主探究，学习新知
+1.出示书上表格，提问：说一说你能从中得到那些数学信息。
+2.提问：从这些数学信息中，你能提出哪 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/90a296ba/" title="二年级数学下册第五单元《小蝌蚪的成长》教学反思">二年级数学下册第五单元《小蝌蚪的成长》教学反思</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-04-23T04:40:43.000Z" title="发表于 2021-04-23 12:40:43">2021-04-23</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/">教学反思</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content">这是本学期我第二次上公开课，本次公开课的课题是《小蝌蚪的成长》，这是一节计算教学课。首先我用猜谜语的方式来导入新课，吸引了学生的注意力，进而引导学生以后遇到小蝌蚪要保护它，树立了学生的环保意识。在探究三位数减三位数连续退位减法的计算方法时，我充分鼓励学生大胆表达自己的计算方法。在拨计数器这一块，为了解决传统计数器不能“借一当十”问题，我利用希沃白板的“克隆与拖拽”功能来形象地给学生演示了“借一当十”的过程及原理，帮助学生更好地理解算法。纵观本节公开课，我觉得存在以下问题：
+
+在总结算法的过程中，应该多鼓励学生自己说，而不是自己一味去说。
+
+课堂活动组织不好，其实我一直想给他们分几个小组，从而在课堂上多开展分小组活动，但这个一直没有实施起来。
+
+时间没有把握好，在前面有些地方所花的时间过多，导致后面缺乏练习，这个以后要改进。
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/9d7a8c36/" title="二年级数学下册第四单元《铅笔有多长》教学反思">二年级数学下册第四单元《铅笔有多长》教学反思</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-31T03:07:16.000Z" title="发表于 2021-03-31 11:07:16">2021-03-31</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/">教学反思</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content">本次公开课课题是《铅笔有多长》，上课开始我带领学生复习了我们已经学习过的长度单位，以及如何用尺子测量物体的长度，使学生能够快速地进入学习状态。之后我设计了三个活动：认识分米；认识毫米；米、分米、厘米、毫米之间的关系来展开今天的新课学习。在课上我充分利用希沃电子白板，通过希沃视频展台让学生上来亲自演示测量铅笔的过程，增强了学生的动手操作能力。此外由于缺乏米尺等教具，我充分利用多媒体视频，向学生形象直观展示了米尺有关的知识以及如何用尺子测量硬币和银行卡的过程。纵观本次公开课主要存在以下问题：
+
+练一练第2题，有学生测量结果是1厘米1毫米，而有学生测量结果是1厘米2毫米。我没有具体说明产生误差的原因。
+
+课堂组织能力有些欠缺，有个别学生测量测量就玩起尺子了，我没有及时进行干预加以引导。
+
+缺乏对后进生的关注，个别学生测量出现问题，没有能够及时加以指导。
+
+
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/112d96b2/" title="二年级数学下册第四单元《铅笔有多长》教学设计">二年级数学下册第四单元《铅笔有多长》教学设计</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-29T19:03:25.000Z" title="发表于 2021-03-30 03:03:25">2021-03-30</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/">教学设计</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content"> 一、 教学目标：
+1、通过测量铅笔的长度的活动知道1分米、1毫米有多长，发展学生空间观念和动手操作能力。
+2、通过“估一估”、“量一量”等活动，发展学生的估测能力。
+3、掌握米、分米、厘米和毫米之间的关系，能进行简单的单位换算。
+二、教学重点：认识1分米和1毫米有多长，掌握米、分米、厘米和毫米之间的关系，能进行简单的单位换算。
+三、教学难点：会用分米、毫米表示物体的长度
+四、教学课时：1课时
+五、教学手段：
+六、教学过程：
+（一）复习旧知
+1.我们已经学习了哪两个长度单位？
+2.怎样用尺子测量物体的长度吗？
+3.在括号里填上合适的单位
+（二）探究新知
+活动一：认识分米
+1、认识分米
+师：请同学们先估计一下，这支铅笔有多长？
+生：4cm、9cm、12cm ……
+师：那么这支笔到底有多长呢？我们怎样才能知道呢？
+生：用尺子量
+师：测量时，需要注意什么呢？
+生：不能把尺子斜着量；
+铅笔的一端和0刻度对齐，看另一端和刻度几对齐，就读作几厘米。
+师：真聪明，你手中绿色纸条的长度就是这支铅笔的长度，那同学们就赶快拿出尺量一量吧！
+生：10cm 
+师：刚才我们量这支铅笔是10厘米，10厘米也可以用 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/fbe4984e/" title="二年级数学下册知识点总结">二年级数学下册知识点总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-27T05:12:25.000Z" title="发表于 2021-03-27 13:12:25">2021-03-27</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content">第一单元除法除法竖式四步：一商、二乘、三减、四比。
+第二单元方向与位置1.早晨上学，迎着太阳走，你的前面是东，后面是西，左边是北，右边是南。
+2.我们看到的红旗是迎风飘扬的，如果刮北风，红旗会向（南）面飘扬。
+解析：北风是从背面吹来的风，国旗应该是向风的反方向飘扬。
+3.旗杆的影子在西面，那么太阳在（东）面。
+解析：影子的方向总是和太阳的方向相反。
+4.树叶茂密的一面是南面,稀疏的一面是北面
+第三单元 生活中的大数1.一箱苹果不到40个，5个5个地数还多3个，6个6个地数还多3个，这箱苹果有第三个？
+解析：
+方法1，5个5个数：8，13，18，23，28，33，38
+ 6个6个数：9，15，21，27，33，39
+方法2，先不考虑多的3个，刚好数完。即是5的倍数又是6的倍数 6×5&#x3D;30，多3个：30+3&#x3D;33（个）
+方法3，最小公倍数
+第六单元 认识图形借助三角板画直角
+（1）先画一个点作为顶点。
+（2）再从顶点出发画一条直直的线。
+（3）使三角板上的直角顶点与这个点重合，一条直角边与这条直直的线重合，再从这个点出发沿三角板上的另一条直角边画一条直直的线。
+（4） ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/archives/538cd199/" title="希沃电子白板学习笔记"><img class="post-bg" src="/img/cover/seewo.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="希沃电子白板学习笔记"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/538cd199/" title="希沃电子白板学习笔记">希沃电子白板学习笔记</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-03-22T07:54:25.000Z" title="发表于 2021-03-22 15:54:25">2021-03-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content">希沃白板5
+播放PPT时，如果PPT大小与屏幕不兼容，长按“设置”键可快速调整使其适应屏幕大小。
+翻页按钮位于左右下角，点击数字预览。
+桌面两侧悬浮按钮（快速调出白板、笔、半屏等）
+手背、手心快速调出板擦。
+选择几何图形后，双击屏幕可快速画出图形。出现红点是正方形（正方体）。
+蒙层的使用（刮刮乐）
+
+
+要实现以上效果，切记首先要画两个矩形，然后双击输入文字，将需要设置蒙层这一形状置于顶层。千万不要先输入两个文本框，这样无法形成遮挡效果。
+
+二维码分享课件。
+
+导入PPT按钮在“云课件”最低端，如果扩展名是.ppt仅以背景形式导入，所以.ppt格式要转化为.pptx再导入。
+
+超链接可以快速调出授课工具、网盘存储常用的文件，超链接网页地址可以设为本地目录，超链接切换到公众号文章。
+
+如果背景图片使文字显示不清，可添加一个白色圆角矩形的形状，将其置于底层，然后调整其透明度。
+
+圆柱高矮的变化： 先画一个圆柱，再画一个能与圆柱底重合的椭圆，填充为白色，边框为黑色。再画一个填充和边框都是白色的长方形，接着将椭圆调整到合适位置后置顶层，最后将椭圆和长方形组合。
+
+课堂活动（超级分类）隐藏文字：（ ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/3038d34c/" title="快手抖音视频中的背景音乐怎么提取下载">快手抖音视频中的背景音乐怎么提取下载</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2021-01-16T06:28:25.000Z" title="发表于 2021-01-16 14:28:25">2021-01-16</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content">
+1.下载抖音视频
+
+方法：前往 dy114短视频解析下载在线小工具，输入你的小视频分享链接地址，下载视频
+ps：该小工具支持解析下载目前主流的抖音、快手、微博、微视、皮皮虾、皮皮搞笑、火山小视频、最右、西瓜视频、今日头条、秒拍小视频，而且是无水印下载原版高清视频哦。值得大家收藏。
+
+2.下载视频音频提取工具
+
+方法：电脑上下载按照QQ音影软件，软件地址：https://player.qq.com/
+
+3.提取视频中的背景音乐与歌曲
+
+方法：用安装好的软件打开你下载好的抖音等短视频，点击右下角的“音影工具箱”，选择“转码压缩”，格式选择为“音频”，设置好提取的音频保存地址，即可提取获取视频的歌曲、背景音和独白。
+操作截图提示如下：
+（1）点击右下角的“音影工具箱”
+（2）选择“转码压缩”
+（3）设置格式，提取视频中的歌曲、背景音影、对白等音频。
+
+参考链接：快手抖音视频中的背景音乐怎么提取下载
+</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/2c061816/" title="二年级数学上册知识点总结">二年级数学上册知识点总结</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-11-06T07:04:25.000Z" title="发表于 2020-11-06 15:04:25">2020-11-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content">人民币计算10元-2元6角&#x3D;7元4角
+解析：将10元里拿出1元当作10角，也就是将10元看成9元10角。然后就元减元，角减角。
+5元6角+3元7角&#x3D;9元3角
+解析：满10角要进1元，直接写成竖式比较简单。
+6元2角-2元6角&#x3D;3元6角
+解析：写成竖式比较简单。
+画线段问题：画线段，端点是用小圆点还是小竖线？
+答：其实，画线段用小圆点和小竖线都可以。
+难题（1）一根铁丝绕瓶子一圈多12厘米，绕瓶子两圈多4厘米，这根铁丝有多长？
+解析：绕一圈多12cm，绕两圈多4cm。           则一圈长度为12-4&#x3D;8cm           铁丝长度为8+12&#x3D;20cm           或8x2+4&#x3D;20cm
+（2）有一堆积木，比60多，比70少，如果这堆积木分给一些小朋友，每人分得的块数和小朋友的人数一样多。想一想，小朋友有多少人？积木有多少块？
+解析：这道数学题先给出了一个数字范围，积木的数量在60与70之间，具体的数字呢，不知道，不 过，要注意后面一句话:如果把这堆积木分给一些小朋友，每人分得的块数和小朋友的人数一 样多。 ...</div></div></div><div class="recent-post-item"><div class="recent-post-info no-cover"><a class="article-title" href="/archives/fa5e748a/" title="北师大二年级数学下册优质课">北师大二年级数学下册优质课</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2020-09-05T23:25:25.000Z" title="发表于 2020-09-06 07:25:25">2020-09-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%95%99%E5%AD%A6/">教学</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E8%A7%86%E9%A2%91/">视频</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/">二年级数学</a></span></div><div class="content"> 北师大二年级数学下册优质课，来源于一师一优课，基本上都是部级优课，点击前往bilibili可选集观看。
+
+     
+    
+
+</div></div></div><nav id="pagination"><div class="pagination"><a class="extend prev" rel="prev" href="/page/4/#content-inner"><i class="fas fa-chevron-left fa-fw"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/#content-inner">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#content-inner">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/6/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的博客</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">69</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E5%AD%A6/"><span class="card-category-list-name">教学</span><span class="card-category-list-count">23</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/pr/" style="font-size: 1.25em; color: rgb(21, 90, 23)">pr</a><a href="/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/" style="font-size: 1.22em; color: rgb(17, 167, 196)">电子相册</a><a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 1.32em; color: rgb(188, 53, 185)">视频</a><a href="/tags/linux/" style="font-size: 1.25em; color: rgb(16, 24, 137)">linux</a><a href="/tags/AE/" style="font-size: 1.15em; color: rgb(21, 0, 98)">AE</a><a href="/tags/docker/" style="font-size: 1.15em; color: rgb(17, 168, 125)">docker</a><a href="/tags/excel/" style="font-size: 1.28em; color: rgb(43, 86, 30)">excel</a><a href="/tags/flash/" style="font-size: 1.15em; color: rgb(56, 47, 181)">flash</a><a href="/tags/tips/" style="font-size: 1.42em; color: rgb(109, 132, 157)">tips</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.25em; color: rgb(33, 6, 182)">服务器</a><a href="/tags/hugo/" style="font-size: 1.38em; color: rgb(40, 39, 42)">hugo</a><a href="/tags/hexo/" style="font-size: 1.45em; color: rgb(196, 84, 143)">hexo</a><a href="/tags/github/" style="font-size: 1.35em; color: rgb(135, 188, 30)">github</a><a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.15em; color: rgb(23, 179, 20)">图床</a><a href="/tags/halo/" style="font-size: 1.22em; color: rgb(79, 131, 73)">halo</a><a href="/tags/nginx/" style="font-size: 1.18em; color: rgb(14, 168, 92)">nginx</a><a href="/tags/ps/" style="font-size: 1.28em; color: rgb(109, 127, 198)">ps</a><a href="/tags/win10/" style="font-size: 1.28em; color: rgb(71, 90, 84)">win10</a><a href="/tags/chatgpt/" style="font-size: 1.15em; color: rgb(4, 0, 105)">chatgpt</a><a href="/tags/word/" style="font-size: 1.18em; color: rgb(147, 54, 191)">word</a><a href="/tags/ppt/" style="font-size: 1.18em; color: rgb(121, 80, 63)">ppt</a><a href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.38em; color: rgb(127, 84, 40)">一年级数学</a><a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 1.18em; color: rgb(13, 98, 56)">练习题</a><a href="/tags/%E4%B8%89%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.28em; color: rgb(54, 137, 51)">三年级数学</a><a href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" style="font-size: 1.22em; color: rgb(136, 34, 58)">教学反思</a><a href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/" style="font-size: 1.22em; color: rgb(182, 63, 98)">教学设计</a><a href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.35em; color: rgb(169, 169, 26)">二年级数学</a><a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 1.18em; color: rgb(8, 89, 19)">论文</a><a href="/tags/%E9%98%B4%E5%BD%B1%E9%9D%A2%E7%A7%AF/" style="font-size: 1.15em; color: rgb(21, 33, 127)">阴影面积</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">2024年04月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">2023年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">2023年07月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">2023年06月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">2023年03月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">2022年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">2022年08月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">2022年07月</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">92</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-04-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">121.6k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-31T05:44:51.789Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>

@@ -1,0 +1,296 @@
+<!DOCTYPE html><html lang="zh-CN" data-theme="light"><head><meta charset="UTF-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1.0,viewport-fit=cover"><title>Bore's Notes</title><meta name="author" content="Bore"><meta name="copyright" content="Bore"><meta name="format-detection" content="telephone=no"><meta name="theme-color" content="ffffff"><meta property="og:type" content="website">
+<meta property="og:title" content="Bore&#39;s Notes">
+<meta property="og:url" content="https://bore.vip/index.html">
+<meta property="og:site_name" content="Bore&#39;s Notes">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://bore.vip/img/avatar.jpg">
+<meta property="article:author" content="Bore">
+<meta property="article:tag" content="个人博客,个人网站,hexo">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://bore.vip/img/avatar.jpg"><link rel="shortcut icon" href="/img/favicon.ico"><link rel="canonical" href="https://bore.vip/index.html"><link rel="preconnect"/><meta name="google-site-verification" content="qEczu2lhPn2fSX-0ejGU0PZ7R60n_mDcTi-aQmUlrfA"/><link rel="stylesheet" href="/css/index.css?v=4.13.0"><link rel="stylesheet" href="/pluginsSrc/@fortawesome/fontawesome-free/css/all.min.css?v=6.5.1"><link rel="stylesheet" href="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.css?v=5.0.33" media="print" onload="this.media='all'"><script>const GLOBAL_CONFIG = {
+  root: '/',
+  algolia: undefined,
+  localSearch: {"path":"/search.xml","preload":false,"top_n_per_article":1,"unescape":false,"languages":{"hits_empty":"找不到您查询的内容：${query}","hits_stats":"共找到 ${hits} 篇文章"}},
+  translate: undefined,
+  noticeOutdate: {"limitDay":365,"position":"top","messagePrev":"距离上次更新已经过了","messageNext":"天，文章所描述的內容可能已经发生变化，请留意。"},
+  highlight: {"plugin":"highlight.js","highlightCopy":true,"highlightLang":true,"highlightHeightLimit":200},
+  copy: {
+    success: '复制成功',
+    error: '复制错误',
+    noSupport: '浏览器不支持'
+  },
+  relativeDate: {
+    homepage: true,
+    post: false
+  },
+  runtime: '天',
+  dateSuffix: {
+    just: '刚刚',
+    min: '分钟前',
+    hour: '小时前',
+    day: '天前',
+    month: '个月前'
+  },
+  copyright: undefined,
+  lightbox: 'fancybox',
+  Snackbar: undefined,
+  infinitegrid: {
+    js: '/pluginsSrc/@egjs/infinitegrid/dist/infinitegrid.min.js?v=4.11.1',
+    buttonText: '加载更多'
+  },
+  isPhotoFigcaption: false,
+  islazyload: false,
+  isAnchor: true,
+  percent: {
+    toc: true,
+    rightside: false,
+  },
+  autoDarkmode: false
+}</script><script id="config-diff">var GLOBAL_CONFIG_SITE = {
+  title: 'Bore\'s Notes',
+  isPost: false,
+  isHome: true,
+  isHighlightShrink: false,
+  isToc: false,
+  postUpdate: '2025-08-31 13:44:52'
+}</script><script>(win=>{
+      win.saveToLocal = {
+        set: (key, value, ttl) => {
+          if (ttl === 0) return
+          const now = Date.now()
+          const expiry = now + ttl * 86400000
+          const item = {
+            value,
+            expiry
+          }
+          localStorage.setItem(key, JSON.stringify(item))
+        },
+      
+        get: key => {
+          const itemStr = localStorage.getItem(key)
+      
+          if (!itemStr) {
+            return undefined
+          }
+          const item = JSON.parse(itemStr)
+          const now = Date.now()
+      
+          if (now > item.expiry) {
+            localStorage.removeItem(key)
+            return undefined
+          }
+          return item.value
+        }
+      }
+    
+      win.getScript = (url, attr = {}) => new Promise((resolve, reject) => {
+        const script = document.createElement('script')
+        script.src = url
+        script.async = true
+        script.onerror = reject
+        script.onload = script.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          script.onload = script.onreadystatechange = null
+          resolve()
+        }
+
+        Object.keys(attr).forEach(key => {
+          script.setAttribute(key, attr[key])
+        })
+
+        document.head.appendChild(script)
+      })
+    
+      win.getCSS = (url, id = false) => new Promise((resolve, reject) => {
+        const link = document.createElement('link')
+        link.rel = 'stylesheet'
+        link.href = url
+        if (id) link.id = id
+        link.onerror = reject
+        link.onload = link.onreadystatechange = function() {
+          const loadState = this.readyState
+          if (loadState && loadState !== 'loaded' && loadState !== 'complete') return
+          link.onload = link.onreadystatechange = null
+          resolve()
+        }
+        document.head.appendChild(link)
+      })
+    
+      win.activateDarkMode = () => {
+        document.documentElement.setAttribute('data-theme', 'dark')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', '#0d0d0d')
+        }
+      }
+      win.activateLightMode = () => {
+        document.documentElement.setAttribute('data-theme', 'light')
+        if (document.querySelector('meta[name="theme-color"]') !== null) {
+          document.querySelector('meta[name="theme-color"]').setAttribute('content', 'ffffff')
+        }
+      }
+      const t = saveToLocal.get('theme')
+    
+        if (t === 'dark') activateDarkMode()
+        else if (t === 'light') activateLightMode()
+      
+      const asideStatus = saveToLocal.get('aside-status')
+      if (asideStatus !== undefined) {
+        if (asideStatus === 'hide') {
+          document.documentElement.classList.add('hide-aside')
+        } else {
+          document.documentElement.classList.remove('hide-aside')
+        }
+      }
+    
+      const detectApple = () => {
+        if(/iPad|iPhone|iPod|Macintosh/.test(navigator.userAgent)){
+          document.documentElement.classList.add('apple')
+        }
+      }
+      detectApple()
+    })(window)</script><link rel="stylesheet" href="/css/custom.css"><meta name="generator" content="Hexo 6.3.0"><link rel="alternate" href="/rss2.xml" title="Bore's Notes" type="application/rss+xml">
+</head><body><div id="sidebar"><div id="menu-mask"></div><div id="sidebar-menus"><div class="avatar-img is-center"><img src="/img/avatar.jpg" onerror="onerror=null;src='/img/friend_404.gif'" alt="avatar"/></div><div class="sidebar-site-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><hr class="custom-hr"/><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div></div></div><div class="page" id="body-wrap"><header class="not-top-img" id="page-header"><nav id="nav"><span id="blog-info"><a href="/" title="Bore's Notes"><span class="site-name">Bore's Notes</span></a></span><div id="menus"><div id="search-button"><a class="site-page social-icon search" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-search fa-fw"></i><span> 搜索</span></a></div><div class="menus_items"><div class="menus_item"><a class="site-page" href="/"><i class="fa-fw fas fa-home"></i><span> 首页</span></a></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-list"></i><span> 文章</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/archives/"><i class="fa-fw fas fa-archive"></i><span> 归档</span></a></li><li><a class="site-page child" href="/tags/"><i class="fa-fw fas fa-tags"></i><span> 标签</span></a></li><li><a class="site-page child" href="/categories/"><i class="fa-fw fas fa-folder-open"></i><span> 分类</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fa-solid fa-mug-hot"></i><span> 生活</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/say/"><i class="fa-fw far fa-comment-dots"></i><span> 说说</span></a></li><li><a class="site-page child" href="/gallery/"><i class="fa-fw fas fa-image"></i><span> 相册</span></a></li></ul></div><div class="menus_item"><a class="site-page group hide" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fa-fw fas fa-compass"></i><span> 社交</span><i class="fas fa-chevron-down"></i></a><ul class="menus_item_child"><li><a class="site-page child" href="/link/"><i class="fa-fw fas fa-link"></i><span> 友链</span></a></li><li><a class="site-page child" href="/fcircle/"><i class="fa-fw fas fa-user-friends"></i><span> 友圈</span></a></li><li><a class="site-page child" href="/about/"><i class="fa-fw fas fa-heart"></i><span> 关于</span></a></li></ul></div></div><div id="toggle-menu"><a class="site-page" href="javascript:void(0);" rel="external nofollow noreferrer"><i class="fas fa-bars fa-fw"></i></a></div></div></nav></header><main class="layout" id="content-inner"><div class="recent-posts" id="recent-posts"><div class="recent-post-item"><div class="post_cover left"><a href="/archives/c6592a10/" title="Alist挂载网盘"><img class="post-bg" src="/img/cover/alist.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Alist挂载网盘"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">AList 开源项目地址：https://github.com/alist-org/alist
+AList 文档：https://alist.nn.ci/zh/guide/
+本地启动（在alist所在目录打开cmd）：alist server
+安装默认安装在 /opt/alist 中。 自定义安装路径，将安装路径作为第二个参数添加，必须是绝对路径（如果路径以 alist 结尾，则直接安装到给定路径，否则会安装在给定路径 alist 目录下），如 安装到 /root：
+123456# Installcurl -fsSL &quot;https://alist.nn.ci/v3.sh&quot; | bash -s install /root# updatecurl -fsSL &quot;https://alist.nn.ci/v3.sh&quot; | bash -s update # Uninstallcurl -fsSL &quot;https://alist.nn.ci/v3.sh&quot; | bash -s uninstall /root
+
+
+启动: systemctl s ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/archives/e0c4249b/" title="彻底卸载onedrive"><img class="post-bg" src="/img/cover/onedrive.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="彻底卸载onedrive"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/win10/">win10</a></span></div><div class="content">1、通过组策略编辑器来禁用OneDrive。点击任务栏上的Contana搜索框并输入“组策略”，在最佳匹配结果中选择“编辑组策略”控制面板项，进入到本地组策略编辑器环境，如图：
+2、在组策略编辑器窗口左侧栏内，依次定位到“计算机配置→管理模板→Windows组件→OneDrive”，可看到右侧窗格内的5个相关选项，如图所示：
+3、将右侧的5个选项并将它们设置为“已禁用”状态，如图：
+4、右键单击任务栏空白处，调出任务管理器。切换到“启动”。在进程管理列表中找到OneDrive进程，右键单击并选择“禁用”。
+随后，在Windows资源管理器中，点击“查看”功能面板，将“显示&#x2F;隐藏”分组中的“隐藏的项目”复选框选中。最后进入到当前Windows用户所在的“AppData→Local→Microsoft”文件夹，找到Onedrive子文件夹，将其删除即可。
+若无法直接删除，可利用Unlocker工具或360右键强力删除命令进行删除。
+参考：教你彻底卸载OneDrive图文操作方法
+</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine"><img class="post-bg" src="/img/cover/xfce.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="debian 10安装xfce桌面和配置vnc和wine"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/linux/">linux</a></span></div><div class="content">Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+
+
+安装桌面环境和VNC服务器默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。
+0.如果新装系统，参考:vi 无法正常使用
+1.用SSH连接到你的服务器后，更新你的软件包列表。
+1sudo apt update
+
+2.现在在你的服务器上安装Xfce桌面环境，以及xfce4-goodies 包。
+1sudo apt install xfce4 xfce4-goodies
+
+在安装过程中，你可能会被提示为Xfce选择一个默认的显示管理器。显示管理器是一个允许你通过图形界面选择和登录到桌面环境的程序。你只有在用VNC客户端连接时才会使用Xfce，在这些Xfce会话中，你已经 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/archives/12dd937c/" title="利用Github Actions自动同步Fork"><img class="post-bg" src="/img/cover/github-action.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="利用Github Actions自动同步Fork"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/github/">github</a></span></div><div class="content">虽然Github自带一个Sync Fork的按钮，但是每次都自己点总是麻烦的，所以有人搞了个Github Action来做这件事，https://github.com/tgymnich/fork-sync
+创建workflow创建新的workflow，在仓库右上角点Add file，先输入workflows文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名sync.yml。接着
+在sync.yml输入里面的内容：
+官方：
+12345678910111213141516171819name: Sync Forkon:  schedule:    - cron: &#x27;*/30 * * * *&#x27; # every 30 minutes  workflow_dispatch: # on button clickjobs:  sync:    runs-on: ubuntu-latest    steps:      - uses: tgymnich/fork-sync@v2.0        with:          token: $&#123;&#123; sec ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/archives/144e85ab/" title="office更改默认字体"><img class="post-bg" src="/img/cover/office.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="office更改默认字体"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/excel/">excel</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/word/">word</a><span class="article-meta-link">•</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ppt/">ppt</a></span></div><div class="content">  这里以office2021为例
+word方法一：
+1.在开始选项卡找到正文。
+2.正文右键，点击修改。
+3.设定格式之后，点击基于该模板的新文档，并且点击确定。
+方法二：
+1.切换到设计选项卡
+2.字体—自定义字体—设为默认值
+excel1.新建Excel文档，默认的字体在“文件-选项-常规-新建工作簿时”的设置中指定的
+ppt1.新建一个空白演示文稿。
+2.单击工具栏上的”视图“，然后单击“幻灯片母版”。
+3.找到”字体“，在下拉选项框中选择”自定义字体“。
+4.修改中文和西文字体，保存，然后关闭母版视图。
+5.单击“文件”&gt;“另存为”，将文件名改为”blank“，保存类型改为” PowerPoint模板“。注意：文件名一定是”blank“和保存类型一定是” PowerPoint模板“。
+6.再打开”资源管理器“，”查看“→“显示“→勾选”隐藏的项目“。（别关闭第5步的窗口）
+7.看回第5步的”另存为“的界面，手动更改保存的路径：C:\Users\&lt;用户名&gt;\AppData\Roaming\Microsoft\Templates ，然后单击保存完成默认字体的设置 ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/archives/a4ea1c26/" title="PS制作打印字体效果"><img class="post-bg" src="/img/cover/ps.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="PS制作打印字体效果"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/a4ea1c26/" title="PS制作打印字体效果">PS制作打印字体效果</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-06-22T07:15:15.000Z" title="发表于 2023-06-22 15:15:15">2023-06-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/ps/">ps</a></span></div><div class="content"> 要修改图片文件里的字体，步骤如下。
+1.打开图片并ctrl+J复制图层。
+2.在你复制的图层上，利用选框工具选出你要修改的地方，然后shif+F5，选择内容识别(他会选择你就近的颜色来填充，尽量不要大面积的填充，若一次填充不行，那就继续选框小范围选择再shif f5 一直到与背景一致为止)。或者使用仿制图章工具也行。
+3.添加你的要文字，一般都是宋体类的，然后靠你仔细度去调整距离，大小，颜色，宽度（把图片放大，找一个字取色，不要纯黑）
+4.栅格化文字以后，滤镜—杂色—添加杂色（一般15左右）
+5.滤镜-模糊-高斯模糊（一般在0.2~0.4左右 视照片模糊程度而定）
+6、如果觉得和样张还有点出入，想再增加一点模糊的效果。可以再复制一个文字的新图层，对新图层文字添加 滤镜–添加杂色，加15点左右。再使用 滤镜-模糊-高斯模糊，0.2~0.4左右左右。
+7.若照片比较久远，或者为彩印，滤镜-滤镜库-画笔描边-喷溅。会有文字里头有小色斑的效果
+步骤其实不多，靠的是仔细和耐心，因为一旦栅格化以后，字体颜色都是不可改变了。所以真的要造假造的以假乱真，你就得多试几次
+
+PS：如若字体发黑，可按住c ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/archives/692a32c1/" title="chatgpt使用方法"><img class="post-bg" src="/img/cover/chatgpt.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="chatgpt使用方法"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/692a32c1/" title="chatgpt使用方法">chatgpt使用方法</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2023-03-05T12:21:02.000Z" title="发表于 2023-03-05 20:21:02">2023-03-05</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/chatgpt/">chatgpt</a></span></div><div class="content">  如果使用中转api key，代理地址一定要填如下形式（&#x2F;v1&#x2F;chat&#x2F;completions一定要加上），才能在wx某模块正常使用。
+1https://api.xty.app/v1/chat/completions
+
+不同的客户端需要填写不同的BASE_URL, 请尝试如下地址
+https://api.chatgptid.net/ 或https://api.chatgptid.net/v1 或https://api.chatgptid.net/v1/chat/completions
+
+0.解释的更简单些
+1.请帮我用两句话总结以下内容：  
+2.请帮我（用悲伤的语气）改写以下内容：
+3.利用以下内容： 将它改写成一首诗
+4.写一篇题为“文章标题”3000字论文，论文末尾附上参考文献
+6.常用指令：
+形容词：
+以中年人语气
+以年轻人语气
+有趣活泼的
+正式的
+7.（1）请写出十个吸引人的关于泡咖啡的Instagram post标题
+（2）请写出“文章标题”Instagram post内文
+8.角色脚本：https://github.com/f/aweso ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/archives/d5e37958/" title="Memos部署记录"><img class="post-bg" src="/img/cover/memos.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Memos部署记录"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/d5e37958/" title="Memos部署记录">Memos部署记录</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-09-20T11:44:19.000Z" title="发表于 2022-09-20 19:44:19">2022-09-20</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/hexo/">hexo</a></span></div><div class="content">
+Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo
+官网：https://usememos.com/
+仓库地址：https://github.com/usememos/memos
+
+Docker部署1docker run -d --name memos -p 5230:5230 -v ~/.memos/:/var/opt/memos neosmemo/memos:latest
+
+Docker Compose部署1.创建 Memos 工作目录
+12mkdir memos &amp;&amp; cd memosvi docker-compose.yaml
+
+2.编写 docker-compose.yaml 文件：
+12345678910version: &quot;3.0&quot;services:  memos:    image: neosmemo/memos:latest    restart: always     container_name: memos    volumes:      - ~/.memo ...</div></div></div><div class="recent-post-item"><div class="post_cover left"><a href="/archives/9755dbc8/" title="Debian 10 安装 Docker &amp; Docker Compose"><img class="post-bg" src="/img/cover/docker.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="Debian 10 安装 Docker &amp; Docker Compose"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/9755dbc8/" title="Debian 10 安装 Docker &amp; Docker Compose">Debian 10 安装 Docker &amp; Docker Compose</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-22T09:56:32.000Z" title="发表于 2022-08-22 17:56:32">2022-08-22</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/docker/">docker</a></span></div><div class="content">Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+
+
+安装 Docker1.首先，更新现有的软件包列表：
+1sudo apt update -y
+
+2.接下来，安装一些必备软件包，让 apt 通过 HTTPS 使用软件包。
+1sudo apt install apt-transport-https ca-certificates curl gnupg2 software-properties-common -y
+
+3.然后将官方 Docker hub 的 GPG key 添加到系统中。
+1curl -fsSL https://download.docker.com/linux/debian/gpg | sudo apt-key add -
+
+4.将 Docker 版本库添加到APT源：
+1sudo add-apt-repository &quot;deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable&quot;
+
+5.接下来， ...</div></div></div><div class="recent-post-item"><div class="post_cover right"><a href="/archives/c71649d1/" title="配眼镜攻略"><img class="post-bg" src="/img/cover/glass.jpg" onerror="this.onerror=null;this.src='/img/404.jpg'" alt="配眼镜攻略"></a></div><div class="recent-post-info"><a class="article-title" href="/archives/c71649d1/" title="配眼镜攻略">配眼镜攻略</a><div class="article-meta-wrap"><span class="post-meta-date"><i class="far fa-calendar-alt"></i><span class="article-meta-label">发表于</span><time datetime="2022-08-17T00:38:34.000Z" title="发表于 2022-08-17 08:38:34">2022-08-17</time></span><span class="article-meta"><span class="article-meta-separator">|</span><i class="fas fa-inbox"></i><a class="article-meta__categories" href="/categories/%E6%8A%80%E6%9C%AF/">技术</a></span><span class="article-meta tags"><span class="article-meta-separator">|</span><i class="fas fa-tag"></i><a class="article-meta__tags" href="/tags/tips/">tips</a></span></div><div class="content">
+注：本攻略来自网上
+
+整理的攻略：中国：明月 法国：依视路 德国：蔡司，罗敦司得 日本：豪雅，精工 韩国：凯米网店：宝岛，（​宝岛眼​镜官方旗舰店）依视路（依视路旗舰店），蔡司（Zeiss 蔡司官方旗舰店）国产总结：明月，万新，康耐特，新天鸿，优立，伟星，唯尊，鸿晨，schuman，洪旭网上选择镜框尺寸：镜框宽度加一半的鼻梁宽 等于瞳距 或者公式瞳距 32 两只眼睛是 64 镜框宽 54 加鼻梁 16 的一半 8 等于 64 64 的一半是 32 刚好等于瞳距公式二：📝用眼镜框的宽度 + 鼻梁宽度 - 瞳距再除以 2 最后得到的数尽量小于 3▶️举个例子：镜框宽度 48 + 鼻梁宽度 18&#x3D;66，用 66 - 瞳距 60&#x3D;6，再用 6 除以 2 最后等于 3，像这样的镜框就是比较适合的，小伙伴们可以自行去算一下当然越小越好最大也不要超过 5 或者 6。这样的话我们镜片的光学中心和镜框的光学中心能够尽可能的吻合，让我们配戴起来不会加深眼睛疲劳，尤其是青少年度数还不高
+折射率：折射率越大 镜片越薄 但同时视觉效果有所下降 ，价格却直线飙升 度数低尽量别配高折射率镜片 ...</div></div></div><nav id="pagination"><div class="pagination"><span class="page-number current">1</span><a class="page-number" href="/page/2/#content-inner">2</a><span class="space">&hellip;</span><a class="page-number" href="/page/10/#content-inner">10</a><a class="extend next" rel="next" href="/page/2/#content-inner"><i class="fas fa-chevron-right fa-fw"></i></a></div></nav></div><div class="aside-content" id="aside-content"><div class="card-widget card-info"><div class="is-center"><div class="avatar-img"><img src="/img/avatar.jpg" onerror="this.onerror=null;this.src='/img/friend_404.gif'" alt="avatar"/></div><div class="author-info__name">Bore</div><div class="author-info__description"></div></div><div class="card-info-data site-data is-center"><a href="/archives/"><div class="headline">文章</div><div class="length-num">92</div></a><a href="/tags/"><div class="headline">标签</div><div class="length-num">29</div></a><a href="/categories/"><div class="headline">分类</div><div class="length-num">2</div></a></div><a id="card-info-btn" target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/iwyang"><i class="fab fa-github"></i><span>Follow Me</span></a><div class="card-info-social-icons is-center"><a class="social-icon" href="mailto:455343442@qq.com" rel="external nofollow noreferrer" target="_blank" title="Email"><i class="fas fa-envelope" style="color: #4a7dbe;"></i></a><a class="social-icon" href="https://space.bilibili.com/20475120" rel="external nofollow noreferrer" target="_blank" title="Bilibili"><i class="fa-brands fa-bilibili"></i></a><a class="social-icon" href="/rss2.xml" target="_blank" title="RSS"><i class="fas fa-rss"></i></a></div></div><div class="card-widget card-announcement"><div class="item-headline"><i class="fas fa-bullhorn fa-shake"></i><span>公告</span></div><div class="announcement_content">欢迎访问我的博客</div></div><div class="card-widget latestBB"><div class="item-headline"><i class="fas fa-bolt"></i><span>Ispeak</span></div><div class="item-content"><div class="swiper-container swiper-container-aside">
+  <div class="swiper-wrapper swiper-weapper-aside"></div>
+</div>
+<a class="bb-btn button--animated" href="/say/" title="查看全部"><i class="far fa-hand-point-right fa-fw"></i> 查看更多 </a>
+<script>
+  window.kkBBConfig = {
+    limit: 10,
+    blog:'/say/',
+    api_url: 'https://kkapi.bore.vip',
+    author: '62e664654423f520964e0d43'            
+  }
+</script>
+<script src="/img/js/speak/butterfly-speak-swiper@1.1.0.min.js"></script>
+      
+</div></div><div class="sticky_layout"><div class="card-widget card-recent-post"><div class="item-headline"><i class="fas fa-history"></i><span>最新文章</span></div><div class="aside-list"><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/c6592a10/" title="Alist挂载网盘">Alist挂载网盘</a><time datetime="2024-04-06T09:19:21.000Z" title="发表于 2024-04-06 17:19:21">2024-04-06</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/e0c4249b/" title="彻底卸载onedrive">彻底卸载onedrive</a><time datetime="2023-09-03T12:41:26.000Z" title="发表于 2023-09-03 20:41:26">2023-09-03</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/26d4b8da/" title="debian 10安装xfce桌面和配置vnc和wine">debian 10安装xfce桌面和配置vnc和wine</a><time datetime="2023-07-18T11:36:29.000Z" title="发表于 2023-07-18 19:36:29">2023-07-18</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/12dd937c/" title="利用Github Actions自动同步Fork">利用Github Actions自动同步Fork</a><time datetime="2023-07-13T10:02:15.000Z" title="发表于 2023-07-13 18:02:15">2023-07-13</time></div></div><div class="aside-list-item no-cover"><div class="content"><a class="title" href="/archives/144e85ab/" title="office更改默认字体">office更改默认字体</a><time datetime="2023-07-02T13:02:25.000Z" title="发表于 2023-07-02 21:02:25">2023-07-02</time></div></div></div></div><div class="card-widget card-categories"><div class="item-headline">
+            <i class="fas fa-folder-open"></i>
+            <span>分类</span>
+            
+            </div>
+            <ul class="card-category-list" id="aside-cat-list">
+            <li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%8A%80%E6%9C%AF/"><span class="card-category-list-name">技术</span><span class="card-category-list-count">69</span></a></li><li class="card-category-list-item "><a class="card-category-list-link" href="/categories/%E6%95%99%E5%AD%A6/"><span class="card-category-list-name">教学</span><span class="card-category-list-count">23</span></a></li>
+            </ul></div><div class="card-widget card-tags"><div class="item-headline"><i class="fas fa-tags"></i><span>标签</span></div><div class="card-tag-cloud"><a href="/tags/pr/" style="font-size: 1.25em; color: rgb(21, 90, 23)">pr</a><a href="/tags/%E7%94%B5%E5%AD%90%E7%9B%B8%E5%86%8C/" style="font-size: 1.22em; color: rgb(17, 167, 196)">电子相册</a><a href="/tags/%E8%A7%86%E9%A2%91/" style="font-size: 1.32em; color: rgb(188, 53, 185)">视频</a><a href="/tags/linux/" style="font-size: 1.25em; color: rgb(16, 24, 137)">linux</a><a href="/tags/AE/" style="font-size: 1.15em; color: rgb(21, 0, 98)">AE</a><a href="/tags/docker/" style="font-size: 1.15em; color: rgb(17, 168, 125)">docker</a><a href="/tags/excel/" style="font-size: 1.28em; color: rgb(43, 86, 30)">excel</a><a href="/tags/flash/" style="font-size: 1.15em; color: rgb(56, 47, 181)">flash</a><a href="/tags/tips/" style="font-size: 1.42em; color: rgb(109, 132, 157)">tips</a><a href="/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/" style="font-size: 1.25em; color: rgb(33, 6, 182)">服务器</a><a href="/tags/hugo/" style="font-size: 1.38em; color: rgb(40, 39, 42)">hugo</a><a href="/tags/hexo/" style="font-size: 1.45em; color: rgb(196, 84, 143)">hexo</a><a href="/tags/github/" style="font-size: 1.35em; color: rgb(135, 188, 30)">github</a><a href="/tags/%E5%9B%BE%E5%BA%8A/" style="font-size: 1.15em; color: rgb(23, 179, 20)">图床</a><a href="/tags/halo/" style="font-size: 1.22em; color: rgb(79, 131, 73)">halo</a><a href="/tags/nginx/" style="font-size: 1.18em; color: rgb(14, 168, 92)">nginx</a><a href="/tags/ps/" style="font-size: 1.28em; color: rgb(109, 127, 198)">ps</a><a href="/tags/win10/" style="font-size: 1.28em; color: rgb(71, 90, 84)">win10</a><a href="/tags/chatgpt/" style="font-size: 1.15em; color: rgb(4, 0, 105)">chatgpt</a><a href="/tags/word/" style="font-size: 1.18em; color: rgb(147, 54, 191)">word</a><a href="/tags/ppt/" style="font-size: 1.18em; color: rgb(121, 80, 63)">ppt</a><a href="/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.38em; color: rgb(127, 84, 40)">一年级数学</a><a href="/tags/%E7%BB%83%E4%B9%A0%E9%A2%98/" style="font-size: 1.18em; color: rgb(13, 98, 56)">练习题</a><a href="/tags/%E4%B8%89%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.28em; color: rgb(54, 137, 51)">三年级数学</a><a href="/tags/%E6%95%99%E5%AD%A6%E5%8F%8D%E6%80%9D/" style="font-size: 1.22em; color: rgb(136, 34, 58)">教学反思</a><a href="/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/" style="font-size: 1.22em; color: rgb(182, 63, 98)">教学设计</a><a href="/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/" style="font-size: 1.35em; color: rgb(169, 169, 26)">二年级数学</a><a href="/tags/%E8%AE%BA%E6%96%87/" style="font-size: 1.18em; color: rgb(8, 89, 19)">论文</a><a href="/tags/%E9%98%B4%E5%BD%B1%E9%9D%A2%E7%A7%AF/" style="font-size: 1.15em; color: rgb(21, 33, 127)">阴影面积</a></div></div><div class="card-widget card-archives"><div class="item-headline"><i class="fas fa-archive"></i><span>归档</span><a class="card-more-btn" href="/archives/" title="查看更多">
+    <i class="fas fa-angle-right"></i></a></div><ul class="card-archive-list"><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2024/04/"><span class="card-archive-list-date">2024年04月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/09/"><span class="card-archive-list-date">2023年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/07/"><span class="card-archive-list-date">2023年07月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/06/"><span class="card-archive-list-date">2023年06月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2023/03/"><span class="card-archive-list-date">2023年03月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/09/"><span class="card-archive-list-date">2022年09月</span><span class="card-archive-list-count">1</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/08/"><span class="card-archive-list-date">2022年08月</span><span class="card-archive-list-count">3</span></a></li><li class="card-archive-list-item"><a class="card-archive-list-link" href="/archives/2022/07/"><span class="card-archive-list-date">2022年07月</span><span class="card-archive-list-count">1</span></a></li></ul></div><div class="card-widget card-webinfo"><div class="item-headline"><i class="fas fa-chart-line"></i><span>网站资讯</span></div><div class="webinfo"><div class="webinfo-item"><div class="item-name">文章数目 :</div><div class="item-count">92</div></div><div class="webinfo-item"><div class="item-name">已运行时间 :</div><div class="item-count" id="runtimeshow" data-publishDate="2020-04-24T16:00:00.000Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div><div class="webinfo-item"><div class="item-name">本站总字数 :</div><div class="item-count">121.6k</div></div><div class="webinfo-item"><div class="item-name">最后更新时间 :</div><div class="item-count" id="last-push-date" data-lastPushDate="2025-08-31T05:44:51.789Z"><i class="fa-solid fa-spinner fa-spin"></i></div></div></div></div></div></div></main><footer id="footer"><div id="footer-wrap"><div class="copyright">&copy;2020 - 2025 By Bore</div><div class="framework-info"><span>框架 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://hexo.io">Hexo</a><span class="footer-separator">|</span><span>主题 </span><a target="_blank" rel="noopener external nofollow noreferrer" href="https://github.com/jerryc127/hexo-theme-butterfly">Butterfly</a></div></div></footer></div><div id="rightside"><div id="rightside-config-hide"><button id="darkmode" type="button" title="浅色和深色模式转换"><i class="fas fa-adjust"></i></button><button id="hide-aside-btn" type="button" title="单栏和双栏切换"><i class="fas fa-arrows-alt-h"></i></button></div><div id="rightside-config-show"><button id="rightside-config" type="button" title="设置"><i class="fas fa-cog fa-spin"></i></button><button id="go-up" type="button" title="回到顶部"><span class="scroll-percent"></span><i class="fas fa-arrow-up"></i></button></div></div><div><script src="/js/utils.js?v=4.13.0"></script><script src="/js/main.js?v=4.13.0"></script><script src="/pluginsSrc/@fancyapps/ui/dist/fancybox/fancybox.umd.js?v=5.0.33"></script><script>function panguFn () {
+  if (typeof pangu === 'object') pangu.autoSpacingPage()
+  else {
+    getScript('/pluginsSrc/pangu/dist/browser/pangu.min.js?v=4.0.7')
+      .then(() => {
+        pangu.autoSpacingPage()
+      })
+  }
+}
+
+function panguInit () {
+  if (false){
+    GLOBAL_CONFIG_SITE.isPost && panguFn()
+  } else {
+    panguFn()
+  }
+}
+
+document.addEventListener('DOMContentLoaded', panguInit)</script><div class="js-pjax"></div><div id="local-search"><div class="search-dialog"><nav class="search-nav"><span class="search-dialog-title">搜索</span><span id="loading-status"></span><button class="search-close-button"><i class="fas fa-times"></i></button></nav><div class="is-center" id="loading-database"><i class="fas fa-spinner fa-pulse"></i><span>  数据库加载中</span></div><div class="search-wrap"><div id="local-search-input"><div class="local-search-box"><input class="local-search-box--input" placeholder="搜索文章" type="text"/></div></div><hr/><div id="local-search-results"></div><div id="local-search-stats-wrap"></div></div></div><div id="search-mask"></div><script src="/js/search/local-search.js?v=4.13.0"></script></div></div></body></html>
