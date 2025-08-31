@@ -7,12 +7,13 @@ tags:
 comments: true
 cover: /img/cover/alist.jpg
 abbrlink: c6592a10
-typora-root-url: ..
+
 date: 2024-04-06 17:19:21
 sticky:
 keywords:
 description:
 top_img:
+typora-root-url: ./..
 ---
 
  
@@ -332,6 +333,22 @@ vi /root/alist/data/config.json
 systemctl restart alist
 ```
 
+## potplayer无边框透明美化
+
+1.打开播放器按“F5”或右键PotPlayer播放界面点击选项进入设置界面，点开“基本”然后把启始项把窗口位置改成居中，把默认的320乘以240的窗口尺寸，建议1280乘以720，当然你也可以改成自己喜欢的尺寸
+
+![](/img/Alist%E6%8C%82%E8%BD%BD%E7%BD%91%E7%9B%98/1.jpg)
+
+2.然后把默认皮肤下的视频下自动隐藏和全屏时防止遮盖进行勾选
+
+![](/img/Alist%E6%8C%82%E8%BD%BD%E7%BD%91%E7%9B%98/2.jpg)
+
+3.接着把播放里面的窗口尺寸改成无边框尺寸
+
+![](/img/Alist%E6%8C%82%E8%BD%BD%E7%BD%91%E7%9B%98/3.jpg)
+
+4.皮肤安装也非常简单，直接打开PotPlayer皮肤设置，然后选择打开皮肤文件夹，将下载的皮肤粘贴进去。
+
 ## 参考链接
 
 [1.Alist 挂载阿里云盘、百度网盘、迅雷云盘、123网盘等](https://www.freedidi.com/7539.html)
@@ -339,3 +356,6 @@ systemctl restart alist
 [2.部署AList私有云盘](https://dewx.top/2024/03/08/alist/#toc-head-10)
 
 [3.letsencrypt免费证书申请--Certbot](https://www.mailset.top/2024/02/05/letsencrypt%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7-Certbot/)
+
+[4.potplayer无边框透明美化教程](https://blog.csdn.net/weixin_45544638/article/details/120627648)
+
