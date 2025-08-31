@@ -35,24 +35,35 @@ cd ~/.ssh
 rm -rf authorized_keys
 ```
 
-本地Git Bash里输入：
-
-```
-ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
-```
-
-如果在git bash中输入ssh git@服务器的IP地址,能够远程登录的话，则表示设置成功了。如若还是要输入密码，就修改目录权限：
-
-```
+```bash
 su git
+cd ~
+mkdir .ssh && cd .ssh
+touch authorized_keys
+vi authorized_keys
+```
+
+现在要打开本地的 `Git Bash`，输入 `vi ~/.ssh/id_rsa.pub`，把里面的内容复制下来粘贴到上面打开的文件里。
+
+接着把 ssh 目录设置为只有属主有读、写、执行权限。代码如下：
+
+```bash
 chmod 600 ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 ```
 
-登录成功会提示：
+测试一下，如果在 Git Bash 中输入 `ssh git@服务器的IP地址` 能够远程登录的话，则表示设置成功了。
 
-```powershell
-$ ssh git@104.224.191.88
+ps: 如果配置完成还是提示要输入密码，可以使用 `ssh-copy-id`，在本地打开 Git Bash 输入：
+
+```bash
+ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
+```
+
+最终登录成功会提示：
+
+```bash
+$ ssh git@142.171.177.173
 Last login: Sat Feb 26 02:33:30 2022 from 171.81.158.144
 [git@special-beep-1 ~]$
 ```
