@@ -44,6 +44,7 @@ ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
 如果在git bash中输入ssh git@服务器的IP地址,能够远程登录的话，则表示设置成功了。如若还是要输入密码，就修改目录权限：
 
 ```
+su git
 chmod 600 ~/.ssh/authorized_keys
 chmod 700 ~/.ssh
 ```
