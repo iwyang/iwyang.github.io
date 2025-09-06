@@ -8,7 +8,7 @@ abbrlink: b7fa73bc
 date: 2020-04-27 16:27:11
 cover: false
 ---
-### 1. 更换电脑、重装系统      
+### 1. 更换电脑、重装系统        
 
 首先安装安装 Git 和 Node.js  ，然后配置好SSH 公钥，将`id_rsa.pub`上传到博客仓库的 Settings->Deploy keys->add deploy key。
 
