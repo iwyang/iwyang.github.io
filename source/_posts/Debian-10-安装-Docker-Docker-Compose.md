@@ -350,6 +350,11 @@ docker-compose up -d
 
 4.配置域名访问，参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
 
+5.视频源配置：
+
+- **基础版**（20+站点）：[config_isadult.json](https://www.mediafire.com/file/upztrjc0g1ynbzy/config_isadult.json/file)
+- **增强版**（94 站点）：[configplus_isadult.json](https://www.mediafire.com/file/ff60ynj6z21iqfb/configplus_isadult.json/file)
+
 ## 常见问题
 
 1.出错提示：error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
