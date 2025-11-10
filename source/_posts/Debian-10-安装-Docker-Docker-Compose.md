@@ -296,6 +296,60 @@ WantedBy=multi-user.target
 sudo rm /usr/local/bin/docker-compose
 ```
 
+## Docker Compose 部署tv
+
+参考：[Memos Docker-Compose部署](/archives/d5e37958/?highlight=mem#Docker-Compose部署)
+
+1.创建 tv 工作目录
+
+```yaml
+mkdir tv && cd tv
+vi docker-compose.yml
+```
+
+2.编写 `docker-compose.yml` 文件：
+
+```yaml
+services:
+  decotv-core:
+    image: ghcr.io/decohererk/decotv:latest
+    container_name: decotv-core
+    restart: always  # 修改为 'unless-stopped' 或 'always'
+    ports:
+      - '3000:3000'
+    environment:
+      - USERNAME=admin
+      - PASSWORD=190430five
+      - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
+      - KVROCKS_URL=redis://decotv-kvrocks:6666
+      - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false  
+    networks:
+      - decotv-network
+    depends_on:
+      - decotv-kvrocks
+  decotv-kvrocks:
+    image: apache/kvrocks
+    container_name: decotv-kvrocks
+    restart: always  # 保持 'unless-stopped' 或修改为 'always'
+    volumes:
+      - kvrocks-data:/var/lib/kvrocks
+    networks:
+      - decotv-network
+networks:
+  decotv-network:
+    driver: bridge
+volumes:
+  kvrocks-data:
+```
+
+3.执行命令，`Memos` 后端程序将运行在 `http://localhost:端口号`
+
+```
+docker-compose up -d
+```
+
+4.配置域名访问，参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
+
 ## 常见问题
 
 1.出错提示：error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
