@@ -303,7 +303,8 @@ sudo rm /usr/local/bin/docker-compose
 1.创建 tv 工作目录
 
 ```yaml
-mkdir tv && cd tv
+mkdir -p /root/docker/tv
+cd /root/docker/tv
 vi docker-compose.yml
 ```
 
