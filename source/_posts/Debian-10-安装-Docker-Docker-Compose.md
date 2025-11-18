@@ -381,6 +381,9 @@ docker-compose up -d
 
 - **基础版**（20+站点）：[config_isadult.json](https://www.mediafire.com/file/upztrjc0g1ynbzy/config_isadult.json/file)
 - **增强版**（94 站点）：[configplus_isadult.json](https://www.mediafire.com/file/ff60ynj6z21iqfb/configplus_isadult.json/file)
+- 精简版：[精简版](https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/jin18.txt)
+
+精简版见：[LunaTV-config](https://github.com/hafrey1/LunaTV-config)
 
 ## 常见问题
 
