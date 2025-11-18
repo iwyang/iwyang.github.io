@@ -227,6 +227,21 @@ docker-compose pull
 docker-compose up -d
 ```
 
+**8.使用 Watchtower 自动更新**
+
+[Watchtower](https://github.com/containrrr/watchtower) 可自动检测并更新 Docker 容器到最新镜像。
+
+```yaml
+services:
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup
+    restart: always
+```
+
 ### **开机自动启动应用容器**
 
 1.方法一、通过 Docker Restart Policy 方法
@@ -315,7 +330,7 @@ services:
   decotv-core:
     image: ghcr.io/decohererk/decotv:latest
     container_name: decotv-core
-    restart: always  # 修改为 'unless-stopped' 或 'always'
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
     ports:
       - '3000:3000'
     environment:
@@ -323,27 +338,38 @@ services:
       - PASSWORD=190430five
       - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
       - KVROCKS_URL=redis://decotv-kvrocks:6666
-      - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false  
+      - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
     networks:
       - decotv-network
     depends_on:
       - decotv-kvrocks
+
   decotv-kvrocks:
     image: apache/kvrocks
     container_name: decotv-kvrocks
-    restart: always  # 保持 'unless-stopped' 或修改为 'always'
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
     volumes:
       - kvrocks-data:/var/lib/kvrocks
     networks:
       - decotv-network
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+
 networks:
   decotv-network:
     driver: bridge
+
 volumes:
   kvrocks-data:
 ```
 
-3.执行命令，`Memos` 后端程序将运行在 `http://localhost:端口号`
+3.执行命令，`tv` 后端程序将运行在 `http://localhost:端口号`
 
 ```
 docker-compose up -d
