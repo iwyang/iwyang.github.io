@@ -378,6 +378,52 @@ docker-compose up -d
 
 4.配置域名访问，参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
 
+```yaml
+server {
+  listen 80;
+  server_name tv.bore.vip;
+
+  # Redirect all HTTP traffic to HTTPS
+  return 301 https://$host$request_uri;
+}
+
+server {
+  listen 443 ssl http2;
+  server_name tv.bore.vip;
+  root /data/wwwroot/tv.bore.vip;
+
+  # SSL setting
+  ssl_certificate /etc/letsencrypt/live/tv.bore.vip/fullchain.pem;
+  ssl_certificate_key /etc/letsencrypt/live/tv.bore.vip/privkey.pem;
+  ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
+  ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
+  ssl_prefer_server_ciphers on;
+  ssl_session_cache shared:SSL:10m;
+  ssl_session_timeout 10m;
+  add_header Strict-Transport-Security "max-age=31536000";
+
+  # proxy to 3000
+  location / {
+    proxy_pass http://127.0.0.1:3000;
+    proxy_set_header Host $host;
+    proxy_set_header X-Real-IP $remote_addr;
+    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+    proxy_set_header X-Forwarded-Proto $scheme;
+    proxy_set_header REMOTE-HOST $remote_addr;
+    add_header X-Cache $upstream_cache_status;
+    # cache
+    add_header Cache-Control no-cache;
+    expires 12h;
+  }
+
+  location ^~ /.well-known/acme-challenge/ {
+    default_type "text/plain";
+    allow all;
+    root /data/wwwroot/tv.bore.vip/;
+  }
+}
+```
+
 5.视频源配置：
 
 - **基础版**（20+站点）：[config_isadult.json](https://www.mediafire.com/file/upztrjc0g1ynbzy/config_isadult.json/file)
