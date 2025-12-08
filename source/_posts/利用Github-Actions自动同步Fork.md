@@ -16,6 +16,113 @@ top_img:
 
 ## 自动同步Fork（现在用的）
 
+**参考chatgpt**:
+
+在你的 fork 仓库中新建：
+
+```yaml
+.github/workflows/sync.yml
+```
+
+内容如下（可直接复制）：
+
+```yaml
+name: Sync Upstream
+
+on:
+  schedule:
+    - cron: '0 0 * * *'   # 每天自动同步一次
+  workflow_dispatch:       # 手动触发按钮  
+  watch:
+    types: started
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/上游用户名/上游仓库.git
+          git fetch upstream
+
+      - name: Merge upstream
+        run: |
+          git merge upstream/main --allow-unrelated-histories || true
+
+      - name: Push
+        run: |
+          git push origin main
+```
+
+你需要修改两处:
+
+1.把：
+
+```
+https://github.com/上游用户名/上游仓库.git
+```
+
+替换成你要同步的上游仓库地址。
+
+2.如果上游主分支不是 `main`（例如是 `master`），你要改：
+
+```
+upstream/main
+```
+
+为：
+
+```
+upstream/master
+```
+
+最终为：
+
+```yaml
+name: Sync Upstream (master)
+
+on:
+  schedule:
+    - cron: '0 0 * * *'     # 每天自动同步一次
+  workflow_dispatch:         # 手动触发按钮
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Add upstream
+        run: |
+          git remote add upstream https://github.com/上游用户名/上游仓库.git
+          git fetch upstream
+
+      - name: Merge upstream master into fork
+        run: |
+          git merge upstream/master --allow-unrelated-histories || true
+
+      - name: Push changes
+        run: |
+          git push origin master
+```
+
+完成后：
+
+- 每天凌晨自动同步上游更新
+- 你也可以在 Actions 页面手动点击“Run workflow”
+- 不需要手动处理冲突（脚本里 `|| true` 自动跳过错误）
+
+## 自动同步Fork（以前用的）
+
 创建新的workflow，在仓库右上角点`Add file`，先输入`workflows`文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名`sync.yml`。接着
 
 在`sync.yml`输入里面的内容：
@@ -63,7 +170,7 @@ jobs:
           exit 1
 ```
 
-## 自动同步Fork（以前用的）
+## 自动同步Fork（以以前用的）
 
 虽然Github自带一个Sync Fork的按钮，但是每次都自己点总是麻烦的，所以有人搞了个Github Action来做这件事，https://github.com/tgymnich/fork-sync
 
