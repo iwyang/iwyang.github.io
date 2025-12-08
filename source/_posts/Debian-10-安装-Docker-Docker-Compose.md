@@ -431,7 +431,7 @@ server {
 
 精简版见：[LunaTV-config](https://github.com/hafrey1/LunaTV-config)
 
-6.更新
+6.更新（**更新前最好在后台先备份数据**）
 
 ```yaml
 cd /root/docker/tv
@@ -439,6 +439,20 @@ docker-compose pull
 docker-compose up -d
 docker image prune
 ```
+
+---
+
+PS：是否需要 `docker-compose down`？（问chatgpt）
+
+一般 **不需要**，除非：
+
+- 改过网络、volume、端口等会冲突的配置
+- 某些服务需要完全重建
+- 想彻底清理旧容器
+
+如果你只是更新镜像 → 重启服务，那么 **不加 `down` 是正确的**。
+
+---
 
 ## 常见问题
 
