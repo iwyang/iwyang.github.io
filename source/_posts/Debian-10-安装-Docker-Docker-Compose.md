@@ -219,10 +219,9 @@ docker-compose exec artalk bash # 进入容器
 
 7.Docker Compose升级
 
-删除现有容器，拉取最新镜像，然后重新创建容器即可。
+拉取最新镜像，然后重新创建容器即可。
 
 ```
-docker-compose down
 docker-compose pull
 docker-compose up -d
 docker image prune
@@ -431,6 +430,15 @@ server {
 - 精简版：[精简版](https://raw.githubusercontent.com/hafrey1/LunaTV-config/refs/heads/main/jin18.txt)
 
 精简版见：[LunaTV-config](https://github.com/hafrey1/LunaTV-config)
+
+6.更新
+
+```yaml
+cd /root/docker/tv
+docker-compose pull
+docker-compose up -d
+docker image prune
+```
 
 ## 常见问题
 
