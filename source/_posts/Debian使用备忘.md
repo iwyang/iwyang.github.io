@@ -917,6 +917,83 @@ crontab -e
 openssl x509 -noout -dates -in /etc/letsencrypt/live/ftp.bore.vip/cert.pem
 ```
 
+## Debian清理垃圾
+
+chatgpt提问：`写一个脚本，一个星期自动执行一次，帮我清理Debian垃圾，用vi`
+
+✅ 第一步：创建清理脚本（用 vi）
+
+运行：
+
+```
+sudo vi /usr/local/bin/clean_debian.sh
+```
+
+在文件里粘贴下面脚本内容：
+
+```
+#!/bin/bash
+
+# 清理 APT 缓存
+apt-get clean
+apt-get autoclean
+
+# 删除不需要的依赖包
+apt-get autoremove -y
+
+# 压缩 journalctl 日志到 100M
+journalctl --vacuum-size=100M
+
+# 清理临时文件夹
+rm -rf /tmp/*
+rm -rf /var/tmp/*
+
+# Docker 清理（可选，如果你不用 Docker 可删除这段）
+if command -v docker >/dev/null 2>&1; then
+    docker system prune -f
+fi
+```
+
+保存并退出：
+ **按下 `ESC` → 输入 `:wq` → 回车**
+
+------
+
+✅ 第二步：给脚本执行权限
+
+```
+sudo chmod +x /usr/local/bin/clean_debian.sh
+```
+
+------
+
+✅ 第三步：设置每周自动执行一次（cron）
+
+编辑 crontab：
+
+```
+sudo crontab -e
+```
+
+加入下面一行：
+
+```
+0 3 * * 0 /usr/local/bin/clean_debian.sh >/dev/null 2>&1
+```
+
+说明：
+
+- 每周日凌晨 03:00 自动清理一次
+- 输出全部隐藏（保持系统干净）
+
+------
+
+✅ 一键测试脚本是否正常生效
+
+```
+sudo /usr/local/bin/clean_debian.sh
+```
+
 ## 附录
 
 ### `vsftpd.conf`注释
