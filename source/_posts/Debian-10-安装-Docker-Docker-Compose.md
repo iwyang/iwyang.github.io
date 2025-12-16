@@ -325,6 +325,8 @@ vi docker-compose.yml
 
 2.编写 `docker-compose.yml` 文件：
 
+注意更改   `- PASSWORD=你的密码`
+
 ```yaml
 services:
   decotv-core:
@@ -335,7 +337,7 @@ services:
       - '3000:3000'
     environment:
       - USERNAME=admin
-      - PASSWORD=190430five
+      - PASSWORD=你的密码
       - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
       - KVROCKS_URL=redis://decotv-kvrocks:6666
       - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
@@ -453,6 +455,205 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 如果你只是更新镜像 → 重启服务，那么 **不加 `down` 是正确的**。
 
 ---
+
+### 更改tv站点logo
+
+**PS:以下参考chatgpt**
+
+1.先把原始 logo 名字查出来
+
+```bash
+docker exec -it decotv-core ls /app/public
+```
+
+你大概率会看到：
+
+```yaml
+VERSION.txt          logo.png             screenshot1.png      wechat.jpg
+favicon.ico          manifest.json        screenshot2.png      workbox-e9849328.js
+icons                robots.txt           sw.js
+```
+
+2.下载原来的logo，查看logo尺寸
+
+访问：
+
++ https://tv.bore.vip/favicon.ico
+
++ https://tv.bore.vip/logo.png
+
+下载logo到本地
+
+3.宿主机准备文件
+
+(1)在宿主机创建logo目录
+
+```
+cd /root/docker/tv
+mkdir -p public
+```
+
+（2）利用[Xterminal](https://www.terminal.icu/)ssh管理工具上传自定义logo
+
+4.在 `docker-compose.yml`里面的**`decotv-core` 服务里**，新增 `volumes`，**只挂载这两个文件**。
+
+```yaml
+volumes:
+  - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
+  - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
+```
+
+5.重启
+
+```
+docker-compose down
+docker-compose up -d
+```
+
+### 更改PWA图片Logo
+
+**PS:以下参考chatgpt**
+
+1.先把PWA原始 logo 名字查出来
+
+```
+docker exec -it decotv-core ls /app/public/icons
+```
+
+你大概率会看到：
+
+```
+icon-192x192.png  icon-256x256.png  icon-384x384.png  icon-512x512.png
+```
+
+2.宿主机准备目录和图片
+
+```
+cd /root/docker/tv
+mkdir -p public/icons
+```
+
+准备 4张**正方形 PNG**（非常重要），名称要和上方一致，利用[Xterminal](https://www.terminal.icu/)ssh管理工具上传到相应目录
+
+3.docker-compose.yml 挂载
+
+```yaml
+    volumes:
+      - ./public/icons:/app/public/icons
+      - ./public/favicon.ico:/app/public/favicon.ico
+      - ./public/logo.png:/app/public/logo.png
+```
+
+4.重启
+
+```
+docker-compose down
+docker-compose up -d
+```
+
+如果 PWA 图标还是没变，删除已添加的 PWA，重新 **“添加到主屏幕”**。
+
+### 更改PWA名称
+
+**PS:以下参考chatgpt**
+
+最开始以为修改`manifest.json`就行，后来发现每次`manifest.json`都会重写，所以直接修改**`generate-manifest.js`**
+
+1.复制generate-manifest.js到宿主机
+
+```
+cd /root/docker/tv
+mkdir -p public/scripts
+docker cp decotv-core:/app/scripts/generate-manifest.js /root/docker/tv/scripts/
+```
+
+2.修改generate-manifest.js
+
+```
+cd /root/docker/tv/scripts
+vi generate-manifest.js
+```
+
+3.修改此处：
+
+```
+// 从环境变量获取站点名称
+const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '影视聚合';
+```
+
+4.docker-compose.yml 挂载
+
+```yaml
+    volumes:
+      - ./scripts/generate-manifest.js:/app/scripts/generate-manifest.js  # 挂载宿主机上的 generate-manifest.js
+      - ./public/icons:/app/public/icons  # 挂载宿主机上的 icons 文件夹
+      - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
+      - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
+```
+
+5.重启
+
+```
+docker-compose down
+docker-compose up -d
+```
+
+### 最终docker-compose.yml
+
+注意更改   `- PASSWORD=你的密码`
+
+```yaml
+services:
+  decotv-core:
+    image: ghcr.io/decohererk/decotv:latest
+    container_name: decotv-core
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+    ports:
+      - '3000:3000'
+    environment:
+      - USERNAME=admin
+      - PASSWORD=你的密码
+      - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
+      - KVROCKS_URL=redis://decotv-kvrocks:6666
+      - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
+    volumes:
+      - ./scripts/generate-manifest.js:/app/scripts/generate-manifest.js  # 挂载宿主机上的 generate-manifest.js
+      - ./public/icons:/app/public/icons  # 挂载宿主机上的 icons 文件夹
+      - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
+      - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
+    networks:
+      - decotv-network
+    depends_on:
+      - decotv-kvrocks
+
+  decotv-kvrocks:
+    image: apache/kvrocks
+    container_name: decotv-kvrocks
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+    volumes:
+      - kvrocks-data:/var/lib/kvrocks
+    networks:
+      - decotv-network
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+
+networks:
+  decotv-network:
+    driver: bridge
+
+volumes:
+  kvrocks-data:
+```
+
+### generate-manifest.js更新历史
+
++ Commits on Oct 2, 2025
 
 ## 常见问题
 
