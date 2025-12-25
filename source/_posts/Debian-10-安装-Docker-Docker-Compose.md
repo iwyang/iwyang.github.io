@@ -315,7 +315,7 @@ sudo rm /usr/local/bin/docker-compose
 
 参考：[Memos Docker-Compose部署](/archives/d5e37958/?highlight=mem#Docker-Compose部署)
 
-1.创建 tv 工作目录
+### 创建 tv 工作目录
 
 ```yaml
 mkdir -p /root/docker/tv
@@ -323,7 +323,7 @@ cd /root/docker/tv
 vi docker-compose.yml
 ```
 
-2.编写 `docker-compose.yml` 文件：
+### 编写 `docker-compose.yml` 文件：
 
 注意更改   `- PASSWORD=你的密码`
 
@@ -371,13 +371,17 @@ volumes:
   kvrocks-data:
 ```
 
-3.执行命令，`tv` 后端程序将运行在 `http://localhost:端口号`
+### 执行命令
+
+`tv` 后端程序将运行在 `http://localhost:端口号`
 
 ```
 docker-compose up -d
 ```
 
-4.配置域名访问，参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
+### 配置域名访问
+
+参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
 
 ```yaml
 server {
@@ -425,7 +429,7 @@ server {
 }
 ```
 
-5.视频源配置：
+### 视频源配置
 
 - **基础版**（20+站点）：[config_isadult.json](https://www.mediafire.com/file/upztrjc0g1ynbzy/config_isadult.json/file)
 - **增强版**（94 站点）：[configplus_isadult.json](https://www.mediafire.com/file/ff60ynj6z21iqfb/configplus_isadult.json/file)
@@ -433,7 +437,9 @@ server {
 
 精简版见：[LunaTV-config](https://github.com/hafrey1/LunaTV-config)
 
-6.更新（**更新前最好在后台先备份数据**）
+### 更新容器
+
+*注意：更新前最好在后台先备份数据*
 
 ```yaml
 cd /root/docker/tv
@@ -456,7 +462,7 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 
 ---
 
-### 更改tv站点logo
+## 更改tv站点logo
 
 **PS:以下参考chatgpt**
 
@@ -510,7 +516,7 @@ docker-compose down
 docker-compose up -d
 ```
 
-### 更改PWA图片Logo
+## 更改PWA图片Logo
 
 **PS:以下参考chatgpt**
 
@@ -553,7 +559,7 @@ docker-compose up -d
 
 如果 PWA 图标还是没变，删除已添加的 PWA，重新 **“添加到主屏幕”**。
 
-### 更改PWA名称
+## 更改PWA名称
 
 **PS:以下参考chatgpt**
 
@@ -598,7 +604,7 @@ docker-compose down
 docker-compose up -d
 ```
 
-### 最终docker-compose.yml
+## 最终docker-compose.yml
 
 注意更改   `- PASSWORD=你的密码`
 
@@ -651,7 +657,7 @@ volumes:
   kvrocks-data:
 ```
 
-### generate-manifest.js更新历史
+## generate-manifest.js更新历史
 
 + Commits on Oct 2, 2025
 
