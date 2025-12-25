@@ -14,7 +14,7 @@ cover: false
 1.切换到全：
 
 ```bash
-git config --global http.proxy http://127.0.0.1:10809
+git config --global http.proxy http://127.0.0.1:10808
  
 git config --global https.proxy http://127.0.0.1:10808
 ```
@@ -36,6 +36,24 @@ git config --global https.proxy http://127.0.0.1:10808
 ```
 
 这时会出现 `port 22: Connection refused`问题。
+
+4.测试
+
+```
+git clone https://github.com/iwyang/DecoTV.git
+```
+
+**用https克隆，不要用ssh协议克隆，否则即使daili了速度还是很慢。**
+
+修改后提交：
+
+```
+git add .
+git commit -m "你的提交信息"
+git push origin main
+```
+
+
 
 ## 解决`port 22`问题
 

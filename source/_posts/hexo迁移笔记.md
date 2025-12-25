@@ -12,11 +12,14 @@ cover: false
 
 首先安装安装 Git 和 Node.js  ，然后配置好SSH 公钥，将`id_rsa.pub`上传到博客仓库的 Settings->Deploy keys->add deploy key。
 
-如果提示port 22问题，参考 [port22](/archives/2284a148/?highlight=port)
+如果提示port 22问题或速度过慢，参考 [port22](/archives/2284a148/?highlight=port)
+
+**用https克隆，不要用ssh协议克隆，否则即使daili了速度还是很慢。**
 
 ```bash
-git clone -b backup git@github.com:iwyang/iwyang.github.io.git blog 
+git clone -b backup https://github.com/iwyang/iwyang.github.io blog 
 ```
+
 
 ```
 cd blog
