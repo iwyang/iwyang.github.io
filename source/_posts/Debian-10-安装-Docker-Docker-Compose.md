@@ -327,6 +327,10 @@ vi docker-compose.yml
 
 注意更改   `- PASSWORD=你的密码`
 
+```
+vi docker-compose.yml
+```
+
 ```yaml
 services:
   decotv-core:
@@ -437,7 +441,7 @@ server {
 
 精简版见：[LunaTV-config](https://github.com/hafrey1/LunaTV-config)
 
-### 更新容器
+### 更新镜像
 
 *注意：更新前最好在后台先备份数据*
 
@@ -462,156 +466,66 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 
 ---
 
-## 更改tv站点logo
+## 自定义tv
 
-**PS:以下参考chatgpt**
+### fork仓库
 
-1.先把原始 logo 名字查出来
+这一步简单，fork后可克隆到本地修改代码，修改完成后提交，注意先**添加本地SSH公钥**到仓库，参考：[配置 SSH 公钥](/archives/8b53a475/#配置SSH-公钥)
 
-```bash
-docker exec -it decotv-core ls /app/public
+克隆：
+
+```
+git clone https://github.com/iwyang/DecoTV.git
 ```
 
-你大概率会看到：
+修改后提交：
 
-```yaml
-VERSION.txt          logo.png             screenshot1.png      wechat.jpg
-favicon.ico          manifest.json        screenshot2.png      workbox-e9849328.js
-icons                robots.txt           sw.js
+```
+git add .
+git commit -m "更新"
+git push origin main
 ```
 
-2.下载原来的logo，查看logo尺寸
-
-访问：
-
-+ https://tv.bore.vip/favicon.ico
-
-+ https://tv.bore.vip/logo.png
-
-下载logo到本地
-
-3.宿主机准备文件
-
-(1)在宿主机创建logo目录
+服务器拉取最新镜像：
 
 ```
 cd /root/docker/tv
-mkdir -p public
-```
-
-（2）利用[Xterminal](https://www.terminal.icu/)ssh管理工具上传自定义logo
-
-4.在 `docker-compose.yml`里面的**`decotv-core` 服务里**，新增 `volumes`，**只挂载这两个文件**。
-
-```yaml
-volumes:
-  - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
-  - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
-```
-
-5.重启
-
-```
-docker-compose down
+docker-compose pull
 docker-compose up -d
+docker image prune
 ```
 
-## 更改PWA图片Logo
+### 创建 github 访问 token
 
-**PS:以下参考chatgpt**
+1. 在任何页面的右上角，单击个人资料照片，然后单击 “设置”。
 
-1.先把PWA原始 logo 名字查出来
+2. 在左侧边栏中，单击 “开发人员设置”。
+3. 请在左侧边栏的 “Personal access token” 下，单击 “细粒度令牌” 。
+4. 单击 “生成新令牌”。
+5. 在 “令牌名称” 下，输入令牌的名称。
+6. 在 “过期时间” 下，选择令牌的过期时间（永不过期）。
+7. 然后权限要开启 **repo** 和 **workflow**和**write:package**s以及**read:packages** 的权限
 
-```
-docker exec -it decotv-core ls /app/public/icons
-```
+### 添加环境变量 secret
 
-你大概率会看到：
+在 `settings/secrets(Secrets and variables)/actions` 里把 Github 的 Token 设置上，比如 workflow 写的是secrets.GHCR_TOKEN，所以添加的时候 Name 填写 GHCR_TOKEN，Secret 里填写上一步创建 Token 内容。
 
-```
-icon-192x192.png  icon-256x256.png  icon-384x384.png  icon-512x512.png
-```
+### 修改docker-image.yml
 
-2.宿主机准备目录和图片
+把.github/workflows/docker-image.yml中的`secrets.GITHUB_TOKEN `改成`secrets.GHCR_TOKEN`，大概有三处要改。**GitHub actions成功运行后就可以创建自己的镜像。**
 
-```
-cd /root/docker/tv
-mkdir -p public/icons
-```
+### 修改`docker-compose.yml` 文件
 
-准备 4张**正方形 PNG**（非常重要），名称要和上方一致，利用[Xterminal](https://www.terminal.icu/)ssh管理工具上传到相应目录
-
-3.docker-compose.yml 挂载
-
-```yaml
-    volumes:
-      - ./public/icons:/app/public/icons
-      - ./public/favicon.ico:/app/public/favicon.ico
-      - ./public/logo.png:/app/public/logo.png
-```
-
-4.重启
+**注意修改自己的密码**
 
 ```
-docker-compose down
-docker-compose up -d
+vi docker-compose.yml
 ```
-
-如果 PWA 图标还是没变，删除已添加的 PWA，重新 **“添加到主屏幕”**。
-
-## 更改PWA名称
-
-**PS:以下参考chatgpt**
-
-最开始以为修改`manifest.json`就行，后来发现每次`manifest.json`都会重写，所以直接修改**`generate-manifest.js`**
-
-1.复制generate-manifest.js到宿主机
-
-```
-cd /root/docker/tv
-mkdir -p public/scripts
-docker cp decotv-core:/app/scripts/generate-manifest.js /root/docker/tv/scripts/
-```
-
-2.修改generate-manifest.js
-
-```
-cd /root/docker/tv/scripts
-vi generate-manifest.js
-```
-
-3.修改此处：
-
-```
-// 从环境变量获取站点名称
-const siteName = process.env.NEXT_PUBLIC_SITE_NAME || '影视聚合';
-```
-
-4.docker-compose.yml 挂载
-
-```yaml
-    volumes:
-      - ./scripts/generate-manifest.js:/app/scripts/generate-manifest.js  # 挂载宿主机上的 generate-manifest.js
-      - ./public/icons:/app/public/icons  # 挂载宿主机上的 icons 文件夹
-      - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
-      - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
-```
-
-5.重启
-
-```
-docker-compose down
-docker-compose up -d
-```
-
-## 最终docker-compose.yml
-
-注意更改   `- PASSWORD=你的密码`
 
 ```yaml
 services:
   decotv-core:
-    image: ghcr.io/decohererk/decotv:latest
+    image: ghcr.io/iwyang/decotv:latest
     container_name: decotv-core
     restart: always  # You can keep 'unless-stopped' or 'always' as preferred
     ports:
@@ -622,11 +536,6 @@ services:
       - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
       - KVROCKS_URL=redis://decotv-kvrocks:6666
       - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
-    volumes:
-      - ./scripts/generate-manifest.js:/app/scripts/generate-manifest.js  # 挂载宿主机上的 generate-manifest.js
-      - ./public/icons:/app/public/icons  # 挂载宿主机上的 icons 文件夹
-      - ./public/favicon.ico:/app/public/favicon.ico  # 挂载宿主机上的 favicon.ico
-      - ./public/logo.png:/app/public/logo.png  # 挂载宿主机上的 logo.png
     networks:
       - decotv-network
     depends_on:
@@ -657,19 +566,101 @@ volumes:
   kvrocks-data:
 ```
 
-## generate-manifest.js更新历史
+## douban页面隐藏数据源选择器
 
-+ Commits on Oct 2, 2025
+1.提问[grok](https://grok.com/)（附件添加[src](https://github.com/iwyang/DecoTV/tree/main/src)/[app](https://github.com/iwyang/DecoTV/tree/main/src/app)/[douban](https://github.com/iwyang/DecoTV/tree/main/src/app/douban)/page.tsx）：
 
-## 常见问题
+怎样修改，才能隐藏 ：数据源(30) 聚合🎬-爱qiyi......
 
-1.出错提示：error storing credentials - err: exit status 1, out: `Cannot autolaunch D-Bus without X11 $DISPLAY`
+ 2.接着追问：能给我修改好的完整文件吗（grok发的代码经常不完整，导致部署出错）
 
-解决方法：
+3.如果部署报错，下载日志文件给它分析：**点击`Explain error`右边的小齿轮选择`Download logs arichive`**，下载日志文件，找到失败那一步，复制错误日志给ai分析
 
-```bash
-sudo apt install gnupg2 pass -y
+**修改完成效果：**
+
+- “数据源(30)” 那一整行完全消失
+- 不再加载任何第三方 CMS 源
+- 所有与 useSourceFilter、sourceData、filteredSourceCategories 等相关代码已删除
+- 页面只显示豆瓣原生内容或 Bangumi 每日放送，体验更纯粹、加载更快
+
+直接替换原来的 page.tsx 即可。祝使用愉快！
+
+## 隐藏源制定分类
+
+方法如上，还是用[grok](https://grok.com/)，提问：此页面默认显示源的所有分类，怎样修改，才能一些分类不显示，如A和B这2个分类不显示
+
+**注意：会省略代码，要反复确认是否是完整代码，有没有省略，尤其是部署失败的时候**，也可下载日志文件，找到失败那一步，复制错误日志给ai分析
+
+## 搜索屏蔽指定关键词
+
+方法如上，还是用[grok](https://grok.com/)，上传`/src/app/api/search`下面的5个路由文件，提问：怎样修改才能实现搜索屏蔽指定关键词，给我完整文件。
+
+**注意：会省略代码，要反复确认是否是完整代码，有没有省略，尤其是部署失败的时候**，也可下载日志文件，找到失败那一步，复制错误日志给ai分析
+
+## 禁止访问指定网页
+
+### 项目根目录新建middleware.ts
+
 ```
+// middleware.ts （放在项目根目录）
+import { NextResponse } from 'next/server';
+import type { NextRequest } from 'next/server';
+
+// 禁止关键词列表（支持多个）
+const BANNED_KEYWORDS = [
+  'AAA',
+  'BBB',  
+  // '另一个禁止标题',
+];
+
+export function middleware(request: NextRequest) {
+  // 直接获取 title 参数（Next.js 已自动解码汉字）
+  const title = request.nextUrl.searchParams.get('title');
+
+  // 检查 title 是否包含禁止关键词（不区分大小写）
+  if (title) {
+    const lowerTitle = title.toLowerCase();
+    const isBanned = BANNED_KEYWORDS.some(keyword =>
+      lowerTitle.includes(keyword.toLowerCase())
+    );
+
+    if (isBanned) {
+      // 返回 404（推荐使用自定义页面）
+      return NextResponse.rewrite(new URL('/404', request.url));
+      // 或使用内置：return new Response('Not Found', { status: 404 });
+    }
+  }
+
+  // 正常通过
+  return NextResponse.next();
+}
+
+// 确保对所有路径生效（特别是 /play）
+export const config = {
+  matcher: '/:path*',
+};
+```
+
+### 创建自定义 404 页面（app/404.tsx）
+
+```
+// app/404.tsx
+import Link from 'next/link';
+
+export default function Custom404() {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <h1 className="text-6xl font-bold text-red-600 mb-6">404</h1>
+      <p className="text-2xl mb-8">页面不存在或已被禁止访问</p>
+      <Link href="/" className="px-8 py-4 bg-blue-600 text-white rounded-lg hover:bg-blue-700">
+        返回首页
+      </Link>
+    </div>
+  );
+}
+```
+
+这样，当访问包含 title=AAA（无论是否编码）的链接时，都会直接显示 404 页面，且真实返回 404 状态码。
 
 ## 参考链接
 
