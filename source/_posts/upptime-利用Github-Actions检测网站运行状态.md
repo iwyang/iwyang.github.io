@@ -35,39 +35,45 @@ cover: false
 
 ```yaml
 # Change these first
-owner: iwyang # Your GitHub organization or username, where this repository lives(更改用户名)
-repo: check # The name of this repository（更改仓库名）
+owner: iwyang # Your GitHub organization or username, where this repository lives
+repo: check # The name of this repository
 
 sites:
-  - name: Bore's Notes
+  - name: 01Bore's Notes
     url: https://bore.vip
-  - name: ConstOwn
-    url: https://blog.juanertu.com
-  - name: 01小丁的个人博客
-    url: https://tding.top
-  - name: Xu's Blog
-    url: https://hasaik.com
-  - name: 02知行志
-    url: https://baozi.fun
-  - name: Takagi
+  - name: 05Takagi
     url: https://lixingyong.com
-  - name: 03千与千寻
-    url: https://www.chihiro.org.cn
-  - name: Bill Yang's Blog
-    url: https://blog.bill.moe
-  - name: Sanarous's Blog
-    url: https://bestzuo.cn
-  - name: JACK小桔子的小屋
-    url: https://jackxjz.top
-  - name: 04若只如初见
-    url: https://joyli.net.cn
-  - name: 05大大的小蜗牛
+  - name: 10大大的小蜗牛
     url: https://eallion.com
-
+  - name: 11guole's Blog
+    url: https://guole.fun
+  - name: 12cywhat’s blog
+    url: https://cywhat.cn
+  - name: 13Akilarの糖果屋
+    url: https://akilar.top
+  - name: 17张洪Heo
+    url: https://blog.zhheo.com/ 
+  - name: 19Sianx's Blog
+    url: https://siax.cn
+  - name: 20Leonus
+    url: https://blog.leonus.cn/    
+  - name: 22六月长河
+    url: https://kingpo.vercel.app/    
+  - name: 23枫叶
+    url: https://blog.aqcoder.cn/
+  - name: 27lyshark
+    url: https://www.lyshark.com/    
+  - name: 28mao
+    url: https://meuicat.com/ 
+  - name: 30我不是咕咕鸽
+    url: https://blog.laoda.de/   
+  - name: 31CWorld Site
+    url: https://cworld.top/  
+       
 status-website:
   # Add your custom domain name, or remove the `cname` line if you don't have a domain
   # Uncomment the `baseUrl` line if you don't have a custom domain and add your repo name there
-  # cname: demo.upptime.js.org （如果没有自己的域名，则注释掉cname，取消注释baseUrl）
+  # cname: demo.upptime.js.org
   baseUrl: /check
   logoUrl: https://raw.githubusercontent.com/upptime/upptime.js.org/master/static/img/icon.svg
   name: Upptime
@@ -75,12 +81,21 @@ status-website:
   introMessage: This is a sample status page which uses **real-time** data from our [GitHub repository](https://github.com/upptime/upptime). No server required — just GitHub Actions, Issues, and Pages. [**Get your own for free**](https://github.com/upptime/upptime)
   navbar:
     - title: Status
-      href: /check  # （修改Status的url为repo的名称）
+      href: /check
     - title: GitHub
       href: https://github.com/$OWNER/$REPO
 
 # Upptime also supports notifications, assigning issues, and more
 # See https://upptime.js.org/docs/configuration
+
+workflowSchedule:
+  graphs: "0 0 * * 0"
+  response-time: "0 0 * * 0"
+  site: "0 0 * * 0"
+  summary: "0 0 * * 0"
+  update-template: "0 0 * * 0"
+  updates: "0 0 * * 0"
+  uptime: "0 0 * * 0"
 ```
 
 ![](../img/upptime-%E5%88%A9%E7%94%A8Github-Actions%E6%A3%80%E6%B5%8B%E7%BD%91%E7%AB%99%E8%BF%90%E8%A1%8C%E7%8A%B6%E6%80%81/20210802091341.jpg)

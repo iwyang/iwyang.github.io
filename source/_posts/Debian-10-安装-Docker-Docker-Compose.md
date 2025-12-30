@@ -566,6 +566,11 @@ volumes:
   kvrocks-data:
 ```
 
+修改TV logo和PWA启动图片
+
++ logo在根目录`public`文件夹下，favicon.ico和logo.png
++ pwa启动图片在根目录`public\icons`文件夹下（根目录scripts\generate-manifest.js文件可查看）
+
 ## douban页面隐藏数据源选择器
 
 1.提问[grok](https://grok.com/)（附件添加[src](https://github.com/iwyang/DecoTV/tree/main/src)/[app](https://github.com/iwyang/DecoTV/tree/main/src/app)/[douban](https://github.com/iwyang/DecoTV/tree/main/src/app/douban)/page.tsx）：
