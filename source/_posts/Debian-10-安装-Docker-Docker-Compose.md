@@ -8,7 +8,7 @@ comments: true
 cover: /img/cover/docker.jpg
 abbrlink: 9755dbc8
 date: 2022-08-22 17:56:32
-sticky:
+sticky: 100
 keywords:
 description:
 top_img:
