@@ -730,6 +730,19 @@ export default function Custom404() {
 
 这样，当访问包含 title=AAA（无论是否编码）的链接时，都会直接显示 404 页面，且真实返回 404 状态码。
 
+## 移除版本检测
+
+问[Gemini](https://gemini.google.com/app)：怎样修改才能使目标仓库无论何时更新，v0.8都是最新版本
+
+答：方案二：锁定本地时间戳为“未来时间”
+
+如果您不想改动函数逻辑，可以通过设置一个**极大**的时间戳来欺骗系统。版本检测模块通过 `YYYYMMDDHHMMSS` 格式进行 `BigInt` 比较 
+
+1. **修改 `VERSION.txt`：** 将其改为一个远未来的时间（例如 2099 年） 。
+   + 内容改为：`20991231235959`
+2. **修改 `version.ts` 中的 `BUILD_TIMESTAMP`：** 确保回退值也足够大。
+   - 修改为：`export const BUILD_TIMESTAMP = '20991231235959';`
+
 ## 参考链接
 
 + [如何在 debian 10 中安装和使用 Docker](https://www.sunqi.org/debian-10-install-docker.html)
