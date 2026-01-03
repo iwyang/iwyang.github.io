@@ -128,7 +128,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/gallery/sport2021spring/index.html</loc>
+    <loc>https://bore.vip/gallery/sport2021autumn/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -137,7 +137,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/gallery/sport2021autumn/index.html</loc>
+    <loc>https://bore.vip/gallery/sport2021spring/index.html</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -335,15 +335,6 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/5f8ae8ad/</loc>
-    
-    <lastmod>2025-08-31</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://bore.vip/archives/fceaf4e8/</loc>
     
     <lastmod>2025-08-31</lastmod>
@@ -353,7 +344,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/415c867f/</loc>
+    <loc>https://bore.vip/archives/5f8ae8ad/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -363,6 +354,15 @@
   
   <url>
     <loc>https://bore.vip/archives/3038d34c/</loc>
+    
+    <lastmod>2025-08-31</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://bore.vip/archives/415c867f/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -434,7 +434,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/4e8cacb0/</loc>
+    <loc>https://bore.vip/archives/e6a5162e/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -452,7 +452,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/e6a5162e/</loc>
+    <loc>https://bore.vip/archives/4e8cacb0/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -515,7 +515,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/dec02429/</loc>
+    <loc>https://bore.vip/archives/2c061816/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -524,7 +524,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/2c061816/</loc>
+    <loc>https://bore.vip/archives/dec02429/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -560,7 +560,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/585d2a79/</loc>
+    <loc>https://bore.vip/archives/b156363c/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -578,7 +578,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/b156363c/</loc>
+    <loc>https://bore.vip/archives/585d2a79/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -650,7 +650,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/144e85ab/</loc>
+    <loc>https://bore.vip/archives/968db8c4/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -659,7 +659,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/968db8c4/</loc>
+    <loc>https://bore.vip/archives/144e85ab/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -686,7 +686,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/6c31209c/</loc>
+    <loc>https://bore.vip/archives/ca21a352/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -695,7 +695,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/ca21a352/</loc>
+    <loc>https://bore.vip/archives/6c31209c/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -740,7 +740,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/db6e761/</loc>
+    <loc>https://bore.vip/archives/5b629e16/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -749,7 +749,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/5b629e16/</loc>
+    <loc>https://bore.vip/archives/db6e761/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -848,7 +848,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/ef06a4ae/</loc>
+    <loc>https://bore.vip/archives/d3052efc/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -857,7 +857,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/archives/d3052efc/</loc>
+    <loc>https://bore.vip/archives/ef06a4ae/</loc>
     
     <lastmod>2025-08-31</lastmod>
     
@@ -1010,13 +1010,6 @@
 
   
   <url>
-    <loc>https://bore.vip/tags/AE/</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://bore.vip/tags/pr/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
@@ -1032,6 +1025,13 @@
   
   <url>
     <loc>https://bore.vip/tags/%E8%A7%86%E9%A2%91/</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bore.vip/tags/AE/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1073,14 +1073,7 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/</loc>
-    <lastmod>2026-01-03</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://bore.vip/tags/halo/</loc>
+    <loc>https://bore.vip/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1101,14 +1094,21 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/</loc>
+    <loc>https://bore.vip/tags/github/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bore.vip/tags/github/</loc>
+    <loc>https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/</loc>
+    <lastmod>2026-01-03</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://bore.vip/tags/halo/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -1185,14 +1185,14 @@
   </url>
   
   <url>
-    <loc>https://bore.vip/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/</loc>
+    <loc>https://bore.vip/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://bore.vip/tags/%E4%BA%8C%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/</loc>
+    <loc>https://bore.vip/tags/%E6%95%99%E5%AD%A6%E8%AE%BE%E8%AE%A1/</loc>
     <lastmod>2026-01-03</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
