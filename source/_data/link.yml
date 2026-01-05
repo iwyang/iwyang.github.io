@@ -1,10 +1,10 @@
 - class_name: 友情链接
   class_desc: 那些人，那些事
   link_list:
-    - name: Upptime
-      link: https://iwyang.github.io/check
-      avatar: /img/link-img/upptime.jpg
-      descr: 利用Github Actions检测网站运行状态。
+    # - name: Upptime
+      # link: https://iwyang.github.io/check
+      # avatar: /img/link-img/upptime.jpg
+      # descr: 利用Github Actions检测网站运行状态。
     - name: Takagi
       link: https://lixingyong.com
       avatar: /img/link-img/takagi.jpg
