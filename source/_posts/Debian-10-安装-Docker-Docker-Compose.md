@@ -566,7 +566,7 @@ volumes:
   kvrocks-data:
 ```
 
-修改TV logo和PWA启动图片
+## 修改TV logo和PWA启动图片
 
 + logo在根目录`public`文件夹下，favicon.ico和logo.png
 + pwa启动图片在根目录`public\icons`文件夹下（根目录scripts\generate-manifest.js文件可查看）
@@ -596,7 +596,7 @@ volumes:
 
 **注意：会省略代码，要反复确认是否是完整代码，有没有省略，尤其是部署失败的时候**，也可下载日志文件，找到失败那一步，复制错误日志给ai分析
 
-## 搜索屏蔽指定关键词
+## 搜索屏蔽指定违禁词
 
 方法如上，还是用[grok](https://grok.com/)，上传`/src/app/api/search`下面的5个路由文件，**提问**：怎样修改才能实现搜索屏蔽指定关键词，搜索违禁词时，直接跳过搜索，返回空结果。给我完整文件，不要省略代码。
 
