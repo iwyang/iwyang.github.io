@@ -943,7 +943,7 @@ git push --force origin main
 vi docker-compose.yml
 ```
 
-```
+```yaml
 services:
   yangtv-core:
     image: ghcr.io/iwyang/yangtv:latest
@@ -985,7 +985,6 @@ networks:
 
 volumes:
   kvrocks-data:
-
 ```
 
 ## 参考链接
