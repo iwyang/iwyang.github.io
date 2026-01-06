@@ -755,7 +755,7 @@ V0.9版本最快
 
 4.修改 docker-image.yml
 
-```
+```yaml
 name: Build & Push Docker Image
 
 on:
