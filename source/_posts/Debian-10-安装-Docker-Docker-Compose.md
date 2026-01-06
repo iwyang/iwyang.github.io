@@ -743,6 +743,251 @@ export default function Custom404() {
 2. **修改 `version.ts` 中的 `BUILD_TIMESTAMP`：** 确保回退值也足够大。
    - 修改为：`export const BUILD_TIMESTAMP = '20991231235959';`
 
+## 固定V0.9版本
+
+V0.9版本最快
+
+1.新建仓库，如：https://github.com/iwyang/yangtv
+
+2.创建 github 访问 token，并添加到仓库环境变量，名称为`YANGTV`（方法见上）
+
+3.下载V0.9源码到本地
+
+4.修改 docker-image.yml
+
+```
+name: Build & Push Docker Image
+
+on:
+  workflow_dispatch:
+    inputs:
+      tag:
+        description: 'Docker 标签'
+        required: false
+        default: 'latest'
+        type: string
+  push:
+    branches: [main, master]
+  pull_request:
+    branches: [main, master]
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+permissions:
+  contents: write
+  packages: write
+  actions: write
+
+jobs:
+  build:
+    strategy:
+      matrix:
+        include:
+          - platform: linux/amd64
+            os: ubuntu-latest
+          - platform: linux/arm64
+            os: ubuntu-24.04-arm
+    runs-on: ${{ matrix.os }}
+
+    steps:
+      - name: Prepare platform identifier
+        id: platform
+        run: |
+          PLATFORM_ID=$(echo "${{ matrix.platform }}" | sed 's|/|-|g')
+          echo "id=${PLATFORM_ID}" >> $GITHUB_OUTPUT
+
+      - name: Checkout source code
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.YANGTV }}
+
+      - name: Set lowercase repository owner
+        id: lowercase
+        run: echo "owner=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - name: Extract version from package.json
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=v${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Detected version: v${VERSION}"
+
+      - name: Extract metadata
+        id: meta
+        uses: docker/metadata-action@v4
+
+        with:
+          images: ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv
+          tags: |
+            type=raw,value=${{ github.event.inputs.tag || 'latest' }},enable={{is_default_branch}}
+            type=raw,value=${{ steps.version.outputs.version }},enable={{is_default_branch}}
+
+      - name: Build and push by digest
+        id: build
+        uses: docker/build-push-action@v4
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: ${{ matrix.platform }}
+          labels: ${{ steps.meta.outputs.labels }}
+          tags: |
+            ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv:${{ github.event.inputs.tag || 'latest' }}
+            ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv:${{ steps.version.outputs.version }}
+          outputs: type=image,name=ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv,name-canonical=true,push=true
+
+      - name: Export digest
+        run: |
+          mkdir -p /tmp/digests
+          digest="${{ steps.build.outputs.digest }}"
+          touch "/tmp/digests/${digest#sha256:}"
+
+      - name: Upload digest
+        uses: actions/upload-artifact@v4
+        with:
+          name: digests-${{ steps.platform.outputs.id }}
+          path: /tmp/digests/*
+          if-no-files-found: error
+          retention-days: 1
+
+  merge:
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Download digests
+        uses: actions/download-artifact@v4
+        with:
+          path: /tmp/digests
+          pattern: digests-*
+          merge-multiple: true
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Login to GitHub Container Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.YANGTV }}
+
+      - name: Set lowercase repository owner
+        id: lowercase
+        run: echo "owner=$(echo '${{ github.repository_owner }}' | tr '[:upper:]' '[:lower:]')" >> "$GITHUB_OUTPUT"
+
+      - name: Download package.json
+        uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            package.json
+          sparse-checkout-cone-mode: false
+
+      - name: Extract version from package.json
+        id: version
+        run: |
+          VERSION=$(node -p "require('./package.json').version")
+          echo "version=v${VERSION}" >> "$GITHUB_OUTPUT"
+          echo "Detected version: v${VERSION}"
+
+      - name: Create manifest list and push
+        working-directory: /tmp/digests
+        run: |
+          docker buildx imagetools create -t ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv:${{ github.event.inputs.tag || 'latest' }} \
+            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv@sha256:%s ' *)
+          docker buildx imagetools create -t ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv:${{ steps.version.outputs.version }} \
+            $(printf 'ghcr.io/${{ steps.lowercase.outputs.owner }}/yangtv@sha256:%s ' *)
+
+  cleanup-refresh:
+    runs-on: ubuntu-latest
+    needs:
+      - merge
+    if: always()
+    steps:
+      - name: Delete workflow runs
+        uses: Mattraks/delete-workflow-runs@main
+        with:
+          token: ${{ secrets.YANGTV }}
+          repository: ${{ github.repository }}
+          retain_days: 0
+          keep_minimum_runs: 2
+```
+
+6.本地进行其他修改，见上
+
+7.提交源码到第一步新建的仓库
+
+```
+git init
+git checkout -b main
+git remote add origin git@github.com:iwyang/yangtv.git
+git add .
+git commit -m "首次提交"
+git push --force origin main
+```
+
+8.修改 `docker-compose.yml` 文件
+
+**注意修改自己的密码**
+
+```
+vi docker-compose.yml
+```
+
+```
+services:
+  yangtv-core:
+    image: ghcr.io/iwyang/yangtv:latest
+    container_name: yangtv-core
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+    ports:
+      - '3000:3000'
+    environment:
+      - USERNAME=admin
+      - PASSWORD=你的密码
+      - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
+      - KVROCKS_URL=redis://yangtv-kvrocks:6666
+      - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
+    networks:
+      - yangtv-network
+    depends_on:
+      - yangtv-kvrocks
+
+  yangtv-kvrocks:
+    image: apache/kvrocks
+    container_name: yangtv-kvrocks
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+    volumes:
+      - kvrocks-data:/var/lib/kvrocks
+    networks:
+      - yangtv-network
+
+  watchtower:
+    image: containrrr/watchtower
+    container_name: watchtower-yangtv
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    command: --interval 86400 --cleanup
+    restart: always  # You can keep 'unless-stopped' or 'always' as preferred
+
+networks:
+  yangtv-network:
+    driver: bridge
+
+volumes:
+  kvrocks-data:
+
+```
+
 ## 参考链接
 
 + [如何在 debian 10 中安装和使用 Docker](https://www.sunqi.org/debian-10-install-docker.html)
