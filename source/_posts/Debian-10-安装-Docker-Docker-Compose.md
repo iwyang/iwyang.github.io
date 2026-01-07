@@ -202,6 +202,8 @@ docker-compose ps
 ```
 cd /root/data/docker_data/joplin  # 进入docker-compose所在的文件夹
 
+docker-compose stop
+
 docker-compose down    # 停止容器，此时不会删除映射到本地的数据
 
 rm -rf /root/data/docker_data/joplin  # 完全删除映射到本地的数据
