@@ -200,13 +200,11 @@ docker-compose ps
 5.删除容器
 
 ```
-cd /root/data/docker_data/joplin  # 进入docker-compose所在的文件夹
-
+cd /root/docker/tv
 docker-compose stop
-
-docker-compose down    # 停止容器，此时不会删除映射到本地的数据
-
-rm -rf /root/data/docker_data/joplin  # 完全删除映射到本地的数据
+docker-compose down    
+cd ..
+rm -rf /root/docker/tv
 ```
 
 6.一些 Docker Compose 常用命令：
