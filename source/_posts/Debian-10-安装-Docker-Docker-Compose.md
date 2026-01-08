@@ -492,7 +492,7 @@ git push origin main
 cd /root/docker/tv
 docker-compose pull
 docker-compose up -d
-docker image prune
+docker image prune -f
 ```
 
 ### 创建 github 访问 token
