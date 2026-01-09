@@ -642,7 +642,7 @@ volumes:
 
 **注意：会省略代码，要反复确认是否是完整代码，有没有省略，尤其是部署失败的时候**，也可下载日志文件，找到失败那一步，复制错误日志给ai分析
 
-## 电影、剧集、动漫等页面排序及UI高亮优化
+## 电影、动漫等页面排序
 
 还是用[grok](https://grok.com/)，上传`\src\app\douban\page.tsx`和`\src\components\MultiLevelSelector.tsx`2个文件，**提问**：
 
