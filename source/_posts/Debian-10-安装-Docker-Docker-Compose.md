@@ -486,7 +486,29 @@ git commit -m "更新"
 git push origin main
 ```
 
-服务器拉取最新镜像：
+---
+
+**github退回旧版本**
+
++ 退回到指定版本
+
+如果你想彻底回退到 `ba82571f837d9e0a7abf1d667c9354543e87c130`，并删除该提交之后的所有历史记录，使用以下命令：
+
+```
+git reset --hard ba82571f837d9e0a7abf1d667c9354543e87c130
+```
+
+**注意**：这会丢失所有在目标提交之后的更改，包括工作区和暂存区的内容。
+
++ 推送更改到远程仓库
+
+```
+git push origin main --force
+```
+
+---
+
+**服务器拉取最新镜像：**
 
 ```
 cd /root/docker/tv
@@ -616,70 +638,85 @@ volumes:
 
 **给我完整代码，不要省略代码，文件开头注释修改的是哪个文件。**
 
+---
+
 **注意：会省略代码，要反复确认是否是完整代码，有没有省略，尤其是部署失败的时候**，也可下载日志文件，找到失败那一步，复制错误日志给ai分析
 
-## 比较屏蔽关键词逻辑
+## 电影、剧集、动漫等页面排序及UI高亮优化
 
-上传两个TV`src\app\api\search\ws\route.ts`下两个文件，比较一下。(因为我觉得[grok](https://grok.com/)给了两种不同屏蔽关键词方法。)
+还是用[grok](https://grok.com/)，上传`\src\app\douban\page.tsx`和`\src\components\MultiLevelSelector.tsx`2个文件，**提问**：
 
-提问：比较这两个文件，分析一下，两者搜索逻辑有什么区别
+**怎样修改，才能实现：**
 
-答：
+ 1. 默认分类与排序（所有页面统一逻辑）
 
-### 总体结构相似点
+- 电影 / 电视剧 / 综艺页面
 
-两个文件都是 Next.js 的 API 路由（GET 方法），处理搜索请求，使用 ReadableStream 实现流式响应（SSE: Server-Sent Events）。它们都：
+  （type = movie / tv / show）：
 
-- 检查用户认证（使用 getAuthInfoFromCookie），未认证返回 401。
-- 从查询参数 'q' 获取搜索关键词，如果为空返回 400。
-- 获取站点配置（getConfig）和可用 API 站点（getAvailableApiSites）。
-- 对于每个 API 站点，使用 Promise.race 实现 20 秒超时搜索（searchFromApi）。
-- 发送事件流，包括 'start'（搜索开始）、'source_result'（每个源的结果）、'source_error'（源错误）和 'complete'（完成）。
-- 收集所有结果（allResults），在 'complete' 事件中报告 totalResults 和 completedSources。
-- 处理流关闭（cancel 方法设置 streamClosed）。
-- 使用 safeEnqueue 来安全推送数据到流，避免已关闭的流出错。
-- 响应头包括 'text/event-stream'、'no-cache' 和 'keep-alive'。
+  - 默认一级分类：**“全部”**
+  - 默认排序：**近期热度**（sort = 'U'）
+  - 数据请求默认按近期热度加载
 
-### 搜索逻辑区别
+- 动漫页面
 
-以下是两个文件在搜索逻辑上的关键差异，按流程顺序分析：
+  （type = anime）：
 
-1. 查询预处理（Query Normalization）
-   - **l.route.ts**: 直接使用原查询（query = searchParams.get('q')?.trim()），无额外处理。如果查询为空，直接返回错误响应。
-   - **d.route.ts**: 使用 toSimplified 将查询转换为简体中文（normalizedQuery），如果转换失败则警告但继续。如果 normalizedQuery 与原 query 不同，则创建 searchQueries 数组（[normalizedQuery, query]），并对每个查询分别搜索。这允许支持繁简体混合搜索，提高覆盖率。'start' 事件中额外包含 normalizedQuery 字段。
-2. 黑名单/敏感关键词检查
-   - **l.route.ts**: 在搜索前显式检查 blockedKeywords（导入自 '@/lib/blockedKeywords'），如果查询包含任何黑名单词，直接返回一个空结果流：发送 'complete' 事件（totalResults: 0, error: '搜索内容受限，已被屏蔽'），不进行任何 API 调用。这是一种前置硬屏蔽，针对赌博等关键词（文件注释提到 "新增：关键词黑名单检查"）。
-   - **d.route.ts**: 没有前置黑名单检查，但文件注释提到 "已添加赌博关键词屏蔽"。屏蔽逻辑集成在 filterSensitiveContent 函数中（传入 shouldFilterAdult 和 apiSites），这发生在搜索结果获取后。可能更灵活，能过滤结果而非整个查询，但如果关键词敏感，可能导致部分或全部结果被过滤，而不是直接拒绝搜索。
-3. 搜索执行（Per-Site Search）
-   - **l.route.ts**: 对每个站点只搜索一次（使用原 query）。结果直接处理，无去重。
-   - **d.route.ts**: 对每个站点，使用 searchQueries 数组分别搜索（可能多次，如果繁简不同），然后 flat() 平展结果数组。使用 Map 基于结果的 id 去重（uniqueMap.set(r.id, r)），避免重复项。这提高了结果的唯一性和完整性，尤其在繁简查询可能返回重叠结果时。
-4. 结果过滤（Filtering）
-   - **l.route.ts**: 如果 !config.SiteConfig.DisableYellowFilter，则过滤结果：检查 result.type_name 是否包含 yellowWords（导入自 '@/lib/yellow'）中的词，过滤掉匹配项。这是一种简单的字符串包含检查，针对"黄色"（成人）内容。
-   - **d.route.ts**: 使用 shouldFilterAdult = !config.SiteConfig.DisableYellowFilter 来决定是否过滤成人内容，但实际过滤通过 filterSensitiveContent 函数实现（导入自 '@/lib/filter'），传入 results、shouldFilterAdult 和 apiSites。这可能更全面，包括成人内容、赌博关键词或其他敏感过滤（基于 apiSites 可能有站点特定规则）。过滤发生在去重后。
-5. 结果排序（Ranking）
-   - **l.route.ts**: 无排序逻辑，直接使用过滤后的结果。
-   - **d.route.ts**: 在过滤后，使用 rankSearchResults（导入自 '@/lib/search-ranking'）对结果排序，传入 filteredResults 和 normalizedQuery。这引入了相关性排序，可能基于关键词匹配度、流行度等，提高结果质量。
-6. 事件数据细节
-   - **l.route.ts**: 事件包含更多元数据，如 timestamp（每个事件都有）。'source_result' 和 'source_error' 包含 sourceName、results/error 和 timestamp。'complete' 包含 totalResults、completedSources、timestamp（黑名单情况下额外有 error）。
-   - **d.route.ts**: 事件数据更简洁，无 timestamp。'start' 包含 normalizedQuery 和 totalSources。'source_result' 只包含 source、sourceName、results。'complete' 只包含 totalResults 和 completedSources。
-7. 错误和超时处理
-   - 两者类似：捕获错误，发送 'source_error'。但 l.route.ts 在警告中打印更多细节（如 console.warn(搜索失败 ${site.name}:, error)）。
-   - l.route.ts 在 safeEnqueue 中有更多错误处理（检查 controller.desiredSize，捕获 enqueue 错误）。
-8. 响应头和杂项
-   - **l.route.ts**: 额外添加 CORS 头（如 'Access-Control-Allow-Origin': '*'），允许跨域。运行时指定 'nodejs'。
-   - **d.route.ts**: 无 CORS 头，可能假设同域使用。也有 'nodejs' 运行时。
+  - 默认一级分类：**“番剧”**（不再是“每日放送”）
+  - 默认排序：**近期热度**（sort = 'U'）
+  - 数据请求默认按近期热度加载（使用豆瓣推荐接口）
 
-### 潜在影响
+2. “排序”胶囊按钮显示逻辑（所有页面完全一致）
 
-- **l.route.ts** 更注重前置屏蔽和简单过滤，适合快速拒绝非法查询，但可能遗漏繁体支持和结果优化。搜索效率较高（单查询），但结果可能重复或无关。
-- **d.route.ts** 更注重结果质量（繁简支持、去重、排序、综合过滤），适合中文搜索场景，但可能增加延迟（多查询）和复杂性。过滤后置，可能允许敏感查询部分执行，但最终结果被屏蔽。
-- 总体上，d.route.ts 似乎是 l.route.ts 的演进版，添加了更多中文优化和敏感内容处理（赌博屏蔽集成在过滤中）。
+- 首次进入页面或切换任何分类时
+
+  （包括切到番剧/剧场版）：
+
+  - 胶囊按钮始终显示 **“排序”**（灰色文字）
+
+- 下拉菜单默认高亮
+
+  - 所有页面（电影/电视剧/综艺/番剧/剧场版）→ 高亮 **“近期热度”**（绿色背景+文字+边框）
+
+- 用户手动选择排序后
+
+  - 选择 **“综合排序”** → 胶囊按钮显示 **“排序”**（灰色文字）
+  - 选择 **“近期热度” / “首映时间 / 首播时间” / “高分优先”** → 胶囊按钮显示对应具体名称（如“近期热度”），文字变为**绿色**
+
+3. 其他筛选器行为（类型、地区、年代、平台）
+
+- 默认显示分类名（如“类型”、“地区”）
+- 选择后显示具体选项名称并变绿（标准行为）
+
+4. 整体交互与体验
+
+- 默认状态极简干净：所有胶囊显示分类名（“排序”永远是默认显示）
+- 用户操作反馈清晰：只有选择非“综合排序”时才显示具体排序名称 + 绿色高亮
+- 切换分类（包括番剧 ↔ 剧场版）时自动重置为默认状态（显示“排序”，高亮“近期热度”）
+- 数据加载准确：所有页面默认按近期热度请求，用户选择后实时切换
+- 动漫“每日放送”分类仍保留，但默认不再进入该分类（可手动切换）
+
+## 播放页面源模糊匹配
+
+
 
 ### 以后提问方式
 
 如果项目搜索文件改了，处理合并冲突时，舍弃更改，保持之前的更改。然后将以前的几个搜索文件给grok，先叫它分析这几个文件的搜索逻辑，然后把项目新的搜索文件给它，提问：修改这几个文件，使它们的搜索逻辑跟上面文件一样，最终实现搜索屏蔽制定关键词。
 
 ## 禁止访问指定网页
+
+还是用[grok](https://grok.com/)，上传`yangtv`和`lunatv`'`\src\app\play\page.tsx`文件，**提问**：
+
++ 为什么yangtv开头的文件在播放“疯狂动物城2”时，不会显示“疯狂动物城2 国语版”的源；而lunatv开头的文件播放时会显示“疯狂动物城2 国语版”的源
+
+分析完原因后**接着提问**：
+
++ 怎样修改才能使yangtv在播放“疯狂动物城2”时，也会显示“疯狂动物城2 国语版”的源，给我完整代码，不要省略
+
+如果代码太长，不好生成，**接着提问**：
+
++ 教我如何修改原文件
 
 ### 项目根目录新建middleware.ts
 
