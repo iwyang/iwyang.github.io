@@ -9,19 +9,8 @@ hexo g -d
 
 #!/usr/bin/env bash
 
-# 目标位置
-DEST="E:/Dropbox/资料/文档/个人"
+# 一句话暴力解决
+rm -rf "E:/Dropbox/资料/文档/个人/_posts" 2>/dev/null
+cp -r "E:/blog/source/_posts" "E:/Dropbox/资料/文档/个人/"
 
-# 先删除旧的 _posts（如果存在）
-if [ -d "$DEST/_posts" ]; then
-    rm -rf "$DEST/_posts"
-    echo "已删除旧的 _posts 文件夹"
-fi
-
-# 使用 rsync 高效复制（推荐）
-rsync -av --delete \
-    "E:/blog/source/_posts/" \
-    "$DEST/_posts/"
-
-echo "复制完成！"
-echo "目标路径: $DEST/_posts"
+echo "完成！"
