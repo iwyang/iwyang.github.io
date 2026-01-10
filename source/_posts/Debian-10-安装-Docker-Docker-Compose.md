@@ -731,7 +731,7 @@ const results = data.results.filter((result: SearchResult) => {
 
 ## 设置暂无海报
 
-搜索lunatv源码，查找需要修改的文件和代码位置（搜索暂无海报），`\src\components\VideoCard.tsx`，如果直接复制代码到yangtv相应位置，部署会报错，下载错误日志，上传`VideoCard.tsx`和错误日志给grok分析错误原因，没有给出正确修改方法，上传`VideoCard.tsx`和错误日志问[gemini](https://gemini.google.com/app)得到了正确修改方法。
+搜索lunatv源码，查找需要修改的文件和代码位置（搜索暂无海报），`\src\components\VideoCard.tsx`，如果直接复制代码到yangtv相应位置，部署会报错，下载错误日志，上传`VideoCard.tsx`和错误日志给grok分析错误原因，没有给出正确修改方法，上传`VideoCard.tsx`和错误日志问[gemini](https://gemini.google.com/app)得到了正确修改方法（先问grok，不行再问Gemini）。
 
 **问题在于：** 你的组件中定义的状态变量名称是 `isLoading` 和 `setIsLoading`（第 82 行），但你在错误处理回调函数中却尝试调用一个不存在的 `setImageLoaded` 函数。
 
