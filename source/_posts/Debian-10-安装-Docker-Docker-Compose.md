@@ -729,6 +729,32 @@ const results = data.results.filter((result: SearchResult) => {
 });
 ```
 
+## 设置暂无海报
+
+搜索lunatv源码，查找需要修改的文件和代码位置（搜索暂无海报），`\src\components\VideoCard.tsx`，如果直接复制代码到yangtv相应位置，部署会报错，下载错误日志，上传`VideoCard.tsx`和错误日志给grok分析错误原因，没有给出正确修改方法，上传`VideoCard.tsx`和错误日志问[gemini](https://gemini.google.com/app)得到了正确修改方法。
+
+**问题在于：** 你的组件中定义的状态变量名称是 `isLoading` 和 `setIsLoading`（第 82 行），但你在错误处理回调函数中却尝试调用一个不存在的 `setImageLoaded` 函数。
+
+------
+
+**修复方案**
+
+你需要将 `setImageLoaded(true)` 更改为组件中实际定义的 `setIsLoading(true)`。
+
+**修改步骤：**
+
+1. 打开 `src/components/VideoCard.tsx`。
+2. 找到第 **571** 行左右。
+3. 将 `setImageLoaded(true);` 替换为 `setIsLoading(true);`。
+
+```yaml
+              } else {
+                // 重试失败，使用通用占位图
+                img.src = 'data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="200" height="300" viewBox="0 0 200 300"%3E%3Crect fill="%23374151" width="200" height="300"/%3E%3Cg fill="%239CA3AF"%3E%3Cpath d="M100 80 L100 120 M80 100 L120 100" stroke="%239CA3AF" stroke-width="8" stroke-linecap="round"/%3E%3Crect x="60" y="140" width="80" height="100" rx="5" fill="none" stroke="%239CA3AF" stroke-width="4"/%3E%3Cpath d="M70 160 L90 180 L130 140" stroke="%239CA3AF" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" fill="none"/%3E%3C/g%3E%3Ctext x="100" y="270" font-family="Arial" font-size="12" fill="%239CA3AF" text-anchor="middle"%3E暂无海报%3C/text%3E%3C/svg%3E';
+                setIsLoading(true);
+              }
+```
+
 ## 禁止访问指定网页
 
 ### 项目根目录新建middleware.ts
