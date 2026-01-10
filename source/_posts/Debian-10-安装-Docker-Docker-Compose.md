@@ -696,27 +696,50 @@ volumes:
 - 数据加载准确：所有页面默认按近期热度请求，用户选择后实时切换
 - 动漫“每日放送”分类仍保留，但默认不再进入该分类（可手动切换）
 
-## 播放页面源模糊匹配
+## 播放源只显示标题开头的源
 
+还是用[grok](https://grok.com/)，上传`yangtv`'下`\src\app\play\page.tsx`文件，**提问**：
 
++ 修改代码，使播放页面能显示视频标题开头的源，如播放“疯狂动物城2”，“疯狂动物城2（普通话版）”、“疯狂动物城2(国语)”、“疯狂动物城2 国语版”等以“疯狂动物城2”开头的源也能显示。注意只显示标题开头的源，国语疯狂动物城2的源就不显示
++ 简单一些，标题开头就行
+
+答：最推荐，严格以主标题开头（最干净）:
+
+```yaml
+const results = data.results.filter((result: SearchResult) => {
+  if (!result.title) return false;
+
+  const mainTitle = (videoTitleRef.current || searchTitle || '')
+    .trim()
+    .replaceAll(' ', '')
+    .toLowerCase();
+
+  const sourceTitle = result.title
+    .trim()
+    .replaceAll(' ', '')
+    .toLowerCase();
+
+  // 核心：必须以主标题开头
+  const isPrefixMatch = sourceTitle.startsWith(mainTitle);
+
+  const yearMatch = videoYearRef.current
+    ? result.year?.toLowerCase() === videoYearRef.current.toLowerCase()
+    : true;
+
+  const typeMatch = searchType
+    ? (searchType === 'tv' && result.episodes.length > 1) ||
+      (searchType === 'movie' && result.episodes.length === 1)
+    : true;
+
+  return isPrefixMatch && yearMatch && typeMatch;
+});
+```
 
 ### 以后提问方式
 
 如果项目搜索文件改了，处理合并冲突时，舍弃更改，保持之前的更改。然后将以前的几个搜索文件给grok，先叫它分析这几个文件的搜索逻辑，然后把项目新的搜索文件给它，提问：修改这几个文件，使它们的搜索逻辑跟上面文件一样，最终实现搜索屏蔽制定关键词。
 
 ## 禁止访问指定网页
-
-还是用[grok](https://grok.com/)，上传`yangtv`和`lunatv`'`\src\app\play\page.tsx`文件，**提问**：
-
-+ 为什么yangtv开头的文件在播放“疯狂动物城2”时，不会显示“疯狂动物城2 国语版”的源；而lunatv开头的文件播放时会显示“疯狂动物城2 国语版”的源
-
-分析完原因后**接着提问**：
-
-+ 怎样修改才能使yangtv在播放“疯狂动物城2”时，也会显示“疯狂动物城2 国语版”的源，给我完整代码，不要省略
-
-如果代码太长，不好生成，**接着提问**：
-
-+ 教我如何修改原文件
 
 ### 项目根目录新建middleware.ts
 
