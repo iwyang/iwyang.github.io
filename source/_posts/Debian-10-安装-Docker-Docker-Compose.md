@@ -646,98 +646,87 @@ volumes:
 
 还是用[grok](https://grok.com/)，上传`\src\app\douban\page.tsx`和`\src\components\MultiLevelSelector.tsx`2个文件，**提问**：
 
-**怎样修改，才能实现：**
+---
 
- 1. 默认分类与排序（所有页面统一逻辑）
+我想修改代码达到以下最终效果，请帮我给出完整代码（不要省略），并解释关键改动：
 
-- 电影 / 电视剧 / 综艺页面
+【页面/功能】：Douban页面 / 排序筛选器 / 动漫分类等
 
-  （type = movie / tv / show）：
+【当前文件】：page.tsx / MultiLevelSelector.tsx
 
-  - 默认一级分类：**“全部”**
-  - 默认排序：**近期热度**（sort = 'U'）
-  - 数据请求默认按近期热度加载
+【想要的最终效果】（越详细越好，按优先级列点）：
+1. 电影/电视剧/综艺页面默认分类是“全部”，默认排序是“近期热度”，胶囊显示“近期热度”
+2. 动漫页面默认显示“番剧”分类，默认排序“近期热度”，胶囊显示“近期热度”
+3. 切换到“综合排序”时，胶囊按钮显示“排序”（灰色）
+4. 选择“近期热度”或其他非综合排序时，胶囊显示具体名称（绿色）
+5. 下拉菜单里默认高亮“近期热度”
 
-- 动漫页面
+【其他要求】（如果有）：
+- 不要改变其他筛选器的行为
+- 保持现有加载更多、骨架屏等逻辑不变
+- 请给出完整文件代码，不要省略
 
-  （type = anime）：
-
-  - 默认一级分类：**“番剧”**（不再是“每日放送”）
-  - 默认排序：**近期热度**（sort = 'U'）
-  - 数据请求默认按近期热度加载（使用豆瓣推荐接口）
-
-2. “排序”胶囊按钮显示逻辑（所有页面完全一致）
-
-- 首次进入页面或切换任何分类时
-
-  （包括切到番剧/剧场版）：
-
-  - 胶囊按钮始终显示 **“排序”**（灰色文字）
-
-- 下拉菜单默认高亮
-
-  - 所有页面（电影/电视剧/综艺/番剧/剧场版）→ 高亮 **“近期热度”**（绿色背景+文字+边框）
-
-- 用户手动选择排序后
-
-  - 选择 **“综合排序”** → 胶囊按钮显示 **“排序”**（灰色文字）
-  - 选择 **“近期热度” / “首映时间 / 首播时间” / “高分优先”** → 胶囊按钮显示对应具体名称（如“近期热度”），文字变为**绿色**
-
-3. 其他筛选器行为（类型、地区、年代、平台）
-
-- 默认显示分类名（如“类型”、“地区”）
-- 选择后显示具体选项名称并变绿（标准行为）
-
-4. 整体交互与体验
-
-- 默认状态极简干净：所有胶囊显示分类名（“排序”永远是默认显示）
-- 用户操作反馈清晰：只有选择非“综合排序”时才显示具体排序名称 + 绿色高亮
-- 切换分类（包括番剧 ↔ 剧场版）时自动重置为默认状态（显示“排序”，高亮“近期热度”）
-- 数据加载准确：所有页面默认按近期热度请求，用户选择后实时切换
-- 动漫“每日放送”分类仍保留，但默认不再进入该分类（可手动切换）
+当前代码请参考附件：[拖入或贴上最新 page.tsx / MultiLevelSelector.tsx 代码]
 
 ## 播放源只显示标题开头的源
 
-还是用[grok](https://grok.com/)，上传`yangtv`'下`\src\app\play\page.tsx`文件，**提问**：
+还是用[grok](https://grok.com/)，上传`yangtv`'下`\src\app\play\page.tsx`文件，**提问**：(得到最终需要的版本后，问grok：以后要修改代码，达到这种效果的话，**要怎样向你提问**)
 
-+ 修改代码，使播放页面能显示视频标题开头的源，如播放“疯狂动物城2”，“疯狂动物城2（普通话版）”、“疯狂动物城2(国语)”、“疯狂动物城2 国语版”等以“疯狂动物城2”开头的源也能显示。注意只显示标题开头的源，国语疯狂动物城2的源就不显示
-+ 简单一些，标题开头就行
+**我希望播放源过滤规则变成：**
+**核心条件：**
+- **result.title（忽略空格、大小写）必须以主标题（videoTitle 或 searchTitle）开头**
+- **年份要匹配（如果有 year 参数）**
 
-答：最推荐，严格以主标题开头（最干净）:
+**类型处理：**
+- **如果 searchType 是 movie，允许 episodes.length <= 5 的源通过**
+- **如果 searchType 是 tv，还是要求 episodes.length > 1**
+- **如果没有 searchType，就不限制类型**
+
+**请直接给出修改后的完整 filter 代码块**
 
 ```yaml
 const results = data.results.filter((result: SearchResult) => {
   if (!result.title) return false;
 
-  const mainTitle = (videoTitleRef.current || searchTitle || '')
+  // 主标题处理（忽略大小写、去掉所有空格）
+  const mainTitle = (searchTitle || videoTitleRef.current || '')
     .trim()
-    .replaceAll(' ', '')
+    .replace(/\s+/g, '')           // 推荐用这个正则，更彻底去空格
     .toLowerCase();
 
-  const sourceTitle = result.title
+  // 源标题同样处理
+  const sourceTitleClean = result.title
     .trim()
-    .replaceAll(' ', '')
+    .replace(/\s+/g, '')
     .toLowerCase();
 
-  // 核心：必须以主标题开头
-  const isPrefixMatch = sourceTitle.startsWith(mainTitle);
+  // ★ 最核心条件：必须以主标题开头（最能保证相关性）
+  const isPrefixMatch = sourceTitleClean.startsWith(mainTitle);
 
+  // 年份匹配（建议保留）
   const yearMatch = videoYearRef.current
-    ? result.year?.toLowerCase() === videoYearRef.current.toLowerCase()
+    ? (result.year || '').toLowerCase() === videoYearRef.current.toLowerCase()
     : true;
 
-  const typeMatch = searchType
-    ? (searchType === 'tv' && result.episodes.length > 1) ||
-      (searchType === 'movie' && result.episodes.length === 1)
-    : true;
+  // 类型判断放宽（解决电影被标成 tv 的常见问题）
+  const episodeCount = result.episodes?.length ?? 0;
+  const isLikelyMovie = episodeCount <= 5;  // 允许 1~5 集（处理分上下部、误标、长片分段等）
+  const isLikelyTv = episodeCount > 1;
 
+  let typeMatch = true;
+
+  if (searchType) {
+    if (searchType === 'movie') {
+      typeMatch = isLikelyMovie;           // 电影要求：看起来像电影即可
+    } else if (searchType === 'tv') {
+      typeMatch = isLikelyTv;              // 电视剧还是要求多集
+    }
+  }
+
+  // 最终返回条件：标题开头是必须的，类型已放宽
   return isPrefixMatch && yearMatch && typeMatch;
 });
 ```
-
-### 以后提问方式
-
-如果项目搜索文件改了，处理合并冲突时，舍弃更改，保持之前的更改。然后将以前的几个搜索文件给grok，先叫它分析这几个文件的搜索逻辑，然后把项目新的搜索文件给它，提问：修改这几个文件，使它们的搜索逻辑跟上面文件一样，最终实现搜索屏蔽制定关键词。
 
 ## 禁止访问指定网页
 
