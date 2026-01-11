@@ -755,6 +755,20 @@ const results = data.results.filter((result: SearchResult) => {
               }
 ```
 
+## 为豆瓣添加2026年的筛选选项
+
+`src/components/MultiLevelSelector.tsx`
+
+```diff
+
+       options: [
+         { label: '全部', value: 'all' },
+         { label: '2020年代', value: '2020s' },
++        { label: '2026', value: '2026' },
+         { label: '2025', value: '2025' },
+         { label: '2024', value: '2024' },
+```
+
 ## 禁止访问指定网页
 
 ### 项目根目录新建middleware.ts
