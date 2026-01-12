@@ -729,6 +729,30 @@ const results = data.results.filter((result: SearchResult) => {
 });
 ```
 
+## 播放源屏蔽子标题的源
+
+还是用[grok](https://grok.com/)，提问：**“请修改过滤逻辑，将 `mainTitle` 的来源由 `stitle` 改为仅限 `title` 参数，确保源列表只显示以主标题开头的资源。”**
+
+**修改前的逻辑（第 552 行左右）：**
+
+```typescript
+// 只要匹配 stitle 或主标题任何一个开头，就会显示
+const mainTitle = (searchTitle || videoTitleRef.current || '')
+  .trim()
+  .replace(/\s+/g, '')
+  .toLowerCase();
+```
+
+**修改后的逻辑：**
+
+```typescript
+// 仅使用主标题，彻底无视 stitle 的前缀干扰
+const mainTitle = (videoTitleRef.current || '')
+  .trim()
+  .replace(/\s+/g, '')
+  .toLowerCase();
+```
+
 ## 设置暂无海报
 
 搜索lunatv源码，查找需要修改的文件和代码位置（搜索暂无海报），`\src\components\VideoCard.tsx`，如果直接复制代码到yangtv相应位置，部署会报错，下载错误日志，上传`VideoCard.tsx`和错误日志给grok分析错误原因，没有给出正确修改方法，上传`VideoCard.tsx`和错误日志问[gemini](https://gemini.google.com/app)得到了正确修改方法（先问grok，不行再问Gemini）。
