@@ -224,7 +224,7 @@ docker-compose exec artalk bash # 进入容器
 ```
 docker-compose pull
 docker-compose up -d
-docker image prune
+docker image prune -f
 ```
 
 **8.使用 Watchtower 自动更新**
