@@ -867,6 +867,864 @@ const mainTitle = (videoTitleRef.current || '')
 请给出每个文件的**完整修改后代码**，不要省略，不要只给 diff。
 ```
 
+## 修复收藏不显示、清空二次确认
+
+### 修复收藏不显示
+
+上传old.page.tsx和new.page.tsx两个文件，提问[gemini](https://gemini.google.com/app)：**old.page.tsx改成new.page.tsx，收藏夹内容无法正确显示**
+
+```tsx
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps, no-console */
+
+'use client';
+
+import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { Suspense, useEffect, useState } from 'react';
+
+// --- API Imports ---
+import {
+  BangumiCalendarData,
+  GetBangumiCalendarData,
+} from '@/lib/bangumi.client';
+import {
+  clearAllFavorites,
+  getAllFavorites,
+  getAllPlayRecords,
+  subscribeToDataUpdates,
+} from '@/lib/db.client';
+import { getDoubanRecommends } from '@/lib/douban.client';
+import { DoubanItem } from '@/lib/types';
+
+// --- Component Imports ---
+import CapsuleSwitch from '@/components/CapsuleSwitch';
+import ContinueWatching from '@/components/ContinueWatching';
+import DecoTVFooterCard from '@/components/DecoTVFooterCard';
+import PageLayout from '@/components/PageLayout';
+import ScrollableRow from '@/components/ScrollableRow';
+import { useSite } from '@/components/SiteProvider';
+import VideoCard from '@/components/VideoCard';
+
+// --- Interfaces ---
+interface FavoriteItem {
+  id: string;
+  source: string;
+  title: string;
+  poster: string;
+  episodes: number;
+  source_name: string;
+  currentEpisode?: number;
+  search_title?: string;
+  origin?: 'vod' | 'live';
+  year?: string;
+}
+
+function HomeClient() {
+  const [activeTab, setActiveTab] = useState<'home' | 'favorites'>('home');
+  const [hotMovies, setHotMovies] = useState<DoubanItem[]>([]);
+  const [hotTvShows, setHotTvShows] = useState<DoubanItem[]>([]);
+  const [hotVarietyShows, setHotVarietyShows] = useState<DoubanItem[]>([]);
+  const [hotAnimes, setHotAnimes] = useState<DoubanItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  const { siteName, announcement } = useSite();
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
+  const [favoriteItems, setFavoriteItems] = useState<FavoriteItem[]>([]);
+
+  // Announcement Logic
+  useEffect(() => {
+    if (typeof window !== 'undefined' && announcement) {
+      const hasSeen = localStorage.getItem('hasSeenAnnouncement');
+      if (hasSeen !== announcement) {
+        setShowAnnouncement(true);
+      }
+    }
+  }, [announcement]);
+
+  // Data Fetching Logic
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        setLoading(true);
+        const [moviesRes, tvRes, varietyRes, animeRes, bangumiRes] = await Promise.all([
+          getDoubanRecommends({ kind: 'movie', pageLimit: 20, sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, format: '电视剧', sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, format: '综艺', sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, category: '动画', format: '电视剧', sort: 'U' }),
+          GetBangumiCalendarData(),
+        ]);
+
+        if (moviesRes.code === 200) setHotMovies(moviesRes.list);
+        if (tvRes.code === 200) setHotTvShows(tvRes.list);
+        if (varietyRes.code === 200) setHotVarietyShows(varietyRes.list);
+        if (animeRes.code === 200) setHotAnimes(animeRes.list);
+      } catch (error) {
+        console.error('Fetch Error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAllData();
+  }, []);
+
+  // Favorites Management
+  const updateFavoriteItems = async (allFavorites: Record<string, any>) => {
+    const allPlayRecords = await getAllPlayRecords();
+    const sorted = Object.entries(allFavorites)
+      .sort(([, a], [, b]) => b.save_time - a.save_time)
+      .map(([key, fav]) => {
+        const plusIndex = key.indexOf('+');
+        const source = key.slice(0, plusIndex);
+        const id = key.slice(plusIndex + 1);
+        const playRecord = allPlayRecords[key];
+        
+        return {
+          id,
+          source,
+          title: fav.title,
+          year: fav.year,
+          poster: fav.cover,
+          episodes: fav.total_episodes,
+          source_name: fav.source_name,
+          currentEpisode: playRecord?.index,
+          search_title: fav?.search_title,
+          origin: fav?.origin,
+        } as FavoriteItem;
+      });
+    setFavoriteItems(sorted);
+  };
+
+  useEffect(() => {
+    if (activeTab !== 'favorites') return;
+    const loadFavorites = async () => {
+      const allFavorites = await getAllFavorites();
+      await updateFavoriteItems(allFavorites);
+    };
+    loadFavorites();
+    const unsubscribe = subscribeToDataUpdates('favoritesUpdated', (newFavs: any) => {
+      updateFavoriteItems(newFavs);
+    });
+    return unsubscribe;
+  }, [activeTab]);
+
+  const handleCloseAnnouncement = (msg: string) => {
+    setShowAnnouncement(false);
+    localStorage.setItem('hasSeenAnnouncement', msg);
+  };
+
+  return (
+    <PageLayout>
+      {/* Header Visual Section */}
+      <div className="relative pt-20 pb-10 sm:pt-32 sm:pb-16 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 h-75 sm:w-150 sm:h-150 bg-purple-500/20 rounded-full blur-[80px] sm:blur-[120px] -z-10 pointer-events-none animate-pulse" />
+        <div className="flex flex-col items-center justify-center text-center px-4">
+          <div className="relative group">
+            <h1 className="text-6xl sm:text-8xl font-black tracking-tighter deco-brand drop-shadow-2xl select-none transition-transform duration-500 group-hover:scale-105">
+              {siteName || 'DecoTV'}
+            </h1>
+            <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-2xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
+          <div className="mt-8 animate-fade-in-up">
+            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/50 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg">
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">发现</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">收藏</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">继续观看</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-2 sm:px-10 py-4 sm:py-8">
+        <div className="mb-8 flex justify-center">
+          <CapsuleSwitch
+            options={[{ label: '首页', value: 'home' }, { label: '收藏夹', value: 'favorites' }]}
+            active={activeTab}
+            onChange={(v) => setActiveTab(v as any)}
+          />
+        </div>
+
+        <div className="max-w-[95%] mx-auto">
+          {activeTab === 'favorites' ? (
+            <section className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">我的收藏夹</h2>
+                {favoriteItems.length > 0 && (
+                  <button 
+                    className="text-sm text-gray-400 hover:text-red-500 transition-colors"
+                    onClick={async () => { if(confirm('Clear all?')) { await clearAllFavorites(); setFavoriteItems([]); } }}
+                  >
+                    清空
+                  </button>
+                )}
+              </div>
+              <div className="grid grid-cols-3 gap-x-2 gap-y-14 sm:grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] sm:gap-x-8 sm:gap-y-20">
+                {favoriteItems.map((item) => (
+                  <VideoCard key={item.id + item.source} query={item.search_title} {...item} from="favorite" type={item.episodes > 1 ? 'tv' : ''} />
+                ))}
+                {favoriteItems.length === 0 && <div className="col-span-full text-center py-20 text-gray-400">暂无收藏内容</div>}
+              </div>
+            </section>
+          ) : (
+            <>
+              <ContinueWatching />
+
+              {/* 1. Movies */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">热门电影</h2>
+                  <Link href="/douban?type=movie" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    查看更多 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotMovies.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} type="movie" />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 2. TV Shows */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">热门剧集</h2>
+                  <Link href="/douban?type=tv" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    查看更多 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotTvShows.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 3. Anime */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">热门番剧</h2>
+                  <Link href="/douban?type=anime" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    查看更多 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotAnimes.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 4. Variety Shows */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">热门综艺</h2>
+                  <Link href="/douban?type=show" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    查看更多 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotVarietyShows.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              <DecoTVFooterCard />
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* Announcement Modal */}
+      {announcement && showAnnouncement && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl dark:bg-gray-900 animate-in zoom-in-95 duration-300">
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 border-b-2 border-purple-400 pb-1">
+                系统公告
+              </h3>
+              <button 
+                onClick={() => handleCloseAnnouncement(announcement)}
+                className="text-gray-400 hover:text-gray-600 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="mb-6">
+              <div className="relative overflow-hidden rounded-lg p-4 bg-gradient-to-r from-purple-50 via-pink-50 to-indigo-50 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-indigo-900/20 shadow-inner">
+                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-purple-500 to-indigo-500" />
+                <p className="ml-2 text-gray-700 dark:text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">
+                  {announcement}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => handleCloseAnnouncement(announcement)}
+              className="w-full rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 py-3 text-white font-bold shadow-lg hover:opacity-90 active:scale-95 transition-all"
+            >
+              我知道了
+            </button>
+          </div>
+        </div>
+      )}
+    </PageLayout>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <HomeClient />
+    </Suspense>
+  );
+}
+```
+
+### 清空二次确认
+
+1. 修改继续观看组件 (src/components/ContinueWatching.tsx)
+
+```tsx
+/* eslint-disable no-console */
+'use client';
+
+import { useEffect, useState } from 'react';
+
+import type { PlayRecord } from '@/lib/db.client';
+import {
+  clearAllPlayRecords,
+  getAllPlayRecords,
+  subscribeToDataUpdates,
+} from '@/lib/db.client';
+
+import ScrollableRow from '@/components/ScrollableRow';
+import VideoCard from '@/components/VideoCard';
+
+interface ContinueWatchingProps {
+  className?: string;
+}
+
+export default function ContinueWatching({ className }: ContinueWatchingProps) {
+  const [playRecords, setPlayRecords] = useState<
+    (PlayRecord & { key: string })[]
+  >([]);
+  const [loading, setLoading] = useState(true);
+
+  // 处理播放记录数据更新的函数
+  const updatePlayRecords = (allRecords: Record<string, PlayRecord>) => {
+    // 将记录转换为数组并根据 save_time 由近到远排序
+    const recordsArray = Object.entries(allRecords).map(([key, record]) => ({
+      ...record,
+      key,
+    }));
+
+    // 按 save_time 降序排序（最新的在前面）
+    const sortedRecords = recordsArray.sort(
+      (a, b) => b.save_time - a.save_time
+    );
+
+    setPlayRecords(sortedRecords);
+  };
+
+  useEffect(() => {
+    const fetchPlayRecords = async () => {
+      try {
+        setLoading(true);
+
+        // 从缓存或API获取所有播放记录
+        const allRecords = await getAllPlayRecords();
+        updatePlayRecords(allRecords);
+      } catch (error) {
+        console.error('获取播放记录失败:', error);
+        setPlayRecords([]);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchPlayRecords();
+
+    // 修复点：显式为 allRecords 指定类型 Record<string, PlayRecord>
+    const unsubscribe = subscribeToDataUpdates(
+      'playRecordsUpdated',
+      (allRecords: Record<string, PlayRecord>) => {
+        updatePlayRecords(allRecords);
+      }
+    );
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  // 如果没有播放记录，则不渲染组件
+  if (!loading && playRecords.length === 0) {
+    return null;
+  }
+
+  // 计算播放进度百分比
+  const getProgress = (record: PlayRecord) => {
+    if (record.total_time === 0) return 0;
+    return (record.play_time / record.total_time) * 100;
+  };
+
+  // 从 key 中解析 source 和 id
+  const parseKey = (key: string) => {
+    const plusIndex = key.indexOf('+');
+    return {
+      source: key.substring(0, plusIndex),
+      id: key.substring(plusIndex + 1),
+    };
+  };
+
+  return (
+    <section className={`mb-8 ${className || ''}`}>
+      <div className='mb-4 flex items-center justify-between'>
+        <h2 className='text-xl font-bold text-gray-800 dark:text-gray-200'>
+          继续观看
+        </h2>
+        {!loading && playRecords.length > 0 && (
+          <button
+            className='text-sm font-medium text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 transition-colors'
+            onClick={async () => {
+              // 添加确认弹窗
+              if (confirm('确定清空所有观看记录吗？')) {
+                await clearAllPlayRecords();
+                setPlayRecords([]);
+              }
+            }}
+          >
+            清空
+          </button>
+        )}
+      </div>
+      <ScrollableRow>
+        {loading
+          ? Array.from({ length: 6 }).map((_, index) => (
+              <div
+                key={index}
+                className='min-w-24 w-24 sm:min-w-45 sm:w-44'
+              >
+                <div className='relative aspect-2/3 w-full overflow-hidden rounded-lg bg-gray-200 animate-pulse dark:bg-gray-800'>
+                  <div className='absolute inset-0 bg-gray-300 dark:bg-gray-700'></div>
+                </div>
+                <div className='mt-2 h-4 bg-gray-200 rounded animate-pulse dark:bg-gray-800'></div>
+                <div className='mt-1 h-3 bg-gray-200 rounded animate-pulse dark:bg-gray-800'></div>
+              </div>
+            ))
+          : playRecords.map((record) => {
+              const { source, id } = parseKey(record.key);
+              return (
+                <div
+                  key={record.key}
+                  className='min-w-24 w-24 sm:min-w-45 sm:w-44'
+                >
+                  <VideoCard
+                    id={id}
+                    title={record.title}
+                    poster={record.cover}
+                    year={record.year}
+                    source={source}
+                    source_name={record.source_name}
+                    progress={getProgress(record)}
+                    episodes={record.total_episodes}
+                    currentEpisode={record.index}
+                    query={record.search_title}
+                    from='playrecord'
+                    onDelete={() =>
+                      setPlayRecords((prev) =>
+                        prev.filter((r) => r.key !== record.key)
+                      )
+                    }
+                    type={record.total_episodes > 1 ? 'tv' : ''}
+                  />
+                </div>
+              );
+            })}
+      </ScrollableRow>
+    </section>
+  );
+}
+```
+
+2. 同步更新首页代码 (src/app/page.tsx)
+
+```tsx
+/* eslint-disable @typescript-eslint/no-explicit-any, react-hooks/exhaustive-deps, no-console */
+
+'use client';
+
+import { ChevronRight } from 'lucide-react';
+import Link from 'next/link';
+import { Suspense, useEffect, useState } from 'react';
+
+// --- API Imports ---
+import {
+  clearAllFavorites,
+  getAllFavorites,
+  getAllPlayRecords,
+  subscribeToDataUpdates,
+} from '@/lib/db.client';
+import { getDoubanRecommends } from '@/lib/douban.client';
+import { DoubanItem } from '@/lib/types';
+
+// --- Component Imports ---
+import CapsuleSwitch from '@/components/CapsuleSwitch';
+import ContinueWatching from '@/components/ContinueWatching';
+import DecoTVFooterCard from '@/components/DecoTVFooterCard';
+import PageLayout from '@/components/PageLayout';
+import ScrollableRow from '@/components/ScrollableRow';
+import { useSite } from '@/components/SiteProvider';
+import VideoCard from '@/components/VideoCard';
+
+// --- Interfaces ---
+interface FavoriteItem {
+  id: string;
+  source: string;
+  title: string;
+  poster: string;
+  episodes: number;
+  source_name: string;
+  currentEpisode?: number;
+  search_title?: string;
+  origin?: 'vod' | 'live';
+  year?: string;
+}
+
+function HomeClient() {
+  const [activeTab, setActiveTab] = useState<'home' | 'favorites'>('home');
+  const [hotMovies, setHotMovies] = useState<DoubanItem[]>([]);
+  const [hotTvShows, setHotTvShows] = useState<DoubanItem[]>([]);
+  const [hotVarietyShows, setHotVarietyShows] = useState<DoubanItem[]>([]);
+  const [hotAnimes, setHotAnimes] = useState<DoubanItem[]>([]);
+  const [loading, setLoading] = useState(true);
+  
+  const { siteName, announcement } = useSite();
+  const [showAnnouncement, setShowAnnouncement] = useState(false);
+  const [favoriteItems, setFavoriteItems] = useState<FavoriteItem[]>([]);
+
+  // Announcement logic
+  useEffect(() => {
+    if (typeof window !== 'undefined' && announcement) {
+      const hasSeen = localStorage.getItem('hasSeenAnnouncement');
+      if (hasSeen !== announcement) {
+        setShowAnnouncement(true);
+      }
+    }
+  }, [announcement]);
+
+  // Data fetching logic
+  useEffect(() => {
+    const fetchAllData = async () => {
+      try {
+        setLoading(true);
+        const [moviesRes, tvRes, varietyRes, animeRes] = await Promise.all([
+          getDoubanRecommends({ kind: 'movie', pageLimit: 20, sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, format: '鐢佃鍓?, sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, format: '缁艰壓', sort: 'U' }),
+          getDoubanRecommends({ kind: 'tv', pageLimit: 20, category: '鍔ㄧ敾', format: '鐢佃鍓?, sort: 'U' }),
+        ]);
+
+        if (moviesRes.code === 200) setHotMovies(moviesRes.list);
+        if (tvRes.code === 200) setHotTvShows(tvRes.list);
+        if (varietyRes.code === 200) setHotVarietyShows(varietyRes.list);
+        if (animeRes.code === 200) setHotAnimes(animeRes.list);
+      } catch (error) {
+        console.error('Fetch Error:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAllData();
+  }, []);
+
+  // Sync favorites and play records
+  const updateFavoriteItems = async (allFavorites: Record<string, any>) => {
+    const allPlayRecords = await getAllPlayRecords();
+    const sorted = Object.entries(allFavorites)
+      .sort(([, a], [, b]) => b.save_time - a.save_time)
+      .map(([key, fav]) => {
+        const plusIndex = key.indexOf('+');
+        const source = key.slice(0, plusIndex);
+        const id = key.slice(plusIndex + 1);
+        const playRecord = allPlayRecords[key];
+        
+        return {
+          id,
+          source,
+          title: fav.title,
+          year: fav.year,
+          poster: fav.cover,
+          episodes: fav.total_episodes,
+          source_name: fav.source_name,
+          currentEpisode: playRecord?.index,
+          search_title: fav?.search_title,
+          origin: fav?.origin,
+        } as FavoriteItem;
+      });
+    setFavoriteItems(sorted);
+  };
+
+  useEffect(() => {
+    if (activeTab !== 'favorites') return;
+    const loadFavorites = async () => {
+      const allFavorites = await getAllFavorites();
+      await updateFavoriteItems(allFavorites);
+    };
+    loadFavorites();
+    const unsubscribe = subscribeToDataUpdates('favoritesUpdated', (newFavs: any) => {
+      updateFavoriteItems(newFavs);
+    });
+    return unsubscribe;
+  }, [activeTab]);
+
+  const handleCloseAnnouncement = (msg: string) => {
+    setShowAnnouncement(false);
+    localStorage.setItem('hasSeenAnnouncement', msg);
+  };
+
+  return (
+    <PageLayout>
+      {/* Visual Header Section */}
+      <div className="relative pt-20 pb-10 sm:pt-32 sm:pb-16 overflow-hidden">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-75 h-75 sm:w-150 sm:h-150 bg-purple-500/20 rounded-full blur-[80px] sm:blur-[120px] -z-10 pointer-events-none animate-pulse" />
+        <div className="flex flex-col items-center justify-center text-center px-4">
+          <div className="relative group">
+            <h1 className="text-6xl sm:text-8xl font-black tracking-tighter deco-brand drop-shadow-2xl select-none transition-transform duration-500 group-hover:scale-105">
+              {siteName || 'DecoTV'}
+            </h1>
+            <div className="absolute -inset-8 bg-gradient-to-r from-blue-500/20 via-purple-500/20 to-pink-500/20 blur-2xl -z-10 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          </div>
+          <div className="mt-8 animate-fade-in-up">
+            <div className="inline-flex items-center gap-3 px-6 py-2.5 rounded-full bg-white/50 dark:bg-black/30 backdrop-blur-md border border-white/20 dark:border-white/10 shadow-lg">
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">鍙戠幇</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">鏀惰棌</span>
+              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+              <span className="text-base sm:text-lg font-medium text-gray-800 dark:text-gray-100">缁х画瑙傜湅</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="px-2 sm:px-10 py-4 sm:py-8">
+        {/* Tab Switcher */}
+        <div className="mb-8 flex justify-center">
+          <CapsuleSwitch
+            options={[{ label: '棣栭〉', value: 'home' }, { label: '鏀惰棌澶?, value: 'favorites' }]}
+            active={activeTab}
+            onChange={(v) => setActiveTab(v as any)}
+          />
+        </div>
+
+        <div className="max-w-[95%] mx-auto">
+          {activeTab === 'favorites' ? (
+            /* --- Favorites View --- */
+            <section className="mb-8">
+              <div className="mb-4 flex items-center justify-between">
+                <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">鎴戠殑鏀惰棌澶?/h2>
+                {favoriteItems.length > 0 && (
+                  <button 
+                    className="text-sm font-medium text-gray-500 hover:text-purple-600 dark:text-gray-400 dark:hover:text-purple-400 transition-colors"
+                    onClick={async () => { 
+                      if(confirm('纭畾娓呯┖鎵€鏈夋敹钘忚褰曞悧锛?)) { 
+                        await clearAllFavorites(); 
+                        setFavoriteItems([]); 
+                      } 
+                    }}
+                  >
+                    娓呯┖
+                  </button>
+                )}
+              </div>
+              <div className="grid grid-cols-3 gap-x-2 gap-y-14 sm:grid-cols-[repeat(auto-fill,minmax(11rem,1fr))] sm:gap-x-8 sm:gap-y-20">
+                {favoriteItems.map((item) => (
+                  <VideoCard key={item.id + item.source} query={item.search_title} {...item} from="favorite" type={item.episodes > 1 ? 'tv' : ''} />
+                ))}
+                {favoriteItems.length === 0 && (
+                  <div className="col-span-full text-center py-20 text-gray-400">鏆傛棤鏀惰棌鍐呭</div>
+                )}
+              </div>
+            </section>
+          ) : (
+            <>
+              {/* --- Home Sections --- */}
+              <ContinueWatching />
+
+              {/* 1. Movies */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">鐑棬鐢靛奖</h2>
+                  <Link href="/douban?type=movie" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    鏌ョ湅鏇村 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotMovies.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} type="movie" />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 2. TV Shows */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">鐑棬鍓ч泦</h2>
+                  <Link href="/douban?type=tv" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    鏌ョ湅鏇村 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotTvShows.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 3. Anime */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">鐑棬鐣墽</h2>
+                  <Link href="/douban?type=anime" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    鏌ョ湅鏇村 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotAnimes.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              {/* 4. Variety Shows */}
+              <section className="mb-8">
+                <div className="mb-4 flex items-center justify-between">
+                  <h2 className="text-xl font-bold text-gray-800 dark:text-gray-200">鐑棬缁艰壓</h2>
+                  <Link href="/douban?type=show" className="flex items-center text-sm text-gray-500 hover:text-gray-700">
+                    鏌ョ湅鏇村 <ChevronRight className="w-4 h-4 ml-1" />
+                  </Link>
+                </div>
+                <ScrollableRow>
+                  {loading ? Array.from({ length: 12 }).map((_, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44 h-64 bg-gray-200 dark:bg-gray-800 animate-pulse rounded-lg" />
+                  )) : hotVarietyShows.slice(0, 18).map((item, i) => (
+                    <div key={i} className="min-w-24 w-24 sm:min-w-45 sm:w-44">
+                      <VideoCard from="douban" title={item.title} poster={item.poster} douban_id={Number(item.id)} rate={item.rate} year={item.year} />
+                    </div>
+                  ))}
+                </ScrollableRow>
+              </section>
+
+              <DecoTVFooterCard />
+            </>
+          )}
+        </div>
+      </div>
+
+      {/* --- Announcement Modal --- */}
+      {announcement && showAnnouncement && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 backdrop-blur-sm p-4 animate-in fade-in duration-300">
+          <div className="w-full max-w-md rounded-xl bg-white p-6 shadow-2xl dark:bg-gray-900 animate-in zoom-in-95 duration-300">
+            <div className="flex justify-between items-start mb-4">
+              <h3 className="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-purple-500 via-pink-400 to-indigo-500 border-b-2 border-purple-400 pb-1">
+                绯荤粺鍏憡
+              </h3>
+              <button 
+                onClick={() => handleCloseAnnouncement(announcement)}
+                className="text-gray-400 hover:text-gray-600 dark:hover:text-gray-200 transition-colors"
+              >
+                <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                </svg>
+              </button>
+            </div>
+            <div className="mb-6">
+              <div className="relative overflow-hidden rounded-lg p-4 bg-gradient-to-r from-purple-50 via-pink-50 to-indigo-50 dark:from-purple-900/20 dark:via-pink-900/20 dark:to-indigo-900/20 shadow-inner">
+                <div className="absolute inset-y-0 left-0 w-1 bg-gradient-to-b from-purple-500 to-indigo-500" />
+                <p className="ml-2 text-gray-700 dark:text-gray-200 leading-relaxed font-medium whitespace-pre-wrap">
+                  {announcement}
+                </p>
+              </div>
+            </div>
+            <button
+              onClick={() => handleCloseAnnouncement(announcement)}
+              className="w-full rounded-lg bg-gradient-to-r from-purple-600 to-indigo-600 py-3 text-white font-bold shadow-lg hover:opacity-90 active:scale-95 transition-all"
+            >
+              鎴戠煡閬撲簡
+            </button>
+          </div>
+        </div>
+      )}
+    </PageLayout>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+      <HomeClient />
+    </Suspense>
+  );
+}
+```
+
+---
+
+**AI提问：**
+
+**标题：开发 [功能名称] 组件，要求实时数据同步与交互一致性**
+
+**1. 功能背景：** 我正在使用 Next.js (App Router) 开发一个 [例如：收藏夹/播放历史] 模块。数据存储在客户端的 [例如：IndexedDB/localStorage] 中。
+
+**2. 核心逻辑要求：**
+
+- **数据获取与排序**：初始化时从数据库获取所有记录。如果记录中有 `save_time`，请按时间倒序排列（最新的在前）。
+- **实时同步**：必须使用 `subscribeToDataUpdates` 订阅模式。当数据库发生变化（如 `playRecordsUpdated` 事件）时，组件能自动更新状态。
+- **空状态处理**：如果数据为空且不在加载中，则不渲染任何内容。
+
+**3. 交互与 UI 要求：**
+
+- **清空功能**：在标题右侧添加一个“清空”按钮，样式参考 `text-gray-500 hover:text-purple-600`。
+- **二次确认**：点击清空时，必须弹出 `confirm()` 确认框，用户确认后再执行清空数据库和更新状态的操作。
+- **Skeleton 加载**：在数据加载期间，显示占位动画（骨架屏），并保持与列表项相同的容器尺寸。
+
+**4. 技术细节与安全性：**
+
+- **TypeScript 规范**：请确保所有回调函数的参数都有明确的类型定义，禁止使用 `any` 或 `unknown`（避免 Docker 构建时出现类型检查错误）。
+- **生命周期管理**：在 `useEffect` 卸载时，必须调用 `unsubscribe` 函数防止内存泄漏。
+- **代码风格**：使用 `client component` 模式，禁止 console 日志输出。
+
 ## 去空格搜索
 
 方法如上，还是问[gemini](https://gemini.google.com/app)：，上传`/src/app/api/search`下面的5个路由文件，**提问**：
