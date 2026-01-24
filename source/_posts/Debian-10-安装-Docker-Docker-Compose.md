@@ -1725,6 +1725,72 @@ export default function Home() {
 - **生命周期管理**：在 `useEffect` 卸载时，必须调用 `unsubscribe` 函数防止内存泄漏。
 - **代码风格**：使用 `client component` 模式，禁止 console 日志输出。
 
+修复分页逻辑加载不全 
+
+## 修复分页逻辑加载不全 
+
+上传old.douban.page.tsx和new.douban.page.tsx，还是问[gemini](https://gemini.google.com/app)：
+
+old开头两个文件改成new开头两个文件，出现以下几个问题：
+1.电影全部分类下面的“综合排序”只能显示6部影片，就显示“已加载全部内容”
+2.动漫剧场版分类下面的“综合排序”、“近期热度”、“首映时间”、“高分优先”只能显示24部影片，就显示“已加载全部内容”
+
+将 `new.page.tsx` 中的分页逻辑改回与 `old.page.tsx` 一致的 `data.list.length !== 0`。
+
+---
+
+答：你需要修改 `new.page.tsx` 中的以下两处代码：
+
+1. **修改首屏加载逻辑 (第 210-215 行左右)**
+
+在 `loadInitialData` 函数中：
+
+```typescript
+// new.page.tsx 修改前
+if (data.code === 200) {
+  if (isSnapshotEqual(snapshot, currentParamsRef.current)) {
+    setDoubanData(data.list);
+    setHasMore(data.list.length === 25); //
+  }
+}
+
+// 修改后
+if (data.code === 200) {
+  if (isSnapshotEqual(snapshot, currentParamsRef.current)) {
+    setDoubanData(data.list);
+    setHasMore(data.list.length !== 0); // 改回与 old.page.tsx 一致
+  }
+}
+```
+
+2. **修改滚动加载逻辑 (第 270-275 行左右)**
+
+在 `fetchMore` 函数中：
+
+```typescript
+// new.page.tsx 修改前
+if (data.code === 200) {
+  if (isSnapshotEqual(snapshot, currentParamsRef.current)) {
+    setDoubanData(prev => [...prev, ...data.list]);
+    setHasMore(data.list.length === 25); //
+  }
+}
+
+// 修改后
+if (data.code === 200) {
+  if (isSnapshotEqual(snapshot, currentParamsRef.current)) {
+    setDoubanData(prev => [...prev, ...data.list]);
+    setHasMore(data.list.length !== 0); // 改回与 old.page.tsx 一致
+  }
+}
+```
+
+**预期效果**
+
+- **电影全部分类**：首屏显示 6 部后，`hasMore` 为 `true`，用户向下滚动会正常触发下一页请求。
+- **动漫剧场版**：显示 24 部后，不再被判定为“已全部加载”，会自动尝试请求后续内容。
+- **停止条件**：只有当 `data.list` 彻底为空时，页面底部才会显示“已加载全部内容”。
+
 ## 去空格搜索
 
 方法如上，还是问[gemini](https://gemini.google.com/app)：，上传`/src/app/api/search`下面的5个路由文件，**提问**：
