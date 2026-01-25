@@ -1849,6 +1849,397 @@ if (data.code === 200) {
 
 > ~~“同时，请帮我修改 `suggestions.route.ts` 的逻辑，让搜索建议在返回结果时，如果发现匹配季数的内容，自动补全另一种（带空格或不带空格）的建议项。”~~
 
+## 去冒号搜索
+
+上传`\src\app\api\search\route.ts`、`\src\app\api\search\ws\route.ts`、`\src\app\search\page.tsx`、`\src\app\play\page.tsx`四个文件，问[gemini](https://gemini.google.com/app)：
+
+> “请帮我增强搜索逻辑。当输入包含**冒号**或**副标题**时，实现**去符号化搜索**。要求：
+>
+> - **拆分生成**：提取冒号前后的内容，分别生成『主标题+空格+副标题』、『主标题副标题紧凑版』以及『仅副标题版』进行并发搜索。
+> - **兼容符号**：自动处理中英文冒号互换，确保不同资源站的命名差异都能被召回。
+> - **前端放宽**：修改前端聚合过滤逻辑，使其允许匹配副标题子项，防止有效结果被误杀。
+> - **无感匹配**：在播放页换源时，通过『去除符号比对』实现标题的包含关系匹配，而非简单的开头匹配。”
+
+---
+
+PS：很多ai认为只用改前两个文件，只有[claude](https://claude.ai/new)发现：
+
+看了前端代码（`\src\app\search\page.tsx`）,我发现了一个关键问题:**前端的聚合逻辑会过滤掉不相关的结果**!
+
+**问题分析**
+
+看这段代码(第215-267行):
+
+```typescript
+// 过滤:只保留标题相关的结果
+const relevantResults = searchResults.filter((item) => {
+  const title = item.title.toLowerCase();
+  const titleNoSpace = title.replace(/\s+/g, '');
+
+  // 包含完整关键词 (检查原词和转换后的词)
+  if (
+    title.includes(query) ||
+    titleNoSpace.includes(queryNoSpace) ||
+    title.includes(normQuery) ||
+    titleNoSpace.includes(normQueryNoSpace)
+  ) {
+    return true;
+  }
+  // ... 其他模糊匹配逻辑
+});
+```
+
+当你搜索 `鬼灭之刃:游郭篇` 时:
+
+- `query` = `"鬼灭之刃:游郭篇"`
+- 只有标题完全包含这个字符串的结果才会通过过滤
+- 其他结果(如只有"鬼灭之刃"的)都被过滤掉了
+
+**解决方案**
+
+我需要修改前端的过滤逻辑,让它能识别**冒号分隔的标题**。
+
+请问:你希望我修改前端的 `page.tsx` 来适配冒号搜索吗?还是有其他方案?
+
+或者,你可以先测试:**直接搜索 `鬼灭之刃` (不带冒号和副标题)**,看看是否能搜到更多结果。这样可以确认后端的多关键词搜索是否正常工作。
+
+---
+
+当gemini只改两个文件时，将上述文字给它，最终给出方法。
+
+**答：**为了实现您要求的“去冒号搜索”增强功能，我们需要对后端搜索逻辑、前端搜索页面（聚合过滤）以及播放页面的源过滤逻辑进行同步升级。
+
+以下是针对四个核心文件的修改方案：
+
+### 1. 修改 `api/search/route.ts` (后端标准搜索)
+
+在 `normalizedQuery` 处理之后，生成 `searchQueries` 列表时加入冒号解析逻辑。
+
+```typescript
+// ... 原有代码 ...
+  const searchQueries = [normalizedQuery];
+  
+  // ✨ 新增：处理冒号逻辑 (去冒号、副标题提取)
+  const colonRegex = /[:：]/;
+  if (colonRegex.test(normalizedQuery)) {
+    const parts = normalizedQuery.split(colonRegex).map(p => p.trim());
+    if (parts.length >= 2) {
+      const mainTitle = parts[0];
+      const subTitle = parts[1];
+
+      // 1. 添加空格分隔版本 (例如: "凡人修仙传 仙界篇")
+      const spaced = `${mainTitle} ${subTitle}`;
+      if (!searchQueries.includes(spaced)) searchQueries.push(spaced);
+
+      // 2. 添加紧密连接版本 (例如: "凡人修仙传仙界篇")
+      const combined = `${mainTitle}${subTitle}`;
+      if (!searchQueries.includes(combined)) searchQueries.push(combined);
+
+      // 3. 添加仅副标题 (如果长度 >= 2)
+      if (subTitle.length >= 2 && !searchQueries.includes(subTitle)) {
+        searchQueries.push(subTitle);
+      }
+
+      // 4. 符号互换版本 (如果是中文冒号则补一个英文冒号版，反之亦然)
+      const swapped = normalizedQuery.includes(':') 
+        ? normalizedQuery.replace(':', '：') 
+        : normalizedQuery.replace('：', ':');
+      if (!searchQueries.includes(swapped)) searchQueries.push(swapped);
+    }
+  }
+
+  // ... 后续原有的 seasonRegex 处理逻辑保持不变 ...
+```
+
+### 2. 修改 `api/search/ws/route.ts` (后端流式搜索)
+
+同步修改流式搜索的关键词生成部分。
+
+```typescript
+// ... 找到 searchQueries 定义位置 ...
+  const searchQueries = [normalizedQuery];
+
+  // ✨ 新增：处理冒号逻辑
+  const colonRegex = /[:：]/;
+  if (colonRegex.test(normalizedQuery)) {
+    const parts = normalizedQuery.split(colonRegex).map(p => p.trim());
+    if (parts.length >= 2) {
+      const mainTitle = parts[0];
+      const subTitle = parts[1];
+      
+      const spaced = `${mainTitle} ${subTitle}`;
+      if (!searchQueries.includes(spaced)) searchQueries.push(spaced);
+
+      const combined = `${mainTitle}${subTitle}`;
+      if (!searchQueries.includes(combined)) searchQueries.push(combined);
+
+      if (subTitle.length >= 2 && !searchQueries.includes(subTitle)) {
+        searchQueries.push(subTitle);
+      }
+
+      const swapped = normalizedQuery.includes(':') 
+        ? normalizedQuery.replace(':', '：') 
+        : normalizedQuery.replace('：', ':');
+      if (!searchQueries.includes(swapped)) searchQueries.push(swapped);
+    }
+  }
+  // ... 后续逻辑 ...
+```
+
+### 3. 修改 `search.page.tsx` (前端聚合过滤)
+
+修改 `relevantResults` 的过滤逻辑，防止副标题结果在聚合模式下被误杀。
+
+```typescript
+// 找到 search.page.tsx 第 215 行起的 relevantResults 定义
+const relevantResults = searchResults.filter((item) => {
+  const title = item.title.toLowerCase();
+  const titleNoSpace = title.replace(/\s+/g, '');
+  
+  // 基础匹配
+  if (title.includes(query) || titleNoSpace.includes(queryNoSpace)) return true;
+  if (normQuery && (title.includes(normQuery) || titleNoSpace.includes(normQueryNoSpace))) return true;
+
+  // ✨ 新增：冒号子项匹配
+  const colonRegex = /[:：]/;
+  if (colonRegex.test(query)) {
+    const parts = query.split(colonRegex).map(p => p.trim().toLowerCase()).filter(p => p.length >= 2);
+    // 只要结果标题包含冒号前后的主要部分，就保留在聚合结果中
+    if (parts.some(part => title.includes(part))) return true;
+  }
+
+  // ... 原有的模糊匹配字符序列逻辑保持不变 ...
+```
+
+### 4. 修改 `play.page.tsx` (播放页源过滤)
+
+按照您的要求，对 `fetchSourcesData` 中的过滤逻辑进行整体替换，增强对冒号标题的兼容性。
+
+```typescript
+    const fetchSourcesData = async (query: string): Promise<SearchResult[]> => {
+      try {
+        const response = await fetch(`/api/search?q=${encodeURIComponent(query.trim())}`);
+        if (!response.ok) throw new Error('搜索失败');
+        const data = await response.json();
+        const rawResults = data.results || [];
+        
+        // 1. 预处理：获取清洗后的主标题（去除所有空格和冒号）
+        const mainTitle = (videoTitleRef.current || '').trim().toLowerCase();
+        const mainTitleClean = mainTitle.replace(/[:：\s+]/g, '');
+        const searchType = searchParams.get('stype') || searchParams.get('type') || 'vod';
+        
+        // 2. 统计众数逻辑
+        if (searchType === 'movie') {
+          baseEpisodeCountRef.current = 1;
+        } else {
+          const perfectMatches = rawResults.filter((r: SearchResult) => {
+            const rTitleClean = r.title.trim().toLowerCase().replace(/[:：\s+]/g, '');
+            return rTitleClean === mainTitleClean;
+          });
+          
+          if (perfectMatches.length > 0) {
+            const counts: Record<number, number> = {};
+            perfectMatches.forEach((r: any) => {
+              const len = r.episodes?.length || 0;
+              if (len > 0) counts[len] = (counts[len] || 0) + 1;
+            });
+            
+            let modeCount = 0;
+            let maxFreq = 0;
+            for (const [count, freq] of Object.entries(counts)) {
+              if (freq > maxFreq) {
+                maxFreq = freq;
+                modeCount = parseInt(count);
+              }
+            }
+            baseEpisodeCountRef.current = modeCount;
+          }
+        }		 
+        
+        // 3. ✨ 执行增强后的过滤逻辑
+        const results = rawResults.filter((result: SearchResult) => {
+          if (!result.title) return false;
+          
+          const sourceTitle = result.title.trim().toLowerCase();
+          const sourceTitleClean = sourceTitle.replace(/[:：\s+]/g, '');
+          const episodeCount = result.episodes?.length ?? 0;
+          const baseCount = baseEpisodeCountRef.current;
+
+          // ★ 条件 A：标题匹配（去除冒号后，互相包含即可，不再死守 startsWith）
+          const isTitleMatch = sourceTitleClean.includes(mainTitleClean) || 
+                               mainTitleClean.includes(sourceTitleClean);
+          if (!isTitleMatch) return false;
+          
+          // ★ 条件 B：电影/电视剧集数拦截
+          if (searchType === 'movie') {
+            if (episodeCount > 5) return false;
+          } else {
+            if (baseCount > 6) {
+              const diff = Math.abs(episodeCount - baseCount);
+              if (diff > baseCount * 0.3) return false;
+            }
+          }
+          
+          // ★ 条件 C：年份匹配
+          const yearMatch = videoYearRef.current
+            ? result.year?.toString().toLowerCase() === videoYearRef.current.toString().toLowerCase()
+            : true;
+            
+          return yearMatch;		    
+        });
+
+        setAvailableSources(results);
+        return results;
+      } catch (err) {
+        setSourceSearchError(err instanceof Error ? err.message : '搜索失败');
+        setAvailableSources([]);
+        return [];
+      } finally {
+        setSourceSearchLoading(false);
+      }
+    };
+```
+
+### 修改要点总结
+
+1. **后端多词召回**：通过将 `鬼灭之刃:游郭篇` 拆解为 `游郭篇` 等子词，确保能从资源站搜到那些命名不规范（如省略主标题）的源。
+2. **聚合页放宽过滤**：前端聚合不再要求标题必须包含冒号，只要包含“副标题”关键字即可显示，防止结果被误隐藏。
+3. **播放页模糊匹配**：播放页换源列表通过“去除所有符号后比对”的逻辑，确保带冒号和不带冒号的同名资源能互相识别。
+
+## 自动拆分搜索关键词
+
+上传`\src\app\api\search\route.ts`、`\src\app\api\search\ws\route.ts`两个文件，问[gemini](https://gemini.google.com/app)：
+
+**提问模板：** “我想优化一个搜索关键词的处理逻辑。
+
+1. **目标场景**：当用户输入‘作品名+篇章名’（如：**鬼灭之刃柱训练篇**）且中间没空格时，自动生成一个带空格的版本（**鬼灭之刃 柱训练篇**）存入搜索数组。
+2. **核心逻辑**：请使用正则匹配。已知篇章关键字包括：**无限列车、游郭、锻刀村、柱训练、篇章**。
+3. **负面约束**：必须确保拆分点准确。例如，不能把‘鬼灭之刃’拆成‘鬼灭之’和‘刃柱训练篇’，‘刃’字必须留在前半部分。
+4. **代码要求**：每行开头留2空格，并加入长度校验（如主标题至少2个字）防止误伤。”
+
+```typescript
+  // 2.优化后的篇章拆分逻辑：针对特定篇章名进行锚定
+  // 匹配原理：(作品名)(篇章关键字)(篇)
+  const knownArcs = '无限列车|游郭|锻刀村|刀匠村|柱训练|无限城|立志|篇章';
+  const arcPattern = new RegExp(`(.+?)((${knownArcs})篇)$`);
+  const arcMatch = normalizedQuery.match(arcPattern);
+
+  if (arcMatch && !normalizedQuery.includes(' ')) {
+    const mainTitle = arcMatch[1]; // 结果：鬼灭之刃
+    const arcName = arcMatch[2];   // 结果：柱训练篇
+  
+    // 确保主标题有意义（长度 >= 2），避免拆分单字
+    if (mainTitle.length >= 2) {
+      const arcSpaced = `${mainTitle} ${arcName}`;
+      if (!searchQueries.includes(arcSpaced)) {
+        searchQueries.push(arcSpaced);
+      }
+    }
+  }
+```
+
+## 提取主标题与后缀
+
+上传`\src\app\api\search\route.ts`、`\src\app\api\search\ws\route.ts`、`\src\app\play\page.tsx`三个文件，问[gemini](https://gemini.google.com/app)：
+
+当后缀带有：国语、粤语、国语版、粤语版、普通话版、(粤语)、(国语)、(国语版)、(粤语版)、（普通话版）、年份，能多加入后缀前面主标题进行搜索
+
+### 修改 `route.ts` (API 路由)
+
+在 `route.ts` 中，将处理搜索词生成的逻辑更新如下：
+
+```typescript
+  //3.新增：后缀剥离与前缀提取逻辑
+  // 匹配：(核心主标题) + (年份/语言/版本后缀)
+  const metaSuffixRegex = /(.+?)((?:\(|（)?(?:国语|粤语|普通话)(?:版)?(?:\)|）)?|(?:\(|（)?\d{4}年?(?:\)|）)?)$/;
+  const metaMatch = normalizedQuery.match(metaSuffixRegex);
+
+  if (metaMatch) {
+    const coreTitle = metaMatch[1].trim(); // 得到：捕风追影
+    if (coreTitle.length >= 2 && !searchQueries.includes(coreTitle)) {
+      searchQueries.push(coreTitle); // 将最核心的词加入搜索，以获取所有相关结果
+    }
+  }
+```
+
+### 修改 `ws.route.ts` (WebSocket 路由)
+
+在 `ws.route.ts` 中同步此逻辑，确保流式搜索也能覆盖宽泛结果：
+
+```typescript
+  //3.新增：后缀剥离与前缀提取逻辑
+  // 匹配：(核心主标题) + (年份/语言/版本后缀)
+  const metaSuffixRegex = /(.+?)((?:\(|（)?(?:国语|粤语|普通话)(?:版)?(?:\)|）)?|(?:\(|（)?\d{4}年?(?:\)|）)?)$/;
+  const metaMatch = normalizedQuery.match(metaSuffixRegex);
+
+  if (metaMatch) {
+    const coreTitle = metaMatch[1].trim(); // 得到：捕风追影
+    if (coreTitle.length >= 2 && !searchQueries.includes(coreTitle)) {
+      searchQueries.push(coreTitle); // 将最核心的词加入搜索，以获取所有相关结果
+    }
+  }
+```
+
+### 修改 `\src\app\play\page.tsx`
+
+请在 `page.tsx` 中找到 `const results = rawResults.filter(...)` 部分，将其替换为以下增强逻辑：
+
+```typescript
+        // 3. ✨ 执行增强后的过滤逻辑 (支持前缀匹配与后缀剥离)
+        const results = rawResults.filter((result: SearchResult) => {
+          if (!result.title) return false;
+          
+          const sourceTitle = result.title.trim().toLowerCase();
+          const mainTitle = (videoTitleRef.current || '').trim().toLowerCase();
+
+          // 定义后缀剥离正则：移除年份、语言版本、括号等干扰项
+          const suffixRegex = /(.+?)((?:\(|（)?(?:国语|粤语|普通话)(?:版)?(?:\)|）)?|(?:\(|（)?\d{4}年?(?:\)|）)?)$/;
+
+          // 清洗逻辑：去除冒号、空格，并剥离后缀
+          // 这样 "捕风追影粤语" 和 "捕风追影" 都会变成 "捕风追影"
+          const cleanSource = sourceTitle.replace(/[:：\s+]/g, '').replace(suffixRegex, '');
+          const cleanMain = mainTitle.replace(/[:：\s+]/g, '').replace(suffixRegex, '');
+
+          // ★ 条件 A：标题匹配（核心改进）
+          // 只要清洗后的源标题包含清洗后的搜索主旨，或反之，即视为匹配
+          // 效果：搜索 "捕风追影粤语" 能够匹配 "捕风追影2"、"捕风追影前传" 等
+          const isTitleMatch = cleanSource.includes(cleanMain) || cleanMain.includes(cleanSource);
+          
+          if (!isTitleMatch) return false;
+          
+          const episodeCount = result.episodes?.length ?? 0;
+          const baseCount = baseEpisodeCountRef.current;
+          const searchType = searchParams.get('stype') || searchParams.get('type') || 'vod';
+
+          // ★ 条件 B：电影/电视剧集数拦截
+          if (searchType === 'movie') {
+            if (episodeCount > 5) return false; // 电影集数通常不应过多
+          } else {
+            if (baseCount > 6) {
+              const diff = Math.abs(episodeCount - baseCount);
+              if (diff > baseCount * 0.3) return false; // 剧集数量偏差超过 30% 则拦截
+            }
+          }
+          
+          // ★ 条件 C：年份匹配
+          const yearMatch = videoYearRef.current
+            ? result.year?.toString().toLowerCase() === videoYearRef.current.toString().toLowerCase()
+            : true;
+            
+          return yearMatch;		    
+        });
+```
+
+---
+
+AI提问：“我想优化换源体验。请帮我修改 `route.ts` 和 `page.tsx`：
+
+1. **后端**：使用正则剥离语言和年份后缀，提取核心词并实现并发搜索。
+2. **前端**：剥离标题噪音后，用 `includes` 逻辑实现开头匹配，让‘捕风追影粤语’的播放页能看到整个‘捕风追影’系列。
+3. **去噪**：匹配前统一移除空格和中英文冒号。”
+
+---
+
 ## 禁止访问指定网页
 
 ### 项目根目录新建middleware.ts
