@@ -30,23 +30,30 @@ hexo s
 
 最后将服务器原来的SSH 公钥先删除，再上传新的SSH 公钥。具体操作如下:
 
-服务器上输入：
+服务器上输入（一步一步复制粘贴）：
 
 ```
 su git
 cd ~/.ssh
-rm -rf authorized_keys
-```
-
-```bash
-su git
-cd ~
-mkdir .ssh && cd .ssh
 touch authorized_keys
 vi authorized_keys
 ```
 
 现在要打开本地的 `Git Bash`，输入 `vi ~/.ssh/id_rsa.pub`，把里面的内容复制下来粘贴到上面打开的文件里。
+
+---
+
+PS：**或者**先删除再创建粘贴（还是一步一步复制粘贴）：
+
+```
+su git
+rm -rf .ssh
+mkdir .ssh && cd .ssh
+touch authorized_keys
+vi authorized_keys
+```
+
+---
 
 接着把 ssh 目录设置为只有属主有读、写、执行权限。代码如下：
 
