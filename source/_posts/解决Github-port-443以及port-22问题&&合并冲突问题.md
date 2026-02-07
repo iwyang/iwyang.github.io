@@ -143,7 +143,7 @@ docker image prune
 
 为了让 GitHub 的服务器在自动同步时也遵守这个规则，我们需要修改你的 `Fork-sync.yml`。
 
-1. **打开并编辑 `.github/workflows/Fork-sync.yml`**，将内容替换为（如果有多个脚本，注意脚本执行先后顺序）：
+1. 打开并编辑 `.github/workflows/Fork-sync.yml`，将内容替换为（如果有多个脚本，注意脚本执行先后顺序）：
 
 ```
 name: Fork-sync
@@ -272,7 +272,7 @@ git push origin main
 
 这是最关键的一步。由于 GitHub Action 运行环境是临时的，它不知道你本地的 `git config`。我们必须在脚本中注入驱动定义。
 
-1. **修改 `.github/workflows/Fork-sync.yml`**：
+1. 修改 `.github/workflows/Fork-sync.yml`：
 
    将你之前上传的文件内容替换为以下原生 Git 逻辑：
 
