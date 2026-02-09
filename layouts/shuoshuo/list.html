@@ -1,0 +1,71 @@
+{{ define "main" }}
+    <main class="main list-container">
+        
+        <header class="main-title">
+            <h1 class="shuoshuo-title">{{ .Title }}</h1>
+        </header>
+
+        <div class="shuoshuo-list">
+            {{ $paginator := .Paginate .Pages }}
+            {{ range $paginator.Pages }}
+            
+            <article class="shuoshuo-card">
+                <div class="shuoshuo-header">
+                    <div class="shuoshuo-meta">
+                        <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                            {{ .Date.Format "2006年01月02日 15:04" }}
+                        </time>
+                    </div>
+                </div>
+
+                <div class="shuoshuo-content style-cs-content">
+                    {{ .Content }}
+                </div>
+                
+                {{ with .Resources.GetMatch "cover.*" }}
+                <div class="shuoshuo-image">
+                    <img src="{{ .RelPermalink }}" loading="lazy" style="border-radius: 8px; margin-top: 10px; max-width: 100%;">
+                </div>
+                {{ end }}
+
+                <div class="shuoshuo-footer-info">
+                    
+                    {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
+                    <div class="shuoshuo-edit-link">
+                        {{ partial "helper/icon" "external-link" }}
+                        <a href="https://github.com/iwyang/hugo/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
+                           target="_blank" 
+                           rel="noopener noreferrer"
+                           style="color: inherit;">
+                            在 GitHub 上编辑此页
+                        </a>
+                    </div>
+                    {{ end }}
+
+                    {{- if .Lastmod -}}
+                    <div class="shuoshuo-git-info">
+                        {{ partial "helper/icon" "clock" }}
+                        <span style="color: #999;">
+                            更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}
+                            {{- if .GitInfo -}}
+                                <a href="https://github.com/iwyang/hugo/commit/{{ .GitInfo.Hash }}" 
+                                   target="_blank" 
+                                   rel="noopener noreferrer" 
+                                   style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
+                                   #{{ .GitInfo.AbbreviatedHash }}
+                                </a>
+                            {{- end -}}
+                        </span>
+                    </div>
+                    {{- end -}}
+                </div>
+
+            </article>
+            {{ end }}
+        </div>
+
+        <div class="shuoshuo-pagination">
+            {{ partial "pagination.html" . }}
+        </div>
+    </main>
+{{ end }}

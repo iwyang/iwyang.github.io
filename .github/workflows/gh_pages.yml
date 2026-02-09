@@ -1,0 +1,60 @@
+name: GitHub Page Deploy
+
+on:
+  push:
+    branches:
+      - develop # 当你推送到 develop 分支时触发构建
+      
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4 # 升级到 v4 以获得更好的稳定性
+        with:
+          submodules: true # 如果你的主题是作为子模块引入的，这很重要
+          fetch-depth: 0
+          
+      - name: Git Configuration
+        run: |
+          git config --global core.quotePath false
+          git config --global core.autocrlf false
+          git config --global core.safecrlf true
+          git config --global core.ignorecase false 
+          
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3 # 修正：确保使用 actions-hugo 安装环境
+        with:
+          hugo-version: 'latest'
+          extended: true # 支持 Sass/SCSS 编译
+          
+      - name: Cache resources
+        uses: actions/cache@v4 # 升级到 v4，解决 GitHub 停用旧版缓存插件的问题
+        with:
+          path: resources
+          key: ${{ runner.os }}-hugocache-${{ hashFiles('content/**/*') }}
+          restore-keys: |
+            ${{ runner.os }}-hugocache-             
+
+      - name: Build Hugo
+        # 修正：去掉了不再支持的 -v 简写，改为标准的 logLevel 配置
+        run: hugo --gc --minify --logLevel info
+
+      - name: Deploy Hugo to gh-pages
+        uses: peaceiris/actions-gh-pages@v4 # 升级到 v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          PUBLISH_BRANCH: master # 将静态网页部署到 master 分支
+          PUBLISH_DIR: ./public
+        
+      - name: Deploy Hugo to Server
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
+        with:
+          server: 142.171.177.173
+          username: admin
+          password: ${{ secrets.FTP_MIRROR_PASSWORD }}
+          local-dir: ./public/
+          server-dir: /var/www/hexo/
