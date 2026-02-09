@@ -1,0 +1,340 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="注册企业微信 1．搜索下载企业，并使用手机号进行企业微信注册\n2．选择成立企业\n3．输入企业名称等信息\n4．完成后，在通讯录内添加成员\n企业微信创建一个应用 在 “企业微信 —— 应用管理” 最底部的 “自建” 应用处，新建一个 “应用”。名称比如就叫消息通知，配置完成后记录下应用页面的 AgentId 和 Secret。注意，查看 Secret 需要安装一个企业微信，查看完可以卸载。\n"><title>利用企业微信实现twikoo新消息提醒&&数据导出等</title><link rel=canonical href=https://bore.vip/archives/9a366c6/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="利用企业微信实现twikoo新消息提醒&&数据导出等"><meta property='og:description' content="注册企业微信 1．搜索下载企业，并使用手机号进行企业微信注册\n2．选择成立企业\n3．输入企业名称等信息\n4．完成后，在通讯录内添加成员\n企业微信创建一个应用 在 “企业微信 —— 应用管理” 最底部的 “自建” 应用处，新建一个 “应用”。名称比如就叫消息通知，配置完成后记录下应用页面的 AgentId 和 Secret。注意，查看 Secret 需要安装一个企业微信，查看完可以卸载。\n"><meta property='og:url' content='https://bore.vip/archives/9a366c6/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hexo'><meta property='article:published_time' content='2022-02-06T09:27:38+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="利用企业微信实现twikoo新消息提醒&&数据导出等"><meta name=twitter:description content="注册企业微信 1．搜索下载企业，并使用手机号进行企业微信注册\n2．选择成立企业\n3．输入企业名称等信息\n4．完成后，在通讯录内添加成员\n企业微信创建一个应用 在 “企业微信 —— 应用管理” 最底部的 “自建” 应用处，新建一个 “应用”。名称比如就叫消息通知，配置完成后记录下应用页面的 AgentId 和 Secret。注意，查看 Secret 需要安装一个企业微信，查看完可以卸载。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#注册企业微信>注册企业微信</a></li><li><a href=#企业微信创建一个应用>企业微信创建一个应用</a></li><li><a href=#创建-api-云函数>创建 API 云函数</a><ol><li><a href=#vercel版本>Vercel版本</a><ol><li><a href=#安装python>安装python</a></li><li><a href=#安装pipenv>安装pipenv</a></li><li><a href=#下载requests>下载requests</a></li><li><a href=#新建pythonpy>新建python.py</a></li><li><a href=#在twikoo中配置>在twikoo中配置</a></li><li><a href=#在微信中接收企业微信消息>在微信中接收企业微信消息</a></li></ol></li><li><a href=#腾讯云版本>腾讯云版本</a><ol><li><a href=#twikoo-配置>Twikoo 配置</a></li></ol></li></ol></li><li><a href=#更换-cdn-镜像>更换 CDN 镜像</a></li><li><a href=#更换表情cdn>更换表情CDN</a></li><li><a href=#twikoo-导出评论数据>Twikoo 导出评论数据</a><ol><li><a href=#导出-twikoo-在-vercel-的数据>导出 Twikoo 在 Vercel 的数据</a></li><li><a href=#导出-twikoo-在腾讯云的数据>导出 Twikoo 在腾讯云的数据</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/9a366c6/>利用企业微信实现twikoo新消息提醒&&数据导出等</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2022-02-06T09:27:38Z>2022年2月6日星期日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#注册企业微信>注册企业微信</a></li><li><a href=#企业微信创建一个应用>企业微信创建一个应用</a></li><li><a href=#创建-api-云函数>创建 API 云函数</a><ol><li><a href=#vercel版本>Vercel版本</a><ol><li><a href=#安装python>安装python</a></li><li><a href=#安装pipenv>安装pipenv</a></li><li><a href=#下载requests>下载requests</a></li><li><a href=#新建pythonpy>新建python.py</a></li><li><a href=#在twikoo中配置>在twikoo中配置</a></li><li><a href=#在微信中接收企业微信消息>在微信中接收企业微信消息</a></li></ol></li><li><a href=#腾讯云版本>腾讯云版本</a><ol><li><a href=#twikoo-配置>Twikoo 配置</a></li></ol></li></ol></li><li><a href=#更换-cdn-镜像>更换 CDN 镜像</a></li><li><a href=#更换表情cdn>更换表情CDN</a></li><li><a href=#twikoo-导出评论数据>Twikoo 导出评论数据</a><ol><li><a href=#导出-twikoo-在-vercel-的数据>导出 Twikoo 在 Vercel 的数据</a></li><li><a href=#导出-twikoo-在腾讯云的数据>导出 Twikoo 在腾讯云的数据</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=注册企业微信>注册企业微信</h2><p>1．搜索下载企业，并使用手机号进行企业微信注册</p><p>2．选择成立企业</p><p>3．输入企业名称等信息</p><p>4．完成后，在通讯录内添加成员</p><h2 id=企业微信创建一个应用>企业微信创建一个应用</h2><p>在 “企业微信 —— 应用管理” 最底部的 “自建” 应用处，新建一个 “应用”。名称比如就叫消息通知，配置完成后记录下应用页面的 AgentId 和 Secret。注意，查看 Secret 需要安装一个企业微信，查看完可以卸载。</p><p>在 “企业微信 —— 我的企业” 底部，记录下 “企业 ID”。</p><p>至此，微信配置完成，开始配置提醒 API。</p><h2 id=创建-api-云函数>创建 API 云函数</h2><p>首先参考 Heo 的教程，创建一个腾讯云或 vercel 版本的云函数。</p><h3 id=vercel版本>Vercel版本</h3><p>我之前使用vercel部署过twikoo，因此不需要再创建新的云函数。如果你不是使用vercel，<a class=link href=https://blog.zhheo.com/p/1e9f35bc.html#%e4%bd%bf%e7%94%a8vercel%e5%bc%80%e5%8f%91%e6%90%ad%e5%bb%ba%e6%95%99%e7%a8%8b%ef%bc%88%e6%8e%a8%e8%8d%90%ef%bc%89 target=_blank rel=noopener>参考这里</a>。</p><h4 id=安装python>安装python</h4><p>下载并安装python，安装时注意勾选<code>Add Python 3.10 to PATH</code></p><h4 id=安装pipenv>安装pipenv</h4><p>找到你的twikoo github仓库，clone到本地，进入<code>api/</code>，执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>pip</span> <span class=n>install</span> <span class=n>pipenv</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果安装时报错：<code>ERROR: Exception: Traceback (most recent call last)</code>，就使用一下命令安装：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>pip</span> <span class=n>install</span> <span class=n>pipenv</span> <span class=n>-i</span> <span class=n>http</span><span class=err>:</span><span class=p>//</span><span class=n>pypi</span><span class=p>.</span><span class=py>douban</span><span class=p>.</span><span class=n>com</span><span class=p>/</span><span class=n>simple</span> <span class=p>-</span><span class=n>-trusted-host</span> <span class=n>pypi</span><span class=p>.</span><span class=py>douban</span><span class=p>.</span><span class=py>com</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=下载requests>下载requests</h4><p>继续在<code>api/</code>文件夹下执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>pipenv</span> <span class=n>install</span> <span class=n>requests</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果按照报错，请先关闭dl。</p><h4 id=新建pythonpy>新建python.py</h4><p>然后在该目录创建一个<code>python.py</code>文件，内容如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=kn>from</span> <span class=nn>http.server</span> <span class=kn>import</span> <span class=n>BaseHTTPRequestHandler</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>requests</span>
+</span></span><span class=line><span class=cl><span class=kn>from</span> <span class=nn>urllib.parse</span> <span class=kn>import</span> <span class=n>parse_qs</span>
+</span></span><span class=line><span class=cl><span class=c1># -*- coding: utf8 -*-</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>class</span> <span class=nc>handler</span><span class=p>(</span><span class=n>BaseHTTPRequestHandler</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=k>def</span> <span class=nf>do_GET</span><span class=p>(</span><span class=bp>self</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>getTocken</span><span class=p>(</span><span class=nb>id</span><span class=p>,</span> <span class=n>secert</span><span class=p>,</span> <span class=n>msg</span><span class=p>,</span> <span class=n>agentId</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>url</span> <span class=o>=</span> <span class=s2>&#34;https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=&#34;</span> <span class=o>+</span> \
+</span></span><span class=line><span class=cl>                <span class=nb>id</span> <span class=o>+</span> <span class=s2>&#34;&amp;corpsecret=&#34;</span> <span class=o>+</span> <span class=n>secert</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>            <span class=n>r</span> <span class=o>=</span> <span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=n>tocken_json</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=n>r</span><span class=o>.</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(tocken_json[&#39;access_token&#39;])</span>
+</span></span><span class=line><span class=cl>            <span class=n>sendText</span><span class=p>(</span><span class=n>tocken</span><span class=o>=</span><span class=n>tocken_json</span><span class=p>[</span><span class=s1>&#39;access_token&#39;</span><span class=p>],</span> <span class=n>agentId</span><span class=o>=</span><span class=n>agentId</span><span class=p>,</span> <span class=n>msg</span><span class=o>=</span><span class=n>msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>def</span> <span class=nf>sendText</span><span class=p>(</span><span class=n>tocken</span><span class=p>,</span> <span class=n>agentId</span><span class=p>,</span> <span class=n>msg</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>            <span class=n>sendUrl</span> <span class=o>=</span> <span class=s2>&#34;https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=&#34;</span> <span class=o>+</span> <span class=n>tocken</span>
+</span></span><span class=line><span class=cl>            <span class=c1># print(sendUrl)</span>
+</span></span><span class=line><span class=cl>            <span class=n>data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;safe&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;touser&#34;</span><span class=p>:</span> <span class=s2>&#34;@all&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;msgtype&#34;</span><span class=p>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;agentid&#34;</span><span class=p>:</span> <span class=n>agentId</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                <span class=s2>&#34;text&#34;</span><span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>                    <span class=s2>&#34;content&#34;</span><span class=p>:</span> <span class=nb>str</span><span class=p>(</span><span class=n>msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>                <span class=p>}</span>
+</span></span><span class=line><span class=cl>            <span class=p>})</span>
+</span></span><span class=line><span class=cl>            <span class=n>requests</span><span class=o>.</span><span class=n>post</span><span class=p>(</span><span class=n>sendUrl</span><span class=p>,</span> <span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>params</span> <span class=o>=</span> <span class=n>parse_qs</span><span class=p>(</span><span class=bp>self</span><span class=o>.</span><span class=n>path</span><span class=p>[</span><span class=mi>12</span><span class=p>:])</span>
+</span></span><span class=line><span class=cl>            <span class=n>apiid</span> <span class=o>=</span> <span class=n>params</span><span class=p>[</span><span class=s1>&#39;id&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>apisecert</span> <span class=o>=</span> <span class=n>params</span><span class=p>[</span><span class=s1>&#39;secert&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>apiagentId</span> <span class=o>=</span> <span class=n>params</span><span class=p>[</span><span class=s1>&#39;agentId&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>            <span class=n>apimsg</span> <span class=o>=</span> <span class=n>params</span><span class=p>[</span><span class=s1>&#39;msg&#39;</span><span class=p>][</span><span class=mi>0</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>apimsg</span> <span class=o>=</span> <span class=bp>self</span><span class=o>.</span><span class=n>path</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#try:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 执行主程序</span>
+</span></span><span class=line><span class=cl>            <span class=n>getTocken</span><span class=p>(</span><span class=nb>id</span><span class=o>=</span><span class=n>apiid</span><span class=p>,</span> <span class=n>secert</span><span class=o>=</span><span class=n>apisecert</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>                        <span class=n>msg</span><span class=o>=</span><span class=n>apimsg</span><span class=p>,</span> <span class=n>agentId</span><span class=o>=</span><span class=n>apiagentId</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#except:</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#    status = 1</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#    apimsg = &#39;主程序运行时出现错误，请检查参数是否填写正确。详情可以参阅：https://blog.zhheo.com/p/1e9f35bc.html&#39;</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#else:</span>
+</span></span><span class=line><span class=cl>            <span class=c1>#    status = 0</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(event)</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#34;Received event: &#34; + json.dumps(event, indent = 2))</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#34;Received context: &#34; + str(context))</span>
+</span></span><span class=line><span class=cl>        <span class=c1># print(&#34;Hello world&#34;)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>send_response</span><span class=p>(</span><span class=mi>200</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>send_header</span><span class=p>(</span><span class=s1>&#39;Content-type&#39;</span><span class=p>,</span> <span class=s1>&#39;text/plain&#39;</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>end_headers</span><span class=p>()</span>
+</span></span><span class=line><span class=cl>        <span class=bp>self</span><span class=o>.</span><span class=n>wfile</span><span class=o>.</span><span class=n>write</span><span class=p>(</span><span class=n>apimsg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span></code></pre></td></tr></table></div></div><p>push当前的更改之后，当Vercel完成部署后，你可以使用下面这样的方式，拼接一个 URL，浏览器访问，看看手机微信能不能接收到消息。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://&lt; vercel_app_address&gt;/api/python?id=&lt;ww....&gt;&amp;secert=&lt;secret...&gt;&amp;agentId=&lt;agentId...&gt;&amp;msg=测试一下吧
+</span></span></code></pre></td></tr></table></div></div><p>如果成功的话你的手机会接收到对应的推送（如果你的企业微信注册成功且所填信息正确）。</p><h4 id=在twikoo中配置>在twikoo中配置</h4><p><del>在twikoo后台管理<code>WECOM_API_URL</code>中添加你拼接的url即可。注意<code>msg</code>后面不要有参数：</del></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://&lt;vercel_app_address&gt;/api/python?id=&lt;企业id&gt;&amp;secert=&lt;secret&gt;&amp;agentId=&lt;agentId&gt;&amp;msg=
+</span></span></code></pre></td></tr></table></div></div><hr><p>2022.3.6 <a class=link href=https://twikoo.js.org/ target=_blank rel=noopener>Twikoo</a> v1.5.0更新： 消息推送逻辑，从 1.5.0 之前的版本升级后，请在管理面板重新配置评论提醒的消息推送服务，增加了对 Bark、Telegram 等平台的支持</p><h5 id=企业微信-缩写-wecom><a class=link href=https://guole.fun/posts/626/ target=_blank rel=noopener>企业微信</a> 缩写: <code>wecom</code></h5><p>企业微信应用消息推送，免费，限制较少。</p><ol><li>用电脑打开 <a class=link href=https://work.weixin.qq.com/ target=_blank rel=noopener>https://work.weixin.qq.com/</a>，注册一个企业</li><li>注册成功后，点「管理企业」进入管理界面，选择「应用管理」 → 「自建」 → 「创建应用」</li><li>应用名称填入机器人的名称，应用 logo 选择机器人的头像，可见范围选择公司名</li><li>创建完成后进入应用详情页，可以得到应用ID( <code>agentid</code> )，应用Secret( <code>secret</code> )，复制
+PS：获取应用Secret时，可能会将其推送到企业微信客户端，这时候微信里边是看不到的，需要在企业微信客户端里边才能看到</li><li>进入「<a class=link href=https://work.weixin.qq.com/wework_admin/frame#profile target=_blank rel=noopener>我的企业</a>」页面，拉到最下边，可以看到企业ID，复制</li><li>进入「我的企业」 → 「<a class=link href=https://work.weixin.qq.com/wework_admin/frame#profile/wxPlugin target=_blank rel=noopener>微信插件</a>」，拉到下边扫描二维码，关注以后即可收到推送的消息</li><li>将第 4 步和第 5 步取得的 <code>企业ID#应用Secret#应用ID</code> 拼到一起，中间用 “<code>#</code>” 号分隔，填入 pushoo 的 token 中</li></ol><p>示例 token：<code>ww97a01a*****1e5f1#xHapDXmgZtlBgRQQXMb4kfh3y75Ynoubl*****l9ytE#1000005</code></p><p>PS：如果出现接口请求正常，企业微信接受消息正常，个人微信无法收到消息的情况，请确认如下配置：</p><ul><li>进入「我的企业」 → 「微信插件」，拉到最下方，勾选「允许成员在微信插件中接收和回复聊天消息 」</li><li>在企业微信客户端 「我」 → 「设置」 → 「新消息通知」中关闭「仅在企业微信中接受消息」限制条件</li></ul><h4 id=在微信中接收企业微信消息>在微信中接收企业微信消息</h4><p>在“企业微信——我的企业——微信插件”页面配置，<a class=link href=https://work.weixin.qq.com/wework_admin/frame#profile/wxPlugin target=_blank rel=noopener>点击这里查看</a>。</p><p>使用微信扫码，关注你的企业微信，并且在设置中打开<code>允许成员在微信插件中接收和回复聊天消息</code>选项。</p><h3 id=腾讯云版本>腾讯云版本</h3><p>可以复用之前 Twikoo 那个云开发环境，直接创建一个新的云函数，名称自定义如 weixin-push，选择 helloworld 空白模板函数，Python3.6 环境， 128MB 就 OK 了。下一步粘贴下面的代码，点击创建：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-python data-lang=python><span class=line><span class=cl><span class=c1># -*- coding: utf8 -*-</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>requests</span>
+</span></span><span class=line><span class=cl><span class=kn>import</span> <span class=nn>json</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>getTocken</span><span class=p>(</span><span class=nb>id</span><span class=p>,</span><span class=n>secert</span><span class=p>,</span><span class=n>msg</span><span class=p>,</span><span class=n>agentId</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>url</span> <span class=o>=</span> <span class=s2>&#34;https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=&#34;</span> <span class=o>+</span> <span class=nb>id</span> <span class=o>+</span> <span class=s2>&#34;&amp;corpsecret=&#34;</span> <span class=o>+</span> <span class=n>secert</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    <span class=n>r</span> <span class=o>=</span><span class=n>requests</span><span class=o>.</span><span class=n>get</span><span class=p>(</span><span class=n>url</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=n>tocken_json</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>loads</span><span class=p>(</span><span class=n>r</span><span class=o>.</span><span class=n>text</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(tocken_json[&#39;access_token&#39;])</span>
+</span></span><span class=line><span class=cl>    <span class=n>sendText</span><span class=p>(</span><span class=n>tocken</span><span class=o>=</span><span class=n>tocken_json</span><span class=p>[</span><span class=s1>&#39;access_token&#39;</span><span class=p>],</span><span class=n>agentId</span><span class=o>=</span><span class=n>agentId</span><span class=p>,</span><span class=n>msg</span><span class=o>=</span><span class=n>msg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>sendText</span><span class=p>(</span><span class=n>tocken</span><span class=p>,</span><span class=n>agentId</span><span class=p>,</span><span class=n>msg</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=n>sendUrl</span> <span class=o>=</span> <span class=s2>&#34;https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=&#34;</span> <span class=o>+</span> <span class=n>tocken</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(sendUrl)</span>
+</span></span><span class=line><span class=cl>    <span class=n>data</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;safe&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;touser&#34;</span> <span class=p>:</span> <span class=s2>&#34;@all&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;msgtype&#34;</span> <span class=p>:</span> <span class=s2>&#34;text&#34;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;agentid&#34;</span> <span class=p>:</span> <span class=n>agentId</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s2>&#34;text&#34;</span> <span class=p>:</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;content&#34;</span> <span class=p>:</span> <span class=n>msg</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=n>requests</span><span class=o>.</span><span class=n>post</span><span class=p>(</span><span class=n>sendUrl</span><span class=p>,</span><span class=n>data</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>def</span> <span class=nf>main</span><span class=p>(</span><span class=n>event</span><span class=p>,</span> <span class=n>context</span><span class=p>):</span>
+</span></span><span class=line><span class=cl>    <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>apiid</span><span class=o>=</span><span class=n>event</span><span class=p>[</span><span class=s1>&#39;queryStringParameters&#39;</span><span class=p>][</span><span class=s1>&#39;id&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>apisecert</span><span class=o>=</span><span class=n>event</span><span class=p>[</span><span class=s1>&#39;queryStringParameters&#39;</span><span class=p>][</span><span class=s1>&#39;secert&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>apiagentId</span> <span class=o>=</span> <span class=n>event</span><span class=p>[</span><span class=s1>&#39;queryStringParameters&#39;</span><span class=p>][</span><span class=s1>&#39;agentId&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>        <span class=n>apimsg</span> <span class=o>=</span> <span class=n>event</span><span class=p>[</span><span class=s1>&#39;queryStringParameters&#39;</span><span class=p>][</span><span class=s1>&#39;msg&#39;</span><span class=p>]</span>
+</span></span><span class=line><span class=cl>    <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=n>apimsg</span> <span class=o>=</span> <span class=s1>&#39;有必填参数没有填写，请检查是否填写正确和格式是否错误。详情可以参阅：https://blog.zhheo.com/p/1e9f35bc.html&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=n>status</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>    <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>        <span class=k>try</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=c1># 执行主程序</span>
+</span></span><span class=line><span class=cl>            <span class=n>getTocken</span><span class=p>(</span><span class=nb>id</span><span class=o>=</span><span class=n>apiid</span><span class=p>,</span><span class=n>secert</span><span class=o>=</span><span class=n>apisecert</span><span class=p>,</span><span class=n>msg</span><span class=o>=</span><span class=n>apimsg</span><span class=p>,</span><span class=n>agentId</span><span class=o>=</span><span class=n>apiagentId</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>        <span class=k>except</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>status</span> <span class=o>=</span> <span class=mi>1</span>
+</span></span><span class=line><span class=cl>            <span class=n>apimsg</span> <span class=o>=</span> <span class=s1>&#39;主程序运行时出现错误，请检查参数是否填写正确。详情可以参阅：https://blog.zhheo.com/p/1e9f35bc.html&#39;</span>
+</span></span><span class=line><span class=cl>        <span class=k>else</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>            <span class=n>status</span> <span class=o>=</span> <span class=mi>0</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(event)</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(&#34;Received event: &#34; + json.dumps(event, indent = 2)) </span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(&#34;Received context: &#34; + str(context))</span>
+</span></span><span class=line><span class=cl>    <span class=c1># print(&#34;Hello world&#34;)</span>
+</span></span><span class=line><span class=cl>    <span class=n>status_str</span> <span class=o>=</span> <span class=n>json</span><span class=o>.</span><span class=n>dumps</span><span class=p>({</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;status&#34;</span><span class=p>:</span><span class=n>status</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=s2>&#34;msg&#34;</span><span class=p>:</span><span class=n>apimsg</span>
+</span></span><span class=line><span class=cl>        <span class=p>})</span>
+</span></span><span class=line><span class=cl>    <span class=k>return</span><span class=p>(</span><span class=n>status_str</span><span class=p>)</span>
+</span></span></code></pre></td></tr></table></div></div><p>配置好访问服务（如果第一次创建，参考 Twikoo 教程还需要配置安全域名等）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>域名：*
+</span></span><span class=line><span class=cl>触发路径：/weixin-push           (自定义)
+</span></span><span class=line><span class=cl>关联资源：云函数   weixin-push    (上文创建的云函数)
+</span></span></code></pre></td></tr></table></div></div><p><img src=/archives/9a366c6/202202061010000.jpg width=500 height=390 loading=lazy class=gallery-image data-flex-grow=128 data-flex-basis=307px></p><p>至此，云函数创建完成。可以使用下面这样的方式，拼接一个 URL，浏览器访问，看看手机微信能不能接收到消息。</p><p>云函数的访问服务 URL + 触发路径 + ?id = 你的企业微信 ID + secert = 上文记录的 secert + Id = 上文记录的 AgentId + &amp;msg = 随便测试一下吧</p><p>如我下面这样的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://blogpkly-13278c-1258453354.ap-shanghai.app.tcloudbase.com/weixin-push?id=ww*******&amp;secert=Ne******&amp;agentId=1000003&amp;msg=随便测试一下吧
+</span></span></code></pre></td></tr></table></div></div><p>浏览器返回以下内容，说明配置完成 (msg 后的内容，是 Unicode 编码后的 “随便测试一下吧” 内容，点击这里可以转换 )。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=p>{</span><span class=nt>&#34;status&#34;</span><span class=p>:</span> <span class=mi>0</span><span class=p>,</span> <span class=nt>&#34;msg&#34;</span><span class=p>:</span> <span class=s2>&#34;\u968f\u4fbf\u6d4b\u8bd5\u4e00\u4e0b\u5427&#34;</span><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h4 id=twikoo-配置>Twikoo 配置</h4><p>在 Twikoo v1.4.5 及以上版本中，打开控制面板，在上述企业微信 API 搭建完成后，拼接成下述样式的 URL，填写在即时通知 ——WECOM_API_URL 中即可完成配置。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://blogpkly-13278c-1258453354.ap-shanghai.app.tcloudbase.com/weixin-push?id=企业微信获取&amp;secert=企业微信获取&amp;agentId=企业微信获取&amp;msg=
+</span></span></code></pre></td></tr></table></div></div><p>微信关注自己的企业微信账号，然后用其他非博主邮箱在网站留言，试试即时通知吧！</p><h2 id=更换-cdn-镜像>更换 CDN 镜像</h2><blockquote><p>如果遇到默认 CDN 加载速度缓慢，可更换其他 CDN 镜像。以下为可供选择的公共 CDN，其中一些 CDN 可能需要数天时间同步最新版本：</p><ul><li><code>https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js</code></li><li><code>https://lib.baomitu.com/twikoo/1.6.4/twikoo.all.min.js</code></li><li><code>https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.4/twikoo.all.min.js</code></li><li><code>https://cdn.jsdelivr.net/npm/twikoo@1.6.4/dist/twikoo.all.min.js</code></li></ul></blockquote><p>例如<a class=link href=https://github.com/jerryc127/hexo-theme-butterfly target=_blank rel=noopener>Butterfly主题 </a>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>  custom_format:
+</span></span><span class=line><span class=cl>  
+</span></span><span class=line><span class=cl>  option:
+</span></span><span class=line><span class=cl>    # main_css:
+</span></span><span class=line><span class=cl>    # main:
+</span></span><span class=line><span class=cl>    # utils:
+</span></span><span class=line><span class=cl>    # translate:
+</span></span><span class=line><span class=cl>    # local_search:
+</span></span><span class=line><span class=cl>    # algolia_js:
+</span></span><span class=line><span class=cl>    # algolia_search_v4:
+</span></span><span class=line><span class=cl>    # instantsearch_v4:
+</span></span><span class=line><span class=cl>    # pjax:
+</span></span><span class=line><span class=cl>    # gitalk:
+</span></span><span class=line><span class=cl>    # gitalk_css:
+</span></span><span class=line><span class=cl>    # blueimp_md5:
+</span></span><span class=line><span class=cl>    # valine:
+</span></span><span class=line><span class=cl>    # disqusjs:
+</span></span><span class=line><span class=cl>    # disqusjs_css:
+</span></span><span class=line><span class=cl><span class=gi>+     twikoo: https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js
+</span></span></span></code></pre></td></tr></table></div></div><blockquote><p>以前记得只需更改后端版本号即可，不知什么时候开始还要更改前端CDN才行。也许主题前端没有更新到最新的版本号。这时只有自定义CDN了，还好</p><p><code>butterfly</code>主题很容易就能自定义CDN</p></blockquote><h2 id=更换表情cdn>更换表情CDN</h2><p>仓库地址：<a class=link href=https://github.com/zhheo target=_blank rel=noopener>zhheo</a>/<a class=link href=https://github.com/zhheo/Sticker-Heo target=_blank rel=noopener>Sticker-Heo</a></p><p>使用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-json data-lang=json><span class=line><span class=cl><span class=err>https:</span><span class=c1>//cdn.jsdelivr.net/npm/sticker-heo@2022.7.5/twikoo.json
+</span></span></span><span class=line><span class=cl><span class=err>https:</span><span class=c1>//cdn1.tianli0.top/npm/sticker-heo@2022.7.5/twikoo.json
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=twikoo-导出评论数据>Twikoo 导出评论数据</h2><blockquote><p>Twikoo前端后台只有导入数据功能，没有导出，要想导出数据，看下面。</p></blockquote><h3 id=导出-twikoo-在-vercel-的数据>导出 Twikoo 在 Vercel 的数据</h3><p>1.下载并安装 MongoDB 数据库工具，下载地址：https://www.mongodb.com/try/download/database-tools；</p><p>`</p><p>然后添加环境变量：<code>D:\Program Files\mongodb-database-tools-windows-x86_64-100.5.4\bin</code>到<code>Path</code></p><p>2.登录 <a class=link href=https://vercel.com/ target=_blank rel=noopener>Vercel 管理后台</a>，点开 Twikoo 的环境，点击上方的 Settings，点击左侧的 Environment Variables，在页面下方找到 MONGODB_URI，点击对应的小眼睛图标，会出现数据库连接地址，点击以复制这串地址；</p><p>3.如果地址中包含参数，请先删去参数，参数即 “?” 和 “?” 后面的部分，例如 <code>?journal=true&amp;w=majority</code>；</p><p>4.打开一个命令行窗口，粘贴以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>mongoexport</span> <span class=o>--</span><span class=n>uri</span> <span class=err>这里换成刚才复制的地址</span> <span class=o>--</span><span class=n>collection</span> <span class=n>comment</span> <span class=o>--</span><span class=n>type</span> <span class=n>json</span> <span class=o>--</span><span class=n>out</span> <span class=n>twikoo</span><span class=o>-</span><span class=n>comments</span><span class=o>.</span><span class=n>json</span>
+</span></span></code></pre></td></tr></table></div></div><p>5.如果成功，你可以在当前目录下找到导出的 twikoo-comments.json 文件。</p><h3 id=导出-twikoo-在腾讯云的数据>导出 Twikoo 在腾讯云的数据</h3><p>1.登录 <a class=link href=https://console.cloud.tencent.com/tcb target=_blank rel=noopener>腾讯云</a>；</p><p>2.打开云开发 CloudBase；</p><p>3.选择要导出的环境；</p><p>4.点击左侧的数据库，点击 comment 集合，点击导出按钮；</p><p>5.导出格式选择 JSON（推荐，如果想用 Excel 等软件查看，可以选择 CSV），字段不填；</p><p>6.点击导出按钮，导出的数据会通过浏览器自动下载。</p><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://guole.fun/posts/626/ target=_blank rel=noopener>搭建微信通知 API 实现 Twikoo 新消息提醒</a></li><li><a class=link href=https://www.cnblogs.com/yyyzyyyz/p/15542401.html#%E5%88%A9%E7%94%A8%E4%BC%81%E4%B8%9A%E5%BE%AE%E4%BF%A1%E5%AE%9E%E7%8E%B0twikoo%E6%96%B0%E6%B6%88%E6%81%AF%E6%8F%90%E9%86%92 target=_blank rel=noopener>利用企业微信实现twikoo新消息提醒(python.py错误)</a></li><li><a class=link href=https://lucheng.xyz/2022/01/09/wechat-message-vercel/ target=_blank rel=noopener>微信通知Twikoo新消息提醒（Vercel版本）（python.py正确)</a></li><li><a class=link href=https://pushoo.js.org/ target=_blank rel=noopener>twikoo即时消息推送</a></li><li><a class=link href=https://www.codeleading.com/article/43653014515/ target=_blank rel=noopener>pip安装virtualenv报错：ERROR: Exception: Traceback (most recent call last)&mdash;有效解决方法</a></li><li><a class=link href=https://blog.csdn.net/weixin_45252106/article/details/121973562 target=_blank rel=noopener>pipenv install 包名 报错问题解决</a></li><li><a class=link href=https://www.imaegoo.com/2022/twikoo-data-export/ target=_blank rel=noopener>Twikoo 评论数据导出教程</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/hexo/>Hexo</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e5%88%a9%e7%94%a8%e4%bc%81%e4%b8%9a%e5%be%ae%e4%bf%a1%e5%ae%9e%e7%8e%b0twikoo%e6%96%b0%e6%b6%88%e6%81%af%e6%8f%90%e9%86%92/index.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/d5e37958/><div class=article-details><h2 class=article-title>Memos部署记录</h2></div></a></article><article><a href=/archives/5b629e16/><div class=article-details><h2 class=article-title>hexo butterfly主题配置与使用</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/d6da8e6c/><div class=article-details><h2 class=article-title>hexo版本升级</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

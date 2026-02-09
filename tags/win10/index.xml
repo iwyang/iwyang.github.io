@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Win10 on Bore's Notes</title><link>https://bore.vip/tags/win10/</link><description>Recent content in Win10 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/win10/index.xml" rel="self" type="application/rss+xml"/><item><title>彻底卸载onedrive</title><link>https://bore.vip/archives/e0c4249b/</link><pubDate>Sun, 03 Sep 2023 20:41:26 +0000</pubDate><guid>https://bore.vip/archives/e0c4249b/</guid><description>&lt;p&gt;1、通过组策略编辑器来禁用OneDrive。点击任务栏上的Contana搜索框并输入“组策略”，在最佳匹配结果中选择“编辑组策略”控制面板项，进入到本地组策略编辑器环境，如图：&lt;/p&gt;
+&lt;p&gt;2、在组策略编辑器窗口左侧栏内，依次定位到“计算机配置→管理模板→Windows组件→OneDrive”，可看到右侧窗格内的5个相关选项，如图所示：&lt;/p&gt;
+&lt;p&gt;3、将右侧的5个选项并将它们设置为“已禁用”状态，如图：&lt;/p&gt;
+&lt;p&gt;4、右键单击任务栏空白处，调出任务管理器。切换到“启动”。在进程管理列表中找到OneDrive进程，右键单击并选择“禁用”。&lt;/p&gt;
+&lt;p&gt;随后，在Windows资源管理器中，点击“查看”功能面板，将“显示/隐藏”分组中的“隐藏的项目”复选框选中。最后进入到当前Windows用户所在的“AppData→Local→Microsoft”文件夹，找到Onedrive子文件夹，将其删除即可。&lt;/p&gt;
+&lt;p&gt;若无法直接删除，可利用Unlocker工具或360右键强力删除命令进行删除。&lt;/p&gt;
+&lt;p&gt;参考：&lt;a class="link" href="https://office.tqzw.net.cn/computer/computer/229566.html" target="_blank" rel="noopener"
+ &gt;教你彻底卸载OneDrive图文操作方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>查看Windows和Office激活状态的方法&amp;&amp;安装方法</title><link>https://bore.vip/archives/23a66736/</link><pubDate>Sun, 13 Mar 2022 20:21:47 +0000</pubDate><guid>https://bore.vip/archives/23a66736/</guid><description>&lt;h2 id="安装"&gt;安装
+&lt;/h2&gt;&lt;p&gt;使用第三方工具Office Tool Plus，搜下载链即可，论坛上也有&lt;/p&gt;
+&lt;h2 id="win10"&gt;win10
+&lt;/h2&gt;&lt;p&gt;使用命令查看Windows 10激活状态：&lt;/p&gt;
+&lt;p&gt;当然，对于系统管理员来说，最传统的方式就是使用命令行的方式来查看系统激活状态。管理员只需按下 Windows + R 快捷键 — 输入并执行 CMD 打开命令提示符。&lt;/p&gt;
+&lt;p&gt;输入并执行如下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;slmgr /xpr
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="office"&gt;Office
+&lt;/h2&gt;&lt;p&gt;命令行查看office激活期限：&lt;/p&gt;
+&lt;p&gt;1、首先找到office安装目录，我的是C:\Program Files\Microsoft Office\Office16
+2、打开终端：win+R
+&lt;del&gt;3、输入：cmd&lt;/del&gt;
+&lt;del&gt;4、输入：cd C:\Program Files\Microsoft Office\Office16&lt;/del&gt;
+&lt;del&gt;5、按回车&lt;/del&gt;
+&lt;del&gt;6、输入：&lt;code&gt;cscript ospp.vbs /dstatus&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;7、直接输入&lt;code&gt;cscript “C:\Program Files\Microsoft Office\Office16\ospp.vbs” /dstatus&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;8、显示&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/202203132026632.png"
+	width="695"
+	height="313"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="222"
+		data-flex-basis="532px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;可以看到还剩179天到期，到期可以再jh。&lt;/p&gt;
+&lt;p&gt;9.如果上面图片末尾未显示jh相关信息，复制图中的&lt;code&gt;SKU ID&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;10.然后输入&lt;code&gt;slmgr /xpr xxxxxxxxxxxxxxxxxxxxx(sku id)&lt;/code&gt; ，回车。显示：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/jihuo.png"
+	width="327"
+	height="179"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="182"
+		data-flex-basis="438px"
+	
+&gt;&lt;/p&gt;
+&lt;h2 id="参考链接"&gt;参考链接
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://www.office26.com/windows/check-windows-10-active-status.html" target="_blank" rel="noopener"
+ &gt;如何查看Windows 10激活状态的几种方式&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/qq_36659185/article/details/105184356?utm_medium=distribute.pc_aggpage_search_result.none-task-blog-2~aggregatepage~first_rank_ecpm_v1~rank_v31_ecpm-1-105184356.pc_agg_new_rank&amp;amp;utm_term=office%E6%BF%80%E6%B4%BB%E6%9F%A5%E7%9C%8B&amp;amp;spm=1000.2123.3001.4430" target="_blank" rel="noopener"
+ &gt;命令行查看office激活期限&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://new.qq.com/rain/a/20220601A0CT4F00" target="_blank" rel="noopener"
+ &gt;office Windows永久激活状态查询方法&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>联想笔记本电脑升级bios</title><link>https://bore.vip/archives/bb464c3c/</link><pubDate>Tue, 26 May 2020 10:25:25 +0000</pubDate><guid>https://bore.vip/archives/bb464c3c/</guid><description>&lt;p&gt;2020.5.26　已升级安装最新bios版本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2018/9/3 版本：BIOS Version: E5CN63WW,EC Version:E5IT23WW
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;Fn+F2&lt;/code&gt;进入bios，&lt;code&gt;Fn+F12&lt;/code&gt;选择启动顺序。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.打开联想服务的驱动与下载网页：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveDownloads_index.html" target="_blank" rel="noopener"
+ &gt;查找驱动程序及工具软件&lt;/a&gt;，选择&lt;code&gt;在站内查找设备驱动&lt;/code&gt;， 输入你的电脑主机编号（可以在电脑背面的标签上找到，也可以安装联想电脑管家，会自动检测你的主机编号），确定后进入驱动下载界面。联想小新700（主机编号：R90JZRF4）直接点击：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&amp;amp;selname=r90jzrf4" target="_blank" rel="noopener"
+ &gt;小新 700-15ISK&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2.在驱动列表中找到bios驱动，下载安装即可，当然，这个界面的所有驱动你都可以下载安装。&lt;/p&gt;
+&lt;p&gt;总结：如果升级完bios，每回重启完电脑声音总是静音的话，下载&lt;a class="link" href="https://www.160.com/" target="_blank" rel="noopener"
+ &gt;驱动人生&lt;/a&gt;，重新安装声卡驱动。此外升级bios后，可解决小新700无故自动休眠问题。&lt;/p&gt;</description></item><item><title>Win10重装系统&amp;清灰记录&amp;整机&amp;护眼</title><link>https://bore.vip/archives/88857f5f/</link><pubDate>Sun, 24 May 2020 06:36:25 +0000</pubDate><guid>https://bore.vip/archives/88857f5f/</guid><description>&lt;div class="note primary"&gt;Fn+F2进入bios，Fn+F12选择启动顺序。&lt;/div&gt; 
+&lt;h3 id="原版系统"&gt;&lt;del&gt;原版系统&lt;/del&gt;
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;备份E盘文件到移动硬盘。&lt;/del&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;进PE，这里使用&lt;a class="link" href="http://www.wepe.com.cn/" target="_blank" rel="noopener"
+ &gt;微pe工具箱&lt;/a&gt;。&lt;/del&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;del&gt;将系统iso文件装载到虚拟光驱，然后运行&lt;code&gt;setup.exe&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;先删掉所有分区，然后给C盘分区，大小为：82703M（80*1024+100+16+567+100=82703）&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;安装完系统再用系统自带磁盘管理给D盘和E盘分区，D盘大小为：71780M（70*1024+100=71780），剩下的给E盘。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="精简系统"&gt;精简系统
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;备份E盘文件到移动硬盘。&lt;/li&gt;
+&lt;li&gt;进PE，这里使用&lt;a class="link" href="http://www.wepe.com.cn/" target="_blank" rel="noopener"
+ &gt;微pe工具箱&lt;/a&gt;。&lt;/li&gt;
+&lt;li&gt;用DiskGenius分区，C盘80G，D盘70G，剩余给E盘。注意给C盘分区时，勾选&lt;code&gt;建立ESP分区&lt;/code&gt;和&lt;code&gt;建立MSR分区&lt;/code&gt;，勾选&lt;code&gt;对齐到此扇区的整数倍&lt;/code&gt;，选择&lt;code&gt;2048扇区&lt;/code&gt;。给D盘和E盘分区时也要勾选对齐到&lt;code&gt;2048扇区&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;用windows安装器安装系统。注意&lt;code&gt;选择安装驱动器的位置&lt;/code&gt;为&lt;code&gt;C盘&lt;/code&gt;，还有选择相应的安装版本。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="系统安装记录"&gt;系统安装记录
+&lt;/h3&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;序号&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;日期&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;版本&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;5&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2025.2.17&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;win11 24H2&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;4&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2023.2.19&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;win11 22H2&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;3&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2022.3.4&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;win10 21H2&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;2&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2021.8.29&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;win10 21H1&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;1&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2020.5.24&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;win10 2004&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="笔记本清灰记录"&gt;笔记本清灰记录
+&lt;/h3&gt;&lt;table&gt;
+ &lt;thead&gt;
+ &lt;tr&gt;
+ &lt;th style="text-align: center"&gt;序号&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;日期&lt;/th&gt;
+ &lt;th style="text-align: center"&gt;备注&lt;/th&gt;
+ &lt;/tr&gt;
+ &lt;/thead&gt;
+ &lt;tbody&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;1&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2020.6.18&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;风扇都没有拆下来清理&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;tr&gt;
+ &lt;td style="text-align: center"&gt;2&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;2022.3.5&lt;/td&gt;
+ &lt;td style="text-align: center"&gt;&lt;/td&gt;
+ &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id="常见问题"&gt;常见问题
+&lt;/h3&gt;&lt;p&gt;&lt;del&gt;0.办公室旧电脑安装精简版Win7，出现错误&lt;code&gt;Windows could not start the installation process&lt;/code&gt;，解决方法：删除分区，重新分区。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;1.MSVCP120.dll错误&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;重新安装Visual C++ 2013运行库
+这是解决MSVCP120.dll问题最彻底的方法。访问微软官方网站下载vcredist_x86.exe（32位系统）或vcredist_x64.exe（64位系统），运行安装程序并按照提示完成安装。安装完成后建议重启计算机以确保所有更改生效。&lt;/p&gt;
+&lt;h3 id="整机"&gt;整机
+&lt;/h3&gt;&lt;p&gt;&lt;code&gt;2022年3月13号购入&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;0.分区：C盘100G D盘200G E盘剩下&lt;/p&gt;
+&lt;p&gt;1.微星主板按&lt;code&gt;F11&lt;/code&gt;选择启动顺序，按&lt;code&gt;Delete&lt;/code&gt;进入bios。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;2.蓝宝石北极狐机箱尺寸：392×185×303（长×宽×高 mm）&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;机箱玻璃摔破了，新机箱尺寸：335×182×423 MM&lt;/p&gt;
+&lt;p&gt;包装尺寸：460×231×390MM&lt;/p&gt;
+&lt;p&gt;3.AOC 23.8寸显示器尺寸：长550mm，宽200mm,高430mm&lt;/p&gt;
+&lt;p&gt;4.aoc键盘 446×143×34&lt;/p&gt;
+&lt;p&gt;5.调显存大小，重启黑屏。解决方法：拔掉主板电池（拔掉电池的方法见bibi收藏夹，直接将挡板往外按，电池会自动弹起。注意不要用手挡住电池，否则电池无法弹出），5分钟后再装上去。买之前 应该说清楚，不用搞高频，正常使用就好；不用调显存大小，默认就行。默认内建显示配置：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Initiate Graphic Adapter [PEG]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Integrated Graphics [Game Mode]
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;UMA Frame Butter Size [自动]
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;估计是直接将显存由&lt;code&gt;4g&lt;/code&gt;直接改成&lt;code&gt;自动&lt;/code&gt;，第二项没有设置为&lt;code&gt;Game Mode&lt;/code&gt;而导致黑屏，无法点亮。&lt;/p&gt;
+&lt;h3 id="护眼模式"&gt;护眼模式
+&lt;/h3&gt;&lt;p&gt;一、显示设置—夜间模式强度调到30左右。&lt;/p&gt;
+&lt;p&gt;二、调整颜色：&lt;/p&gt;
+&lt;p&gt;1、鼠标右键点击【开始】菜单按钮选择【运行】，
+2、输入 regedit 点击【确定】，
+3、展开注册表路径至：HKEY_CURRENT_USER\Control Panel, 点击【Colors】文件夹，
+4、在右侧找到 Window，鼠标右击【Window】选择【修改】，
+5、将数值数据改为【202 234 206】（豆沙绿）点击【确定】，（初始：255 255 255）&lt;/p&gt;
+&lt;p&gt;6、定位：&lt;code&gt;HKEY_LOCAL_MACHINE\SOFTWARE\Microsoft\Windows\CurrentVersion\Themes\DefaultColors\Standard&lt;/code&gt;，找到Window，双击Window，更改数值：&lt;code&gt;caeace&lt;/code&gt; (默认值为ffffff)，选择：十六进制&lt;/p&gt;
+&lt;p&gt;7、重启电脑，设置生效。&lt;/p&gt;
+&lt;p&gt;三、右键—个性化—颜色—浅色—打开透明效果—自定义颜色（202 234 206)—勾选&lt;code&gt;在标题栏和窗口边框&lt;/code&gt;显示主颜色。&lt;/p&gt;
+&lt;p&gt;三、浏览器安装保护眼睛插件。&lt;a class="link" href="https://chrome.google.com/webstore/detail/eye-protector/fgadnbmmolnmbkbklpaojbogcopipopl" target="_blank" rel="noopener"
+ &gt;保护眼睛&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="常见问题-1"&gt;常见问题
+&lt;/h3&gt;&lt;p&gt;Windows开始菜单绝对路径：&lt;code&gt;C:\ProgramData\Microsoft\Windows\Start Menu\Programs&lt;/code&gt;&lt;/p&gt;</description></item><item><title>Win10 修改host文件的方法</title><link>https://bore.vip/archives/fd505a8d/</link><pubDate>Fri, 15 May 2020 17:04:25 +0000</pubDate><guid>https://bore.vip/archives/fd505a8d/</guid><description>&lt;p&gt;1.鼠标右键点击桌面左下角的开始菜单，选择“命令提示符（管理员）&lt;/p&gt;
+&lt;p&gt;2.在打开的黑色命令提示符窗口中输入 notepad，敲回车；&lt;/p&gt;
+&lt;p&gt;3.打开的记事本页面中点右上角的文件，然后点打开&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;C:\Windows\System32\drivers\etc\hosts&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;4.在打开的host文件中修改你要添加的内容，最后保存。&lt;/p&gt;</description></item></channel></rss>

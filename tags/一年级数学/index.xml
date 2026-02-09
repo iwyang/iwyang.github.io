@@ -1,0 +1,469 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>一年级数学 on Bore's Notes</title><link>https://bore.vip/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/</link><description>Recent content in 一年级数学 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/%E4%B8%80%E5%B9%B4%E7%BA%A7%E6%95%B0%E5%AD%A6/index.xml" rel="self" type="application/rss+xml"/><item><title>一年级数学下册数图形有几个</title><link>https://bore.vip/archives/585d2a79/</link><pubDate>Mon, 29 Jun 2020 06:10:25 +0000</pubDate><guid>https://bore.vip/archives/585d2a79/</guid><description>&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/1.gif"
+	width="404"
+	height="148"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="272"
+		data-flex-basis="655px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/2.gif"
+	width="400"
+	height="235"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="408px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/3.gif"
+	width="272"
+	height="160"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="408px"
+	
+&gt;&lt;/p&gt;
+&lt;h4 id="思路"&gt;思路：
+&lt;/h4&gt;&lt;p&gt;以最后一个数三角形有几个为例：&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/4.png"
+	width="272"
+	height="160"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="408px"
+	
+&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;首先给小三角形编号：1号、2号、3号。&lt;/li&gt;
+&lt;li&gt;先数小三角形有几个：3个&lt;/li&gt;
+&lt;li&gt;再数中型三角形（ 把两个小三角形看作一个中型三角形）有几个：1号和2号是一个，2号和3号是一个，合起来是2个。&lt;/li&gt;
+&lt;li&gt;大三角形有1个。&lt;/li&gt;
+&lt;li&gt;所以一共有：3+2+1=6（个）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h4 id="总结"&gt;总结：
+&lt;/h4&gt;&lt;p&gt;感觉还是做个flash动画直观一些。&lt;/p&gt;
+&lt;h4 id="参考链接"&gt;参考链接：
+&lt;/h4&gt;&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://v.qq.com/x/page/e084872v5rs.html" target="_blank" rel="noopener"
+ &gt;1.怎么数一数到底有几个三角形，一年级数学认识图形&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://haokan.baidu.com/v?pd=wisenatural&amp;amp;vid=11256514435927699277" target="_blank" rel="noopener"
+ &gt;2.一年级下数学：如何教孩子数图形的个数，才不会漏数呢？&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;a class="link" href="https://wenku.baidu.com/view/ad88740ff5335a8103d22015.html" target="_blank" rel="noopener"
+ &gt;3.一年级数学-巧数图形&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>一年级数学括号最大能填几</title><link>https://bore.vip/archives/b156363c/</link><pubDate>Tue, 02 Jun 2020 02:02:25 +0000</pubDate><guid>https://bore.vip/archives/b156363c/</guid><description>&lt;p&gt;求“括号最大能填几”，分两步计算。例如：&lt;/p&gt;
+&lt;p&gt;(1) &lt;strong&gt;39-( )＞14&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一步，先想比14大1的数是几？14+1=15；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二步，再想39减几等于15，39-( )=15，答案是24。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(2) &lt;strong&gt;84＞( )+12&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;第一步，先想比84小1的数是几，84-1=83；&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;第二步，再想几加12等于83，答案是71。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;(3) &lt;strong&gt;29+( )＜46&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;第一步，先想比46小1的数是几，46-1=45，是45。&lt;/li&gt;
+&lt;li&gt;第二步，再想29加几等于45，45-29=16，答案是16。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;更多有关“括号最大能填几”内容，可查看：&lt;a class="link" href="https://www.sohu.com/a/358938277_100195078" target="_blank" rel="noopener"
+ &gt;括号里最大能填几？&lt;/a&gt;&lt;/p&gt;</description></item><item><title>一年级数学一图四式问题</title><link>https://bore.vip/archives/96ae2461/</link><pubDate>Thu, 28 May 2020 07:20:25 +0000</pubDate><guid>https://bore.vip/archives/96ae2461/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;什么是“一图四式”呢？&lt;/p&gt;
+&lt;p&gt;**给出一个图，写出四个算式，两道加法算式，两道减法算式。**这类数学题的目的，是为了训练一年级小学生看图的能力，以及对加减法意义的理解。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;口诀：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;一图四式题，先来数左边，再来数右边，
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;两道加法题，左边加右边，右边加左边。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;两位减法题，先来数总数，
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;总数减左边，就等于右边。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;总数减右边，就等于左边。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;参考链接：&lt;a class="link" href="https://www.sohu.com/a/344323527_750537" target="_blank" rel="noopener"
+ &gt;一年级数学“一图四式”&lt;/a&gt;&lt;/p&gt;</description></item><item><title>一年级数学上册大括号问题</title><link>https://bore.vip/archives/9cf7845/</link><pubDate>Sat, 23 May 2020 14:49:25 +0000</pubDate><guid>https://bore.vip/archives/9cf7845/</guid><description>&lt;p&gt;大括号问题，是一年级数学一个必考题目，只有两种做法：加法或者减法。尽管很简单，我们依然要让孩子分清题目的不同表示方法，下面列出三种加法的表示：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大括号表示什么意思？表示两部分合起来！
+问号表示什么意思？表示需要求的问题！
+这里必须要注意的地方，是问题的答案必须写在等号的右边，这也是很多孩子容易犯的错误之一。就是把算式写错了，尽管知道正确的结果，但是写的位置不对！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;用 口诀加强理解：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;大括号，小问号，&lt;/p&gt;
+&lt;p&gt;在一起，我会算。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;小问号，在中间&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;求一共，用加法&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;小问号，在一边&lt;/strong&gt;，&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;求部分，用减法&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;用这个口诀，可以加深孩子的印象。之后，我们就慢慢要给孩子用整体和部分来理解，因为这是理解加法和减法关系的基础。&lt;/p&gt;
+&lt;p&gt;解题步骤：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;看？在哪儿&lt;/li&gt;
+&lt;li&gt;求什么&lt;/li&gt;
+&lt;li&gt;加还是减&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考链接：&lt;a class="link" href="http://www.360doc.cn/mip/800320995.html" target="_blank" rel="noopener"
+ &gt;一年级数学上册《大括号问题》&lt;/a&gt;&lt;/p&gt;</description></item><item><title>一年级数学下册估算问题</title><link>https://bore.vip/archives/bdfef9ea/</link><pubDate>Wed, 20 May 2020 09:32:25 +0000</pubDate><guid>https://bore.vip/archives/bdfef9ea/</guid><description>&lt;p&gt;估算是数学里一种很重要的能力，一年级数学下册有关估算这部分内容出现在课本71页，主要讲的是两位数加两位数的进位加法的估算。首先来了解一下什么是估算，对于两位数加两位数的进位加法的估算，可以把其中一个加数看作与它最接近的“整十数”，也可以把两个加数分别看作与它们接近的“整十数”，再口算出得数。我们拿书上例题为例。淘气摘了17个苹果，笑笑摘了38个苹果，箱子能装60个苹果，让你估一估，这个箱子能装得下吗？&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这里有三种估法，如下：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;方法一：把17看作20
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 20+38&lt;span class="o"&gt;=&lt;/span&gt;58&lt;span class="o"&gt;(&lt;/span&gt;个&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 58＜60
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 答：这个箱子装得下。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;方法二：把38看作40
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 17+40&lt;span class="o"&gt;=&lt;/span&gt;57&lt;span class="o"&gt;(&lt;/span&gt;个&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 57＜60
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 答：这个箱子装得下。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;方法三：把17看作20，把38看作40
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 20+40&lt;span class="o"&gt;=&lt;/span&gt;60&lt;span class="o"&gt;(&lt;/span&gt;个&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;60&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="m"&gt;60&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 答：这个箱子装得下。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;总结：三种估法都是往大了估。往大了估，可以装下，实际比估计的少，所以也能装下。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;------------------------------------------------------------------------------------------
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;再看下72页练一练第1题，已知第一袋可装43颗珠子，第二袋可装19颗，第三袋能装38颗，现在70颗能穿一条项链。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;问“估一估，哪两袋珠子合起来够穿一条项链”，这里要往小了估。答案如下：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 把43看作40
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 40+38&lt;span class="o"&gt;=&lt;/span&gt;78&lt;span class="o"&gt;(&lt;/span&gt;颗&lt;span class="o"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 78＞70
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 答：第一袋和第三袋能够穿一条项链。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;总结：往小了估够70颗，实际比估计的多，肯定也够，所以第一袋和第三袋合起来能穿一条项链。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;有时也也会遇到估算类填空题：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1.估算48+33时，可以把48看作（50），（50）+33&lt;span class="o"&gt;=&lt;/span&gt;（83），结果是（83）。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2.估算48+33时，可以把48看作（50），把32看作（30），结果是（80）。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;更多有关估算类的内容可以查看：&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="http://blog.sina.com.cn/s/blog_81e64c020100wxdx.html" target="_blank" rel="noopener"
+ &gt;1.运用估算方法来解答应用题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://wenku.baidu.com/view/e80250c750e79b89680203d8ce2f0066f5336482.html" target="_blank" rel="noopener"
+ &gt;2.估算应用题&lt;/a&gt;&lt;/p&gt;</description></item><item><title>一年级数学比多比少类问题</title><link>https://bore.vip/archives/58a068bd/</link><pubDate>Sun, 17 May 2020 02:20:25 +0000</pubDate><guid>https://bore.vip/archives/58a068bd/</guid><description>&lt;p&gt;一年级比多比少类问题，应该说是一个难点。部分同学看见“多”就用加法，看见“少”就用减法，这样是不对的，一般说来比多比少类问题有三种题型，现在做个简单的总结，具体如下（题目选自网上）：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;求“多多少”、“少多少”都用减法&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如：小明有39张卡片，小华有23张，小华比小明少多少张卡片？（或者小明比小华多多少张卡片？）&lt;/p&gt;
+&lt;ol start="2"&gt;
+&lt;li&gt;&lt;strong&gt;求“较大数”用加法&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如：小明有39张卡片，小华比小明多12张，小华有多少张卡片？&lt;/p&gt;
+&lt;p&gt;或者：小明有39张卡片，比小华少12张，小华有多少张卡片？&lt;/p&gt;
+&lt;p&gt;这两题其实是一样的，求的都是小华，求小华求的是较大数，所以用加法。&lt;/p&gt;
+&lt;ol start="3"&gt;
+&lt;li&gt;&lt;strong&gt;求“较小数”用减法&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;例如：小明有39张卡片，小华比小明少12张，小华有多少张卡片？&lt;/p&gt;
+&lt;p&gt;或者：小明有39张卡片，比小华多12张，小华有多少张卡片？&lt;/p&gt;
+&lt;p&gt;这两题其实是一样的，求的都是小华，求小华求的是较小数，所以用减法。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;另外还有比多比少列式计算题，相关内容可查看：&lt;a class="link" href="https://bore.vip/first-grade-math-lie-shi/" target="_blank" rel="noopener"
+ &gt;一年级数学下册列式计算(加数、被减数、比多比少)&lt;/a&gt;&lt;/p&gt;</description></item><item><title>一年级数学下册列式计算(加数、被减数、比多比少)</title><link>https://bore.vip/archives/68d861c/</link><pubDate>Sat, 16 May 2020 01:10:25 +0000</pubDate><guid>https://bore.vip/archives/68d861c/</guid><description>&lt;p&gt;首先要记忆以下几个公式：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;加数+加数&lt;span class="o"&gt;=&lt;/span&gt;和 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;被减数-减数&lt;span class="o"&gt;=&lt;/span&gt;差
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;和-加数&lt;span class="o"&gt;=&lt;/span&gt;加数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;被减数-差&lt;span class="o"&gt;=&lt;/span&gt;减数
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;减数+差&lt;span class="o"&gt;=&lt;/span&gt;被减数
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;要让他们将以上几个公式，写在数学书第一页上，然后背诵。列式计算具体习题如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1、一个加数是25，另一个加数是36，和是多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2、两个加数都是46，和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3、一个加数是37，另一个加数比它多17，和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4、被减数是56，减数是39，差是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5、两个加数的和是87，其中的一个加数是40，另一个加数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;6、被减数是56，差是34，减数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;7、减数是27，差是49，被减数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;8、72与45的差，再加上38是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;9、36与45的和，再减去42是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10、86比20多多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;11、一个加数由3个十和4个一组成，另一个加数由2个十和7个一组成，
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这两个加数的和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;12、30比90少多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;13、三个25连续相加，和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;14、从80里减去27，在加上25，和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;15、一个数是56，它比哪一个数大21，另一个数是多少？它们的和是多少？它们的和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;16、72和91相差多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;17、比85少39的数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;18、甲数是26，乙数是35，丙数是28，它们的和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;19、35与44的差，再加上30与16的和，得多少？
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;列式计算
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1、67比30多多少？ 2、78比70多多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;3、34比40少多少？ 4、66比60小多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5、93比90大多少？ 6、 比78多9的数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;7、比34少6的数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;8、最大的一位数与最小的两位数的和是多少？差是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;9、两个加数都是30，它们的和是多少？差是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10、减数是50，差是34，被减数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;11、减数和差都是40，被减数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;12、26加上34与30的差，和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;13、76减去21与9的和，差是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;span class="lnt"&gt;29
+&lt;/span&gt;&lt;span class="lnt"&gt;30
+&lt;/span&gt;&lt;span class="lnt"&gt;31
+&lt;/span&gt;&lt;span class="lnt"&gt;32
+&lt;/span&gt;&lt;span class="lnt"&gt;33
+&lt;/span&gt;&lt;span class="lnt"&gt;34
+&lt;/span&gt;&lt;span class="lnt"&gt;35
+&lt;/span&gt;&lt;span class="lnt"&gt;36
+&lt;/span&gt;&lt;span class="lnt"&gt;37
+&lt;/span&gt;&lt;span class="lnt"&gt;38
+&lt;/span&gt;&lt;span class="lnt"&gt;39
+&lt;/span&gt;&lt;span class="lnt"&gt;40
+&lt;/span&gt;&lt;span class="lnt"&gt;41
+&lt;/span&gt;&lt;span class="lnt"&gt;42
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 一、列式计算。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;1、 一个加数是45，另一个加数是28，和是多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2&lt;span class="sb"&gt;`&lt;/span&gt; 40与57相差多少? 3. 43比20多多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;4. 两个加数都是45,和是多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;5. 一个加数是25, 另一个加数是19, 和是多少? 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;6. 18与32的和是多少? 7. 被减数是50，减数是26，差是多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;8. 62比27大多少？ 9. 减数是26，被减数是32，差是几？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;10. 两个加数都是34，和是多少？ 11.1 8比37小多少？　　 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;12.23和32相差多少？ 13. 比42少17的数是多少?
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;14. 比38多29的数是多少? 15.25比70少多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;16.减数是24，差是16，被减数是多少？ 17.60比34多多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;18.25加上18，再减去24，得多少？ 19.5个4相加是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;20.60减去45，再加上26，得多少？ 21、2个5连加得多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;22.最小的三位数比最大的两位数多多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;23.最大的两位数比最大的一位数多多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;24.35比100少多少？ 25.两个因数都是5，积是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;26.5乘3得多少？ 27.一个因数是5，另一个因数是2，积是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;28.两个数的和是45，其中一个加数是13，另一个加数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;29.5和4相乘得多少？ 30.3个5相加的和是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;31.比28多16的数是多少？ 32.比28少16的数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;33.减数是36，差是24，被减数是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;34.被减数和减数都是26，差是多少？
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;题目选自：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://wenku.baidu.com/view/847865f3152ded630b1c59eef8c75fbfc77d9489.html" target="_blank" rel="noopener"
+ &gt;1.一年级下数学列式计算题及答案&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.topstudy8.com/article/57498070" target="_blank" rel="noopener"
+ &gt;2.一年级下册数学列式计算专项练习&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://wenku.baidu.com/view/9be4c6a6af45b307e9719711.html?fr=search" target="_blank" rel="noopener"
+ &gt;3.小学一年级数学下册列式计算题专项训练&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

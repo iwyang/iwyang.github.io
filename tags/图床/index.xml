@@ -1,0 +1,474 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>图床 on Bore's Notes</title><link>https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/</link><description>Recent content in 图床 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/%E5%9B%BE%E5%BA%8A/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub+jsDelivr+PicGo+Typora打造免费高速图床&amp;&amp;npm图床</title><link>https://bore.vip/archives/407b2bc4/</link><pubDate>Tue, 21 Jul 2020 08:32:00 +0000</pubDate><guid>https://bore.vip/archives/407b2bc4/</guid><description>&lt;blockquote&gt;
+&lt;p&gt;2022.5.17 因为&lt;code&gt;jsdelivr&lt;/code&gt;不再稳定，此法已失效。现在还是利用&lt;code&gt;typecho&lt;/code&gt;将插入到文章的图片自动复制到&lt;code&gt;/source/img/&lt;/code&gt;文件夹下，方法如下:&lt;/p&gt;
+&lt;p&gt;1.在&lt;code&gt;typora&lt;/code&gt;菜单栏点击 &lt;code&gt;格式-&amp;gt;图像-&amp;gt;设置图片根目录&lt;/code&gt;，将&lt;code&gt;hexo/source&lt;/code&gt;作为其根目录即可。&lt;/p&gt;
+&lt;p&gt;2.首先在 hexo &amp;gt; source目录下建一个文件夹叫img，用来保存博客中的图片。然后打开Typora的 文件 &amp;gt; 偏好设置，进行如下设置。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/00.jpg"
+	width="771"
+	height="581"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="318px"
+	
+&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;复制到制定路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;../img/${filename}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;勾选所有选项：
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;对本地位置的图片应用上述规则
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;对网络位置的图片应用上述规则
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;优先使用相对路径
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;允许根据YAML设置自动上传图片
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;插入时自动转义图片URL
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样的话所有插入到md的图片都将会保存到 &lt;code&gt;/source/img/该博客md文件名/图片名称&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;PS： &lt;a class="link" href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"
+ &gt;Butterfly&lt;/a&gt;主题相册：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% gallery %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/1.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/2.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/3.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/4.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/5.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;![](../../img/2022春季趣味运动会/6.jpg)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% endgallery %}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;span class="lnt"&gt;25
+&lt;/span&gt;&lt;span class="lnt"&gt;26
+&lt;/span&gt;&lt;span class="lnt"&gt;27
+&lt;/span&gt;&lt;span class="lnt"&gt;28
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;style&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;.page-title {
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; display: none;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/style&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;## 骑行
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;div class=&amp;#34;gallery-group-main&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;荆州行&amp;#39; &amp;#39;第一个100Km（2019.5）&amp;#39; &amp;#39;/gallery/jing-zhou-ride&amp;#39; ../img/荆州行/2.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;## 太和小学2019级
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;div class=&amp;#34;gallery-group-main&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;2022春季趣味运动会&amp;#39; &amp;#39;那些精彩的瞬间&amp;#39; &amp;#39;/gallery/sport2022spring&amp;#39; ../img/2022春季趣味运动会/1.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;2021秋季趣味运动会&amp;#39; &amp;#39;那些精彩的瞬间&amp;#39; &amp;#39;/gallery/sport2021autumn&amp;#39; ../img/2021秋季趣味运动会/1.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;2021春季趣味运动会&amp;#39; &amp;#39;那些精彩的瞬间&amp;#39; &amp;#39;/gallery/sport2021spring&amp;#39; ../img/2021春季趣味运动会/3.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;2019秋季趣味运动会&amp;#39; &amp;#39;那些精彩的瞬间&amp;#39; &amp;#39;/gallery/sport2019autumn&amp;#39; ../img/2019秋季趣味运动会/1.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;## 湖大教技2010级
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;div class=&amp;#34;gallery-group-main&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;那些花儿&amp;#39; &amp;#39;那些人，那些事&amp;#39; &amp;#39;/gallery/hubei-university&amp;#39; ../img/那些花儿/3.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% galleryGroup &amp;#39;2012年木兰天池春游&amp;#39; &amp;#39;大学里的一次春游&amp;#39; &amp;#39;/gallery/mulan-great-lake&amp;#39; ../img/2012年木兰天池春游/4.jpg %}
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;手动将图片文件夹放到上述文件夹下，然后在源码模式，一个个输入图片相对路径。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="配置github"&gt;配置github
+&lt;/h2&gt;&lt;h3 id="新建公共仓库"&gt;新建公共仓库
+&lt;/h3&gt;&lt;p&gt;新建一个公共仓库，例如我建的仓库地址：&lt;code&gt;https://github.com/iwyang/pic&lt;/code&gt;，注意一定要勾选&lt;strong&gt;使用Readme文件初始化这个仓库&lt;/strong&gt;，否则后面会无法上传图片。&lt;/p&gt;
+&lt;h3 id="获取私人令牌"&gt;获取私人令牌
+&lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/settings/tokens" target="_blank" rel="noopener"
+ &gt;前往设置&lt;/a&gt;，作用：授权仓库的操作权限，通过API实现自动化。然后填写 &lt;code&gt;Token&lt;/code&gt; 描述，勾选 repo、write、read然后点击 &lt;code&gt;Generate token&lt;/code&gt; 生成一个 &lt;code&gt;Token&lt;/code&gt;。因为 Token 只会显示一次，所以先保存笔记本等。&lt;/p&gt;
+&lt;h2 id="安装配置picgo"&gt;安装&amp;amp;配置PicGo
+&lt;/h2&gt;&lt;h3 id="安装picgo"&gt;安装PicGo
+&lt;/h3&gt;&lt;p&gt;访问&lt;a class="link" href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener"
+ &gt;PicGo Releases&lt;/a&gt;直接下载你的操作系统对应的安装包并完成安装。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;注：在安装的时候安装目录千万不能选C:\Program Files\下的任何地方，因为PicGo无法解析这一路径，如果你不知道安装在哪里的话，选择仅为我安装，否则在设置Typora时会出现错误。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="配置picgo"&gt;配置PicGo
+&lt;/h3&gt;&lt;p&gt;在PicGo设置里作如下修改：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;设置日志文件：日志记录等级选择&lt;span class="s2"&gt;&amp;#34;错误-Error&amp;#34;&lt;/span&gt;和&lt;span class="s2"&gt;&amp;#34;提醒-Warn&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;时间戳重命名：开
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;开启上传提示：开
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;上传后自动复制URL：开
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;选择显示的图床：只勾选Github图床
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="配置github插件"&gt;配置&lt;code&gt;GitHub&lt;/code&gt;插件
+&lt;/h3&gt;&lt;p&gt;安装好后开始配置&lt;code&gt;GitHub&lt;/code&gt;图床&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;设定仓库名：按照 用户名/仓库名 的格式填写（iwyang/pic）&lt;/li&gt;
+&lt;li&gt;设定分支名：master&lt;/li&gt;
+&lt;li&gt;设定 Token：粘贴之前叫你保存的Token。（在网盘里搜索&lt;code&gt;图床&lt;/code&gt;会找到Token）&lt;/li&gt;
+&lt;li&gt;设定自定义域名：它的的作用是，在图片上传后，PicGo 会按照自定义域名+上传的图片名的方式生成访问链接，放到粘贴板上。 &lt;code&gt;https://cdn.jsdelivr.net/gh/用户名/仓库名&lt;/code&gt;（&lt;code&gt;https://cdn.jsdelivr.net/gh/iwyang/pic&lt;/code&gt;）&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/01.jpg"
+	width="800"
+	height="414"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="193"
+		data-flex-basis="463px"
+	
+&gt;&lt;/p&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;点击&lt;code&gt;设为默认图床&lt;/code&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h3 id="上传和管理图片"&gt;上传和管理图片
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;单击上传区，选择链接格式，使用点击上传或剪贴板图片上传，PicGo会自动上传图片并将符合链接格式的链接复制到剪贴板，你只要按下Ctrl+v即可粘贴图片的链接。&lt;/li&gt;
+&lt;li&gt;单击相册，你可以看到你上传的所有图片，你可以对所有图片进行复制链接，修改图片URL与删除操作，并可以批量复制或批量删除。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="配置typora"&gt;配置Typora
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;点击Typora左上角的文件-&amp;gt;偏好设置&lt;/li&gt;
+&lt;li&gt;在弹出的界面中点击图像，选择插入图片时选项为&lt;code&gt;上传图片&lt;/code&gt;，并勾选&lt;code&gt;对本地位置的图片应用上述规则&lt;/code&gt;和&lt;code&gt;对网络位置的图片应用上述规则&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;上传服务&lt;/code&gt;选项里选择&lt;code&gt;PicGo(app)&lt;/code&gt;，&lt;code&gt;PicGo路径&lt;/code&gt;选择&lt;code&gt;PicGo.exe&lt;/code&gt;的绝对路径。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;以后在Typora里插入本地图片时，它会利用PicGo自动帮你上传到github，并替换本地图片地址为github地址。&lt;/p&gt;
+&lt;h2 id="typora下载地址皮肤"&gt;Typora下载地址&amp;amp;皮肤
+&lt;/h2&gt;&lt;p&gt;下载地址：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.ghxi.com/typora.html" target="_blank" rel="noopener"
+ &gt;Typora 1.3.8&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="http://www.123pan.com/s/HQeA-UX1Sh" target="_blank" rel="noopener"
+ &gt;123pan&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;皮肤：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://github.com/liangjingkanji/DrakeTyporaTheme" target="_blank" rel="noopener"
+ &gt;DrakeTyporaTheme&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="npm图床"&gt;npm图床
+&lt;/h2&gt;&lt;p&gt;1.首先需要注册一个 npm 的账号。访问 &lt;a class="link" href="https://www.npmjs.com/signup/" target="_blank" rel="noopener"
+ &gt;npm 注册页面&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;2.完成邮箱验证，注册完成后进入账号管理界面:头像 -&amp;gt;Account，拉倒最上方，你会看到 &lt;code&gt;You have not verified your email address&lt;/code&gt; 字样的提示，点击以后按提示步骤验证你的邮箱。&lt;/p&gt;
+&lt;p&gt;3.部分同学需要切换回原生源，如果你没改过源请跳过此步。（右键空白处———Git bush）来打开终端，输入以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm config set registry https://registry.npmjs.org
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4.添加本地 &lt;code&gt;npm&lt;/code&gt; 用户设置&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 仅第一次使用需要添加用户，之后会提示你输入你的npm账号密码以及注册邮箱(第一次可能需要输入邮箱验证码)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm adduser
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 非第一次使用直接登录即可，之后会提示你输入你的npm账号密码以及注册邮箱(第一次可能需要输入邮箱验证码)
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm login
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;5.新建一个文件夹，将你需要的上传到图床的图片放到里面。也可以将你之前的GitHub仓库的图片clone下来，右键文件夹空白处打开终端。输入以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm init
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;运行 &lt;code&gt;npm&lt;/code&gt; 初始化指令，把整个图床仓库打包，按照指示进行配置，注意需要事先确认你的包名没有和别人已发布的包重复，可以在 npm 官网搜索相应包名，搜不到就说明还没被占用。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/1.jpg"
+	width="674"
+	height="544"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="297px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;6.禁用双重验证&lt;/p&gt;
+&lt;p&gt;如果不禁用双重验证，每次&lt;code&gt;npm publish&lt;/code&gt;都会报错提示要输入验证码（必须加上&lt;code&gt;--otp=&amp;lt;code&amp;gt;&lt;/code&gt;才能发布包）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm ERR! You can provide a one-time password by passing --otp=&amp;lt;code&amp;gt; to the command you ran.
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;禁用方法：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm profile disable-2fa
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;npm 将提示你输入密码，然后npm会显示&lt;code&gt;Enter one-time password from your authenticator:6位数字&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;7.然后输入以下指令来发布我们的包：：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm publish
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;8.那么如何利用&lt;del&gt;国内&lt;/del&gt;节点引用图片等资源呢&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://unpkg.com/:package@:version/:file ## unpkg CDN 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://cdn.jsdelivr.net/npm/:package@:version/:file ## jsd cdn
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://cdn1.tianli0.top/npm/:package@:version/:file ## 第三方
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://unpkg.com/iwyang@1.0.2/speak/butterfly-ispeak-swiper.min.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://cdn.jsdelivr.net/npm/iwyang@1.0.2/speak/butterfly-ispeak-swiper.min.js
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://cdn1.tianli0.top/npm/iwyang@1.0.2/speak/butterfly-ispeak-swiper.min.js
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;通过ping看出，&lt;code&gt;unpkg&lt;/code&gt;比&lt;code&gt;jsd&lt;/code&gt;要稳定、速度要更快，所以优先使用&lt;code&gt;unpkg&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;9.每次更新 npm 图床都需要先修改&lt;code&gt;[AssetsRepo]\package.json&lt;/code&gt;里的 &lt;code&gt;version&lt;/code&gt;, 也就是版本号。
+而 &lt;code&gt;npm version patch&lt;/code&gt; 即为更新 package.json 里的版本号的指令，效果是末尾版本号 + 1，例如 &lt;code&gt;0.0.1=&amp;gt;0.0.2&lt;/code&gt;、&lt;code&gt;1.1.3=&amp;gt;1.1.4&lt;/code&gt;。免去了打开 &lt;code&gt;package.json&lt;/code&gt; 再修改版本号的麻烦。（大版本更新还是需要手动改的）。更新 npm 图床务必要记得更新 &lt;code&gt;package.json&lt;/code&gt; 里的版本号！&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm version patch
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;10.可以在根目录新建 &lt;code&gt;deploy.sh&lt;/code&gt;脚本：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 更新package版本号
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm version patch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;# 发布新版本包
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm publish
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id="利用github-actions发布包"&gt;利用GitHub actions发布包
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;此部分内容还未测试&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1.如果每次都要在本地进行 npm publish 的话，npm 的提交是整个包一起上传的，不存在增量更新，耗时不说，而且还往往需要架梯子才能正常上传。所以我们可以把它交给 github action 来完成。&lt;/p&gt;
+&lt;p&gt;在 &lt;a class="link" href="https://www.npmjs.com/" target="_blank" rel="noopener"
+ &gt;npm 官网&lt;/a&gt; -&amp;gt;&lt;code&gt;头像&lt;/code&gt; -&amp;gt;&lt;code&gt;Access Tokens&lt;/code&gt;-&amp;gt;&lt;code&gt;Generate New Token&lt;/code&gt;, 勾选&lt;code&gt;Automation&lt;/code&gt;选项，&lt;code&gt;Token&lt;/code&gt; 只会显示这一次，之后如果忘记了就只能重新生成重新配置了。&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/2.jpg"
+	width="1000"
+	height="341"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="293"
+		data-flex-basis="703px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/3.jpg"
+	width="600"
+	height="476"
+	loading="lazy"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="302px"
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;2.在 github 的 &lt;code&gt;[AssetsRepo]&lt;/code&gt; 仓库设置项里添加一个名为 &lt;code&gt;NPM_TOKEN&lt;/code&gt; 的 &lt;code&gt;secrets&lt;/code&gt;，把获取的 Npm 的&lt;code&gt;Access token&lt;/code&gt;输入进去。&lt;/p&gt;
+&lt;p&gt;3.在本地的 &lt;code&gt;[AssetsRepo]&lt;/code&gt;文件夹下新建 &lt;code&gt;[AssetsRepo]/.github/workflows/autopublish.yml&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-yaml" data-lang="yaml"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;name&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;Node.js Package&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# 监测图床分支，2020年10月后github新建仓库默认分支改为main，记得更改&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;push&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;branches&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="l"&gt;master&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;jobs&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;publish-npm&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;runs-on&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;ubuntu-latest&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;steps&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;actions/checkout@v2&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;uses&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;actions/setup-node@v1&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;with&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;node-version&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;12.x&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;registry-url&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;https://registry.npmjs.org/&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;- &lt;span class="nt"&gt;run&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;npm publish&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;env&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;NODE_AUTH_TOKEN&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;${{secrets.npm_token}}&lt;/span&gt;&lt;span class="w"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4.在本地的 &lt;code&gt;[AssetsRepo]&lt;/code&gt; 文件夹下打开终端，运行以下指令，上传新增内容至 github，即可触发部署。&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 将更改提交&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git add .
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git commit -m &lt;span class="s2"&gt;&amp;#34;npm publish&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 更新package版本号&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;npm version patch
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 推送至github触发action&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git push
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;blockquote&gt;
+&lt;p&gt;此处的四行指令顺序严格。
+每次更新 npm 图床都需要先修改&lt;code&gt;[AssetsRepo]\package.json&lt;/code&gt;里的 &lt;code&gt;version&lt;/code&gt;, 也就是版本号。
+而 &lt;code&gt;npm version patch&lt;/code&gt; 即为更新 package.json 里的版本号的指令，效果是末尾版本号 + 1，例如 &lt;code&gt;0.0.1=&amp;gt;0.0.2&lt;/code&gt;、&lt;code&gt;1.1.3=&amp;gt;1.1.4&lt;/code&gt;。免去了打开 &lt;code&gt;package.json&lt;/code&gt; 再修改版本号的麻烦。（大版本更新还是需要手动改的）
+更新 npm 图床务必要记得更新 &lt;code&gt;package.json&lt;/code&gt; 里的版本号！&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;5.总结：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;GitHub 图床仓库大小不能超过 1G。当仓库超过 1G 后会有人工审核仓库内容，如果发现用来做图床，轻则删库重则封号。&lt;/li&gt;
+&lt;li&gt;Npm 有 &lt;code&gt;100MB&lt;/code&gt; 的包大小限制，但是 NPM 有丰富的国内节点。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="参考链接"&gt;参考链接
+&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://my.oschina.net/u/3990666/blog/4371252" target="_blank" rel="noopener"
+ &gt;1.GitHub + jsDelivr + PicGo 打造稳定快速、高效免费图床&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.csdn.net/disILLL/article/details/104944710" target="_blank" rel="noopener"
+ &gt;2.手把手教你用Typora自动上传到picgo图床&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://yinyoupoet.github.io/2019/09/03/hexo%E5%8D%9A%E5%AE%A2%E4%B8%AD%E6%8F%92%E5%85%A5%E5%9B%BE%E7%89%87/" target="_blank" rel="noopener"
+ &gt;3.typora + hexo博客中插入图片&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://minecraftbilibili.com/posts/950569f3" target="_blank" rel="noopener"
+ &gt;4.使用npm作为图床&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://sianx.com/posts/3e956346/" target="_blank" rel="noopener"
+ &gt;5.npm图床的使用技巧&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.w3cschool.cn/npmjs/npmjs-qadz3kmo.html" target="_blank" rel="noopener"
+ &gt;6.npm 使用双因素身份验证.&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item></channel></rss>

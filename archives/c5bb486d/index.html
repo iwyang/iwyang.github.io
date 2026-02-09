@@ -1,0 +1,202 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="上回做过hexo迁移笔记，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。\nHexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。\n"><title>hexo通过git备份&还原源码</title><link rel=canonical href=https://bore.vip/archives/c5bb486d/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="hexo通过git备份&还原源码"><meta property='og:description' content="上回做过hexo迁移笔记，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。\nHexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。\n"><meta property='og:url' content='https://bore.vip/archives/c5bb486d/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hexo'><meta property='article:published_time' content='2020-05-10T15:09:25+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="hexo通过git备份&还原源码"><meta name=twitter:description content="上回做过hexo迁移笔记，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。\nHexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#备份>备份</a><ol><li><a href=#删除必要文件>删除必要文件</a></li><li><a href=#利用脚本备份_posts文件夹到dropbox>利用脚本备份_posts文件夹到dropbox</a></li><li><a href=#hexo源码备份>hexo源码备份</a><ol><li><a href=#备份到gitee-backup分支>备份到gitee backup分支</a></li><li><a href=#备份到github-master分支>备份到github master分支</a></li><li><a href=#备份到github-backup分支>备份到github backup分支</a></li></ol></li><li><a href=#部署脚本>部署脚本</a></li></ol></li><li><a href=#还原>还原</a><ol><li><a href=#还原前提>还原前提</a></li><li><a href=#hexo源码还原>hexo源码还原</a></li><li><a href=#git配置用户信息新系统环境下>Git配置用户信息（新系统环境下）</a></li><li><a href=#配置网络协议>配置网络协议</a></li><li><a href=#及时更新hexo源码到coding>及时更新hexo源码到coding</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/c5bb486d/>hexo通过git备份&还原源码</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2020-05-10T15:09:25Z>2020年5月10日星期日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 5 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#备份>备份</a><ol><li><a href=#删除必要文件>删除必要文件</a></li><li><a href=#利用脚本备份_posts文件夹到dropbox>利用脚本备份_posts文件夹到dropbox</a></li><li><a href=#hexo源码备份>hexo源码备份</a><ol><li><a href=#备份到gitee-backup分支>备份到gitee backup分支</a></li><li><a href=#备份到github-master分支>备份到github master分支</a></li><li><a href=#备份到github-backup分支>备份到github backup分支</a></li></ol></li><li><a href=#部署脚本>部署脚本</a></li></ol></li><li><a href=#还原>还原</a><ol><li><a href=#还原前提>还原前提</a></li><li><a href=#hexo源码还原>hexo源码还原</a></li><li><a href=#git配置用户信息新系统环境下>Git配置用户信息（新系统环境下）</a></li><li><a href=#配置网络协议>配置网络协议</a></li><li><a href=#及时更新hexo源码到coding>及时更新hexo源码到coding</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>上回做过<a class=link href=https://bore.vip/archives/a0c508c1.html target=_blank rel=noopener>hexo迁移笔记</a>，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。</p><blockquote><p>Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。</p></blockquote><blockquote><p>如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。
+我们采取的远程仓库部署策略是：使用coding的私人仓库，一个仓库两个分支。仓库即[<a class=link href=http://yourname.coding.me target=_blank rel=noopener>yourname.coding.me</a>]，一个分支[master]用于托管演示页面，一个分支[backup]用于备份Hexo博客站点的必要文件。</p></blockquote><h2 id=备份>备份</h2><p>多机同步更新的前提：backup分支（也可以是其他名称的分支或者新的仓库）</p><p>Hexo博客站点的必要文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── scaffolds   </span><span class=w> </span><span class=c># 文章模板</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── source      </span><span class=w> </span><span class=c># 用户源文件：页面，文章markdown文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── themes      </span><span class=w> </span><span class=c># 主题</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── .gitignore  </span><span class=w> </span><span class=c># git忽略文件信息</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── _config.yml </span><span class=w> </span><span class=c># 站点配置文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── package.json</span><span class=w> </span><span class=c># 已安装插件映射表，下次只需npm install即直接安装表中的插件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>├── package-lock.json</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>使git上传远程git服务器（这里是coding）时可忽略不必要的文件，做法是编辑<strong>站点根目录</strong>下的<code>.gitignore</code>文件，复制粘贴一下内容到<code>.gitignore</code>文件中。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>.DS_Store</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>Thumbs.db</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>db.json</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=cp>*.log</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>node_modules/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>public/</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>.deploy*/</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=删除必要文件>删除必要文件</h3><p>删除<code>themes/你的主题</code>中的<code>.git</code>，<code>.github</code>，<code>.gitignore</code>等git仓库文件，只保留站点根目录下的<code>.gitignore</code>。</p><h3 id=利用脚本备份_posts文件夹到dropbox>利用脚本备份_posts文件夹到dropbox</h3><p>问<a class=link href=https://grok.com/ target=_blank rel=noopener>grok</a>：windows 下，在e盘新建sh脚本，将E:\blog\source_posts 文件夹复制到E:\Dropbox\资料\文档\个人，先删除E:\Dropbox\资料\文档\个人 里面的_posts 文件夹，再复制。</p><p>在博客根目录新建<code>deploy.sh</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to vps...\033[0m&#34;</span>
+</span></span><span class=line><span class=cl>git add .	
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;site backup&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin backup
+</span></span><span class=line><span class=cl>node link.js
+</span></span><span class=line><span class=cl>hexo clean
+</span></span><span class=line><span class=cl>hexo g -d
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1>#!/usr/bin/env bash</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 一句话暴力解决</span>
+</span></span><span class=line><span class=cl>rm -rf <span class=s2>&#34;E:/Dropbox/资料/文档/个人/_posts&#34;</span> 2&gt;/dev/null
+</span></span><span class=line><span class=cl>cp -r <span class=s2>&#34;E:/blog/source/_posts&#34;</span> <span class=s2>&#34;E:/Dropbox/资料/文档/个人/&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;完成！&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=hexo源码备份>hexo源码备份</h3><h4 id=备份到gitee-backup分支>备份到gitee backup分支</h4><p>2020.7.8 现在没用这种备份方法</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>git init                  </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>git checkout -b backup  	 </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>git add .				 	  </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>git commit -m &#34;提交说明&#34; 	  </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>git remote add origin git@gitee.com:iwyang/iwyang.git  </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>git push --force origin backup	 </span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h4 id=备份到github-master分支>备份到github master分支</h4><p>2020.7.8 目前采用这种备份方法（<strong>一步一步的执行</strong>）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git remote add origin git@github.com:iwyang/hexo.git
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;site backup&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin master
+</span></span></code></pre></td></tr></table></div></div><hr><p><strong>PS</strong>: 如果执行第二步<code>git checkout -b backup</code>后，提示<code>fatal: A branch named 'backup' already exists.</code>，则执行以下操作</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git remote rm origin
+</span></span><span class=line><span class=cl>git checkout -b backup
+</span></span></code></pre></td></tr></table></div></div><p>实在不行先执行下面命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch -D backup <span class=c1>#删除分支:必须切换到其他的分之下才可操作</span>
+</span></span></code></pre></td></tr></table></div></div><hr><h4 id=备份到github-backup分支>备份到github backup分支</h4><p>2022.2.4 目前采用这种备份方法（<strong>一步一步的执行</strong>）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git init                  
+</span></span><span class=line><span class=cl>git checkout -b backup  	 			 	  	  
+</span></span><span class=line><span class=cl>git remote add origin git@github.com:iwyang/iwyang.github.io.git  
+</span></span><span class=line><span class=cl>git add .	
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;site backup&#34;</span> 
+</span></span><span class=line><span class=cl>git push --force origin backup
+</span></span></code></pre></td></tr></table></div></div><p>如果出现问题参考上面解决方法。</p><h3 id=部署脚本>部署脚本</h3><p>根目录新建<code>deploy.sh</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to gitee...\033[0m&#34;</span>
+</span></span><span class=line><span class=cl>git add .	
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;site backup&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin backup
+</span></span><span class=line><span class=cl>hexo clean
+</span></span><span class=line><span class=cl>hexo g -d
+</span></span></code></pre></td></tr></table></div></div><h2 id=还原>还原</h2><h3 id=还原前提>还原前提</h3><p>安装Git，nodejs，配置环境变量。</p><h3 id=hexo源码还原>hexo源码还原</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ git clone git@github.com:iwyang/hexo.git	<span class=c1># 克隆master分支到本地，私有仓库需要输入用户名和密码</span>
+</span></span><span class=line><span class=cl>$ <span class=nb>cd</span> hexo-master		     <span class=c1># 进入hexo-master文件夹</span>
+</span></span><span class=line><span class=cl>$ npm install -g hexo-cli	 <span class=c1># 全局安装hexo</span>
+</span></span><span class=line><span class=cl>$ npm install				 <span class=c1># 安装所有依赖(hexo以及插件的依赖)，根据package.json自动安装之前安装过的插件</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=git配置用户信息新系统环境下>Git配置用户信息（新系统环境下）</h3><p>在Git bash中输入：</p><p>1.设置用户名</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global user.name <span class=s1>&#39;这里填写自己的用户名&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>2.设置用户名邮箱</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global user.email <span class=s1>&#39;这里填写自己的用户邮箱&#39;</span>
+</span></span></code></pre></td></tr></table></div></div><p>3.查看配置信息</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --list
+</span></span></code></pre></td></tr></table></div></div><p>注意：该设置在GitHub仓库主页显示谁提交了该文件，注意这里的 - 有两个！</p><h3 id=配置网络协议>配置网络协议</h3><p>SSH协议，长期部署推荐SSH，一劳永逸。</p><p>1.SSH秘钥：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ ssh-keygen -t rsa -C <span class=s2>&#34;youremail@example.com&#34;</span>		<span class=c1># 生成rsa秘钥</span>
+</span></span><span class=line><span class=cl>$ <span class=nb>cd</span> ~/.ssh		 		<span class=c1># 进入虚拟目录ssh文件中</span>
+</span></span><span class=line><span class=cl>$ cat id_rsa.pub		<span class=c1># 显示id_rsa.pub文件内容</span>
+</span></span></code></pre></td></tr></table></div></div><p>2.复制秘钥至github/coding->用户setting->SSH keys，New SSH Key</p><p>3.验证是否添加成功</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>$ ssh -T git@github.com  <span class=c1># 验证github是否添加成功</span>
+</span></span><span class=line><span class=cl>$ ssh -T git@git.coding.net  <span class=c1># 验证coding是否添加成功</span>
+</span></span></code></pre></td></tr></table></div></div><p>4.编辑<strong>站点配置文件</strong><code>_config.yml</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>deploy:
+</span></span><span class=line><span class=cl>    type: git
+</span></span><span class=line><span class=cl>    repo: 
+</span></span><span class=line><span class=cl>        github: git@github.com:yourname/yourname.github.io.git 
+</span></span><span class=line><span class=cl>        coding: git@git.coding.net:yourname/yourname.coding.me.git 
+</span></span><span class=line><span class=cl>    branch: master
+</span></span></code></pre></td></tr></table></div></div><h3 id=及时更新hexo源码到coding>及时更新hexo源码到coding</h3><p>发表文章、更新文章、修改源码，要及时更新hexo源码到coding。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;更新&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin master
+</span></span></code></pre></td></tr></table></div></div><p>2020.7.8 把这段代码放在自动部署脚本里即可。</p><h2 id=参考链接>参考链接</h2><p><a class=link href=https://www.qcmoke.site/blog/hexo_backup.html target=_blank rel=noopener>1.通过git备份还原hexo源码</a></p><p><a class=link href=https://www.cnblogs.com/leaf930814/p/6664706.html target=_blank rel=noopener>2.git报错：&lsquo;fatal:remote origin already exists&rsquo;怎么处理</a></p><p><a class=link href=https://blog.csdn.net/www1056481167/article/details/80046132 target=_blank rel=noopener>3.git 常用命令</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/hexo/>Hexo</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/hexo%e9%80%9a%e8%bf%87git%e5%a4%87%e4%bb%bd&%e8%bf%98%e5%8e%9f%e6%ba%90%e7%a0%81.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/d5e37958/><div class=article-details><h2 class=article-title>Memos部署记录</h2></div></a></article><article><a href=/archives/9a366c6/><div class=article-details><h2 class=article-title>利用企业微信实现twikoo新消息提醒&&数据导出等</h2></div></a></article><article><a href=/archives/5b629e16/><div class=article-details><h2 class=article-title>hexo butterfly主题配置与使用</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/d6da8e6c/><div class=article-details><h2 class=article-title>hexo版本升级</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

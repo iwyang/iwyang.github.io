@@ -1,0 +1,357 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="解决port 443问题 1.切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 2.取消全：\n1 2 3 git config --global --unset http.proxy git config --global --unset https.proxy 3.再次切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 这时会出现 port 22: Connection refused问题。\n"><title>解决Github Port 443以及Port 22问题&&合并冲突问题</title><link rel=canonical href=https://bore.vip/archives/2284a148/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="解决Github Port 443以及Port 22问题&&合并冲突问题"><meta property='og:description' content="解决port 443问题 1.切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 2.取消全：\n1 2 3 git config --global --unset http.proxy git config --global --unset https.proxy 3.再次切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 这时会出现 port 22: Connection refused问题。\n"><meta property='og:url' content='https://bore.vip/archives/2284a148/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='github'><meta property='article:published_time' content='2021-08-18T03:56:29+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="解决Github Port 443以及Port 22问题&&合并冲突问题"><meta name=twitter:description content="解决port 443问题 1.切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 2.取消全：\n1 2 3 git config --global --unset http.proxy git config --global --unset https.proxy 3.再次切换到全：\n1 2 3 git config --global http.proxy http://127.0.0.1:10808 git config --global https.proxy http://127.0.0.1:10808 这时会出现 port 22: Connection refused问题。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#解决port-443问题>解决port 443问题</a></li><li><a href=#解决合并冲突问题>解决合并冲突问题</a></li><li><a href=#fork后github-action-自动拉取更新当指定文件冲突时保持当前分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，保持当前分支版本</a><ol><li><a href=#第一阶段本地环境准备>第一阶段：本地环境准备</a></li><li><a href=#第二阶段在项目中指定保护名单>第二阶段：在项目中指定保护名单</a></li><li><a href=#第三阶段配置-github-action-自动化>第三阶段：配置 GitHub Action 自动化</a></li><li><a href=#第四阶段验证结果>第四阶段：验证结果</a></li><li><a href=#核心检查点>核心检查点</a></li></ol></li><li><a href=#fork后github-action-自动拉取更新当指定文件冲突时使用来源分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本</a><ol><li><a href=#第一阶段本地环境配置>第一阶段：本地环境配置</a></li><li><a href=#第二阶段在项目中指定自动覆盖名单>第二阶段：在项目中指定自动覆盖名单</a></li><li><a href=#第三阶段配置-github-actions-自动化>第三阶段：配置 GitHub Actions 自动化</a></li><li><a href=#第四阶段解决推送拒绝non-fast-forward>第四阶段：解决推送拒绝（non-fast-forward）</a></li><li><a href=#总结与验证>总结与验证</a></li></ol></li><li><a href=#解决port-22问题>解决<code>port 22</code>问题</a></li><li><a href=#多-git-仓库的-ssh-key-配置>多 Git 仓库的 SSH-key 配置</a><ol><li><a href=#配置多-ssh-key>配置多 SSH key</a><ol><li><a href=#1-添加-rsa-key>1. 添加 RSA key</a></li><li><a href=#2-密钥配置>2. 密钥配置</a></li><li><a href=#3-使用别名配置仓库的远程地址>3. 使用别名配置仓库的远程地址</a></li></ol></li><li><a href=#其他>其他</a></li></ol></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/2284a148/>解决Github Port 443以及Port 22问题&&合并冲突问题</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2021-08-18T03:56:29Z>2021年8月18日星期三</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#解决port-443问题>解决port 443问题</a></li><li><a href=#解决合并冲突问题>解决合并冲突问题</a></li><li><a href=#fork后github-action-自动拉取更新当指定文件冲突时保持当前分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，保持当前分支版本</a><ol><li><a href=#第一阶段本地环境准备>第一阶段：本地环境准备</a></li><li><a href=#第二阶段在项目中指定保护名单>第二阶段：在项目中指定保护名单</a></li><li><a href=#第三阶段配置-github-action-自动化>第三阶段：配置 GitHub Action 自动化</a></li><li><a href=#第四阶段验证结果>第四阶段：验证结果</a></li><li><a href=#核心检查点>核心检查点</a></li></ol></li><li><a href=#fork后github-action-自动拉取更新当指定文件冲突时使用来源分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本</a><ol><li><a href=#第一阶段本地环境配置>第一阶段：本地环境配置</a></li><li><a href=#第二阶段在项目中指定自动覆盖名单>第二阶段：在项目中指定自动覆盖名单</a></li><li><a href=#第三阶段配置-github-actions-自动化>第三阶段：配置 GitHub Actions 自动化</a></li><li><a href=#第四阶段解决推送拒绝non-fast-forward>第四阶段：解决推送拒绝（non-fast-forward）</a></li><li><a href=#总结与验证>总结与验证</a></li></ol></li><li><a href=#解决port-22问题>解决<code>port 22</code>问题</a></li><li><a href=#多-git-仓库的-ssh-key-配置>多 Git 仓库的 SSH-key 配置</a><ol><li><a href=#配置多-ssh-key>配置多 SSH key</a><ol><li><a href=#1-添加-rsa-key>1. 添加 RSA key</a></li><li><a href=#2-密钥配置>2. 密钥配置</a></li><li><a href=#3-使用别名配置仓库的远程地址>3. 使用别名配置仓库的远程地址</a></li></ol></li><li><a href=#其他>其他</a></li></ol></li></ol></nav></details></aside><section class=article-content><h2 id=解决port-443问题>解决port 443问题</h2><p>1.切换到全：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global http.proxy http://127.0.0.1:10808
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>git config --global https.proxy http://127.0.0.1:10808
+</span></span></code></pre></td></tr></table></div></div><p>2.取消全：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global --unset http.proxy
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>git config --global --unset https.proxy
+</span></span></code></pre></td></tr></table></div></div><p>3.再次切换到全：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global http.proxy http://127.0.0.1:10808
+</span></span><span class=line><span class=cl> 
+</span></span><span class=line><span class=cl>git config --global https.proxy http://127.0.0.1:10808
+</span></span></code></pre></td></tr></table></div></div><p>这时会出现 <code>port 22: Connection refused</code>问题。</p><p>4.测试</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git clone https://github.com/iwyang/DecoTV.git
+</span></span></code></pre></td></tr></table></div></div><p><strong>用https克隆，不要用ssh协议克隆，否则即使daili了速度还是很慢。</strong></p><p>修改后提交：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m &#34;你的提交信息&#34;
+</span></span><span class=line><span class=cl>git push origin main
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd /root/docker/tv
+</span></span><span class=line><span class=cl>docker-compose pull
+</span></span><span class=line><span class=cl>docker-compose up -d
+</span></span><span class=line><span class=cl>docker image prune
+</span></span></code></pre></td></tr></table></div></div><h2 id=解决合并冲突问题>解决合并冲突问题</h2><p>参考：<a class=link href=https://docs.github.com/cn/enterprise-server@2.21/github/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github target=_blank rel=noopener>在 GitHub 上解决合并冲突</a></p><p>1.在仓库名称下，单击 <strong>拉取请求</strong>。</p><p>2.在“Pull Requests（拉取请求）”列表中，单击含有您想要解决的合并冲突的拉取请求。</p><p>3.在拉取请求底部附近，单击 <strong>Resolve conflicts（解决冲突）</strong>。</p><p>**提示：**如果停用 **Resolve conflicts（解决冲突）**按钮，则拉取请求的合并冲突过于复杂而无法在 GitHub Enterprise Server 上解决，或站点管理员已禁用仓库之间拉取请求的冲突编辑器。 必须使用备用 Git 客户端或在命令行上使用 Git 解决合并冲突。 更多信息请参阅“<a class=link href=https://docs.github.com/cn/enterprise-server@2.21/articles/resolving-a-merge-conflict-using-the-command-line target=_blank rel=noopener>使用命令行解决合并冲突</a>”。</p><p>4.决定您是否想只保持分支的更改、只保持其他分支的更改，还是进行全新的更改（可能包含两个分支的更改）。 删除冲突标记 <code>&lt;&lt;&lt;&lt;&lt;&lt;&lt;</code>, <code>=======</code>, <code>>>>>>>></code> 并在最终合并中进行所需的更改。</p><p>5.如果文件中有多个合并冲突，请向下滚动到下一组冲突标记，然后重复步骤 4 和步骤 5 以解决合并冲突。</p><p>6.解决文件中的所有冲突后，单击 <strong>Mark as resolved（标记为已解决）</strong>。</p><p>7.如果您有多个冲突文件，请在“冲突文件”下的页面左侧选择您要编辑的下一个文件，并重复步骤 4 到 7，直到您解决所有拉取请求的合并冲突。</p><p>8.解决所有合并冲突后，单击 <strong>Commit merge（提交合并）</strong>。 这会将整个基本分支合并到头部分支。</p><p>9.如果出现提示，请审查您要提交的分支。 如果要提交到此分支，请单击 <strong>I understand, update *BRANCH*（我已了解，请更新 BRANCH）</strong>。</p><p>10.要合并拉取请求，请单击 <strong>Merge pull request（合并拉取请求）</strong>。 有关其他拉取请求合并选项的更多信息，请参阅“<a class=link href=https://docs.github.com/cn/enterprise-server@2.21/articles/merging-a-pull-request target=_blank rel=noopener>合并拉取请求</a>”。</p><h2 id=fork后github-action-自动拉取更新当指定文件冲突时保持当前分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，保持当前分支版本</h2><p>上传 <code>Fork-sync.yml</code> ，问 <a class=link href=https://gemini.google.com/app target=_blank rel=noopener>gemini</a>：fork后，GitHub action 自动拉取更新，当指定文件冲突时，保持当前分支版本</p><p>既然你希望在同步 Fork 时，针对指定文件<strong>永远保持你自己的版本（Ours）</strong>，我们需要将之前的“以来源为准”逻辑反过来。</p><p>以下是针对 <code>LunaTV-config</code> 仓库实现“<strong>全自动同步且保护本地配置</strong>”的从头到尾完整教程。</p><hr><h3 id=第一阶段本地环境准备>第一阶段：本地环境准备</h3><p>首先，我们需要在本地和云端定义一个“保持我方版本”的合并驱动。</p><ol><li><p><strong>定义“保住自己”的合并驱动：</strong></p><p>打开终端（Git Bash），执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global merge.ours.driver <span class=nb>true</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>原理：</strong> <code>true</code> 是一个永远返回成功的命令。当 Git 遇到冲突并调用这个驱动时，它会认为“已经处理好了”，从而保留你本地当前分支的文件内容。</p></blockquote></li></ol><hr><h3 id=第二阶段在项目中指定保护名单>第二阶段：在项目中指定保护名单</h3><p>你需要告诉 Git 哪些文件是“神圣不可侵犯”的，即同步时忽略上游的修改。</p><ol><li><p><strong>创建/编辑 <code>.gitattributes</code>：</strong></p><p>在项目根目录执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>touch .gitattributes
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>写入保护规则：</strong></p><p>使用编辑器打开 <code>.gitattributes</code>，输入你想保护的文件。例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 永远保留我自己的配置文件，不被上游覆盖</span>
+</span></span><span class=line><span class=cl>README.md <span class=nv>merge</span><span class=o>=</span>ours
+</span></span><span class=line><span class=cl>report.md <span class=nv>merge</span><span class=o>=</span>ours
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># # 如果你想保护整个目录</span>
+</span></span><span class=line><span class=cl><span class=c1># my_private_configs/** merge=ours</span>
+</span></span></code></pre></td></tr></table></div></div></li></ol><hr><h3 id=第三阶段配置-github-action-自动化>第三阶段：配置 GitHub Action 自动化</h3><p>为了让 GitHub 的服务器在自动同步时也遵守这个规则，我们需要修改你的 <code>Fork-sync.yml</code>。</p><ol><li>打开并编辑 <code>.github/workflows/Fork-sync.yml</code>，将内容替换为（如果有多个脚本，注意脚本执行先后顺序）：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>name: Fork-sync
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>permissions:
+</span></span><span class=line><span class=cl>  contents: write
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>on:
+</span></span><span class=line><span class=cl>  schedule:
+</span></span><span class=line><span class=cl>    - cron: &#34;0 19 * * *&#34;  # 每天北京时间凌晨3点运行
+</span></span><span class=line><span class=cl>  workflow_dispatch:
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>jobs:
+</span></span><span class=line><span class=cl>  sync_latest_from_upstream:
+</span></span><span class=line><span class=cl>    name: Sync and Protect Local Configs
+</span></span><span class=line><span class=cl>    runs-on: ubuntu-latest
+</span></span><span class=line><span class=cl>    if: ${{ github.event.repository.fork }}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>    steps:
+</span></span><span class=line><span class=cl>      - name: Checkout target repo
+</span></span><span class=line><span class=cl>        uses: actions/checkout@v4
+</span></span><span class=line><span class=cl>        with:
+</span></span><span class=line><span class=cl>          fetch-depth: 0
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Configure Git &amp; Ours Driver
+</span></span><span class=line><span class=cl>        run: |
+</span></span><span class=line><span class=cl>          git config user.name &#34;github-actions[bot]&#34;
+</span></span><span class=line><span class=cl>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;
+</span></span><span class=line><span class=cl>          # 关键：在 Action 服务器上激活 ours 驱动
+</span></span><span class=line><span class=cl>          git config merge.ours.driver true
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Sync upstream changes
+</span></span><span class=line><span class=cl>        run: |
+</span></span><span class=line><span class=cl>          # 添加上游
+</span></span><span class=line><span class=cl>          git remote add upstream https://github.com/hafrey1/LunaTV-config.git
+</span></span><span class=line><span class=cl>          git fetch upstream main
+</span></span><span class=line><span class=cl>          
+</span></span><span class=line><span class=cl>          # 执行合并。此时 .gitattributes 里标记为 merge=ours 的文件会无视上游修改
+</span></span><span class=line><span class=cl>          git merge upstream/main --no-edit || (echo &#34;检测到非受保护文件的核心冲突，需手动处理&#34; &amp;&amp; exit 1)
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Push to origin
+</span></span><span class=line><span class=cl>        run: |
+</span></span><span class=line><span class=cl>          git push origin main
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>      - name: Delete workflow runs
+</span></span><span class=line><span class=cl>        uses: Mattraks/delete-workflow-runs@main
+</span></span><span class=line><span class=cl>        with:
+</span></span><span class=line><span class=cl>          retain_days: 0
+</span></span><span class=line><span class=cl>          keep_minimum_runs: 5
+</span></span></code></pre></td></tr></table></div></div><hr><ol start=2><li><strong>提交并推送：</strong></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;chore: 配置同步时保护本地特定文件不被覆盖&#34;</span>
+</span></span><span class=line><span class=cl>git push origin main
+</span></span></code></pre></td></tr></table></div></div><h3 id=第四阶段验证结果>第四阶段：验证结果</h3><ol><li><strong>手动测试：</strong> 在 GitHub 仓库的 <strong>Actions</strong> 页面，手动触发 <strong>Fork-sync</strong>。</li><li><strong>检查：</strong> 观察日志中的 <code>Sync upstream changes</code> 步骤。<ul><li>如果上游修改了你 <code>.gitattributes</code> 中保护的文件，Action 会显示合并成功，但你检查该文件会发现<strong>内容依然是你自己的</strong>。</li><li>这样你就实现了“既能拿到上游的新功能更新，又不会弄乱自己的私有配置”。</li></ul></li></ol><h3 id=核心检查点>核心检查点</h3><ul><li><strong>驱动名称一致性</strong>：<code>.gitattributes</code> 里的 <code>merge=ours</code> 必须对应 <code>git config</code> 里的 <code>merge.ours.driver</code>。</li><li><strong>文件路径</strong>：确保 <code>.gitattributes</code> 中的文件路径书写正确（建议使用 <code>**/文件名</code> 来匹配所有层级的同名文件）。</li></ul><p><strong>你会查看 <code>.gitattributes</code> 是否生效了吗？</strong> 如果不确定，可以运行 <code>git check-attr -a &lt;文件名></code> 来核实。</p><h2 id=fork后github-action-自动拉取更新当指定文件冲突时使用来源分支版本>fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本</h2><p>既然你希望在 GitHub Action 自动同步 Fork 时，遇到冲突直接**使用来源分支（上游/对方）**的版本，我们需要配置 <code>theirs</code> 策略。这通常用于你希望某些文件（如 <code>nodes</code> 或 <code>configs</code>）始终紧跟上游更新，而不保留你本地的修改。</p><p>以下是针对 <code>LunaTV-config</code> 仓库实现“<strong>全自动同步且冲突时以来源为准</strong>”的从头到尾完整指南。</p><hr><h3 id=第一阶段本地环境配置>第一阶段：本地环境配置</h3><p>由于 Git 默认没有内置名为 <code>theirs</code> 的自动合并驱动，我们必须手动定义一个。</p><ol><li><p><strong>定义“以来源为准”的合并驱动：</strong></p><p>打开终端（Git Bash），执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global merge.keep_theirs.driver <span class=s2>&#34;cat %B &gt; %A&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><blockquote><p><strong>原理：</strong> <code>%B</code> 代表来源（上游）文件，<code>%A</code> 代表本地文件。该命令会将上游内容直接覆盖到本地。</p></blockquote></li></ol><hr><h3 id=第二阶段在项目中指定自动覆盖名单>第二阶段：在项目中指定自动覆盖名单</h3><p>你需要通过 <code>.gitattributes</code> 文件告诉 Git 哪些文件在冲突时应该触发这个驱动。</p><ol><li><p><strong>创建属性文件：</strong></p><p>在项目根目录下执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>touch .gitattributes
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>写入匹配规则：</strong></p><p>打开 <code>.gitattributes</code>，根据你的需求（例如始终同步 <code>nodes</code> 文件夹）输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 针对特定目录或文件，冲突时永远采用对方的版本</span>
+</span></span><span class=line><span class=cl>nodes/** <span class=nv>merge</span><span class=o>=</span>keep_theirs
+</span></span><span class=line><span class=cl>configs/** <span class=nv>merge</span><span class=o>=</span>keep_theirs
+</span></span><span class=line><span class=cl>*.json <span class=nv>merge</span><span class=o>=</span>keep_theirs
+</span></span></code></pre></td></tr></table></div></div></li></ol><hr><h3 id=第三阶段配置-github-actions-自动化>第三阶段：配置 GitHub Actions 自动化</h3><p>这是最关键的一步。由于 GitHub Action 运行环境是临时的，它不知道你本地的 <code>git config</code>。我们必须在脚本中注入驱动定义。</p><ol><li><p>修改 <code>.github/workflows/Fork-sync.yml</code>：</p><p>将你之前上传的文件内容替换为以下原生 Git 逻辑：</p></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Fork-sync</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>permissions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>contents</span><span class=p>:</span><span class=w> </span><span class=l>write</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;0 17 * * *&#34;</span><span class=w>  </span><span class=c># 每天北京时间凌晨1点运行</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync_latest_from_upstream</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync latest commits from upstream repo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.repository.fork }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout target repo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w> </span><span class=c># 获取完整历史以支持合并</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Configure Git &amp; Merge Driver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          git config user.name &#34;github-actions[bot]&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          # 关键：在云端服务器注入 keep_theirs 驱动定义
+</span></span></span><span class=line><span class=cl><span class=sd>          git config merge.keep_theirs.driver &#34;cat %B &gt; %A&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync upstream changes</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          # 添加 LunaTV 原始仓库作为上游
+</span></span></span><span class=line><span class=cl><span class=sd>          git remote add upstream https://github.com/hafrey1/LunaTV-config.git
+</span></span></span><span class=line><span class=cl><span class=sd>          git fetch upstream main
+</span></span></span><span class=line><span class=cl><span class=sd>          
+</span></span></span><span class=line><span class=cl><span class=sd>          # 执行合并。Git 会读取 .gitattributes 并在冲突时调用 keep_theirs 驱动
+</span></span></span><span class=line><span class=cl><span class=sd>          git merge upstream/main --no-edit || (echo &#34;检测到非规则内的核心冲突，需手动干预&#34; &amp;&amp; exit 1)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Push to origin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          # 将合并后的最新版本推送到你自己的仓库
+</span></span></span><span class=line><span class=cl><span class=sd>          git push origin main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Delete workflow runs</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>Mattraks/delete-workflow-runs@main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>retain_days</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>keep_minimum_runs</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><hr><ol start=2><li><strong>提交并推送：</strong></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;chore: 配置冲突时自动以来源分支为准&#34;</span>
+</span></span><span class=line><span class=cl>git push origin main
+</span></span></code></pre></td></tr></table></div></div><h3 id=第四阶段解决推送拒绝non-fast-forward>第四阶段：解决推送拒绝（non-fast-forward）</h3><p><strong>如果</strong>你在推送时遇到 <code>[rejected] main -> main (non-fast-forward)</code> 错误，说明你本地和远程的提交历史不一致。</p><p><strong>解决方法：</strong></p><ol><li><p><strong>强制同步远程改动：</strong></p><p>Bash</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git fetch origin
+</span></span><span class=line><span class=cl>git merge origin/main -X ours  # 这里的 -X ours 是为了确保在合并远程时先保住你刚写的 .gitattributes
+</span></span></code></pre></td></tr></table></div></div></li><li><p><strong>重新推送：</strong></p><p>Bash</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git push origin main
+</span></span></code></pre></td></tr></table></div></div></li></ol><hr><h3 id=总结与验证>总结与验证</h3><ul><li><strong>验证驱动：</strong> 运行 <code>git check-attr -a package-lock.json</code>（或任意你规则里的文件），如果输出包含 <code>merge: keep_theirs</code>，说明规则已识别。</li><li><strong>手动测试：</strong> 在 GitHub 仓库的 <strong>Actions</strong> 页面手动点击 <strong>Run workflow</strong>。如果运行成功且日志显示 <code>Merge made by the 'recursive' strategy</code>，则说明自动化忽略冲突已生效。</li></ul><p><strong>你会操作了吗？</strong> 如果运行 Action 时出现红色报错，请把报错日志发给我，我来帮你分析。</p><h2 id=解决port-22问题>解决<code>port 22</code>问题</h2><p>1.进入.ssh的目录，使用命令<code>touch config</code>创建一个配置文件，并写入你github的配置信息。（<code>xxxxx@xx.com</code>是你github的注册邮箱）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Host github.com  
+</span></span><span class=line><span class=cl>User xxxxx@xx.com  
+</span></span><span class=line><span class=cl>Hostname ssh.github.com  
+</span></span><span class=line><span class=cl>PreferredAuthentications publickey  
+</span></span><span class=line><span class=cl>IdentityFile ~/.ssh/id_rsa  
+</span></span><span class=line><span class=cl>Port <span class=m>443</span>
+</span></span></code></pre></td></tr></table></div></div><p>2.更改配置文件config的权限。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod <span class=m>600</span> config
+</span></span></code></pre></td></tr></table></div></div><p>3.再尝试查看连接状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ssh git@github.com
+</span></span></code></pre></td></tr></table></div></div><p><strong>Please make sure you have the correct access rights and the repository exist</strong></p><p>如果即使已经添加本地公钥到github，还提示以上错误，并且执行<code>ssh -T git@github.com</code>提示22端口关闭，解决方法见上。</p><h2 id=多-git-仓库的-ssh-key-配置>多 Git 仓库的 SSH-key 配置</h2><p><strong>PS:未测试</strong></p><h3 id=配置多-ssh-key>配置多 SSH key</h3><h4 id=1-添加-rsa-key>1. 添加 RSA key</h4><p>仍然使用命令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>ssh-keygen -t rsa -c &#34;your@email.com&#34;
+</span></span></code></pre></td></tr></table></div></div><p>生成 RSA 密钥对，但在接下来的选项中指定一个不同的文件名，例如：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>Enter file in which to save the key (/Users/userName/.ssh/id_rsa): /Users/userName/.ssh/new_rsa
+</span></span></code></pre></td></tr></table></div></div><p>这样就在 <code>~/.ssh</code> 目录下生成了一对新的 RSA 密钥：<code>new_rsa</code> 和 <code>new_rsa.pub</code>.</p><h4 id=2-密钥配置>2. 密钥配置</h4><p>生成了新的密钥后，便可将新密钥成功添加到第二个 GitHub 账号. 但此时向第二个 Github 仓库推送更新仍然会显示无权限，因为若不经配置系统默认仍使用默认的密钥对 <code>id_rsa</code>.</p><p>需要如下配置：</p><p>在密钥目录 <code>~/.ssh/</code> 下编辑或新建配置文件 <code>config</code>，添加如下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>Host github.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>HostName github.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>IdentityFile ~/.ssh/id_rsa</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>User git</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>Host alias</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>HostName github.com</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>IdentityFile ~/.ssh/new_rsa</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>User git</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>理解其中配置项就可以灵活配置更多的 SSH key 了：</p><ul><li><code>Host</code> 是我们<strong>自己定义</strong>的一个别名，用来更方便地指代 <code>HostName</code>.</li><li><code>HostName</code> 是远程地址的域名，需要正确配置.</li><li><code>IdentityFile</code> 指定使用该配置项中的域名（或别名）时所使用的密钥文件.</li><li><code>User</code> 使用 SSH 时的用户名，对于远程 Git 仓库来说一般使用 <code>git</code>.</li></ul><p>以上第一个配置项，使域名为 <code>github.com</code> 的仓库默认使用 <code>id_rsa</code> 密钥对，第二个配置项为地址中使用了别名 <code>alias</code> 的仓库使用 <code>new_rsa</code> 密钥对</p><h4 id=3-使用别名配置仓库的远程地址>3. 使用别名配置仓库的远程地址</h4><p>配置完以上内容后，当我们使用 <code>alias</code> 作为登陆地址时会使用指定的 <code>new_rsa</code> 密钥，否则仍默认使用 <code>id_rsa</code> 密钥，因此我们需要对想要使用 <code>new_rsa</code> 密钥的仓库地址做修改. 例如：</p><p>对于仓库地址为</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git@github.com:user_name/repository_name.git
+</span></span></code></pre></td></tr></table></div></div><p>的 GitHub 远程仓库，我们推送更新时系统仍默认使用 <code>id_rsa</code> 密钥，若想使用 <code>new_rsa</code> 密钥则需修改地址为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>git@alias:user_name/repository_name.git
+</span></span></code></pre></td></tr></table></div></div><h3 id=其他>其他</h3><ul><li>对于 Windows 用户需要注意 <code>.ssh</code> 目录的路径</li><li>config 不生效的话检查语法或尝试重启终端或设备后重试</li><li>对于更多的密钥配置在 <code>~/.ssh/config</code> 文件中同理追加更多配置项即可</li></ul><p>参考链接：</p><p><a class=link href=https://blog.csdn.net/Hodors/article/details/103226958 target=_blank rel=noopener>1.解决 Failed to connect to github.com port 443</a></p><p><a class=link href=https://blog.csdn.net/MBuger/article/details/70226712 target=_blank rel=noopener>2.解决ssh: connect to host github.com port 22</a></p><p><a class=link href=https://www.hozen.site/archives/43/ target=_blank rel=noopener>3.多 Git 仓库的 SSH-key 配置</a></p></section><footer class=article-footer><section class=article-tags><a href=/tags/github/>Github</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e8%a7%a3%e5%86%b3Github-port-443%e4%bb%a5%e5%8f%8aport-22%e9%97%ae%e9%a2%98&&%e5%90%88%e5%b9%b6%e5%86%b2%e7%aa%81%e9%97%ae%e9%a2%98.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/12dd937c/><div class=article-details><h2 class=article-title>利用Github Actions自动同步Fork&&自动同步Releases</h2></div></a></article><article><a href=/archives/4e8cacb0/><div class=article-details><h2 class=article-title>利用github Actions自动同步项目到gitee并自动部署Gitee Pages</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/b32c2189/><div class=article-details><h2 class=article-title>upptime-利用Github-Actions检测网站运行状态</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Word on Bore's Notes</title><link>https://bore.vip/tags/word/</link><description>Recent content in Word on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/word/index.xml" rel="self" type="application/rss+xml"/><item><title>office更改默认字体</title><link>https://bore.vip/archives/144e85ab/</link><pubDate>Sun, 02 Jul 2023 21:02:25 +0000</pubDate><guid>https://bore.vip/archives/144e85ab/</guid><description>&lt;p&gt;这里以&lt;code&gt;office2021&lt;/code&gt;为例&lt;/p&gt;
+&lt;h3 id="word"&gt;word
+&lt;/h3&gt;&lt;p&gt;方法一：&lt;/p&gt;
+&lt;p&gt;1.在开始选项卡找到正文。&lt;/p&gt;
+&lt;p&gt;2.正文右键，点击修改。&lt;/p&gt;
+&lt;p&gt;3.设定格式之后，点击基于该模板的新文档，并且点击确定。&lt;/p&gt;
+&lt;p&gt;方法二：&lt;/p&gt;
+&lt;p&gt;1.切换到设计选项卡&lt;/p&gt;
+&lt;p&gt;2.字体—自定义字体—设为默认值&lt;/p&gt;
+&lt;h3 id="excel"&gt;excel
+&lt;/h3&gt;&lt;p&gt;1.新建Excel文档，默认的字体在“文件-选项-常规-新建工作簿时”的设置中指定的&lt;/p&gt;
+&lt;h3 id="ppt"&gt;ppt
+&lt;/h3&gt;&lt;p&gt;1.新建一个空白演示文稿。&lt;/p&gt;
+&lt;p&gt;2.单击工具栏上的&amp;quot;&lt;strong&gt;视图&lt;/strong&gt;&amp;quot;，然后单击“&lt;strong&gt;幻灯片母版&lt;/strong&gt;”。&lt;/p&gt;
+&lt;p&gt;3.找到&amp;quot;&lt;strong&gt;字体&lt;/strong&gt;&amp;quot;，在下拉选项框中选择”&lt;strong&gt;自定义字体&lt;/strong&gt;“。&lt;/p&gt;
+&lt;p&gt;4.修改中文和西文字体，保存，然后关闭母版视图。&lt;/p&gt;
+&lt;p&gt;5.单击“&lt;strong&gt;文件&lt;/strong&gt;”&amp;gt;“&lt;strong&gt;另存为&lt;/strong&gt;”，将文件名改为&amp;quot;&lt;strong&gt;blank&lt;/strong&gt;&amp;quot;，保存类型改为” &lt;strong&gt;PowerPoint模板&lt;/strong&gt;“。注意：文件名一定是&amp;quot;&lt;strong&gt;blank&lt;/strong&gt;&amp;ldquo;和保存类型一定是” &lt;strong&gt;PowerPoint模板&lt;/strong&gt;“。&lt;/p&gt;
+&lt;p&gt;6.再打开”&lt;strong&gt;资源管理器&lt;/strong&gt;“，”&lt;strong&gt;查看&lt;/strong&gt;“→“&lt;strong&gt;显示“→&lt;strong&gt;勾选&lt;/strong&gt;”隐藏的项目“。（别关闭第5步的窗口）&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;7.看回第5步的”&lt;strong&gt;另存为&lt;/strong&gt;“的界面，手动更改保存的路径：&lt;code&gt;C:\Users\&amp;lt;用户名&amp;gt;\AppData\Roaming\Microsoft\Templates&lt;/code&gt; ，然后单击保存完成默认字体的设置。&lt;/p&gt;
+&lt;p&gt;随意打开一个新的演示文稿，会看到默认字体已变为微软雅黑。&lt;/p&gt;
+&lt;p&gt;在开始菜单中会多一个名为”Default Theme“的ppt模板，以后新建ppt就单击这个就可以。&lt;/p&gt;
+&lt;h3 id="参考链接"&gt;参考链接
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a class="link" href="https://blog.csdn.net/Williamcsj/article/details/120688661" target="_blank" rel="noopener"
+ &gt;Word——永久修改默认标题和正文样式&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://www.luyouqi.com/shezhi/30957.html" target="_blank" rel="noopener"
+ &gt;如何设置修改Excel默认字体&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a class="link" href="https://zhuanlan.zhihu.com/p/556010400" target="_blank" rel="noopener"
+ &gt;修改PPT默认字体方法&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>去掉试卷图片灰色背景的方法</title><link>https://bore.vip/archives/382714ef/</link><pubDate>Thu, 20 Jan 2022 09:01:18 +0000</pubDate><guid>https://bore.vip/archives/382714ef/</guid><description>&lt;ol&gt;
+&lt;li&gt;使用qq浏览器等软件的&lt;code&gt;扫描文档&lt;/code&gt;功能。&lt;/li&gt;
+&lt;li&gt;word中，右键依次选择&lt;code&gt;设置图片格式—图片—图片校正—调高对比度（100%）和清晰度&lt;/code&gt;（100%）和亮度（50%）。&lt;/li&gt;
+&lt;li&gt;WPS中，依次点击&lt;code&gt;图片工具—调高对比度&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;PS里的操作：&lt;/p&gt;
+&lt;p&gt;1.先按快捷键&lt;code&gt;Ctrl+Shift+U&lt;/code&gt;去色。&lt;/p&gt;
+&lt;p&gt;2.&lt;code&gt;Ctrl+L&lt;/code&gt;调出色阶，白色吸管点背景。如果对比不够，继续调整色阶的滑块。&lt;/p&gt;
+&lt;p&gt;3.&lt;code&gt;Ctrl+J&lt;/code&gt;复制一个图层，点击&lt;code&gt;滤镜—其它—高反差保留&lt;/code&gt;，设置为2个像素。&lt;/p&gt;
+&lt;p&gt;4.图层混合模式改成&lt;code&gt;线性光&lt;/code&gt;（或者&lt;code&gt;柔光&lt;/code&gt;）。&lt;/p&gt;</description></item></channel></rss>

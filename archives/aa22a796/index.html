@@ -1,0 +1,249 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本地操作 安装GIt 本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量： 右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><title>hugo部署到coding&备份源码</title><link rel=canonical href=https://bore.vip/archives/aa22a796/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="hugo部署到coding&备份源码"><meta property='og:description' content="本地操作 安装GIt 本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量： 右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><meta property='og:url' content='https://bore.vip/archives/aa22a796/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hugo'><meta property='article:published_time' content='2020-05-13T01:42:25+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="hugo部署到coding&备份源码"><meta name=twitter:description content="本地操作 安装GIt 本地需要安装 Git ，安装过程略。安装完git后还要配置环境变量： 右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#本地操作>本地操作</a><ol><li><a href=#安装git>安装GIt</a></li><li><a href=#配置ssh-公钥>配置SSH 公钥</a></li><li><a href=#初始化-hugo>初始化 Hugo</a><ol><li><a href=#安装hugo>安装hugo</a></li><li><a href=#创建并配置站点>创建并配置站点</a></li><li><a href=#添加主题>添加主题</a></li><li><a href=#配置configtoml>配置config.toml</a></li><li><a href=#设置文章模板>设置文章模板</a></li><li><a href=#新建关于页面>新建“关于”页面</a></li><li><a href=#启动博客的本地预览>启动博客的本地预览</a></li></ol></li></ol></li><li><a href=#部署到coding>部署到coding</a><ol><li><a href=#提交本地仓库>提交本地仓库</a></li><li><a href=#备份脚本>备份脚本</a></li><li><a href=#提交本地仓库-1>提交本地仓库</a></li><li><a href=#备份hugo源码>备份hugo源码</a></li></ol></li><li><a href=#备份hugo源码-1>备份hugo源码</a><ol><li><a href=#备份到github-master分支>备份到github master分支</a></li></ol></li><li><a href=#还原源码>还原源码</a></li><li><a href=#总结>总结</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/aa22a796/>hugo部署到coding&备份源码</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2020-05-13T01:42:25Z>2020年5月13日星期三</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 5 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#本地操作>本地操作</a><ol><li><a href=#安装git>安装GIt</a></li><li><a href=#配置ssh-公钥>配置SSH 公钥</a></li><li><a href=#初始化-hugo>初始化 Hugo</a><ol><li><a href=#安装hugo>安装hugo</a></li><li><a href=#创建并配置站点>创建并配置站点</a></li><li><a href=#添加主题>添加主题</a></li><li><a href=#配置configtoml>配置config.toml</a></li><li><a href=#设置文章模板>设置文章模板</a></li><li><a href=#新建关于页面>新建“关于”页面</a></li><li><a href=#启动博客的本地预览>启动博客的本地预览</a></li></ol></li></ol></li><li><a href=#部署到coding>部署到coding</a><ol><li><a href=#提交本地仓库>提交本地仓库</a></li><li><a href=#备份脚本>备份脚本</a></li><li><a href=#提交本地仓库-1>提交本地仓库</a></li><li><a href=#备份hugo源码>备份hugo源码</a></li></ol></li><li><a href=#备份hugo源码-1>备份hugo源码</a><ol><li><a href=#备份到github-master分支>备份到github master分支</a></li></ol></li><li><a href=#还原源码>还原源码</a></li><li><a href=#总结>总结</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=本地操作>本地操作</h2><h3 id=安装git>安装GIt</h3><p>本地需要安装 <a class=link href=https://git-scm.com/ target=_blank rel=noopener>Git</a> ，安装过程略。安装完git后还要配置环境变量：
+右键我的电脑 &ndash;> 属性，然后点击高级系统设置 &ndash;> 环境变量 &ndash;> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\b</span>in
+</span></span><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\m</span>ingw64<span class=se>\l</span>ibexec<span class=se>\g</span>it-core
+</span></span><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\m</span>ingw64<span class=se>\b</span>in
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置ssh-公钥>配置SSH 公钥</h3><p>Windows 上安装 <a class=link href=https://git-for-windows.github.io/ target=_blank rel=noopener>Git for Windows</a> 之后在开始菜单里打开 Git Bash 输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global user.name <span class=s2>&#34;你的用户名&#34;</span>
+</span></span><span class=line><span class=cl>git config --global user.email <span class=s2>&#34;你的电子邮箱&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ~
+</span></span><span class=line><span class=cl>mkdir .ssh
+</span></span><span class=line><span class=cl><span class=nb>cd</span> .ssh
+</span></span><span class=line><span class=cl>ssh-keygen -t rsa
+</span></span></code></pre></td></tr></table></div></div><p>在系统当前用户文件夹下生成了私钥 <code>id_rsa</code> 和公钥 <code>id_rsa.pub</code>。</p><h3 id=初始化-hugo>初始化 Hugo</h3><h4 id=安装hugo>安装hugo</h4><p>windows10下安装hugo，可以参照Hugo官方手册的方法，这里讲一个相对简单稳定的方法。</p><p>1.下载hugo程序压缩包：前往https://github.com/gohugoio/hugo/releases下载和自己系统版本相符合的hugo程序压缩包。(建议下载hugo_extended版本)</p><p>2.解压到某个文件夹中（路径不要有中文，而且自己要记得文件夹的路径），最好是不常改动的文件夹下边，以防文件被误删或者丢失。</p><p>3.添加hugo到系统环境变量PATH中</p><ul><li>找到“系统环境变量”的设置位置，在开始菜单的搜索栏搜索环境变量</li><li>添加用户环境变量，依此：点击环境变量，找到用户变量中的path，点击编辑，然后点击新建，在使用浏览按钮选中文件夹，即可使用hugo。（选中到hugo.exe所在的文件夹即可，不需要选中hugo.exe，貌似添加完系统变量，要重启电脑才能在Git Bash里运行hugo）</li><li>接下来，为了万无一失，还是要检查一下hugo是否安装完成。以管理员方式打开cmd命令窗口，然后输入以下指令：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hugo version
+</span></span></code></pre></td></tr></table></div></div><p>如果得到如下响应，（即显示版本信息），说明安装成功，接下来就可以玩转hugo了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>Hugo Static Site Generator v0.70.0/extended windows/amd64 BuildDate: unknown
+</span></span></code></pre></td></tr></table></div></div><h4 id=创建并配置站点>创建并配置站点</h4><blockquote><p>以下命令均在&rsquo;Git Bash&rsquo;中运行</p></blockquote><p>进入你想存放 Hugo 网站文件夹的目录，执行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hugo new site blog  
+</span></span></code></pre></td></tr></table></div></div><h4 id=添加主题>添加主题</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git clone https://github.com/dillonzq/LoveIt.git themes/LoveIt
+</span></span></code></pre></td></tr></table></div></div><p>附更新主题命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ./themes/LoveIt/
+</span></span><span class=line><span class=cl>git pull
+</span></span></code></pre></td></tr></table></div></div><p>配置主题</p><p>将 根目录\themes\even\exampleSite路径下的config.toml文件复制到根目录下，覆盖掉根目录下的config.toml文件。然后，我们在notepad++中打开并对其作一定的修改就可以直接使用。</p><h4 id=配置configtoml>配置config.toml</h4><p>略</p><h4 id=设置文章模板>设置文章模板</h4><p>为了更好的使用附加功能，我们提前修改一下模板。这样，每次使用新建一篇文档时候就省去很多麻烦事。
+使用Typora文档工具打开themes/tranquilpeak/archetypes中的post.md直接替换为以下的模板：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nn>---</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>title</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;{{ replace .Name &#34;</span>-<span class=s2>&#34; &#34;</span><span class=w> </span><span class=s2>&#34; | title }}&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>date</span><span class=p>:</span><span class=w> </span>{{<span class=w> </span><span class=l>.Date }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>lastmod</span><span class=p>:</span><span class=w> </span>{{<span class=w> </span><span class=l>.Date }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>draft</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>weight</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>categories</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;&#34;</span><span class=p>]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>tags</span><span class=p>:</span><span class=w> </span><span class=p>[</span><span class=s2>&#34;&#34;</span><span class=p>]</span><span class=w> 
+</span></span></span></code></pre></td></tr></table></div></div><p>　接下来在根目录下使用以下命令生成一篇文档吧：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hugo new post/XXXX.md
+</span></span></code></pre></td></tr></table></div></div><h4 id=新建关于页面>新建“关于”页面</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hugo new about.md
+</span></span></code></pre></td></tr></table></div></div><p><code>config.toml</code>相应位置添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=p>[[</span><span class=l>menu.main]]</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>name = &#34;关于&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>weight = 50</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>identifier = &#34;about&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>url = &#34;/about/&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h4 id=启动博客的本地预览>启动博客的本地预览</h4><p>建议在配置文件中设置好主题，或者使用 –t指令指定主题，在站点的根目录下使用命令进行本地启动，本地启动的命令如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hugo server -D
+</span></span></code></pre></td></tr></table></div></div><p>使用浏览器打开 http://localhost:1313 预览。</p><h2 id=部署到coding>部署到coding</h2><p>略</p><h3 id=提交本地仓库>提交本地仓库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rm -rf public/*
+</span></span><span class=line><span class=cl>hugo
+</span></span><span class=line><span class=cl><span class=nb>cd</span> public
+</span></span><span class=line><span class=cl>git remote rm origin
+</span></span><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git remote add origin git@e.coding.net:iwyang/hugo/hugo.git
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Add a new post&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin master
+</span></span></code></pre></td></tr></table></div></div><h3 id=备份脚本>备份脚本</h3><p>为了后续更新方便起见，可以在根目录新建一个一键部署脚本，命名为<code>deploy.sh</code>（如果对配置不做大的改动（例如：更换主题等），后续的更新可以使用以下脚本）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to gitee...\033[0m&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Removing existing files</span>
+</span></span><span class=line><span class=cl>rm -rf public/*
+</span></span><span class=line><span class=cl><span class=c1># Build the project</span>
+</span></span><span class=line><span class=cl>hugo
+</span></span><span class=line><span class=cl><span class=c1># Go To Public folder</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> public
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Commit changes.</span>
+</span></span><span class=line><span class=cl><span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;rebuilding site `date`&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>[</span> <span class=nv>$#</span> -eq <span class=m>1</span> <span class=o>]</span>
+</span></span><span class=line><span class=cl>  <span class=k>then</span> <span class=nv>msg</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$1</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;</span><span class=nv>$msg</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Push source and build repos.</span>
+</span></span><span class=line><span class=cl>git push origin master --force
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Come Back up to the Project Root</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ..
+</span></span></code></pre></td></tr></table></div></div><p>创建完脚本以后，不要忘了加权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod <span class=m>777</span> xxx
+</span></span></code></pre></td></tr></table></div></div><h3 id=提交本地仓库-1>提交本地仓库</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rm -rf public/*
+</span></span><span class=line><span class=cl>hugo
+</span></span><span class=line><span class=cl><span class=nb>cd</span> public
+</span></span><span class=line><span class=cl>git remote rm origin
+</span></span><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git remote add origin git@gitee.com:iwyang/iwyang.git
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Add a new post&#34;</span>
+</span></span><span class=line><span class=cl>git push origin master --force
+</span></span></code></pre></td></tr></table></div></div><h3 id=备份hugo源码>备份hugo源码</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git remote rm origin
+</span></span><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git checkout -b backup
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;备份源码&#34;</span>
+</span></span><span class=line><span class=cl>git remote add origin git@gitee.com:iwyang/iwyang.git
+</span></span><span class=line><span class=cl>git push origin backup --force
+</span></span></code></pre></td></tr></table></div></div><h2 id=备份hugo源码-1>备份hugo源码</h2><p>PS: <strong>如果执行第三步<code>git checkout -b backup</code>后，提示<code>fatal: A branch named 'backup' already exists.</code>，则执行以下操作：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git branch -D backup    <span class=c1>#删除分支:必须切换到其他的分之下才可操作</span>
+</span></span><span class=line><span class=cl>git checkout -b backup  <span class=c1>#切换分支</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=备份到github-master分支>备份到github master分支</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git remote rm origin
+</span></span><span class=line><span class=cl>git init
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;备份源码&#34;</span>
+</span></span><span class=line><span class=cl>git remote add origin git@github.com:iwyang/hugo.git
+</span></span><span class=line><span class=cl>git push --force origin master
+</span></span></code></pre></td></tr></table></div></div><hr><blockquote><p>PS:这里<code>Git Bash</code>开头会报错：<code>warning: LF will be replaced by CRLF</code>，解决方法：在<code>git add .</code>前面添加：</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global core.autocrlf <span class=nb>false</span>
+</span></span></code></pre></td></tr></table></div></div><p>最终效果：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># backup</span>
+</span></span><span class=line><span class=cl>git config --global core.autocrlf <span class=nb>false</span>
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;备份源码&#34;</span>
+</span></span><span class=line><span class=cl>git remote add origin git@github.com:iwyang/hugo-backup.git
+</span></span><span class=line><span class=cl>git push origin master --force
+</span></span></code></pre></td></tr></table></div></div><p>在部署脚本里也要作相应修改。</p><h2 id=还原源码>还原源码</h2><p><del>重装系统后，Algolia的自动提交索引功能要重新部署一遍，具体可查看：<a class=link href=https://bore.vip/hugo-theme-loveit-algolia/ target=_blank rel=noopener>Hugo添加Algolia</a>。最后还要在博客目录里重新关联远程仓库，还是一样先备份源码到github，再部署网页到相应服务器。</del></p><p><del><strong>先备份源码，再部署网页，是为了<code>GitInfo</code>以及<code>lastmod</code>能够生效和更新</strong>，其实源码可以备份到github、gitee、coding中任意一个公开仓库都可以，当然备份到github最好。网页也无需和源码放在同一个代码托管平台上。</del></p><p>2022.3.4 如果使用<code>Git Submodule</code>子模块管理Hugo主题，将源码克隆到本地，使用下面这条命令才能将主题一同克隆到本地。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>git</span> <span class=n>clone</span> <span class=n>-b</span> <span class=n>develop</span> <span class=n>git</span><span class=nv>@github</span><span class=p>.</span><span class=n>com</span><span class=err>:</span><span class=n>iwyang</span><span class=p>/</span><span class=n>hugo</span><span class=p>.</span><span class=py>git</span> <span class=n>hugo</span> <span class=p>-</span><span class=n>-recursive</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=总结>总结</h2><p>最好不要反复切换部署仓库，否则git会出现以下错误提示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>remote: error: The last gc run reported the following. Please correct the root cause
+</span></span><span class=line><span class=cl>remote: and remove gc.log.
+</span></span><span class=line><span class=cl>remote: Automatic cleanup will not be performed <span class=k>until</span> the file is removed.
+</span></span><span class=line><span class=cl>remote:
+</span></span><span class=line><span class=cl>remote: warning: There are too many unreachable loose objects<span class=p>;</span> run <span class=s1>&#39;git prune&#39;</span> to remove them.
+</span></span></code></pre></td></tr></table></div></div><p>查资料，原来是自己本地一些 “悬空对象”太多(git删除分支或者清空stash的时候，这些其实还没有真正删除，成为悬空对象，我们可以使用merge命令可以从中恢复一些文件)</p><p>解决方法：</p><p>1.输入命令：<code>git fsck --lost-found</code>，可以看到好多“dangling commit”</p><p>2.清空他们：<code>git gc --prune=now</code>，完成</p><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://saquarius.com/2019/07/hugo-github%E6%90%AD%E5%BB%BA%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2windows10/#%E5%87%86%E5%A4%87%E5%B7%A5%E4%BD%9C target=_blank rel=noopener>1.Hugo+github搭建个人博客 (windows10)</a></li><li><a class=link href=https://zhuanlan.zhihu.com/p/57361697 target=_blank rel=noopener>2.如何利用 GitHub Pages 和 Hugo 轻松搭建个人博客？</a></li><li><a class=link href=https://blog.olowolo.com/post/hugo-quick-start/ target=_blank rel=noopener>3.Hugo 从入门到会用</a></li><li><a class=link href=https://gitee.com/help/articles/4136#article-header0 target=_blank rel=noopener>4.码云Pages</a></li><li><a class=link href=https://blog.csdn.net/persist_xyz/article/details/88619036 target=_blank rel=noopener>5.git运行突然提示 remote: error: The last gc run reported the following</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/hugo/>Hugo</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/hugo%e9%83%a8%e7%bd%b2%e5%88%b0coding&amp;gitee&%e5%a4%87%e4%bb%bd%e6%ba%90%e7%a0%81.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/ca21a352/><div class=article-details><h2 class=article-title>Hugo Papermod主题配置与使用</h2></div></a></article><article><a href=/archives/3bf3725e/><div class=article-details><h2 class=article-title>Hugo Stack主题配置与使用</h2></div></a></article><article><a href=/archives/23eeae2f/><div class=article-details><h2 class=article-title>hugo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/c3be6469/><div class=article-details><h2 class=article-title>Hugo迁移笔记</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

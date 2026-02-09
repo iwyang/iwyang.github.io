@@ -1,0 +1,980 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。\n{% note warning flat %} Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。 {% endnote %}\n"><title>Debian使用备忘</title><link rel=canonical href=https://bore.vip/archives/9eb70758/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="Debian使用备忘"><meta property='og:description' content="由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。\n{% note warning flat %} Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。 {% endnote %}\n"><meta property='og:url' content='https://bore.vip/archives/9eb70758/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='linux'><meta property='article:published_time' content='2022-05-29T01:12:45+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="Debian使用备忘"><meta name=twitter:description content="由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。\n{% note warning flat %} Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。 {% endnote %}\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#debian-更新报错的解决方法><strong>Debian 更新报错的解决方法</strong></a></li><li><a href=#调整时区>调整时区</a></li><li><a href=#putty保存登录账号和密码>putty保存登录账号和密码</a></li><li><a href=#vi无法正常使用><code>vi</code>无法正常使用</a></li><li><a href=#debian安装vsftpd>Debian安装vsftpd</a></li><li><a href=#开启80443端口>开启80、443端口</a></li><li><a href=#debian-9上安装和配置postfix邮件>Debian 9上安装和配置Postfix邮件</a></li><li><a href=#安装transmission><del>安装Transmission</del></a><ol><li><a href=#安装nginx>安装nginx</a></li><li><a href=#配置nginx>配置nginx</a></li><li><a href=#debian11配置ssl证书>debian11配置SSL证书</a><ol><li><a href=#安装-certbot>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书>使用 webroot 自动生成证书</a></li><li><a href=#编辑nginx>编辑<code>Nginx</code></a></li><li><a href=#自动续期>自动续期</a></li></ol></li></ol></li><li><a href=#安装qbittorrent-nox>安装<code>qbittorrent-nox</code></a></li><li><a href=#qbittorrent-nox忘记密码><code>qbittorrent-nox</code>忘记密码</a></li><li><a href=#nginx反代qbittorrent-nox的web-gui>Nginx反代qbittorrent-nox的Web-GUI</a><ol><li><a href=#修改监听地址>修改监听地址</a></li><li><a href=#安装-nginx>安装 nginx</a></li><li><a href=#新建网站目录>新建网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置-nginx-http-80-端口>配置 Nginx http 80 端口</a></li><li><a href=#配置ssl证书>配置SSL证书</a><ol><li><a href=#安装-certbot-1>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书-1>使用 webroot 自动生成证书</a></li><li><a href=#编辑-nginx>编辑 <code>Nginx</code></a></li><li><a href=#自动续期-1>自动续期</a></li></ol></li></ol></li><li><a href=#配置nginx开启目录浏览>配置nginx开启目录浏览</a><ol><li><a href=#安装-nginx-1>安装 nginx</a></li><li><a href=#配置-nginx-1>配置 nginx</a></li><li><a href=#配置-ssl-证书>配置 SSL 证书</a><ol><li><a href=#安装-certbot-2>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书-2>使用 webroot 自动生成证书</a></li><li><a href=#编辑-nginx-1>编辑 <code>Nginx</code></a></li><li><a href=#自动续期-2>自动续期</a></li></ol></li></ol></li><li><a href=#debian清理垃圾>Debian清理垃圾</a></li><li><a href=#附录>附录</a><ol><li><a href=#vsftpdconf注释><code>vsftpd.conf</code>注释</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/9eb70758/>Debian使用备忘</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2022-05-29T01:12:45Z>2022年5月29日星期日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 13 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#debian-更新报错的解决方法><strong>Debian 更新报错的解决方法</strong></a></li><li><a href=#调整时区>调整时区</a></li><li><a href=#putty保存登录账号和密码>putty保存登录账号和密码</a></li><li><a href=#vi无法正常使用><code>vi</code>无法正常使用</a></li><li><a href=#debian安装vsftpd>Debian安装vsftpd</a></li><li><a href=#开启80443端口>开启80、443端口</a></li><li><a href=#debian-9上安装和配置postfix邮件>Debian 9上安装和配置Postfix邮件</a></li><li><a href=#安装transmission><del>安装Transmission</del></a><ol><li><a href=#安装nginx>安装nginx</a></li><li><a href=#配置nginx>配置nginx</a></li><li><a href=#debian11配置ssl证书>debian11配置SSL证书</a><ol><li><a href=#安装-certbot>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书>使用 webroot 自动生成证书</a></li><li><a href=#编辑nginx>编辑<code>Nginx</code></a></li><li><a href=#自动续期>自动续期</a></li></ol></li></ol></li><li><a href=#安装qbittorrent-nox>安装<code>qbittorrent-nox</code></a></li><li><a href=#qbittorrent-nox忘记密码><code>qbittorrent-nox</code>忘记密码</a></li><li><a href=#nginx反代qbittorrent-nox的web-gui>Nginx反代qbittorrent-nox的Web-GUI</a><ol><li><a href=#修改监听地址>修改监听地址</a></li><li><a href=#安装-nginx>安装 nginx</a></li><li><a href=#新建网站目录>新建网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置-nginx-http-80-端口>配置 Nginx http 80 端口</a></li><li><a href=#配置ssl证书>配置SSL证书</a><ol><li><a href=#安装-certbot-1>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书-1>使用 webroot 自动生成证书</a></li><li><a href=#编辑-nginx>编辑 <code>Nginx</code></a></li><li><a href=#自动续期-1>自动续期</a></li></ol></li></ol></li><li><a href=#配置nginx开启目录浏览>配置nginx开启目录浏览</a><ol><li><a href=#安装-nginx-1>安装 nginx</a></li><li><a href=#配置-nginx-1>配置 nginx</a></li><li><a href=#配置-ssl-证书>配置 SSL 证书</a><ol><li><a href=#安装-certbot-2>安装 Certbot</a></li><li><a href=#使用-webroot-自动生成证书-2>使用 webroot 自动生成证书</a></li><li><a href=#编辑-nginx-1>编辑 <code>Nginx</code></a></li><li><a href=#自动续期-2>自动续期</a></li></ol></li></ol></li><li><a href=#debian清理垃圾>Debian清理垃圾</a></li><li><a href=#附录>附录</a><ol><li><a href=#vsftpdconf注释><code>vsftpd.conf</code>注释</a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。</p><p>{% note warning flat %}
+Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
+{% endnote %}</p><p>{% note primary no-icon %}
+推荐使用<a class=link href=https://www.terminal.icu/ target=_blank rel=noopener>terminal</a>(ssh 工具) ，<a class=link href=https://www.hostbuf.com/ target=_blank rel=noopener>finashell</a> 也行。
+{% endnote %}</p><h2 id=debian-更新报错的解决方法><strong>Debian 更新报错的解决方法</strong></h2><p><del>一台很老的Debian使用apt-get update的时候，出现一下报错。</del>（非必要，不要更新）</p><p><strong>解决方法</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get update --allow-releaseinfo-change
+</span></span><span class=line><span class=cl>apt-get upgrade
+</span></span></code></pre></td></tr></table></div></div><p><strong>提示</strong>：Unable to fetch some archives, maybe run apt-get update or try with &ndash;fix-missing?</p><p><strong>解决方法</strong>（问chatgpt）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get update --fix-missing
+</span></span></code></pre></td></tr></table></div></div><h2 id=调整时区>调整时区</h2><p>如果你不知道服务器当前时间，可以使用下面的命令，查看当前时间：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>date -R
+</span></span></code></pre></td></tr></table></div></div><p>修改当前时区为上海：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo timedatectl set-timezone Asia/Shanghai
+</span></span></code></pre></td></tr></table></div></div><p>再次不带任何选项参数调用 timedatectl 命令，打印系统当前设置的时区即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>timedatectl
+</span></span></code></pre></td></tr></table></div></div><h2 id=putty保存登录账号和密码>putty保存登录账号和密码</h2><p>1.创建一个桌面快捷方式。</p><p>2.进入快捷方式属性，修改目标，在后面加上 -ssh -l 用户名 -pw 密码 -i session标识 -P 端口号 IP地址。例如 &ldquo;C:\Program Files\PuTTY\putty.exe&rdquo; -ssh -l root -pw 123456 -i &ldquo;yuanchengserver1&rdquo; -P 22 142.16.187.129</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>E:\软件\putty.exe -ssh -l root -pw password -i &#34;yansvps&#34; -P 22 ip
+</span></span></code></pre></td></tr></table></div></div><p>3.然后，通过快捷方式就可以直接登录了~</p><p>PS：<code>putty</code>没有<a class=link href=https://www.hostbuf.com/ target=_blank rel=noopener>FinalShell</a>好用。</p><h2 id=vi无法正常使用><code>vi</code>无法正常使用</h2><p>1.先安装<code>vim</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt install vim -y
+</span></span></code></pre></td></tr></table></div></div><p>2.修改<code>vimrc.tiny</code>
+<code>vi /etc/vim/vimrc.tiny</code> 将其中的语句 <code>set compatible</code> 修改为 <code>set nocompatible</code> ，非兼容模式下可以解决方向键变ABCD的问题。</p><p>在刚才那句话后面再加一句 <code>set backspace=2</code> 来解决退格键无法使用的问题。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/vim/vimrc.tiny
+</span></span><span class=line><span class=cl><span class=nb>set</span> nocompatible
+</span></span><span class=line><span class=cl><span class=nb>set</span> <span class=nv>backspace</span><span class=o>=</span><span class=m>2</span>
+</span></span></code></pre></td></tr></table></div></div><p>3.卸载<code>vim</code>
+vim颜色太花眼了，所以最后把它卸载：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt remove vim -y
+</span></span></code></pre></td></tr></table></div></div><h2 id=debian安装vsftpd>Debian安装vsftpd</h2><p>{% note warning no-icon %}
+传输大文件慢，可以用transmission下载完后，配合nginx开启目录浏览，配置好SSL使用；也可以用<a class=link href=https://www.terminal.icu/ target=_blank rel=noopener>terminal</a>(ssh工具)上传<del>下载</del>文件，finashell也行。
+{% endnote %}</p><p>0.开启21端口：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>iptables -I INPUT <span class=m>5</span> -p tcp --dport <span class=m>21</span> -j ACCEPT
+</span></span></code></pre></td></tr></table></div></div><p>1.安装命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install vsftpd -y
+</span></span></code></pre></td></tr></table></div></div><p>2.安装软件包后，启动vsftpd，并使其能够在引导时自动启动：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl start vsftpd
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> vsftpd
+</span></span></code></pre></td></tr></table></div></div><p>3.编辑<code>vsftpd.conf</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/vsftpd.conf
+</span></span></code></pre></td></tr></table></div></div><hr><p>（1）去掉<code>write_enable=YES</code>前面的注释，使用户可以上传文件。</p><p>（2）要仅允许某些用户登录FTP服务器，请在文件末尾添加以下行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>userlist_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl><span class=nv>userlist_file</span><span class=o>=</span>/etc/vsftpd.user_list
+</span></span><span class=line><span class=cl><span class=nv>userlist_deny</span><span class=o>=</span>NO
+</span></span></code></pre></td></tr></table></div></div><p>启用此选项后，您需要通过向<code>/etc/vsftpd.user_list</code>文件添加用户名（每行一个用户）明确指定哪些用户能够登录。</p><p>（3）添加FTP用户。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo adduser admin
+</span></span><span class=line><span class=cl>sudo passwd admin
+</span></span></code></pre></td></tr></table></div></div><p>（4）将用户添加到允许的 FTP 用户列表中：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;admin&#34;</span> <span class=p>|</span> sudo tee -a /etc/vsftpd.user_list
+</span></span></code></pre></td></tr></table></div></div><p>（5）关闭防火墙</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl stop firewalld.service
+</span></span><span class=line><span class=cl>systemctl disable firewalld.service 
+</span></span></code></pre></td></tr></table></div></div><p>（6）<strong>使 ftp 用户<code>admin</code>可以上传文件到指定目录</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo chmod <span class=m>755</span> /var/www/speak
+</span></span><span class=line><span class=cl>sudo chown -R admin: /var/www/speak
+</span></span></code></pre></td></tr></table></div></div><p>（7）重启 vsftpd 服务</p><p>保存文件并重新启动 vsftpd 服务，以使更改生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo systemctl restart vsftpd
+</span></span></code></pre></td></tr></table></div></div><hr><p>4.设置允许root登录</p><ul><li>将<code>root</code>添加到允许的FTP用户列表中：</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;root&#34;</span> <span class=p>|</span> sudo tee -a /etc/vsftpd/user_list
+</span></span></code></pre></td></tr></table></div></div><ul><li>修改<code>/etc/vsftpd/user_list</code>和<code>/etc/ftpusers</code>两个设置文件脚本，将root账户前加上<code>#</code>号变为注释</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/vsftpd/user_list
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/ftpusers
+</span></span></code></pre></td></tr></table></div></div><p>5.重启vsftpd服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart vsftpd
+</span></span></code></pre></td></tr></table></div></div><p>6.解决Nginx出现403 forbidden</p><p>j假设网站根目录在<code>/var/www/blog/</code>，则执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod -R <span class=m>777</span> /var/www
+</span></span></code></pre></td></tr></table></div></div><p>7.限制用户登录（未启用）</p><p>要仅允许某些用户登录FTP服务器，请在文件末尾添加以下几行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/vsftpd.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>userlist_enable=YES
+</span></span><span class=line><span class=cl>userlist_file=/etc/vsftpd/user_list
+</span></span><span class=line><span class=cl>userlist_deny=NO
+</span></span></code></pre></td></tr></table></div></div><p>启用此选项后，您需要通过将用户名添加到/etc/vsftpd.user_list文件（每行一个用户）来明确指定哪些用户可以登录。使用以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;admin&#34;</span> <span class=p>|</span> sudo tee -a /etc/vsftpd/user_list
+</span></span></code></pre></td></tr></table></div></div><h2 id=开启80443端口>开启80、443端口</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>iptables -I INPUT -p tcp --dport 443 -j ACCEPT
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>service iptables save
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>service iptables restart
+</span></span></code></pre></td></tr></table></div></div><h2 id=debian-9上安装和配置postfix邮件>Debian 9上安装和配置Postfix邮件</h2><p>1.安装 mailtuils:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install mailutils -y
+</span></span></code></pre></td></tr></table></div></div><p>2.安装postfix后缀:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install postfix
+</span></span></code></pre></td></tr></table></div></div><p>在安装过程即将结束时，您将看到一个类似于下图中的窗口的窗口。默认选项是<code>Internet Site</code>。这是本教程的推荐选项，请按<code>TAB</code>，然后按<code>ENTER</code>。
+之后，您将获得另一个窗口，就像下一个图像中的窗口一样。该系统邮件名称应该是一样的，你分配给服务器，当你在创造它的名字。如果它显示子域<code>subdomain.example.com</code>，请将其更改为<code>ust example.com</code>。完成后，按<code>TAB</code>，然后<code>ENTER</code>。</p><p>3.配置Postfix</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/postfix/main.cf
+</span></span></code></pre></td></tr></table></div></div><p>打开文件后，向下滚动，直到看到以下部分：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>. . .
+</span></span><span class=line><span class=cl><span class=nv>mailbox_size_limit</span> <span class=o>=</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=nv>recipient_delimiter</span> <span class=o>=</span> +
+</span></span><span class=line><span class=cl><span class=nv>inet_interfaces</span> <span class=o>=</span> all
+</span></span><span class=line><span class=cl>. . .
+</span></span></code></pre></td></tr></table></div></div><p>将读取的inet_interfaces = all行更改为inet_interfaces = loopback-only：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>. . .
+</span></span><span class=line><span class=cl><span class=nv>mailbox_size_limit</span> <span class=o>=</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=nv>recipient_delimiter</span> <span class=o>=</span> +
+</span></span><span class=line><span class=cl><span class=nv>inet_interfaces</span> <span class=o>=</span> loopback-only
+</span></span><span class=line><span class=cl>. . .
+</span></span></code></pre></td></tr></table></div></div><p>您需要修改的另一个指令是mydestination，用于指定通过local_transport邮件传递传输传递的域列表。默认情况下，值类似于：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>. . .
+</span></span><span class=line><span class=cl><span class=nv>mydestination</span> <span class=o>=</span> <span class=nv>$myhostname</span>, example.com, localhost.com, , localhost
+</span></span><span class=line><span class=cl>. . .
+</span></span></code></pre></td></tr></table></div></div><p>此指令的建议默认值在下面的代码块中给出，因此请修改以匹配：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>. . .
+</span></span><span class=line><span class=cl><span class=nv>mydestination</span> <span class=o>=</span> <span class=nv>$myhostname</span>, localhost.<span class=nv>$your_domain</span>, <span class=nv>$your_domain</span>
+</span></span><span class=line><span class=cl>. . .
+</span></span></code></pre></td></tr></table></div></div><p>4.重启Postfix。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo systemctl restart postfix
+</span></span></code></pre></td></tr></table></div></div><p>5.测试SMTP服务器</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;This is the body of the email&#34;</span> <span class=p>|</span> mail -s <span class=s2>&#34;This is the subject line&#34;</span> your_email_address
+</span></span></code></pre></td></tr></table></div></div><p>6.debian 彻底删除posfix 然后重新安装</p><p>如果安装出错，先彻底删除posfix 然后重新安装</p><ul><li>关闭 service postfix start</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>service postfix  stop
+</span></span></code></pre></td></tr></table></div></div><ul><li>卸载postfix</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt-get remove  postfix -y
+</span></span><span class=line><span class=cl>dpkg --purge postfix
+</span></span><span class=line><span class=cl>apt autoremove
+</span></span></code></pre></td></tr></table></div></div><ul><li>查看配置文件是否已经删除</li></ul><p>查看 /etc/postfix是否已经删除掉</p><h2 id=安装transmission><del>安装Transmission</del></h2><p>{% note primary no-icon %}
+速度不及下面的qbittorrent
+{% endnote %}</p><p>1.安装</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get update -y
+</span></span><span class=line><span class=cl>sudo apt-get install transmission transmission-daemon -y
+</span></span></code></pre></td></tr></table></div></div><p>2.启动&关闭</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl start transmission-daemon
+</span></span><span class=line><span class=cl>systemctl enable transmission-daemon
+</span></span><span class=line><span class=cl>systemctl stop transmission-daemon
+</span></span></code></pre></td></tr></table></div></div><p>3.修改配置（关闭后再修改配置）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>sudo</span> <span class=n>vi</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>lib</span><span class=o>/</span><span class=n>transmission</span><span class=o>-</span><span class=n>daemon</span><span class=o>/</span><span class=n>info</span><span class=o>/</span><span class=n>settings</span><span class=o>.</span><span class=n>json</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>{
+</span></span><span class=line><span class=cl>    &#34;download-dir&#34;: &#34;/home/admin&#34;,
+</span></span><span class=line><span class=cl>    ......
+</span></span><span class=line><span class=cl>    &#34;rpc-authentication-required&#34;: true
+</span></span><span class=line><span class=cl>    &#34;rpc-bind-address&#34;: &#34;0.0.0.0&#34;, 
+</span></span><span class=line><span class=cl>    &#34;rpc-enabled&#34;: true, 
+</span></span><span class=line><span class=cl>    &#34;rpc-password&#34;: &#34;123456&#34;, 
+</span></span><span class=line><span class=cl>    &#34;rpc-port&#34;: 9091, 
+</span></span><span class=line><span class=cl>    &#34;rpc-url&#34;: &#34;/transmission/&#34;, 
+</span></span><span class=line><span class=cl>    &#34;rpc-username&#34;: &#34;transmission&#34;, 
+</span></span><span class=line><span class=cl>    &#34;rpc-whitelist&#34;: &#34;*&#34;, 
+</span></span><span class=line><span class=cl>    &#34;rpc-whitelist-enabled&#34;: true, 
+</span></span><span class=line><span class=cl>    ......
+</span></span></code></pre></td></tr></table></div></div><p><strong>主要是<code>rpc-whitelist</code>、<code>用户名</code>、<code>密码</code>和<code> download-dir（可选）</code></strong></p><p>如果修改下载目录，将下载目录改成： &ldquo;download-dir&rdquo;: &ldquo;/home/admin&rdquo;，那么还要赋予<code>debian-transmission</code>读写<code>/home/admin</code>的权限：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo chmod 755 /home/admin
+</span></span><span class=line><span class=cl>sudo chown -R debian-transmission: /home/admin
+</span></span></code></pre></td></tr></table></div></div><p>执行<code>sudo vi /etc/init.d/transmission-daemon</code>可以看到运行用户。</p><p>4.美化WEB UI：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>wget https://github.com/ronggang/transmission-web-control/raw/master/release/install-tr-control-cn.sh
+</span></span><span class=line><span class=cl>bash install-tr-control-cn.sh
+</span></span></code></pre></td></tr></table></div></div><h3 id=安装nginx>安装nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt install nginx -y
+</span></span><span class=line><span class=cl>sudo systemctl start nginx
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> nginx
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置nginx>配置nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen  80 ;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server_name example.com;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>access_log  /var/log/nginx/hexo_access.log;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>error_log   /var/log/nginx/hexo_error.log;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>error_page 404 =  /404.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log   off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires      1d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log   off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires      10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if (-f $request_filename) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>rewrite ^/(.*)$  /$1 break;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location /nginx_status {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>stub_status on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex on;                        </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex_exact_size off;            </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex_localtime on;              </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>charset utf-8,gbk;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=debian11配置ssl证书>debian11配置SSL证书</h3><h4 id=安装-certbot>安装 Certbot</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install letsencrypt -y
+</span></span></code></pre></td></tr></table></div></div><h4 id=使用-webroot-自动生成证书>使用 webroot 自动生成证书</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --webroot -w /home/admin -d example.com -m 455343442@qq.com --agree-tos
+</span></span></code></pre></td></tr></table></div></div><h4 id=编辑nginx>编辑<code>Nginx</code></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>vi /etc/nginx/conf.d/ftp.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name  example.com;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 443 ssl;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># RSA certificate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate /etc/letsencrypt/live/example.com/fullchain.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate_key /etc/letsencrypt/live/example.com/privkey.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># Redirect non-https traffic to https</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if ($scheme != &#34;https&#34;) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>return 301 https://$host$request_uri;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	
+</span></span></span><span class=line><span class=cl><span class=w>	  </span><span class=l>autoindex on;                        </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>autoindex_exact_size off;            </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>autoindex_localtime on;              </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>charset utf-8,gbk;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>测试配置是否有问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nginx -t
+</span></span></code></pre></td></tr></table></div></div><p>重启 Nginx 生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h4 id=自动续期>自动续期</h4><p>Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。</p><p>先运行以下命令来测试证书的自动更新：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>certbot renew --dry-run
+</span></span></code></pre></td></tr></table></div></div><p>如果一切正常，就可以编辑 crontab 定期运行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>30 2 * */2 * /usr/bin/certbot renew --quiet &amp;&amp; /bin/systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><p>查看证书有效期的命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>openssl x509 -noout -dates -in /etc/letsencrypt/live/example.com/cert.pem
+</span></span></code></pre></td></tr></table></div></div><h2 id=安装qbittorrent-nox>安装<code>qbittorrent-nox</code></h2><p>**1.**安装qbittorrent-nox</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>apt update </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>apt install qbittorrent-nox -y</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p><strong>2.</strong> 新建systemd文件，如下所示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/systemd/system/qbittorrent-nox.service
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=o>[</span>Unit<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>Description</span><span class=o>=</span>qBittorrent Command Line Client
+</span></span><span class=line><span class=cl><span class=nv>After</span><span class=o>=</span>network.target
+</span></span><span class=line><span class=cl><span class=o>[</span>Service<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>User</span><span class=o>=</span>root
+</span></span><span class=line><span class=cl><span class=nv>ExecStart</span><span class=o>=</span>/usr/bin/qbittorrent-nox
+</span></span><span class=line><span class=cl><span class=nv>Restart</span><span class=o>=</span>on-failure
+</span></span><span class=line><span class=cl><span class=o>[</span>Install<span class=o>]</span>
+</span></span><span class=line><span class=cl><span class=nv>WantedBy</span><span class=o>=</span>multi-user.target
+</span></span></code></pre></td></tr></table></div></div><p><strong>3.</strong> 启用进程守护，直接执行以下命令就行了，最后一条命令执行完，出现<code>active</code>关键字就说明一切都如预期的那样跑起来了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>daemon</span><span class=o>-</span><span class=n>reload</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>start</span> <span class=n>qbittorrent</span><span class=o>-</span><span class=n>nox</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>enable</span> <span class=n>qbittorrent</span><span class=o>-</span><span class=n>nox</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>status</span> <span class=n>qbittorrent</span><span class=o>-</span><span class=n>nox</span>
+</span></span></code></pre></td></tr></table></div></div><p>至此，在浏览器中输入服务器的IP和qbittorrent-nox的端口就可以进入了，例如<a class=link href=http://1.1.1.1:8080/ target=_blank rel=noopener>http://1.1.1.1:8080</a>，这里的1.1.1.1是服务器的IP，8080是刚才进程守护文件中写入的端口。用户名是admin，用户密码：adminadmin。
+强烈建议进去之后，立马修改用户名和用户密码！！！具体位置在<code>tool>options>webui</code>这里，还可以修改成中文。</p><p><strong>4.</strong> 修改下载目录和设置权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>mkdir /home/admin
+</span></span><span class=line><span class=cl>chmod 777 /home/admin
+</span></span></code></pre></td></tr></table></div></div><p>重启qbittorrent-nox：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>daemon</span><span class=o>-</span><span class=n>reload</span>
+</span></span></code></pre></td></tr></table></div></div><p>5.最后把下载路径设置到<code>/home/admin</code>就OK了！</p><h2 id=qbittorrent-nox忘记密码><code>qbittorrent-nox</code>忘记密码</h2><p><code>cd /</code></p><p><code>find -name qBittorrent.conf</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl stop qbittorrent-nox
+</span></span><span class=line><span class=cl>vi ./.config/qBittorrent/qBittorrent.conf
+</span></span></code></pre></td></tr></table></div></div><p>把配置中的<code>Password_PBKDF2</code>删除这一行(vi按<code>dd</code>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl start qbittorrent-nox
+</span></span></code></pre></td></tr></table></div></div><h2 id=nginx反代qbittorrent-nox的web-gui>Nginx反代qbittorrent-nox的Web-GUI</h2><h3 id=修改监听地址>修改监听地址</h3><p>http+非标端口，总让人强迫症犯了，所以搞了个SSL和Nginx反代，让qbittorrent-nox的Web-GUI看起来舒服一些。
+首先，在<code>tool>options>webui</code>中，将监听的IP地址从<code>*</code>改成<code>127.0.0.1</code>，然后执行重启命令<code>systemctl restart qbittorrent-nox</code>以生效。这样只有服务器本地才能访问，其他都不行(网页打不开，待后面配置好域名才能访问)</p><h3 id=安装-nginx>安装 nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>sudo apt install nginx -y</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>sudo systemctl start nginx</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>sudo systemctl enable nginx</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=新建网站目录>新建网站目录</h3><p>为了便于申请证书，需要新建反代网站目录，<strong>一定不要在<code>/root</code>目录上新建</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>mkdir</span> <span class=o>-</span><span class=n>p</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>www</span><span class=o>/</span><span class=n>qt</span>
+</span></span><span class=line><span class=cl><span class=n>cp</span> <span class=o>/</span><span class=n>usr</span><span class=o>/</span><span class=n>share</span><span class=o>/</span><span class=n>nginx</span><span class=o>/</span><span class=n>html</span><span class=o>/*</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>www</span><span class=o>/</span><span class=n>qt</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置-nginx>配置 nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>vi /etc/nginx/conf.d/qt.conf
+</span></span></code></pre></td></tr></table></div></div><p>修改配置文件，将<code>server_name _;</code>中的<code>_</code>改成域名，在<code>location /</code>中注释掉<code>try_files $uri $uri/ =404;</code>（debian11上没有这一行，不用注释），并将以下内容写入<code>location /字段</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_pass http://127.0.0.1:8080/;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_http_version 1.1;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_set_header X-Forwarded-Host $http_host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>                </span><span class=l>http2_push_preload on;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=配置-nginx-http-80-端口>配置 Nginx http 80 端口</h3><p>为了使下面申请证书时能访问 <a class=link href=http://bore.vip/.well-known/acme-challenge/ target=_blank rel=noopener>http://bore.vip/.well-known/acme-challenge/</a>… 这个链接，首先配置好http://bore.vip/.well-known/acme-challenge/…这个链接，首先配置好Nginx 80 端口，保证上述网址能顺利访问，从而顺利申请证书。所以在 nginx 配置的 server 节点下添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>location ~ /.well-known {
+</span></span><span class=line><span class=cl>    allow all;
+</span></span><span class=line><span class=cl>}
+</span></span></code></pre></td></tr></table></div></div><p>最终修改为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen       80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=l>root   /var/www/qt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>index index.html index.htm index.nginx-debian.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name  qt.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c>#access_log  /var/log/nginx/host.access.log  main;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>		
+</span></span></span><span class=line><span class=cl><span class=w>		</span><span class=l>proxy_pass http://127.0.0.1:8080/;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_http_version 1.1;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-Host $http_host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>http2_push_preload on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location ~ /.well-known {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>allow all;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>测试配置是否有问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nginx -t
+</span></span></code></pre></td></tr></table></div></div><p>重启 Nginx 生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置ssl证书>配置SSL证书</h3><p>实际上，我还添加了SSL（需要先注释掉server中的<code>listen 80 default_server;</code>和<code>listen [::]:80 default_server;</code>两行
+）。整体示例如下，就不细说了，可以对照着自己配置文件修改。如果不熟悉的，强烈建议使用<code>Let's Encrypt</code>等一键SSL/TLS程序添加SSL功能。</p><h4 id=安装-certbot-1>安装 Certbot</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt-get install letsencrypt -y
+</span></span></code></pre></td></tr></table></div></div><h4 id=使用-webroot-自动生成证书-1>使用 webroot 自动生成证书</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>certbot</span> <span class=n>certonly</span> <span class=o>--</span><span class=n>webroot</span> <span class=o>-</span><span class=n>w</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>www</span><span class=o>/</span><span class=n>qt</span> <span class=o>-</span><span class=n>d</span> <span class=n>qt</span><span class=o>.</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span> <span class=o>-</span><span class=n>m</span> <span class=mi>455343442</span><span class=err>@</span><span class=n>qq</span><span class=o>.</span><span class=n>com</span> <span class=o>--</span><span class=n>agree</span><span class=o>-</span><span class=n>tos</span>
+</span></span></code></pre></td></tr></table></div></div><hr><p>如果提示404错误：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=n>sudo</span> <span class=n>chmod</span> <span class=mi>755</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=n>www</span><span class=o>/</span><span class=n>qt</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>restart</span> <span class=n>nginx</span>
+</span></span><span class=line><span class=cl><span class=n>systemctl</span> <span class=n>restart</span> <span class=n>qbittorrent</span><span class=o>-</span><span class=n>nox</span>
+</span></span></code></pre></td></tr></table></div></div><p>RN可能要多申请几遍证书，bwg一次就成功了。</p><hr><h4 id=编辑-nginx>编辑 <code>Nginx</code></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>vi /etc/nginx/conf.d/qt.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen       80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name  qt.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=l>root /var/www/qt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        
+</span></span></span><span class=line><span class=cl><span class=w>	</span><span class=c># Add index.php to the list if you are using PHP</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>     </span><span class=l>index index.html index.htm index.nginx-debian.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c>#access_log  /var/log/nginx/host.access.log  main;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>		</span><span class=l>proxy_pass http://127.0.0.1:8080/;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_http_version 1.1;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-Host $http_host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>http2_push_preload on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location ~ /.well-known {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>allow all;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>listen 443 ssl;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c># RSA certificate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>ssl_certificate /etc/letsencrypt/live/qt.bore.vip/fullchain.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>ssl_certificate_key /etc/letsencrypt/live/qt.bore.vip/privkey.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>	
+</span></span></span><span class=line><span class=cl><span class=w>	    </span><span class=c># Redirect non-https traffic to https</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if ($scheme != &#34;https&#34;) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>return 301 https://$host$request_uri;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>测试配置是否有问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>nginx -t
+</span></span></code></pre></td></tr></table></div></div><p>重启 Nginx 生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h4 id=自动续期-1>自动续期</h4><p>Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。</p><p>先运行以下命令来测试证书的自动更新：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>certbot renew --dry-run
+</span></span></code></pre></td></tr></table></div></div><p>如果一切正常，就可以编辑 crontab 定期运行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>30 2 * */2 * /usr/bin/certbot renew --quiet &amp;&amp; /bin/systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><p>查看证书有效期的命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>openssl x509 -noout -dates -in /etc/letsencrypt/live/qt.bore.vip/cert.pem
+</span></span></code></pre></td></tr></table></div></div><h2 id=配置nginx开启目录浏览>配置nginx开启目录浏览</h2><p>将qt下载目录结合nginx开启目录浏览，便于下载。</p><h3 id=安装-nginx-1>安装 nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt install nginx -y
+</span></span><span class=line><span class=cl>sudo systemctl start nginx
+</span></span><span class=line><span class=cl>sudo systemctl enable nginx
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置-nginx-1>配置 nginx</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>vi /etc/nginx/conf.d/ftp.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen  80 ;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server_name ftp.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>access_log  /var/log/nginx/hexo_access.log;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>error_log   /var/log/nginx/hexo_error.log;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>error_page 404 =  /404.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log   off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires      1d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log   off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires      10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if (-f $request_filename) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>rewrite ^/(.*)$  /$1 break;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location /nginx_status {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>stub_status on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex on;                        </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex_exact_size off;            </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>autoindex_localtime on;              </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>charset utf-8,gbk;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=配置-ssl-证书>配置 SSL 证书</h3><h4 id=安装-certbot-2>安装 Certbot</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo apt-get install letsencrypt -y
+</span></span></code></pre></td></tr></table></div></div><h4 id=使用-webroot-自动生成证书-2>使用 webroot 自动生成证书</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>certbot certonly --webroot -w /home/admin -d example.com -m 455343442@qq.com --agree-tos
+</span></span></code></pre></td></tr></table></div></div><h4 id=编辑-nginx-1>编辑 <code>Nginx</code></h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>vi /etc/nginx/conf.d/ftp.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name  ftp.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 443 ssl;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># RSA certificate</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate /etc/letsencrypt/live/ftp.bore.vip/fullchain.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate_key /etc/letsencrypt/live/ftp.bore.vip/privkey.pem;</span><span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># Redirect non-https traffic to https</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if ($scheme != &#34;https&#34;) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>return 301 https://$host$request_uri;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w> </span><span class=c># managed by Certbot</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>root /home/admin;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>autoindex on;                        </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>autoindex_exact_size off;            </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>autoindex_localtime on;              </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>charset utf-8,gbk;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h4 id=自动续期-2>自动续期</h4><p>Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。</p><p>先运行以下命令来测试证书的自动更新：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>certbot renew --dry-run
+</span></span></code></pre></td></tr></table></div></div><p>如果一切正常，就可以编辑 crontab 定期运行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>30 2 * */2 * /usr/bin/certbot renew --quiet &amp;&amp; /bin/systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><p>查看证书有效期的命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>openssl x509 -noout -dates -in /etc/letsencrypt/live/ftp.bore.vip/cert.pem
+</span></span></code></pre></td></tr></table></div></div><h2 id=debian清理垃圾>Debian清理垃圾</h2><p>chatgpt提问：<code>写一个脚本，一个星期自动执行一次，帮我清理Debian垃圾，用vi</code></p><p>✅ 第一步：创建清理脚本（用 vi）</p><p>运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo vi /usr/local/bin/clean_debian.sh
+</span></span></code></pre></td></tr></table></div></div><p>在文件里粘贴下面脚本内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 清理 APT 缓存</span>
+</span></span><span class=line><span class=cl>apt-get clean
+</span></span><span class=line><span class=cl>apt-get autoclean
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 删除不需要的依赖包</span>
+</span></span><span class=line><span class=cl>apt-get autoremove -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 压缩 journalctl 日志到 100M</span>
+</span></span><span class=line><span class=cl>journalctl --vacuum-size<span class=o>=</span>100M
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 清理临时文件夹</span>
+</span></span><span class=line><span class=cl>rm -rf /tmp/*
+</span></span><span class=line><span class=cl>rm -rf /var/tmp/*
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Docker 清理（可选，如果你不用 Docker 可删除这段）</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=nb>command</span> -v docker &gt;/dev/null 2&gt;<span class=p>&amp;</span>1<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    docker system prune -f
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span></code></pre></td></tr></table></div></div><p>保存并退出：
+<strong>按下 <code>ESC</code> → 输入 <code>:wq</code> → 回车</strong></p><hr><p>✅ 第二步：给脚本执行权限</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo chmod +x /usr/local/bin/clean_debian.sh
+</span></span></code></pre></td></tr></table></div></div><hr><p>✅ 第三步：设置每周自动执行一次（cron）</p><p>编辑 crontab：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo crontab -e
+</span></span></code></pre></td></tr></table></div></div><p>加入下面一行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>0 3 * * 0 /usr/local/bin/clean_debian.sh &gt;/dev/null 2&gt;&amp;1
+</span></span></code></pre></td></tr></table></div></div><p>说明：</p><ul><li>每周日凌晨 03:00 自动清理一次</li><li>输出全部隐藏（保持系统干净）</li></ul><hr><p>✅ 一键测试脚本是否正常生效</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>sudo /usr/local/bin/clean_debian.sh
+</span></span></code></pre></td></tr></table></div></div><h2 id=附录>附录</h2><h3 id=vsftpdconf注释><code>vsftpd.conf</code>注释</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span><span class=lnt>93
+</span><span class=lnt>94
+</span><span class=lnt>95
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-shell data-lang=shell><span class=line><span class=cl><span class=c1># 全域性配置</span>
+</span></span><span class=line><span class=cl><span class=c1># 本地系統使用者寫入許可權；</span>
+</span></span><span class=line><span class=cl><span class=nv>write_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 本地使用者建立檔案及目錄預設許可權掩碼；</span>
+</span></span><span class=line><span class=cl><span class=nv>local_umask</span><span class=o>=</span><span class=m>022</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 列印目錄顯示資訊，通常用於使用者第一次訪問目錄時，資訊提示；</span>
+</span></span><span class=line><span class=cl><span class=nv>dirmessage_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 啟用上傳/下載日誌記錄； </span>
+</span></span><span class=line><span class=cl><span class=nv>xferlog_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 日誌檔案將根據xferlog的標準格式寫入；</span>
+</span></span><span class=line><span class=cl><span class=nv>xferlog_std_format</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 指定 log 路徑</span>
+</span></span><span class=line><span class=cl><span class=nv>xferlog_file</span><span class=o>=</span>/var/log/vsftpd.log
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># FTP使用20埠進行資料傳輸；</span>
+</span></span><span class=line><span class=cl><span class=nv>connect_from_port_20</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Vsftpd不以獨立的服務啟動，通過Xinetd服務管理，建議改成YES；</span>
+</span></span><span class=line><span class=cl><span class=nv>listen</span><span class=o>=</span>NO
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 啟用IPV6監聽；</span>
+</span></span><span class=line><span class=cl><span class=nv>listen_ipv6</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 登入FTP伺服器，依據/etc/pam.d/vsftpd中內容進行認證；</span>
+</span></span><span class=line><span class=cl><span class=nv>pam_service_name</span><span class=o>=</span>vsftpd
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># Vsftpd.user_list和ftpusers配置檔案裡使用者禁止訪問FTP；</span>
+</span></span><span class=line><span class=cl><span class=nv>userlist_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 設定vsftpd與tcp wrapper結合進行主機的訪問控制，Vsftpd伺服器檢查/etc/hosts.allow 和/etc/hosts.deny中的設定，來決定請求連線的主機，是否允許訪問該FTP伺服器。</span>
+</span></span><span class=line><span class=cl><span class=nv>tcp_wrappers</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 限制使用者都只能讀取家目錄</span>
+</span></span><span class=line><span class=cl><span class=nv>chroot_local_user</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 這樣子才可以正常讀取家目錄</span>
+</span></span><span class=line><span class=cl><span class=nv>allow_writeable_chroot</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 帳號清單路徑</span>
+</span></span><span class=line><span class=cl><span class=nv>userlist_file</span><span class=o>=</span>/etc/vsftpd.userlist
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 白名單，拒絕除檔案中的使用者外的使用者FTP訪問</span>
+</span></span><span class=line><span class=cl><span class=nv>userlist_deny</span><span class=o>=</span>NO
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 是否使用本地時間？vsftpd 預設使用 GMT 時間(格林威治)，所以會比台灣晚 8 小時，建議設定為 YES 吧</span>
+</span></span><span class=line><span class=cl><span class=nv>use_localtime</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 這個選項必須指定一個空的資料夾且任何登入者都不能有寫入的權限，當vsftpd 不需要file system 的權限時，就會將使用者限制在此資料夾中。預設值為/usr/share/empty</span>
+</span></span><span class=line><span class=cl><span class=nv>secure_chroot_dir</span><span class=o>=</span>/var/run/vsftpd/empty
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 這樣子有可能在傳中文不會有亂碼</span>
+</span></span><span class=line><span class=cl><span class=nv>syslog_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 同一個IP最大同時下載人數，預設沒有限制</span>
+</span></span><span class=line><span class=cl><span class=nv>max_per_ip</span><span class=o>=</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 連線閒置時間超180秒就中斷，單位以second</span>
+</span></span><span class=line><span class=cl><span class=nv>accept_timeout</span><span class=o>=</span>180<span class=o>(</span>DEFAULT:60<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 資料傳送閒置時間超180秒就中斷，單位以second</span>
+</span></span><span class=line><span class=cl><span class=nv>data_connection_timeout</span><span class=o>=</span>180<span class=o>(</span>DEFAULT:YES<span class=o>)</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 本地使用者配置</span>
+</span></span><span class=line><span class=cl><span class=c1># 啟用本地系統使用者訪問；</span>
+</span></span><span class=line><span class=cl><span class=nv>local_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 本地使用者建立檔案及目錄預設許可權掩碼；</span>
+</span></span><span class=line><span class=cl><span class=nv>local_umask</span><span class=o>=</span><span class=m>022</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改本地使用者登入時訪問的目錄路徑</span>
+</span></span><span class=line><span class=cl><span class=nv>local_root</span><span class=o>=</span>/home/ftp
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 匿名使用者訪問配置（最大許可權）</span>
+</span></span><span class=line><span class=cl><span class=c1># 開啟匿名使用者訪問；</span>
+</span></span><span class=line><span class=cl><span class=nv>anonymous_enable</span><span class=o>=</span>NO
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 匿名使用者上傳檔案的umask值</span>
+</span></span><span class=line><span class=cl><span class=nv>anon_umask</span><span class=o>=</span><span class=m>022</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 允許匿名使用者上傳檔案</span>
+</span></span><span class=line><span class=cl><span class=nv>anon_upload_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 允許匿名使用者建立目錄</span>
+</span></span><span class=line><span class=cl><span class=nv>anon_mkdir_write_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 允許匿名使用者修改目錄名稱或刪除目錄</span>
+</span></span><span class=line><span class=cl><span class=nv>anon_other_write_enable</span><span class=o>=</span>YES
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 修改匿名使用者登入時訪問的目錄路徑</span>
+</span></span><span class=line><span class=cl><span class=nv>anon_root</span><span class=o>=</span>/data/ftpdata
+</span></span></code></pre></td></tr></table></div></div><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://www.uskvm.com/p/32.html target=_blank rel=noopener>1.解决 Debian 下使用 vi 时方向键乱码，退格键不能使用的问题</a></li><li><a class=link href=https://shixiongfei.com/debian-vsftpd.html target=_blank rel=noopener>2.Debian安装vsftpd</a></li><li><a class=link href="https://blog.fish2bird.com/?p=706" target=_blank rel=noopener>3.Debian下vsftpd设置允许root登录分析</a></li><li><a class=link href=https://zhuanlan.zhihu.com/p/83730878 target=_blank rel=noopener>4.putty保存登录账号和密码</a></li><li><a class=link href=https://www.myfreax.com/how-to-setup-ftp-server-with-vsftpd-on-debian-9/ target=_blank rel=noopener>5.如何在Debian 9上使用VSFTPD设置FTP服务器</a></li><li><a class=link href=https://cloud.tencent.com/developer/article/1946063 target=_blank rel=noopener>6.Ubuntu安装Transmission并美化WEB UI实操教程</a></li><li><a class=link href=https://www.nginx.com/blog/using-free-ssltls-certificates-from-lets-encrypt-with-nginx/ target=_blank rel=noopener>7.Update: Using Free Let’s Encrypt SSL/TLS Certificates with NGINX</a></li><li>8.<a class=link href=https://pa.ci/210.html target=_blank rel=noopener>Debian 11安装qbittorrent-nox并设置Nginx反代</a></li><li><a class=link href=https://zxqme.com/archives/143/ target=_blank rel=noopener>9.Debian安装qbittorrent-nox</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/linux/>Linux</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/Debian%e4%bd%bf%e7%94%a8%e5%a4%87%e5%bf%98.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/c6592a10/><div class=article-details><h2 class=article-title>Alist挂载网盘</h2></div></a></article><article><a href=/archives/26d4b8da/><div class=article-details><h2 class=article-title>debian 10安装xfce桌面和配置vnc和wine</h2></div></a></article><article><a href=/archives/964093b3/><div class=article-details><h2 class=article-title>linux利用crontab设置定时任务</h2></div></a></article><article><a href=/archives/e0c4249b/><div class=article-details><h2 class=article-title>彻底卸载onedrive</h2></div></a></article><article><a href=/archives/12dd937c/><div class=article-details><h2 class=article-title>利用Github Actions自动同步Fork&&自动同步Releases</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

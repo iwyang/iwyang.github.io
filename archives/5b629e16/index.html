@@ -1,0 +1,1655 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn &lsquo;https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}\n在你的 Hexo 根目录里：\n1 npm i hexo-theme-butterfly 升级方法：在 Hexo 根目录下，运行：\n1 npm update hexo-theme-butterfly 如果无法升级，先修改package.json，然后执行以上命令。\n"><title>hexo butterfly主题配置与使用</title><link rel=canonical href=https://bore.vip/archives/5b629e16/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="hexo butterfly主题配置与使用"><meta property='og:description' content="开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn &lsquo;https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}\n在你的 Hexo 根目录里：\n1 npm i hexo-theme-butterfly 升级方法：在 Hexo 根目录下，运行：\n1 npm update hexo-theme-butterfly 如果无法升级，先修改package.json，然后执行以上命令。\n"><meta property='og:url' content='https://bore.vip/archives/5b629e16/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hexo'><meta property='article:published_time' content='2022-02-04T09:20:42+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="hexo butterfly主题配置与使用"><meta name=twitter:description content="开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn &lsquo;https://butterfly.js.org/',Butterfly,far fa-hand-point-right,blue larger %}\n在你的 Hexo 根目录里：\n1 npm i hexo-theme-butterfly 升级方法：在 Hexo 根目录下，运行：\n1 npm update hexo-theme-butterfly 如果无法升级，先修改package.json，然后执行以上命令。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#front-matter>Front-matter</a><ol><li><a href=#post-front-matter>Post Front-matter</a></li><li><a href=#page-front-matter>Page Front-matter</a></li></ol></li><li><a href=#标签外挂>标签外挂</a><ol><li><a href=#note>Note</a></li><li><a href=#tabs>Tabs</a></li><li><a href=#button>Button</a></li><li><a href=#label>label</a></li><li><a href=#timeline>timeline</a></li><li><a href=#tag-hide>tag-hide</a></li><li><a href=#flink>flink</a></li></ol></li><li><a href=#引入aplayer播放音乐>引入Aplayer播放音乐</a></li><li><a href=#引入自定义-css>引入自定义 css</a><ol><li><a href=#h1h6-小风车样式修改>H1~H6 小风车样式修改</a></li><li><a href=#修改标题前图标为闪电>修改标题前图标为闪电</a></li><li><a href=#页面设置图标转速>页面设置图标转速</a></li><li><a href=#页面插入-b-站视频--bilibili>页面插入 B 站视频 / Bilibili</a></li><li><a href=#图片下的说明文字居中>图片下的说明文字居中</a></li></ol></li><li><a href=#隐藏指定页面title>隐藏指定页面<code>title</code></a></li><li><a href=#隐藏二级目录>隐藏二级目录</a></li><li><a href=#tag-plugins-plus>Tag Plugins Plus</a></li><li><a href=#侧边栏添加微博热搜>侧边栏添加微博热搜</a><ol><li><a href=#新建侧边栏>新建侧边栏</a></li><li><a href=#引入weibocss和weibojs>引入weibo.css和weibo.js</a></li><li><a href=#创建weibocss文件>创建weibo.css文件</a></li><li><a href=#创建weibojs文件>创建weibo.js文件</a></li><li><a href=#自建-vercel-api>自建 Vercel API</a></li><li><a href=#自建第三方-api>自建第三方 API</a></li></ol></li><li><a href=#友链朋友圈弃用用下方的><del>友链朋友圈</del>（弃用，用下方的）</a><ol><li><a href=#前端部署>前端部署</a></li></ol></li><li><a href=#hexo设置skip_render>hexo设置skip_render</a></li><li><a href=#配置友链朋友圈>配置友链朋友圈</a><ol><li><a href=#准备工作>准备工作</a></li><li><a href=#json获取>json获取</a></li><li><a href=#action配置>action配置</a></li><li><a href=#配置action权限><strong>配置action权限</strong>：</a></li><li><a href=#配置选项>配置选项</a></li><li><a href=#测试>测试</a></li><li><a href=#前端部署-1>前端部署</a></li><li><a href=#部署到页面>部署到页面</a></li></ol></li><li><a href=#更新记录>更新记录</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/5b629e16/>hexo butterfly主题配置与使用</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2022-02-04T09:20:42Z>2022年2月4日星期五</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 22 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#front-matter>Front-matter</a><ol><li><a href=#post-front-matter>Post Front-matter</a></li><li><a href=#page-front-matter>Page Front-matter</a></li></ol></li><li><a href=#标签外挂>标签外挂</a><ol><li><a href=#note>Note</a></li><li><a href=#tabs>Tabs</a></li><li><a href=#button>Button</a></li><li><a href=#label>label</a></li><li><a href=#timeline>timeline</a></li><li><a href=#tag-hide>tag-hide</a></li><li><a href=#flink>flink</a></li></ol></li><li><a href=#引入aplayer播放音乐>引入Aplayer播放音乐</a></li><li><a href=#引入自定义-css>引入自定义 css</a><ol><li><a href=#h1h6-小风车样式修改>H1~H6 小风车样式修改</a></li><li><a href=#修改标题前图标为闪电>修改标题前图标为闪电</a></li><li><a href=#页面设置图标转速>页面设置图标转速</a></li><li><a href=#页面插入-b-站视频--bilibili>页面插入 B 站视频 / Bilibili</a></li><li><a href=#图片下的说明文字居中>图片下的说明文字居中</a></li></ol></li><li><a href=#隐藏指定页面title>隐藏指定页面<code>title</code></a></li><li><a href=#隐藏二级目录>隐藏二级目录</a></li><li><a href=#tag-plugins-plus>Tag Plugins Plus</a></li><li><a href=#侧边栏添加微博热搜>侧边栏添加微博热搜</a><ol><li><a href=#新建侧边栏>新建侧边栏</a></li><li><a href=#引入weibocss和weibojs>引入weibo.css和weibo.js</a></li><li><a href=#创建weibocss文件>创建weibo.css文件</a></li><li><a href=#创建weibojs文件>创建weibo.js文件</a></li><li><a href=#自建-vercel-api>自建 Vercel API</a></li><li><a href=#自建第三方-api>自建第三方 API</a></li></ol></li><li><a href=#友链朋友圈弃用用下方的><del>友链朋友圈</del>（弃用，用下方的）</a><ol><li><a href=#前端部署>前端部署</a></li></ol></li><li><a href=#hexo设置skip_render>hexo设置skip_render</a></li><li><a href=#配置友链朋友圈>配置友链朋友圈</a><ol><li><a href=#准备工作>准备工作</a></li><li><a href=#json获取>json获取</a></li><li><a href=#action配置>action配置</a></li><li><a href=#配置action权限><strong>配置action权限</strong>：</a></li><li><a href=#配置选项>配置选项</a></li><li><a href=#测试>测试</a></li><li><a href=#前端部署-1>前端部署</a></li><li><a href=#部署到页面>部署到页面</a></li></ol></li><li><a href=#更新记录>更新记录</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,blue larger %}</p><p>在你的 Hexo 根目录里：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>npm</span> <span class=n>i</span> <span class=nb>hexo-theme</span><span class=n>-butterfly</span>
+</span></span></code></pre></td></tr></table></div></div><p>升级方法：在 Hexo 根目录下，运行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>npm</span> <span class=n>update</span> <span class=nb>hexo-theme</span><span class=n>-butterfly</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果无法升级，先修改<code>package.json</code>，然后执行以上命令。</p><p>图标无法显示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=n>npm</span> <span class=n>i</span> <span class=nb>hexo-butterfly</span><span class=n>-extjs</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=front-matter>Front-matter</h2><h3 id=post-front-matter>Post Front-matter</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title:        # 【必需】文章标题
+</span></span><span class=line><span class=cl>date:         # 【必需】文章创建日期
+</span></span><span class=line><span class=cl>updated:      # 【可选】文章更新日期
+</span></span><span class=line><span class=cl>tags:         # 【可选】文章标籤
+</span></span><span class=line><span class=cl>categories:    # 【可选】文章分类
+</span></span><span class=line><span class=cl>keywords:      # 【可选】文章关键字
+</span></span><span class=line><span class=cl>description:   # 【可选】文章描述
+</span></span><span class=line><span class=cl>top_img:       # 【可选】文章顶部图片
+</span></span><span class=line><span class=cl>comments:      # 【可选】显示文章评论模块(默认 true)
+</span></span><span class=line><span class=cl>cover:         # 【可选】文章缩略图(如果没有设置top_img,文章页顶部将显示缩略图，可设为false/图片地址/留空)       
+</span></span><span class=line><span class=cl>toc:           # 【可选】显示文章TOC(默认为设置中toc的enable配置)
+</span></span><span class=line><span class=cl>toc_number:    # 【可选】显示toc_number(默认为设置中toc的number配置)
+</span></span><span class=line><span class=cl>toc_style_simple:    # 【可选】显示 toc 简洁模式
+</span></span><span class=line><span class=cl>copyright:           # 【可选】显示文章版权模块(默认为设置中post_copyright的enable配置)
+</span></span><span class=line><span class=cl>copyright_author:    # 【可选】文章版权模块的文章作者
+</span></span><span class=line><span class=cl>copyright_author_href:    # 【可选】文章版权模块的文章作者链接
+</span></span><span class=line><span class=cl>copyright_url:            # 【可选】文章版权模块的文章连结链接
+</span></span><span class=line><span class=cl>copyright_info:           # 【可选】文章版权模块的版权声明文字
+</span></span><span class=line><span class=cl>mathjax:                  # 【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)
+</span></span><span class=line><span class=cl>katex:                    # 【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)
+</span></span><span class=line><span class=cl>aplayer:                  # 【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置
+</span></span><span class=line><span class=cl>highlight_shrink:         # 【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)
+</span></span><span class=line><span class=cl>aside:                    # 【可选】显示侧边栏 (默认 true)
+</span></span><span class=line><span class=cl>--- 
+</span></span></code></pre></td></tr></table></div></div><h3 id=page-front-matter>Page Front-matter</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title:       # 【必需】页面标题
+</span></span><span class=line><span class=cl>date:        # 【必需】页面创建日期
+</span></span><span class=line><span class=cl>updated:     # 【可选】页面更新日期
+</span></span><span class=line><span class=cl>type:        # 【必需】标籤、分类和友情链接三个页面需要配置
+</span></span><span class=line><span class=cl>comments:    # 【可选】显示页面评论模块(默认 true)
+</span></span><span class=line><span class=cl>description:  # 【可选】页面描述
+</span></span><span class=line><span class=cl>keywords:     # 【可选】页面关键字
+</span></span><span class=line><span class=cl>top_img:      # 【可选】页面顶部图片
+</span></span><span class=line><span class=cl>mathjax:      # 【可选】显示mathjax(当设置mathjax的per_page: false时，才需要配置，默认 false)
+</span></span><span class=line><span class=cl>katex:        # 【可选】显示katex(当设置katex的per_page: false时，才需要配置，默认 false)
+</span></span><span class=line><span class=cl>aside:        # 【可选】显示侧边栏 (默认 true)
+</span></span><span class=line><span class=cl>aplayer:      # 【可选】在需要的页面加载aplayer的js和css,请参考文章下面的音乐 配置
+</span></span><span class=line><span class=cl>highlight_shrink:  【可选】配置代码框是否展开(true/false)(默认为设置中highlight_shrink的配置)
+</span></span><span class=line><span class=cl>---
+</span></span></code></pre></td></tr></table></div></div><h2 id=标签外挂>标签外挂</h2><h3 id=note>Note</h3><p>修改 主题配置文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>note</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Note tag style values:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#  - simple    bs-callout old alert style. Default.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#  - modern    bs-callout new (v2-v3) alert style.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#  - flat      flat callout style with background, like on Mozilla or StackOverflow.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#  - disabled  disable all CSS styles import of note tag.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>style</span><span class=p>:</span><span class=w> </span><span class=l>flat</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>icons</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>border_radius</span><span class=p>:</span><span class=w> </span><span class=m>3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Offset lighter of background in % for modern and flat styles (modern: -12 | 12; flat: -18 | 6).</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Offset also applied to label tag variables. This option can work with disabled note tag.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>light_bg_offset</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>{% tabs note %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note [class] [no-icon] [style] %}
+</span></span><span class=line><span class=cl>Any content (support inline tags too.io).
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><div class=table-wrapper><table><thead><tr><th>名稱</th><th>用法</th></tr></thead><tbody><tr><td>class</td><td>【可選】標識，不同的標識有不同的配色<br>（ default / primary / success / info / warning / danger ）</td></tr><tr><td>no-icon</td><td>【可選】不顯示 icon</td></tr><tr><td>style</td><td>【可選】可以覆蓋配置中的 style<br>（simple/modern/flat/disabled）</td></tr></tbody></table></div><blockquote><p>no-icon</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note no-icon %}
+</span></span><span class=line><span class=cl>默认 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note default no-icon %}
+</span></span><span class=line><span class=cl>default 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note primary no-icon %}
+</span></span><span class=line><span class=cl>primary 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note success no-icon %}
+</span></span><span class=line><span class=cl>success 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note info no-icon %}
+</span></span><span class=line><span class=cl>info 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note warning no-icon %}
+</span></span><span class=line><span class=cl>warning 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note danger no-icon %}
+</span></span><span class=line><span class=cl>danger 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><p>{% note no-icon %}
+默认 提示块标籤
+{% endnote %}</p><p>{% note default no-icon %}
+default 提示块标籤
+{% endnote %}</p><p>{% note primary no-icon %}
+primary 提示块标籤
+{% endnote %}</p><p>{% note success no-icon %}
+success 提示块标籤
+{% endnote %}</p><p>{% note info no-icon %}
+info 提示块标籤
+{% endnote %}</p><p>{% note warning no-icon %}
+warning 提示块标籤
+{% endnote %}</p><p>{% note danger no-icon %}
+danger 提示块标籤
+{% endnote %}</p><blockquote><p>flat</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note flat %}
+</span></span><span class=line><span class=cl>默认 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note default flat %}
+</span></span><span class=line><span class=cl>default 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note primary flat %}
+</span></span><span class=line><span class=cl>primary 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note success flat %}
+</span></span><span class=line><span class=cl>success 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note info flat %}
+</span></span><span class=line><span class=cl>info 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note warning flat %}
+</span></span><span class=line><span class=cl>warning 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% note danger flat %}
+</span></span><span class=line><span class=cl>danger 提示块标籤
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><p>{% note flat %}
+默认 提示块标籤
+{% endnote %}</p><p>{% note default flat %}
+default 提示块标籤
+{% endnote %}</p><p>{% note primary flat %}
+primary 提示块标籤
+{% endnote %}</p><p>{% note success flat %}
+success 提示块标籤
+{% endnote %}</p><p>{% note info flat %}
+info 提示块标籤
+{% endnote %}</p><p>{% note warning flat %}
+warning 提示块标籤
+{% endnote %}</p><p>{% note danger flat %}
+danger 提示块标籤
+{% endnote %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note [color] [icon] [style] %}
+</span></span><span class=line><span class=cl>Any content (support inline tags too.io).
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><div class=table-wrapper><table><thead><tr><th>名稱</th><th>用法</th></tr></thead><tbody><tr><td>color</td><td>【可選】顔色<br>(default / blue / pink / red / purple / orange / green)</td></tr><tr><td>icon</td><td>【可選】可配置自定義 icon (只支持 fontawesome 圖標, 也可以配置 no-icon )</td></tr><tr><td>style</td><td>【可選】可以覆蓋配置中的 style<br>（simple/modern/flat/disabled）</td></tr></tbody></table></div><blockquote><p>no-icon</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note no-icon %}
+</span></span><span class=line><span class=cl>你是刷 Visa 还是 UnionPay
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note blue no-icon %}
+</span></span><span class=line><span class=cl>2021年快到了....
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note pink no-icon %}
+</span></span><span class=line><span class=cl>小心开车 安全至上
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note red no-icon %}
+</span></span><span class=line><span class=cl>这是三片呢？还是四片？
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note orange no-icon %}
+</span></span><span class=line><span class=cl>你是刷 Visa 还是 UnionPay
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note purple no-icon %}
+</span></span><span class=line><span class=cl>剪刀石头布
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note green no-icon %}
+</span></span><span class=line><span class=cl>前端最讨厌的浏览器
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><p>{% note no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue no-icon %}
+2021年快到了&mldr;.
+{% endnote %}
+{% note pink no-icon %}
+小心开车 安全至上
+{% endnote %}
+{% note red no-icon %}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange no-icon %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple no-icon %}
+剪刀石头布
+{% endnote %}
+{% note green no-icon %}
+前端最讨厌的浏览器
+{% endnote %}</p><blockquote><p>flat</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% note &#39;fab fa-cc-visa&#39; flat %}
+</span></span><span class=line><span class=cl>你是刷 Visa 还是 UnionPay
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note blue &#39;fas fa-bullhorn&#39; flat %}
+</span></span><span class=line><span class=cl>2021年快到了....
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note pink &#39;fas fa-car-crash&#39; flat %}
+</span></span><span class=line><span class=cl>小心开车 安全至上
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note red &#39;fas fa-fan&#39; flat%}
+</span></span><span class=line><span class=cl>这是三片呢？还是四片？
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note orange &#39;fas fa-battery-half&#39; flat %}
+</span></span><span class=line><span class=cl>你是刷 Visa 还是 UnionPay
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note purple &#39;far fa-hand-scissors&#39; flat %}
+</span></span><span class=line><span class=cl>剪刀石头布
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span><span class=line><span class=cl>{% note green &#39;fab fa-internet-explorer&#39; flat %}
+</span></span><span class=line><span class=cl>前端最讨厌的浏览器
+</span></span><span class=line><span class=cl>{% endnote %}
+</span></span></code></pre></td></tr></table></div></div><p>{% note &lsquo;fab fa-cc-visa&rsquo; flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note blue &lsquo;fas fa-bullhorn&rsquo; flat %}
+2021年快到了&mldr;.
+{% endnote %}
+{% note pink &lsquo;fas fa-car-crash&rsquo; flat %}
+小心开车 安全至上
+{% endnote %}
+{% note red &lsquo;fas fa-fan&rsquo; flat%}
+这是三片呢？还是四片？
+{% endnote %}
+{% note orange &lsquo;fas fa-battery-half&rsquo; flat %}
+你是刷 Visa 还是 UnionPay
+{% endnote %}
+{% note purple &lsquo;far fa-hand-scissors&rsquo; flat %}
+剪刀石头布
+{% endnote %}
+{% note green &lsquo;fab fa-internet-explorer&rsquo; flat %}
+前端最讨厌的浏览器
+{% endnote %}</p><p>{% endtabs %}</p><h3 id=tabs>Tabs</h3><p>使用方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% tabs Unique name, [index] %}
+</span></span><span class=line><span class=cl>&lt;!-- tab [Tab caption] [<span class=ni>@icon</span>] --&gt;
+</span></span><span class=line><span class=cl>Any content (support inline tags too).
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>{% endtabs %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>Unique name   : Unique name of tabs block tag without comma.
+</span></span><span class=line><span class=cl>                Will be used in <span class=ni>#id</span>&#39;s as prefix for each tab with their index numbers.
+</span></span><span class=line><span class=cl>                If there are whitespaces in name, for generate <span class=ni>#id</span> all whitespaces will replaced by dashes.
+</span></span><span class=line><span class=cl>                Only for current url of post/page must be unique!
+</span></span><span class=line><span class=cl>[index]       : Index number of active tab.
+</span></span><span class=line><span class=cl>                If not specified, first tab (1) will be selected.
+</span></span><span class=line><span class=cl>                If index is -1, no tab will be selected. It&#39;s will be something like spoiler.
+</span></span><span class=line><span class=cl>                Optional parameter.
+</span></span><span class=line><span class=cl>[Tab caption] : Caption of current tab.
+</span></span><span class=line><span class=cl>                If not caption specified, unique name with tab index suffix will be used as caption of tab.
+</span></span><span class=line><span class=cl>                If not caption specified, but specified icon, caption will empty.
+</span></span><span class=line><span class=cl>                Optional parameter.
+</span></span><span class=line><span class=cl>[<span class=ni>@icon</span>]       : FontAwesome icon name (full-name, look like &#39;fas fa-font&#39;)
+</span></span><span class=line><span class=cl>                Can be specified with or without space; e.g. &#39;Tab caption <span class=ni>@icon</span>&#39; similar to &#39;Tab caption<span class=ni>@icon</span>&#39;.
+</span></span><span class=line><span class=cl>                Optional parameter.
+</span></span></code></pre></td></tr></table></div></div><p>{% note primary no-icon %}
+Demo 1 - 预设选择第一个【默认】
+{% endnote %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% tabs 方法 %}
+</span></span><span class=line><span class=cl>&lt;!-- tab 方法一 --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**This is Tab 1.**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;!-- tab 方法二 --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**This is Tab 2.**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;!-- tab 方法三 --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**This is Tab 3.**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>{% endtabs %}
+</span></span></code></pre></td></tr></table></div></div><p>{% tabs 方法 %}</p><p><strong>This is Tab 1.</strong></p><p><strong>This is Tab 2.</strong></p><p><strong>This is Tab 3.</strong></p><p>{% endtabs %}</p><p>{% note primary no-icon %}
+Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
+{% endnote %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% tabs test4 %}
+</span></span><span class=line><span class=cl>&lt;!-- tab 第一个Tab --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**tab名字为第一个Tab**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;!-- tab <span class=ni>@fab</span> fa-apple-pay --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**只有图标 没有Tab名字**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>&lt;!-- tab 炸弹<span class=ni>@fas</span> fa-bomb --&gt;
+</span></span><span class=line><span class=cl><span class=gs>**名字+icon**</span>
+</span></span><span class=line><span class=cl>&lt;!-- endtab --&gt;
+</span></span><span class=line><span class=cl>{% endtabs %}
+</span></span></code></pre></td></tr></table></div></div><p>{% tabs test4 %}</p><p><strong>tab名字为第一个Tab</strong></p><p><strong>只有图标 没有Tab名字</strong></p><p><strong>名字+icon</strong></p><p>{% endtabs %}</p><h3 id=button>Button</h3><p>使用方法：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% btn [url],[text],[icon],[color] [style] [layout] [position] [size] %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[url]         : 链接
+</span></span><span class=line><span class=cl>[text]        : 按钮文字
+</span></span><span class=line><span class=cl>[icon]        : [可选] 图标
+</span></span><span class=line><span class=cl>[color]       : [可选] 按钮背景顔色(默认style时）
+</span></span><span class=line><span class=cl>                      按钮字体和边框顔色(outline时)
+</span></span><span class=line><span class=cl>                      default/blue/pink/red/purple/orange/green
+</span></span><span class=line><span class=cl>[style]       : [可选] 按钮样式 默认实心
+</span></span><span class=line><span class=cl>                      outline/留空
+</span></span><span class=line><span class=cl>[layout]      : [可选] 按钮佈局 默认为line
+</span></span><span class=line><span class=cl>                      block/留空
+</span></span><span class=line><span class=cl>[position]    : [可选] 按钮位置 前提是设置了layout为block 默认为左边
+</span></span><span class=line><span class=cl>                      center/right/留空
+</span></span><span class=line><span class=cl>[size]        : [可选] 按钮大小
+</span></span><span class=line><span class=cl>                      larger/留空
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,blue larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,pink larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,red larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,purple larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,orange larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,green larger %}
+</span></span></code></pre></td></tr></table></div></div><p>{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,blue larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,pink larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,red larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,purple larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,orange larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,green larger %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,block blue larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,block center pink larger %}
+</span></span><span class=line><span class=cl>{% btn &#39;https://butterfly.js.org/&#39;,Butterfly,far fa-hand-point-right,block right red larger %}
+</span></span></code></pre></td></tr></table></div></div><p>{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,block blue larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,block center pink larger %}
+{% btn &lsquo;<a class=link href=https://butterfly.js.org/%27,Butterfly,far target=_blank rel=noopener>https://butterfly.js.org/',Butterfly,far</a> fa-hand-point-right,block right red larger %}</p><h3 id=label>label</h3><p>高亮所需的文字</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% label text color %}
+</span></span></code></pre></td></tr></table></div></div><div class=table-wrapper><table><thead><tr><th>text</th><th>文字</th></tr></thead><tbody><tr><td>參數</td><td>解釋</td></tr><tr><td>color</td><td>【可選】背景顏色，默認為 <code>default</code><br>default/blue/pink/red/purple/orange/green</td></tr></tbody></table></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>臣亮言：{% label 先帝 %}创业未半，而{% label 中道崩殂 blue %}。今天下三分，{% label 益州疲敝 pink %}，此诚{% label 危急存亡之秋 red %}也！然侍衞之臣，不懈于内；{% label 忠志之士 purple %}，忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气；不宜妄自菲薄，引喻失义，以塞忠谏之路也。
+</span></span><span class=line><span class=cl>宫中、府中，俱为一体；陟罚臧否，不宜异同。若有{% label 作奸 orange %}、{% label 犯科 green %}，及为忠善者，宜付有司，论其刑赏，以昭陛下平明之治；不宜偏私，使内外异法也。
+</span></span></code></pre></td></tr></table></div></div><p>臣亮言：{% label 先帝 %}创业未半，而{% label 中道崩殂 blue %}。今天下三分，{% label 益州疲敝 pink %}，此诚{% label 危急存亡之秋 red %}也！然侍衞之臣，不懈于内；{% label 忠志之士 purple %}，忘身于外者，盖追先帝之殊遇，欲报之于陛下也。诚宜开张圣听，以光先帝遗德，恢弘志士之气；不宜妄自菲薄，引喻失义，以塞忠谏之路也。
+宫中、府中，俱为一体；陟罚臧否，不宜异同。若有{% label 作奸 orange %}、{% label 犯科 green %}，及为忠善者，宜付有司，论其刑赏，以昭陛下平明之治；不宜偏私，使内外异法也。</p><h3 id=timeline>timeline</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% timeline title,color %}
+</span></span><span class=line><span class=cl>&lt;!-- timeline title --&gt;
+</span></span><span class=line><span class=cl>xxxxx
+</span></span><span class=line><span class=cl>&lt;!-- endtimeline --&gt;
+</span></span><span class=line><span class=cl>&lt;!-- timeline title --&gt;
+</span></span><span class=line><span class=cl>xxxxx
+</span></span><span class=line><span class=cl>&lt;!-- endtimeline --&gt;
+</span></span><span class=line><span class=cl>{% endtimeline %}
+</span></span></code></pre></td></tr></table></div></div><div class=table-wrapper><table><thead><tr><th>參數</th><th>解釋</th></tr></thead><tbody><tr><td>title</td><td>標題/時間線</td></tr><tr><td>color</td><td>timeline 顏色<br>default(留空) / blue / pink / red / purple / orange / green</td></tr></tbody></table></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% timeline 2022 %}
+</span></span><span class=line><span class=cl>&lt;!-- timeline 01-02 --&gt;
+</span></span><span class=line><span class=cl>这是测试页面
+</span></span><span class=line><span class=cl>&lt;!-- endtimeline --&gt;
+</span></span><span class=line><span class=cl>{% endtimeline %}
+</span></span></code></pre></td></tr></table></div></div><p>{% timeline 2022 %}</p><p>这是测试页面</p><p>{% endtimeline %}</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% timeline 2022,blue %}
+</span></span><span class=line><span class=cl>&lt;!-- timeline 01-02 --&gt;
+</span></span><span class=line><span class=cl>这是测试页面
+</span></span><span class=line><span class=cl>&lt;!-- endtimeline --&gt;
+</span></span><span class=line><span class=cl>{% endtimeline %}
+</span></span></code></pre></td></tr></table></div></div><p>{% timeline 2022,blue %}</p><p>这是测试页面</p><p>{% endtimeline %}</p><h3 id=tag-hide>tag-hide</h3><p>{% note warning %}</p><p>2.2.0以上提供</p><p>請注意，tag-hide內的標簽外掛content內都不建議有h1 - h6 等標題。因為Toc會把隱藏內容標題也顯示出來，而且當滾動屏幕時，如果隱藏內容沒有顯示出來，會導致Toc的滾動出現異常。</p><p>{% endnote %}</p><p>如果你想把一些文字、內容隱藏起來，並提供按鈕讓用戶點擊顯示。可以使用這個標籤外掛。</p><p>{% tabs tag-hide %}</p><blockquote><p>2.3.0以上支持</p></blockquote><p>如果你需要展示的內容太多，可以把它隱藏在收縮框裏，需要時再把它展開。</p><p>( display 不能包含英文逗號，可用<code>&amp;sbquo;</code>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% hideToggle display,bg,color %}
+</span></span><span class=line><span class=cl>content
+</span></span><span class=line><span class=cl>{% endhideToggle %}
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>Demo</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% hideToggle Butterfly安裝方法 %}
+</span></span><span class=line><span class=cl>在你的博客根目錄裏
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clone -b master https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>如果想要安裝比較新的dev分支，可以
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git clone -b dev https://github.com/jerryc127/hexo-theme-butterfly.git themes/Butterfly
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>{% endhideToggle %}
+</span></span></code></pre></td></tr></table></div></div><p>{% hideToggle Butterfly安裝方法 %}
+在你的博客根目錄裏</p><p>git clone -b master <a class=link href=https://github.com/jerryc127/hexo-theme-butterfly.git target=_blank rel=noopener>https://github.com/jerryc127/hexo-theme-butterfly.git</a> themes/Butterfly</p><p>如果想要安裝比較新的dev分支，可以</p><p>git clone -b dev <a class=link href=https://github.com/jerryc127/hexo-theme-butterfly.git target=_blank rel=noopener>https://github.com/jerryc127/hexo-theme-butterfly.git</a> themes/Butterfly</p><p>{% endhideToggle %}</p><p><code>inline</code> 在文本里面添加按鈕隱藏內容，只限文字</p><p>( content不能包含英文逗號，可用<code>&amp;sbquo;</code>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% hideInline content,display,bg,color %}
+</span></span></code></pre></td></tr></table></div></div><ul><li><p>content: 文本內容</p></li><li><p>display: 按鈕顯示的文字(可選)</p></li><li><p>bg: 按鈕的背景顏色(可選)</p></li><li><p>color: 按鈕文字的顏色(可選)</p></li></ul><blockquote><p>Demo</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>哪個英文字母最酷？ {% hideInline 因為西裝褲(C裝酷),查看答案,<span class=ni>#FF7242</span>,<span class=ni>#fff</span> %}
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>門裏站着一個人? {% hideInline 閃 %}
+</span></span></code></pre></td></tr></table></div></div><p>哪個英文字母最酷？ {% hideInline 因為西裝褲(C裝酷),查看答案,#FF7242,#fff %}</p><p>門裏站着一個人? {% hideInline 閃 %}</p><p><code>block</code>獨立的block隱藏內容，可以隱藏很多內容，包括圖片，代碼塊等等</p><p>( display 不能包含英文逗號，可用<code>&amp;sbquo;</code>)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% hideBlock display,bg,color %}
+</span></span><span class=line><span class=cl>content
+</span></span><span class=line><span class=cl>{% endhideBlock %}
+</span></span></code></pre></td></tr></table></div></div><ul><li>content: 文本內容</li><li>display: 按鈕顯示的文字(可選)</li><li>bg: 按鈕的背景顏色(可選)</li><li>color: 按鈕文字的顏色(可選)</li></ul><blockquote><p>Demo</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>查看答案
+</span></span><span class=line><span class=cl>{% hideBlock 查看答案 %}
+</span></span><span class=line><span class=cl>傻子，怎麼可能有答案
+</span></span><span class=line><span class=cl>{% endhideBlock %}
+</span></span></code></pre></td></tr></table></div></div><p>查看答案
+{% hideBlock 查看答案 %}
+傻子，怎麼可能有答案
+{% endhideBlock %}</p><p>{% endtabs %}</p><h3 id=flink>flink</h3><p>可在任何界面插入類似友情鏈接列表效果</p><p>內容格式與友情鏈接界面一樣，支持 yml 格式</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% flink %}
+</span></span><span class=line><span class=cl>xxxxxx
+</span></span><span class=line><span class=cl>{% endflink %}
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-markdown data-lang=markdown><span class=line><span class=cl>{% flink %}
+</span></span><span class=line><span class=cl><span class=k>-</span> class_name: 友情鏈接
+</span></span><span class=line><span class=cl>  class_desc: 那些人，那些事
+</span></span><span class=line><span class=cl>  link_list:
+</span></span><span class=line><span class=cl>    <span class=k>-</span> name: JerryC
+</span></span><span class=line><span class=cl>      link: https://jerryc.me/
+</span></span><span class=line><span class=cl>      avatar: https://jerryc.me/img/avatar.png
+</span></span><span class=line><span class=cl>      descr: 今日事,今日畢
+</span></span><span class=line><span class=cl>    <span class=k>-</span> name: Hexo
+</span></span><span class=line><span class=cl>      link: https://hexo.io/zh-tw/
+</span></span><span class=line><span class=cl>      avatar: https://d33wubrfki0l68.cloudfront.net/6657ba50e702d84afb32fe846bed54fba1a77add/827ae/logo.svg
+</span></span><span class=line><span class=cl>      descr: 快速、簡單且強大的網誌框架
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>-</span> class_name: 網站
+</span></span><span class=line><span class=cl>  class_desc: 值得推薦的網站
+</span></span><span class=line><span class=cl>  link_list:
+</span></span><span class=line><span class=cl>    <span class=k>-</span> name: Youtube
+</span></span><span class=line><span class=cl>      link: https://www.youtube.com/
+</span></span><span class=line><span class=cl>      avatar: https://i.loli.net/2020/05/14/9ZkGg8v3azHJfM1.png
+</span></span><span class=line><span class=cl>      descr: 視頻網站
+</span></span><span class=line><span class=cl>    <span class=k>-</span> name: Weibo
+</span></span><span class=line><span class=cl>      link: https://www.weibo.com/
+</span></span><span class=line><span class=cl>      avatar: https://i.loli.net/2020/05/14/TLJBum386vcnI1P.png
+</span></span><span class=line><span class=cl>      descr: 中國最大社交分享平臺
+</span></span><span class=line><span class=cl>    <span class=k>-</span> name: Twitter
+</span></span><span class=line><span class=cl>      link: https://twitter.com/
+</span></span><span class=line><span class=cl>      avatar: https://i.loli.net/2020/05/14/5VyHPQqR6LWF39a.png
+</span></span><span class=line><span class=cl>      descr: 社交分享平臺
+</span></span><span class=line><span class=cl>{% endflink %}
+</span></span></code></pre></td></tr></table></div></div><h2 id=引入aplayer播放音乐>引入Aplayer播放音乐</h2><p><strong>PS：未测试</strong></p><ol><li><p>在博客根目录[Blogroot]下打开终端，运行以下指令安装hexo-tag-aplayer插件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install hexo-tag-aplayer --save
+</span></span></code></pre></td></tr></table></div></div></li><li><p>在站点配置文件<code>[Blogroot]\_config.yml</code>中新增配置项，建议直接加在最底下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># APlayer</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c># https://github.com/MoePlayer/hexo-tag-aplayer/blob/master/docs/README-zh_cn.md</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>aplayer</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>meting</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>asset_inject</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></li><li><p>修改主题配置文件<code>[Blogroot]\_config.butterfly.yml</code>中关于Aplayer的配置内容</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># Inject the css and script (aplayer/meting)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>aplayerInject</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>enable</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>per_page</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></li><li><p>在主题配置文件<code>[Blogroot]\_config.butterfly.yml</code>的inject配置项中添加Aplayer的容器。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>inject</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>head</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>bottom</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>&lt;div class=&#34;aplayer no-destroy&#34; data-id=&#34;5183531430&#34; data-server=&#34;netease&#34; data-type=&#34;playlist&#34; data-fixed=&#34;true&#34; data-mini=&#34;true&#34; data-listFolded=&#34;false&#34; data-order=&#34;random&#34; data-preload=&#34;none&#34; data-autoplay=&#34;false&#34; muted&gt;&lt;/div&gt;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div></li><li><p>在博客根目录<code>[Blogroot]</code>下打开终端，运行以下指令</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hexo clean
+</span></span><span class=line><span class=cl>hexo generate
+</span></span><span class=line><span class=cl>hexo server
+</span></span></code></pre></td></tr></table></div></div></li><li><p>关于更换歌单的问题，大部分同学都因为只更改了data-id的值，所以出现歌单加载不出的情况，此处需要注意，data-id、data-server、data-type分别对应了<code>歌单的id，歌单的服务商、歌单的类型</code><del>（感觉自己说了废话）</del>，所以需要确认这三项是一一对应的。</p><p>如图中所示，找到网易云歌单的url，<code>https://music.163.com/#/playlist?id=4907060762</code>,此处的palylist对应的就是data-type的值，id就是data-id的值，而网易云的data-server为netease，这个可以通过Aplayer的插件文档查阅到。<strong>只有三个参数对应正确才能正常加载歌单。</strong></p></li><li><p>Aplayer的网易云歌单接口时不时的会挂掉，所以如果你确定你配置正确，但是歌单还是没有出现。不妨去看看其他人的站点是不是也没有Aplayer标签了来判断是Aplayer本身接口的问题还是自己配置出错的问题。</p></li><li><p>配置成功后会发现Aplayer的吸底标签一直占据着左下角的一片空间，对手机端阅读不太友好，可以添加一下CSS样式使其自动缩进隐藏。在 <code>[Blogroot]\themes\butterfly\source\css\custom.css</code>中(没有这个文件就按照路径自己新建)添加如下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=p>.</span><span class=nc>aplayer</span><span class=p>.</span><span class=nc>aplayer-fixed</span><span class=p>.</span><span class=nc>aplayer-narrow</span> <span class=p>.</span><span class=nc>aplayer-body</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>left</span><span class=p>:</span> <span class=mi>-66</span><span class=kt>px</span> <span class=cp>!important</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c>/* 默认情况下缩进左侧66px，只留一点箭头部分 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>aplayer</span><span class=p>.</span><span class=nc>aplayer-fixed</span><span class=p>.</span><span class=nc>aplayer-narrow</span> <span class=p>.</span><span class=nc>aplayer-body</span><span class=p>:</span><span class=nd>hover</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=k>left</span><span class=p>:</span> <span class=mi>0</span> <span class=cp>!important</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=c>/* 鼠标悬停是左侧缩进归零，完全显示按钮 */</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>9.不要忘了到主题配置文件引入自定义样式，修改<code>[Blogroot]_config.butterfly.yml</code>的<code>inject</code>配置项：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>  inject:
+</span></span><span class=line><span class=cl>    head:
+</span></span><span class=line><span class=cl><span class=gi>+     - &lt;link rel=&#34;stylesheet&#34; href=&#34;/css/custom.css&#34;  media=&#34;defer&#34; onload=&#34;this.media=&#39;all&#39;&#34;&gt;
+</span></span></span><span class=line><span class=cl>    bottom:
+</span></span><span class=line><span class=cl>      - &lt;div class=&#34;aplayer no-destroy&#34; data-id=&#34;5183531430&#34; data-server=&#34;netease&#34; data-type=&#34;playlist&#34; data-fixed=&#34;true&#34; data-mini=&#34;true&#34; data-listFolded=&#34;false&#34; data-order=&#34;random&#34; data-preload=&#34;none&#34; data-autoplay=&#34;false&#34; muted&gt;&lt;/div&gt;
+</span></span></code></pre></td></tr></table></div></div><p>10.更多自定义样式魔改内容详见站内教程：<a class=link href=https://akilar.top/posts/ebf20e02/ target=_blank rel=noopener>Custom Beautify</a></p></li></ol><h2 id=引入自定义-css>引入自定义 css</h2><p>在站点配置文件 blog/_config.blog.yml 中，搜索定位到 inject，插入以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>inject</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>head</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># - &lt;link rel=&#34;stylesheet&#34; href=&#34;/xxx.css&#34;&gt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=l>&lt;link rel=&#34;stylesheet&#34; href=&#34;/css/custom.css&#34;&gt;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>这样，后续所有样式的自定义，就可以在 blog/source/css/custom.css 文件中进行，能不动主题源码，就不要改源码，以免后续更新变得复杂。</p><h3 id=h1h6-小风车样式修改>H1~H6 小风车样式修改</h3><p>方法一：</p><p>找到主题配置文件<code>_config.butterfly.yml</code></p><p>1.把beautify的title-prefix-icon处修改为:&rsquo;\f863&rsquo;</p><p>（如果没有开启图标功能则需要将enable设置为true）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>beautify</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>enable</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>title-prefix-icon</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;\f863&#39;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>2.在inject的head处引入以下文件:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>inject</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>head</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=s2>&#34;&lt;style&gt;#article-container.post-content h1:before, h2:before, h3:before, h4:before, h5:before, h6:before { -webkit-animation: avatar_turn_around 1s linear infinite; -moz-animation: avatar_turn_around 1s linear infinite; -o-animation: avatar_turn_around 1s linear infinite; -ms-animation: avatar_turn_around 1s linear infinite; animation: avatar_turn_around 1s linear infinite; }&lt;/style&gt;&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>重新部署，启动，就可以看到效果啦。</p><p>方法二：</p><p>1.主题目录：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>beautify:
+</span></span><span class=line><span class=cl>  enable: true
+</span></span><span class=line><span class=cl>  field: post # site/post
+</span></span><span class=line><span class=cl>  # title-prefix-icon: &#39;\f0c1&#39; 
+</span></span><span class=line><span class=cl><span class=gi>+  title-prefix-icon: &#39;\f863&#39;
+</span></span></span><span class=line><span class=cl>  title-prefix-icon-color: &#39;#F47466&#39;
+</span></span></code></pre></td></tr></table></div></div><p>2.让小风车转起来,在上文的 <code>blog/source/css/custom.css</code> 文件中，加入以下代码即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/* 文章页H1-H6图标样式效果 */</span>
+</span></span><span class=line><span class=cl><span class=nt>h1</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=nt>h2</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=nt>h3</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=nt>h4</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=nt>h5</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=nt>h6</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kp>-webkit-</span><span class=k>animation</span><span class=p>:</span> <span class=n>ccc</span> <span class=mf>1.6</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>animation</span><span class=p>:</span> <span class=n>ccc</span> <span class=mf>1.6</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>@</span><span class=k>-webkit-keyframes</span> <span class=nt>ccc</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>0</span><span class=o>%</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kp>-webkit-</span><span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>0</span><span class=kt>deg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>0</span><span class=kt>deg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>to</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kp>-webkit-</span><span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>-1</span><span class=kt>turn</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>-1</span><span class=kt>turn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>@</span><span class=k>keyframes</span> <span class=nt>ccc</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nt>0</span><span class=o>%</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kp>-webkit-</span><span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>0</span><span class=kt>deg</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>0</span><span class=kt>deg</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nt>to</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=kp>-webkit-</span><span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>-1</span><span class=kt>turn</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>        <span class=k>transform</span><span class=p>:</span> <span class=nb>rotate</span><span class=p>(</span><span class=mi>-1</span><span class=kt>turn</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>3.小风车颜色 css 代码</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h1</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#ef50a8</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-1.55</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>1.3</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>-0.23</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h2</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#fb7061</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-1.35</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>1.1</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>-0.12</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h3</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#ffbf00</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-1.22</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.95</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>-0.09</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h4</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#a9e000</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-1.05</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.8</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>-0.09</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h5</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#57c850</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-0.9</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.7</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>0.0</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h6</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#5ec1e0</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mf>-0.9</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mf>0.66</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mf>0.0</span><span class=kt>rem</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p><strong>修改风车图标大小：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h1</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#ef50a8</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mi>-31</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>26</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>-5</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h2</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#fb7061</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mi>-27</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>22</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>-3</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h3</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#ffbf00</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mi>-25</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>20</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>-2</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h4</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#a9e000</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>16</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>-2</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h5</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#57c850</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mi>-18</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>14</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h6</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#5ec1e0</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-left</span><span class=p>:</span> <span class=mi>-18</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>13</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-top</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>4.小风车 hover 效果</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h1</span><span class=p>:</span><span class=nd>hover</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h2</span><span class=p>:</span><span class=nd>hover</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h3</span><span class=p>:</span><span class=nd>hover</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h4</span><span class=p>:</span><span class=nd>hover</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h5</span><span class=p>:</span><span class=nd>hover</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h6</span><span class=p>:</span><span class=nd>hover</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#49b1f5</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h1</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h2</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h3</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h4</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h5</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span><span class=o>,</span> <span class=p>#</span><span class=nn>content-inner</span><span class=p>.</span><span class=nc>layout</span> <span class=nt>h6</span><span class=p>:</span><span class=nd>hover</span><span class=p>::</span><span class=nd>before</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#49b1f5</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kp>-webkit-</span><span class=k>animation</span><span class=p>:</span> <span class=n>ccc</span> <span class=mf>3.2</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>animation</span><span class=p>:</span> <span class=n>ccc</span> <span class=mf>3.2</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=修改标题前图标为闪电>修改标题前图标为闪电</h3><p>修改标题前图标为闪电：<code>title-prefix-icon:'\f0e7'</code>，颜色为黄色： <code>title-prefix-icon-color: "#ffb821"</code></p><h3 id=页面设置图标转速>页面设置图标转速</h3><p><code>blog/source/css/custom.css</code> 文件中，加入以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/* 页面设置icon转动速度调整 */</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>rightside_config</span> <span class=nt>i</span><span class=p>.</span><span class=nc>fas</span><span class=p>.</span><span class=nc>fa-cog</span><span class=p>.</span><span class=nc>fa-spin</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>animation</span><span class=p>:</span> <span class=n>fa-spin</span> <span class=mi>5</span><span class=kt>s</span> <span class=kc>linear</span> <span class=kc>infinite</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=页面插入-b-站视频--bilibili>页面插入 B 站视频 / Bilibili</h3><p>直接复制插入你的 md 文章就行，修改里面的 aid 为你的视频 id：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>div</span> <span class=na>align</span><span class=o>=</span><span class=s>center</span> <span class=na>class</span><span class=o>=</span><span class=s>&#34;aspect-ratio&#34;</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=p>&lt;</span><span class=nt>iframe</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://player.bilibili.com/player.html?aid=9926758&amp;&amp;page=1&amp;as_wide=1&amp;high_quality=1&amp;danmaku=0&#34;</span> 
+</span></span><span class=line><span class=cl>    <span class=na>scrolling</span><span class=o>=</span><span class=s>&#34;no&#34;</span> 
+</span></span><span class=line><span class=cl>    <span class=na>border</span><span class=o>=</span><span class=s>&#34;0&#34;</span> 
+</span></span><span class=line><span class=cl>    <span class=na>frameborder</span><span class=o>=</span><span class=s>&#34;no&#34;</span> 
+</span></span><span class=line><span class=cl>    <span class=na>framespacing</span><span class=o>=</span><span class=s>&#34;0&#34;</span> 
+</span></span><span class=line><span class=cl>    <span class=na>high_quality</span><span class=o>=</span><span class=s>1</span>
+</span></span><span class=line><span class=cl>    <span class=na>danmaku</span><span class=o>=</span><span class=s>1</span> 
+</span></span><span class=line><span class=cl>    <span class=na>allowfullscreen</span><span class=o>=</span><span class=s>&#34;true&#34;</span><span class=p>&gt;</span> 
+</span></span><span class=line><span class=cl>    <span class=p>&lt;/</span><span class=nt>iframe</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>修改 css 样式，记得去 <code>blog/source/css/custom.css</code> 里，添加上述的样式：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span><span class=lnt>9
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=c>/*哔哩哔哩视频适配*/</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>aspect-ratio</span> <span class=p>{</span><span class=k>position</span><span class=p>:</span> <span class=kc>relative</span><span class=p>;</span><span class=k>width</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span><span class=k>height</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span><span class=k>padding-bottom</span><span class=p>:</span> <span class=mi>75</span><span class=kt>%</span><span class=p>;</span><span class=k>margin</span><span class=p>:</span> <span class=mi>3</span><span class=kt>%</span> <span class=kc>auto</span><span class=p>;</span><span class=k>text-align</span><span class=p>:</span> <span class=kc>center</span><span class=p>;}</span>      
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>aspect-ratio</span> <span class=nt>iframe</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>position</span><span class=p>:</span> <span class=kc>absolute</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>width</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>height</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>left</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>top</span><span class=p>:</span> <span class=mi>0</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=图片下的说明文字居中>图片下的说明文字居中</h3><p>在 <code>blog/source/css/custom.css</code> 中添加如下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl><span class=p>.</span><span class=nc>jg-caption</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>text-align</span><span class=p>:</span> <span class=kc>center</span> <span class=cp>!important</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=隐藏指定页面title>隐藏指定页面<code>title</code></h2><p>在页面md源码输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>page-title</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>display</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>style</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=隐藏二级目录>隐藏二级目录</h2><p>默认子目录是展开的，如果你想要隐藏，在子目录里添加 hide 。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>List||fas fa-list||hide</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>Music</span><span class=p>:</span><span class=w> </span><span class=l>/music/ || fas fa-music</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>Movie</span><span class=p>:</span><span class=w> </span><span class=l>/movies/ || fas fa-video</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=tag-plugins-plus>Tag Plugins Plus</h2><p>地址：<a class=link href=https://akilar.top/posts/615e2dec target=_blank rel=noopener>Tag Plugins Plus</a></p><h2 id=侧边栏添加微博热搜>侧边栏添加微博热搜</h2><h3 id=新建侧边栏>新建侧边栏</h3><blockquote><p>官方文档：https://butterfly.js.org/posts/ea33ab97/，想要了解更多可以查看这篇文章。</p></blockquote><p>打开<code>_data</code>文件夹，创建一个<code>widget.yml</code>文件，在里面粘贴如下代码:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>bottom</span><span class=p>:</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>class_name</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id_name</span><span class=p>:</span><span class=w> </span><span class=l>weibo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>微博热搜</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>icon</span><span class=p>:</span><span class=w> </span><span class=l>fa-brands fa-weibo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>order</span><span class=p>:</span><span class=w> </span>-<span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>html</span><span class=p>:</span><span class=w> </span><span class=l>&lt;link rel=&#34;stylesheet&#34; href=&#34;/css/weibo.css&#34;&gt;&lt;div id=&#34;weiboContent&#34;&gt;&lt;img src=&#34;https://bu.dusays.com/2022/05/01/626e88f349943.gif&#34;&gt;&lt;/div&gt;&lt;script src=&#34;/js/weibo.js&#34;&gt;&lt;/script&gt;       </span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><blockquote><p>上面图像也可用本地路径：<code>/img/loading.gif</code> ，如果想删除加载动画可删除下面这行：</p><p><code>&lt;img src="https://bu.dusays.com/2022/05/01/626e88f349943.gif"></code></p></blockquote><p><strong>自用：</strong>(这里填top表示所有地方都显示，buttom表示只在非文章页面显示，如主页等等)</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>top</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>class_name</span><span class=p>:</span><span class=w> </span><span class=l>latestBB</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id_name</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>最新说说</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>icon</span><span class=p>:</span><span class=w> </span><span class=l>fas fa-bolt</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>order</span><span class=p>:</span><span class=w> </span><span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>html</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;div class=&#34;swiper-container swiper-container-aside&#34;&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>        &lt;div class=&#34;swiper-wrapper swiper-weapper-aside&#34;&gt;&lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;a class=&#34;bb-btn button--animated&#34; href=&#34;/say/&#34; title=&#34;查看全部&#34;&gt;&lt;i class=&#34;far fa-hand-point-right fa-fw&#34;&gt;&lt;/i&gt; 查看更多 &lt;/a&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;script&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>        window.kkBBConfig = {
+</span></span></span><span class=line><span class=cl><span class=sd>          limit: 10,
+</span></span></span><span class=line><span class=cl><span class=sd>          blog:&#39;/say/&#39;,
+</span></span></span><span class=line><span class=cl><span class=sd>          author: &#39;这里填个人ID&#39;,
+</span></span></span><span class=line><span class=cl><span class=sd>          api_url:
+</span></span></span><span class=line><span class=cl><span class=sd>            &#39;这里填api_url&#39;
+</span></span></span><span class=line><span class=cl><span class=sd>        }
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;/script&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>      &lt;script src=&#34;https://cdn1.tianli0.top/npm/iwyang@1.0.7/speak/butterfly-speak-swiper@1.1.0.min.js&#34;&gt;&lt;/script&gt;
+</span></span></span><span class=line><span class=cl><span class=sd>      </span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>bottom</span><span class=p>:</span><span class=w>  
+</span></span></span><span class=line><span class=cl><span class=w>  </span>- <span class=nt>class_name</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>id_name</span><span class=p>:</span><span class=w> </span><span class=l>weibo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>微博热搜</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>icon</span><span class=p>:</span><span class=w> </span><span class=l>fa-brands fa-weibo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>order</span><span class=p>:</span><span class=w> </span>-<span class=m>2</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>html</span><span class=p>:</span><span class=w> </span><span class=l>&lt;link rel=&#34;stylesheet&#34; href=&#34;/css/weibo.css&#34;&gt;&lt;div id=&#34;weiboContent&#34;&gt;&lt;img src=&#34;https://bu.dusays.com/2022/05/01/626e88f349943.gif&#34;&gt;&lt;/div&gt;&lt;script src=&#34;/js/weibo.js&#34;&gt;&lt;/script&gt;       </span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=引入weibocss和weibojs>引入weibo.css和weibo.js</h3><p><code>_config.butterfly.yml</code>里修改：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>inject:
+</span></span><span class=line><span class=cl>  head:
+</span></span><span class=line><span class=cl>    # - &lt;link rel=&#34;stylesheet&#34; href=&#34;/xxx.css&#34;&gt;
+</span></span><span class=line><span class=cl>    - &lt;link rel=&#34;stylesheet&#34; href=&#34;/css/custom.css&#34;&gt;
+</span></span><span class=line><span class=cl><span class=gi>+    - &lt;link rel=&#34;stylesheet&#34; href=&#34;/css/weibo.css&#34;&gt;    
+</span></span></span><span class=line><span class=cl>  bottom:
+</span></span><span class=line><span class=cl>    # - &lt;script src=&#34;xxxx&#34;&gt;&lt;/script&gt;
+</span></span><span class=line><span class=cl><span class=gi>+    - &lt;script src=&#34;/js/weibo.js&#34;&gt;&lt;/script&gt;    
+</span></span></span></code></pre></td></tr></table></div></div><h3 id=创建weibocss文件>创建weibo.css文件</h3><p>在<code>\source\css</code>目录下新建<code>weibo.css</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span><span class=lnt>72
+</span><span class=lnt>73
+</span><span class=lnt>74
+</span><span class=lnt>75
+</span><span class=lnt>76
+</span><span class=lnt>77
+</span><span class=lnt>78
+</span><span class=lnt>79
+</span><span class=lnt>80
+</span><span class=lnt>81
+</span><span class=lnt>82
+</span><span class=lnt>83
+</span><span class=lnt>84
+</span><span class=lnt>85
+</span><span class=lnt>86
+</span><span class=lnt>87
+</span><span class=lnt>88
+</span><span class=lnt>89
+</span><span class=lnt>90
+</span><span class=lnt>91
+</span><span class=lnt>92
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-css data-lang=css><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-new</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#ff3852</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-hot</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#ff9406</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-jyzy</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#ffc000</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-recommend</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#00b7ee</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-adrecommend</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#febd22</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-friend</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#8fc21e</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-boom</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#bd0000</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-topic</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#ff6f49</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-topic-ad</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#4dadff</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-boil</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>background</span><span class=p>:</span> <span class=mh>#f86400</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>weibo</span> <span class=p>.</span><span class=nc>item-content</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>text-align</span><span class=p>:</span> <span class=kc>center</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>weibo-container</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>width</span><span class=p>:</span> <span class=mi>100</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>height</span><span class=p>:</span> <span class=mi>140</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>font-size</span><span class=p>:</span> <span class=mi>95</span><span class=kt>%</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>overflow-y</span><span class=p>:</span> <span class=kc>auto</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kp>-ms-</span><span class=n>overflow-style</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>scrollbar-width</span><span class=p>:</span> <span class=kc>none</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-list-item</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>display</span><span class=p>:</span> <span class=kc>flex</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>flex-direction</span><span class=p>:</span> <span class=kc>row</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>justify-content</span><span class=p>:</span> <span class=kc>space-between</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>flex-wrap</span><span class=p>:</span> <span class=kc>nowrap</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-title</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>white-space</span><span class=p>:</span> <span class=kc>nowrap</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>overflow</span><span class=p>:</span> <span class=kc>hidden</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>text-overflow</span><span class=p>:</span> <span class=kc>ellipsis</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>margin-right</span><span class=p>:</span> <span class=kc>auto</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-num</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>float</span><span class=p>:</span> <span class=kc>right</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>.</span><span class=nc>weibo-hotness</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>display</span><span class=p>:</span> <span class=kc>inline-block</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>padding</span><span class=p>:</span> <span class=mi>0</span> <span class=mi>6</span><span class=kt>px</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>transform</span><span class=p>:</span> <span class=nb>scale</span><span class=p>(</span><span class=mf>.8</span><span class=p>)</span> <span class=nb>translateX</span><span class=p>(</span><span class=mi>-3</span><span class=kt>px</span><span class=p>);</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#fff</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>border-radius</span><span class=p>:</span> <span class=mi>8</span><span class=kt>px</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>weibo-container</span> <span class=nt>a</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=mh>#555</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>[</span><span class=nt>data-theme</span><span class=o>=</span><span class=s1>&#39;dark&#39;</span><span class=o>]</span> <span class=p>#</span><span class=nn>weibo-container</span> <span class=nt>a</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>color</span><span class=p>:</span> <span class=nb>rgba</span><span class=p>(</span><span class=mi>255</span><span class=p>,</span> <span class=mi>255</span><span class=p>,</span> <span class=mi>255</span><span class=p>,</span> <span class=mf>0.7</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c>/* 隐藏滚动条 */</span>
+</span></span><span class=line><span class=cl><span class=p>#</span><span class=nn>weibo-container</span><span class=p>::</span><span class=nd>-webkit-scrollbar</span><span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=k>display</span><span class=p>:</span> <span class=kc>none</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=创建weibojs文件>创建weibo.js文件</h3><p>在<code>\source\js</code>目录下新建<code>weibo.js</code>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-js data-lang=js><span class=line><span class=cl><span class=k>try</span> <span class=p>{</span> <span class=k>if</span> <span class=p>(</span><span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;weibo&#39;</span><span class=p>).</span><span class=nx>clientWidth</span><span class=p>)</span> <span class=nx>weibo</span><span class=p>();</span> <span class=p>}</span> <span class=k>catch</span> <span class=p>(</span><span class=nx>error</span><span class=p>)</span> <span class=p>{}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>weibo</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>hotness</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;爆&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-boom&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;热&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-hot&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;沸&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-boil&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;新&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-new&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;荐&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-recommend&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;音&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-jyzy&#39;</span><span class=p>,</span>		
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;影&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-jyzy&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;剧&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-jyzy&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=s1>&#39;综&#39;</span><span class=o>:</span> <span class=s1>&#39;weibo-jyzy&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>html</span> <span class=o>=</span> <span class=s1>&#39;&lt;div id=&#34;weibo-container&#34;&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>data</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>localStorage</span><span class=p>.</span><span class=nx>getItem</span><span class=p>(</span><span class=s1>&#39;weibo&#39;</span><span class=p>));</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>nowTime</span> <span class=o>=</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>ls</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nx>data</span> <span class=o>==</span> <span class=kc>null</span> <span class=o>||</span> <span class=nx>nowTime</span> <span class=o>-</span> <span class=nx>data</span><span class=p>.</span><span class=nx>time</span> <span class=o>&gt;</span> <span class=mi>600000</span><span class=p>)</span> <span class=p>{</span> <span class=c1>// 600000为缓存时间，即10分钟，防止频繁请求，加快本地访问速度。
+</span></span></span><span class=line><span class=cl>        <span class=nx>getData</span><span class=p>();</span>
+</span></span><span class=line><span class=cl>        <span class=k>return</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span> <span class=k>else</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>ls</span> <span class=o>=</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>parse</span><span class=p>(</span><span class=nx>data</span><span class=p>.</span><span class=nx>ls</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>    <span class=p>};</span>
+</span></span><span class=line><span class=cl>    <span class=k>for</span> <span class=p>(</span><span class=kd>let</span> <span class=nx>item</span> <span class=k>of</span> <span class=nx>ls</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>html</span> <span class=o>+=</span> <span class=s1>&#39;&lt;div class=&#34;weibo-list-item&#34;&gt;&lt;div class=&#34;weibo-hotness &#39;</span> <span class=o>+</span> <span class=nx>hotness</span><span class=p>[(</span><span class=nx>item</span><span class=p>.</span><span class=nx>hot</span> <span class=o>||</span> <span class=s1>&#39;荐&#39;</span><span class=p>)]</span> <span class=o>+</span> <span class=s1>&#39;&#34;&gt;&#39;</span> <span class=o>+</span> <span class=p>(</span><span class=nx>item</span><span class=p>.</span><span class=nx>hot</span> <span class=o>||</span> <span class=s1>&#39;荐&#39;</span><span class=p>)</span> <span class=o>+</span> <span class=s1>&#39;&lt;/div&gt;&#39;</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;&lt;span class=&#34;weibo-title&#34;&gt;&lt;a title=&#34;&#39;</span> <span class=o>+</span> <span class=nx>item</span><span class=p>.</span><span class=nx>title</span> <span class=o>+</span> <span class=s1>&#39;&#34;href=&#34;&#39;</span> <span class=o>+</span> <span class=nx>item</span><span class=p>.</span><span class=nx>url</span> <span class=o>+</span> <span class=s1>&#39;&#34; target=&#34;_blank&#34; rel=&#34;external nofollow noreferrer&#34;&gt;&#39;</span> <span class=o>+</span> <span class=nx>item</span><span class=p>.</span><span class=nx>title</span> <span class=o>+</span> <span class=s1>&#39;&lt;/a&gt;&lt;/span&gt;&#39;</span> <span class=o>+</span>
+</span></span><span class=line><span class=cl>            <span class=s1>&#39;&lt;div class=&#34;weibo-num&#34;&gt;&lt;span&gt;&#39;</span> <span class=o>+</span> <span class=nx>item</span><span class=p>.</span><span class=nx>num</span> <span class=o>+</span> <span class=s1>&#39;&lt;/span&gt;&lt;/div&gt;&lt;/div&gt;&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=nx>html</span> <span class=o>+=</span> <span class=s1>&#39;&lt;/div&gt;&#39;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>document</span><span class=p>.</span><span class=nx>getElementById</span><span class=p>(</span><span class=s1>&#39;weiboContent&#39;</span><span class=p>).</span><span class=nx>innerHTML</span> <span class=o>=</span> <span class=nx>html</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=kd>function</span> <span class=nx>getData</span><span class=p>()</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=nx>fetch</span><span class=p>(</span><span class=s1>&#39;https://weibo-top-api-two.vercel.app/api&#39;</span><span class=p>).</span><span class=nx>then</span><span class=p>(</span><span class=nx>data</span> <span class=p>=&gt;</span> <span class=nx>data</span><span class=p>.</span><span class=nx>json</span><span class=p>()).</span><span class=nx>then</span><span class=p>(</span><span class=nx>data</span> <span class=p>=&gt;</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=nx>data</span> <span class=o>=</span> <span class=p>{</span> <span class=nx>time</span><span class=o>:</span> <span class=nb>Date</span><span class=p>.</span><span class=nx>now</span><span class=p>(),</span> <span class=nx>ls</span><span class=o>:</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>data</span><span class=p>)</span> <span class=p>}</span>
+</span></span><span class=line><span class=cl>        <span class=nx>localStorage</span><span class=p>.</span><span class=nx>setItem</span><span class=p>(</span><span class=s1>&#39;weibo&#39;</span><span class=p>,</span> <span class=nx>JSON</span><span class=p>.</span><span class=nx>stringify</span><span class=p>(</span><span class=nx>data</span><span class=p>))</span>
+</span></span><span class=line><span class=cl>    <span class=p>}).</span><span class=nx>then</span><span class=p>(</span><span class=nx>weibo</span><span class=p>);</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=自建-vercel-api>自建 Vercel API</h3><p>地址：<a class=link href=https://github.com/Eurkon target=_blank rel=noopener>Eurkon</a>/<strong><a class=link href=https://github.com/Eurkon/weibo-top-api target=_blank rel=noopener>weibo-top-api</a></strong></p><p>虽然 Vercel 的访问应当没有次数限制，但是不排除存在因访问次数过多而限流等限制。所以还是建议各位自建 API。使用 Vercel 部署，完全免费。且无需服务器。</p><blockquote><p>最后记得修改<code>weibo.js</code>里的api地址，即：<code>https://weibo-top-api.vercel.app/api</code>改成<code>https://你的域名//api</code></p></blockquote><h3 id=自建第三方-api>自建第三方 API</h3><p>查看：https://blog.leonus.cn/2022/weibo.html</p><h2 id=友链朋友圈弃用用下方的><del>友链朋友圈</del>（弃用，用下方的）</h2><ul><li>仓库地址：https://github.com/Rock-Candy-Tea/hexo-circle-of-friends</li><li>文档：https://fcircle-doc.js.cool</li></ul><h3 id=前端部署><a class=link href="https://fcircle-doc.js.cool/#/frontenddeploy?id=%e5%89%8d%e7%ab%af%e9%83%a8%e7%bd%b2" target=_blank rel=noopener>前端部署</a></h3><p>推荐使用朋友圈5.x版本最新前端，基于林木木的方案进行优化，同时添加管理面板，方便进行配置管理。</p><p>hexo下的部署方法，在博客根目录下，创建普通页面：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>hexo new page fcircle
+</span></span></code></pre></td></tr></table></div></div><p>可以看到<code>source/fcircle/index.md</code> 文件，打开该文件，粘贴以下内容：</p><p><strong>官方：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-html data-lang=html><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>title: 朋友圈
+</span></span><span class=line><span class=cl>date: 2022-10-09 00:38:16
+</span></span><span class=line><span class=cl>---
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>div</span> <span class=na>id</span><span class=o>=</span><span class=s>&#34;app&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>div</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=kd>let</span> <span class=nx>UserConfig</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 填写你的api地址
+</span></span></span><span class=line><span class=cl>        <span class=nx>private_api_url</span><span class=o>:</span> <span class=s1>&#39;http://192.168.142.88:8000/&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 点击加载更多时，一次最多加载几篇文章，默认10
+</span></span></span><span class=line><span class=cl>        <span class=nx>page_turning_number</span><span class=o>:</span> <span class=mi>10</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 头像加载失败时，默认头像地址
+</span></span></span><span class=line><span class=cl>        <span class=nx>error_img</span><span class=o>:</span> <span class=s1>&#39;https://sdn.geekzu.org/avatar/57d8260dfb55501c37dde588e7c3852c&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=c1>// 进入页面时第一次的排序规则
+</span></span></span><span class=line><span class=cl>        <span class=nx>sort_rule</span><span class=o>:</span> <span class=s1>&#39;created&#39;</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/app.min.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span><span class=line><span class=cl><span class=p>&lt;</span><span class=nt>script</span> <span class=na>type</span><span class=o>=</span><span class=s>&#34;text/javascript&#34;</span> <span class=na>src</span><span class=o>=</span><span class=s>&#34;https://npm.elemecdn.com/imgscdn@1.1.39/fcircle/bundle.js&#34;</span><span class=p>&gt;&lt;/</span><span class=nt>script</span><span class=p>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>访问域名下的<code>/fcircle</code>即可看到效果。</p><p>如果觉得该cdn比较慢，可以手动将这两个js文件放到你认为更快的cdn上。新版前端在顶部右下角卡片新增管理面板。点击即可进入。第一次部署成功后，<strong>输入第一个密码的同时设置密码。请设置一个安全可靠的密码，并防止泄露</strong>。</p><p>当保存设置时，由于网络原因，可能需要一段时间响应，尽量避免连续保存。</p><p>除了在管理面板配置之外，朋友圈同样支持修改配置文件进行配置，详见<a class=link href=https://fcircle-doc.yyyzyyyz.cn/#/settings target=_blank rel=noopener>配置项说明</a>。</p><h2 id=hexo设置skip_render>hexo设置skip_render</h2><p>hexo设置skip_render, 指定不进行渲染的文件或文件夹</p><p>1.单个文件夹下全部文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>skip_render: demo/*
+</span></span></code></pre></td></tr></table></div></div><p>2.单个文件夹下指定类型文件：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>skip_render: demo/*.html
+</span></span></code></pre></td></tr></table></div></div><p>3.单个文件夹下全部文件以及子目录:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>skip_render: demo/**
+</span></span></code></pre></td></tr></table></div></div><p>4.多个文件夹以及各种复杂情况：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>skip_render:
+</span></span><span class=line><span class=cl>    - &#39;demo/*.html&#39;
+</span></span><span class=line><span class=cl>    - &#39;demo/**&#39;
+</span></span></code></pre></td></tr></table></div></div><h2 id=配置友链朋友圈>配置友链朋友圈</h2><ul><li><a class=link href=https://github.com/willow-god/Friend-Circle-Lite target=_blank rel=noopener>Friend-Circle-Lite</a></li><li><a class=link href=https://blog.liushen.fun/posts/4dc716ec/ target=_blank rel=noopener>文档地址</a></li></ul><h3 id=准备工作>准备工作</h3><p>博客根目录执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>npm install js-yaml --save
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>npm install yamljs
+</span></span></code></pre></td></tr></table></div></div><p>然后在博客根目录添加文件link.js，写入以下代码：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>const YML = require(&#39;yamljs&#39;)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>const fs = require(&#39;fs&#39;)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>const blacklist = [&#34;友站名称1&#34;, &#34;友站名称2&#34;, &#34;友站名称3&#34;]; // 由于某种原因，不想订阅的列表</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>let friends = [],</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>data_f = YML.parse(fs.readFileSync(&#39;source/_data/link.yml&#39;).toString().replace(/(?&lt;=rss:)\s*\n/g, &#39; &#34;&#34;\n&#39;));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>data_f.forEach((entry, index) =&gt; {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>let lastIndex = 2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>if (index &lt; lastIndex) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>const filteredLinkList = entry.link_list.filter(linkItem =&gt; !blacklist.includes(linkItem.name));</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>friends = friends.concat(filteredLinkList);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=l>);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>// 根据规定的格式构建 JSON 数据</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>const friendData = {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>friends</span><span class=p>:</span><span class=w> </span><span class=l>friends.map(item =&gt; {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>return [item.name, item.link, item.avatar];</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=l>)</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=l>;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>// 将 JSON 对象转换为字符串</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>const friendJSON = JSON.stringify(friendData, null, 2);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>// 写入 friend.json 文件</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>fs.writeFileSync(&#39;./source/friend.json&#39;, friendJSON);</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>console.log(&#39;friend.json 文件已生成。&#39;);</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>按照需求修改其中的黑名单，该黑名单可以用于排除一些采集站之类的灌水文章，其中填写对应站点的名称</p><h3 id=json获取>json获取</h3><p>然后再在根目录执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>node link.js
+</span></span></code></pre></td></tr></table></div></div><p>你将会在source文件中发现文件friend.json，即为对应格式文件，下面正常hexo三件套即可放置到网站根目录。</p><p>为了更加方便，可以在博客根目录添加运行脚本：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nb>echo</span> -e <span class=s2>&#34;\033[0;32mDeploying updates to gitee...\033[0m&#34;</span>
+</span></span><span class=line><span class=cl>git add .	
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;site backup&#34;</span>
+</span></span><span class=line><span class=cl>git push --force origin backup
+</span></span><span class=line><span class=cl>node link.js
+</span></span><span class=line><span class=cl>hexo clean
+</span></span><span class=line><span class=cl>hexo g -d
+</span></span></code></pre></td></tr></table></div></div><h3 id=action配置>action配置</h3><ul><li><p>Fork 本仓库:
+点击页面右上角的 Fork 按钮，将本仓库复制到你自己的GitHub账号下。</p></li><li><p>配置 Secrets:
+在你 Fork 的仓库中，依次进入 Settings -> Secrets -> New repository secret，添加以下 Secrets：</p></li></ul><p>PAT_TOKEN: （2024-09-05更新）已弃用，无需添加。
+SMTP_PWD: SMTP 服务器的密码，用于发送电子邮件。</p><h3 id=配置action权限><strong>配置action权限</strong>：</h3><p>在设置中，点击action，拉到最下面，勾选Read and write permissions选项并保存，确保action有读写权限。</p><p>启用 GitHub Actions:
+GitHub Actions 已经配置好在仓库的 .github/workflows/*.yml 文件中，当到一定时间时将自动执行，也可以手动运行。
+其中，每个action功能如下：</p><p>friend_circle_lite.yml实现核心功能，爬取并发送邮箱；
+deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论，并关闭issue；
+设置issue格式：
+这个我已经设置好了，你只需要进行自定义即可。</p><h3 id=配置选项>配置选项</h3><ul><li>爬虫相关配置(必选)
+使用 requests 库实现友链文章的爬取，并将结果存储到根目录下的 all.json 文件中。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>spider_settings</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>enable</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>json_url</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;https://bore.vip/friend.json&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>article_count</span><span class=p>:</span><span class=w> </span><span class=m>5</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>merge_result</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enable</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>merge_json_url</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;https://fc.liushen.fun&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>enable：开启或关闭，默认开启；</p><p>json_url：友链朋友圈通用爬取格式第一种，填写上面生成的json文件网络地址即可。</p><p>article_count：每个作者留存文章个数，建议不要太多，五个正好合适。</p><p>marge_result：是否合并多个json文件，若为true则会合并指定网络地址和本地地址的json文件，建议在自部署部分使用，如果你有多个结果需要合并也可以使用，该部分需要/all.json和/errors.json地址可访问。</p><p>enable：是否启用合并功能，该功能提供与自部署的友链合并功能，可以解决服务器部分国外网站，服务器无法访问的问题</p><p>marge_json_path：请填写网络地址的json文件，用于合并，不带最后的斜杠！！！</p><h3 id=测试>测试</h3><p>由于在action中请求了github api，有较为严格的限额，所以我将更新后自动执行action的触发器关掉了，防止多次重复请求，你可以自行点击并运行action，如果在Check RSS feeds部分中，获取到了文章,并且正常提交到仓库中，则基本实现友链朋友圈功能。你可以在仓库根目录下找到all.json文件，里面即为所有的文章，程序已经按照时间顺序进行排序。</p><h3 id=前端部署-1>前端部署</h3><p>vercel 部署完成后，检查对应页面，页面中没有数据，且 /all.json 路径无法访问。原因是部署到main分支了，可以<strong>先删除development</strong>，然后通过 setting-git-Production Branch ，填写为page，并绑定域名，最后<strong>在github里</strong>手动执行action重新进行部署即可。</p><p>这样，我们就可以通过地址https://fc.liushen.fun/all.json访问到你的文章内容，并且因为文件非常小，访问体验也非常不错，并且不会因为频繁请求不同api而过量使用vercel提供的edge requests次数。</p><h3 id=部署到页面>部署到页面</h3><p>下面在你的页面md文件中直接放置以下内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=o>&lt;</span><span class=n>div</span> <span class=n>id</span><span class=o>=</span><span class=s2>&#34;friend-circle-lite-root&#34;</span><span class=o>&gt;&lt;/</span><span class=n>div</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=n>script</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=p>(</span><span class=nb>typeof</span> <span class=n>UserConfig</span> <span class=o>===</span> <span class=s1>&#39;undefined&#39;</span><span class=p>)</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>        <span class=k>var</span> <span class=n>UserConfig</span> <span class=o>=</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>            <span class=o>//</span> <span class=err>填写你的</span><span class=n>fc</span> <span class=n>Lite地址</span>
+</span></span><span class=line><span class=cl>            <span class=n>private_api_url</span><span class=p>:</span> <span class=s1>&#39;https://f.bore.vip/&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=o>//</span> <span class=err>点击加载更多时，一次最多加载几篇文章，默认</span><span class=mi>20</span>
+</span></span><span class=line><span class=cl>            <span class=n>page_turning_number</span><span class=p>:</span> <span class=mi>24</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>            <span class=o>//</span> <span class=err>头像加载失败时，默认头像地址</span>
+</span></span><span class=line><span class=cl>            <span class=n>error_img</span><span class=p>:</span> <span class=s1>&#39;https://pic.imgdb.cn/item/6695daa4d9c307b7e953ee3d.jpg&#39;</span><span class=p>,</span>
+</span></span><span class=line><span class=cl>        <span class=p>}</span>
+</span></span><span class=line><span class=cl>    <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;/</span><span class=n>script</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=n>link</span> <span class=n>rel</span><span class=o>=</span><span class=s2>&#34;stylesheet&#34;</span> <span class=n>href</span><span class=o>=</span><span class=s2>&#34;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.css&#34;</span><span class=o>&gt;</span>
+</span></span><span class=line><span class=cl><span class=o>&lt;</span><span class=n>script</span> <span class=n>src</span><span class=o>=</span><span class=s2>&#34;https://fastly.jsdelivr.net/gh/willow-god/Friend-Circle-Lite/main/fclite.min.js&#34;</span><span class=o>&gt;&lt;/</span><span class=n>script</span><span class=o>&gt;</span>
+</span></span></code></pre></td></tr></table></div></div><p>注意其中的private_api_url尾部需要/防止拼接路径时出现错误。</p><p>hexo三联后，即可查看效果，本站部署的页面你可以通过顶部导航栏直接进入查看效果。</p><h2 id=更新记录>更新记录</h2><p>2023.5.7</p><ul><li>Commits on Dec 29, 2023</li><li>Commits on Oct 9, 2023</li><li>Commits on Jun 6, 2023</li><li>Commits on Apr 10, 2023</li></ul><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://butterfly.js.org/posts/21cfbf15/ target=_blank rel=noopener>Butterfly 安装文档(一) 快速开始</a></li><li><a class=link href=https://guole.fun/posts/butterfly-custom/ target=_blank rel=noopener>我的 Blog 美化日记 ——Hexo+Butterfly</a></li><li><a class=link href=https://www.jianshu.com/p/76220131c7e9 target=_blank rel=noopener>hexo设置skip_render, 指定不进行渲染的文件或文件夹</a></li><li><a class=link href=https://akilar.top/posts/3afa069a/ target=_blank rel=noopener>引入Aplayer播放音乐</a></li><li><a class=link href=https://blog.leonus.cn/2022/weibo.html target=_blank rel=noopener>微博热搜api使用与自建</a></li><li><a class=link href=https://blog.eurkon.com/post/38b005e1.html target=_blank rel=noopener>Butterfly 微博热搜侧边栏</a></li><li><a class=link href=https://cnhuazhu.top/butterfly/2021/02/24/Hexo%E9%AD%94%E6%94%B9/Hexo%E5%B0%8F%E6%A0%87%E9%A2%98%E6%97%8B%E8%BD%AC%E9%A3%8E%E8%BD%A6%E8%AE%BE%E7%BD%AE/ target=_blank rel=noopener>Hexo小标题旋转风车设置</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/hexo/>Hexo</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/hexo-butterfly%e4%b8%bb%e9%a2%98%e9%85%8d%e7%bd%ae%e4%b8%8e%e4%bd%bf%e7%94%a8.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/d5e37958/><div class=article-details><h2 class=article-title>Memos部署记录</h2></div></a></article><article><a href=/archives/9a366c6/><div class=article-details><h2 class=article-title>利用企业微信实现twikoo新消息提醒&&数据导出等</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/d6da8e6c/><div class=article-details><h2 class=article-title>hexo版本升级</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

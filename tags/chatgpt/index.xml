@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Chatgpt on Bore's Notes</title><link>https://bore.vip/tags/chatgpt/</link><description>Recent content in Chatgpt on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/chatgpt/index.xml" rel="self" type="application/rss+xml"/><item><title>chatgpt使用方法</title><link>https://bore.vip/archives/692a32c1/</link><pubDate>Sun, 05 Mar 2023 20:21:02 +0000</pubDate><guid>https://bore.vip/archives/692a32c1/</guid><description>&lt;p&gt;&lt;strong&gt;如果使用中转api key，代理地址一定要填如下形式（/v1/chat/completions一定要加上），才能在wx某模块正常使用。&lt;/strong&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://api.xty.app/v1/chat/completions
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;不同的客户端需要填写不同的BASE_URL, 请尝试如下地址&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a class="link" href="https://api.chatgptid.net/" target="_blank" rel="noopener"
+ &gt;https://api.chatgptid.net/&lt;/a&gt; 或https://api.chatgptid.net/v1 或https://api.chatgptid.net/v1/chat/completions&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;0.解释的更简单些&lt;/p&gt;
+&lt;p&gt;1.请帮我用两句话总结以下内容：&lt;/p&gt;
+&lt;p&gt;2.请帮我（用悲伤的语气）改写以下内容：&lt;/p&gt;
+&lt;p&gt;3.利用以下内容： 将它改写成一首诗&lt;/p&gt;
+&lt;p&gt;4.写一篇题为“文章标题”3000字论文，论文末尾附上参考文献&lt;/p&gt;
+&lt;p&gt;6.常用指令：&lt;/p&gt;
+&lt;p&gt;形容词：&lt;/p&gt;
+&lt;p&gt;以中年人语气&lt;/p&gt;
+&lt;p&gt;以年轻人语气&lt;/p&gt;
+&lt;p&gt;有趣活泼的&lt;/p&gt;
+&lt;p&gt;正式的&lt;/p&gt;
+&lt;p&gt;7.（1）请写出十个吸引人的关于泡咖啡的Instagram post标题&lt;/p&gt;
+&lt;p&gt;（2）请写出“文章标题”Instagram post内文&lt;/p&gt;
+&lt;p&gt;8.角色脚本：https://github.com/f/awesome-chatgpt-prompts&lt;/p&gt;
+&lt;p&gt;接下来都以中文来回答&lt;/p&gt;
+&lt;p&gt;9.脚本应用程序：https://github.com/lencx/ChatGPT&lt;/p&gt;
+&lt;p&gt;（1）加载脚本&lt;/p&gt;
+&lt;p&gt;preference—control center—language model—sync custom—sync （点击sync后，就会把所有脚本加载）&lt;/p&gt;
+&lt;p&gt;（2）输入“/”选择相应角色&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;10.角色扮演法提问&lt;/strong&gt;(一个角色，一个聊天室)&lt;/p&gt;
+&lt;p&gt;例如：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请你扮演一位语言学习专家，擅长以有趣的方式教导一般人语言效果。我现在正在学习英文，在英文口说方面有困难，请给我五个练习英文口说的意见&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;11.固定角色设定&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;例一：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请扮演一个专业文字编辑跟翻译，帮我归纳及重点整理英文内容，请使用简体中文回复，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例二：Email助理&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请扮演一个专业英文助理及翻译，帮助我回覆中文或是英文信件，内容要正式，此规则应用接下来所有对话，不需要我再重复&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例三：回一封信&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请帮我用友善的态度回复以下信件，我刚好那一天有私事不能参加，但很高兴收到邀请，祝活动顺利：&amp;ldquo;附上原信内容&amp;rdquo;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;例四：程式码老师&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请扮演一位Python老师，指导我写出我需要的Python程式码，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;12.指定作答风格&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;范例：目标读者为中老年人的新闻报道&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;写一篇新闻报道，以中国记者的文笔，生动活泼地介绍过去五个重要的人工智能发展事件给中国的中老年族群，（不要提到“生动活泼地文笔”，不要提到“中老年族群”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;范例：目标读者为年轻读者的社群平台贴文&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;写一篇社群平台贴文,以年轻人编辑的文笔、非正式、casual的方式、加入大量的emoji ,生动活泼地介绍过去五个重要的人工智能发展的事件给中国的年轻族群&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;范例：以简短的文字及表格整理作答&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请用一段简短的文字，解释什么是大型语言模型，举例三个语言模型及其特色，以表格呈现。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;13.长篇文章创作&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;角色扮演+架构建立&lt;/p&gt;
+&lt;p&gt;（1）范例：指定角色并提案文章标题&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请你扮演人工智慧专家，我要写一篇关于人工智慧的发展与AI人型机器人未来对人类生活的影响的长篇文章，这篇文章会发表在个人部落格，请列出十个吸引人的文章标题&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;修改标题：&lt;code&gt;提供类似“AI人型机器人的崛起：改变未来生活的无限可能＂另外五个版本标题&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;（1.1）请写出10个关于“即将被AI取代的工作”文章标题&lt;/p&gt;
+&lt;p&gt;（2）请写出“AI人型机器人的变革之力：探索未来生活的新篇章”的文章大纲&lt;/p&gt;
+&lt;p&gt;（3）请按照上面大纲写出“A部分”的内容&lt;/p&gt;
+&lt;p&gt;（4）写文章常用指令：&lt;/p&gt;
+&lt;p&gt;rephrase 重写&lt;/p&gt;
+&lt;p&gt;lengthen 延伸&lt;/p&gt;
+&lt;p&gt;shorten 浓缩&lt;/p&gt;
+&lt;p&gt;explain 解释&lt;/p&gt;
+&lt;p&gt;pull out keywords 抓关键字&lt;/p&gt;
+&lt;p&gt;（5）重写（rephrase）“一段话”&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;13.资料归纳整理&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;范例：&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;请扮演一个专业文字编辑及翻译，帮我归纳及重点整理以下新闻，请使用简体中文：“新闻或者是资料内容”&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;范例：精准翻译并将专有名词原文附于译文后&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;ChatGFT,请扮演一名专业的翻译者，将以下英文论文段落精地翻译成繁体中文，适用于学术论文。在翻译过程中，对于专有名词和带有引号的字词，请在繁体中文译文后用括号附上英文原文。例如：美德(virtue)丶汤姆(Tom)以及被引号包围的字词如&amp;quot;word&amp;quot;。请确保翻译结果字数不超过N个字，并在必要时将原文分成较小的段落进行翻译。&lt;/p&gt;
+&lt;p&gt;“在这里贴上原文”&lt;/p&gt;
+&lt;p&gt;根据以上要求，请将这雨个段落分别翻译成繁体中文，并在适当的地方加上英文原文。请注意保持翻译的精准性和一致性，并避免增加原文没有的句子。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;14.ChatPDF&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;15.ChatGPT标记法&lt;/strong&gt;（gpt-4才能使用）&lt;/p&gt;
+&lt;p&gt;范例：分批输入大量资料，使用@帮资料编号&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;我接下来要在多个对话中，提供给你用 「@」编号的文章内容，请先记住，但 请不要摘要，此规则不需我再重复，适 用于接下来你所有回答&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;1)&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;先记住@1的文章内容：
+文章内容&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则&lt;/p&gt;
+&lt;p&gt;2）&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;综合总结@1@2@3全部内容&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;16.写电脑自动化程式&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;17.Newbing&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id="附1bwg无法使用chatgpt"&gt;附1：bwg无法使用chatgpt
+&lt;/h3&gt;&lt;p&gt;解决方法：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;把VPS的IP伪装成家用IP。用warp来伪装，原理就是把VPS的出口流量转发到另一个IP（由cloudfare免费提供）上进行代理。
+具体操作：在VPS上&lt;code&gt;bash &amp;lt;(curl -fsSL git.io/warp.sh) d&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;直接用一个解锁chatgpt的机场，例如&lt;a class="link" href="https://songshuyun.top./" target="_blank" rel="noopener"
+ &gt;https://songshuyun.top。&lt;/a&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;参考：&lt;a class="link" href="https://github.com/Alvin9999/new-pac/issues/1407" target="_blank" rel="noopener"
+ &gt;Chat GPT是不是&lt;/a&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS：有些脚本自带分流，分流种类：&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;IPv6分流&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以指定网站只走IPv6，应用场景【1.Google人机验证 2.流媒体解锁】&lt;/li&gt;
+&lt;li&gt;vps需支持IPv6&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;WARP分流&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;指定网站通过WARP分流 &lt;strong&gt;(如：chatgpt，记得不要设置warp全局，只需要添加openai.com域名即可，不然速度会降低）&lt;/strong&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;&lt;strong&gt;其他分流&lt;/strong&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id="附2chatgpt-设置定时任务"&gt;附2：ChatGPT 设置定时任务
+&lt;/h3&gt;&lt;p&gt;查看：&lt;a class="link" href="https://bore.vip/archives/964093b3/#ChatGPT%e8%ae%be%e7%bd%ae%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1" &gt;ChatGPT 设置定时任务&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id="附3chatgptsed-替换冒号以及冒号后面内容"&gt;附3：ChatGPTsed 替换冒号以及冒号后面内容
+&lt;/h3&gt;&lt;blockquote&gt;
+&lt;p&gt;windows 上使用linux命令，先安装：&lt;a class="link" href="https://git-scm.com/downloads" target="_blank" rel="noopener"
+ &gt;Git for Windows&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;提问：&lt;code&gt;sed 替换冒号以及冒号后面内容&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在Linux和macOS系统中，你可以使用&lt;code&gt;sed&lt;/code&gt;命令来替换冒号以及冒号后面的内容。&lt;code&gt;sed&lt;/code&gt;是一个流编辑器，可以用于在文本中执行替换等操作。下面是使用&lt;code&gt;sed&lt;/code&gt;命令替换冒号以及冒号后面的内容的示例：&lt;/p&gt;
+&lt;p&gt;假设你有一个文本文件名为 &lt;code&gt;example.txt&lt;/code&gt;，其内容如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这是一段文本: 冒号后面的内容将被删除。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;另一段文本: 这也会被删除。
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这是没有冒号的文本，不会受影响。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;使用&lt;code&gt;sed&lt;/code&gt;命令删除冒号以及冒号后面的内容：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sed &lt;span class="s1"&gt;&amp;#39;s/:.*//&amp;#39;&lt;/span&gt; example.txt &amp;gt; output.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;执行以上命令后，会生成一个名为 &lt;code&gt;output.txt&lt;/code&gt; 的新文件，其内容如下：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这是一段文本
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;另一段文本
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;这是没有冒号的文本，不会受影响。
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;解释一下&lt;code&gt;sed&lt;/code&gt;命令的含义：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;s/&lt;/code&gt; 表示替换操作的开始。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;:&lt;/code&gt; 是要查找的文本，即冒号。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;.*&lt;/code&gt; 表示匹配冒号后的任意字符（包括冒号本身）。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;/&lt;/code&gt; 用于分隔查找的文本和替换的文本。&lt;/li&gt;
+&lt;li&gt;空格后面的是替换的文本，这里我们用空字符串表示删除匹配到的内容。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;example.txt&lt;/code&gt; 是要处理的输入文件。&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;&amp;gt; output.txt&lt;/code&gt; 表示将输出结果重定向到名为 &lt;code&gt;output.txt&lt;/code&gt; 的文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;请注意，在执行 &lt;code&gt;sed&lt;/code&gt; 命令时，原始文件并没有被直接修改，而是将修改后的内容输出到另一个文件。如果需要直接在原始文件上进行修改，可以使用 &lt;code&gt;-i&lt;/code&gt; 参数，不过在使用时要小心，确保备份原始文件以防止数据丢失。例如：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sed -i &lt;span class="s1"&gt;&amp;#39;s/:.*//&amp;#39;&lt;/span&gt; example.txt
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样会直接在 &lt;code&gt;example.txt&lt;/code&gt; 文件上进行修改。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;PS：合并txt（cmd上操作）： &lt;code&gt;type *txt&amp;gt;&amp;gt;all.txt&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</description></item></channel></rss>

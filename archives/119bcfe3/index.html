@@ -1,0 +1,1246 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="本教程以 CentOS 7.x 为例，配置并运行 Halo，其他 Linux 发行版大同小异。\n写在前面 具备一定的 Linux 基础。 如需域名绑定，请先保证已经正确解析 IP，以及确认服务器是否需要备案。 如需使用 IP 访问，请先确保 Halo 的运行端口已经打开，除非你使用 80 端口运行 Halo。 如 3 所述，如果你使用了类似 宝塔面板 之类的 Linux 管理面板，可能还需要在面板里设置端口。 不要想当然，请严格按照文档的流程操作。 Win10配置java环境变量 下载&& 安装JDK 下载地址：https://www.oracle.com/java/technologies/downloads/\n"><title>在Centos服务器部署Halo</title><link rel=canonical href=https://bore.vip/archives/119bcfe3/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="在Centos服务器部署Halo"><meta property='og:description' content="本教程以 CentOS 7.x 为例，配置并运行 Halo，其他 Linux 发行版大同小异。\n写在前面 具备一定的 Linux 基础。 如需域名绑定，请先保证已经正确解析 IP，以及确认服务器是否需要备案。 如需使用 IP 访问，请先确保 Halo 的运行端口已经打开，除非你使用 80 端口运行 Halo。 如 3 所述，如果你使用了类似 宝塔面板 之类的 Linux 管理面板，可能还需要在面板里设置端口。 不要想当然，请严格按照文档的流程操作。 Win10配置java环境变量 下载&& 安装JDK 下载地址：https://www.oracle.com/java/technologies/downloads/\n"><meta property='og:url' content='https://bore.vip/archives/119bcfe3/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='服务器'><meta property='article:tag' content='halo'><meta property='article:published_time' content='2020-07-24T02:21:25+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="在Centos服务器部署Halo"><meta name=twitter:description content="本教程以 CentOS 7.x 为例，配置并运行 Halo，其他 Linux 发行版大同小异。\n写在前面 具备一定的 Linux 基础。 如需域名绑定，请先保证已经正确解析 IP，以及确认服务器是否需要备案。 如需使用 IP 访问，请先确保 Halo 的运行端口已经打开，除非你使用 80 端口运行 Halo。 如 3 所述，如果你使用了类似 宝塔面板 之类的 Linux 管理面板，可能还需要在面板里设置端口。 不要想当然，请严格按照文档的流程操作。 Win10配置java环境变量 下载&& 安装JDK 下载地址：https://www.oracle.com/java/technologies/downloads/\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#写在前面>写在前面</a></li><li><a href=#win10配置java环境变量>Win10配置java环境变量</a><ol><li><a href=#下载-安装jdk>下载&& 安装JDK</a></li><li><a href=#环境变量配置>环境变量配置</a></li></ol></li><li><a href=#环境要求>环境要求</a></li><li><a href=#服务器配置>服务器配置</a><ol><li><a href=#更新软件包>更新软件包</a></li><li><a href=#装-java-运行环境>装 Java 运行环境</a></li></ol></li><li><a href=#创建-halo-用户>创建 Halo 用户</a></li><li><a href=#安装-halo>安装 Halo</a><ol><li><a href=#创建存放运行包的目录>创建存放运行包的目录</a></li><li><a href=#下载运行包>下载运行包</a></li><li><a href=#创建工作目录>创建工作目录</a></li><li><a href=#下载配置文件>下载配置文件</a></li><li><a href=#修改配置文件>修改配置文件</a></li><li><a href=#运行-halo>运行 Halo</a></li><li><a href=#作为服务运行>作为服务运行</a></li><li><a href=#下载-halo-官方的-haloservice-模板>下载 Halo 官方的 halo.service 模板</a></li></ol></li><li><a href=#配置域名访问>配置域名访问</a><ol><li><a href=#使用-nginx-进行反向代理>使用 Nginx 进行反向代理</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#配置-nginx>配置 Nginx</a></li></ol></li><li><a href=#配置阿里云免费证书ssl-证书>配置阿里云免费证书SSL 证书</a></li><li><a href=#添加-lets-encrypt-免费证书>添加 Let&rsquo;s Encrypt 免费证书</a><ol><li><a href=#centos-8><strong>Centos 8</strong></a></li><li><a href=#debian10>Debian10</a></li></ol></li></ol></li><li><a href=#halo更改评论模块>halo更改评论模块</a></li><li><a href=#定时删除halo日志>定时删除halo日志</a></li><li><a href=#更改时区>更改时区</a></li><li><a href=#版本升级>版本升级</a></li><li><a href=#备份迁移>备份迁移</a><ol><li><a href=#整站备份>整站备份</a></li><li><a href=#导入数据>导入数据</a></li><li><a href=#整站迁移>整站迁移</a></li></ol></li><li><a href=#常见问题>常见问题</a></li><li><a href=#附修改-nginx-配置文件>附：修改 Nginx 配置文件</a></li><li><a href=#https-www跳转>https www跳转</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/119bcfe3/>在Centos服务器部署Halo</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2020-07-24T02:21:25Z>2020年7月24日星期五</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 17 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#写在前面>写在前面</a></li><li><a href=#win10配置java环境变量>Win10配置java环境变量</a><ol><li><a href=#下载-安装jdk>下载&& 安装JDK</a></li><li><a href=#环境变量配置>环境变量配置</a></li></ol></li><li><a href=#环境要求>环境要求</a></li><li><a href=#服务器配置>服务器配置</a><ol><li><a href=#更新软件包>更新软件包</a></li><li><a href=#装-java-运行环境>装 Java 运行环境</a></li></ol></li><li><a href=#创建-halo-用户>创建 Halo 用户</a></li><li><a href=#安装-halo>安装 Halo</a><ol><li><a href=#创建存放运行包的目录>创建存放运行包的目录</a></li><li><a href=#下载运行包>下载运行包</a></li><li><a href=#创建工作目录>创建工作目录</a></li><li><a href=#下载配置文件>下载配置文件</a></li><li><a href=#修改配置文件>修改配置文件</a></li><li><a href=#运行-halo>运行 Halo</a></li><li><a href=#作为服务运行>作为服务运行</a></li><li><a href=#下载-halo-官方的-haloservice-模板>下载 Halo 官方的 halo.service 模板</a></li></ol></li><li><a href=#配置域名访问>配置域名访问</a><ol><li><a href=#使用-nginx-进行反向代理>使用 Nginx 进行反向代理</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#配置-nginx>配置 Nginx</a></li></ol></li><li><a href=#配置阿里云免费证书ssl-证书>配置阿里云免费证书SSL 证书</a></li><li><a href=#添加-lets-encrypt-免费证书>添加 Let&rsquo;s Encrypt 免费证书</a><ol><li><a href=#centos-8><strong>Centos 8</strong></a></li><li><a href=#debian10>Debian10</a></li></ol></li></ol></li><li><a href=#halo更改评论模块>halo更改评论模块</a></li><li><a href=#定时删除halo日志>定时删除halo日志</a></li><li><a href=#更改时区>更改时区</a></li><li><a href=#版本升级>版本升级</a></li><li><a href=#备份迁移>备份迁移</a><ol><li><a href=#整站备份>整站备份</a></li><li><a href=#导入数据>导入数据</a></li><li><a href=#整站迁移>整站迁移</a></li></ol></li><li><a href=#常见问题>常见问题</a></li><li><a href=#附修改-nginx-配置文件>附：修改 Nginx 配置文件</a></li><li><a href=#https-www跳转>https www跳转</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>本教程以 <code>CentOS 7.x</code> 为例，配置并运行 <code>Halo</code>，其他 Linux 发行版大同小异。</p><h2 id=写在前面>写在前面</h2><ol><li>具备一定的 Linux 基础。</li><li>如需域名绑定，请先保证已经正确解析 IP，以及确认服务器是否需要备案。</li><li>如需使用 IP 访问，请先确保 Halo 的运行端口已经打开，除非你使用 80 端口运行 Halo。</li><li>如 3 所述，如果你使用了类似 <code>宝塔面板</code> 之类的 Linux 管理面板，可能还需要在面板里设置端口。</li><li>不要想当然，请严格按照文档的流程操作。</li></ol><h2 id=win10配置java环境变量>Win10配置java环境变量</h2><h3 id=下载-安装jdk>下载&& 安装JDK</h3><p>下载地址：https://www.oracle.com/java/technologies/downloads/</p><p>2022.5.26 java18 本地不可用，java17 本地可用。（halo版本：1.5.3）</p><h3 id=环境变量配置>环境变量配置</h3><ol><li><p>打开 环境变量窗口，右键 <strong>This PC(此电脑) -> Properties（属性） -> Advanced system settings（高级系统设置） -> Environment Variables（环境变量）&mldr;</strong></p></li><li><p>新建JAVA_HOME 变量，点击 New（新建）&mldr; 按钮，输入:</p></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>变量名：JAVA_HOME
+</span></span><span class=line><span class=cl>变量值：电脑上JDK安装的绝对路径(例如：C:\Program Files\Java\jdk-17.0.2)
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li>新建/修改 CLASSPATH 变量，如果存在 <strong>CLASSPATH</strong> 变量，选中点击 <strong>Edit(编辑)</strong>。如果没有，点击 <strong>New（新建）&mldr;</strong> 新建。输入/在已有的变量值后面添加：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=err>变量名：</span><span class=n>CLASSPATH</span>
+</span></span><span class=line><span class=cl><span class=err>变量值：</span><span class=o>.</span><span class=p>;</span><span class=o>%</span><span class=n>JAVA_HOME</span><span class=o>%</span>\<span class=n>lib</span>\<span class=n>dt</span><span class=o>.</span><span class=n>jar</span><span class=p>;</span><span class=o>%</span><span class=n>JAVA_HOME</span><span class=o>%</span>\<span class=n>lib</span>\<span class=n>tools</span><span class=o>.</span><span class=n>jar</span><span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>修改Path 变量。由于 win10 的不同，当选中 <strong>Path</strong> 变量的时候，系统会很方便的把所有不同路径都分开了，不会像 win7 或者 win8 那样连在一起。新建两条路径：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=k>%</span><span class=n>JAVA_HOME</span><span class=p>%\</span><span class=n>bin</span>
+</span></span><span class=line><span class=cl><span class=k>%</span><span class=n>JAVA_HOME</span><span class=p>%\</span><span class=n>jre</span><span class=p>\</span><span class=n>bin</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>检查 打开 cmd，输入 <strong>java</strong>，出现一连串的指令提示，说明配置成功了。</li></ol><h2 id=环境要求>环境要求</h2><p>为了在使用过程中不出现意外的事故，给出下列推荐的配置</p><ul><li>CentOS 7.x</li><li>512 MB 以上内存</li></ul><h2 id=服务器配置>服务器配置</h2><h3 id=更新软件包>更新软件包</h3><p>请确保服务器的软件包已经是最新的。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo yum update -y
+</span></span></code></pre></td></tr></table></div></div><h3 id=装-java-运行环境>装 Java 运行环境</h3><blockquote><p>若已经存在 Java 运行环境的可略过这一步。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 安装 OpenJRE</span>
+</span></span><span class=line><span class=cl>sudo yum install java-11-openjdk -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 检测是否安装成功</span>
+</span></span><span class=line><span class=cl>java -version
+</span></span></code></pre></td></tr></table></div></div><p>当然，这只是其中一种比较简单的安装方式，你也可以用其他方式，并不是强制要求使用这种方式安装。</p><h2 id=创建-halo-用户>创建 Halo 用户</h2><p><del>我们推荐创建一个低权限的用户运行 <code>halo</code></del>：（这一步我没有进行，直接用root）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 创建 halo 用户</span>
+</span></span><span class=line><span class=cl>sudo useradd -m halo
+</span></span><span class=line><span class=cl><span class=c1># 直接登录该用户</span>
+</span></span><span class=line><span class=cl>sudo su halo
+</span></span></code></pre></td></tr></table></div></div><h2 id=安装-halo>安装 Halo</h2><h3 id=创建存放运行包的目录>创建存放运行包的目录</h3><p>创建存放 运行包 的目录，这里以 ~/app 为例</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/app <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/app
+</span></span></code></pre></td></tr></table></div></div><h3 id=下载运行包>下载运行包</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget https://dl.halo.run/release/halo-1.5.3.jar -O halo.jar
+</span></span></code></pre></td></tr></table></div></div><h3 id=创建工作目录>创建工作目录</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir ~/.halo <span class=o>&amp;&amp;</span> <span class=nb>cd</span> ~/.halo
+</span></span></code></pre></td></tr></table></div></div><h3 id=下载配置文件>下载配置文件</h3><p>考虑到部分用户的需要，可能需要自定义比如端口等设置项，我们提供了公共的配置文件，并且该配置文件是完全独立于安装包的。当然，你也可以使用安装包内的默认配置文件，但是安装包内的配置文件是不可修改的。请注意：配置文件的路径为 <code>~/.halo/application.yaml</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 下载配置文件到 ~/.halo 目录</span>
+</span></span><span class=line><span class=cl>wget https://dl.halo.run/config/application-template.yaml -O ./application.yaml 
+</span></span></code></pre></td></tr></table></div></div><h3 id=修改配置文件>修改配置文件</h3><p>完成上一步操作，我们就可以自己配置 <code>Halo</code> 的运行端口，以及数据库相关的配置了。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 使用 Vi 工具修改配置文件</span>
+</span></span><span class=line><span class=cl>vi ~/.halo/application.yaml
+</span></span></code></pre></td></tr></table></div></div><p>打开之后我们可以看到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>server</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>port</span><span class=p>:</span><span class=w> </span><span class=m>8090</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Response data gzip.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>compression</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>enabled</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>spring</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>datasource</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># H2 database configuration.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>driver-class-name</span><span class=p>:</span><span class=w> </span><span class=l>org.h2.Driver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>url</span><span class=p>:</span><span class=w> </span><span class=l>jdbc:h2:file:~/.halo/db/halo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>username</span><span class=p>:</span><span class=w> </span><span class=l>admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>password</span><span class=p>:</span><span class=w> </span><span class=m>123456</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=c># MySQL database configuration.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#    driver-class-name: com.mysql.cj.jdbc.Driver</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#    url: jdbc:mysql://127.0.0.1:3306/halodb?characterEncoding=utf8&amp;useSSL=false&amp;serverTimezone=Asia/Shanghai&amp;allowPublicKeyRetrieval=true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#    username: root</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#    password: 123456</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># H2 database console configuration.</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>h2</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>console</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>settings</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>web-allow-others</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=l>/h2-console</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>enabled</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>halo</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># Your admin client path is https://your-domain/{admin-path}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>admin-path</span><span class=p>:</span><span class=w> </span><span class=l>admin</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># memory or level</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>cache</span><span class=p>:</span><span class=w> </span><span class=l>memory</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><ol><li>如果需要自定义端口，修改 <code>server</code> 节点下的 <code>port</code> 即可。</li><li>默认使用的是 <code>H2 Database</code> 数据库，这是一种嵌入式的数据库，使用起来非常方便。需要注意的是，默认的用户名和密码为 <code>admin</code> 和 <code>123456</code>，这个是自定义的，最好将其修改，并妥善保存。</li><li>如果需要使用 <code>MySQL</code> 数据库，需要将 <code>H2 Database</code> 的所有相关配置都注释掉，并取消 <code>MySQL</code> 的相关配置。另外，<code>MySQL</code> 的默认数据库名为 <code>halodb</code>，请自行配置 <code>MySQL</code> 并创建数据库，以及修改配置文件中的用户名和密码。</li><li><code>h2</code> 节点为 <code>H2 Database</code> 的控制台配置，默认是关闭的，如需使用请将 <code>h2.console.settings.web-allow-others</code> 和 <code>h2.console.enabled</code> 设置为 <code>true</code>。控制台地址即为 <code>域名/h2-console</code>。注意：非紧急情况，不建议开启该配置。</li><li><code>server.compression.enabled</code> 为 <code>Gzip</code> 功能配置，如有需要请设置为 <code>true</code>，需要注意的是，如果你使用 <code>Nginx</code> 或者 <code>Caddy</code> 进行反向代理的话，默认是有开启 <code>Gzip</code> 的，所以这里可以保持默认。</li><li><code>halo.admin-path</code> 为后台管理的根路径，默认为 <code>admin</code>，如果你害怕别人猜出来默认的 <code>admin</code>（就算猜出来，对方什么都做不了），请自行设置。仅支持一级，且前后不带 <code>/</code>。</li><li><code>halo.cache</code> 为系统缓存形式的配置，可选 <code>memory</code> 和 <code>level</code>，默认为 <code>memory</code>，将数据缓存到内存，使用该方式的话，重启应用会导致缓存清空。如果选择 <code>level</code>，则会将数据缓存到磁盘，重启不会清空缓存。如不知道如何选择，建议默认。</li></ol><p>注意：使用 MySQL 之前，必须要先新建一个 <code>halodb</code> 数据库，MySQL 版本需 5.7 以上。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-sql data-lang=sql><span class=line><span class=cl><span class=k>create</span><span class=w> </span><span class=k>database</span><span class=w> </span><span class=n>halodb</span><span class=w> </span><span class=nb>character</span><span class=w> </span><span class=k>set</span><span class=w> </span><span class=n>utf8mb4</span><span class=w> </span><span class=k>collate</span><span class=w> </span><span class=n>utf8mb4_bin</span><span class=p>;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>注意：使用 MySQL 之前，必须要先新建一个 halodb 数据库，MySQL 版本需 5.7 以上。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>create database halodb character <span class=nb>set</span> utf8mb4 collate utf8mb4_bin<span class=p>;</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=运行-halo>运行 Halo</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ~/app <span class=o>&amp;&amp;</span> java -jar halo.jar
+</span></span></code></pre></td></tr></table></div></div><p>如看到以下日志输出，则代表启动成功.</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>run.halo.app.listener.StartedListener    : Halo started at         http://127.0.0.1:8090
+</span></span><span class=line><span class=cl>run.halo.app.listener.StartedListener    : Halo admin started at   http://127.0.0.1:8090/admin
+</span></span><span class=line><span class=cl>run.halo.app.listener.StartedListener    : Halo has started successfully!
+</span></span></code></pre></td></tr></table></div></div><p>提示：以上的启动仅仅为测试 Halo 是否可以正常运行，如果我们关闭 ssh 连接，Halo 也将被关闭。要想一直处于运行状态，请继续看下面的教程。</p><h3 id=作为服务运行>作为服务运行</h3><p>上面我们已经完成了 Halo 的整个配置和安装过程，接下来我们对其进行更完善的配置，比如：<code>需要开机自启？</code>，<code>更简单的启动方式？</code></p><p>实现以上功能我们只需要新增一个配置文件即可，也就是使用 <code>Systemd</code> 来完成这些工作。</p><p>1.退出 halo 账户，登录到 root 账户</p><blockquote><p>如果当前就是 root 账户，请略过此步骤。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>exit</span>
+</span></span></code></pre></td></tr></table></div></div><p>2.下载 Halo 官方的 halo.service 模板</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
+</span></span></code></pre></td></tr></table></div></div><p>3.修改 halo.service</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/systemd/system/halo.service
+</span></span></code></pre></td></tr></table></div></div><p>4.修改配置</p><h3 id=下载-halo-官方的-haloservice-模板>下载 Halo 官方的 halo.service 模板</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>wget https://dl.halo.run/config/halo.service -O /etc/systemd/system/halo.service
+</span></span></code></pre></td></tr></table></div></div><p>3.修改 halo.service
+下载完成之后，我们还需要对其进行修改。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo vi /etc/systemd/system/halo.service
+</span></span></code></pre></td></tr></table></div></div><p>打开之后我们可以看到</p><ul><li><code>YOUR_JAR_PATH</code>：Halo 运行包的绝对路径，例如 <code>/root/app/halo.jar</code>，注意：此路径不支持 ~ 符号。</li><li><code>USER</code>：运行 Halo 的系统用户，如果有按照上方教程创建新的用户来运行 Halo，修改为你创建的用户名称即可。反之请删除 <strong>User=USER</strong>。</li></ul><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>[Unit]
+</span></span><span class=line><span class=cl>Description=Halo Service
+</span></span><span class=line><span class=cl>Documentation=https://halo.run
+</span></span><span class=line><span class=cl>After=network-online.target
+</span></span><span class=line><span class=cl>Wants=network-online.target
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[Service]
+</span></span><span class=line><span class=cl>Type=simple
+</span></span><span class=line><span class=cl>User=USER
+</span></span><span class=line><span class=cl>ExecStart=/usr/bin/java -server -Xms256m -Xmx256m -jar YOUR_JAR_PATH
+</span></span><span class=line><span class=cl>ExecStop=/bin/kill -s QUIT $MAINPID
+</span></span><span class=line><span class=cl>Restart=always
+</span></span><span class=line><span class=cl>StandOutput=syslog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>StandError=inherit
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>[Install]
+</span></span><span class=line><span class=cl>WantedBy=multi-user.target
+</span></span></code></pre></td></tr></table></div></div><p>参数：</p><ul><li>-Xms256m：为 JVM 启动时分配的内存，请按照服务器的内存做适当调整，512 M 内存的服务器推荐设置为 128，1G 内存的服务器推荐设置为 256，默认为 256。</li><li>-Xmx256m：为 JVM 运行过程中分配的最大内存，配置同上。</li><li>YOUR_JAR_PATH：Halo 安装包的绝对路径，例如 <code>/www/wwwroot/halo-latest.jar</code>。</li></ul><p>提示：</p><ol><li>如果你不是按照上面的方法安装的 JDK，请确保 <code>/usr/bin/java</code> 是正确无误的。</li><li>systemd 中的所有路径均要写为绝对路径，另外，<code>~</code> 在 systemd 中也是无法被识别的，所以你不能写成类似 <code>~/halo-latest.jar</code> 这种路径。</li><li>如何检验是否修改正确：把 ExecStart 中的命令拿出来执行一遍。</li></ol><p>5.重新加载 systemd</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 修改 service 文件之后需要刷新 Systemd</span>
+</span></span><span class=line><span class=cl>systemctl daemon-reload
+</span></span></code></pre></td></tr></table></div></div><p>6.运行服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl start halo
+</span></span></code></pre></td></tr></table></div></div><p>7.在系统启动时启动服务</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl <span class=nb>enable</span> halo
+</span></span></code></pre></td></tr></table></div></div><p>您可以查看服务日志检查启动状态</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>journalctl -n <span class=m>20</span> -u halo
+</span></span></code></pre></td></tr></table></div></div><h2 id=配置域名访问>配置域名访问</h2><ol><li>假设你已经成功配置并运行好了 Halo，且不是使用 80 端口运行。</li><li>请确保域名已经成功解析到服务器 IP，并确认服务器是否需要备案。</li><li>请检查服务器的 80 和 443 端口是否开放。</li><li>如 3 所述，如果你使用了类似 <code>宝塔面板</code> 之类的 Linux 管理面板，可能还需要在面板里设置端口。</li><li>并不一定要求按照下列教程操作，这里仅仅以供参考。</li><li>如 2 所述，你需要做的仅仅是反向代理 Halo 运行端口，并配置 SSL 证书而已，所以并不要求配置方式。</li></ol><h3 id=使用-nginx-进行反向代理>使用 Nginx 进行反向代理</h3><p>我使用的是这一种方法。</p><h4 id=安装-nginx>安装 Nginx</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 添加 Nginx 源</span>
+</span></span><span class=line><span class=cl>sudo rpm -Uvh http://nginx.org/packages/centos/7/noarch/RPMS/nginx-release-centos-7-0.el7.ngx.noarch.rpm
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 安装 Nginx</span>
+</span></span><span class=line><span class=cl>sudo yum install -y nginx
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 启动 Nginx</span>
+</span></span><span class=line><span class=cl>sudo systemctl start nginx.service
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置开机自启 Nginx</span>
+</span></span><span class=line><span class=cl>sudo systemctl <span class=nb>enable</span> nginx.service
+</span></span></code></pre></td></tr></table></div></div><h4 id=配置-nginx>配置 Nginx</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 下载 Halo 官方的 Nginx 配置模板</span>
+</span></span><span class=line><span class=cl>curl -o /etc/nginx/conf.d/halo.conf --create-dirs https://dl.halo.run/config/nginx.conf
+</span></span></code></pre></td></tr></table></div></div><p>下载完成之后，我们还需要对其进行修改</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 使用 vim 编辑 halo.conf</span>
+</span></span><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><p>打开之后我们可以看到</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-nginx data-lang=nginx><span class=line><span class=cl><span class=k>upstream</span> <span class=s>halo</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kn>server</span> <span class=n>127.0.0.1</span><span class=p>:</span><span class=mi>8090</span><span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=k>server</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>  <span class=kn>listen</span> <span class=mi>80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kn>listen</span> <span class=s>[::]:80</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kn>server_name</span> <span class=s>www.yourdomain.com</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kn>client_max_body_size</span> <span class=mi>1024m</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=kn>location</span> <span class=s>/</span> <span class=p>{</span>
+</span></span><span class=line><span class=cl>    <span class=kn>proxy_pass</span> <span class=s>http://halo</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>proxy_set_header</span> <span class=s>HOST</span> <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>proxy_set_header</span> <span class=s>X-Forwarded-Proto</span> <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>proxy_set_header</span> <span class=s>X-Real-IP</span> <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=kn>proxy_set_header</span> <span class=s>X-Forwarded-For</span> <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=p>}</span>
+</span></span><span class=line><span class=cl><span class=p>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>注意：Nginx 默认的 client_max_body_size 配置大小为 1m，可能会导致你在 Halo 后台上传文件被 Nginx 限制，所以此示例配置文件加上了 client_max_body_size 1024m; 这行配置。当然，1024m 可根据你的需要自行修改。</p><p>修改完成之后</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 检查配置是否有误</span>
+</span></span><span class=line><span class=cl>sudo nginx -t
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 重载 Nginx 配置</span>
+</span></span><span class=line><span class=cl>sudo nginx -s reload
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置阿里云免费证书ssl-证书>配置阿里云免费证书SSL 证书</h3><p>目前使用的是Let’s Encrypt 免费证书。</p><p>1.在nginx根目录（默认为/etc/nginx）下创建目录cert。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>cd /etc/nginx
+</span></span><span class=line><span class=cl>mkdir cert
+</span></span></code></pre></td></tr></table></div></div><p>2.把下载的证书两个文件.pem和.key上传到目录cert中。</p><p>3.修改nginx配置文件（目前使用的是下面的官方推荐配置）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><p><del>自定义配置</del>(不要用这个，用下面的官方配置）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name bore.vip www.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>rewrite ^(.*)$ https://$host$1 permanent;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>client_max_body_size 1024m;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>listen 443 ssl;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>server_name bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate /etc/nginx/cert/bore.vip.pem;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_certificate_key /etc/nginx/cert/bore.vip.key;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_session_timeout 5m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_protocols TLSv1 TLSv1.1 TLSv1.2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>ssl_prefer_server_ciphers on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header HOST $host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=l>proxy_pass http://127.0.0.1:8090/;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>官方推荐配置（用这个）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>upstream halo {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server 127.0.0.1:8090;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen 80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen 443 ssl http2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:443 ssl http2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server_name bore.vip www.bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>if ($host != &#39;bore.vip&#39; ) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=l>rewrite ^/(.*)$ https://bore.vip/$1 permanent;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>client_max_body_size 1024m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_certificate /etc/nginx/cert/bore.vip.pem;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_certificate_key /etc/nginx/cert/bore.vip.key;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_prefer_server_ciphers on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_session_timeout 10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_session_cache builtin:1000 shared:SSL:10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_buffer_size 1400;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>add_header Strict-Transport-Security max-age=15768000;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_stapling on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_stapling_verify on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>index index.html index.htm index.php;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>root /data/wwwroot/bore.vip;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>if ($ssl_protocol = &#34;&#34;) { return 301 https://$host$request_uri; }</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#error_page 404 /404.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#error_page 502 /502.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires 30d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ .*\.(js|css)?$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires 7d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ /(\.user\.ini|\.ht|\.git|\.svn|\.project|LICENSE|README\.md) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>deny all;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header HOST $host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>4.重启nginx服务。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h3 id=添加-lets-encrypt-免费证书>添加 Let&rsquo;s Encrypt 免费证书</h3><h4 id=centos-8><strong>Centos 8</strong></h4><ol><li>安装Certbot</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>yum install epel-release -y
+</span></span><span class=line><span class=cl>yum install certbot -y
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>新建相应文件夹
+由于配置了反向代理，为了顺利申请证书，需要新建文件夹：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /data/wwwroot/bore.vip
+</span></span><span class=line><span class=cl>mkdir -p /data/wwwlogs
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li>配置Nginx http 80端口</li></ol><p>为了使下面申请证书时能访问http://bore.vip/.well-known/acme-challenge/&mldr;&mldr;.这个链接，首先配置好</p><p>Nginx 80端口，保证上述网址能顺利访问，从而顺利申请证书。</p><p>由于配置了反向代理，所以在验证的时候是无法直接访问到站点目录下的 .well-known 文件夹下的验证文</p><p>件的。所以在nginx配置的server节点下添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>  default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/demo.halo.run/<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>上述代码如果不行，试下下面的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ /.well-known <span class=o>{</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>编辑<code>halo.conf</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  client_max_body_size 1024m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>    root /data/wwwroot/bore.vip/<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>申请证书</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --webroot -w /data/wwwroot/bore.vip -d bore.vip -m 455343442@qq.com --agree-tos
+</span></span></code></pre></td></tr></table></div></div><p>相关参数含义：</p><ul><li>–webroot是运行模式</li><li>standalone模式：需要停止当前的 web server 服务，让出 80 端口，由客户端内置的 web server 启动与Let’ s Encrypt通信。</li></ul><ul><li>webroot模式：不需要停止当前 web server，但需要在域名根目录下创建一个临时目录，并要保证外网通过域名可以访问这个目录。</li></ul><ul><li>-w 指定网站所在目录</li><li>-d 指定网站域名</li><li>-m 指定联系邮箱，填写真实有效的，letsencrypt会在证书在过期以前发送预告的通知邮件</li><li>agree-tos 表示接受相关协议</li></ul><p>使用webroot模式，Certbot在验证服务器域名的时候，会生成一个随机文件，然后Certbot的服务器会通过HTTP访问你的这个文件，因此要确保你的 Nginx 配置好，以便可以访问到这个文件。否则会返回403错误，在nginx配置的server节点下添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl> default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl> allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl> root /data/wwwroot/demo.halo.run/<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>上述代码如果不行，试下下面的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ /.well-known <span class=o>{</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=5><li>配置Nginx</li></ol><p>编辑<code>halo.conf</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=m>443</span> ssl http2<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:443 ssl http2<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip www.bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$host</span> !<span class=o>=</span> <span class=s1>&#39;bore.vip&#39;</span> <span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      rewrite ^/<span class=o>(</span>.*<span class=o>)</span>$ https://bore.vip/<span class=nv>$1</span> permanent<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  client_max_body_size 1024m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate /etc/letsencrypt/live/bore.vip/fullchain.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate_key /etc/letsencrypt/live/bore.vip/privkey.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_prefer_server_ciphers on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_timeout 10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_cache builtin:1000 shared:SSL:10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_buffer_size 1400<span class=p>;</span>
+</span></span><span class=line><span class=cl>  add_header Strict-Transport-Security max-age<span class=o>=</span>15768000<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling_verify on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log /data/wwwlogs/bore.vip_nginx.log combined<span class=p>;</span>
+</span></span><span class=line><span class=cl>  index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$ssl_protocol</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=o>)</span> <span class=o>{</span> <span class=k>return</span> <span class=m>301</span> https://<span class=nv>$host$request_uri</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 404 /404.html;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 502 /502.html;</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>gif<span class=p>|</span>jpg<span class=p>|</span>jpeg<span class=p>|</span>png<span class=p>|</span>bmp<span class=p>|</span>swf<span class=p>|</span>flv<span class=p>|</span>mp4<span class=p>|</span>ico<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 30d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>js<span class=p>|</span>css<span class=o>)</span>?$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 7d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ /<span class=o>(</span><span class=se>\.</span>user<span class=se>\.</span>ini<span class=p>|</span><span class=se>\.</span>ht<span class=p>|</span><span class=se>\.</span>git<span class=p>|</span><span class=se>\.</span>svn<span class=p>|</span><span class=se>\.</span>project<span class=p>|</span>LICENSE<span class=p>|</span>README<span class=se>\.</span>md<span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    deny all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>    root /data/wwwroot/bore.vip/<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>测试配置是否有问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nginx -t
+</span></span></code></pre></td></tr></table></div></div><p>重启Nginx生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><ol start=6><li>证书自动更新
+由于这个证书的时效只有 90 天，我们需要设置自动更新的功能，帮我们自动更新证书的时效。首先先在命令行模拟证书更新：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot renew --dry-run
+</span></span></code></pre></td></tr></table></div></div><p>模拟更新成功的效果如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-gdscript3 data-lang=gdscript3><span class=line><span class=cl><span class=p>[</span><span class=n>root</span><span class=err>@</span><span class=n>special</span><span class=o>-</span><span class=n>beep</span><span class=o>-</span><span class=mi>1</span> <span class=o>~</span><span class=p>]</span><span class=c1># certbot renew --dry-run</span>
+</span></span><span class=line><span class=cl><span class=n>Saving</span> <span class=n>debug</span> <span class=nb>log</span> <span class=n>to</span> <span class=o>/</span><span class=k>var</span><span class=o>/</span><span class=nb>log</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>.</span><span class=n>log</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span><span class=line><span class=cl><span class=n>Processing</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>/</span><span class=n>renewal</span><span class=o>/</span><span class=n>blog</span><span class=o>.</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span><span class=o>.</span><span class=n>conf</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span><span class=line><span class=cl><span class=n>Simulating</span> <span class=n>renewal</span> <span class=n>of</span> <span class=n>an</span> <span class=n>existing</span> <span class=n>certificate</span> <span class=k>for</span> <span class=n>blog</span><span class=o>.</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span><span class=line><span class=cl><span class=n>Processing</span> <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>/</span><span class=n>renewal</span><span class=o>/</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span><span class=o>.</span><span class=n>conf</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span><span class=line><span class=cl><span class=n>Simulating</span> <span class=n>renewal</span> <span class=n>of</span> <span class=n>an</span> <span class=n>existing</span> <span class=n>certificate</span> <span class=k>for</span> <span class=n>bore</span><span class=o>.</span><span class=n>vip</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span><span class=line><span class=cl><span class=n>Congratulations</span><span class=p>,</span> <span class=n>all</span> <span class=n>simulated</span> <span class=n>renewals</span> <span class=n>succeeded</span><span class=p>:</span>
+</span></span><span class=line><span class=cl>  <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>/</span><span class=n>live</span><span class=o>/</span><span class=n>blog</span><span class=o>.</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span><span class=o>/</span><span class=n>fullchain</span><span class=o>.</span><span class=n>pem</span> <span class=p>(</span><span class=n>success</span><span class=p>)</span>
+</span></span><span class=line><span class=cl>  <span class=o>/</span><span class=n>etc</span><span class=o>/</span><span class=n>letsencrypt</span><span class=o>/</span><span class=n>live</span><span class=o>/</span><span class=n>bore</span><span class=o>.</span><span class=n>vip</span><span class=o>/</span><span class=n>fullchain</span><span class=o>.</span><span class=n>pem</span> <span class=p>(</span><span class=n>success</span><span class=p>)</span>
+</span></span><span class=line><span class=cl><span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span> <span class=o>-</span>
+</span></span></code></pre></td></tr></table></div></div><p>在无法确认你的 nginx 配置是否正确时，一定要运行模拟更新命令，确保certbot和服务器通讯正常。使用 <code>crontab -e</code> 的命令来启用自动任务，命令行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><p>添加配置：（每隔两个月凌晨2:30自动执行证书更新操作）后保存退出。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=m>30</span> <span class=m>2</span> * */2 * /usr/bin/certbot renew --quiet <span class=o>&amp;&amp;</span> /bin/systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><p>查看证书有效期的命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>openssl x509 -noout -dates -in /etc/letsencrypt/live/bore.vip/cert.pem
+</span></span></code></pre></td></tr></table></div></div><p>PS:如果失败，先申请阿里证书，再申请Let&rsquo;s Encrypt SSL证书，记得要添加 acme.sh 续签验证路由，才能申请Let&rsquo;s Encrypt SSL证书。</p><h4 id=debian10>Debian10</h4><ol><li>安装 Certbot</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo apt-get install letsencrypt
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>新建相应文件夹</li></ol><p>由于配置了反向代理，为了顺利申请证书，需要新建文件夹：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /data/wwwroot/bore.vip
+</span></span><span class=line><span class=cl>mkdir -p /data/wwwlogs
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li>配置Nginx http 80端口</li></ol><p>为了使下面申请证书时能访问http://bore.vip/.well-known/acme-challenge/…这个链接，首先配置好</p><p>Nginx 80端口，保证上述网址能顺利访问，从而顺利申请证书。所以在nginx配置的server节点下添加：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>  default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/demo.halo.run/<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>上述代码如果不行，试下下面的：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ /.well-known <span class=o>{</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>编辑<code>halo.conf</code></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  client_max_body_size 1024m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>    root /data/wwwroot/bore.vip/<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>重启 Nginx 生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><ol start=5><li>使用 webroot 自动生成证书</li></ol><p>Certbot 支持多种不同的「插件」来获取证书，这里选择使用 webroot 插件，它可以在不停止 Web 服务器的前提下自动生成证书，使用 &ndash;webroot 参数指定网站的根目录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot certonly --webroot -w /data/wwwroot/bore.vip -d bore.vip -m 455343442@qq.com --agree-tos
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>PS：用上面的命令，不要用下面的命令。</p></blockquote><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>letsencrypt certonly --webroot -w /data/wwwroot/bore.vip -d bore.vip -m 455343442@qq.com --agree-tos
+</span></span></code></pre></td></tr></table></div></div><p>这样，在 /var/www/hexo 目录下创建临时文件 .well-known/acme-challenge ，通过这个文件来证明对域名 iwyang.top 的控制权，然后 Let’s Encrypt 验证服务器发出 HTTP 请求，验证每个请求的域的 DNS 解析，验证成功即颁发证书。</p><p>生成的 pem 和 key 在 /etc/letsencrypt/live/ 目录下</p><ol start=6><li>配置Nginx</li></ol><p>编辑<code>halo.conf</code>，未开启443端口复用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=m>443</span> ssl http2<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:443 ssl http2<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip www.bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$host</span> !<span class=o>=</span> <span class=s1>&#39;bore.vip&#39;</span> <span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      rewrite ^/<span class=o>(</span>.*<span class=o>)</span>$ https://bore.vip/<span class=nv>$1</span> permanent<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  client_max_body_size 1024m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate /etc/letsencrypt/live/bore.vip/fullchain.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate_key /etc/letsencrypt/live/bore.vip/privkey.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_prefer_server_ciphers on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_timeout 10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_cache builtin:1000 shared:SSL:10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_buffer_size 1400<span class=p>;</span>
+</span></span><span class=line><span class=cl>  add_header Strict-Transport-Security max-age<span class=o>=</span>15768000<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling_verify on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log /data/wwwlogs/bore.vip_nginx.log combined<span class=p>;</span>
+</span></span><span class=line><span class=cl>  index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$ssl_protocol</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=o>)</span> <span class=o>{</span> <span class=k>return</span> <span class=m>301</span> https://<span class=nv>$host$request_uri</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 404 /404.html;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 502 /502.html;</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>gif<span class=p>|</span>jpg<span class=p>|</span>jpeg<span class=p>|</span>png<span class=p>|</span>bmp<span class=p>|</span>swf<span class=p>|</span>flv<span class=p>|</span>mp4<span class=p>|</span>ico<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 30d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>js<span class=p>|</span>css<span class=o>)</span>?$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 7d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ /<span class=o>(</span><span class=se>\.</span>user<span class=se>\.</span>ini<span class=p>|</span><span class=se>\.</span>ht<span class=p>|</span><span class=se>\.</span>git<span class=p>|</span><span class=se>\.</span>svn<span class=p>|</span><span class=se>\.</span>project<span class=p>|</span>LICENSE<span class=p>|</span>README<span class=se>\.</span>md<span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    deny all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>    root /data/wwwroot/bore.vip/<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果开启443端口复用：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen 80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen 127.0.0.1:443 ssl http2 proxy_protocol<span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:443 ssl http2<span class=p>;</span>
+</span></span><span class=line><span class=cl>  set_real_ip_from 127.0.0.1<span class=p>;</span>
+</span></span><span class=line><span class=cl>  real_ip_header proxy_protocol<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip www.bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$host</span> !<span class=o>=</span> <span class=s1>&#39;bore.vip&#39;</span> <span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>      rewrite ^/<span class=o>(</span>.*<span class=o>)</span>$ https://bore.vip/<span class=nv>$1</span> permanent<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span> 
+</span></span><span class=line><span class=cl>  client_max_body_size 1024m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate /etc/letsencrypt/live/bore.vip/fullchain.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_certificate_key /etc/letsencrypt/live/bore.vip/privkey.pem<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_prefer_server_ciphers on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_timeout 10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_session_cache builtin:1000 shared:SSL:10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_buffer_size 1400<span class=p>;</span>
+</span></span><span class=line><span class=cl>  add_header Strict-Transport-Security max-age<span class=o>=</span>15768000<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  ssl_stapling_verify on<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log /data/wwwlogs/bore.vip_nginx.log combined<span class=p>;</span>
+</span></span><span class=line><span class=cl>  index index.html index.htm index.php<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=k>if</span> <span class=o>(</span><span class=nv>$ssl_protocol</span> <span class=o>=</span> <span class=s2>&#34;&#34;</span><span class=o>)</span> <span class=o>{</span> <span class=k>return</span> <span class=m>301</span> https://<span class=nv>$host$request_uri</span><span class=p>;</span> <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 404 /404.html;</span>
+</span></span><span class=line><span class=cl>  <span class=c1>#error_page 502 /502.html;</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>gif<span class=p>|</span>jpg<span class=p>|</span>jpeg<span class=p>|</span>png<span class=p>|</span>bmp<span class=p>|</span>swf<span class=p>|</span>flv<span class=p>|</span>mp4<span class=p>|</span>ico<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 30d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ .*<span class=se>\.</span><span class=o>(</span>js<span class=p>|</span>css<span class=o>)</span>?$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires 7d<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~ /<span class=o>(</span><span class=se>\.</span>user<span class=se>\.</span>ini<span class=p>|</span><span class=se>\.</span>ht<span class=p>|</span><span class=se>\.</span>git<span class=p>|</span><span class=se>\.</span>svn<span class=p>|</span><span class=se>\.</span>project<span class=p>|</span>LICENSE<span class=p>|</span>README<span class=se>\.</span>md<span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    deny all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>    root /data/wwwroot/bore.vip/<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span> 
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>测试配置是否有问题：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>nginx -t
+</span></span></code></pre></td></tr></table></div></div><p>重启Nginx生效：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><ol start=7><li>自动续期</li></ol><p>Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。</p><p>先运行以下命令来测试证书的自动更新：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>certbot renew --dry-run
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>PS：用上面的命令，不要用下面的命令。</p></blockquote><p><code>letsencrypt renew --dry-run --agree-tos</code></p><p>如果一切正常，就可以编辑 crontab 定期运行以下命令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=m>30</span> <span class=m>2</span> * */2 * /usr/bin/certbot renew --quiet <span class=o>&amp;&amp;</span> /bin/systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><h2 id=halo更改评论模块>halo更改评论模块</h2><p>首先进入后台，依次点击：<code>系统</code>—<code>博客设置</code>—<code>评论设置</code>，更改<code>评论模块JS</code>。系统默认（halo 1.3.2）<code>评论模块JS</code>为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>//cdn.jsdelivr.net/npm/halo-comment@latest/dist/halo-comment.min.js
+</span></span></code></pre></td></tr></table></div></div><p>更改为<a class=link href=https://github.com/halo-dev/halo-comment-fly target=_blank rel=noopener>halo-comment-fly</a>评论模块JS：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>https://cdn.jsdelivr.net/gh/hshanx/halo-comment-fly@latest/dist/halo-comment.min.js
+</span></span></code></pre></td></tr></table></div></div><p>或者：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>https://cdn.jsdelivr.net/gh/hshanx/halo-comment-hshan@2.0.6/dist/halo-comment.min.js
+</span></span></code></pre></td></tr></table></div></div><p>更多<code>评论模块JS</code>，可以在<code>github</code>中搜索<a class=link href="https://github.com/search?q=halo+comment" target=_blank rel=noopener>halo comment</a>。</p><h2 id=定时删除halo日志>定时删除halo日志</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>crontab -e
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=m>0</span> <span class=m>0</span> * * * rm -rf /root/.halo/logs/*
+</span></span></code></pre></td></tr></table></div></div><p>意思是每天删除日志文件。</p><h2 id=更改时区>更改时区</h2><p>如果你不知道服务器当前时间，可以使用下面的命令，查看当前时间：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>date -R
+</span></span></code></pre></td></tr></table></div></div><p>修改当前时区为上海（为了避免日志发表时间出现错误）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>sudo timedatectl set-timezone Asia/Shanghai
+</span></span></code></pre></td></tr></table></div></div><p>再次不带任何选项参数调用timedatectl命令，打印系统当前设置的时区即可：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>timedatectl
+</span></span></code></pre></td></tr></table></div></div><h2 id=版本升级>版本升级</h2><blockquote><p>我们假设你存放运行包的路径为 ~/app，运行包的文件名为 halo.jar，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。</p></blockquote><ol><li>停止正在运行的服务</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>service halo stop
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>备份数据以及旧的运行包（重要）</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cp -r ~/.halo ~/.halo.archive
+</span></span><span class=line><span class=cl>mv ~/app/halo.jar ~/app/halo.jar.archive
+</span></span></code></pre></td></tr></table></div></div><blockquote><p>需要注意的是，.halo.archive 和 halo.jar.archive 文件名不一定要根据此文档命名，这里仅仅是个示例。</p></blockquote><ol start=3><li>清空 leveldb 缓存（如果有使用 leveldb 作为缓存策略）</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>rm -rf ~/.halo/.leveldb
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>下载最新版本的运行包</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ~/app <span class=o>&amp;&amp;</span> wget https://dl.halo.run/release/halo-1.5.3.jar -O halo.jar
+</span></span></code></pre></td></tr></table></div></div><ol start=5><li>启动测试</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>java -jar halo.jar
+</span></span></code></pre></td></tr></table></div></div><p><joe-message type=info content="如测试启动正常，请继续下一步。使用 CTRL+C 停止运行测试进程。"></joe-message></p><ol start=6><li>重启服务</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>service halo start
+</span></span></code></pre></td></tr></table></div></div><h2 id=备份迁移>备份迁移</h2><p>目前 Halo 在后台的小工具中提供了数据导出的功能，此功能的作用为导出数据库的所有数据，格式为 JSON。通常可以作为切换数据库类型的时候使用。需要注意的是，此备份仅仅为备份数据，不包含其他诸如主题、附件等资料。如下图：</p><h3 id=整站备份>整站备份</h3><p>通过 《写在前面》 的名词解释部分我们可以知道，Halo 的所有数据都是存放在当前用户目录的工作目录（.halo）下的（使用 MySQL 数据库除外，你还需要导出 MySQL 数据）。所以我们备份整站的数据仅需备份这个目录即可，不管你使用何种方式。不过，为了操作方便，我们也在后台的小工具中提供了备份整站数据的功能，和上面所说的数据备份一致，点击备份按钮即可打包工作目录文件夹。如下图：</p><h3 id=导入数据>导入数据</h3><p>此功能为导入上面所说的数据备份产生的数据文件（JSON 格式），并非整站备份的工作目录文件。需要注意的是，此功能仅在站点初始化的时候支持。如下图：</p><h3 id=整站迁移>整站迁移</h3><p>此操作通常用于迁移服务器，基于上面 整站备份 所说，Halo 的所有数据都是存放于当前用户目录的工作目录（.halo）下的。当然，这仅限于使用 H2 Database 的情况下，如果你使用的 MySQL，那么还需要手动导出 MySQL 数据。所以，我们迁移服务器仅仅需要需要将工作目录的备份文件上传到新服务器的用户目录下解压，然后按照 《安装指南》 重新安装即可。MySQL 用户还需要做的就是手动导出 MySQL 数据，并在新服务器上导入。</p><h2 id=常见问题>常见问题</h2><p>1.忘记了管理员密码，如何重置？</p><p>目前在登录页面含有隐藏的 找回密码 链接，点击即可进入找回密码页面，具体可参考以下步骤：</p><ol><li>在登录页面按下键盘快捷键（Windows / Linux：Shift + Alt + H，macOS：Shift + Command + H）即可显示 找回密码 链接。</li><li>按照表单提示输入用户名和邮箱，点击 获取 按钮即可发送带有验证码的邮件。</li><li>按照表单填写验证码和新密码，点击重置密码即可。</li></ol><blockquote><p>需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 Got reset password code 关键字即可获取到验证码。</p></blockquote><h2 id=附修改-nginx-配置文件>附：修改 Nginx 配置文件</h2><ol><li>使用你熟悉的工具打开配置文件，此教程使用 vi。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/halo.conf
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li>添加 upstream 配置
+在 <code>server</code> 的同级节点添加如下配置：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>upstream halo <span class=o>{</span>
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li>在 server 节点添加如下配置</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>  proxy_set_header HOST <span class=nv>$host</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  proxy_set_header X-Forwarded-Proto <span class=nv>$scheme</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  proxy_set_header X-Real-IP <span class=nv>$remote_addr</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  proxy_set_header X-Forwarded-For <span class=nv>$proxy_add_x_forwarded_for</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li>修改 location ~ .*.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ 节点</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ .*<span class=se>\.</span><span class=o>(</span>gif<span class=p>|</span>jpg<span class=p>|</span>jpeg<span class=p>|</span>png<span class=p>|</span>bmp<span class=p>|</span>swf<span class=p>|</span>flv<span class=p>|</span>mp4<span class=p>|</span>ico<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>  proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  expires 30d<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=5><li>修改 location ~ .*.(js|css)?$ 节点</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ .*<span class=se>\.</span><span class=o>(</span>js<span class=p>|</span>css<span class=o>)</span>?$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>  proxy_pass http://halo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  expires 7d<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果不按照第 4，5 步操作，请求一些图片或者样式文件不会经过 Halo，所以请不要忽略此配置。</p><p><del>6. 添加 acme.sh 续签验证路由</del></p><p><del>OneinStack 使用的 acme.sh 管理证书，如果你在创建 vhost 的时候选择了使用 Let&rsquo;s Encrypt 申请证书，那么 OneinStack 会在系统内添加一个定时任务去自动续签证书，acme.sh 默认验证站点所有权的方式为在站点根目录生成一个文件（.well-known）来做验证，由于配置了反向代理，所以在验证的时候是无法直接访问到站点目录下的 .well-known 文件夹下的验证文件的。需要添加如下配置：</del></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ^~ /.well-known/acme-challenge/ <span class=o>{</span>
+</span></span><span class=line><span class=cl>  default_type <span class=s2>&#34;text/plain&#34;</span><span class=p>;</span>
+</span></span><span class=line><span class=cl>  allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /data/wwwroot/demo.halo.run/<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>如果上述代码失效，可以试下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>location ~ /.well-known <span class=o>{</span>
+</span></span><span class=line><span class=cl>    allow all<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>至此，配置修改完毕，保存即可。最终你的配置文件可能如下面配置一样：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>upstream halo {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server 127.0.0.1:8090;</span><span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=l>server {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen 80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:80;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen 443 ssl http2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>listen [::]:443 ssl http2;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_certificate /usr/local/nginx/conf/ssl/demo.halo.run.crt;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_certificate_key /usr/local/nginx/conf/ssl/demo.halo.run.key;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_protocols TLSv1 TLSv1.1 TLSv1.2 TLSv1.3;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_ciphers TLS13-AES-256-GCM-SHA384:TLS13-CHACHA20-POLY1305-SHA256:TLS13-AES-128-GCM-SHA256:TLS13-AES-128-CCM-8-SHA256:TLS13-AES-128-CCM-SHA256:EECDH+CHACHA20:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_prefer_server_ciphers on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_session_timeout 10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_session_cache builtin:1000 shared:SSL:10m;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_buffer_size 1400;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>add_header Strict-Transport-Security max-age=15768000;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_stapling on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>ssl_stapling_verify on;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>server_name demo.halo.run;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>access_log /data/wwwlogs/demo.halo.run_nginx.log combined;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>index index.html index.htm index.php;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>root /data/wwwroot/demo.halo.run;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>if ($ssl_protocol = &#34;&#34;) { return 301 https://$host$request_uri; }</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>include /usr/local/nginx/conf/rewrite/none.conf;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#error_page 404 /404.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c>#error_page 502 /502.html;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ .*\.(gif|jpg|jpeg|png|bmp|swf|flv|mp4|ico)$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires 30d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ .*\.(js|css)?$ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>expires 7d;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>access_log off;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ~ /(\.user\.ini|\.ht|\.git|\.svn|\.project|LICENSE|README\.md) {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>deny all;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location / {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header HOST $host;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Forwarded-Proto $scheme;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Real-IP $remote_addr;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>proxy_pass http://halo;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=l>location ^~ /.well-known/acme-challenge/ {</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>default_type &#34;text/plain&#34;;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>allow all;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=l>root /data/wwwroot/demo.halo.run/;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span>}<span class=w>
+</span></span></span><span class=line><span class=cl>}<span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=https-www跳转>https www跳转</h2><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-diff data-lang=diff><span class=line><span class=cl>upstream halo {
+</span></span><span class=line><span class=cl>  server 127.0.0.1:8090;
+</span></span><span class=line><span class=cl>}
+</span></span><span class=line><span class=cl>server {
+</span></span><span class=line><span class=cl>  listen 80;
+</span></span><span class=line><span class=cl>  listen [::]:80;
+</span></span><span class=line><span class=cl>  listen 443 ssl http2;
+</span></span><span class=line><span class=cl>  listen [::]:443 ssl http2;
+</span></span><span class=line><span class=cl>  server_name bore.vip www.bore.vip;
+</span></span><span class=line><span class=cl><span class=gi>+  if ($host != &#39;bore.vip&#39; ) {
+</span></span></span><span class=line><span class=cl><span class=gi>+      rewrite ^/(.*)$ https://bore.vip/$1 permanent;
+</span></span></span><span class=line><span class=cl><span class=gi>+  }
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://docs.halo.run/getting-started/install/linux target=_blank rel=noopener>1.在 Linux 服务器部署 Halo</a></li><li><a class=link href=https://halo.run/archives/install-reverse-proxy.html target=_blank rel=noopener>2.配置域名访问</a></li><li><a class=link href=https://juejin.im/entry/5b59c3f26fb9a04fda4e2238 target=_blank rel=noopener>3.CentOS 7 Nginx配置Let&rsquo;s Encrypt SSL证书</a></li><li><a class=link href=https://www.jianshu.com/p/9fc41ea941aa target=_blank rel=noopener>4.windows 10 配置Java 环境变量</a></li><li><a class=link href=https://www.myfreax.com/how-to-set-or-change-timezone-on-centos-8/ target=_blank rel=noopener>5.如何设置或更改系统时区在CentOS 8</a></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/>服务器</a>
+<a href=/tags/halo/>Halo</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e5%9c%a8Centos%e6%9c%8d%e5%8a%a1%e5%99%a8%e9%83%a8%e7%bd%b2Halo.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/2df9228b/><div class=article-details><h2 class=article-title>Halo-theme-joe2.0 使用文档&&样式指南</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/3a4bd17/><div class=article-details><h2 class=article-title>halo定时备份的方法</h2></div></a></article><article><a href=/archives/99e0f84a/><div class=article-details><h2 class=article-title>Hugo部署到centos服务器</h2></div></a></article><article><a href=/archives/d693fd5d/><div class=article-details><h2 class=article-title>hexo部署到centos服务器</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>

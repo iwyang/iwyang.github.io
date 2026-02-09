@@ -1,0 +1,296 @@
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="服务器环境：Centos 8 x64\n本地环境：Win10 x64\n本地操作 安装 Git 和 Node.js 本地需要安装 Git 和 Node.js，安装过程略。\n安装完git后还要配置环境变量： 右键我的电脑 –> 属性，然后点击高级系统设置 –> 环境变量 –> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><title>hexo部署到centos服务器</title><link rel=canonical href=https://bore.vip/archives/d693fd5d/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="hexo部署到centos服务器"><meta property='og:description' content="服务器环境：Centos 8 x64\n本地环境：Win10 x64\n本地操作 安装 Git 和 Node.js 本地需要安装 Git 和 Node.js，安装过程略。\n安装完git后还要配置环境变量： 右键我的电脑 –> 属性，然后点击高级系统设置 –> 环境变量 –> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><meta property='og:url' content='https://bore.vip/archives/d693fd5d/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hexo'><meta property='article:tag' content='服务器'><meta property='article:published_time' content='2020-04-25T10:37:25+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="hexo部署到centos服务器"><meta name=twitter:description content="服务器环境：Centos 8 x64\n本地环境：Win10 x64\n本地操作 安装 Git 和 Node.js 本地需要安装 Git 和 Node.js，安装过程略。\n安装完git后还要配置环境变量： 右键我的电脑 –> 属性，然后点击高级系统设置 –> 环境变量 –> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
+</a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
+<span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
+<span>关于</span></a></li><li><a href=/archives/><svg class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><rect x="3" y="4" width="18" height="4" rx="2"/><path d="M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8"/><line x1="10" y1="12" x2="14" y2="12"/></svg>
+<span>归档</span></a></li><li><a href=/search/><svg class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="10" cy="10" r="7"/><line x1="21" y1="21" x2="15" y2="15"/></svg>
+<span>搜索</span></a></li><li><a href=/link/><svg class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M10 14a3.5 3.5.0 005 0l4-4a3.5 3.5.0 00-5-5l-.5.5"/><path d="M14 10a3.5 3.5.0 00-5 0l-4 4a3.5 3.5.0 005 5l.5-.5"/></svg>
+<span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
+<span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#本地操作>本地操作</a><ol><li><a href=#安装-git-和-nodejs>安装 Git 和 Node.js</a></li><li><a href=#配置ssh-公钥>配置SSH 公钥</a></li><li><a href=#初始化-hexo>初始化 Hexo</a></li><li><a href=#修改-deploy-参数>修改 deploy 参数</a><ol><li><a href=#提交到github>提交到github</a></li><li><a href=#githubcoding双线部署>github、coding双线部署</a></li><li><a href=#githubcoding服务器三线线部署>github、coding、服务器三线线部署</a></li></ol></li></ol></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#配置用户>配置用户</a></li><li><a href=#上传-ssh-公钥>上传 SSH 公钥</a></li><li><a href=#用户授权>用户授权</a></li><li><a href=#配置钩子>配置钩子</a></li><li><a href=#配置-nginx>配置 nginx</a></li></ol></li><li><a href=#发布文章>发布文章</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/d693fd5d/>hexo部署到centos服务器</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<time class=article-time--published datetime=2020-04-25T10:37:25Z>2020年4月25日星期六</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<time class=article-time--reading>阅读时长: 5 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#本地操作>本地操作</a><ol><li><a href=#安装-git-和-nodejs>安装 Git 和 Node.js</a></li><li><a href=#配置ssh-公钥>配置SSH 公钥</a></li><li><a href=#初始化-hexo>初始化 Hexo</a></li><li><a href=#修改-deploy-参数>修改 deploy 参数</a><ol><li><a href=#提交到github>提交到github</a></li><li><a href=#githubcoding双线部署>github、coding双线部署</a></li><li><a href=#githubcoding服务器三线线部署>github、coding、服务器三线线部署</a></li></ol></li></ol></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#配置用户>配置用户</a></li><li><a href=#上传-ssh-公钥>上传 SSH 公钥</a></li><li><a href=#用户授权>用户授权</a></li><li><a href=#配置钩子>配置钩子</a></li><li><a href=#配置-nginx>配置 nginx</a></li></ol></li><li><a href=#发布文章>发布文章</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>服务器环境：Centos 8 x64</p><p>本地环境：Win10 x64</p><h2 id=本地操作>本地操作</h2><h3 id=安装-git-和-nodejs>安装 Git 和 Node.js</h3><p>本地需要安装 <a class=link href=https://git-scm.com/ target=_blank rel=noopener>Git</a> 和 <a class=link href=https://nodejs.org/en/ target=_blank rel=noopener>Node.js</a>，安装过程略。</p><p>安装完git后还要配置环境变量：
+右键我的电脑 –> 属性，然后点击高级系统设置 –> 环境变量 –> 选择用户变量或系统变量中的Path,点击编辑；找到Git安装目录,添加以下地址:</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\b</span>in
+</span></span><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\m</span>ingw64<span class=se>\l</span>ibexec<span class=se>\g</span>it-core
+</span></span><span class=line><span class=cl>D:<span class=se>\P</span>rogram Files<span class=se>\G</span>it<span class=se>\m</span>ingw64<span class=se>\b</span>in
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置ssh-公钥>配置SSH 公钥</h3><p>Windows 上安装 <a class=link href=https://git-for-windows.github.io/ target=_blank rel=noopener>Git for Windows</a> 之后在开始菜单里打开 Git Bash 输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git config --global user.name <span class=s2>&#34;你的用户名&#34;</span>
+</span></span><span class=line><span class=cl>git config --global user.email <span class=s2>&#34;你的电子邮箱&#34;</span>
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ~
+</span></span><span class=line><span class=cl>mkdir .ssh
+</span></span><span class=line><span class=cl><span class=nb>cd</span> .ssh
+</span></span><span class=line><span class=cl>ssh-keygen -t rsa
+</span></span></code></pre></td></tr></table></div></div><p>在系统当前用户文件夹下生成了私钥 <code>id_rsa</code> 和公钥 <code>id_rsa.pub</code>。</p><h3 id=初始化-hexo>初始化 Hexo</h3><p>在电脑任意目录新建一个文件夹 <code>hexo</code>，进入文件夹，在空白处点击右键选择 Git Bash，输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install -g hexo-cli
+</span></span><span class=line><span class=cl>hexo init
+</span></span><span class=line><span class=cl>npm install
+</span></span><span class=line><span class=cl>hexo d -fg
+</span></span><span class=line><span class=cl>hexo serve
+</span></span></code></pre></td></tr></table></div></div><p>这样便在本地初始化了 Hexo 文件夹，然后输入：
+<code>hexo new post "第一篇文章"</code>
+即可新建一篇文章，用文本编辑器打开 <code>hexo/source/_post/第一篇文章.md</code> 可以快速开始写作。其余使用方法和配置按照 Hexo 官网操作即可。推荐编辑器**<a class=link href=https://github.com/zhuzhuyule/HexoEditor target=_blank rel=noopener>hexo-editor</a>**</p><p>2020/4/27更新: hexo-editor速度太慢，改用<a class=link href=https://www.typora.io target=_blank rel=noopener>Typora</a></p><h3 id=修改-deploy-参数>修改 deploy 参数</h3><p>打开位于 <code>hexo</code> 文件夹下的 <code>_config.yml</code>，修改 deploy 参数：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>deploy:
+</span></span><span class=line><span class=cl> type: git
+</span></span><span class=line><span class=cl> repo: git@blog.yizhilee.com:hexo.git
+</span></span><span class=line><span class=cl> branch: master
+</span></span></code></pre></td></tr></table></div></div><h4 id=提交到github>提交到github</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>deploy:
+</span></span><span class=line><span class=cl>  type: git
+</span></span><span class=line><span class=cl>  repo:
+</span></span><span class=line><span class=cl>    coding: git@e.coding.net:iwyang/iwyang.coding.me.git
+</span></span><span class=line><span class=cl>  branch: master
+</span></span></code></pre></td></tr></table></div></div><h4 id=githubcoding双线部署>github、coding双线部署</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>deploy:
+</span></span><span class=line><span class=cl>  type: git
+</span></span><span class=line><span class=cl>  repo:
+</span></span><span class=line><span class=cl>    github: git@github.com:iwyang/iwyang.github.io.git
+</span></span><span class=line><span class=cl>    coding: git@e.coding.net:iwyang/iwyang.coding.me.git
+</span></span><span class=line><span class=cl>  branch: master
+</span></span></code></pre></td></tr></table></div></div><h4 id=githubcoding服务器三线线部署>github、coding、服务器三线线部署</h4><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>deploy:
+</span></span><span class=line><span class=cl>  type: git
+</span></span><span class=line><span class=cl>  repo:
+</span></span><span class=line><span class=cl>    github: git@github.com:iwyang/iwyang.github.io.git
+</span></span><span class=line><span class=cl>    coding: git@e.coding.net:iwyang/iwyang.coding.me.git
+</span></span><span class=line><span class=cl>    服务器: git@45.76.173.167:hexo.git
+</span></span><span class=line><span class=cl>  branch: master
+</span></span></code></pre></td></tr></table></div></div><h2 id=服务器操作>服务器操作</h2><p>首先，在 服务器 上安装 Git 和 nginx。</p><div class="note primary">2021.5.27 注意最好不要执行下面第一步升级操作，不然升级到最后一步会卡死，最后导致后面无法启动nginx。</div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>yum update -y
+</span></span><span class=line><span class=cl>yum install git-core nginx -y
+</span></span></code></pre></td></tr></table></div></div><p>如果是centos 7，先要安装安装epel：<code>yum install epel-release</code>，才能安装nginx。</p><p>Nginx 安装完成后需要手动启动，启动Nginx并设置开机自启：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl start nginx
+</span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> nginx
+</span></span></code></pre></td></tr></table></div></div><p>如果开启了防火墙，记得添加 HTTP 和 HTTPS 端口到防火墙允许列表。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>firewall-cmd --permanent --zone<span class=o>=</span>public --add-service<span class=o>=</span>http 
+</span></span><span class=line><span class=cl>firewall-cmd --permanent --zone<span class=o>=</span>public --add-service<span class=o>=</span>https
+</span></span><span class=line><span class=cl>firewall-cmd --reload
+</span></span><span class=line><span class=cl>systemctl restart firewalld.service
+</span></span></code></pre></td></tr></table></div></div><p>或者直接关闭防火墙：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl stop firewalld.service
+</span></span><span class=line><span class=cl>systemctl disable firewalld.service
+</span></span></code></pre></td></tr></table></div></div><p>如果提示"<a class=link href=https://www.cnblogs.com/zkwarrior/p/14361509.html target=_blank rel=noopener>Failed to get properties: Access denied</a>"，执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>kill</span> -TERM <span class=m>1</span>
+</span></span></code></pre></td></tr></table></div></div><p>配置完成后，访问使用浏览器服务器 ip ，如果能看到以下界面，表示运行成功。</p><h3 id=配置用户>配置用户</h3><p>然后新增一个名为 git 的用户，过程中需要设置登录密码，输入两次密码即可。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>adduser git
+</span></span><span class=line><span class=cl>passwd git
+</span></span></code></pre></td></tr></table></div></div><p>给用户 <code>git</code> 赋予无需密码操作的权限（否则到后面 Hexo 部署的时候会提示无权限）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod <span class=m>740</span> /etc/sudoers
+</span></span><span class=line><span class=cl>vi /etc/sudoers
+</span></span></code></pre></td></tr></table></div></div><p>在图示位置<code>root ALL=(ALL:ALL) ALL</code>的下方添加</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git <span class=nv>ALL</span><span class=o>=(</span>ALL:ALL<span class=o>)</span> ALL
+</span></span></code></pre></td></tr></table></div></div><p>然后保存。然后更改读写权限。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod <span class=m>440</span> /etc/sudoers
+</span></span></code></pre></td></tr></table></div></div><h3 id=上传-ssh-公钥>上传 SSH 公钥</h3><p>接下来要把本地的 ssh 公钥上传到 服务器 。执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>su git
+</span></span><span class=line><span class=cl><span class=nb>cd</span> ~
+</span></span><span class=line><span class=cl>mkdir .ssh <span class=o>&amp;&amp;</span> <span class=nb>cd</span> .ssh
+</span></span><span class=line><span class=cl>touch authorized_keys
+</span></span><span class=line><span class=cl>vi authorized_keys
+</span></span></code></pre></td></tr></table></div></div><p>现在要打开本地的 <code>Git Bash</code>，输入<code>vi ~/.ssh/id_rsa.pub</code>，把里面的内容复制下来粘贴到上面打开的文件里。</p><p>接着把ssh目录设置为只有属主有读、写、执行权限。代码如下：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod <span class=m>600</span> ~/.ssh/authorized_keys
+</span></span><span class=line><span class=cl>chmod <span class=m>700</span> ~/.ssh
+</span></span></code></pre></td></tr></table></div></div><p>然后建立放部署的网页的 Git 库。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> ~
+</span></span><span class=line><span class=cl>mkdir hexo.git <span class=o>&amp;&amp;</span> <span class=nb>cd</span> hexo.git
+</span></span><span class=line><span class=cl>git init --bare
+</span></span></code></pre></td></tr></table></div></div><p>测试一下，如果在 Git Bash 中输入 <code>ssh git@服务器的IP地址</code> 能够远程登录的话，则表示设置成功了。如果你的服务器端口不是22。参考：<a class=link href=https://bore.vip/archives/45284.html#%E4%B8%8A%E4%BC%A0-SSH-%E5%85%AC%E9%92%A5 target=_blank rel=noopener>上传SSH公钥</a>。</p><hr><p>ps: 如果配置完成还是提示要输入密码，可以使用 <code>ssh-copy-id</code>，在本地打开 Git Bash 输入：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>ssh-copy-id -i ~/.ssh/id_rsa.pub git@服务器ip地址
+</span></span></code></pre></td></tr></table></div></div><hr><p>登录成功会提示：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-powershell data-lang=powershell><span class=line><span class=cl><span class=p>$</span> <span class=n>ssh</span> <span class=n>git</span><span class=nv>@104</span><span class=p>.</span><span class=py>224</span><span class=p>.</span><span class=py>191</span><span class=p>.</span><span class=py>88</span>
+</span></span><span class=line><span class=cl><span class=n>Last</span> <span class=n>login</span><span class=err>:</span> <span class=n>Sat</span> <span class=n>Feb</span> <span class=mf>26</span> <span class=mf>02</span><span class=err>:</span><span class=mf>33</span><span class=err>:</span><span class=mf>30</span> <span class=mf>2022</span> <span class=n>from</span> <span class=mf>171.81</span><span class=p>.</span><span class=py>158</span><span class=p>.</span><span class=py>144</span>
+</span></span><span class=line><span class=cl><span class=p>[</span><span class=n>git</span><span class=nv>@special</span><span class=n>-beep</span><span class=p>-</span><span class=mf>1</span> <span class=p>~]$</span>
+</span></span></code></pre></td></tr></table></div></div><h3 id=用户授权>用户授权</h3><p>接下来要给用户 git 授予操作 nginx 放网页的地方的权限：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>su
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>mkdir -p /var/www/hexo
+</span></span><span class=line><span class=cl>chown git:git -R /var/www/hexo
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置钩子>配置钩子</h3><p>现在就要向 Git Hooks 操作，配置好钩子：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>su git
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /home/git/hexo.git/hooks
+</span></span><span class=line><span class=cl>vi post-receive
+</span></span></code></pre></td></tr></table></div></div><p>输入内容并保存：（里面的路径看着换吧，上面的命令没改的话也不用换）</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl><span class=nv>GIT_REPO</span><span class=o>=</span>/home/git/hexo.git
+</span></span><span class=line><span class=cl><span class=nv>TMP_GIT_CLONE</span><span class=o>=</span>/tmp/hexo
+</span></span><span class=line><span class=cl><span class=nv>PUBLIC_WWW</span><span class=o>=</span>/var/www/hexo
+</span></span><span class=line><span class=cl>rm -rf <span class=si>${</span><span class=nv>TMP_GIT_CLONE</span><span class=si>}</span>
+</span></span><span class=line><span class=cl>git clone <span class=nv>$GIT_REPO</span> <span class=nv>$TMP_GIT_CLONE</span>
+</span></span><span class=line><span class=cl>rm -rf <span class=si>${</span><span class=nv>PUBLIC_WWW</span><span class=si>}</span>/*
+</span></span><span class=line><span class=cl>cp -rf <span class=si>${</span><span class=nv>TMP_GIT_CLONE</span><span class=si>}</span>/* <span class=si>${</span><span class=nv>PUBLIC_WWW</span><span class=si>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>赋予可执行权限：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x post-receive
+</span></span></code></pre></td></tr></table></div></div><h3 id=配置-nginx>配置 nginx</h3><p>然后是配置 nginx。执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>su
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/nginx/conf.d/hexo.conf
+</span></span></code></pre></td></tr></table></div></div><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>  listen  <span class=m>80</span> <span class=p>;</span>
+</span></span><span class=line><span class=cl>  listen <span class=o>[</span>::<span class=o>]</span>:80<span class=p>;</span>
+</span></span><span class=line><span class=cl>  root /var/www/hexo<span class=p>;</span>
+</span></span><span class=line><span class=cl>  server_name bore.vip www.bore.vip<span class=p>;</span>
+</span></span><span class=line><span class=cl>  access_log  /var/log/nginx/hexo_access.log<span class=p>;</span>
+</span></span><span class=line><span class=cl>  error_log   /var/log/nginx/hexo_error.log<span class=p>;</span>
+</span></span><span class=line><span class=cl>  error_page <span class=nv>404</span> <span class=o>=</span>  /404.html<span class=p>;</span>
+</span></span><span class=line><span class=cl>  location ~* ^.+<span class=se>\.</span><span class=o>(</span>ico<span class=p>|</span>gif<span class=p>|</span>jpg<span class=p>|</span>jpeg<span class=p>|</span>png<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    root /var/www/hexo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log   off<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires      1d<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location ~* ^.+<span class=se>\.</span><span class=o>(</span>css<span class=p>|</span>js<span class=p>|</span>txt<span class=p>|</span>xml<span class=p>|</span>swf<span class=p>|</span>wav<span class=o>)</span>$ <span class=o>{</span>
+</span></span><span class=line><span class=cl>    root /var/www/hexo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log   off<span class=p>;</span>
+</span></span><span class=line><span class=cl>    expires      10m<span class=p>;</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location / <span class=o>{</span>
+</span></span><span class=line><span class=cl>    root /var/www/hexo<span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>(</span>-f <span class=nv>$request_filename</span><span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    rewrite ^/<span class=o>(</span>.*<span class=o>)</span>$  /<span class=nv>$1</span> break<span class=p>;</span>
+</span></span><span class=line><span class=cl>    <span class=o>}</span>
+</span></span><span class=line><span class=cl>  <span class=o>}</span>
+</span></span><span class=line><span class=cl>  location /nginx_status <span class=o>{</span>
+</span></span><span class=line><span class=cl>    stub_status on<span class=p>;</span>
+</span></span><span class=line><span class=cl>    access_log off<span class=p>;</span>
+</span></span><span class=line><span class=cl> <span class=o>}</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><p>因为放中文进去会乱码所以就不在里面注释了。代码里面配置了默认的根目录，绑定了域名，并且自定义了 404 页面的路径。
+最后就重启 nginx 服务器：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl restart nginx
+</span></span></code></pre></td></tr></table></div></div><hr><p>如果上传网页后，Nginx 出现 403 Forbidden，执行：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/selinux/config
+</span></span></code></pre></td></tr></table></div></div><p>将SELINUX=enforcing 修改为 SELINUX=disabled 状态。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nv>SELINUX</span><span class=o>=</span>disabled
+</span></span></code></pre></td></tr></table></div></div><p>重启生效，reboot。</p><hr><p>ps: 最好做一个301跳转，把bore.vip和<code>www.bore.vip</code>合并，并把之前的域名也一并合并. 有两种实现方法,第一种方法是判断nginx核心变量host(老版本是http_host)：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>server <span class=o>{</span>
+</span></span><span class=line><span class=cl>server_name bore.vip www.bore.vip <span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> <span class=o>(</span><span class=nv>$host</span> !<span class=o>=</span> <span class=s1>&#39;bore.vip&#39;</span> <span class=o>)</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>rewrite ^/<span class=o>(</span>.*<span class=o>)</span>$ http://bore.vip/<span class=nv>$1</span> permanent<span class=p>;</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>...
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span></code></pre></td></tr></table></div></div><h2 id=发布文章>发布文章</h2><p>在本地编辑好文章之后使用 <code>hexo g -d</code> ，如果hexo d后， ERROR Deployer not found: git，执行</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>npm install -- save hexo-deployer-git
+</span></span></code></pre></td></tr></table></div></div><h2 id=参考链接>参考链接</h2><ul><li><p><a class=link href=https://tiktoking.github.io/2016/01/26/hexo/# target=_blank rel=noopener>1.在服务器上搭建hexo博客，利用git更新</a></p></li><li><p><a class=link href=https://eliyar.biz/how_to_build_hexo_blog/ target=_blank rel=noopener>2.从 0 开始搭建 hexo 博客</a></p></li><li><p><a class=link href=https://segmentfault.com/a/1190000012907499 target=_blank rel=noopener>3.基于CentOS搭建Hexo博客</a></p></li><li><p><a class=link href=https://blog.csdn.net/qq_35843543/article/details/81561240 target=_blank rel=noopener>4.Nginx出现403 forbidden</a></p></li></ul></section><footer class=article-footer><section class=article-tags><a href=/tags/hexo/>Hexo</a>
+<a href=/tags/%E6%9C%8D%E5%8A%A1%E5%99%A8/>服务器</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/hexo%e9%83%a8%e7%bd%b2%e5%88%b0centos%e6%9c%8d%e5%8a%a1%e5%99%a8.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/d5e37958/><div class=article-details><h2 class=article-title>Memos部署记录</h2></div></a></article><article><a href=/archives/9a366c6/><div class=article-details><h2 class=article-title>利用企业微信实现twikoo新消息提醒&&数据导出等</h2></div></a></article><article><a href=/archives/5b629e16/><div class=article-details><h2 class=article-title>hexo butterfly主题配置与使用</h2></div></a></article><article><a href=/archives/119bcfe3/><div class=article-details><h2 class=article-title>在Centos服务器部署Halo</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+2020 -
+2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
+    import gallery from '\/ts\/gallery.js';
+
+    const articleContent = document.querySelector('.article-content');
+    const shouldLoad = articleContent && (articleContent.querySelectorAll('figure').length > 0 || articleContent.querySelectorAll('img.gallery-image').length > 0);
+    
+    if (shouldLoad) {
+        gallery(articleContent);
+
+        const PhotoSwipeLightbox = (await import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe-lightbox.esm.min.js")).default;
+        const styleHref = "https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.css";
+
+        const styleTag = document.createElement('link');
+        styleTag.rel = 'stylesheet';
+        styleTag.href = styleHref;
+        document.head.appendChild(styleTag);
+
+        const lightbox = new PhotoSwipeLightbox({
+            gallerySelector: '.article-content',
+            childSelector: 'figure a.image-link',
+            pswpModule: () => import("https:\/\/cdn.jsdelivr.net\/npm\/photoswipe@5.4.4\/dist\/photoswipe.esm.min.js")
+        });
+        lightbox.init();
+    }
+</script></main></div><script type=text/javascript src=/ts/main.acaf849f2b273f6a8368a58b001f336738d0c948d92e79b116467d0c7515f932.js defer></script><script>(function(){const e=document.createElement("link");e.href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap",e.type="text/css",e.rel="stylesheet",document.head.appendChild(e)})()</script></body></html>
