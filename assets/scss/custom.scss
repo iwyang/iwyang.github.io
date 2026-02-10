@@ -1,10 +1,23 @@
 /* --- 说说列表页通用样式 --- */
+
+/* 1. 列表容器：改为 Flex 布局 */
 .shuoshuo-list {
-    /* 手机端默认：使用默认块级布局 */
-    display: block; 
+    display: flex;         
+    gap: 20px;             /* 左右列之间的间距 */
+    align-items: flex-start; /* 顶部对齐 */
     box-sizing: border-box;
 }
 
+/* 2. 瀑布流列样式 (HTML中新增的 class) */
+.waterfall-column {
+    display: flex;
+    flex-direction: column; /* 列内部垂直排列 */
+    gap: 20px;              /* 卡片上下间距 */
+    flex: 1;                /* 左右平分宽度 */
+    min-width: 0;           /* 防止内容撑爆 */
+}
+
+/* 3. 卡片样式 */
 .shuoshuo-card {
     background: var(--card-background);
     padding: 25px 30px;
@@ -15,18 +28,10 @@
     /* 防止长文本溢出 */
     overflow-wrap: break-word;
 
-    /* --- 瀑布流核心设置 --- */
-    /* 关键：防止卡片在两列之间被切断 */
-    break-inside: avoid; 
-    
-    /* 关键：设置为内联块级，配合 column 布局使用 */
-    display: inline-block; 
+    /* 必须占满列宽 */
     width: 100%;
     
-    /* 【间距设置】统一为 20px，保持视觉一致 */
-    margin-bottom: 20px;
-    
-    /* --- 新增：悬停交互效果 --- */
+    /* 交互动画 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
@@ -36,28 +41,48 @@
     box-shadow: var(--shadow-l2);
 }
 
-/* --- 电脑端 (常规屏) 开启“瀑布流”双栏 --- */
-@media (min-width: 1024px) {
+/* --- 手机端适配 (宽度 < 768px) --- */
+/* 在手机上取消 Flex 分栏，恢复为单列堆叠 */
+@media (max-width: 768px) {
     .shuoshuo-list {
-        column-count: 2;   
-        column-gap: 20px; /* 列间距 20px */
+        display: block; 
     }
+    .waterfall-column {
+        display: contents; /* 关键：取消列的束缚，让内容自然顺序显示 */
+    }
+    .shuoshuo-card {
+        margin-bottom: 20px; 
+    }
+    
+    /* 调整手机端内边距 */
+    .shuoshuo-card { padding: 20px; }
+    .shuoshuo-content { font-size: 1.5rem; }
 }
 
-/* --- 新增：超大屏幕 (2K+) 开启三栏 --- */
-@media (min-width: 1600px) {
-    .shuoshuo-list {
-        column-count: 3;   
-        column-gap: 20px; /* 保持间距一致 */
-    }
-}
-
+/* --- 时间样式 (支持 Flex 对齐图标) --- */
 .shuoshuo-time {
     font-size: 1.4rem; 
     color: var(--card-text-color-secondary);
     opacity: 0.8;
     margin-bottom: 12px;
-    display: block;
+    
+    /* 改为 Flex 布局实现垂直居中 */
+    display: flex; 
+    align-items: center; 
+    gap: 6px; 
+}
+
+/* 设置图标样式 */
+.shuoshuo-time svg {
+    width: 16px;
+    height: 16px;
+    min-width: 16px; /* 防止被挤压 */
+    fill: none;
+    stroke: currentColor;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-top: -2px; /* 微调垂直对齐 */
 }
 
 .shuoshuo-content {
@@ -68,11 +93,6 @@
     p { margin: 0.5em 0; }
     a { color: var(--accent-color); text-decoration: none; }
     a:hover { text-decoration: underline; }
-}
-
-@media (max-width: 768px) {
-    .shuoshuo-card { padding: 20px; }
-    .shuoshuo-content { font-size: 1.5rem; }
 }
 
 /* --- 首页说说：通知条样式 --- */
@@ -143,35 +163,6 @@
     width: 100%;
     display: block;
     margin-top: 1px; 
-}
-
-.notice-arrow {
-    margin-left: 10px;
-    color: var(--card-text-color-secondary);
-    opacity: 0.5;
-    display: flex;
-    align-items: center;
-    height: 100%;
-    transition: all 0.3s ease;
-}
-
-.notice-board-container:hover .notice-arrow {
-    color: var(--accent-color);
-    opacity: 1;
-    transform: translateX(3px);
-}
-
-@media (max-width: 768px) {
-    .notice-board-container {
-        height: 48px !important;
-        padding: 0 12px;
-    }
-    .swiper.myNoticeSwiper, .notice-slide {
-        height: 48px !important;
-    }
-    .notice-text {
-        font-size: 14px !important;
-    }
 }
 
 /* --- 底部 Git 信息样式 --- */
@@ -262,23 +253,21 @@
 @media (max-width: 768px) {
     .pagination {
         display: flex;
-        justify-content: center; /* 核心：内容居中 */
+        justify-content: center; 
         align-items: center;
-        flex-wrap: nowrap;       /* 强制一行显示 */
+        flex-wrap: nowrap;      
         
         width: 100%;             
         max-width: 100%;
         margin: 20px auto 40px;
         
-        padding: 0;              /* 清除内边距防止撑大 */
-        overflow-x: auto;        /* 允许滑动 */
+        padding: 0;             
+        overflow-x: auto;       
         
-        /* 隐藏 Firefox/IE 滚动条 */
         scrollbar-width: none !important;
         -ms-overflow-style: none !important;
     }
     
-    /* 强力隐藏 Chrome/Safari/Android 滚动条 */
     .pagination::-webkit-scrollbar,
     .pagination::-webkit-scrollbar-track,
     .pagination::-webkit-scrollbar-thumb {
@@ -289,44 +278,79 @@
         -webkit-appearance: none !important;
     }
 
-    /* 3. 页码按钮：正方形 + Flex居中 (修复错位) */
+    /* 3. 页码按钮 */
     .pagination .page-link {
         padding: 0 !important;
         margin: 0 3px !important;
-        
-        /* 强制正方形 */
         width: 36px !important;
         height: 36px !important;
         min-width: 36px !important;
         border-radius: 6px;
-        
-        /* Flex 布局实现绝对居中 */
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        
-        /* 字体修正 */
         font-size: 15px !important;
         line-height: 1 !important;
     }
     
-    /* 4. 微调数字垂直对齐 */
     .pagination .page-link:not(.pagination-link) {
          padding-top: 1px !important; 
     }
     
-    /* 5. 调整箭头图标大小 */
     .pagination .page-link svg {
         width: 18px;
         height: 18px;
         display: block; 
     }
     
-    /* 6. 省略号特殊处理 */
     .pagination .page-link.pagination-link {
         width: auto !important;
         background: transparent !important;
         box-shadow: none !important;
         min-width: auto !important;
     }
+}
+
+/* --- 定义箭头左右移动的动画帧 --- */
+@keyframes arrow-move {
+    0%, 100% {
+        transform: translateX(0);
+        opacity: 0.9; /* 保持较高不透明度 */
+    }
+    50% {
+        transform: translateX(4px); /* 向右移动 4px */
+        opacity: 1; 
+    }
+}
+
+/* --- 箭头样式 (颜色加深 + 动态版) --- */
+.notice-arrow {
+    margin-left: 10px;
+    
+    /* 1. 改用主文字颜色 (更深更黑) */
+    color: var(--card-text-color-main) !important; 
+    
+    /* 2. 提高不透明度 (清晰可见) */
+    opacity: 0.9; 
+    
+    display: flex;
+    align-items: center;
+    height: 100%;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+/* --- 应用动画到箭头图标 --- */
+.notice-arrow svg {
+    /* 动画名称 | 时长 | 循环次数 | 缓动函数 */
+    animation: arrow-move 1.5s infinite ease-in-out;
+    
+    /* 确保颜色继承正确 (跟随父级 main color) */
+    color: inherit; 
+}
+
+/* 鼠标悬停在整个通知条时，让箭头变色提示 */
+.notice-board-container:hover .notice-arrow {
+    color: var(--accent-color) !important;
+    opacity: 1;
 }
