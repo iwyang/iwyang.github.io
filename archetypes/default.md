@@ -1,4 +1,4 @@
-+++
+---
 title: "{{ replace .TranslationBaseName "-" " " | title }}"
 slug: ""
 description: ""
@@ -11,4 +11,4 @@ image: ""
 categories: [""]
 tags: [""]
 
-+++
+---
