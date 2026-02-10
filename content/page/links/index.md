@@ -64,7 +64,7 @@ menu:
         params:
             icon: link
 slug: link
-comments: false
+comments: true
 ---
 
 
@@ -75,3 +75,4 @@ website:  https://bore.vip
 image:  https://bore.vip/img/avatar.png
 description:  博观而约取，厚积而薄发。
 ```
+
