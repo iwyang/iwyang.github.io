@@ -1,4 +1,4 @@
-/* --- 说说列表页样式 (保持不变) --- */
+/* --- 说说列表页样式 --- */
 .shuoshuo-list {
     display: flex;
     flex-direction: column;
@@ -37,40 +37,28 @@
 }
 
 /* --- 首页说说：通知条样式 --- */
-
-/* 1. 外层容器 */
 .notice-board-container {
     background: var(--card-background);
     border-radius: var(--card-border-radius);
-    
-    /* 无边框，靠阴影 */
     border: none !important; 
     box-shadow: var(--shadow-l1);
-    
     height: 54px !important; 
-    
-    /* --- 核心修改：使用主题默认文章间距变量 --- */
-    /* 无论主题怎么变，这里永远和文章间距保持一致 */
     margin-bottom: var(--section-gap) !important;
-    
     display: flex !important;
     align-items: center !important; 
     padding: 0 20px;
     overflow: hidden;
     position: relative;
     z-index: 1;
-
     cursor: pointer !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- 悬停效果 (Stack 原生风格) --- */
 .notice-board-container:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-l2);
 }
 
-/* 2. 左侧图标 */
 .notice-icon {
     display: flex;
     align-items: center;
@@ -80,23 +68,17 @@
     height: 100%;
     transition: color 0.3s ease;
     
-    svg {
-        width: 24px;
-        height: 24px;
-    }
+    svg { width: 24px; height: 24px; }
 }
-/* 悬停时图标变色 */
 .notice-board-container:hover .notice-icon {
     color: var(--accent-color);
 }
 
-/* 3. Swiper 容器 */
 .swiper.myNoticeSwiper {
     flex: 1; 
     height: 54px !important;
 }
 
-/* 4. 单条 Slide */
 .notice-slide {
     height: 54px !important;
     display: flex !important;
@@ -104,7 +86,6 @@
     width: 100% !important;
 }
 
-/* 5. 链接容器 */
 .notice-link {
     display: flex !important; 
     align-items: center !important; 
@@ -115,7 +96,6 @@
     cursor: inherit;
 }
 
-/* 6. 文字本身 */
 .notice-text {
     font-size: 16px !important; 
     line-height: 1.4;
@@ -127,7 +107,6 @@
     margin-top: 1px; 
 }
 
-/* 7. 右侧箭头 */
 .notice-arrow {
     margin-left: 10px;
     color: var(--card-text-color-secondary);
@@ -138,7 +117,6 @@
     transition: all 0.3s ease;
 }
 
-/* 悬停时箭头变色并右移 */
 .notice-board-container:hover .notice-arrow {
     color: var(--accent-color);
     opacity: 1;
@@ -158,11 +136,11 @@
     }
 }
 
-/* --- 说说列表页：底部 Git 信息样式 --- */
+/* --- 底部 Git 信息样式 --- */
 .shuoshuo-footer-info {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px dashed var(--body-background); /* 顶部虚线分割 */
+    border-top: 1px dashed var(--body-background); 
     display: flex;
     flex-direction: column;
     gap: 8px; 
@@ -170,83 +148,51 @@
     color: var(--card-text-color-secondary);
 }
 
-/* 通用行样式 */
 .shuoshuo-edit-link, 
 .shuoshuo-git-info {
     display: flex;
     align-items: center;
     gap: 6px;
-    
-    svg {
-        width: 16px;
-        height: 16px;
-        opacity: 0.7;
-    }
-    
-    /* 编辑链接文字颜色 (默认灰色，悬停变色) */
+    svg { width: 16px; height: 16px; opacity: 0.7; }
     a {
         color: inherit; 
         text-decoration: none;
         transition: color 0.3s ease;
-        
-        &:hover {
-            color: var(--accent-color);
-            text-decoration: underline;
-        }
+        &:hover { color: var(--accent-color); text-decoration: underline; }
     }
 }
 
-/* --- 核心：Commit Hash 颜色设置 --- */
 .git-hash {
-    /* 强制使用道奇蓝 */
     color: #1e90ff !important; 
-    
-    /* 可选：使用等宽字体让 hash 看起来更像代码 */
     font-family: monospace; 
     margin-left: 5px;
     text-decoration: none;
-    
-    &:hover {
-        text-decoration: underline;
-    }
+    &:hover { text-decoration: underline; }
 }
 
-/* 移动端适配 */
 @media (max-width: 768px) {
-    .shuoshuo-footer-info {
-        font-size: 1.2rem;
-    }
+    .shuoshuo-footer-info { font-size: 1.2rem; }
 }
 
-/* --- 分页导航位置微调 --- */
+/* --- 分页导航位置 --- */
 .shuoshuo-pagination {
-    /* 与上方内容的间距 */
     margin-top: var(--section-gap);
-    
-    /* 核心修改：与页尾留出距离 (可以根据喜好调整 50px 这个数值) */
     margin-bottom: 50px; 
-    
-    /* 确保导航条居中显示并有良好的呼吸感 */
     display: flex;
     justify-content: center;
 }
 
-/* 移动端适配：稍微缩小距离 */
 @media (max-width: 768px) {
-    .shuoshuo-pagination {
-        margin-bottom: 30px;
-    }
+    .shuoshuo-pagination { margin-bottom: 30px; }
 }
 
-/* --- 修复说说标题暗色模式颜色 --- */
 .shuoshuo-title {
     margin-bottom: 20px;
-    /* 核心：使用系统自动适配暗色模式的文字颜色变量 */
     color: var(--card-text-color-main);
     font-weight: 700;
 }
 
-//友情链接双栏
+/* 友情链接双栏 */
 @media (min-width: 1024px) {
     .article-list--compact.links {
         display: grid;
@@ -260,61 +206,72 @@
             box-shadow: var(--shadow-l2);
             margin-bottom: 8px;
             border-radius: 10px;
-            &:nth-child(odd) {
-                margin-right: 8px;
-            }
+            &:nth-child(odd) { margin-right: 8px; }
         }
     }
 }
 
 /* =========================================
-   新增修复代码：手机端优化
+   新增修复代码：手机端优化 (完美版)
    ========================================= */
 
-/* 1. 强制菜单按钮显示 (修复z-index被遮挡问题) */
-.menu-toggle {
-    z-index: 9999 !important;
+/* 1. 强制菜单按钮显示 (最高层级) */
+#toggle-menu, .menu-toggle {
+    z-index: 99999 !important;
 }
 
-/* 2. 手机端分页条完美适配 (修复显示不全、对齐问题) */
+/* 2. 手机端分页条完美适配 (隐藏滚动条 + 居中) */
 @media (max-width: 768px) {
-    /* 容器控制 */
     .pagination {
         display: flex;
-        justify-content: center; /* 核心：内容居中 */
+        justify-content: center; /* 居中对齐 */
         align-items: center;
-        flex-wrap: nowrap;       /* 强制一行显示 */
+        flex-wrap: nowrap;       /* 不换行 */
         
-        width: 100%;             /* 占满宽度 */
+        width: auto;
         max-width: 100%;
-        margin: 20px auto 40px;  /* 上下留白，防止贴底 */
-        
+        margin: 20px auto 40px;
         padding: 5px;
-        overflow-x: auto;        /* 如果实在太宽，允许滑动 */
+        
+        /* 允许滑动但隐藏滚动条 */
+        overflow-x: auto;
+        scrollbar-width: none;   /* Firefox */
+        -ms-overflow-style: none; /* IE */
     }
     
-    /* 隐藏滚动条 */
+    /* 强制隐藏 Chrome/Safari 滚动条 */
     .pagination::-webkit-scrollbar {
-        display: none;
+        display: none !important;
+        width: 0 !important;
+        height: 0 !important;
+        background: transparent;
     }
 
-    /* 缩小按钮尺寸以适应手机屏 */
+    /* 缩小按钮尺寸 */
     .pagination .page-link {
-        padding: 6px 10px !important; /* 缩小内边距 */
-        font-size: 14px !important;   /* 缩小字体 */
-        margin: 0 2px;                /* 缩小按钮间距 */
-        min-width: 30px;              /* 设置最小宽度 */
-        height: 36px;                 /* 限制高度 */
-        line-height: 24px;            /* 垂直居中 */
+        padding: 0 !important; /* 清除默认内边距 */
+        width: 32px !important; /* 固定宽度 */
+        height: 32px !important; /* 固定高度 */
+        font-size: 14px !important;
+        margin: 0 3px;
         
         display: flex;
         justify-content: center;
         align-items: center;
+        border-radius: 6px;
     }
     
-    /* 调整箭头图标大小 */
+    /* 调整箭头大小 */
     .pagination .page-link svg {
         width: 16px;
         height: 16px;
+    }
+    
+    /* 省略号微调 */
+    .pagination .page-link.pagination-link {
+        width: auto !important;
+        border: none;
+        background: transparent;
+        box-shadow: none;
     }
 }
