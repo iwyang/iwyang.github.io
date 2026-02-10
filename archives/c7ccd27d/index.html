@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="部署hugo到服务器，网上一般方法是利用git hook。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到github仓库，剩下的事就交给GitHub Actions了。\n"><title>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</title><link rel=canonical href=https://bore.vip/archives/c7ccd27d/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="GitHub Actions利用FTP自动部署hugo-hexo到Centos 8"><meta property='og:description' content="部署hugo到服务器，网上一般方法是利用git hook。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到github仓库，剩下的事就交给GitHub Actions了。\n"><meta property='og:url' content='https://bore.vip/archives/c7ccd27d/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='服务器'><meta property='article:tag' content='hugo'><meta property='article:tag' content='hexo'><meta property='article:tag' content='github'><meta property='article:published_time' content='2021-08-15T08:39:34+00:00'><meta property='article:modified_time' content='2026-02-09T22:08:24+08:00'><meta name=twitter:title content="GitHub Actions利用FTP自动部署hugo-hexo到Centos 8"><meta name=twitter:description content="部署hugo到服务器，网上一般方法是利用git hook。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到github仓库，剩下的事就交给GitHub Actions了。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="rsync同步 这是一份没有任何遗漏、从零开始的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。\n"><title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</title><link rel=canonical href=https://bore.vip/archives/c7ccd27d/><link rel=stylesheet href=/scss/style.min.c202fb024c15f6dec1c6dd0c99ee7c94f43e9ecca496f1343b86a413a1d6e443.css><meta property='og:title' content="GitHub Actions利用FTP&&rsync自动部署hugo-hexo到Centos 8"><meta property='og:description' content="rsync同步 这是一份没有任何遗漏、从零开始的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。\n"><meta property='og:url' content='https://bore.vip/archives/c7ccd27d/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='服务器'><meta property='article:tag' content='hugo'><meta property='article:tag' content='hexo'><meta property='article:tag' content='github'><meta property='article:published_time' content='2021-08-15T08:39:34+00:00'><meta property='article:modified_time' content='2026-02-10T11:53:12+08:00'><meta name=twitter:title content="GitHub Actions利用FTP&&rsync自动部署hugo-hexo到Centos 8"><meta name=twitter:description content="rsync同步 这是一份没有任何遗漏、从零开始的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。\n"><link rel="shortcut icon" href=/img/avatar.png></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
 </a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu-social><li><a href=https://github.com/iwyang target=_blank title=GitHub rel=me><svg class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 19c-4.3 1.4-4.3-2.5-6-3m12 5v-3.5c0-1 .1-1.4-.5-2 2.8-.3 5.5-1.4 5.5-6a4.6 4.6.0 00-1.3-3.2 4.2 4.2.0 00-.1-3.2s-1.1-.3-3.5 1.3a12.3 12.3.0 00-6.2.0C6.5 2.8 5.4 3.1 5.4 3.1a4.2 4.2.0 00-.1 3.2A4.6 4.6.0 004 9.5c0 4.6 2.7 5.7 5.5 6-.6.6-.6 1.2-.5 2V21"/></svg></a></li></ol><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
@@ -8,10 +8,242 @@
 <span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
 <span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#本地操作>本地操作</a></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#启动-nginx>启动 Nginx</a></li><li><a href=#创建新的网站目录>创建新的网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置ssl证书>配置ssl证书</a><ol><li><a href=#安装certbot>安装Certbot</a></li><li><a href=#配置nginx>配置Nginx</a></li><li><a href=#证书自动更新>证书自动更新</a></li></ol></li><li><a href=#安装vsftpd>安装vsftpd</a></li><li><a href=#配置vsftpd>配置vsftpd</a></li><li><a href=#创建ftp用户>创建FTP用户</a></li><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#重启vsftpd服务>重启vsftpd服务</a></li></ol></li><li><a href=#允许root登录ftp>允许root登录FTP</a></li><li><a href=#github操作>Github操作</a><ol><li><a href=#配置ftp_mirror_password>配置<code>FTP_MIRROR_PASSWORD</code></a></li><li><a href=#配置-github-actions>配置 Github actions</a></li></ol></li><li><a href=#提交源码>提交源码</a></li><li><a href=#克隆源码到本地>克隆源码到本地</a><ol><li><a href=#同步更新源文件>同步更新源文件</a></li><li><a href=#同步主题文件>同步主题文件</a></li></ol></li><li><a href=#githubgitee服务器三线部署hexo>github、gitee、服务器三线部署hexo</a></li><li><a href=#githubgitee服务器三线部署hugo>github、gitee、服务器三线部署hugo</a></li><li><a href=#解决问题>解决问题</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/c7ccd27d/>GitHub Actions利用FTP自动部署hugo-hexo到Centos 8</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#rsync同步>rsync同步</a><ol><li><a href=#阶段一服务器-vps-准备>阶段一：服务器 (VPS) 准备</a></li><li><a href=#阶段二生成专用钥匙-本地电脑>阶段二：生成“专用钥匙” (本地电脑)</a></li><li><a href=#阶段三安装锁-vps>阶段三：安装“锁” (VPS)</a></li><li><a href=#阶段四配置持钥人-github>阶段四：配置“持钥人” (GitHub)</a></li><li><a href=#阶段五配置自动化脚本-本地代码>阶段五：配置自动化脚本 (本地代码)</a></li><li><a href=#预期结果>预期结果</a></li></ol></li><li><a href=#rsync-vs-ftp>rsync vs FTP</a><ol><li><a href=#极速的增量传输-delta-transfer-algorithm>极速的增量传输 (Delta-transfer Algorithm)</a></li><li><a href=#镜像一致性与自动清理>镜像一致性与自动清理</a></li><li><a href=#灵活的文件属性保留>灵活的文件属性保留</a></li><li><a href=#高安全性与加密传输>高安全性与加密传输</a></li><li><a href=#rsync-vs-ftp-优势对比表>rsync vs FTP 优势对比表</a></li><li><a href=#您现在的部署状态>您现在的部署状态</a></li></ol></li><li><a href=#本地操作>本地操作</a></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#启动-nginx>启动 Nginx</a></li><li><a href=#创建新的网站目录>创建新的网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置ssl证书>配置ssl证书</a><ol><li><a href=#安装certbot>安装Certbot</a></li><li><a href=#配置nginx>配置Nginx</a></li><li><a href=#证书自动更新>证书自动更新</a></li></ol></li><li><a href=#安装vsftpd>安装vsftpd</a></li><li><a href=#配置vsftpd>配置vsftpd</a></li><li><a href=#创建ftp用户>创建FTP用户</a></li><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#重启vsftpd服务>重启vsftpd服务</a></li></ol></li><li><a href=#允许root登录ftp>允许root登录FTP</a></li><li><a href=#github操作>Github操作</a><ol><li><a href=#配置ftp_mirror_password>配置<code>FTP_MIRROR_PASSWORD</code></a></li><li><a href=#配置-github-actions>配置 Github actions</a></li></ol></li><li><a href=#提交源码>提交源码</a></li><li><a href=#克隆源码到本地>克隆源码到本地</a><ol><li><a href=#同步更新源文件>同步更新源文件</a></li><li><a href=#同步主题文件>同步主题文件</a></li></ol></li><li><a href=#githubgitee服务器三线部署hexo>github、gitee、服务器三线部署hexo</a></li><li><a href=#githubgitee服务器三线部署hugo>github、gitee、服务器三线部署hugo</a></li><li><a href=#解决问题>解决问题</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><header class=article-category><a href=/categories/%E6%8A%80%E6%9C%AF/ style=background-color:#beefd9;color:#0f3d29>技术</a></header><div class=article-title-wrapper><h2 class=article-title><a href=/archives/c7ccd27d/>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</a></h2></div><footer class=article-time><div><svg class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><path d="M11.795 21H5a2 2 0 01-2-2V7a2 2 0 012-2h12a2 2 0 012 2v4"/><circle cx="18" cy="18" r="4"/><path d="M15 3v4"/><path d="M7 3v4"/><path d="M3 11h16"/><path d="M18 16.496V18l1 1"/></svg>
 <time class=article-time--published datetime=2021-08-15T08:39:34Z>2021年8月15日星期日</time></div><div><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<time class=article-time--reading>阅读时长: 9 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#本地操作>本地操作</a></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#启动-nginx>启动 Nginx</a></li><li><a href=#创建新的网站目录>创建新的网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置ssl证书>配置ssl证书</a><ol><li><a href=#安装certbot>安装Certbot</a></li><li><a href=#配置nginx>配置Nginx</a></li><li><a href=#证书自动更新>证书自动更新</a></li></ol></li><li><a href=#安装vsftpd>安装vsftpd</a></li><li><a href=#配置vsftpd>配置vsftpd</a></li><li><a href=#创建ftp用户>创建FTP用户</a></li><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#重启vsftpd服务>重启vsftpd服务</a></li></ol></li><li><a href=#允许root登录ftp>允许root登录FTP</a></li><li><a href=#github操作>Github操作</a><ol><li><a href=#配置ftp_mirror_password>配置<code>FTP_MIRROR_PASSWORD</code></a></li><li><a href=#配置-github-actions>配置 Github actions</a></li></ol></li><li><a href=#提交源码>提交源码</a></li><li><a href=#克隆源码到本地>克隆源码到本地</a><ol><li><a href=#同步更新源文件>同步更新源文件</a></li><li><a href=#同步主题文件>同步主题文件</a></li></ol></li><li><a href=#githubgitee服务器三线部署hexo>github、gitee、服务器三线部署hexo</a></li><li><a href=#githubgitee服务器三线部署hugo>github、gitee、服务器三线部署hugo</a></li><li><a href=#解决问题>解决问题</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><p>部署hugo到服务器，网上一般方法是利用<code>git hook</code>。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到<code>github</code>仓库，剩下的事就交给<code>GitHub Actions</code>了。</p><h2 id=本地操作>本地操作</h2><p>参考：<a class=link href=/archives/hugo-install-on-coding-and-gitee/#%e6%9c%ac%e5%9c%b0%e6%93%8d%e4%bd%9c>hugo部署到coding&amp;gitee&备份源码-本地操作</a></p><h2 id=服务器操作>服务器操作</h2><h3 id=安装-nginx>安装 Nginx</h3><p>准备工作：如果服务器端口不是22，先要更改SSH端口：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+<time class=article-time--reading>阅读时长: 13 分钟</time></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#rsync同步>rsync同步</a><ol><li><a href=#阶段一服务器-vps-准备>阶段一：服务器 (VPS) 准备</a></li><li><a href=#阶段二生成专用钥匙-本地电脑>阶段二：生成“专用钥匙” (本地电脑)</a></li><li><a href=#阶段三安装锁-vps>阶段三：安装“锁” (VPS)</a></li><li><a href=#阶段四配置持钥人-github>阶段四：配置“持钥人” (GitHub)</a></li><li><a href=#阶段五配置自动化脚本-本地代码>阶段五：配置自动化脚本 (本地代码)</a></li><li><a href=#预期结果>预期结果</a></li></ol></li><li><a href=#rsync-vs-ftp>rsync vs FTP</a><ol><li><a href=#极速的增量传输-delta-transfer-algorithm>极速的增量传输 (Delta-transfer Algorithm)</a></li><li><a href=#镜像一致性与自动清理>镜像一致性与自动清理</a></li><li><a href=#灵活的文件属性保留>灵活的文件属性保留</a></li><li><a href=#高安全性与加密传输>高安全性与加密传输</a></li><li><a href=#rsync-vs-ftp-优势对比表>rsync vs FTP 优势对比表</a></li><li><a href=#您现在的部署状态>您现在的部署状态</a></li></ol></li><li><a href=#本地操作>本地操作</a></li><li><a href=#服务器操作>服务器操作</a><ol><li><a href=#安装-nginx>安装 Nginx</a></li><li><a href=#启动-nginx>启动 Nginx</a></li><li><a href=#创建新的网站目录>创建新的网站目录</a></li><li><a href=#配置-nginx>配置 nginx</a></li><li><a href=#配置ssl证书>配置ssl证书</a><ol><li><a href=#安装certbot>安装Certbot</a></li><li><a href=#配置nginx>配置Nginx</a></li><li><a href=#证书自动更新>证书自动更新</a></li></ol></li><li><a href=#安装vsftpd>安装vsftpd</a></li><li><a href=#配置vsftpd>配置vsftpd</a></li><li><a href=#创建ftp用户>创建FTP用户</a></li><li><a href=#关闭防火墙>关闭防火墙</a></li><li><a href=#重启vsftpd服务>重启vsftpd服务</a></li></ol></li><li><a href=#允许root登录ftp>允许root登录FTP</a></li><li><a href=#github操作>Github操作</a><ol><li><a href=#配置ftp_mirror_password>配置<code>FTP_MIRROR_PASSWORD</code></a></li><li><a href=#配置-github-actions>配置 Github actions</a></li></ol></li><li><a href=#提交源码>提交源码</a></li><li><a href=#克隆源码到本地>克隆源码到本地</a><ol><li><a href=#同步更新源文件>同步更新源文件</a></li><li><a href=#同步主题文件>同步主题文件</a></li></ol></li><li><a href=#githubgitee服务器三线部署hexo>github、gitee、服务器三线部署hexo</a></li><li><a href=#githubgitee服务器三线部署hugo>github、gitee、服务器三线部署hugo</a></li><li><a href=#解决问题>解决问题</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=rsync同步>rsync同步</h2><p>这是一份<strong>没有任何遗漏、从零开始</strong>的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。</p><p>我们采用**“重置一切”**的策略，确保环境绝对干净。</p><hr><h3 id=阶段一服务器-vps-准备>阶段一：服务器 (VPS) 准备</h3><p><strong>场景</strong>：你在 VPS 的终端里操作。
+<strong>目标</strong>：安装必要软件，建立网站目录，清理旧的 SSH 配置。</p><ol><li><strong>登录服务器</strong>：
+使用你现有的方式（密码或控制台）登录到 <code>142.171.177.173</code>。</li><li><strong>安装 Rsync (修复 code 12 报错)</strong>：
+这是之前报错的核心原因，必须安装。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 如果是 Debian/Ubuntu:</span>
+</span></span><span class=line><span class=cl>sudo apt-get update <span class=o>&amp;&amp;</span> sudo apt-get install rsync -y
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 如果是 CentOS/RHEL:</span>
+</span></span><span class=line><span class=cl>sudo yum install rsync -y
+</span></span></code></pre></td></tr></table></div></div><p><em>验证</em>：输入 <code>rsync --version</code>，看到版本号即成功。
+3. <strong>创建网站存放目录</strong>：
+确保 GitHub 机器人有地方放文件。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span><span class=lnt>6
+</span><span class=lnt>7
+</span><span class=lnt>8
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 创建目录</span>
+</span></span><span class=line><span class=cl>sudo mkdir -p /var/www/blog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 将目录所有权交给 admin 用户 (至关重要！)</span>
+</span></span><span class=line><span class=cl>sudo chown -R admin:admin /var/www/blog
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 设置目录权限</span>
+</span></span><span class=line><span class=cl>sudo chmod -R <span class=m>755</span> /var/www/blog
+</span></span></code></pre></td></tr></table></div></div><ol start=4><li><strong>初始化 SSH 目录 (修复权限报错)</strong>：
+即使目录已存在，也请运行一遍以修正权限。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 确保在用户主目录下</span>
+</span></span><span class=line><span class=cl><span class=nb>cd</span> /home/admin
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 创建 .ssh 目录</span>
+</span></span><span class=line><span class=cl>mkdir -p .ssh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 锁死目录权限 (只有 admin 能进)</span>
+</span></span><span class=line><span class=cl>chmod <span class=m>700</span> .ssh
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 确保所有权正确</span>
+</span></span><span class=line><span class=cl>sudo chown -R admin:admin .ssh
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=阶段二生成专用钥匙-本地电脑>阶段二：生成“专用钥匙” (本地电脑)</h3><p><strong>场景</strong>：在你自己的电脑终端（Git Bash / Terminal）里操作。
+<strong>目标</strong>：制作一对全新的钥匙，一把给 GitHub，一把给 VPS。</p><ol><li><strong>生成密钥</strong>：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 不要设置密码，一路回车</span>
+</span></span><span class=line><span class=cl>ssh-keygen -t ed25519 -C <span class=s2>&#34;github-actions-deploy&#34;</span> -f deploy_key
+</span></span></code></pre></td></tr></table></div></div><ol start=2><li><strong>查看并复制公钥 (给 VPS 用)</strong>：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat deploy_key.pub
+</span></span></code></pre></td></tr></table></div></div><p>👉 <strong>动作</strong>：复制输出的那一整行内容（以 <code>ssh-ed25519</code> 开头）。
+3. <strong>查看并复制私钥 (给 GitHub 用)</strong>：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat deploy_key
+</span></span></code></pre></td></tr></table></div></div><p>👉 <strong>动作</strong>：复制<strong>全部内容</strong>，包括 <code>-----BEGIN...</code> 和 <code>-----END...</code>。</p><hr><h3 id=阶段三安装锁-vps>阶段三：安装“锁” (VPS)</h3><p><strong>场景</strong>：回到 VPS 的终端里操作。
+<strong>目标</strong>：把阶段二里复制的<strong>公钥</strong>，写入服务器白名单。</p><ol><li><strong>写入公钥</strong>：
+请将下面的 <code>你的公钥内容</code> 替换为你刚才复制的那一长串字符。</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;你的公钥内容&#34;</span> &gt; /home/admin/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table></div></div><p><em>例如：</em> <code>echo "ssh-ed25519 AAAAC3Nz... github-actions-deploy" > /home/admin/.ssh/authorized_keys</code>
+2. <strong>设置文件权限 (至关重要)</strong>：
+SSH 规定，如果这个文件权限太开放，它会拒绝登录。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span><span class=lnt>4
+</span><span class=lnt>5
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=c1># 只能你自己读写</span>
+</span></span><span class=line><span class=cl>chmod <span class=m>600</span> /home/admin/.ssh/authorized_keys
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 再次确认所有权</span>
+</span></span><span class=line><span class=cl>sudo chown admin:admin /home/admin/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li><strong>最终检查</strong>：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat /home/admin/.ssh/authorized_keys
+</span></span></code></pre></td></tr></table></div></div><p><em>确认看到的是你的新公钥。</em></p><hr><h3 id=阶段四配置持钥人-github>阶段四：配置“持钥人” (GitHub)</h3><p><strong>场景</strong>：在 GitHub 网页上操作。
+<strong>目标</strong>：把阶段二里复制的<strong>私钥</strong>，交给 GitHub 机器人。</p><ol><li>打开你的 GitHub 仓库页面。</li><li>点击 <strong>Settings</strong> -> <strong>Secrets and variables</strong> -> <strong>Actions</strong>。</li><li>找到 <code>SERVER_SSH_KEY</code> (如果有旧的，直接删除新建，或者点击 Update)。</li><li><strong>粘贴阶段二里复制的私钥内容</strong>。</li><li>点击 <strong>Add secret</strong>。</li></ol><hr><h3 id=阶段五配置自动化脚本-本地代码>阶段五：配置自动化脚本 (本地代码)</h3><p><strong>场景</strong>：在 VS Code 或本地编辑器里操作。
+<strong>目标</strong>：告诉 GitHub 怎么用这把钥匙。</p><ol><li>打开项目中的 <code>.github/workflows/gh_pages.yml</code> 文件。</li><li><strong>完全覆盖</strong>为以下内容（确保没有任何缩进错误）：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span><span class=lnt>17
+</span><span class=lnt>18
+</span><span class=lnt>19
+</span><span class=lnt>20
+</span><span class=lnt>21
+</span><span class=lnt>22
+</span><span class=lnt>23
+</span><span class=lnt>24
+</span><span class=lnt>25
+</span><span class=lnt>26
+</span><span class=lnt>27
+</span><span class=lnt>28
+</span><span class=lnt>29
+</span><span class=lnt>30
+</span><span class=lnt>31
+</span><span class=lnt>32
+</span><span class=lnt>33
+</span><span class=lnt>34
+</span><span class=lnt>35
+</span><span class=lnt>36
+</span><span class=lnt>37
+</span><span class=lnt>38
+</span><span class=lnt>39
+</span><span class=lnt>40
+</span><span class=lnt>41
+</span><span class=lnt>42
+</span><span class=lnt>43
+</span><span class=lnt>44
+</span><span class=lnt>45
+</span><span class=lnt>46
+</span><span class=lnt>47
+</span><span class=lnt>48
+</span><span class=lnt>49
+</span><span class=lnt>50
+</span><span class=lnt>51
+</span><span class=lnt>52
+</span><span class=lnt>53
+</span><span class=lnt>54
+</span><span class=lnt>55
+</span><span class=lnt>56
+</span><span class=lnt>57
+</span><span class=lnt>58
+</span><span class=lnt>59
+</span><span class=lnt>60
+</span><span class=lnt>61
+</span><span class=lnt>62
+</span><span class=lnt>63
+</span><span class=lnt>64
+</span><span class=lnt>65
+</span><span class=lnt>66
+</span><span class=lnt>67
+</span><span class=lnt>68
+</span><span class=lnt>69
+</span><span class=lnt>70
+</span><span class=lnt>71
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GitHub Page Deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>develop</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 【优化1】新增手动触发按钮</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=c># 允许你在不修改代码的情况下，在 GitHub Actions 界面手动点击重新部署</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>TZ</span><span class=p>:</span><span class=w> </span><span class=l>Asia/Shanghai</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>build-deploy</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout develop</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>submodules</span><span class=p>:</span><span class=w> </span><span class=l>recursive</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Git Configuration</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>git config --global core.quotePath false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Setup Hugo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-hugo@v3</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>hugo-version</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;latest&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>extended</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Cache Hugo resources</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/cache@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>path</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            ~/.cache/hugo_cache
+</span></span></span><span class=line><span class=cl><span class=sd>            resources</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 【优化2】更智能的缓存 Key</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 如果 go.sum 不存在（有些简单项目没有），则使用 hugo 配置文件做哈希，防止缓存失效</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>key</span><span class=p>:</span><span class=w> </span><span class=l>${{ runner.os }}-hugo-${{ hashFiles(&#39;go.sum&#39;) || hashFiles(&#39;hugo.*&#39;) }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>restore-keys</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            ${{ runner.os }}-hugo-</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Build Hugo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=l>hugo --gc --minify --logLevel info</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy to GitHub Pages</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>peaceiris/actions-gh-pages@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>github_token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITHUB_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>publish_branch</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>publish_dir</span><span class=p>:</span><span class=w> </span><span class=l>./public</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>commit_message</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.head_commit.message }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Deploy to Server (Rsync)</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c># 【优化3】锁定插件版本</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c># 建议使用具体的版本号 (v5.1.0) 而不是 @main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=c># @main 是开发版，可能会突然引入 Bug 导致你部署失败</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>easingthemes/ssh-deploy@v5.1.0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>SSH_PRIVATE_KEY</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.SERVER_SSH_KEY }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>ARGS</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;-avzr --delete&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>SOURCE</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;public/&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>REMOTE_HOST</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;142.171.177.173&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>REMOTE_USER</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;admin&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>TARGET</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/var/www/blog/&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>EXCLUDE</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;/.git/, /.github/&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 【优化4】跳过 Host Key 检查</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 防止 VPS 重装或 IP 变动后，GitHub 报错 &#34;Host key verification failed&#34;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>SSH_CMD_ARGS</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;-o StrictHostKeyChecking=no&#34;</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><ol start=3><li><strong>推送代码，触发部署</strong>：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span><span class=lnt>2
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Fix: Final deployment configuration&#34;</span>
+</span></span><span class=line><span class=cl>git push origin develop
+</span></span></code></pre></td></tr></table></div></div><hr><h3 id=预期结果>预期结果</h3><p>只要你严格执行了：</p><ol><li><strong>VPS 上装了 rsync</strong>。</li><li><strong>VPS 上 <code>.ssh</code> 目录权限是 700，<code>authorized_keys</code> 是 600</strong>。</li><li><strong>GitHub Secret 里填的是私钥</strong>。</li><li><strong>VPS 文件里填的是公钥</strong>。</li></ol><p>这一次，GitHub Actions <strong>一定会变绿</strong>。现在开始操作吧！</p><h2 id=rsync-vs-ftp>rsync vs FTP</h2><p>相比于传统的 FTP 或简单的文件拷贝，<strong>rsync (Remote Sync)</strong> 在网站部署和文件同步中具有压倒性的优势。对于维护像 <strong>bore.vip</strong> 这样基于 Hugo 的静态博客，rsync 是目前公认的最优选方案。</p><p>以下是 rsync 的核心优势：</p><hr><h3 id=极速的增量传输-delta-transfer-algorithm>极速的增量传输 (Delta-transfer Algorithm)</h3><p>这是 rsync 的杀手锏。</p><ul><li><strong>按需更新</strong>：它只同步源文件和目标文件之间有差异的部分。如果你只是修改了博客的一行字，它只会传输那几个字节，而不是重传整个 HTML 文件。</li><li><strong>节省带宽</strong>：由于只传差异数据，部署时间通常能从分钟级缩短到秒级，特别适合文件众多的静态网站。</li></ul><h3 id=镜像一致性与自动清理>镜像一致性与自动清理</h3><p>通过 <code>--delete</code> 参数，rsync 可以确保目标文件夹（VPS）与源文件夹（GitHub 公共目录）完全一致。</p><ul><li><strong>自动删除残留</strong>：如果你在 Hugo 中删除了一篇文章或修改了 URL，rsync 会自动删除服务器上过时的旧文件。</li><li><strong>防止冗余</strong>：这避免了服务器存储空间被不再使用的旧静态资源填满。</li></ul><h3 id=灵活的文件属性保留>灵活的文件属性保留</h3><p>在迁移或同步时，rsync 可以精准保留文件的元数据。</p><ul><li><strong>权限与时间戳</strong>：使用 <code>-a</code> (Archive) 参数，可以一键保留文件的权限（Permissions）、所有者（Owner）和修改时间（Timestamps）。</li><li><strong>软链接处理</strong>：它能正确处理符号链接，而 FTP 往往会在这方面出错。</li></ul><h3 id=高安全性与加密传输>高安全性与加密传输</h3><p>rsync 通常运行在 SSH 协议之上（即 <strong>rsync over SSH</strong>）。</p><ul><li><strong>加密通道</strong>：所有的文件传输和认证过程都经过 SSH 加密，防止密码或数据在公网被窃听。</li><li><strong>免密部署</strong>：配合 SSH Key（如 <code>SERVER_SSH_KEY</code>），可以实现 GitHub Actions 到 VPS 的全自动安全登录，无需在代码中明文暴露密码。</li></ul><hr><h3 id=rsync-vs-ftp-优势对比表>rsync vs FTP 优势对比表</h3><div class=table-wrapper><table><thead><tr><th>特性</th><th>rsync (推荐)</th><th>FTP (不推荐)</th></tr></thead><tbody><tr><td><strong>传输方式</strong></td><td><strong>增量同步</strong>，只传变动部分</td><td><strong>全量传输</strong>，每次都要重传整个文件</td></tr><tr><td><strong>速度</strong></td><td><strong>极快</strong>，尤其是文件多、改动少时</td><td><strong>较慢</strong>，且建立连接开销大</td></tr><tr><td><strong>安全性</strong></td><td><strong>高</strong>，基于 SSH 加密</td><td><strong>低</strong>，通常是明文传输，不安全</td></tr><tr><td><strong>一致性</strong></td><td>完美保持镜像，支持<strong>自动删除</strong>旧文件</td><td>需手动删除服务器上的过时文件</td></tr><tr><td><strong>适用场景</strong></td><td>自动化部署、服务器备份</td><td>零星的单文件上传</td></tr></tbody></table></div><hr><h3 id=您现在的部署状态>您现在的部署状态</h3><p>您已经成功修复了服务器上的权限问题并安装了 rsync 软件。现在您的 <strong>gh_pages.yml</strong> 工作流已经利用了 rsync 的这些优势：通过加密的 <code>SERVER_SSH_KEY</code> 实现了秒级的增量同步，并能自动清理旧文章产生的冗余文件。</p><p><strong>既然 rsync 已经通了，您想了解如何利用 rsync 配合脚本实现博客的“一键备份”到本地电脑吗？</strong></p><h2 id=本地操作>本地操作</h2><p>部署hugo到服务器，网上一般方法是利用<code>git hook</code>。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到<code>github</code>仓库，剩下的事就交给<code>GitHub Actions</code>了。</p><p>参考：<a class=link href=/archives/hugo-install-on-coding-and-gitee/#%e6%9c%ac%e5%9c%b0%e6%93%8d%e4%bd%9c>hugo部署到coding&amp;gitee&备份源码-本地操作</a></p><h2 id=服务器操作>服务器操作</h2><h3 id=安装-nginx>安装 Nginx</h3><p>准备工作：如果服务器端口不是22，先要更改SSH端口：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/ssh/sshd_config
 </span></span><span class=line><span class=cl>port <span class=m>22</span>
@@ -905,9 +1137,9 @@
 <a href=/tags/hugo/>Hugo</a>
 <a href=/tags/hexo/>Hexo</a>
 <a href=/tags/github/>Github</a></section><section class=article-edit><svg class="icon icon-tabler icon-tabler-external-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M11 7H6A2 2 0 004 9v9a2 2 0 002 2h9a2 2 0 002-2v-5"/><line x1="10" y1="14" x2="20" y2="4"/><polyline points="15 4 20 4 20 9"/></svg>
-<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/GitHub%20Actions%e5%88%a9%e7%94%a8FTP%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo-hexo%e5%88%b0Centos%208.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
-<span style=color:#999>更新于 2026-02-09 22:08<a href=https://github.com/iwyang/iwyang.github.io/commit/84e6bb501103ad84c414f9f438bf4cb7c38b876b target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
-#84e6bb5</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/23eeae2f/><div class=article-details><h2 class=article-title>hugo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/99e0f84a/><div class=article-details><h2 class=article-title>Hugo部署到centos服务器</h2></div></a></article><article><a href=/archives/d693fd5d/><div class=article-details><h2 class=article-title>hexo部署到centos服务器</h2></div></a></article><article><a href=/archives/12dd937c/><div class=article-details><h2 class=article-title>利用Github Actions自动同步Fork&&自动同步Releases</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
+<span><a style=color:inherit href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/GitHub%20Actions%e5%88%a9%e7%94%a8FTP&&amp;rsync%e8%87%aa%e5%8a%a8%e9%83%a8%e7%bd%b2hugo-hexo%e5%88%b0Centos%208.md target=_blank rel="noopener noreferrer">在 GitHub 上编辑此页</a></span></section><section class=article-lastmod><svg class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 15"/></svg>
+<span style=color:#999>更新于 2026-02-10 11:53<a href=https://github.com/iwyang/iwyang.github.io/commit/6456000173dc79a0a04dd8a12f6fa084a63a9440 target=_blank rel="noopener noreferrer" style=color:#1e90ff;font-weight:400;margin-left:5px;text-decoration:none>
+#6456000</a></span></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/23eeae2f/><div class=article-details><h2 class=article-title>hugo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/99e0f84a/><div class=article-details><h2 class=article-title>Hugo部署到centos服务器</h2></div></a></article><article><a href=/archives/d693fd5d/><div class=article-details><h2 class=article-title>hexo部署到centos服务器</h2></div></a></article><article><a href=/archives/12dd937c/><div class=article-details><h2 class=article-title>利用Github Actions自动同步Fork&&自动同步Releases</h2></div></a></article></div></div></aside><script src=//cdn.jsdelivr.net/npm/twikoo@1.6.44/dist/twikoo.all.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><section class=copyright>&copy;
 2020 -
 2026 Bore's Notes</section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建<br>主题 <b><a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a></b> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script type=module>
     import gallery from '\/ts\/gallery.js';
