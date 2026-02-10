@@ -45,10 +45,12 @@
 /* 在手机上取消 Flex 分栏，恢复为单列堆叠 */
 @media (max-width: 768px) {
     .shuoshuo-list {
-        display: block; 
+        /* 修改点：改为 Flex 列布局，启用 order 排序 */
+        display: flex;
+        flex-direction: column; 
     }
     .waterfall-column {
-        display: contents; /* 关键：取消列的束缚，让内容自然顺序显示 */
+        display: contents; /* 关键：取消列的束缚，让内容变成上一级 Flex 的直接子元素 */
     }
     .shuoshuo-card {
         margin-bottom: 20px; 

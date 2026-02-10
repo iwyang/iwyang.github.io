@@ -11,7 +11,7 @@
             <div class="waterfall-column">
                 {{ range $index, $element := $paginator.Pages }}
                     {{ if eq (mod $index 2) 0 }}
-                        <article class="shuoshuo-card">
+                        <article class="shuoshuo-card" style="order: {{ $index }}">
                             <div class="shuoshuo-header">
                                 <div class="shuoshuo-meta">
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -69,7 +69,7 @@
             <div class="waterfall-column">
                 {{ range $index, $element := $paginator.Pages }}
                     {{ if eq (mod $index 2) 1 }}
-                        <article class="shuoshuo-card">
+                        <article class="shuoshuo-card" style="order: {{ $index }}">
                             <div class="shuoshuo-header">
                                 <div class="shuoshuo-meta">
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
