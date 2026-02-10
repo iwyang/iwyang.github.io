@@ -1,4 +1,4 @@
-/* --- 说说列表页样式 --- */
+/* --- 说说列表页通用样式 --- */
 .shuoshuo-list {
     display: flex;
     flex-direction: column;
@@ -67,7 +67,6 @@
     color: var(--card-text-color-secondary);
     height: 100%;
     transition: color 0.3s ease;
-    
     svg { width: 24px; height: 24px; }
 }
 .notice-board-container:hover .notice-icon {
@@ -212,66 +211,82 @@
 }
 
 /* =========================================
-   新增修复代码：手机端优化 (完美版)
+   修复补丁：手机端分页完美版
    ========================================= */
 
-/* 1. 强制菜单按钮显示 (最高层级) */
+/* 1. 强制提升菜单按钮层级 (防止消失) */
 #toggle-menu, .menu-toggle {
     z-index: 99999 !important;
 }
 
-/* 2. 手机端分页条完美适配 (隐藏滚动条 + 居中) */
+/* 2. 手机端分页条核心样式 */
 @media (max-width: 768px) {
     .pagination {
         display: flex;
-        justify-content: center; /* 居中对齐 */
+        justify-content: center; /* 整个条居中 */
         align-items: center;
-        flex-wrap: nowrap;       /* 不换行 */
+        flex-wrap: nowrap;       /* 强制不换行 */
         
-        width: auto;
+        width: 100%;
         max-width: 100%;
-        margin: 20px auto 40px;
-        padding: 5px;
+        margin: 20px auto 50px; /* 上下留白 */
+        padding: 5px 0;
         
-        /* 允许滑动但隐藏滚动条 */
+        /* 允许滑动 */
         overflow-x: auto;
-        scrollbar-width: none;   /* Firefox */
-        -ms-overflow-style: none; /* IE */
+        
+        /* 隐藏 Firefox/IE 滚动条 */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
     }
     
-    /* 强制隐藏 Chrome/Safari 滚动条 */
-    .pagination::-webkit-scrollbar {
+    /* 强力隐藏 Chrome/Safari/Android 滚动条 (含轨道) */
+    .pagination::-webkit-scrollbar,
+    .pagination::-webkit-scrollbar-track, 
+    .pagination::-webkit-scrollbar-thumb {
         display: none !important;
         width: 0 !important;
         height: 0 !important;
-        background: transparent;
+        background: transparent !important;
+        -webkit-appearance: none !important;
     }
 
-    /* 缩小按钮尺寸 */
+    /* 3. 页码按钮样式 (修复错位核心) */
     .pagination .page-link {
-        padding: 0 !important; /* 清除默认内边距 */
-        width: 32px !important; /* 固定宽度 */
-        height: 32px !important; /* 固定高度 */
-        font-size: 14px !important;
-        margin: 0 3px;
+        /* 清除默认内边距 */
+        padding: 0 !important;
+        margin: 0 3px !important;
         
-        display: flex;
-        justify-content: center;
-        align-items: center;
+        /* 强制设置为正方形 */
+        width: 36px !important;
+        height: 36px !important;
+        min-width: 36px !important;
+        
+        /* 字体修正 */
+        font-size: 15px !important;
+        line-height: 1 !important; /* 消除行高带来的垂直偏移 */
+        
+        /* Flex 布局实现绝对居中 */
+        display: flex !important;
+        justify-content: center !important;
+        align-items: center !important;
+        
         border-radius: 6px;
     }
     
-    /* 调整箭头大小 */
+    /* 4. 调整箭头图标大小 */
     .pagination .page-link svg {
-        width: 16px;
-        height: 16px;
+        width: 18px;
+        height: 18px;
+        /* 确保 SVG 也是居中的 */
+        display: block; 
     }
     
-    /* 省略号微调 */
+    /* 5. 省略号特殊处理 */
     .pagination .page-link.pagination-link {
         width: auto !important;
-        border: none;
-        background: transparent;
-        box-shadow: none;
+        background: transparent !important;
+        box-shadow: none !important;
+        min-width: auto !important;
     }
 }

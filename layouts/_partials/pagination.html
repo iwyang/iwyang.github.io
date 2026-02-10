@@ -10,14 +10,11 @@
     </a>
 
     {{- /* ============================================ */ -}}
-    {{- /* 核心修改：将窗口大小从 4 改为 1，大幅减少页码数量 */ -}}
+    {{- /* 核心配置：窗口大小设为 1，大幅减少手机端页码显示 */ -}}
     {{- $window := 1 -}}
     {{- /* ============================================ */ -}}
     
-    {{- $showFirst := true -}}
-    {{- $showLast := true -}}
-
-    {{- /* 第1页 */ -}}
+    {{- /* 第1页 (总是显示) */ -}}
     <a class="page-link {{ if eq $pag.PageNumber 1 }}current{{ end }}" aria-label="Page 1"
         {{- if eq $pag.PageNumber 1 -}}aria-current="page" {{- end -}}
         {{- if ne $pag.PageNumber 1 -}}href="{{ $pag.First.URL }}"{{- end -}}>
@@ -51,7 +48,7 @@
     </span>
     {{- end -}}
 
-    {{- /* 最后一页 */ -}}
+    {{- /* 最后一页 (总是显示) */ -}}
     {{- if gt $pag.TotalPages 1 -}}
     <a class="page-link {{ if eq $pag.PageNumber $pag.TotalPages }}current{{ end }}"
         {{- if ne $pag.PageNumber $pag.TotalPages -}}href="{{ $pag.Last.URL }}" {{- end -}}
