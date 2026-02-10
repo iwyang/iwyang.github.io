@@ -25,10 +25,6 @@ links:
     description: 分享设计与科技生活  
     website: https://blog.zhheo.com/
     image: heo.jpg
-  - title: Sianx's Blog
-    description: 总之岁月漫长, 然而值得等待。
-    website: https://siax.cn
-    image: sianx.jpg
   - title: Leonus
     description: 进一寸有进一寸的欢喜。
     website: https://blog.leonus.cn/
@@ -41,22 +37,10 @@ links:
     description: 分享知识，认识世界 
     website: https://blog.aqcoder.cn/
     image: aqcoder.jpg
-  - title: lyshark
-    description: 道，可道，非常道；名，可名，非常名。—— 老子《道德经》  
-    website: https://www.lyshark.com/
-    image: lyshark.png
-  - title: 爱吃肉的猫
-    description: 有肉有猫有生活.
-    website: https://meuicat.com/
-    image: mao.jpg
   - title: 我不是咕咕鸽
     description: 服务器折腾不完全指南，定期分享一些好玩的东西，不定期记录生活。
     website: https://blog.laoda.de/
     image: laoda.jpg
-  - title: CWorld Site
-    description: 求知若愚，虚怀若谷   
-    website: https://cworld.top/
-    image: cworld0.jpg
 
 menu:
     main: 
