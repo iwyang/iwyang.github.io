@@ -1,5 +1,5 @@
 ---
-title: GitHub Actions利用FTP自动部署hugo-hexo到Centos 8
+title: GitHub Actions利用FTP&&rsync自动部署hugo-hexo到Centos 8
 categories:
   - 技术
 tags:
@@ -12,11 +12,307 @@ date: 2021-08-15 08:39:34
 cover: false
 ---
 
+## rsync同步
+
+这是一份**没有任何遗漏、从零开始**的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。
+
+我们采用**“重置一切”**的策略，确保环境绝对干净。
+
+---
+
+### 阶段一：服务器 (VPS) 准备
+
+**场景**：你在 VPS 的终端里操作。
+**目标**：安装必要软件，建立网站目录，清理旧的 SSH 配置。
+
+1. **登录服务器**：
+使用你现有的方式（密码或控制台）登录到 `142.171.177.173`。
+2. **安装 Rsync (修复 code 12 报错)**：
+这是之前报错的核心原因，必须安装。
+```bash
+# 如果是 Debian/Ubuntu:
+sudo apt-get update && sudo apt-get install rsync -y
+
+# 如果是 CentOS/RHEL:
+sudo yum install rsync -y
+
+```
 
 
-部署hugo到服务器，网上一般方法是利用`git hook`。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到`github`仓库，剩下的事就交给`GitHub Actions`了。
+*验证*：输入 `rsync --version`，看到版本号即成功。
+3. **创建网站存放目录**：
+确保 GitHub 机器人有地方放文件。
+```bash
+# 创建目录
+sudo mkdir -p /var/www/blog
+
+# 将目录所有权交给 admin 用户 (至关重要！)
+sudo chown -R admin:admin /var/www/blog
+
+# 设置目录权限
+sudo chmod -R 755 /var/www/blog
+
+```
+
+
+4. **初始化 SSH 目录 (修复权限报错)**：
+即使目录已存在，也请运行一遍以修正权限。
+```bash
+# 确保在用户主目录下
+cd /home/admin
+
+# 创建 .ssh 目录
+mkdir -p .ssh
+
+# 锁死目录权限 (只有 admin 能进)
+chmod 700 .ssh
+
+# 确保所有权正确
+sudo chown -R admin:admin .ssh
+
+```
+
+
+
+---
+
+### 阶段二：生成“专用钥匙” (本地电脑)
+
+**场景**：在你自己的电脑终端（Git Bash / Terminal）里操作。
+**目标**：制作一对全新的钥匙，一把给 GitHub，一把给 VPS。
+
+1. **生成密钥**：
+```bash
+# 不要设置密码，一路回车
+ssh-keygen -t ed25519 -C "github-actions-deploy" -f deploy_key
+```
+
+
+2. **查看并复制公钥 (给 VPS 用)**：
+```bash
+cat deploy_key.pub
+```
+
+
+👉 **动作**：复制输出的那一整行内容（以 `ssh-ed25519` 开头）。
+3. **查看并复制私钥 (给 GitHub 用)**：
+```bash
+cat deploy_key
+```
+
+
+👉 **动作**：复制**全部内容**，包括 `-----BEGIN...` 和 `-----END...`。
+
+---
+
+### 阶段三：安装“锁” (VPS)
+
+**场景**：回到 VPS 的终端里操作。
+**目标**：把阶段二里复制的**公钥**，写入服务器白名单。
+
+1. **写入公钥**：
+请将下面的 `你的公钥内容` 替换为你刚才复制的那一长串字符。
+```bash
+echo "你的公钥内容" > /home/admin/.ssh/authorized_keys
+```
+
+
+*例如：* `echo "ssh-ed25519 AAAAC3Nz... github-actions-deploy" > /home/admin/.ssh/authorized_keys`
+2. **设置文件权限 (至关重要)**：
+SSH 规定，如果这个文件权限太开放，它会拒绝登录。
+```bash
+# 只能你自己读写
+chmod 600 /home/admin/.ssh/authorized_keys
+
+# 再次确认所有权
+sudo chown admin:admin /home/admin/.ssh/authorized_keys
+```
+
+
+3. **最终检查**：
+```bash
+cat /home/admin/.ssh/authorized_keys
+```
+
+
+*确认看到的是你的新公钥。*
+
+---
+
+### 阶段四：配置“持钥人” (GitHub)
+
+**场景**：在 GitHub 网页上操作。
+**目标**：把阶段二里复制的**私钥**，交给 GitHub 机器人。
+
+1. 打开你的 GitHub 仓库页面。
+2. 点击 **Settings** -> **Secrets and variables** -> **Actions**。
+3. 找到 `SERVER_SSH_KEY` (如果有旧的，直接删除新建，或者点击 Update)。
+4. **粘贴阶段二里复制的私钥内容**。
+5. 点击 **Add secret**。
+
+---
+
+### 阶段五：配置自动化脚本 (本地代码)
+
+**场景**：在 VS Code 或本地编辑器里操作。
+**目标**：告诉 GitHub 怎么用这把钥匙。
+
+1. 打开项目中的 `.github/workflows/gh_pages.yml` 文件。
+2. **完全覆盖**为以下内容（确保没有任何缩进错误）：
+
+```yaml
+name: GitHub Page Deploy
+
+on:
+  push:
+    branches:
+      - develop
+  # 【优化1】新增手动触发按钮
+  # 允许你在不修改代码的情况下，在 GitHub Actions 界面手动点击重新部署
+  workflow_dispatch:
+
+env:
+  TZ: Asia/Shanghai
+
+jobs:
+  build-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout develop
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+          fetch-depth: 0
+
+      - name: Git Configuration
+        run: git config --global core.quotePath false
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          hugo-version: 'latest'
+          extended: true
+
+      - name: Cache Hugo resources
+        uses: actions/cache@v4
+        with:
+          path: |
+            ~/.cache/hugo_cache
+            resources
+          # 【优化2】更智能的缓存 Key
+          # 如果 go.sum 不存在（有些简单项目没有），则使用 hugo 配置文件做哈希，防止缓存失效
+          key: ${{ runner.os }}-hugo-${{ hashFiles('go.sum') || hashFiles('hugo.*') }}
+          restore-keys: |
+            ${{ runner.os }}-hugo-
+
+      - name: Build Hugo
+        run: hugo --gc --minify --logLevel info
+
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_branch: master
+          publish_dir: ./public
+          commit_message: ${{ github.event.head_commit.message }}
+
+      - name: Deploy to Server (Rsync)
+        # 【优化3】锁定插件版本
+        # 建议使用具体的版本号 (v5.1.0) 而不是 @main
+        # @main 是开发版，可能会突然引入 Bug 导致你部署失败
+        uses: easingthemes/ssh-deploy@v5.1.0
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
+          ARGS: "-avzr --delete"
+          SOURCE: "public/"
+          REMOTE_HOST: "142.171.177.173"
+          REMOTE_USER: "admin"
+          TARGET: "/var/www/blog/"
+          EXCLUDE: "/.git/, /.github/"
+          # 【优化4】跳过 Host Key 检查
+          # 防止 VPS 重装或 IP 变动后，GitHub 报错 "Host key verification failed"
+          SSH_CMD_ARGS: "-o StrictHostKeyChecking=no"
+```
+
+3. **推送代码，触发部署**：
+```bash
+git add .
+git commit -m "Fix: Final deployment configuration"
+git push origin develop
+```
+
+---
+
+### 预期结果
+
+只要你严格执行了：
+
+1. **VPS 上装了 rsync**。
+2. **VPS 上 `.ssh` 目录权限是 700，`authorized_keys` 是 600**。
+3. **GitHub Secret 里填的是私钥**。
+4. **VPS 文件里填的是公钥**。
+
+这一次，GitHub Actions **一定会变绿**。现在开始操作吧！
+
+## rsync vs FTP 
+相比于传统的 FTP 或简单的文件拷贝，**rsync (Remote Sync)** 在网站部署和文件同步中具有压倒性的优势。对于维护像 **bore.vip** 这样基于 Hugo 的静态博客，rsync 是目前公认的最优选方案。
+
+以下是 rsync 的核心优势：
+
+---
+
+### 极速的增量传输 (Delta-transfer Algorithm)
+
+这是 rsync 的杀手锏。
+
+* **按需更新**：它只同步源文件和目标文件之间有差异的部分。如果你只是修改了博客的一行字，它只会传输那几个字节，而不是重传整个 HTML 文件。
+* **节省带宽**：由于只传差异数据，部署时间通常能从分钟级缩短到秒级，特别适合文件众多的静态网站。
+
+### 镜像一致性与自动清理
+
+通过 `--delete` 参数，rsync 可以确保目标文件夹（VPS）与源文件夹（GitHub 公共目录）完全一致。
+
+* **自动删除残留**：如果你在 Hugo 中删除了一篇文章或修改了 URL，rsync 会自动删除服务器上过时的旧文件。
+* **防止冗余**：这避免了服务器存储空间被不再使用的旧静态资源填满。
+
+### 灵活的文件属性保留
+
+在迁移或同步时，rsync 可以精准保留文件的元数据。
+
+* **权限与时间戳**：使用 `-a` (Archive) 参数，可以一键保留文件的权限（Permissions）、所有者（Owner）和修改时间（Timestamps）。
+* **软链接处理**：它能正确处理符号链接，而 FTP 往往会在这方面出错。
+
+### 高安全性与加密传输
+
+rsync 通常运行在 SSH 协议之上（即 **rsync over SSH**）。
+
+* **加密通道**：所有的文件传输和认证过程都经过 SSH 加密，防止密码或数据在公网被窃听。
+* **免密部署**：配合 SSH Key（如 `SERVER_SSH_KEY`），可以实现 GitHub Actions 到 VPS 的全自动安全登录，无需在代码中明文暴露密码。
+
+---
+
+### rsync vs FTP 优势对比表
+
+| 特性 | rsync (推荐) | FTP (不推荐) |
+| --- | --- | --- |
+| **传输方式** | **增量同步**，只传变动部分 | **全量传输**，每次都要重传整个文件 |
+| **速度** | **极快**，尤其是文件多、改动少时 | **较慢**，且建立连接开销大 |
+| **安全性** | **高**，基于 SSH 加密 | **低**，通常是明文传输，不安全 |
+| **一致性** | 完美保持镜像，支持**自动删除**旧文件 | 需手动删除服务器上的过时文件 |
+| **适用场景** | 自动化部署、服务器备份 | 零星的单文件上传 |
+
+---
+
+### 您现在的部署状态
+
+您已经成功修复了服务器上的权限问题并安装了 rsync 软件。现在您的 **gh_pages.yml** 工作流已经利用了 rsync 的这些优势：通过加密的 `SERVER_SSH_KEY` 实现了秒级的增量同步，并能自动清理旧文章产生的冗余文件。
+
+**既然 rsync 已经通了，您想了解如何利用 rsync 配合脚本实现博客的“一键备份”到本地电脑吗？**
+
 
 ## 本地操作
+
+部署hugo到服务器，网上一般方法是利用`git hook`。这里记录一种新的方法：利用FTP Deploy GitHub Actions自动部署hugo到Centos8服务器。今后只要提交源码到`github`仓库，剩下的事就交给`GitHub Actions`了。
 
 参考：[hugo部署到coding&gitee&备份源码-本地操作](/archives/hugo-install-on-coding-and-gitee/#本地操作)
 
