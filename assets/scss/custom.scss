@@ -266,3 +266,55 @@
         }
     }
 }
+
+/* =========================================
+   新增修复代码：手机端优化
+   ========================================= */
+
+/* 1. 强制菜单按钮显示 (修复z-index被遮挡问题) */
+.menu-toggle {
+    z-index: 9999 !important;
+}
+
+/* 2. 手机端分页条完美适配 (修复显示不全、对齐问题) */
+@media (max-width: 768px) {
+    /* 容器控制 */
+    .pagination {
+        display: flex;
+        justify-content: center; /* 核心：内容居中 */
+        align-items: center;
+        flex-wrap: nowrap;       /* 强制一行显示 */
+        
+        width: 100%;             /* 占满宽度 */
+        max-width: 100%;
+        margin: 20px auto 40px;  /* 上下留白，防止贴底 */
+        
+        padding: 5px;
+        overflow-x: auto;        /* 如果实在太宽，允许滑动 */
+    }
+    
+    /* 隐藏滚动条 */
+    .pagination::-webkit-scrollbar {
+        display: none;
+    }
+
+    /* 缩小按钮尺寸以适应手机屏 */
+    .pagination .page-link {
+        padding: 6px 10px !important; /* 缩小内边距 */
+        font-size: 14px !important;   /* 缩小字体 */
+        margin: 0 2px;                /* 缩小按钮间距 */
+        min-width: 30px;              /* 设置最小宽度 */
+        height: 36px;                 /* 限制高度 */
+        line-height: 24px;            /* 垂直居中 */
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    
+    /* 调整箭头图标大小 */
+    .pagination .page-link svg {
+        width: 16px;
+        height: 16px;
+    }
+}
