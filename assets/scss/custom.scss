@@ -1,6 +1,6 @@
 /* --- 说说列表页通用样式 --- */
 .shuoshuo-list {
-    /* 手机端默认：取消原本的 Grid，使用默认块级布局 */
+    /* 手机端默认：使用默认块级布局 */
     display: block; 
     box-sizing: border-box;
 }
@@ -23,17 +23,32 @@
     display: inline-block; 
     width: 100%;
     
-    /* 卡片底部间距 */
+    /* 【间距设置】统一为 20px，保持视觉一致 */
     margin-bottom: 20px;
+    
+    /* --- 新增：悬停交互效果 --- */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* --- 核心修改：电脑端开启“瀑布流”双栏 --- */
+/* 鼠标悬停时：上浮并加深阴影 */
+.shuoshuo-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-l2);
+}
+
+/* --- 电脑端 (常规屏) 开启“瀑布流”双栏 --- */
 @media (min-width: 1024px) {
     .shuoshuo-list {
-        /* 使用 column 布局代替 grid，这能消除短文章下方的空白 */
-        /* 卡片会像报纸一样：先排满左列，再排右列 */
         column-count: 2;   
-        column-gap: 20px;
+        column-gap: 20px; /* 列间距 20px */
+    }
+}
+
+/* --- 新增：超大屏幕 (2K+) 开启三栏 --- */
+@media (min-width: 1600px) {
+    .shuoshuo-list {
+        column-count: 3;   
+        column-gap: 20px; /* 保持间距一致 */
     }
 }
 
