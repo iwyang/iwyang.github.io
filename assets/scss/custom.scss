@@ -1,9 +1,8 @@
 /* --- 说说列表页通用样式 --- */
 .shuoshuo-list {
-    /* 核心修改：改为 Grid 布局 */
-    display: grid;
-    grid-template-columns: 1fr; /* 默认手机端单栏 */
-    gap: 20px;
+    /* 手机端默认：取消原本的 Grid，使用默认块级布局 */
+    display: block; 
+    box-sizing: border-box;
 }
 
 .shuoshuo-card {
@@ -15,17 +14,26 @@
     
     /* 防止长文本溢出 */
     overflow-wrap: break-word;
+
+    /* --- 瀑布流核心设置 --- */
+    /* 关键：防止卡片在两列之间被切断 */
+    break-inside: avoid; 
+    
+    /* 关键：设置为内联块级，配合 column 布局使用 */
+    display: inline-block; 
+    width: 100%;
+    
+    /* 卡片底部间距 */
+    margin-bottom: 20px;
 }
 
-/* --- 核心修改：电脑端开启双栏 --- */
+/* --- 核心修改：电脑端开启“瀑布流”双栏 --- */
 @media (min-width: 1024px) {
     .shuoshuo-list {
-        /* 1fr 1fr 表示两列等宽 */
-        grid-template-columns: repeat(2, 1fr);
-        
-        /* 顶部对齐：让卡片高度随内容自适应，不强制拉伸 */
-        /* 如果你希望同一行的卡片强制等高，请删掉下面这行 */
-        align-items: start; 
+        /* 使用 column 布局代替 grid，这能消除短文章下方的空白 */
+        /* 卡片会像报纸一样：先排满左列，再排右列 */
+        column-count: 2;   
+        column-gap: 20px;
     }
 }
 
@@ -227,38 +235,37 @@
 }
 
 /* =========================================
-   修复补丁：手机端分页完美版 + 菜单按钮
+   【最终修复版】手机端+电脑端完美适配
    ========================================= */
 
-/* 1. 强制提升菜单按钮层级 (防止消失) */
+/* 1. 强制菜单按钮显示 (修复z-index被遮挡问题) */
 #toggle-menu, .menu-toggle {
     z-index: 99999 !important;
 }
 
-/* 2. 手机端分页条核心样式 */
+/* 2. 手机端分页条完美适配 (隐藏滚动条 + 居中) */
 @media (max-width: 768px) {
     .pagination {
         display: flex;
-        justify-content: center; /* 整个条居中 */
+        justify-content: center; /* 核心：内容居中 */
         align-items: center;
-        flex-wrap: nowrap;       /* 强制不换行 */
+        flex-wrap: nowrap;       /* 强制一行显示 */
         
-        width: 100%;
+        width: 100%;             
         max-width: 100%;
-        margin: 20px auto 50px; /* 上下留白 */
-        padding: 5px 0;
+        margin: 20px auto 40px;
         
-        /* 允许滑动 */
-        overflow-x: auto;
+        padding: 0;              /* 清除内边距防止撑大 */
+        overflow-x: auto;        /* 允许滑动 */
         
         /* 隐藏 Firefox/IE 滚动条 */
-        scrollbar-width: none;
-        -ms-overflow-style: none;
+        scrollbar-width: none !important;
+        -ms-overflow-style: none !important;
     }
     
-    /* 强力隐藏 Chrome/Safari/Android 滚动条 (含轨道) */
+    /* 强力隐藏 Chrome/Safari/Android 滚动条 */
     .pagination::-webkit-scrollbar,
-    .pagination::-webkit-scrollbar-track, 
+    .pagination::-webkit-scrollbar-track,
     .pagination::-webkit-scrollbar-thumb {
         display: none !important;
         width: 0 !important;
@@ -267,38 +274,40 @@
         -webkit-appearance: none !important;
     }
 
-    /* 3. 页码按钮样式 (修复错位核心) */
+    /* 3. 页码按钮：正方形 + Flex居中 (修复错位) */
     .pagination .page-link {
-        /* 清除默认内边距 */
         padding: 0 !important;
         margin: 0 3px !important;
         
-        /* 强制设置为正方形 */
+        /* 强制正方形 */
         width: 36px !important;
         height: 36px !important;
         min-width: 36px !important;
-        
-        /* 字体修正 */
-        font-size: 15px !important;
-        line-height: 1 !important; /* 消除行高带来的垂直偏移 */
+        border-radius: 6px;
         
         /* Flex 布局实现绝对居中 */
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
         
-        border-radius: 6px;
+        /* 字体修正 */
+        font-size: 15px !important;
+        line-height: 1 !important;
     }
     
-    /* 4. 调整箭头图标大小 */
+    /* 4. 微调数字垂直对齐 */
+    .pagination .page-link:not(.pagination-link) {
+         padding-top: 1px !important; 
+    }
+    
+    /* 5. 调整箭头图标大小 */
     .pagination .page-link svg {
         width: 18px;
         height: 18px;
-        /* 确保 SVG 也是居中的 */
         display: block; 
     }
     
-    /* 5. 省略号特殊处理 */
+    /* 6. 省略号特殊处理 */
     .pagination .page-link.pagination-link {
         width: auto !important;
         background: transparent !important;
