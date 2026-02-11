@@ -16,18 +16,20 @@
                                 <div class="shuoshuo-meta">
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                                         {{ partial "helper/icon" "date" }}
-                                        <span class="date-text">{{ .Date.Format "2006-01-02" }}</span>
+                                        <span class="date-text">{{ .Date.Format "2006-01-02 15:04" }}</span>
                                     </time>
                                 </div>
                             </div>
 
-                            <div class="shuoshuo-content style-cs-content">
+                            <div class="shuoshuo-content style-cs-content article-post">
                                 {{ .Content }}
                             </div>
                             
                             {{ with .Resources.GetMatch "cover.*" }}
-                            <div class="shuoshuo-image">
-                                <img src="{{ .RelPermalink }}" loading="lazy" style="border-radius: 8px; margin-top: 10px; max-width: 100%;">
+                            <div class="shuoshuo-image photo-gallery">
+                                <a href="{{ .RelPermalink }}" data-pswp-width="{{ .Width }}" data-pswp-height="{{ .Height }}" target="_blank" class="gallery-link">
+                                    <img src="{{ .RelPermalink }}" loading="lazy" alt="说说图片" style="border-radius: 8px; margin-top: 10px; width: 100%; height: auto; object-fit: cover;">
+                                </a>
                             </div>
                             {{ end }}
 
@@ -35,10 +37,7 @@
                                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
                                 <div class="shuoshuo-edit-link">
                                     {{ partial "helper/icon" "external-link" }}
-                                    <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer"
-                                       style="color: inherit;">
+                                    <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener noreferrer" style="color: inherit;">
                                         在 GitHub 上编辑此页
                                     </a>
                                 </div>
@@ -50,10 +49,7 @@
                                     <span style="color: #999;">
                                         更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}
                                         {{- if .GitInfo -}}
-                                            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
+                                            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener noreferrer" style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
                                                #{{ .GitInfo.AbbreviatedHash }}
                                             </a>
                                         {{- end -}}
@@ -74,18 +70,20 @@
                                 <div class="shuoshuo-meta">
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                                         {{ partial "helper/icon" "date" }}
-                                        <span class="date-text">{{ .Date.Format "2006-01-02" }}</span>
+                                        <span class="date-text">{{ .Date.Format "2006-01-02 15:04" }}</span>
                                     </time>
                                 </div>
                             </div>
 
-                            <div class="shuoshuo-content style-cs-content">
+                            <div class="shuoshuo-content style-cs-content article-post">
                                 {{ .Content }}
                             </div>
                             
                             {{ with .Resources.GetMatch "cover.*" }}
-                            <div class="shuoshuo-image">
-                                <img src="{{ .RelPermalink }}" loading="lazy" style="border-radius: 8px; margin-top: 10px; max-width: 100%;">
+                            <div class="shuoshuo-image photo-gallery">
+                                <a href="{{ .RelPermalink }}" data-pswp-width="{{ .Width }}" data-pswp-height="{{ .Height }}" target="_blank" class="gallery-link">
+                                    <img src="{{ .RelPermalink }}" loading="lazy" alt="说说图片" style="border-radius: 8px; margin-top: 10px; width: 100%; height: auto; object-fit: cover;">
+                                </a>
                             </div>
                             {{ end }}
 
@@ -93,10 +91,7 @@
                                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
                                 <div class="shuoshuo-edit-link">
                                     {{ partial "helper/icon" "external-link" }}
-                                    <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
-                                       target="_blank" 
-                                       rel="noopener noreferrer"
-                                       style="color: inherit;">
+                                    <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener noreferrer" style="color: inherit;">
                                         在 GitHub 上编辑此页
                                     </a>
                                 </div>
@@ -108,10 +103,7 @@
                                     <span style="color: #999;">
                                         更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}
                                         {{- if .GitInfo -}}
-                                            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" 
-                                               target="_blank" 
-                                               rel="noopener noreferrer" 
-                                               style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
+                                            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener noreferrer" style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
                                                #{{ .GitInfo.AbbreviatedHash }}
                                             </a>
                                         {{- end -}}
@@ -136,6 +128,7 @@
 
                 timeElements.forEach(el => {
                     const dateStr = el.getAttribute('datetime');
+                    if (!dateStr) return;
                     const date = new Date(dateStr);
                     const diff = (now - date) / 1000;
                     
@@ -143,7 +136,6 @@
                     if (!textSpan) return;
 
                     let text = '';
-                    
                     if (diff < 60) {
                         text = '刚刚';
                     } else if (diff < 3600) {
@@ -155,7 +147,6 @@
                     } else if (diff < 31536000) { 
                         text = Math.floor(diff / 2592000) + ' 个月前';
                     } else {
-                        // 超过1年，脚本什么都不做，直接显示 HTML 里生成的日期
                         return; 
                     }
                     
@@ -164,6 +155,5 @@
                 });
             });
         </script>
-
     </main>
 {{ end }}

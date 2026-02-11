@@ -270,7 +270,171 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
 3. 它会直接在浏览器里打开一个完整的 VS Code 编辑器，终端、插件一应俱全。
 4. 你可以直接在浏览器终端里敲 `hugo server`，它甚至会给你生成一个预览链接！
 
+**注意：用完关闭网页并没有关闭codespaces，要手动关闭，避免过多消耗免费额度。**
 
+### 修改codespaces休眠时间
+
+为了防止以后经常忘记关而浪费额度，你可以把这个默认的 30 分钟改成 **5 分钟** 甚至更短。
+
+你可以通过以下步骤在 GitHub 的个人设置里全局修改它：
+
+1. 点击 GitHub 右上角的头像，选择 **Settings**（设置）。
+2. 在左侧边栏最底部的 "Code, planning, and automation" 区域，点击 **Codespaces**。
+3. 找到 **Default idle timeout**（默认空闲超时）选项。
+4. 在输入框里填入你想要的时间，比如输入 **`5`**（代表 5 分钟）。
+5. 点击 **Save**（保存）。
+
+### 勾选 “Auto-delete codespace”
+
+点击右边三个点，选择`manage codespaces`，再点击右边三个点，勾选。
+
+勾选 **“Auto-delete codespace”（自动删除 Codespace）** 意味着：当你停止（Shutdown）使用这个云端开发环境后，如果连续很长一段时间不去打开它，GitHub 会**自动帮你把这个环境彻底删除**。
+
+### 修改 Codespaces 时区
+
+避免在codespaces里面自动构建hugo，出现时间显示不正常问题。
+
+没问题，这就为你提供最稳妥、最详细的图文级操作指南。
+
+因为 GitHub Codespaces 本质上是一台运行在云端的 Linux 虚拟机，我们需要通过一个配置文件来告诉这台机器：“请把系统时区设为北京时间”。
+
+以下是具体步骤：
+
+#### 第一步：找到或生成 `.devcontainer` 配置
+
+我们需要在你的项目根目录下创建一个 `.devcontainer` 文件夹。如果你的项目里已经有这个文件夹和里面的 `devcontainer.json` 文件，请直接跳到第二步。
+
+**如果没有，请让 Codespace 自动帮你生成：**
+
+1. 在网页版 Codespace 界面，按下快捷键 **`Ctrl + Shift + P`**（Mac 用户按 `Cmd + Shift + P`），这会调出顶部的命令面板。
+2. 在输入框里搜索并选择：**`Codespaces: Add Dev Container Configuration Files...`** (添加开发容器配置文件)。
+3. 请选择第二个：**"Create a new configuration..."**（创建一个新配置）。
+4. 接着选择：`Debian devcontainers`
+5. 接着选择：第一个 `trixie (default)`即可。
+6. 在当前的 **"Select Features"** 界面，你**不需要勾选任何项目**。
+
++ **直接点击右上角的蓝色“确定”按钮**（或者直接按回车键）。
+
++ 点击后，VS Code 会自动在你的项目左侧生成一个 **`.devcontainer`** 文件夹。
+
++ 文件夹里会有一个 **`devcontainer.json`** 文件，它会自动打开。
+
+接下来如何修改代码（重点）：
+
+打开那个 `devcontainer.json` 文件后，你会看到类似下面的代码。请找到合适的位置插入时区配置 `remoteEnv`。
+
+**你可以直接把文件里的全部内容替换成下面这段代码：**
+
+------
+
+#### 第二步：修改 `devcontainer.json` 写入时区
+
+点击打开 `.devcontainer/devcontainer.json` 文件。我们需要在里面加上 `remoteEnv` 参数。
+
+假设你刚生成的文件内容如下，请在最后面**加一个英文逗号 `,`**，然后补上 `remoteEnv` 这三行代码（严格注意 JSON 格式）：
+
+```json
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:debian",
+	"remoteEnv": {
+		"TZ": "Asia/Shanghai"
+	}
+}
+```
+
+*⚠️ 注意：如果你的大括号里原本就有其他配置（比如 `features` 或 `customizations`），记得在上一项的结尾加上英文逗号 `,`，否则 JSON 会报错。*
+
+------
+
+#### 第三步：重建容器让配置生效（最关键一步）
+
+代码写好了，但云端电脑需要“重启”才能读取这个新配置。
+
+1. 再次按下快捷键 **`Ctrl + Shift + P`** (Mac 为 `Cmd + Shift + P`)。
+2. 在输入框里搜索并选择：**`Codespaces: Rebuild Container`** (重建容器)。
+3. 此时网页右下角会提示正在 Rebuild，窗口可能会刷新一下。**别担心，这不会删除你写的文章或代码**，它只是在后台重置系统环境。
+4. 等待一两分钟，右下角提示准备就绪即可。
+
+**如果没有自动弹出 "Rebuild Now" 提示框，别担心，这是因为 VS Code 有时候反应比较慢。我们可以通过手动指令来强制它重新构建。**
+
+请按照以下步骤操作：
+
+#### 1. 确认文件已保存
+
+首先确保你的 `.devcontainer/devcontainer.json` 已经保存（文件名上的白色小圆点消失了，或者按下 `Ctrl + S`）。
+
+#### 2. 手动执行重建命令
+
+1. 按下快捷键 **`Ctrl + Shift + P`** (Mac 用户是 `Cmd + Shift + P`)。
+2. 在弹出的输入框里，输入单词：**`rebuild`**。
+3. 在搜索结果中点击这一项：**`Codespaces: Rebuild Container`**。
+
+#### 3. 等待过程完成
+
+- 点击后，Codespace 会开始转圈，页面可能会提示“正在重新连接”。
+- 这个过程大约需要 1-2 分钟，因为它正在按照你新写的“北京时间”规则重新配置这台云端电脑。
+
+------
+
+#### 验证是否成功
+
+等它重新加载进入界面后，直接在最下方的 **Terminal（终端）** 里输入： `date` 然后回车。
+
+- **如果显示：** `... CST 2026`（且小时数和你手机对得上），说明**大功告成**！
+- **如果还是显示：** `... UTC 2026`，说明代码没写对，请把你的 `devcontainer.json` 文件内容截图发给我，我帮你检查。
+
+------
+
+#### 第四步：验证时间并刷新 Hugo
+
+重建完成后，我们需要验证一下并且更新文章的 Git 记录：
+
+1. **验证系统时间：** 在下方终端 (Terminal) 里输入 `date` 然后回车。如果输出的时间类似于 `Wed Feb 11 07:38:xx CST 2026`（显示 CST 或者与你当前时间一致），就说明时区修改成功了！
+2. **更新你的说说：** 因为你的 Hugo Stack 主题是读取 **Git Commit 的时间** 作为“更新于”的时间的。你之前的那个 Commit 已经是 UTC 时间了。
+   - 你只需要去那篇“碎碎念”的文章里，随便敲一个空格，然后保存。
+   - 重新执行 `git add .` 和 `git commit -m "update time"`。
+   - 这次的新 Commit 就会带上正确的北京时间戳了。
+
+**你的项目中现在有 `.devcontainer` 文件夹吗？如果没有，要不要我一步步陪你调出命令面板生成它？**
+
+### 新建代码片段
+
+1.左下角齿轮—代码片段—搜索并选择 `markdown.json`
+
+2.粘贴以下配置：
+
+```json
+{
+  "Hugo Front Matter": {
+    "prefix": "sj",
+    "body": [
+      "---",
+      "title: \"$1\"",
+      "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
+      "slug: \"$2\"",
+      "description: \"$3\"",
+      "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
+      "draft: false",
+      "toc: true",
+      "weight: false",
+      "image: \"$4\"",
+      "categories: [\"$5\"]",
+      "tags: [\"$6\"]",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "生成完整的 Hugo Stack 标准 Front Matter"
+  }
+}
+```
+
+3.**使用方法**：~~在新文件中输入 `sj` 然后按 `Tab` 键，它会自动生成生成完整的 Hugo Stack 标准 Front Matter（包含时区的标准日期）~~。~~PS：调不出，用下面**强制调用**~~
+
+**强制调用：**左下角齿轮—命令面板（Ctrl+shirt+p）—搜索`Insert Snippet`—选择`代码片段：插入片段`—选择`sj`
+
+4.同步设置：左下角齿轮—设置同步已打开
 
 ## fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本
 
