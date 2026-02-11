@@ -229,8 +229,8 @@
 }
 
 /* =========================================
-   【智能缩放版】手机端分页条完美适配 
-   (无需滑动，所有按钮强制同屏显示)
+   【绝对等宽版】手机端分页条完美适配 
+   (解决页码阴影大小不一的问题)
    ========================================= */
 
 #toggle-menu, .menu-toggle {
@@ -240,30 +240,30 @@
 @media (max-width: 768px) {
     .pagination {
         display: flex;
-        justify-content: center; /* 恢复整体居中 */
+        justify-content: center; 
         align-items: center;
         flex-wrap: nowrap;      
         
         width: 100%;             
         max-width: 100%;
         margin: 20px auto 40px;
-        padding: 0 4px !important; /* 防止紧贴屏幕边缘 */
-        
-        /* 彻底干掉滚动条，不准滑动 */
+        padding: 0 !important; 
         overflow: hidden !important; 
     }
 
-    /* 核心魔法：开启弹性伸缩 */
+    /* 核心魔法：取消弹性伸缩，采用绝对固定尺寸 */
     .pagination .page-link {
         padding: 0 !important;
         margin: 0 2px !important; 
         height: 54px !important;
         
-        /* 弹性规则：自动占满剩余空间，按需收缩 */
-        flex: 1 1 auto !important;     
-        width: 100% !important;
-        max-width: 44px !important; /* 极限宽度：按钮少时也不会肥大 */
-        min-width: 24px !important; /* 极限窄度：保证数字能看清 */
+        /* 关键：flex: 0 0 auto 绝对禁止伸缩 */
+        flex: 0 0 auto !important;     
+        
+        /* 将所有页码强制固定为 36px 宽 */
+        width: 36px !important;
+        max-width: 36px !important; 
+        min-width: 36px !important; 
         
         border-radius: 12px; 
         
@@ -275,17 +275,19 @@
         line-height: 1 !important;
     }
     
-    /* 重点保护区：强制左右两个箭头永不缩水，维持宽大好点击的尺寸 */
+    /* 左右两个箭头按钮：给 38px，稍微宽一点点方便点击 */
     .pagination .page-link:first-child,
     .pagination .page-link:last-child {
-        flex-shrink: 0 !important; /* 绝对禁止被挤压 */
-        width: 42px !important;
+        width: 38px !important;
+        max-width: 38px !important;
+        min-width: 38px !important;
     }
     
-    /* 让“...”省略号乖乖让出空间 */
+    /* 极简压缩省略号“...”的空间，给其他按钮让路 */
     .pagination .page-link.pagination-link {
+        width: 16px !important;
+        max-width: 16px !important;
         min-width: 16px !important;
-        max-width: 20px !important;
         background: transparent !important;
         box-shadow: none !important;
     }
