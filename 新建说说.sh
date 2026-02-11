@@ -41,13 +41,19 @@ if [ $? -eq 0 ]; then
     if [ -f "$FULL_PATH" ]; then
         # 打开 Typora
         "$TYPORA_PATH" "$FULL_PATH" &
+        
+        echo -e "${GREEN}操作完成，窗口即将关闭...${NC}"
+        sleep 2
+        exit 0
     else
         echo -e "${RED}❌ 错误: 找不到创建的文件 ${FULL_PATH}${NC}"
+        echo ""
+        read -p "按回车键关闭窗口..."
+        exit 1
     fi
 else
     echo -e "${RED}❌ 错误: Hugo 命令执行失败。${NC}"
+    echo ""
+    read -p "按回车键关闭窗口..."
+    exit 1
 fi
-
-# 强行停留
-echo ""
-read -p "按回车键关闭窗口..."

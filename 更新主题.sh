@@ -17,12 +17,15 @@ if git submodule update --remote; then
     echo -e "${GREEN}✨ [成功] 主题已成功拉取并更新到最新版本！${NC}"
     echo -e "${YELLOW}💡 提示：主题的版本号指针已改变。如果你觉得新主题没问题，${NC}"
     echo -e "${YELLOW}   请记得稍后运行 deploy.sh 把这个改动提交并推送到 GitHub。${NC}"
+    echo ""
+    echo -e "窗口将在 3 秒后自动关闭..."
+    sleep 3
+    exit 0
 else
     echo ""
     echo -e "${RED}❌ [失败] 主题更新过程中出现错误。${NC}"
     echo "请检查你的网络连接（特别是如果之前遇到过 GitHub 端口超时的问题）。"
+    echo ""
+    read -p "按回车键关闭窗口..."
+    exit 1
 fi
-
-# 强行停留，直到你按回车，防止双击运行后直接消失
-echo ""
-read -p "按回车键关闭窗口..."
