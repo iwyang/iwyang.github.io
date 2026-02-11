@@ -18,8 +18,8 @@ if git submodule update --remote; then
     echo -e "${YELLOW}💡 提示：主题的版本号指针已改变。如果你觉得新主题没问题，${NC}"
     echo -e "${YELLOW}   请记得稍后运行 deploy.sh 把这个改动提交并推送到 GitHub。${NC}"
     echo ""
-    echo -e "窗口将在 3 秒后自动关闭..."
-    sleep 3
+    echo -e "窗口将在 2 秒后自动关闭..."
+    sleep 2
     exit 0
 else
     echo ""
