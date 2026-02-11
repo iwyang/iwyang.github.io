@@ -192,35 +192,6 @@
   transform: rotate(360deg); // 旋转角度为360度
 }
 
-// 归档页面两栏
-@media (min-width: 1024px) {
-  .article-list--compact {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    background: none;
-    box-shadow: none;
-    gap: 1rem;
-
-    article {
-      background: var(--card-background);
-      border: none;
-      /* 建议将默认阴影改为 l1，这样悬浮时变成 l2 才有明显的加深效果 */
-      box-shadow: var(--shadow-l1); 
-      margin-bottom: 8px;
-      border-radius: 16px;
-      
-      /* 👇 1. 添加平滑过渡动画 👇 */
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
-
-      /* 👇 2. 添加鼠标悬浮时的上移和阴影效果 👇 */
-      &:hover {
-        transform: translateY(-5px);
-        box-shadow: var(--shadow-l2);
-      }
-    }
-  }
-}
-
 /* =========================================
    首页普通文章卡片：悬浮上移 & 阴影加深效果
    ========================================= */
@@ -268,11 +239,53 @@
 }
 
 /*-----------归档页面----------*/
-//归档页面卡片缩放
+
+/* 1. 归档页面卡片缩放 (已修复移动端长按高亮) */
 .article-list--tile article {
   transition: .6s ease;
+  /* 消除系统自带的长方形点击高亮色 */
+  -webkit-tap-highlight-color: transparent !important; 
+  outline: none;
 }
 
 .article-list--tile article:hover {
   transform: scale(1.03, 1.03);
+}
+
+/* 2. 归档页面两栏卡片 (已修复移动端长按高亮) */
+
+/* ⚠️ 核心修复：必须写在 @media 的外面，手机端才能生效！ */
+.article-list--compact article {
+  /* 消除系统自带的长方形点击高亮色 */
+  -webkit-tap-highlight-color: transparent !important; 
+  outline: none;
+}
+
+/* 电脑端才生效的两栏排版和悬浮动效 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      /* 建议将默认阴影改为 l1，这样悬浮时变成 l2 才有明显的加深效果 */
+      box-shadow: var(--shadow-l1); 
+      margin-bottom: 8px;
+      border-radius: 16px;
+      
+      /* 👇 1. 添加平滑过渡动画 👇 */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      /* 👇 2. 添加鼠标悬浮时的上移和阴影效果 👇 */
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-l2);
+      }
+    }
+  }
 }
