@@ -290,10 +290,14 @@
   }
 }
 
-//使用谷歌字体覆盖主题的字体变量
+/* 使用谷歌衬线字体覆盖主题变量 */
 :root {
-    // 将引用的字体放在最前面
-    --sys-font-family: 'Noto Serif SC', "Inter", "Helvetiva Neue", Helvetica, Arial, sans-serif;
+    /* * 字体栈顺序：
+     * 1. Inter: 负责英文和数字，提供极高的清晰度
+     * 2. Noto Serif SC: 负责中文，提供优雅的宋体质感
+     * 3. serif: 最后的系统衬线体兜底
+     */
+    --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif;
 }
 
 /* --- 底部运行时间样式修复 --- */
