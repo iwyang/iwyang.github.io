@@ -177,3 +177,8 @@
 .notice-board-container, .notice-link, .notice-slide { -webkit-tap-highlight-color: transparent !important; outline: none; }
 .notice-board-container { -webkit-user-select: none; user-select: none; }
 .pagination .page-link { -webkit-tap-highlight-color: transparent !important; outline: none; -webkit-user-select: none; user-select: none; }
+
+/* 仅在文章详情页隐藏置顶标签，保留主页卡片上的显示 */
+.article-page .icon-pinned {
+    display: none !important;
+}
