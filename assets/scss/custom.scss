@@ -280,18 +280,20 @@
         -webkit-appearance: none !important;
     }
 
-    /* 3. 页码按钮 */
+    /* 3. 页码按钮：统一高度为 54px */
     .pagination .page-link {
         padding: 0 !important;
-        margin: 0 3px !important;
-        width: 36px !important;
-        height: 36px !important;
-        min-width: 36px !important;
-        border-radius: 6px;
+        margin: 0 4px !important;
+        /* 高度设为 54px 匹配通知条，宽度设为 44px 保持胶囊比例，避免正方形过于笨重 */
+        width: 44px !important;
+        height: 54px !important;
+        min-width: 44px !important;
+        border-radius: 12px; /* 稍微增加一点圆角更好看 */
+        
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        font-size: 15px !important;
+        font-size: 16px !important; /* 字体稍微加大一点配合大按钮 */
         line-height: 1 !important;
     }
     
@@ -300,8 +302,8 @@
     }
     
     .pagination .page-link svg {
-        width: 18px;
-        height: 18px;
+        width: 20px; /* 图标稍微放大配合大按钮 */
+        height: 20px;
         display: block; 
     }
     
