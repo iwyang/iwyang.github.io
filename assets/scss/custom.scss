@@ -3,18 +3,18 @@
 /* 1. 列表容器：改为 Flex 布局 */
 .shuoshuo-list {
     display: flex;         
-    gap: 20px;             /* 左右列之间的间距 */
-    align-items: flex-start; /* 顶部对齐 */
+    gap: 20px;             
+    align-items: flex-start; 
     box-sizing: border-box;
 }
 
-/* 2. 瀑布流列样式 (HTML中新增的 class) */
+/* 2. 瀑布流列样式 */
 .waterfall-column {
     display: flex;
-    flex-direction: column; /* 列内部垂直排列 */
-    gap: 20px;              /* 卡片上下间距 */
-    flex: 1;                /* 左右平分宽度 */
-    min-width: 0;           /* 防止内容撑爆 */
+    flex-direction: column; 
+    gap: 20px;              
+    flex: 1;                
+    min-width: 0;           
 }
 
 /* 3. 卡片样式 */
@@ -24,67 +24,53 @@
     border-radius: var(--card-border-radius);
     box-shadow: var(--shadow-l1);
     border: none; 
-    
-    /* 防止长文本溢出 */
     overflow-wrap: break-word;
-
-    /* 必须占满列宽 */
     width: 100%;
-    
-    /* 交互动画 */
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* 鼠标悬停时：上浮并加深阴影 */
 .shuoshuo-card:hover {
     transform: translateY(-5px);
     box-shadow: var(--shadow-l2);
 }
 
 /* --- 手机端适配 (宽度 < 768px) --- */
-/* 在手机上取消 Flex 分栏，恢复为单列堆叠 */
 @media (max-width: 768px) {
     .shuoshuo-list {
-        /* 修改点：改为 Flex 列布局，启用 order 排序 */
         display: flex;
         flex-direction: column; 
     }
     .waterfall-column {
-        display: contents; /* 关键：取消列的束缚，让内容变成上一级 Flex 的直接子元素 */
+        display: contents; 
     }
     .shuoshuo-card {
         margin-bottom: 20px; 
+        padding: 20px; 
     }
-    
-    /* 调整手机端内边距 */
-    .shuoshuo-card { padding: 20px; }
     .shuoshuo-content { font-size: 1.5rem; }
 }
 
-/* --- 时间样式 (支持 Flex 对齐图标) --- */
+/* --- 时间样式 --- */
 .shuoshuo-time {
     font-size: 1.4rem; 
     color: var(--card-text-color-secondary);
     opacity: 0.8;
     margin-bottom: 12px;
-    
-    /* 改为 Flex 布局实现垂直居中 */
     display: flex; 
     align-items: center; 
     gap: 6px; 
 }
 
-/* 设置图标样式 */
 .shuoshuo-time svg {
     width: 16px;
     height: 16px;
-    min-width: 16px; /* 防止被挤压 */
+    min-width: 16px; 
     fill: none;
     stroke: currentColor;
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;
-    margin-top: -2px; /* 微调垂直对齐 */
+    margin-top: -2px; 
 }
 
 .shuoshuo-content {
@@ -243,100 +229,94 @@
 }
 
 /* =========================================
-   【最终修复版】手机端+电脑端完美适配
+   【智能缩放版】手机端分页条完美适配 
+   (无需滑动，所有按钮强制同屏显示)
    ========================================= */
 
-/* 1. 强制菜单按钮显示 (修复z-index被遮挡问题) */
 #toggle-menu, .menu-toggle {
     z-index: 99999 !important;
 }
 
-/* 2. 手机端分页条完美适配 (隐藏滚动条 + 居中) */
 @media (max-width: 768px) {
     .pagination {
         display: flex;
-        justify-content: center; 
+        justify-content: center; /* 恢复整体居中 */
         align-items: center;
         flex-wrap: nowrap;      
         
         width: 100%;             
         max-width: 100%;
         margin: 20px auto 40px;
+        padding: 0 4px !important; /* 防止紧贴屏幕边缘 */
         
-        padding: 0;             
-        overflow-x: auto;       
-        
-        scrollbar-width: none !important;
-        -ms-overflow-style: none !important;
-    }
-    
-    .pagination::-webkit-scrollbar,
-    .pagination::-webkit-scrollbar-track,
-    .pagination::-webkit-scrollbar-thumb {
-        display: none !important;
-        width: 0 !important;
-        height: 0 !important;
-        background: transparent !important;
-        -webkit-appearance: none !important;
+        /* 彻底干掉滚动条，不准滑动 */
+        overflow: hidden !important; 
     }
 
-    /* 3. 页码按钮：统一高度为 54px */
+    /* 核心魔法：开启弹性伸缩 */
     .pagination .page-link {
         padding: 0 !important;
-        margin: 0 4px !important;
-        /* 高度设为 54px 匹配通知条，宽度设为 44px 保持胶囊比例，避免正方形过于笨重 */
-        width: 44px !important;
+        margin: 0 2px !important; 
         height: 54px !important;
-        min-width: 44px !important;
-        border-radius: 12px; /* 稍微增加一点圆角更好看 */
+        
+        /* 弹性规则：自动占满剩余空间，按需收缩 */
+        flex: 1 1 auto !important;     
+        width: 100% !important;
+        max-width: 44px !important; /* 极限宽度：按钮少时也不会肥大 */
+        min-width: 24px !important; /* 极限窄度：保证数字能看清 */
+        
+        border-radius: 12px; 
         
         display: flex !important;
         justify-content: center !important;
         align-items: center !important;
-        font-size: 16px !important; /* 字体稍微加大一点配合大按钮 */
+        
+        font-size: 15px !important; 
         line-height: 1 !important;
     }
     
+    /* 重点保护区：强制左右两个箭头永不缩水，维持宽大好点击的尺寸 */
+    .pagination .page-link:first-child,
+    .pagination .page-link:last-child {
+        flex-shrink: 0 !important; /* 绝对禁止被挤压 */
+        width: 42px !important;
+    }
+    
+    /* 让“...”省略号乖乖让出空间 */
+    .pagination .page-link.pagination-link {
+        min-width: 16px !important;
+        max-width: 20px !important;
+        background: transparent !important;
+        box-shadow: none !important;
+    }
+
     .pagination .page-link:not(.pagination-link) {
          padding-top: 1px !important; 
     }
     
     .pagination .page-link svg {
-        width: 20px; /* 图标稍微放大配合大按钮 */
+        width: 20px; 
         height: 20px;
         display: block; 
     }
-    
-    .pagination .page-link.pagination-link {
-        width: auto !important;
-        background: transparent !important;
-        box-shadow: none !important;
-        min-width: auto !important;
-    }
 }
 
-/* --- 定义箭头左右移动的动画帧 --- */
+/* --- 箭头动态样式 --- */
 @keyframes arrow-move {
     0%, 100% {
         transform: translateX(0);
-        opacity: 0.9; /* 保持较高不透明度 */
+        opacity: 0.9; 
     }
     50% {
-        transform: translateX(4px); /* 向右移动 4px */
+        transform: translateX(4px); 
         opacity: 1; 
     }
 }
 
-/* --- 箭头样式 (颜色加深 + 动态版) --- */
 .notice-arrow {
     margin-left: 10px;
-    
-    /* 1. 改用主文字颜色 (更深更黑) */
     color: var(--card-text-color-main) !important; 
-    
-    /* 2. 提高不透明度 (清晰可见) */
     opacity: 0.9; 
-    
     display: flex;
     align-items: center;
     height: 100%;
@@ -344,16 +324,11 @@
     transition: all 0.3s ease;
 }
 
-/* --- 应用动画到箭头图标 --- */
 .notice-arrow svg {
-    /* 动画名称 | 时长 | 循环次数 | 缓动函数 */
     animation: arrow-move 1.5s infinite ease-in-out;
-    
-    /* 确保颜色继承正确 (跟随父级 main color) */
     color: inherit; 
 }
 
-/* 鼠标悬停在整个通知条时，让箭头变色提示 */
 .notice-board-container:hover .notice-arrow {
     color: var(--accent-color) !important;
     opacity: 1;
@@ -362,28 +337,21 @@
 /* =========================================
    修复移动端长按/点击时出现矩形高亮框的问题
    ========================================= */
-
-/* 1. 修复首页说说通知条 */
 .notice-board-container, 
 .notice-link, 
 .notice-slide {
-    /* 消除系统自带的长方形点击高亮色 */
     -webkit-tap-highlight-color: transparent !important; 
     outline: none;
 }
 
 .notice-board-container {
-    /* 防止长按滑动时意外选中文字内容，提升触摸体验 */
     -webkit-user-select: none;
     user-select: none;
 }
 
-/* 2. 修复所有分页按钮 (页码、上一页、下一页) */
 .pagination .page-link {
-    /* 消除系统自带的方形点击高亮色，保留我们自己写的圆角背景反馈 */
     -webkit-tap-highlight-color: transparent !important; 
     outline: none;
-    /* 防止连按时意外选中页码数字 */
     -webkit-user-select: none;
     user-select: none;
 }
