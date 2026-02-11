@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# 注意：为了能捕获错误并显示“失败”提示，我们不使用 set -e，而是手动判断关键步骤
-# set -e  <-- 已注释掉
-
 # 定义颜色
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -21,7 +18,7 @@ if [ "$current_branch" != "develop" ]; then
 fi  
 
 # ========================================================
-# [新增核心逻辑] 1.5 检测是否落后于远程仓库
+# [核心逻辑] 1.5 检测是否落后于远程仓库
 # ========================================================
 echo -e "${CYAN}🔍 正在检查远程仓库是否有未拉取的更新...${NC}"
 # 静默获取远程最新状态，不改变本地工作区
@@ -55,7 +52,26 @@ git add .
 if git diff-index --quiet HEAD --; then
     echo -e "${YELLOW}没有检测到新的更改，本地工作区是干净的。${NC}"
 else
-    git commit -m "site backup: $(date +'%Y-%m-%d %H:%M:%S')"
+    # ========================================================
+    # [新增交互逻辑] 提示用户输入提交信息
+    # ========================================================
+    # 动态生成默认提交信息 (带有当前时间戳)
+    DEFAULT_MSG="site backup: $(date +'%Y-%m-%d %H:%M:%S')"
+    
+    echo ""
+    echo -e "${YELLOW}👉 请输入本次部署的说明 (直接回车默认: ${DEFAULT_MSG}): ${NC}"
+    read COMMIT_MSG
+    
+    # 如果用户没有输入任何内容（直接敲了回车），则赋予默认的带时间的信息
+    if [ -z "$COMMIT_MSG" ]; then
+        COMMIT_MSG="$DEFAULT_MSG"
+        echo -e "未输入内容，已自动使用默认信息: ${GREEN}${COMMIT_MSG}${NC}"
+    else
+        echo -e "已记录你的自定义提交信息: ${GREEN}${COMMIT_MSG}${NC}"
+    fi
+
+    git commit -m "$COMMIT_MSG"
+    # ========================================================
 fi
 
 # 4. 尝试推送
@@ -65,14 +81,14 @@ if git push origin develop --force; then
     echo ""
     echo -e "${GREEN}✨ [成功] 博客已推送至 GitHub，同步完成！${NC}"
     echo -e "${GREEN}现在可以开始新的创作了。${NC}"
+    echo -e "${BLUE}任务结束，窗口将在 2 秒后自动关闭...${NC}"
+    sleep 2
+    exit 0
 else
     echo ""
     echo -e "${RED}❌ [失败] 推送过程中出现错误。${NC}"
     echo "请检查：1. 网络连接是否正常 2. 账号权限是否失效"
+    echo ""
+    read -p "按回车键关闭窗口..."
+    exit 1
 fi
-
-echo -e "${BLUE}任务结束。${NC}"
-
-# 强行停留，直到你按回车
-echo ""
-read -p "按回车键关闭窗口..."

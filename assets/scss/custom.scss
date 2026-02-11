@@ -177,3 +177,144 @@
 .notice-board-container, .notice-link, .notice-slide { -webkit-tap-highlight-color: transparent !important; outline: none; }
 .notice-board-container { -webkit-user-select: none; user-select: none; }
 .pagination .page-link { -webkit-tap-highlight-color: transparent !important; outline: none; -webkit-user-select: none; user-select: none; }
+
+/* 仅在文章详情页隐藏置顶标签，保留主页卡片上的显示 */
+.article-page .icon-pinned {
+    display: none !important;
+}
+
+// 头像旋转动画
+.sidebar header .site-avatar .site-logo {
+  transition: transform 1.65s ease-in-out; // 旋转时间
+}
+
+.sidebar header .site-avatar .site-logo:hover {
+  transform: rotate(360deg); // 旋转角度为360度
+}
+
+/* =========================================
+   首页普通文章卡片：悬浮上移 & 阴影加深效果
+   ========================================= */
+.article-list article {
+    /* 强制应用过渡动画 */
+    transition: transform 0.3s ease, box-shadow 0.3s ease !important;
+}
+
+.article-list article:hover {
+    /* 强制应用上移和加深阴影 */
+    transform: translateY(-5px) !important;
+    box-shadow: var(--shadow-l2) !important;
+}
+
+/*------------------右侧导航栏--------------*/
+// 搜索菜单动画
+.search-form.widget {
+  transition: transform 0.6s ease;
+}
+
+.search-form.widget:hover {
+  transform: scale(1.1, 1.1);
+}
+
+
+//归档小图标放大动画
+.widget.archives .widget-archive--list {
+  transition: transform .3s ease;
+}
+
+.widget.archives .widget-archive--list:hover {
+  transform: scale(1.05, 1.05);
+}
+
+
+//右侧标签放大动画
+.tagCloud .tagCloud-tags a {
+  border-radius: 10px;
+  font-size: 1.4rem;
+  transition: transform .3s ease;
+}
+
+.tagCloud .tagCloud-tags a:hover {
+  transform: scale(1.1, 1.1);
+}
+
+/*-----------归档页面----------*/
+
+/* 1. 归档页面卡片缩放 (已修复移动端长按高亮) */
+.article-list--tile article {
+  transition: .6s ease;
+  /* 消除系统自带的长方形点击高亮色 */
+  -webkit-tap-highlight-color: transparent !important; 
+  outline: none;
+}
+
+.article-list--tile article:hover {
+  transform: scale(1.03, 1.03);
+}
+
+/* 2. 归档页面两栏卡片 (已修复移动端长按高亮) */
+
+/* ⚠️ 核心修复：必须写在 @media 的外面，手机端才能生效！ */
+.article-list--compact article {
+  /* 消除系统自带的长方形点击高亮色 */
+  -webkit-tap-highlight-color: transparent !important; 
+  outline: none;
+}
+
+/* 电脑端才生效的两栏排版和悬浮动效 */
+@media (min-width: 1024px) {
+  .article-list--compact {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    background: none;
+    box-shadow: none;
+    gap: 1rem;
+
+    article {
+      background: var(--card-background);
+      border: none;
+      /* 建议将默认阴影改为 l1，这样悬浮时变成 l2 才有明显的加深效果 */
+      box-shadow: var(--shadow-l1); 
+      margin-bottom: 8px;
+      border-radius: 16px;
+      
+      /* 👇 1. 添加平滑过渡动画 👇 */
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+      /* 👇 2. 添加鼠标悬浮时的上移和阴影效果 👇 */
+      &:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-l2);
+      }
+    }
+  }
+}
+
+/* 使用谷歌衬线字体覆盖主题变量 */
+:root {
+    /* * 字体栈顺序：
+     * 1. Inter: 负责英文和数字，提供极高的清晰度
+     * 2. Noto Serif SC: 负责中文，提供优雅的宋体质感
+     * 3. serif: 最后的系统衬线体兜底
+     */
+    --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif;
+}
+
+/* --- 底部运行时间样式修复 --- */
+.site-footer .running-time {
+    /* 1. 调大字号：1.4rem 与上方版权信息的字号更接近 */
+    font-size: 1.4rem !important; 
+    
+    /* 2. 颜色设置：默认使用柔和文字色 */
+    color: var(--sys-color-text-muted) !important; 
+    
+    margin: 10px 0;
+    line-height: 1.6;
+    display: block;
+}
+
+/* 3. 针对暗色模式的特别加亮 (可选) */
+/* 如果觉得 muted 颜色在暗色模式下依然不够白，可以用下面这段强制加白 */
+[data-scheme="dark"] .site-footer .running-time {
+    color: rgba(255, 255, 255, 0.7) !important; 
+}

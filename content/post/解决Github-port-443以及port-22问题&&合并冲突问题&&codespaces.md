@@ -59,7 +59,34 @@ docker-compose pull
 docker-compose up -d
 docker image prune
 ```
+## 解决`port 22`问题
 
+1.进入.ssh的目录，使用命令`touch config`创建一个配置文件，并写入你github的配置信息。（`xxxxx@xx.com`是你github的注册邮箱）
+
+```bash
+Host github.com  
+User xxxxx@xx.com  
+Hostname ssh.github.com  
+PreferredAuthentications publickey  
+IdentityFile ~/.ssh/id_rsa  
+Port 443
+```
+
+2.更改配置文件config的权限。
+
+```bash
+chmod 600 config
+```
+
+3.再尝试查看连接状态
+
+```bash
+ssh git@github.com
+```
+
+**Please make sure you have the correct access rights and the repository exist**
+
+如果即使已经添加本地公钥到github，还提示以上错误，并且执行`ssh -T git@github.com`提示22端口关闭，解决方法见上。
 ## 解决合并冲突问题
 
 参考：[在 GitHub 上解决合并冲突](https://docs.github.com/cn/enterprise-server@2.21/github/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
@@ -585,35 +612,6 @@ git push origin main
 - **手动测试：** 在 GitHub 仓库的 **Actions** 页面手动点击 **Run workflow**。如果运行成功且日志显示 `Merge made by the 'recursive' strategy`，则说明自动化忽略冲突已生效。
 
 **你会操作了吗？** 如果运行 Action 时出现红色报错，请把报错日志发给我，我来帮你分析。
-
-## 解决`port 22`问题
-
-1.进入.ssh的目录，使用命令`touch config`创建一个配置文件，并写入你github的配置信息。（`xxxxx@xx.com`是你github的注册邮箱）
-
-```bash
-Host github.com  
-User xxxxx@xx.com  
-Hostname ssh.github.com  
-PreferredAuthentications publickey  
-IdentityFile ~/.ssh/id_rsa  
-Port 443
-```
-
-2.更改配置文件config的权限。
-
-```bash
-chmod 600 config
-```
-
-3.再尝试查看连接状态
-
-```bash
-ssh git@github.com
-```
-
-**Please make sure you have the correct access rights and the repository exist**
-
-如果即使已经添加本地公钥到github，还提示以上错误，并且执行`ssh -T git@github.com`提示22端口关闭，解决方法见上。
 
 ## 多 Git 仓库的 SSH-key 配置
 
