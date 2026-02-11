@@ -1,8 +1,5 @@
 #!/bin/bash
 
-# 注意：为了能捕获错误并显示“失败”提示，我们不使用 set -e，而是手动判断关键步骤
-# set -e  <-- 已注释掉
-
 # 定义颜色
 RED='\033[0;31m'
 GREEN='\033[0;32m'
@@ -84,14 +81,14 @@ if git push origin develop --force; then
     echo ""
     echo -e "${GREEN}✨ [成功] 博客已推送至 GitHub，同步完成！${NC}"
     echo -e "${GREEN}现在可以开始新的创作了。${NC}"
+    echo -e "${BLUE}任务结束，窗口将在 2 秒后自动关闭...${NC}"
+    sleep 2
+    exit 0
 else
     echo ""
     echo -e "${RED}❌ [失败] 推送过程中出现错误。${NC}"
     echo "请检查：1. 网络连接是否正常 2. 账号权限是否失效"
+    echo ""
+    read -p "按回车键关闭窗口..."
+    exit 1
 fi
-
-echo -e "${BLUE}任务结束。${NC}"
-
-# 强行停留，直到你按回车
-echo ""
-read -p "按回车键关闭窗口..."
