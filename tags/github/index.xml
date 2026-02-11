@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 10:22:26 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 10:29:27 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;参考chatgpt&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;在你的 fork 仓库中新建：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -1102,7 +1102,7 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;li&gt;&lt;strong&gt;文件路径&lt;/strong&gt;：确保 &lt;code&gt;.gitattributes&lt;/code&gt; 中的文件路径书写正确（建议使用 &lt;code&gt;**/文件名&lt;/code&gt; 来匹配所有层级的同名文件）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;你会查看 &lt;code&gt;.gitattributes&lt;/code&gt; 是否生效了吗？&lt;/strong&gt; 如果不确定，可以运行 &lt;code&gt;git check-attr -a &amp;lt;文件名&amp;gt;&lt;/code&gt; 来核实。&lt;/p&gt;
-&lt;h2 id="github-vscode"&gt;GitHub VScode
+&lt;h2 id="github-网页编辑器"&gt;GitHub 网页编辑器
 &lt;/h2&gt;&lt;p&gt;1.打开方式：仓库页面按英文句号，或者将&lt;code&gt;https://github.com/iwyang/iwyang.github.io&lt;/code&gt;改成&lt;code&gt;https://github.dev/iwyang/iwyang.github.io&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2.新建代码片段：左下角齿轮—代码片段—搜索并选择 &lt;code&gt;markdown.json&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;3.粘贴以下配置：&lt;/p&gt;

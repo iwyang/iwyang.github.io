@@ -13228,7 +13228,7 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;li&gt;&lt;strong&gt;文件路径&lt;/strong&gt;：确保 &lt;code&gt;.gitattributes&lt;/code&gt; 中的文件路径书写正确（建议使用 &lt;code&gt;**/文件名&lt;/code&gt; 来匹配所有层级的同名文件）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;你会查看 &lt;code&gt;.gitattributes&lt;/code&gt; 是否生效了吗？&lt;/strong&gt; 如果不确定，可以运行 &lt;code&gt;git check-attr -a &amp;lt;文件名&amp;gt;&lt;/code&gt; 来核实。&lt;/p&gt;
-&lt;h2 id="github-vscode"&gt;GitHub VScode
+&lt;h2 id="github-网页编辑器"&gt;GitHub 网页编辑器
 &lt;/h2&gt;&lt;p&gt;1.打开方式：仓库页面按英文句号，或者将&lt;code&gt;https://github.com/iwyang/iwyang.github.io&lt;/code&gt;改成&lt;code&gt;https://github.dev/iwyang/iwyang.github.io&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2.新建代码片段：左下角齿轮—代码片段—搜索并选择 &lt;code&gt;markdown.json&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;3.粘贴以下配置：&lt;/p&gt;
