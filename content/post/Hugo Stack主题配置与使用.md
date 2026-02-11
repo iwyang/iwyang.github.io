@@ -585,14 +585,14 @@ jobs:
 
 ### 删除相关文章图片
 
-根目录`assets/scss/partials/layout/article.scss`
+请在你的 `article.scss` 文件中找到 `.related-content` 这一块（大约在文件中间偏下的位置），将它**完全替换**为以下代码：
 
 ```scss
-.related-contents {
+.related-content {
     overflow-x: auto;
     padding-bottom: 15px;
 
-    & > .flex {
+    &>.flex {
         float: left;
     }
 
@@ -601,14 +601,41 @@ jobs:
         flex-shrink: 0;
         overflow: hidden;
         width: 250px;
-        height: 80px; //改为80
-        box-shadow: var(--shadow-l2); //加个卡片阴影
+        
+        /* 1. 将原本的 height: 150px 改为自适应，消除大片空白 */
+        height: auto;
+        min-height: 80px; /* 设置一个舒适的最小高度 */
+
+        /* 2. 彻底隐藏图片容器 */
+        .article-image {
+            display: none !important;
+        }
+
+        /* 3. 新增详情区域样式：让文字在卡片中垂直/水平居中 */
+        .article-details {
+            padding: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            min-height: 80px;
+            box-sizing: border-box;
+        }
 
         .article-title {
-            font-size: 1.4rem; //改为1.4
-            margin: auto;
-            justify-content: center; //居中
+            font-size: 1.6rem; /* 稍微缩小一点字号显得更精致 */
+            margin: 0;
+            text-align: center; /* 文字居中对齐 */
+            color: var(--card-text-color-main) !important; /* 强制文字显示为主题的正常颜色 */
         }
+
+        /* 4. 移除带图片时附带的黑色半透明渐变遮罩 */
+        &.has-image {
+            .article-details {
+                background: transparent;
+            }
+        }
+    }
+}
 ```
 
 ### 删除分类图片
