@@ -2,10 +2,6 @@ mainSections = ["post"]
 rssFullContent = true
 favicon        = "img/avatar.png"
 
-# --- 新增这行代码 ---
-customCSS      = ["custom.scss"]
-# ------------------
-
 # 👇 ===== 新增的日期格式配置 ===== 👇
 [dateFormat]
     published = "2006-01-02" # 这样会显示为 2024-04-06 (带前导零更好看)
