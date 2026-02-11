@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 10 Feb 2026 18:12:17 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 10:22:26 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装-docker"&gt;安装 Docker
 &lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -12833,7 +12833,7 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 点击“文件→打印”，系统弹出“打印”对话框，“缩放”，在“按纸型缩放”下拉列表框中，选择要使用的纸型，比如选择A4纸型。单击“确定”按钮。
 这时，Word将调整文档的页面使其适合所选纸型，在此Word将原本需要打印在A3纸张上的文档，通过自动缩小字号和图形打印在A4幅面的纸上。这类似于复印机的“缩小／放大”功能。&lt;/p&gt;
 &lt;p&gt;参考链接：&lt;a class="link" href="https://wap.zol.com.cn/ask/x_4496525.html" target="_blank" rel="noopener"
- &gt;怎样设置才能把A3文档打印到A4纸上&lt;/a&gt;&lt;/p&gt;</description></item><item><title>解决Github Port 443以及Port 22问题&amp;&amp;合并冲突问题&amp;&amp;GitHub 网页版 VS Code</title><link>https://bore.vip/archives/2284a148/</link><pubDate>Wed, 18 Aug 2021 03:56:29 +0000</pubDate><guid>https://bore.vip/archives/2284a148/</guid><description>&lt;h2 id="解决port-443问题"&gt;解决port 443问题
+ &gt;怎样设置才能把A3文档打印到A4纸上&lt;/a&gt;&lt;/p&gt;</description></item><item><title>解决Github Port 443以及Port 22问题&amp;&amp;合并冲突问题&amp;&amp;codespaces</title><link>https://bore.vip/archives/2284a148/</link><pubDate>Wed, 18 Aug 2021 03:56:29 +0000</pubDate><guid>https://bore.vip/archives/2284a148/</guid><description>&lt;h2 id="解决port-443问题"&gt;解决port 443问题
 &lt;/h2&gt;&lt;p&gt;1.切换到全：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -13129,7 +13129,7 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;li&gt;&lt;strong&gt;文件路径&lt;/strong&gt;：确保 &lt;code&gt;.gitattributes&lt;/code&gt; 中的文件路径书写正确（建议使用 &lt;code&gt;**/文件名&lt;/code&gt; 来匹配所有层级的同名文件）。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;你会查看 &lt;code&gt;.gitattributes&lt;/code&gt; 是否生效了吗？&lt;/strong&gt; 如果不确定，可以运行 &lt;code&gt;git check-attr -a &amp;lt;文件名&amp;gt;&lt;/code&gt; 来核实。&lt;/p&gt;
-&lt;h2 id="github-网页版-vs-code"&gt;&lt;strong&gt;GitHub 网页版 VS Code&lt;/strong&gt;
+&lt;h2 id="github-vscode"&gt;GitHub VScode
 &lt;/h2&gt;&lt;p&gt;1.打开方式：仓库页面按英文句号，或者将&lt;code&gt;https://github.com/iwyang/iwyang.github.io&lt;/code&gt;改成&lt;code&gt;https://github.dev/iwyang/iwyang.github.io&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;2.新建代码片段：左下角齿轮—代码片段—搜索并选择 &lt;code&gt;markdown.json&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;3.粘贴以下配置：&lt;/p&gt;
@@ -13188,6 +13188,15 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;/div&gt;&lt;p&gt;4.&lt;strong&gt;使用方法&lt;/strong&gt;：&lt;del&gt;在新文件中输入 &lt;code&gt;sj&lt;/code&gt; 然后按 &lt;code&gt;Tab&lt;/code&gt; 键，它会自动生成生成完整的 Hugo Stack 标准 Front Matter（包含时区的标准日期）&lt;/del&gt;。&lt;del&gt;PS：调不出，用下面&lt;strong&gt;强制调用&lt;/strong&gt;&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;**强制调用：**左下角齿轮—命令面板（Ctrl+shirt+p）—搜索&lt;code&gt;Insert Snippet&lt;/code&gt;—选择&lt;code&gt;代码片段：插入片段&lt;/code&gt;—选择&lt;code&gt;sj&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;5.同步设置：左下角齿轮—设置同步已打开&lt;/p&gt;
+&lt;h2 id="github-codespaces云端-vs-code"&gt;&lt;strong&gt;GitHub codespaces&lt;/strong&gt;(云端 VS Code)
+&lt;/h2&gt;&lt;h3 id="新建codespaces"&gt;新建codespaces
+&lt;/h3&gt;&lt;p&gt;GitHub 提供免费的 &lt;strong&gt;Codespaces&lt;/strong&gt;（云端 VS Code）。&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;在你的 GitHub 仓库页面，点击绿色的 &lt;code&gt;&amp;lt;&amp;gt; Code&lt;/code&gt; 按钮。&lt;/li&gt;
+&lt;li&gt;选择 &lt;strong&gt;Codespaces&lt;/strong&gt; 标签页 -&amp;gt; &lt;strong&gt;Create codespace on main&lt;/strong&gt;。&lt;/li&gt;
+&lt;li&gt;它会直接在浏览器里打开一个完整的 VS Code 编辑器，终端、插件一应俱全。&lt;/li&gt;
+&lt;li&gt;你可以直接在浏览器终端里敲 &lt;code&gt;hugo server&lt;/code&gt;，它甚至会给你生成一个预览链接！&lt;/li&gt;
+&lt;/ol&gt;
 &lt;h2 id="fork后github-action-自动拉取更新当指定文件冲突时使用来源分支版本"&gt;fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本
 &lt;/h2&gt;&lt;p&gt;既然你希望在 GitHub Action 自动同步 Fork 时，遇到冲突直接**使用来源分支（上游/对方）**的版本，我们需要配置 &lt;code&gt;theirs&lt;/code&gt; 策略。这通常用于你希望某些文件（如 &lt;code&gt;nodes&lt;/code&gt; 或 &lt;code&gt;configs&lt;/code&gt;）始终紧跟上游更新，而不保留你本地的修改。&lt;/p&gt;
 &lt;p&gt;以下是针对 &lt;code&gt;LunaTV-config&lt;/code&gt; 仓库实现“&lt;strong&gt;全自动同步且冲突时以来源为准&lt;/strong&gt;”的从头到尾完整指南。&lt;/p&gt;
