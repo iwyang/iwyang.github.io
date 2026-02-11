@@ -219,7 +219,7 @@ git push origin main
 
 **你会查看 `.gitattributes` 是否生效了吗？** 如果不确定，可以运行 `git check-attr -a <文件名>` 来核实。
 
-##  GitHub VScode
+##  GitHub 网页编辑器
 
 1.打开方式：仓库页面按英文句号，或者将`https://github.com/iwyang/iwyang.github.io`改成`https://github.dev/iwyang/iwyang.github.io`
 
@@ -269,6 +269,8 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
 2. 选择 **Codespaces** 标签页 -> **Create codespace on main**。
 3. 它会直接在浏览器里打开一个完整的 VS Code 编辑器，终端、插件一应俱全。
 4. 你可以直接在浏览器终端里敲 `hugo server`，它甚至会给你生成一个预览链接！
+
+
 
 ## fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本
 
