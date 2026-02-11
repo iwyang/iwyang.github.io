@@ -1,5 +1,5 @@
 ---
-title: 解决Github Port 443以及Port 22问题&&合并冲突问题&&GitHub 网页版 VS Code
+title: 解决Github Port 443以及Port 22问题&&合并冲突问题&&codespaces
 categories:
   - 技术
 tags:
@@ -219,7 +219,7 @@ git push origin main
 
 **你会查看 `.gitattributes` 是否生效了吗？** 如果不确定，可以运行 `git check-attr -a <文件名>` 来核实。
 
-##  **GitHub 网页版 VS Code** 
+##  GitHub VScode
 
 1.打开方式：仓库页面按英文句号，或者将`https://github.com/iwyang/iwyang.github.io`改成`https://github.dev/iwyang/iwyang.github.io`
 
@@ -258,6 +258,17 @@ git push origin main
 **强制调用：**左下角齿轮—命令面板（Ctrl+shirt+p）—搜索`Insert Snippet`—选择`代码片段：插入片段`—选择`sj`
 
 5.同步设置：左下角齿轮—设置同步已打开
+
+## **GitHub codespaces**(云端 VS Code)
+
+### 新建codespaces
+
+GitHub 提供免费的 **Codespaces**（云端 VS Code）。
+
+1. 在你的 GitHub 仓库页面，点击绿色的 `<> Code` 按钮。
+2. 选择 **Codespaces** 标签页 -> **Create codespace on main**。
+3. 它会直接在浏览器里打开一个完整的 VS Code 编辑器，终端、插件一应俱全。
+4. 你可以直接在浏览器终端里敲 `hugo server`，它甚至会给你生成一个预览链接！
 
 ## fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本
 
