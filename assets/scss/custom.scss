@@ -1,6 +1,6 @@
 /* --- 说说列表页通用样式 --- */
 
-/* 1. 列表容器：改为 Flex 布局 */
+/* 1. 列表容器：配合 HTML 的分列逻辑，使用 Flex 并排显示 */
 .shuoshuo-list {
     display: flex;         
     gap: 20px;             
@@ -8,7 +8,7 @@
     box-sizing: border-box;
 }
 
-/* 2. 瀑布流列样式 */
+/* 2. 左右两列的容器 */
 .waterfall-column {
     display: flex;
     flex-direction: column; 
@@ -34,326 +34,146 @@
     box-shadow: var(--shadow-l2);
 }
 
-/* --- 手机端适配 (宽度 < 768px) --- */
+/* --- 手机端卡片适配 (关键：恢复单列并按时间排序) --- */
 @media (max-width: 768px) {
     .shuoshuo-list {
         display: flex;
-        flex-direction: column; 
+        flex-direction: column; /* 手机端变成垂直单列 */
+        gap: 20px;
     }
     .waterfall-column {
+        /* 黑科技：破坏两列外壳，让卡片直接参与外部 flex 排序 */
         display: contents; 
     }
     .shuoshuo-card {
-        margin-bottom: 20px; 
         padding: 20px; 
     }
     .shuoshuo-content { font-size: 1.5rem; }
 }
 
-/* --- 时间样式 --- */
+/* --- 时间与图标样式 --- */
 .shuoshuo-time {
-    font-size: 1.4rem; 
-    color: var(--card-text-color-secondary);
-    opacity: 0.8;
-    margin-bottom: 12px;
-    display: flex; 
-    align-items: center; 
-    gap: 6px; 
+    font-size: 1.4rem; color: var(--card-text-color-secondary); opacity: 0.8;
+    margin-bottom: 12px; display: flex; align-items: center; gap: 6px; 
 }
-
 .shuoshuo-time svg {
-    width: 16px;
-    height: 16px;
-    min-width: 16px; 
-    fill: none;
-    stroke: currentColor;
-    stroke-width: 2;
-    stroke-linecap: round;
-    stroke-linejoin: round;
-    margin-top: -2px; 
+    width: 16px; height: 16px; min-width: 16px; 
+    fill: none; stroke: currentColor; stroke-width: 2;
+    stroke-linecap: round; stroke-linejoin: round; margin-top: -2px; 
 }
 
 .shuoshuo-content {
-    font-size: 1.6rem; 
-    line-height: 1.8;
-    color: var(--card-text-color-main);
-    
+    font-size: 1.6rem; line-height: 1.8; color: var(--card-text-color-main);
     p { margin: 0.5em 0; }
     a { color: var(--accent-color); text-decoration: none; }
     a:hover { text-decoration: underline; }
 }
 
+/* --- 图片细节与灯箱样式 --- */
+.shuoshuo-image {
+    margin-top: 15px; line-height: 0; overflow: hidden; border-radius: 8px; cursor: zoom-in; 
+    img { transition: transform 0.4s ease; display: block; width: 100%; object-fit: cover; }
+    &:hover img { transform: scale(1.03); }
+}
+
 /* --- 首页说说：通知条样式 --- */
 .notice-board-container {
-    background: var(--card-background);
-    border-radius: var(--card-border-radius);
-    border: none !important; 
-    box-shadow: var(--shadow-l1);
-    height: 54px !important; 
-    margin-bottom: var(--section-gap) !important;
-    display: flex !important;
-    align-items: center !important; 
-    padding: 0 20px;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
-    cursor: pointer !important;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: var(--card-background); border-radius: var(--card-border-radius);
+    border: none !important; box-shadow: var(--shadow-l1); height: 54px !important; 
+    margin-bottom: var(--section-gap) !important; display: flex !important;
+    align-items: center !important; padding: 0 20px; overflow: hidden; position: relative;
+    z-index: 1; cursor: pointer !important; transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
-.notice-board-container:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow-l2);
-}
+.notice-board-container:hover { transform: translateY(-5px); box-shadow: var(--shadow-l2); }
 
 .notice-icon {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    margin-right: 15px;
-    color: var(--card-text-color-secondary);
-    height: 100%;
-    transition: color 0.3s ease;
+    display: flex; align-items: center; justify-content: center; margin-right: 15px; 
+    color: var(--card-text-color-secondary); height: 100%; transition: color 0.3s ease;
     svg { width: 24px; height: 24px; }
 }
-.notice-board-container:hover .notice-icon {
-    color: var(--accent-color);
-}
+.notice-board-container:hover .notice-icon { color: var(--accent-color); }
 
-.swiper.myNoticeSwiper {
-    flex: 1; 
-    height: 54px !important;
-}
-
-.notice-slide {
-    height: 54px !important;
-    display: flex !important;
-    align-items: center !important;
-    width: 100% !important;
-}
-
-.notice-link {
-    display: flex !important; 
-    align-items: center !important; 
-    height: 100% !important;
-    width: 100%;
-    text-decoration: none;
-    color: var(--card-text-color-main);
-    cursor: inherit;
-}
-
-.notice-text {
-    font-size: 16px !important; 
-    line-height: 1.4;
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    width: 100%;
-    display: block;
-    margin-top: 1px; 
-}
+.swiper.myNoticeSwiper { flex: 1; height: 54px !important; }
+.notice-slide { height: 54px !important; display: flex !important; align-items: center !important; width: 100% !important; }
+.notice-link { display: flex !important; align-items: center !important; height: 100% !important; width: 100%; text-decoration: none; color: var(--card-text-color-main); cursor: inherit; }
+.notice-text { font-size: 16px !important; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: block; margin-top: 1px; }
 
 /* --- 底部 Git 信息样式 --- */
 .shuoshuo-footer-info {
-    margin-top: 20px;
-    padding-top: 15px;
-    border-top: 1px dashed var(--body-background); 
-    display: flex;
-    flex-direction: column;
-    gap: 8px; 
-    font-size: 1.3rem; 
-    color: var(--card-text-color-secondary);
+    margin-top: 20px; padding-top: 15px; border-top: 1px dashed var(--body-background); 
+    display: flex; flex-direction: column; gap: 8px; font-size: 1.3rem; color: var(--card-text-color-secondary);
 }
-
-.shuoshuo-edit-link, 
-.shuoshuo-git-info {
-    display: flex;
-    align-items: center;
-    gap: 6px;
-    svg { width: 16px; height: 16px; opacity: 0.7; }
-    a {
-        color: inherit; 
-        text-decoration: none;
-        transition: color 0.3s ease;
-        &:hover { color: var(--accent-color); text-decoration: underline; }
-    }
+.shuoshuo-edit-link, .shuoshuo-git-info {
+    display: flex; align-items: center; gap: 6px; svg { width: 16px; height: 16px; opacity: 0.7; }
+    a { color: inherit; text-decoration: none; transition: color 0.3s ease; &:hover { color: var(--accent-color); text-decoration: underline; } }
 }
+.git-hash { color: #1e90ff !important; font-family: monospace; margin-left: 5px; text-decoration: none; &:hover { text-decoration: underline; } }
+@media (max-width: 768px) { .shuoshuo-footer-info { font-size: 1.2rem; } }
 
-.git-hash {
-    color: #1e90ff !important; 
-    font-family: monospace; 
-    margin-left: 5px;
-    text-decoration: none;
-    &:hover { text-decoration: underline; }
-}
-
-@media (max-width: 768px) {
-    .shuoshuo-footer-info { font-size: 1.2rem; }
-}
-
-/* --- 分页导航位置 --- */
-.shuoshuo-pagination {
-    margin-top: var(--section-gap);
-    margin-bottom: 50px; 
-    display: flex;
-    justify-content: center;
-}
-
-@media (max-width: 768px) {
-    .shuoshuo-pagination { margin-bottom: 30px; }
-}
-
-.shuoshuo-title {
-    margin-bottom: 20px;
-    color: var(--card-text-color-main);
-    font-weight: 700;
-}
-
-/* 友情链接双栏 */
+/* --- 说说标题与友情链接 --- */
+.shuoshuo-title { margin-bottom: 20px; color: var(--card-text-color-main); font-weight: 700; }
 @media (min-width: 1024px) {
     .article-list--compact.links {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        background: none;
-        box-shadow: none;
-        
-        article {
-            background: var(--card-background);
-            border: none;
-            box-shadow: var(--shadow-l2);
-            margin-bottom: 8px;
-            border-radius: 10px;
-            &:nth-child(odd) { margin-right: 8px; }
-        }
+        display: grid; grid-template-columns: 1fr 1fr; background: none; box-shadow: none;
+        article { background: var(--card-background); border: none; box-shadow: var(--shadow-l2); margin-bottom: 8px; border-radius: 10px; &:nth-child(odd) { margin-right: 8px; } }
     }
 }
 
+#toggle-menu, .menu-toggle { z-index: 99999 !important; }
+
 /* =========================================
-   【绝对等宽版】手机端分页条完美适配 
-   (解决页码阴影大小不一的问题)
+   【大统一版】分页条完美自适应适配 
    ========================================= */
 
-#toggle-menu, .menu-toggle {
-    z-index: 99999 !important;
+.shuoshuo-pagination { display: flex; justify-content: center; width: 100%; }
+
+.pagination {
+    width: fit-content !important; max-width: 100% !important; margin: 0 auto !important; 
+    height: 54px !important; display: flex !important; align-items: center !important;
+    justify-content: center !important; border-radius: 50px !important; 
+    background: var(--card-background) !important; box-shadow: var(--shadow-l1) !important;
+    overflow: hidden !important; flex-wrap: nowrap !important;
+}
+
+.pagination::-webkit-scrollbar { display: none !important; }
+.pagination { -ms-overflow-style: none !important; scrollbar-width: none !important; }
+
+.pagination .page-link {
+    padding: 0 !important; margin: 0 2px !important; height: 100% !important; flex: 0 0 auto !important;     
+    width: 36px !important; max-width: 36px !important; min-width: 36px !important; border-radius: 12px; 
+    display: flex !important; justify-content: center !important; align-items: center !important; font-size: 15px !important; line-height: 1 !important;
+}
+
+.pagination .page-link:first-child, .pagination .page-link:last-child {
+    width: 38px !important; max-width: 38px !important; min-width: 38px !important;
+}
+
+.pagination .page-link.pagination-link {
+    width: 16px !important; max-width: 16px !important; min-width: 16px !important; background: transparent !important; box-shadow: none !important;
+}
+
+.pagination .page-link:not(.pagination-link) { padding-top: 1px !important; }
+.pagination .page-link svg { width: 20px; height: 20px; display: block; }
+
+@media (min-width: 769px) {
+    .pagination { padding-left: 35px !important; padding-right: 35px !important; margin-top: 30px !important; margin-bottom: 50px !important; }
+    .shuoshuo-pagination { margin-top: var(--section-gap); margin-bottom: 50px; }
 }
 
 @media (max-width: 768px) {
-    .pagination {
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-        flex-wrap: nowrap;      
-        
-        width: 100%;             
-        max-width: 100%;
-        margin: 20px auto 40px;
-        padding: 0 !important; 
-        overflow: hidden !important; 
-    }
-
-    /* 核心魔法：取消弹性伸缩，采用绝对固定尺寸 */
-    .pagination .page-link {
-        padding: 0 !important;
-        margin: 0 2px !important; 
-        height: 54px !important;
-        
-        /* 关键：flex: 0 0 auto 绝对禁止伸缩 */
-        flex: 0 0 auto !important;     
-        
-        /* 将所有页码强制固定为 36px 宽 */
-        width: 36px !important;
-        max-width: 36px !important; 
-        min-width: 36px !important; 
-        
-        border-radius: 12px; 
-        
-        display: flex !important;
-        justify-content: center !important;
-        align-items: center !important;
-        
-        font-size: 15px !important; 
-        line-height: 1 !important;
-    }
-    
-    /* 左右两个箭头按钮：给 38px，稍微宽一点点方便点击 */
-    .pagination .page-link:first-child,
-    .pagination .page-link:last-child {
-        width: 38px !important;
-        max-width: 38px !important;
-        min-width: 38px !important;
-    }
-    
-    /* 极简压缩省略号“...”的空间，给其他按钮让路 */
-    .pagination .page-link.pagination-link {
-        width: 16px !important;
-        max-width: 16px !important;
-        min-width: 16px !important;
-        background: transparent !important;
-        box-shadow: none !important;
-    }
-
-    .pagination .page-link:not(.pagination-link) {
-         padding-top: 1px !important; 
-    }
-    
-    .pagination .page-link svg {
-        width: 20px; 
-        height: 20px;
-        display: block; 
-    }
-}
-
-/* --- 箭头动态样式 --- */
-@keyframes arrow-move {
-    0%, 100% {
-        transform: translateX(0);
-        opacity: 0.9; 
-    }
-    50% {
-        transform: translateX(4px); 
-        opacity: 1; 
-    }
-}
-
-.notice-arrow {
-    margin-left: 10px;
-    color: var(--card-text-color-main) !important; 
-    opacity: 0.9; 
-    display: flex;
-    align-items: center;
-    height: 100%;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.notice-arrow svg {
-    animation: arrow-move 1.5s infinite ease-in-out;
-    color: inherit; 
-}
-
-.notice-board-container:hover .notice-arrow {
-    color: var(--accent-color) !important;
-    opacity: 1;
+    .pagination { padding-left: 10px !important; padding-right: 10px !important; }
+    .shuoshuo-pagination { margin-top: 20px; margin-bottom: 30px; }
 }
 
 /* =========================================
-   修复移动端长按/点击时出现矩形高亮框的问题
+   通知条动态箭头 & 修复点击高亮色块
    ========================================= */
-.notice-board-container, 
-.notice-link, 
-.notice-slide {
-    -webkit-tap-highlight-color: transparent !important; 
-    outline: none;
-}
 
-.notice-board-container {
-    -webkit-user-select: none;
-    user-select: none;
-}
+@keyframes arrow-move { 0%, 100% { transform: translateX(0); opacity: 0.9; } 50% { transform: translateX(4px); opacity: 1; } }
+.notice-arrow { margin-left: 10px; color: var(--card-text-color-main) !important; opacity: 0.9; display: flex; align-items: center; height: 100%; cursor: pointer; transition: all 0.3s ease; }
+.notice-arrow svg { animation: arrow-move 1.5s infinite ease-in-out; color: inherit; }
+.notice-board-container:hover .notice-arrow { color: var(--accent-color) !important; opacity: 1; }
 
-.pagination .page-link {
-    -webkit-tap-highlight-color: transparent !important; 
-    outline: none;
-    -webkit-user-select: none;
-    user-select: none;
-}
+.notice-board-container, .notice-link, .notice-slide { -webkit-tap-highlight-color: transparent !important; outline: none; }
+.notice-board-container { -webkit-user-select: none; user-select: none; }
+.pagination .page-link { -webkit-tap-highlight-color: transparent !important; outline: none; -webkit-user-select: none; user-select: none; }
