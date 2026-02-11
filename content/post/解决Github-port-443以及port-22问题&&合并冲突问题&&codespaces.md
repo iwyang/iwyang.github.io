@@ -400,7 +400,41 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
 
 ### 新建代码片段
 
-参考上面的GitHub 网页编辑器
+1.左下角齿轮—代码片段—搜索并选择 `markdown.json`
+
+2.粘贴以下配置：
+
+```json
+{
+  "Hugo Front Matter": {
+    "prefix": "sj",
+    "body": [
+      "---",
+      "title: \"$1\"",
+      "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
+      "slug: \"$2\"",
+      "description: \"$3\"",
+      "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
+      "draft: false",
+      "toc: true",
+      "weight: false",
+      "image: \"$4\"",
+      "categories: [\"$5\"]",
+      "tags: [\"$6\"]",
+      "---",
+      "",
+      "$0"
+    ],
+    "description": "生成完整的 Hugo Stack 标准 Front Matter"
+  }
+}
+```
+
+3.**使用方法**：~~在新文件中输入 `sj` 然后按 `Tab` 键，它会自动生成生成完整的 Hugo Stack 标准 Front Matter（包含时区的标准日期）~~。~~PS：调不出，用下面**强制调用**~~
+
+**强制调用：**左下角齿轮—命令面板（Ctrl+shirt+p）—搜索`Insert Snippet`—选择`代码片段：插入片段`—选择`sj`
+
+4.同步设置：左下角齿轮—设置同步已打开
 
 ## fork后，GitHub action 自动拉取更新，当指定文件冲突时，使用来源分支版本
 

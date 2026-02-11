@@ -356,3 +356,32 @@
     color: var(--accent-color) !important;
     opacity: 1;
 }
+
+/* =========================================
+   修复移动端长按/点击时出现矩形高亮框的问题
+   ========================================= */
+
+/* 1. 修复首页说说通知条 */
+.notice-board-container, 
+.notice-link, 
+.notice-slide {
+    /* 消除系统自带的长方形点击高亮色 */
+    -webkit-tap-highlight-color: transparent !important; 
+    outline: none;
+}
+
+.notice-board-container {
+    /* 防止长按滑动时意外选中文字内容，提升触摸体验 */
+    -webkit-user-select: none;
+    user-select: none;
+}
+
+/* 2. 修复所有分页按钮 (页码、上一页、下一页) */
+.pagination .page-link {
+    /* 消除系统自带的方形点击高亮色，保留我们自己写的圆角背景反馈 */
+    -webkit-tap-highlight-color: transparent !important; 
+    outline: none;
+    /* 防止连按时意外选中页码数字 */
+    -webkit-user-select: none;
+    user-select: none;
+}
