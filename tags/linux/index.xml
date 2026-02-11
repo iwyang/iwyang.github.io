@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Bore's Notes</title><link>https://bore.vip/tags/linux/</link><description>Recent content in Linux on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Alist挂载网盘</title><link>https://bore.vip/archives/c6592a10/</link><pubDate>Sat, 06 Apr 2024 17:19:21 +0000</pubDate><guid>https://bore.vip/archives/c6592a10/</guid><description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：https://github.com/alist-org/alist&lt;/strong&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Bore's Notes</title><link>https://bore.vip/tags/linux/</link><description>Recent content in Linux on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 17:32:46 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>Alist挂载网盘</title><link>https://bore.vip/archives/c6592a10/</link><pubDate>Sat, 06 Apr 2024 17:19:21 +0000</pubDate><guid>https://bore.vip/archives/c6592a10/</guid><description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：https://github.com/alist-org/alist&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;AList 文档：https://alist.nn.ci/zh/guide/&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;本地启动（在alist所在目录打开cmd）：&lt;code&gt;alist server&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="安装"&gt;安装
@@ -531,9 +531,7 @@
 &lt;p&gt;&lt;a class="link" href="https://www.mailset.top/2024/02/05/letsencrypt%E5%85%8D%E8%B4%B9%E8%AF%81%E4%B9%A6%E7%94%B3%E8%AF%B7-Certbot/" target="_blank" rel="noopener"
  &gt;3.letsencrypt免费证书申请&amp;ndash;Certbot&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://blog.csdn.net/weixin_45544638/article/details/120627648" target="_blank" rel="noopener"
- &gt;4.potplayer无边框透明美化教程&lt;/a&gt;&lt;/p&gt;</description></item><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Tue, 18 Jul 2023 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;{% note warning flat %}
-Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
-{% endnote %}&lt;/p&gt;
+ &gt;4.potplayer无边框透明美化教程&lt;/a&gt;&lt;/p&gt;</description></item><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Tue, 18 Jul 2023 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装桌面环境和vnc服务器"&gt;安装桌面环境和VNC服务器
 &lt;/h2&gt;&lt;p&gt;默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。
 在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。&lt;/p&gt;

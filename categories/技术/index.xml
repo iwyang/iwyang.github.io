@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 13:21:13 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 11 Feb 2026 17:32:46 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装-docker"&gt;安装 Docker
 &lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -4915,9 +4915,7 @@
 &lt;p&gt;随后，在Windows资源管理器中，点击“查看”功能面板，将“显示/隐藏”分组中的“隐藏的项目”复选框选中。最后进入到当前Windows用户所在的“AppData→Local→Microsoft”文件夹，找到Onedrive子文件夹，将其删除即可。&lt;/p&gt;
 &lt;p&gt;若无法直接删除，可利用Unlocker工具或360右键强力删除命令进行删除。&lt;/p&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://office.tqzw.net.cn/computer/computer/229566.html" target="_blank" rel="noopener"
- &gt;教你彻底卸载OneDrive图文操作方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Tue, 18 Jul 2023 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;{% note warning flat %}
-Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。
-{% endnote %}&lt;/p&gt;
+ &gt;教你彻底卸载OneDrive图文操作方法&lt;/a&gt;&lt;/p&gt;</description></item><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Tue, 18 Jul 2023 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装桌面环境和vnc服务器"&gt;安装桌面环境和VNC服务器
 &lt;/h2&gt;&lt;p&gt;默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。
 在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。&lt;/p&gt;
