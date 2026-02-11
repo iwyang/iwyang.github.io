@@ -289,3 +289,28 @@
     }
   }
 }
+
+//使用谷歌字体覆盖主题的字体变量
+:root {
+    // 将引用的字体放在最前面
+    --sys-font-family: 'Noto Serif SC', "Inter", "Helvetiva Neue", Helvetica, Arial, sans-serif;
+}
+
+/* --- 底部运行时间样式修复 --- */
+.site-footer .running-time {
+    /* 1. 调大字号：1.4rem 与上方版权信息的字号更接近 */
+    font-size: 1.4rem !important; 
+    
+    /* 2. 颜色设置：默认使用柔和文字色 */
+    color: var(--sys-color-text-muted) !important; 
+    
+    margin: 10px 0;
+    line-height: 1.6;
+    display: block;
+}
+
+/* 3. 针对暗色模式的特别加亮 (可选) */
+/* 如果觉得 muted 颜色在暗色模式下依然不够白，可以用下面这段强制加白 */
+[data-scheme="dark"] .site-footer .running-time {
+    color: rgba(255, 255, 255, 0.7) !important; 
+}

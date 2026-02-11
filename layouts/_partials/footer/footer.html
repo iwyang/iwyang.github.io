@@ -1,0 +1,38 @@
+{{- $ThemeVersion := "4.0.0" -}}
+<footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
+            {{ .Site.Params.footer.since }} - 
+        {{ end }}
+        {{ now.Format "2006" }} {{ default .Site.Title .Site.Copyright }}
+    </section>
+    
+    <section class="running-time">
+        本博客已在风雨中运行 <span id="running-days">0</span> 天
+    </section>
+    <section class="powerby">
+        {{ with .Site.Params.footer.customText }}
+            {{ . | safeHTML }} <br/>
+        {{ end }}
+
+        {{- $Generator := `<a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>` -}}
+        {{- $Theme := printf `<b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="%s">Stack</a></b>` $ThemeVersion -}}
+        {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
+
+        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} <br />
+        {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
+    </section>
+</footer>
+
+<script>
+    // 请修改下方的日期为你自己的建站日期
+    // 格式：new Date(年, 月, 日)
+    // ⚠️重要提示：JavaScript 中月份是从 0 开始的！
+    // 0 = 1月, 1 = 2月, ..., 11 = 12月
+    // 下面的例子 2023, 0, 1 代表的是 2023年1月1日
+    const buildDate = new Date(2020, 3, 25); 
+    const today = new Date();
+    const days = Math.floor((today - buildDate) / (1000 * 60 * 60 * 24));
+    document.getElementById('running-days').innerText = days;
+</script>
