@@ -21,21 +21,17 @@
         {{- $Theme := printf `<b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="%s">Stack</a></b>` $ThemeVersion -}}
         {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
 
-        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} <br />
+        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} | 
         {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
     </section>
 </footer>
 
 <script>
-    // 使用立即执行函数 (IIFE) 包裹脚本，防止变量污染和重复声明报错
     (function() {
-        // 请修改下方的日期为你自己的建站日期
-        // 格式：new Date(年, 月-1, 日) -> 例如 2020年4月25日 = (2020, 3, 25)
         var buildDate = new Date(2020, 3, 25); 
         var today = new Date();
         var days = Math.floor((today - buildDate) / (1000 * 60 * 60 * 24));
         
-        // 更新所有 class="running-days" 的元素
         var elements = document.querySelectorAll('.running-days');
         elements.forEach(function(el) {
             el.innerText = days;
