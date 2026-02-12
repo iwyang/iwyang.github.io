@@ -1,5 +1,5 @@
 ---
-title: "碎碎念"
+title: "说说"
 layout: "shuoshuo"
 menu:
     main:

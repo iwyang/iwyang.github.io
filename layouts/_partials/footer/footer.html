@@ -40,9 +40,9 @@
     {{/* 使用 resources.GetRemote 发起请求 */}}
     {{- $apiData := resources.GetRemote $apiURL -}}
     
-    {{/* 【修复点】直接判断 $apiData 是否存在，删除了不兼容的 .Err 检查 */}}
+    {{/* 【修复点】直接判断 $apiData 是否存在 */}}
     {{- if $apiData -}}
-        {{/* 尝试解析 JSON，如果 API 报错或超限，这里可能会解析出错误信息，但不会崩 */}}
+        {{/* 尝试解析 JSON */}}
         {{- $json := $apiData.Content | transform.Unmarshal -}}
         
         {{/* 只有当 JSON 中确实包含 commit 信息时才更新时间 */}}
@@ -74,7 +74,8 @@
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}">--</span>
 
         {{- if $gitHashShort -}}
-            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: inherit; opacity: 0.8; margin-left: 5px; text-decoration: none;">#{{ $gitHashShort }}</a>
+            {{/* 修改点：将 color 改回 #1e90ff，去掉了 opacity */}}
+            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: #1e90ff; margin-left: 5px; text-decoration: none;">#{{ $gitHashShort }}</a>
         {{- end -}}
     </section>
     
