@@ -262,22 +262,98 @@
 }
 
 /* =========================================
-   【优化】侧边栏头部布局 (居中 + 手机端适配)
+   【新增】电脑端侧边栏强制居中 (使用你提供的代码)
    ========================================= */
+@media (min-width: 1024px) {
+    /* 站点头像，网站名字和描述居中 */
+    .sidebar header {
+        .site-avatar {
+            margin: 0 auto;
+        }
 
-/* 1. 强制头像、名字、描述、社交图标居中 */
-.sidebar header .site-avatar,
-.sidebar header .site-name,
-.sidebar header .site-description,
-.menu-social {
-    margin: auto;
+        .site-name {
+            margin: 0 auto;
+        }
+
+        .site-description {
+            margin: 0 auto;
+            font-size: 1.3rem;
+            
+            /* 使用 CSS 媒体查询代替 @include mixin，防止报错 */
+            @media (min-width: 1400px) {
+                font-size: 1.6rem;
+            }
+        }
+    }
+    
+    /* 社交图标居中 */
+    .menu-social {
+        margin: 0 auto;
+        width: fit-content;
+        display: flex;
+        justify-content: center;
+    }
 }
 
-/* 2. 修正手机端顶部布局：增加 padding 避开右上角菜单按钮 */
+/* =========================================
+   【重构】手机端顶部：纯文字导航栏 & 菜单按钮精准对齐
+   ========================================= */
 @media (max-width: 768px) {
+    /* 1. 隐藏头像和社交图标 */
+    .sidebar header .site-avatar,
+    .menu-social {
+        display: none !important;
+    }
+
+    /* 2. 头部容器：左对齐，去除所有垂直居中属性 */
     .sidebar header {
-        /* 关键：增加顶部内边距，把头像往下推，留出位置给右上角的汉堡菜单 */
-        padding-top: 60px !important; 
-        padding-bottom: 20px !important;
+        display: flex !important;
+        flex-direction: column !important;
+        justify-content: flex-start !important; /* 内容从顶部开始 */
+        align-items: flex-start !important;     /* 内容左对齐 */
+        
+        padding: 20px 60px 10px 20px !important; 
+        
+        text-align: left !important;
+        height: auto !important;
+        min-height: 60px !important;
+        position: relative !important;
+    }
+
+    /* 3. 标题样式 */
+    .sidebar header .site-name {
+        margin: 0 !important;
+        font-size: 1.8rem !important;
+        line-height: 1 !important; 
+        padding-top: 2px !important; 
+        
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        width: 100% !important;
+        display: block !important;
+    }
+
+    /* 4. 副标题样式 */
+    .sidebar header .site-description {
+        margin: 5px 0 0 0 !important;
+        font-size: 1.2rem !important;
+        color: var(--card-text-color-secondary);
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        width: 100% !important;
+        display: block !important; 
+    }
+
+    /* 5. 菜单按钮：绝对定位，死死钉在右上角 */
+    #toggle-menu {
+        position: absolute !important;
+        top: 20px !important;       /* 与 header padding-top 保持一致 */
+        right: 20px !important;
+        
+        transform: none !important; 
+        margin: 0 !important;
+        z-index: 9999 !important;
     }
 }
