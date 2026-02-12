@@ -249,3 +249,14 @@
         padding-top: 0px !important; 
     }
 }
+
+/* =========================================
+   【新增】隐藏侧边栏头像和标题的点击高亮背景
+   ========================================= */
+.sidebar header .site-avatar,
+.sidebar header .site-name,
+.sidebar header a {
+    /* 核心属性：将点击高亮颜色设为透明 */
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none;
+}
