@@ -1,10 +1,6 @@
 {{ define "main" }}
     <main class="main list-container">
         
-        <header class="main-title">
-            <h1 class="shuoshuo-title">{{ .Title }}</h1>
-        </header>
-
         <div class="shuoshuo-list">
             {{ $paginator := .Paginate .Pages }}
             

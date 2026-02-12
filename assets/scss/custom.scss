@@ -91,8 +91,7 @@
 .git-hash { color: #1e90ff !important; font-family: monospace; margin-left: 5px; text-decoration: none; &:hover { text-decoration: underline; } }
 @media (max-width: 768px) { .shuoshuo-footer-info { font-size: 1.2rem; } }
 
-/* --- 说说标题与友情链接 --- */
-.shuoshuo-title { margin-bottom: 20px; color: var(--card-text-color-main); font-weight: 700; }
+/* --- 友情链接页面适配 --- */
 @media (min-width: 1024px) {
     .article-list--compact.links {
         display: grid; grid-template-columns: 1fr 1fr; background: none; box-shadow: none;
@@ -262,31 +261,18 @@
 }
 
 /* =========================================
-   【新增】电脑端侧边栏强制居中 (使用你提供的代码)
+   【新增】电脑端侧边栏强制居中 (头像/标题/社交)
    ========================================= */
 @media (min-width: 1024px) {
-    /* 站点头像，网站名字和描述居中 */
     .sidebar header {
-        .site-avatar {
-            margin: 0 auto;
-        }
-
-        .site-name {
-            margin: 0 auto;
-        }
-
+        .site-avatar { margin: 0 auto; }
+        .site-name { margin: 0 auto; }
         .site-description {
             margin: 0 auto;
             font-size: 1.3rem;
-            
-            /* 使用 CSS 媒体查询代替 @include mixin，防止报错 */
-            @media (min-width: 1400px) {
-                font-size: 1.6rem;
-            }
+            @media (min-width: 1400px) { font-size: 1.6rem; }
         }
     }
-    
-    /* 社交图标居中 */
     .menu-social {
         margin: 0 auto;
         width: fit-content;
