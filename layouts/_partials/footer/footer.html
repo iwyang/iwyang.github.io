@@ -1,4 +1,20 @@
 {{- $ThemeVersion := "4.0.0" -}}
+
+{{/* --- 核心逻辑：获取全站最近更新时间 & Git 版本号 --- */}}
+{{/* 修改点1：将 .Site.RegularPages 改为 .Site.Pages，这样能抓取到主页等非文章页面的变动，Hash 会更新得更准确 */}}
+{{- $latest := index .Site.Pages.ByLastmod.Reverse 0 -}}
+{{- $lastBuildTime := now -}}
+{{- $gitHash := "" -}}
+{{- $gitHashFull := "" -}}
+
+{{- if $latest -}}
+    {{- $lastBuildTime = $latest.Lastmod -}}
+    {{- if $latest.GitInfo -}}
+        {{- $gitHash = $latest.GitInfo.AbbreviatedHash -}}
+        {{- $gitHashFull = $latest.GitInfo.Hash -}}
+    {{- end -}}
+{{- end -}}
+
 <footer class="site-footer">
     <section class="copyright">
         &copy; 
@@ -10,6 +26,15 @@
     
     <section class="running-time">
         本博客已运行 <span class="running-days">0</span> 天
+        
+        <span class="footer-separator"> | </span>
+        
+        最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}">--</span>
+
+        {{- if $gitHash -}}
+            {{/* 修改点2：去掉了 font-family: monospace，保留 color: #1e90ff，现在字体大小会和前面完全一致 */}}
+            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: #1e90ff; margin-left: 5px; text-decoration: none;">#{{ $gitHash }}</a>
+        {{- end -}}
     </section>
     
     <section class="powerby">
@@ -28,13 +53,50 @@
 
 <script>
     (function() {
+        // 1. 运行天数计算
+        // ⚠️ 请确认下方日期为你自己的建站日期 (2020年4月25日)
         var buildDate = new Date(2020, 3, 25); 
         var today = new Date();
         var days = Math.floor((today - buildDate) / (1000 * 60 * 60 * 24));
-        
-        var elements = document.querySelectorAll('.running-days');
-        elements.forEach(function(el) {
+        var runningDaysEls = document.querySelectorAll('.running-days');
+        runningDaysEls.forEach(function(el) {
             el.innerText = days;
         });
+
+        // 2. 最近更新时间逻辑 (相对时间 vs 原始时间)
+        var updateEl = document.getElementById('site-last-update');
+        if (updateEl) {
+            var lastBuildTime = new Date(updateEl.getAttribute('data-time'));
+            var now = new Date();
+            var diff = (now - lastBuildTime) / 1000; // 差距秒数
+
+            var text = '';
+            // 计算一年的秒数 (365天)
+            var oneYearSeconds = 365 * 24 * 60 * 60;
+
+            if (diff > oneYearSeconds) {
+                // 超过一年，显示原始格式：2023-02-09 22:08
+                var year = lastBuildTime.getFullYear();
+                var month = String(lastBuildTime.getMonth() + 1).padStart(2, '0');
+                var day = String(lastBuildTime.getDate()).padStart(2, '0');
+                var hour = String(lastBuildTime.getHours()).padStart(2, '0');
+                var minute = String(lastBuildTime.getMinutes()).padStart(2, '0');
+                text = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+            } else {
+                // 一年以内，显示相对时间
+                if (diff < 60) {
+                    text = '刚刚';
+                } else if (diff < 3600) {
+                    text = Math.floor(diff / 60) + ' 分钟前';
+                } else if (diff < 86400) {
+                    text = Math.floor(diff / 3600) + ' 小时前';
+                } else if (diff < 2592000) { // 30天
+                    text = Math.floor(diff / 86400) + ' 天前';
+                } else {
+                    text = Math.floor(diff / 2592000) + ' 个月前';
+                }
+            }
+            updateEl.innerText = text;
+        }
     })();
 </script>
