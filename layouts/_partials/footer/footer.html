@@ -1,20 +1,59 @@
 {{- $ThemeVersion := "4.0.0" -}}
 
-{{/* --- 核心逻辑：获取全站最近更新时间 & Git 版本号 --- */}}
-{{/* 修改点1：将 .Site.RegularPages 改为 .Site.Pages，这样能抓取到主页等非文章页面的变动，Hash 会更新得更准确 */}}
-{{- $latest := index .Site.Pages.ByLastmod.Reverse 0 -}}
-{{- $lastBuildTime := now -}}
-{{- $gitHash := "" -}}
-{{- $gitHashFull := "" -}}
+{{/* ===========================================================
+     【核心逻辑】
+     1. 时间：强制使用“网站构建时间 (now)”，确保改代码也能更新时间
+     2. 版本号：读取本地 .git 文件夹，获取真实 Commit Hash
+     =========================================================== */}}
 
-{{- if $latest -}}
-    {{- $lastBuildTime = $latest.Lastmod -}}
-    {{- if $latest.GitInfo -}}
-        {{- $gitHash = $latest.GitInfo.AbbreviatedHash -}}
-        {{- $gitHashFull = $latest.GitInfo.Hash -}}
+{{- $gitHashFull := "" -}}
+{{- $gitHashShort := "" -}}
+
+{{/* --- 1. 关键修改：直接使用 now (构建时间) --- */}}
+{{/* 这样无论你改了代码还是文章，只要网站重新构建了，时间就是最新的 */}}
+{{- $lastBuildTime := now -}}
+
+{{/* --- 2. 尝试读取本地 .git/HEAD (获取真实 Commit Hash) --- */}}
+{{- if fileExists ".git/HEAD" -}}
+    {{- $head := readFile ".git/HEAD" | strings.TrimSpace -}}
+    {{- if strings.HasPrefix $head "ref: " -}}
+        {{- $ref := strings.TrimPrefix "ref: " $head -}}
+        {{- if fileExists (printf ".git/%s" $ref) -}}
+            {{- $gitHashFull = readFile (printf ".git/%s" $ref) | strings.TrimSpace -}}
+        {{- end -}}
+    {{- else -}}
+        {{- $gitHashFull = $head -}}
     {{- end -}}
 {{- end -}}
 
+{{/* --- 3. 环境变量支持 (CI/CD) --- */}}
+{{- if eq $gitHashFull "" -}}
+    {{- if getenv "GITHUB_SHA" -}}
+        {{- $gitHashFull = getenv "GITHUB_SHA" -}}
+    {{- else if getenv "COMMIT_REF" -}}
+        {{- $gitHashFull = getenv "COMMIT_REF" -}}
+    {{- end -}}
+{{- end -}}
+
+{{/* --- 4. 回退策略：如果没有读到 git 文件，再尝试用文章信息 --- */}}
+{{- if eq $gitHashFull "" -}}
+    {{- $latest := index .Site.Pages.ByLastmod.Reverse 0 -}}
+    {{- if $latest -}}
+        {{- if $latest.GitInfo -}}
+            {{- $gitHashFull = $latest.GitInfo.Hash -}}
+        {{- end -}}
+    {{- end -}}
+{{- end -}}
+
+{{/* --- 5. 截取前7位 --- */}}
+{{- if ge (len $gitHashFull) 7 -}}
+    {{- $gitHashShort = substr $gitHashFull 0 7 -}}
+{{- end -}}
+
+
+{{/* ===========================================================
+     【页面展示】
+     =========================================================== */}}
 <footer class="site-footer">
     <section class="copyright">
         &copy; 
@@ -27,9 +66,8 @@
     <section class="running-time">
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}">--</span>
 
-        {{- if $gitHash -}}
-            {{/* 修改点2：去掉了 font-family: monospace，保留 color: #1e90ff，现在字体大小会和前面完全一致 */}}
-            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: #1e90ff; margin-left: 5px; text-decoration: none;">#{{ $gitHash }}</a>
+        {{- if $gitHashShort -}}
+            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: inherit; opacity: 0.8; margin-left: 5px; text-decoration: none;">#{{ $gitHashShort }}</a>
         {{- end -}}
     </section>
     
@@ -49,30 +87,35 @@
 
 <script>
     (function() {
-        // 2. 最近更新时间逻辑 (全相对时间)
         var updateEl = document.getElementById('site-last-update');
         if (updateEl) {
             var lastBuildTime = new Date(updateEl.getAttribute('data-time'));
             var now = new Date();
-            var diff = (now - lastBuildTime) / 1000; // 差距秒数
+            var diff = (now - lastBuildTime) / 1000; 
 
             var text = '';
-            
-            if (diff < 60) {
-                text = '刚刚';
-            } else if (diff < 3600) {
-                text = Math.floor(diff / 60) + ' 分钟前';
-            } else if (diff < 86400) {
-                text = Math.floor(diff / 3600) + ' 小时前';
-            } else if (diff < 2592000) { // 30天
-                text = Math.floor(diff / 86400) + ' 天前';
-            } else if (diff < 31536000) { // 365天 (一年的秒数)
-                text = Math.floor(diff / 2592000) + ' 个月前';
+            var oneYearSeconds = 365 * 24 * 60 * 60;
+
+            if (diff > oneYearSeconds) {
+                var year = lastBuildTime.getFullYear();
+                var month = String(lastBuildTime.getMonth() + 1).padStart(2, '0');
+                var day = String(lastBuildTime.getDate()).padStart(2, '0');
+                var hour = String(lastBuildTime.getHours()).padStart(2, '0');
+                var minute = String(lastBuildTime.getMinutes()).padStart(2, '0');
+                text = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
             } else {
-                // 超过一年，现在显示 X 年前
-                text = Math.floor(diff / 31536000) + ' 年前';
+                if (diff < 60) {
+                    text = '刚刚';
+                } else if (diff < 3600) {
+                    text = Math.floor(diff / 60) + ' 分钟前';
+                } else if (diff < 86400) {
+                    text = Math.floor(diff / 3600) + ' 小时前';
+                } else if (diff < 2592000) { 
+                    text = Math.floor(diff / 86400) + ' 天前';
+                } else {
+                    text = Math.floor(diff / 2592000) + ' 个月前';
+                }
             }
-            
             updateEl.innerText = text;
         }
     })();

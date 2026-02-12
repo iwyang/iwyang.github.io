@@ -3,22 +3,10 @@ languageCode = "zh-CN"
 theme = "hugo-theme-stack"
 title = "Bore's Notes"
 
-# Theme i18n support
-# See i18n folder for available languages
 defaultContentLanguage = "zh"
-
-# Set hasCJKLanguage to true if DefaultContentLanguage is a CJK language
-# This will make .Summary and .WordCount behave correctly
 hasCJKLanguage = true
-
-# Enable Git info for commit information
 enableGitInfo = true
 
-# gitRepo = "https://github.com/iwyang/hugo"
-
-# [[module.imports]]
-    # path = "github.com/CaiJimmy/hugo-theme-stack/v3"
-	
 [outputs]
     home = ["HTML", "RSS", "JSON"]	
 
@@ -33,6 +21,16 @@ enableGitInfo = true
     shortname = "hugo-theme-stack"
 	
 [frontmatter]
-# 修复了引号和拼写错误 (default)
 lastmod = [":git", "lastmod", ":fileModTime", ":default"]
 
+# 安全配置：允许读取环境变量（虽然上面的 HTML 已经不需要了，但加上更保险）
+[security]
+  enableInlineShortcodes = false
+  [security.exec]
+    allow = ['^(dart-)?sass(-embedded)?$', '^go$', '^git$', '^npx$', '^postcss$', '^tailwindcss$']
+    osEnv = ['(?i)^((HTTPS?|NO)_PROXY|PATH(EXT)?|APPDATA|TE?MP|TERM|GO\w+|(XDG_CONFIG_)?HOME|USERPROFILE|SSH_AUTH_SOCK|DISPLAY|LANG|SYSTEMDRIVE|PROGRAMDATA)$']
+  [security.funcs]
+    getenv = ['^HUGO_', '^CI$', '^GITHUB_', '^COMMIT_']
+  [security.http]
+    methods = ['(?i)GET|POST']
+    urls = ['.*']
