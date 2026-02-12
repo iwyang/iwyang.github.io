@@ -251,12 +251,21 @@
 }
 
 /* =========================================
-   【新增】隐藏侧边栏头像和标题的点击高亮背景
+   【新增】隐藏侧边栏(头部+右侧组件)的点击高亮背景
    ========================================= */
+
+/* 1. 左侧边栏头部 (头像、标题、链接) */
 .sidebar header .site-avatar,
 .sidebar header .site-name,
 .sidebar header a {
-    /* 核心属性：将点击高亮颜色设为透明 */
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none;
+}
+
+/* 2. 右侧边栏组件 (归档、分类、标签云) */
+.widget a,                            /* 所有小部件内的链接 */
+.widget.archives .widget-archive--list, /* 归档列表容器 */
+.tagCloud .tagCloud-tags a {            /* 标签云按钮 */
     -webkit-tap-highlight-color: transparent !important;
     outline: none;
 }
