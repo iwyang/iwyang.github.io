@@ -103,7 +103,7 @@
 #toggle-menu, .menu-toggle { z-index: 99999 !important; }
 
 /* =========================================
-   【大统一版】分页条完美自适应适配 
+   【大统一版】分页条完美自适应适配 & 美化
    ========================================= */
 
 .shuoshuo-pagination { 
@@ -126,6 +126,38 @@
     padding: 0 !important; margin: 0 2px !important; height: 100% !important; flex: 0 0 auto !important;     
     width: 36px !important; max-width: 36px !important; min-width: 36px !important; border-radius: 12px; 
     display: flex !important; justify-content: center !important; align-items: center !important; font-size: 15px !important; line-height: 1 !important;
+    
+    /* 基础文字颜色 */
+    color: var(--card-text-color-main);
+    transition: all 0.3s ease;
+}
+
+/* 【重点修改】激活状态（当前页）的样式优化 */
+.pagination .page-link.active {
+    /* 1. 背景色：使用主题强调色 */
+    background-color: var(--accent-color) !important;
+    
+    /* 2. 文字颜色：白色 */
+    color: #fff !important;
+    
+    /* 3. 阴影：增加柔和的投影，制造悬浮感 */
+    box-shadow: 0 4px 10px rgba(var(--accent-color-rgb), 0.3) !important;
+    
+    /* 4. 形状：稍微圆润一点，或者改成 50% 变成纯圆 */
+    border-radius: 14px !important; 
+    
+    /* 5. 稍微放大一点点，突出显示 */
+    transform: scale(1.05);
+    font-weight: bold;
+}
+
+/* 鼠标悬停在普通页码上 */
+.pagination .page-link:not(.active):not(.pagination-link):hover {
+    background-color: rgba(0,0,0,0.05); /* 淡淡的灰色背景 */
+    color: var(--accent-color);
+}
+[data-scheme="dark"] .pagination .page-link:not(.active):not(.pagination-link):hover {
+    background-color: rgba(255,255,255,0.1); /* 深色模式下的悬停背景 */
 }
 
 .pagination .page-link:first-child, .pagination .page-link:last-child {
