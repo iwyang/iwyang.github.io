@@ -126,64 +126,40 @@
     padding: 0 !important; margin: 0 2px !important; height: 100% !important; flex: 0 0 auto !important;     
     width: 36px !important; max-width: 36px !important; min-width: 36px !important; border-radius: 12px; 
     display: flex !important; justify-content: center !important; align-items: center !important; font-size: 15px !important; line-height: 1 !important;
-    
-    /* 基础文字颜色 */
-    color: var(--card-text-color-main);
-    transition: all 0.3s ease;
+    color: var(--card-text-color-main); transition: all 0.3s ease;
 }
 
-/* 【重点修改】激活状态（当前页）的样式优化 */
+/* 激活状态（当前页）的样式优化 */
 .pagination .page-link.active {
-    /* 1. 背景色：使用主题强调色 */
     background-color: var(--accent-color) !important;
-    
-    /* 2. 文字颜色：白色 */
     color: #fff !important;
-    
-    /* 3. 阴影：增加柔和的投影，制造悬浮感 */
     box-shadow: 0 4px 10px rgba(var(--accent-color-rgb), 0.3) !important;
-    
-    /* 4. 形状：稍微圆润一点，或者改成 50% 变成纯圆 */
     border-radius: 14px !important; 
-    
-    /* 5. 稍微放大一点点，突出显示 */
-    transform: scale(1.05);
-    font-weight: bold;
+    transform: scale(1.05); font-weight: bold;
 }
 
-/* 鼠标悬停在普通页码上 */
 .pagination .page-link:not(.active):not(.pagination-link):hover {
-    background-color: rgba(0,0,0,0.05); /* 淡淡的灰色背景 */
-    color: var(--accent-color);
+    background-color: rgba(0,0,0,0.05); color: var(--accent-color);
 }
 [data-scheme="dark"] .pagination .page-link:not(.active):not(.pagination-link):hover {
-    background-color: rgba(255,255,255,0.1); /* 深色模式下的悬停背景 */
+    background-color: rgba(255,255,255,0.1);
 }
 
 .pagination .page-link:first-child, .pagination .page-link:last-child {
     width: 38px !important; max-width: 38px !important; min-width: 38px !important;
 }
-
 .pagination .page-link.pagination-link {
     width: 16px !important; max-width: 16px !important; min-width: 16px !important; background: transparent !important; box-shadow: none !important;
 }
-
 .pagination .page-link:not(.pagination-link) { padding-top: 1px !important; }
 .pagination .page-link svg { width: 20px; height: 20px; display: block; }
 
 @media (min-width: 769px) {
-    .pagination { 
-        padding-left: 35px !important; padding-right: 35px !important; 
-        margin-top: 30px !important; margin-bottom: 50px !important; 
-    }
+    .pagination { padding-left: 35px !important; padding-right: 35px !important; margin-top: 30px !important; margin-bottom: 50px !important; }
     .shuoshuo-pagination { margin-bottom: 0 !important; }
 }
-
 @media (max-width: 768px) {
-    .pagination { 
-        padding-left: 10px !important; padding-right: 10px !important; 
-        margin-bottom: 40px !important; 
-    }
+    .pagination { padding-left: 10px !important; padding-right: 10px !important; margin-bottom: 40px !important; }
     .shuoshuo-pagination { margin-top: 20px; margin-bottom: 0 !important; }
 }
 
@@ -195,22 +171,18 @@
 .notice-arrow { margin-left: 10px; color: var(--card-text-color-main) !important; opacity: 0.9; display: flex; align-items: center; height: 100%; cursor: pointer; transition: all 0.3s ease; }
 .notice-arrow svg { animation: arrow-move 1.5s infinite ease-in-out; color: inherit; }
 .notice-board-container:hover .notice-arrow { color: var(--accent-color) !important; opacity: 1; }
-
 .notice-board-container, .notice-link, .notice-slide { -webkit-tap-highlight-color: transparent !important; outline: none; }
 .notice-board-container { -webkit-user-select: none; user-select: none; }
 .pagination .page-link { -webkit-tap-highlight-color: transparent !important; outline: none; -webkit-user-select: none; user-select: none; }
 
 /* 仅在文章详情页隐藏置顶标签 */
 .article-page .icon-pinned { display: none !important; }
-
-/* 头像旋转动画 */
+/* 头像旋转 */
 .sidebar header .site-avatar .site-logo { transition: transform 1.65s ease-in-out; }
 .sidebar header .site-avatar .site-logo:hover { transform: rotate(360deg); }
-
 /* 首页文章卡片效果 */
 .article-list article { transition: transform 0.3s ease, box-shadow 0.3s ease !important; }
 .article-list article:hover { transform: translateY(-5px) !important; box-shadow: var(--shadow-l2) !important; }
-
 /* 右侧导航栏动画 */
 .search-form.widget { transition: transform 0.6s ease; }
 .search-form.widget:hover { transform: scale(1.1, 1.1); }
@@ -218,12 +190,10 @@
 .widget.archives .widget-archive--list:hover { transform: scale(1.05, 1.05); }
 .tagCloud .tagCloud-tags a { border-radius: 10px; font-size: 1.4rem; transition: transform .3s ease; }
 .tagCloud .tagCloud-tags a:hover { transform: scale(1.1, 1.1); }
-
 /* 归档页面效果 (防长按高亮) */
 .article-list--tile article { transition: .6s ease; -webkit-tap-highlight-color: transparent !important; outline: none; }
 .article-list--tile article:hover { transform: scale(1.03, 1.03); }
 .article-list--compact article { -webkit-tap-highlight-color: transparent !important; outline: none; }
-
 @media (min-width: 1024px) {
   .article-list--compact {
     display: grid; grid-template-columns: 1fr 1fr; background: none; box-shadow: none; gap: 1rem;
@@ -236,9 +206,7 @@
 }
 
 /* 字体设置 */
-:root {
-    --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif;
-}
+:root { --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif; }
 
 /* --- 底部运行时间样式 --- */
 .site-footer .running-time {
@@ -253,17 +221,13 @@
 /* =========================================
    【终极修复】全站页脚 & 横线 完美居中 & 单行显示
    ========================================= */
-
 .site-footer { 
     width: 100%; 
     box-sizing: border-box;
-    /* 1. 强制所有设备下的文字居中 */
     text-align: center !important; 
     padding-bottom: 30px;
     padding-top: 20px;
 }
-
-/* 2. 强制顶部的横线 (伪元素) 居中 */
 .site-footer::before {
     content: "";
     display: block;
@@ -271,57 +235,49 @@
     height: 2px;
     background: var(--card-text-color-secondary); 
     opacity: 0.5;
-    /* 核心代码：margin-left 和 margin-right 设为 auto，强行把块级元素居中 */
     margin: 0 auto 20px auto !important; 
 }
-
-/* 针对手机端的额外微调 */
 @media (max-width: 768px) {
-    .site-footer {
-        padding-top: 0px !important; 
-    }
+    .site-footer { padding-top: 0px !important; }
 }
 
 /* =========================================
-   【新增】隐藏侧边栏(头部+右侧组件)的点击高亮背景
+   【去除高亮】侧边栏与右侧组件点击背景
    ========================================= */
-
-/* 1. 左侧边栏头部 (头像、标题、链接) */
 .sidebar header .site-avatar,
 .sidebar header .site-name,
-.sidebar header a {
+.sidebar header a,
+.widget a,
+.widget.archives .widget-archive--list,
+.tagCloud .tagCloud-tags a {
     -webkit-tap-highlight-color: transparent !important;
     outline: none;
 }
 
-/* 2. 右侧边栏组件 (归档、分类、标签云) */
-.widget a,                            /* 所有小部件内的链接 */
-.widget.archives .widget-archive--list, /* 归档列表容器 */
-.tagCloud .tagCloud-tags a {            /* 标签云按钮 */
-    -webkit-tap-highlight-color: transparent !important;
-    outline: none;
+/* =========================================
+   【新增】页脚统计分隔符样式
+   ========================================= */
+.footer-separator {
+    margin: 0 8px; opacity: 0.6; font-size: 0.9em;
 }
 
+/* =========================================
+   【优化】侧边栏头部布局 (居中 + 手机端适配)
+   ========================================= */
 
-// 站点头像，网站名字和描述居中
-.sidebar header {
-  .site-avatar {
-    margin: auto;
-  }
-
-  .site-name {
-    margin: auto;
-  }
-
-  .site-description {
-    margin: auto;
-    font-size: 1.3rem;
-    @include respond(2xl) {
-      font-size: 1.6rem;
-    }
-  }
-}
-// 社交图标居中
+/* 1. 强制头像、名字、描述、社交图标居中 */
+.sidebar header .site-avatar,
+.sidebar header .site-name,
+.sidebar header .site-description,
 .menu-social {
-  margin: auto;
+    margin: auto;
+}
+
+/* 2. 修正手机端顶部布局：增加 padding 避开右上角菜单按钮 */
+@media (max-width: 768px) {
+    .sidebar header {
+        /* 关键：增加顶部内边距，把头像往下推，留出位置给右上角的汉堡菜单 */
+        padding-top: 60px !important; 
+        padding-bottom: 20px !important;
+    }
 }
