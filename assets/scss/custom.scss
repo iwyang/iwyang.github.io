@@ -301,3 +301,27 @@
     -webkit-tap-highlight-color: transparent !important;
     outline: none;
 }
+
+
+// 站点头像，网站名字和描述居中
+.sidebar header {
+  .site-avatar {
+    margin: auto;
+  }
+
+  .site-name {
+    margin: auto;
+  }
+
+  .site-description {
+    margin: auto;
+    font-size: 1.3rem;
+    @include respond(2xl) {
+      font-size: 1.6rem;
+    }
+  }
+}
+// 社交图标居中
+.menu-social {
+  margin: auto;
+}
