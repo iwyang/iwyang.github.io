@@ -10,9 +10,11 @@
                         <article class="shuoshuo-card" style="order: {{ $index }}">
                             <div class="shuoshuo-header">
                                 <div class="shuoshuo-meta">
+                                    {{/* 修改点：默认渲染格式只保留 "2006-01-02" (去掉时分) */}}
+                                    {{/* 这样当 JS 判断超过 6 个月直接 return 时，显示的就是纯日期 */}}
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                                         {{ partial "helper/icon" "date" }}
-                                        <span class="date-text">{{ .Date.Format "2006-01-02 15:04" }}</span>
+                                        <span class="date-text">{{ .Date.Format "2006-01-02" }}</span>
                                     </time>
                                 </div>
                             </div>
@@ -64,9 +66,10 @@
                         <article class="shuoshuo-card" style="order: {{ $index }}">
                             <div class="shuoshuo-header">
                                 <div class="shuoshuo-meta">
+                                    {{/* 右列同样修改：默认渲染格式只保留 "2006-01-02" */}}
                                     <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                                         {{ partial "helper/icon" "date" }}
-                                        <span class="date-text">{{ .Date.Format "2006-01-02 15:04" }}</span>
+                                        <span class="date-text">{{ .Date.Format "2006-01-02" }}</span>
                                     </time>
                                 </div>
                             </div>
@@ -134,6 +137,9 @@
                     if (!textSpan) return;
 
                     let text = '';
+                    
+                    // 【逻辑确认】: 6个月内相对时间，超过6个月保持原样(即纯日期)
+                    
                     if (diff < 60) {
                         text = '刚刚';
                     } else if (diff < 3600) {
@@ -142,13 +148,18 @@
                         text = Math.floor(diff / 3600) + ' 小时前';
                     } else if (diff < 2592000) { 
                         text = Math.floor(diff / 86400) + ' 天前';
-                    } else if (diff < 31536000) { 
+                    } else if (diff < 15552000) { // 6个月
                         text = Math.floor(diff / 2592000) + ' 个月前';
                     } else {
+                        // 超过6个月，return，保持 HTML 中我们刚改好的 "2006-01-02"
                         return; 
                     }
                     
-                    el.setAttribute('title', textSpan.innerText.trim());
+                    // 把完整的日期(含时分)放到 title 里，悬停可见
+                    // 注意：这里需要重新格式化一下 title，或者直接用 dateStr
+                    // 为了简单，我们直接用原生的 dateStr (ISO格式) 或者手动拼一个
+                    el.setAttribute('title', date.toLocaleString()); 
+                    
                     textSpan.innerText = text;
                 });
             });
