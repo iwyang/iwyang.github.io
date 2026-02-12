@@ -9,8 +9,9 @@
     </section>
     
     <section class="running-time">
-        本博客已运行 <span id="running-days">0</span> 天
+        本博客已运行 <span class="running-days">0</span> 天
     </section>
+    
     <section class="powerby">
         {{ with .Site.Params.footer.customText }}
             {{ . | safeHTML }} <br/>
@@ -26,14 +27,18 @@
 </footer>
 
 <script>
-    // 请修改下方的日期为你自己的建站日期
-    // 格式：new Date(年, 月, 日)
-    // ⚠️重要提示：JavaScript 中月份是从 0 开始的！
-    // 0 = 1月, 1 = 2月, ..., 11 = 12月
-    // 下面的例子 2023, 0, 1 代表的是 2023年1月1日
-    const buildDate = new Date(2020, 3, 25); 
-    const today = new Date();
-    const days = Math.floor((today - buildDate) / (1000 * 60 * 60 * 24));
-    document.getElementById('running-days').innerText = days;
-
+    // 使用立即执行函数 (IIFE) 包裹脚本，防止变量污染和重复声明报错
+    (function() {
+        // 请修改下方的日期为你自己的建站日期
+        // 格式：new Date(年, 月-1, 日) -> 例如 2020年4月25日 = (2020, 3, 25)
+        var buildDate = new Date(2020, 3, 25); 
+        var today = new Date();
+        var days = Math.floor((today - buildDate) / (1000 * 60 * 60 * 24));
+        
+        // 更新所有 class="running-days" 的元素
+        var elements = document.querySelectorAll('.running-days');
+        elements.forEach(function(el) {
+            el.innerText = days;
+        });
+    })();
 </script>
