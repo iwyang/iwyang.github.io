@@ -1,19 +1,17 @@
 {{- $ThemeVersion := "4.0.0" -}}
 
 {{/* ===========================================================
-     【核心逻辑】
-     1. 时间：强制使用“网站构建时间 (now)”，确保改代码也能更新时间
-     2. 版本号：读取本地 .git 文件夹，获取真实 Commit Hash
+     【核心逻辑：强迫症精准版 - 修复 Hugo v0.141+ 兼容性】
+     1. 获取 Git Hash
+     2. 请求 GitHub API 获取精准时间
+     3. 修复 .Err 字段移除导致的报错
      =========================================================== */}}
 
 {{- $gitHashFull := "" -}}
 {{- $gitHashShort := "" -}}
+{{- $lastBuildTime := now -}} {{/* 默认兜底 */}}
 
-{{/* --- 1. 关键修改：直接使用 now (构建时间) --- */}}
-{{/* 这样无论你改了代码还是文章，只要网站重新构建了，时间就是最新的 */}}
-{{- $lastBuildTime := now -}}
-
-{{/* --- 2. 尝试读取本地 .git/HEAD (获取真实 Commit Hash) --- */}}
+{{/* --- 1. 获取 Git Hash --- */}}
 {{- if fileExists ".git/HEAD" -}}
     {{- $head := readFile ".git/HEAD" | strings.TrimSpace -}}
     {{- if strings.HasPrefix $head "ref: " -}}
@@ -26,7 +24,6 @@
     {{- end -}}
 {{- end -}}
 
-{{/* --- 3. 环境变量支持 (CI/CD) --- */}}
 {{- if eq $gitHashFull "" -}}
     {{- if getenv "GITHUB_SHA" -}}
         {{- $gitHashFull = getenv "GITHUB_SHA" -}}
@@ -35,19 +32,29 @@
     {{- end -}}
 {{- end -}}
 
-{{/* --- 4. 回退策略：如果没有读到 git 文件，再尝试用文章信息 --- */}}
-{{- if eq $gitHashFull "" -}}
-    {{- $latest := index .Site.Pages.ByLastmod.Reverse 0 -}}
-    {{- if $latest -}}
-        {{- if $latest.GitInfo -}}
-            {{- $gitHashFull = $latest.GitInfo.Hash -}}
+{{/* --- 2. 【核心】使用 Hash 请求 GitHub API 获取精准时间 --- */}}
+{{- if ne $gitHashFull "" -}}
+    {{- $repo := "iwyang/iwyang.github.io" -}} 
+    {{- $apiURL := printf "https://api.github.com/repos/%s/commits/%s" $repo $gitHashFull -}}
+    
+    {{/* 使用 resources.GetRemote 发起请求 */}}
+    {{- $apiData := resources.GetRemote $apiURL -}}
+    
+    {{/* 【修复点】直接判断 $apiData 是否存在，删除了不兼容的 .Err 检查 */}}
+    {{- if $apiData -}}
+        {{/* 尝试解析 JSON，如果 API 报错或超限，这里可能会解析出错误信息，但不会崩 */}}
+        {{- $json := $apiData.Content | transform.Unmarshal -}}
+        
+        {{/* 只有当 JSON 中确实包含 commit 信息时才更新时间 */}}
+        {{- if $json.commit -}}
+            {{- $lastBuildTime = time.AsTime $json.commit.committer.date -}}
         {{- end -}}
     {{- end -}}
-{{- end -}}
-
-{{/* --- 5. 截取前7位 --- */}}
-{{- if ge (len $gitHashFull) 7 -}}
-    {{- $gitHashShort = substr $gitHashFull 0 7 -}}
+    
+    {{/* 截取短 Hash */}}
+    {{- if ge (len $gitHashFull) 7 -}}
+        {{- $gitHashShort = substr $gitHashFull 0 7 -}}
+    {{- end -}}
 {{- end -}}
 
 
