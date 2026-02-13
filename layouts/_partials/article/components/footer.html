@@ -25,7 +25,8 @@
                    target="_blank" 
                    rel="noopener noreferrer" 
                    style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
-                   #{{ .GitInfo.AbbreviatedHash }}
+                   {{/* 【关键】修改为 7 位 */}}
+                   #{{ substr .GitInfo.Hash 0 7 }}
                 </a>
             {{- end -}}
         </span>
