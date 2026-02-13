@@ -50,6 +50,11 @@ jobs:
           git remote add upstream https://github.com/上游用户名/上游仓库.git
           git fetch upstream
 
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
       - name: Merge upstream
         run: |
           git merge upstream/main --allow-unrelated-histories || true
@@ -84,17 +89,18 @@ upstream/master
 最终为：
 
 ```yaml
-name: Sync Upstream (master)
+name: Sync Upstream
 
 on:
   schedule:
-    - cron: '0 0 * * *'     # 每天自动同步一次
-  workflow_dispatch:         # 手动触发按钮
+    - cron: '0 0 * * *'   # 每天自动同步一次
+  workflow_dispatch:       # 手动触发按钮  
+  watch:
+    types: started
 
 jobs:
   sync:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout
         uses: actions/checkout@v3
@@ -106,11 +112,16 @@ jobs:
           git remote add upstream https://github.com/上游用户名/上游仓库.git
           git fetch upstream
 
-      - name: Merge upstream master into fork
+      - name: Configure Git
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Merge upstream
         run: |
           git merge upstream/master --allow-unrelated-histories || true
 
-      - name: Push changes
+      - name: Push
         run: |
           git push origin master
 ```
