@@ -128,11 +128,23 @@
                     const dateStr = el.getAttribute('datetime');
                     if (!dateStr) return;
                     const date = new Date(dateStr);
-                    
                     const diff = (now - date) / 1000;
+                    
                     const textSpan = el.querySelector('.date-text');
                     if (!textSpan) return;
 
+                    // ===== 1. 生成具体时间 (供 title 使用) =====
+                    const year = date.getFullYear();
+                    const month = String(date.getMonth() + 1).padStart(2, '0');
+                    const day = String(date.getDate()).padStart(2, '0');
+                    const hour = String(date.getHours()).padStart(2, '0');
+                    const minute = String(date.getMinutes()).padStart(2, '0');
+                    const exactTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+
+                    // 设置 title (鼠标悬停显示具体时间)
+                    el.setAttribute('title', exactTime);
+
+                    // ===== 2. 强制相对时间逻辑 (所有时间都转换) =====
                     let text = '';
                     if (diff < 60) {
                         text = '刚刚';
@@ -142,29 +154,13 @@
                         text = Math.floor(diff / 3600) + ' 小时前';
                     } else if (diff < 2592000) { 
                         text = Math.floor(diff / 86400) + ' 天前';
-                    } else if (diff < 15552000) { // 6个月
+                    } else if (diff < 31536000) { 
                         text = Math.floor(diff / 2592000) + ' 个月前';
                     } else {
-                        // 超过6个月：
-                        // 1. 直接 return，保持 HTML 渲染的纯日期
-                        // 2. 因为 return 了，所以下面的 setAttribute('title') 不会被执行
-                        // 3. 结果就是：显示纯日期，且鼠标悬停没有效果
-                        return; 
+                        // 超过一年，不再 return，而是显示 X 年前
+                        text = Math.floor(diff / 31536000) + ' 年前';
                     }
                     
-                    // ===== 生成“年月日 时分”格式 =====
-                    // 只有没被 return 拦截（即6个月以内）才会执行到这里
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const hour = String(date.getHours()).padStart(2, '0');
-                    const minute = String(date.getMinutes()).padStart(2, '0');
-                    const exactTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
-
-                    // 设置 title (悬停显示精确时间)
-                    el.setAttribute('title', exactTime);
-                    
-                    // 设置相对时间文本
                     textSpan.innerText = text;
                 });
             });
