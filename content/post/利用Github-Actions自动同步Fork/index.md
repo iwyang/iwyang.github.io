@@ -486,6 +486,120 @@ jobs:
 
 2.手动运行`Action`里面的`Sync Upstream Releases`
 
+## 新建一仓库专门备份Releases 
+
+1.新建仓库：https://github.com/iwyang/backup
+
+2.本地任意一文件夹新建脚本：`setup_backup.sh`，双击运行，它会帮你自动创建Workflow 文件，并将源码上传到指定仓库。
+
+```bash
+cat << 'EOF' > setup_backup.sh
+#!/bin/bash
+
+# 定义核心逻辑函数
+main_logic() {
+    echo "🚀 开始初始化备份仓库项目..."
+
+    # 1. 创建 Workflow 目录
+    mkdir -p .github/workflows/
+
+    # 2. 写入同步逻辑
+    cat << 'INNER_EOF' > .github/workflows/release-sync.yml
+name: Release Sync
+permissions:
+  contents: write
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  sync-job:
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - source: "2dust/v2rayN"
+            alias: "v2rayN"
+          - source: "2dust/v2rayNG"
+            alias: "v2rayNG"
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Sync Release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SOURCE_REPO: ${{ matrix.source }}
+          ALIAS: ${{ matrix.alias }}
+        run: |
+          ORIGINAL_TAG=$(gh release view --repo $SOURCE_REPO --json tagName --jq .tagName)
+          NEW_TAG="${ALIAS}-${ORIGINAL_TAG}"
+          
+          echo "Checking $SOURCE_REPO latest: $ORIGINAL_TAG"
+
+          if gh release view $NEW_TAG > /dev/null 2>&1; then
+            echo "Version $NEW_TAG already exists, skipping."
+            exit 0
+          fi
+
+          OLD_TAGS=$(gh release list --limit 100 --json tagName --jq ".[].tagName" | grep "^${ALIAS}-" || true)
+          for tag in $OLD_TAGS; do
+            echo "Deleting old backup: $tag"
+            gh release delete $tag --yes --cleanup-tag
+          done
+
+          mkdir -p ./temp_assets
+          gh release download $ORIGINAL_TAG --repo $SOURCE_REPO --pattern "*" --dir ./temp_assets
+
+          TITLE=$(gh release view $ORIGINAL_TAG --repo $SOURCE_REPO --json name --jq .name)
+          [ -z "$TITLE" ] && TITLE=$ORIGINAL_TAG
+          
+          gh release create $NEW_TAG ./temp_assets/* \
+            --title "[$ALIAS] $TITLE" \
+            --notes "Sync Date: $(date '+%Y-%m-%d %H:%M:%S') | Source: https://github.com/$SOURCE_REPO"
+          
+          echo "Project $ALIAS sync complete!"
+INNER_EOF
+
+    echo "✅ Workflow 文件创建成功。"
+
+    # 3. Git 操作 (增加失败检测)
+    git init || return 1
+    # 检查远程仓库是否已添加，防止重复添加报错
+    git remote remove origin 2>/dev/null
+    git remote add origin https://github.com/iwyang/backup || return 1
+    git branch -M main
+    git add .
+    git commit -m "feat: initial commit with release sync workflow" || echo "Warning: Nothing to commit"
+    git push -u origin main || return 1
+
+    echo "🎉 所有操作已完成！"
+    return 0
+}
+
+# 执行逻辑并判断状态
+if main_logic; then
+    echo "---------------------------------------"
+    echo "✨ 任务执行成功！窗口将在 2 秒后自动关闭..."
+    sleep 2
+    # 尝试关闭终端窗口 (兼容 Git Bash/Linux)
+    kill -9 $PPID 2>/dev/null || exit
+else
+    echo "---------------------------------------"
+    echo "❌ 任务执行失败，请检查上方报错信息。"
+    read -p "按回车键 (Enter) 手动关闭窗口..."
+    exit 1
+fi
+EOF
+
+# 赋予运行权限
+chmod +x setup_backup.sh
+```
+
 ## 参考链接
 
 + [GithunActionAutoSync2Gitee](https://knight.abn-team.top/2023/03/29/GithunActionAutoSync2Gitee/)
