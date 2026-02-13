@@ -317,7 +317,7 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
 
 勾选 **“Auto-delete codespace”（自动删除 Codespace）** 意味着：当你停止（Shutdown）使用这个云端开发环境后，如果连续很长一段时间不去打开它，GitHub 会**自动帮你把这个环境彻底删除**。
 
-### 修改 Codespaces 时区
+### 修改 Codespaces 时区&&自动拉取更新
 
 避免在codespaces里面自动构建hugo，出现时间显示不正常问题。
 
@@ -362,11 +362,21 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
 
 ```json
 {
-	"name": "Debian",
-	"image": "mcr.microsoft.com/devcontainers/base:debian",
-	"remoteEnv": {
-		"TZ": "Asia/Shanghai"
-	}
+    "name": "Debian",
+    "image": "mcr.microsoft.com/devcontainers/base:debian",
+    
+    // 1. 设置环境变量：锁定北京时间
+    "remoteEnv": {
+        "TZ": "Asia/Shanghai"
+    },
+
+    // 2. 安装功能：自动安装 Git LFS (修复推送大文件报错)
+    "features": {
+        "ghcr.io/devcontainers/features/git-lfs:1": {}
+    },
+
+    // 3. 核心设置：每次打开或唤醒 Codespace 时，自动拉取最新代码
+    "postStartCommand": "git pull origin develop"
 }
 ```
 
