@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 13 Feb 2026 11:11:45 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 13 Feb 2026 11:25:06 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;参考chatgpt&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;在你的 fork 仓库中新建：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -1246,7 +1246,7 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;h3 id="勾选-auto-delete-codespace"&gt;勾选 “Auto-delete codespace”
 &lt;/h3&gt;&lt;p&gt;点击右边三个点，选择&lt;code&gt;manage codespaces&lt;/code&gt;，再点击右边三个点，勾选。&lt;/p&gt;
 &lt;p&gt;勾选 &lt;strong&gt;“Auto-delete codespace”（自动删除 Codespace）&lt;/strong&gt; 意味着：当你停止（Shutdown）使用这个云端开发环境后，如果连续很长一段时间不去打开它，GitHub 会&lt;strong&gt;自动帮你把这个环境彻底删除&lt;/strong&gt;。&lt;/p&gt;
-&lt;h3 id="修改-codespaces-时区"&gt;修改 Codespaces 时区
+&lt;h3 id="修改-codespaces-时区自动拉取更新"&gt;修改 Codespaces 时区&amp;amp;&amp;amp;自动拉取更新
 &lt;/h3&gt;&lt;p&gt;避免在codespaces里面自动构建hugo，出现时间显示不正常问题。&lt;/p&gt;
 &lt;p&gt;没问题，这就为你提供最稳妥、最详细的图文级操作指南。&lt;/p&gt;
 &lt;p&gt;因为 GitHub Codespaces 本质上是一台运行在云端的 Linux 虚拟机，我们需要通过一个配置文件来告诉这台机器：“请把系统时区设为北京时间”。&lt;/p&gt;
@@ -1282,21 +1282,41 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;p&gt;假设你刚生成的文件内容如下，请在最后面&lt;strong&gt;加一个英文逗号 &lt;code&gt;,&lt;/code&gt;&lt;/strong&gt;，然后补上 &lt;code&gt;remoteEnv&lt;/code&gt; 这三行代码（严格注意 JSON 格式）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;span class="lnt"&gt;2
-&lt;/span&gt;&lt;span class="lnt"&gt;3
-&lt;/span&gt;&lt;span class="lnt"&gt;4
-&lt;/span&gt;&lt;span class="lnt"&gt;5
-&lt;/span&gt;&lt;span class="lnt"&gt;6
-&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-json" data-lang="json"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="nt"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Debian&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="nt"&gt;&amp;#34;image&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;mcr.microsoft.com/devcontainers/base:debian&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="nt"&gt;&amp;#34;remoteEnv&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;		&lt;span class="nt"&gt;&amp;#34;TZ&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Asia/Shanghai&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;	&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;name&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Debian&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;image&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;mcr.microsoft.com/devcontainers/base:debian&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 1. 设置环境变量：锁定北京时间
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;remoteEnv&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;TZ&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;Asia/Shanghai&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 2. 安装功能：自动安装 Git LFS (修复推送大文件报错)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;features&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;ghcr.io/devcontainers/features/git-lfs:1&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="p"&gt;{}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;},&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;// 3. 核心设置：每次打开或唤醒 Codespace 时，自动拉取最新代码
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;&amp;#34;postStartCommand&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;git pull origin develop&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
