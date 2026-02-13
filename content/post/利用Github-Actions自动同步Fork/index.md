@@ -492,24 +492,52 @@ jobs:
 
 2.本地任意一文件夹新建脚本：`setup_backup.sh`，双击运行，它会帮你自动创建Workflow 文件，并将源码上传到指定仓库。
 
+**PS：双击第一次会闪退，要双击第二次**，第一次上传部署成功后，以后只用在网页修改`release-sync.yml`，增加备份仓库信息即可。
+
 ```bash
 cat << 'EOF' > setup_backup.sh
 #!/bin/bash
 
-# 定义核心逻辑函数
-main_logic() {
-    echo "🚀 开始初始化备份仓库项目..."
+# --- 定义错误处理函数 ---
+die() {
+    echo ""
+    echo "❌ 错误: $1"
+    echo "---------------------------------------"
+    read -p "🔴 脚本运行失败。请按回车键关闭窗口..."
+    exit 1
+}
 
-    # 1. 创建 Workflow 目录
-    mkdir -p .github/workflows/
+echo "🚀 初始化程序启动..."
 
-    # 2. 写入同步逻辑
-    cat << 'INNER_EOF' > .github/workflows/release-sync.yml
+# 1. 检查 Git
+if ! git --version > /dev/null 2>&1; then
+    die "未检测到 Git，请先安装 Git for Windows。"
+fi
+
+# 2. 获取用户输入
+DEFAULT_MSG="更新配置：$(date '+%Y-%m-%d %H:%M:%S')"
+echo "---------------------------------------"
+echo "📅 当前时间: $(date '+%Y-%m-%d %H:%M:%S')"
+read -p "请输入提交信息 (直接回车默认: $DEFAULT_MSG): " USER_INPUT
+COMMIT_MSG=${USER_INPUT:-$DEFAULT_MSG}
+echo "确认信息: $COMMIT_MSG"
+echo "---------------------------------------"
+
+# 3. 生成 Workflow 文件
+echo "📂 正在生成 GitHub Actions 配置文件..."
+mkdir -p .github/workflows/
+
+cat << 'INNER_EOF' > .github/workflows/release-sync.yml
 name: Release Sync
 permissions:
   contents: write
 
 on:
+  # --- 新增：代码推送时自动触发 ---
+  push:
+    branches: 
+      - main
+  # ---------------------------
   workflow_dispatch:
   schedule:
     - cron: '0 3 * * *'
@@ -525,6 +553,12 @@ jobs:
             alias: "v2rayN"
           - source: "2dust/v2rayNG"
             alias: "v2rayNG"
+          - source: "orion-lib/OrionTV"
+            alias: "OrionTV"
+          - source: "MoonTechLab/Selene"
+            alias: "Selene"
+          - source: "zbezj/HEU_KMS_Activator"
+            alias: "HEU_KMS"
 
     steps:
       - name: Checkout
@@ -565,39 +599,40 @@ jobs:
           echo "Project $ALIAS sync complete!"
 INNER_EOF
 
-    echo "✅ Workflow 文件创建成功。"
+# 4. Git 提交与推送
+echo "📦 执行 Git 仓库操作..."
 
-    # 3. Git 操作 (增加失败检测)
-    git init || return 1
-    # 检查远程仓库是否已添加，防止重复添加报错
-    git remote remove origin 2>/dev/null
-    git remote add origin https://github.com/iwyang/backup || return 1
-    git branch -M main
-    git add .
-    git commit -m "feat: initial commit with release sync workflow" || echo "Warning: Nothing to commit"
-    git push -u origin main || return 1
+git init > /dev/null 2>&1
+git remote remove origin > /dev/null 2>&1
+git remote add origin https://github.com/iwyang/backup || die "无法添加远程仓库"
 
-    echo "🎉 所有操作已完成！"
-    return 0
-}
+git branch -M main
+git add .
 
-# 执行逻辑并判断状态
-if main_logic; then
-    echo "---------------------------------------"
-    echo "✨ 任务执行成功！窗口将在 2 秒后自动关闭..."
-    sleep 2
-    # 尝试关闭终端窗口 (兼容 Git Bash/Linux)
-    kill -9 $PPID 2>/dev/null || exit
+if ! git diff-index --quiet HEAD --; then
+    echo "📝 提交更改: $COMMIT_MSG"
+    git commit -m "$COMMIT_MSG" || die "Git 提交失败"
 else
-    echo "---------------------------------------"
-    echo "❌ 任务执行失败，请检查上方报错信息。"
-    read -p "按回车键 (Enter) 手动关闭窗口..."
-    exit 1
+    echo "ℹ️ 文件无变化，跳过提交步骤。"
+fi
+
+echo "☁️ 正在推送到 GitHub..."
+
+if git push -u origin main --force; then
+    echo ""
+    echo "======================================="
+    echo "✅ 推送成功！Actions 将立即开始运行。"
+    echo "✨ 窗口将在 2 秒后自动关闭..."
+    echo "======================================="
+    sleep 2
+    exit 0
+else
+    die "推送失败！请检查网络连接或 GitHub 权限。"
 fi
 EOF
 
-# 赋予运行权限
 chmod +x setup_backup.sh
+echo "✅ 脚本已更新。请再次运行【双击运行.bat】"
 ```
 
 ## 参考链接
