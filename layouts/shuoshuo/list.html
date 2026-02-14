@@ -4,8 +4,8 @@
             /* 1. 全局清除干扰 + 统一图标尺寸 */
             .shuoshuo-meta svg, 
             .shuoshuo-edit-link svg {
-                width: 12px !important;       /* 图标统一 12px */
-                height: 12px !important;
+                width: 14px !important;       /* 图标调整为 14px */
+                height: 14px !important;
                 display: block !important;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -19,7 +19,7 @@
                 align-items: center !important;
                 flex-wrap: wrap !important;
                 line-height: 1.5 !important;
-                gap: 20px !important; /* 保持块与块之间的间距 */
+                gap: 20px !important; /* 默认间距 */
             }
 
             /* 3. 核心：统一所有元数据项的视觉表现 */
@@ -32,7 +32,7 @@
                 gap: 6px !important;            /* 图标文字间距 */
                 color: var(--card-text-color-secondary) !important; 
                 opacity: 1 !important;
-                font-size: 12px !important;     /* 上下全部强制为 12px */
+                font-size: 14px !important;     /* 统一为 14px */
                 text-decoration: none;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -49,7 +49,7 @@
                 padding: 0 !important;
                 line-height: 1 !important;      /* 行高1，配合 flex 居中 */
                 border: 0 !important;
-                font-size: 12px !important;     /* 双重保险 */
+                font-size: 14px !important;     /* 统一为 14px */
                 font-family: inherit;
             }
 
@@ -184,27 +184,35 @@
     {{ end }}
 
     <div class="shuoshuo-footer-info">
-        <div class="shuoshuo-edit-link meta-wrapper">
+        {{/* 这里的 gap 强制设为 10px */}}
+        <div class="shuoshuo-edit-link meta-wrapper" style="gap: 10px !important;">
             
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                {{/* 左下角：编辑链接 */}}
+                {{/* 左下角：编辑链接 (加深颜色：使用 card-text-color-main) */}}
                 <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
                    class="meta-item"
+                   style="color: var(--card-text-color-main) !important; font-size: 14px !important;" 
                    title="前往 GitHub 编辑此页">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     <span>编辑此页</span>
                 </a>
             {{ end }}
 
-            {{/* 右下角：Git Hash */}}
+            {{/* 右下角：Git Hash (带竖线) */}}
             {{- if $gitHashShort -}}
+                {{/* 如果有编辑链接，则显示竖线 (修改：颜色 var(--sys-color-text-muted)，大小 14px) */}}
+                {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
+                    <span style="font-size: 14px; color: var(--sys-color-text-muted);">|</span>
+                {{ end }}
+
                 <a class="git-hash-text"
                    href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
-                   title="Commit Hash: {{ $gitHashShort }}">
+                   title="Commit Hash: {{ $gitHashShort }}"
+                   style="font-size: 14px !important;">
                    #{{ $gitHashShort }}
                 </a>
             {{- end -}}

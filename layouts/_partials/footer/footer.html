@@ -58,6 +58,65 @@
      【页面展示】
      =========================================================== */}}
 <footer class="site-footer">
+    <style>
+        /* --- [核心修复] 强制统一第二行和第三行的样式 --- */
+        
+        /* 1. 容器样式统一：设定为 14px */
+        .site-footer .running-time,
+        .site-footer .powerby {
+            font-size: 14px !important;        /* 统一调整为 14px */
+            line-height: 1.6 !important;       /* 统一行高 */
+            margin: 10px 0 !important;         /* 统一间距 */
+            display: block !important;
+            font-weight: normal !important;    /* 统一不加粗 */
+        }
+
+        /* 2. [关键] 强制所有子元素继承父级大小，消除差异 */
+        .site-footer .running-time *,
+        .site-footer .powerby * {
+            font-size: 14px !important;        /* 强制内部所有文字也是 14px */
+            font-weight: normal !important;    /* 强制内部不加粗 */
+        }
+
+        /* 3. 亮色模式下统一颜色 */
+        .site-footer .running-time,
+        .site-footer .powerby,
+        .site-footer .running-time span,
+        .site-footer .powerby span,
+        .site-footer .running-time a,
+        .site-footer .powerby a {
+            color: var(--sys-color-text-muted) !important;
+        }
+
+        /* 4. 暗色模式下强制统一为高亮色 */
+        [data-scheme="dark"] .site-footer .running-time,
+        [data-scheme="dark"] .site-footer .powerby,
+        [data-scheme="dark"] .site-footer .running-time span,
+        [data-scheme="dark"] .site-footer .powerby span,
+        [data-scheme="dark"] .site-footer .running-time a,
+        [data-scheme="dark"] .site-footer .powerby a {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+
+        /* 5. 链接交互与特殊颜色 */
+        .site-footer .running-time a,
+        .site-footer .powerby a {
+            text-decoration: none;
+            cursor: pointer;
+        }
+        
+        .site-footer .running-time a:hover,
+        .site-footer .powerby a:hover {
+            color: var(--accent-color) !important;
+            text-decoration: underline;
+        }
+
+        /* Hash 链接保留蓝色 (特例，不随模式变色) */
+        .site-footer .running-time a[href*="commit"] {
+            color: #1e90ff !important;
+        }
+    </style>
+
     <section class="copyright">
         &copy; 
         {{ if and (.Site.Params.footer.since) (ne .Site.Params.footer.since (int (now.Format "2006"))) }}
@@ -70,11 +129,13 @@
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ $lastBuildTime.Format "2006-01-02 15:04" }}">--</span>
 
         {{- if $gitHashShort -}}
+            {{/* 分隔符 */}}
+            <span style="margin: 0 6px;">|</span>
+            
             <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
                target="_blank" 
                rel="noopener" 
-               title="Commit Hash: {{ $gitHashShort }}"
-               style="color: #1e90ff; margin-left: 5px; text-decoration: none;">
+               title="Commit Hash: {{ $gitHashShort }}">
                #{{ $gitHashShort }}
             </a>
         {{- end -}}
@@ -86,10 +147,11 @@
         {{ end }}
 
         {{- $Generator := `<a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a>` -}}
-        {{- $Theme := printf `<b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="%s">Stack</a></b>` $ThemeVersion -}}
+        {{- $Theme := printf `<a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="%s">Stack</a>` $ThemeVersion -}}
         {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
 
-        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} | 
+        {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} 
+        <span style="margin: 0 6px;">|</span> 
         {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
     </section>
 </footer>
@@ -102,21 +164,17 @@
             var now = new Date();
             var diff = (now - lastBuildTime) / 1000; 
 
-            // ===== 核心修改：生成“年月日 时分”格式 (无秒) =====
+            // 生成“年月日 时分”格式
             var year = lastBuildTime.getFullYear();
             var month = String(lastBuildTime.getMonth() + 1).padStart(2, '0');
             var day = String(lastBuildTime.getDate()).padStart(2, '0');
             var hour = String(lastBuildTime.getHours()).padStart(2, '0');
             var minute = String(lastBuildTime.getMinutes()).padStart(2, '0');
-            // var second = String(lastBuildTime.getSeconds()).padStart(2, '0'); // 秒数已移除
             
-            // 拼接成 2026-02-13 13:02 格式
             var exactTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
 
-            // 设置 title 属性
             updateEl.setAttribute('title', exactTime);
 
-            // ===== 相对时间逻辑 =====
             var text = '';
             if (diff < 60) {
                 text = '刚刚';
@@ -124,9 +182,9 @@
                 text = Math.floor(diff / 60) + ' 分钟前';
             } else if (diff < 86400) {
                 text = Math.floor(diff / 3600) + ' 小时前';
-            } else if (diff < 2592000) { // 30天
+            } else if (diff < 2592000) { 
                 text = Math.floor(diff / 86400) + ' 天前';
-            } else if (diff < 31536000) { // 365天
+            } else if (diff < 31536000) { 
                 text = Math.floor(diff / 2592000) + ' 个月前';
             } else {
                 text = Math.floor(diff / 31536000) + ' 年前';
