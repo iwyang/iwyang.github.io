@@ -1,8 +1,35 @@
 /* =================================================================
-   1. 说说 (Shuoshuo) 系统核心样式
+   1. 全局设置与交互重置 (Global & Reset)
    ================================================================= */
+:root {
+    --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif;
+}
 
-/* --- 列表容器与瀑布流 --- */
+/* 核心修复：移除移动端所有可点击元素的点击高亮背景 */
+* {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+/* 针对特定交互元素的双重保险 */
+a, button, input, textarea, select, 
+#toggle-menu, .menu-toggle, .menu-item,
+.sidebar header .site-name,
+.sidebar header .site-avatar {
+    -webkit-tap-highlight-color: transparent !important;
+    outline: none !important;
+}
+
+/* 菜单层级修正 */
+#toggle-menu, .menu-toggle {
+    z-index: 99999 !important;
+}
+
+
+/* =================================================================
+   2. 说说系统 (Shuoshuo)
+   ================================================================= */
+/* --- 列表容器 --- */
 .shuoshuo-list {
     display: flex;
     gap: 20px;
@@ -18,7 +45,7 @@
     min-width: 0;
 }
 
-/* --- 卡片基础样式 --- */
+/* --- 卡片样式 --- */
 .shuoshuo-card {
     background: var(--card-background);
     padding: 25px 30px;
@@ -46,19 +73,14 @@
     gap: 6px;
 
     svg {
-        width: 16px;
-        height: 16px;
-        min-width: 16px;
-        fill: none;
-        stroke: currentColor;
-        stroke-width: 2;
-        stroke-linecap: round;
-        stroke-linejoin: round;
+        width: 16px; height: 16px; min-width: 16px;
+        fill: none; stroke: currentColor; stroke-width: 2;
+        stroke-linecap: round; stroke-linejoin: round;
         margin-top: -2px;
     }
 }
 
-/* --- 内容区域与引用样式优化 --- */
+/* --- 内容区域 --- */
 .shuoshuo-content {
     font-size: 1.6rem;
     line-height: 1.8;
@@ -72,43 +94,28 @@
         &:hover { text-decoration: underline; }
     }
 
-    /* --- [重点] 极简大引号引用样式 --- */
+    /* 极简大引号样式 */
     blockquote {
         position: relative;
         margin: 10px 0;
-        /* 左侧留出 46px 的空间给大引号 */
         padding: 0 0 0 46px; 
-        
-        /* 无背景无边框 */
         background: none !important;
         border: none !important;
-        
-        /* 颜色与正文一致 */
         color: var(--card-text-color-main);
         
-        /* 大引号装饰 (伪元素) */
         &::before {
             content: "“";
-            position: absolute;
-            left: 4px;
-            top: -12px; 
-            font-size: 64px; 
-            line-height: 1;
+            position: absolute; left: 4px; top: -12px; 
+            font-size: 64px; line-height: 1;
             font-family: Georgia, "Times New Roman", serif;
-            color: var(--accent-color); 
-            opacity: 0.5; 
+            color: var(--accent-color); opacity: 0.5; 
         }
 
-        /* 引用内部文字修正 */
-        p {
-            margin: 0;
-            line-height: 1.6;
-            font-size: 0.95em; /* 稍微小一点点显精致，也可设为 1em */
-        }
+        p { margin: 0; line-height: 1.6; font-size: 0.95em; }
     }
 }
 
-/* --- 图片细节与灯箱 --- */
+/* --- 图片 --- */
 .shuoshuo-image {
     margin-top: 15px;
     line-height: 0;
@@ -118,36 +125,28 @@
 
     img {
         transition: transform 0.4s ease;
-        display: block;
-        width: 100%;
-        object-fit: cover;
+        display: block; width: 100%; object-fit: cover;
     }
-
     &:hover img { transform: scale(1.03); }
 }
 
-/* --- 底部 Git 信息 --- */
+/* --- 底部信息 --- */
 .shuoshuo-footer-info {
     margin-top: 20px;
     padding-top: 15px;
     border-top: 1px dashed var(--body-background);
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
+    display: flex; flex-direction: column; gap: 8px;
     font-size: 1.3rem;
     color: var(--card-text-color-secondary);
 }
 
 .shuoshuo-edit-link, .shuoshuo-git-info {
-    display: flex;
-    align-items: center;
-    gap: 6px;
+    display: flex; align-items: center; gap: 6px;
     
     svg { width: 16px; height: 16px; opacity: 0.7; }
     
     a {
-        color: inherit;
-        text-decoration: none;
+        color: inherit; text-decoration: none;
         transition: color 0.3s ease;
         &:hover { color: var(--accent-color); text-decoration: underline; }
     }
@@ -161,7 +160,7 @@
     &:hover { text-decoration: underline; }
 }
 
-/* --- 手机端说说适配 --- */
+/* --- 手机端适配 --- */
 @media (max-width: 768px) {
     .shuoshuo-list { display: flex; flex-direction: column; gap: 20px; }
     .waterfall-column { display: contents; }
@@ -172,7 +171,7 @@
 
 
 /* =================================================================
-   2. 首页通知条 (Notice Board)
+   3. 首页通知条 (Notice Board)
    ================================================================= */
 .notice-board-container {
     background: var(--card-background);
@@ -181,24 +180,16 @@
     box-shadow: var(--shadow-l1);
     height: 54px !important;
     margin-bottom: var(--section-gap) !important;
-    display: flex !important;
-    align-items: center !important;
+    display: flex !important; align-items: center !important;
     padding: 0 20px;
-    overflow: hidden;
-    position: relative;
-    z-index: 1;
+    overflow: hidden; position: relative; z-index: 1;
     cursor: pointer !important;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
-    
-    -webkit-tap-highlight-color: transparent !important;
-    outline: none;
-    -webkit-user-select: none;
     user-select: none;
 
     &:hover {
         transform: translateY(-5px);
         box-shadow: var(--shadow-l2);
-        
         .notice-icon { color: var(--accent-color); }
         .notice-arrow { color: var(--accent-color) !important; opacity: 1; }
     }
@@ -206,9 +197,7 @@
 
 .notice-icon {
     display: flex; align-items: center; justify-content: center;
-    margin-right: 15px;
-    color: var(--card-text-color-secondary);
-    height: 100%;
+    margin-right: 15px; color: var(--card-text-color-secondary); height: 100%;
     transition: color 0.3s ease;
     svg { width: 24px; height: 24px; }
 }
@@ -221,20 +210,14 @@
 /* 动态箭头 */
 @keyframes arrow-move { 0%, 100% { transform: translateX(0); opacity: 0.9; } 50% { transform: translateX(4px); opacity: 1; } }
 .notice-arrow { 
-    margin-left: 10px; 
-    color: var(--card-text-color-main) !important; 
-    opacity: 0.9; 
-    display: flex; 
-    align-items: center; 
-    height: 100%; 
-    cursor: pointer; 
-    transition: all 0.3s ease; 
+    margin-left: 10px; color: var(--card-text-color-main) !important; opacity: 0.9; 
+    display: flex; align-items: center; height: 100%; cursor: pointer; transition: all 0.3s ease; 
     svg { animation: arrow-move 1.5s infinite ease-in-out; color: inherit; }
 }
 
 
 /* =================================================================
-   3. 分页条 (Pagination)
+   4. 分页条 (Pagination)
    ================================================================= */
 .shuoshuo-pagination { 
     display: flex; justify-content: center; width: 100%;
@@ -247,10 +230,8 @@
     justify-content: center !important; border-radius: 50px !important; 
     background: var(--card-background) !important; box-shadow: var(--shadow-l1) !important;
     overflow: hidden !important; flex-wrap: nowrap !important;
-    
-    &::-webkit-scrollbar { display: none !important; }
-    -ms-overflow-style: none !important; 
     scrollbar-width: none !important;
+    &::-webkit-scrollbar { display: none !important; }
 }
 
 .pagination .page-link {
@@ -259,10 +240,6 @@
     display: flex !important; justify-content: center !important; align-items: center !important; 
     font-size: 15px !important; line-height: 1 !important;
     color: var(--card-text-color-main); transition: all 0.3s ease;
-    
-    -webkit-tap-highlight-color: transparent !important; 
-    outline: none; 
-    -webkit-user-select: none; 
     user-select: none;
 }
 
@@ -282,27 +259,27 @@
     background-color: rgba(255,255,255,0.1);
 }
 
-/* 特殊按钮调整 */
+/* 按钮微调 */
 .pagination .page-link:first-child, .pagination .page-link:last-child { width: 38px !important; max-width: 38px !important; min-width: 38px !important; }
 .pagination .page-link.pagination-link { width: 16px !important; max-width: 16px !important; min-width: 16px !important; background: transparent !important; box-shadow: none !important; }
 .pagination .page-link:not(.pagination-link) { padding-top: 1px !important; }
 .pagination .page-link svg { width: 20px; height: 20px; display: block; }
 
-/* 分页响应式 */
+/* 响应式 */
 @media (min-width: 769px) {
-    .pagination { padding-left: 35px !important; padding-right: 35px !important; margin-top: 30px !important; margin-bottom: 50px !important; }
+    .pagination { padding: 0 35px !important; margin-top: 30px !important; margin-bottom: 50px !important; }
     .shuoshuo-pagination { margin-bottom: 0 !important; }
 }
 @media (max-width: 768px) {
-    .pagination { padding-left: 10px !important; padding-right: 10px !important; margin-bottom: 40px !important; }
+    .pagination { padding: 0 10px !important; margin-bottom: 40px !important; }
     .shuoshuo-pagination { margin-top: 20px; margin-bottom: 0 !important; }
 }
 
 
 /* =================================================================
-   4. 侧边栏与头部 (Sidebar & Header)
+   5. 侧边栏与头部 (Sidebar & Header)
    ================================================================= */
-/* PC 端侧边栏强制居中 */
+/* PC 端侧边栏居中 */
 @media (min-width: 1024px) {
     .sidebar header {
         .site-avatar { margin: 0 auto; }
@@ -313,21 +290,14 @@
             @media (min-width: 1400px) { font-size: 1.6rem; }
         }
     }
-    .menu-social {
-        margin: 0 auto;
-        width: fit-content;
-        display: flex;
-        justify-content: center;
-    }
+    .menu-social { margin: 0 auto; width: fit-content; display: flex; justify-content: center; }
 }
 
 /* 手机端头部重构：纯文字、左对齐 */
 @media (max-width: 768px) {
-    /* 隐藏多余元素 */
     .sidebar header .site-avatar,
     .menu-social { display: none !important; }
 
-    /* 头部容器左对齐 */
     .sidebar header {
         display: flex !important;
         flex-direction: column !important;
@@ -340,76 +310,53 @@
         position: relative !important;
     }
 
-    /* 标题样式 */
     .sidebar header .site-name {
         margin: 0 !important;
         font-size: 1.8rem !important;
         line-height: 1 !important; 
         padding-top: 2px !important; 
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        width: 100% !important;
-        display: block !important;
+        white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+        width: 100% !important; display: block !important;
     }
 
-    /* 副标题样式 */
     .sidebar header .site-description {
         margin: 5px 0 0 0 !important;
         font-size: 1.2rem !important;
         color: var(--card-text-color-secondary);
-        white-space: nowrap !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
-        width: 100% !important;
-        display: block !important; 
+        white-space: nowrap !important; overflow: hidden !important; text-overflow: ellipsis !important;
+        width: 100% !important; display: block !important; 
     }
 
-    /* 菜单按钮绝对定位 */
     #toggle-menu {
-        position: absolute !important;
-        top: 20px !important;
-        right: 20px !important;
-        transform: none !important; 
-        margin: 0 !important;
-        z-index: 9999 !important;
+        position: absolute !important; top: 20px !important; right: 20px !important;
+        transform: none !important; margin: 0 !important;
     }
 }
 
-/* 侧边栏头像交互 */
+/* 头像旋转动画 */
 .sidebar header .site-avatar .site-logo { transition: transform 1.65s ease-in-out; }
 .sidebar header .site-avatar .site-logo:hover { transform: rotate(360deg); }
 
 
 /* =================================================================
-   5. 页脚 (Footer)
+   6. 页脚 (Footer)
    ================================================================= */
 .site-footer { 
-    width: 100%; 
-    box-sizing: border-box;
+    width: 100%; box-sizing: border-box;
     text-align: center !important; 
-    padding-bottom: 30px;
-    padding-top: 20px;
+    padding-bottom: 30px; padding-top: 20px;
 }
 
-/* 页脚装饰横线 */
 .site-footer::before {
-    content: "";
-    display: block;
-    width: 50px; 
-    height: 2px;
-    background: var(--card-text-color-secondary); 
-    opacity: 0.5;
+    content: ""; display: block; width: 50px; height: 2px;
+    background: var(--card-text-color-secondary); opacity: 0.5;
     margin: 0 auto 20px auto !important; 
 }
 
-/* 运行时间 */
 .site-footer .running-time {
     font-size: 1.4rem !important; 
     color: var(--sys-color-text-muted) !important; 
-    margin: 10px 0;
-    line-height: 1.6;
-    display: block;
+    margin: 10px 0; line-height: 1.6; display: block;
 }
 [data-scheme="dark"] .site-footer .running-time { color: rgba(255, 255, 255, 0.7) !important; }
 
@@ -421,15 +368,9 @@
 
 
 /* =================================================================
-   6. 全局交互与通用修正 (Global & Fixes)
+   7. 组件与动画细节 (Widgets & Animation)
    ================================================================= */
-/* 字体设置 */
-:root { --sys-font-family: 'Inter', 'Noto Serif SC', "PT Serif", Georgia, "Source Han Serif SC", "Source Han Serif CN", serif; }
-
-/* 菜单层级修正 */
-#toggle-menu, .menu-toggle { z-index: 99999 !important; }
-
-/* 友情链接页面适配 */
+/* 友情链接 */
 @media (min-width: 1024px) {
     .article-list--compact.links {
         display: grid; grid-template-columns: 1fr 1fr; background: none; box-shadow: none;
@@ -445,10 +386,10 @@
     }
 }
 
-/* 文章详情页隐藏置顶标签 */
+/* 隐藏置顶图标 */
 .article-page .icon-pinned { display: none !important; }
 
-/* 交互动画：文章卡片、侧栏组件 */
+/* 通用 Hover 动画 */
 .article-list article { transition: transform 0.3s ease, box-shadow 0.3s ease !important; }
 .article-list article:hover { transform: translateY(-5px) !important; box-shadow: var(--shadow-l2) !important; }
 
@@ -461,17 +402,6 @@
 .tagCloud .tagCloud-tags a { border-radius: 10px; font-size: 1.4rem; transition: transform .3s ease; }
 .tagCloud .tagCloud-tags a:hover { transform: scale(1.1, 1.1); }
 
-/* 移动端去高亮与防抖动 */
-.article-list--tile article { transition: .6s ease; -webkit-tap-highlight-color: transparent !important; outline: none; }
+/* 移动端防抖动优化 */
+.article-list--tile article { transition: .6s ease; }
 .article-list--tile article:hover { transform: scale(1.03, 1.03); }
-.article-list--compact article { -webkit-tap-highlight-color: transparent !important; outline: none; }
-
-.sidebar header .site-avatar,
-.sidebar header .site-name,
-.sidebar header a,
-.widget a,
-.widget.archives .widget-archive--list,
-.tagCloud .tagCloud-tags a {
-    -webkit-tap-highlight-color: transparent !important;
-    outline: none;
-}
