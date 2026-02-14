@@ -19,7 +19,8 @@
     <section class="article-lastmod">
         {{ partial "helper/icon" "clock" }}
         <span style="color: #999;">
-            更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}
+            {{/* 修改处：去掉了 15:04，只保留年月日 */}}
+            更新于 {{ .Lastmod.Format "2006-01-02" }}
             {{- if .GitInfo -}}
                 <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" 
                    target="_blank" 
