@@ -1,5 +1,6 @@
 ---
 title: "链接"
+date: 2026-02-09
 links:
   - title: Takagi
     description: Takagi是啥呀？？当然是最喜欢的Takagi了吖ヾ(≧∇≦*)ゝ

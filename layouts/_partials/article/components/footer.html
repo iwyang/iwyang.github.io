@@ -1,4 +1,11 @@
 <footer class="article-footer">
+    <style>
+        /* 增加悬停下划线效果，保持字体大小 */
+        .article-edit-container a:hover {
+            text-decoration: underline !important;
+        }
+    </style>
+
     {{ partial "article/components/tags" . }}
 
     {{ if and (.Site.Params.article.license.enabled) (not (eq .Params.license false)) }}
@@ -9,28 +16,27 @@
     {{ end }}
     
     {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-    <section class="article-edit">
-        {{ partial "helper/icon" "external-link" }}
-        <span><a style="color: inherit;" href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener noreferrer">在 GitHub 上编辑此页</a></span>
+    <section class="article-edit-container" style="display: flex; align-items: center; gap: 20px; flex-wrap: wrap;">
+        {{/* 左侧：在 GitHub 上编辑此页 */}}
+        <a style="color: inherit; text-decoration: none; display: flex; align-items: center; gap: 8px;" 
+           href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
+           target="_blank" 
+           rel="noopener noreferrer">
+            <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: -2px;"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+            <span>在 GitHub 上编辑此页</span>
+        </a>
+        
+        {{/* 右侧：Git Hash */}}
+        {{- if .GitInfo -}}
+            {{- $hash := substr .GitInfo.Hash 0 7 -}}
+            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" 
+               target="_blank" 
+               rel="noopener noreferrer" 
+               title="Commit Hash: #{{ $hash }}"
+               style="color: #1e90ff; font-weight: normal; text-decoration: none; font-size: inherit;">
+               #{{ $hash }}
+            </a>
+        {{- end -}}
     </section>
     {{ end }}
-
-    {{- if .Lastmod -}}
-    <section class="article-lastmod">
-        {{ partial "helper/icon" "clock" }}
-        <span style="color: #999;">
-            {{/* 修改处：去掉了 15:04，只保留年月日 */}}
-            更新于 {{ .Lastmod.Format "2006-01-02" }}
-            {{- if .GitInfo -}}
-                <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
-                   {{/* 【关键】修改为 7 位 */}}
-                   #{{ substr .GitInfo.Hash 0 7 }}
-                </a>
-            {{- end -}}
-        </span>
-    </section>
-    {{- end -}}
 </footer>
