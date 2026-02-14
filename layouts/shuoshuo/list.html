@@ -19,10 +19,10 @@
                 align-items: center !important;
                 flex-wrap: wrap !important;
                 line-height: 1.5 !important;
-                gap: 20px !important; /* 块间距 */
+                gap: 20px !important;
             }
 
-            /* 3. 核心：统一所有元数据项的颜色和字体 */
+            /* 3. 核心：统一所有元数据项的视觉表现 */
             .meta-item, 
             .git-hash-text,
             .shuoshuo-time, 
@@ -31,9 +31,11 @@
                 align-items: center !important;
                 gap: 6px !important;
                 
-                /* 【关键修改】不再使用 #999，改为使用主题默认的次级文本颜色变量 */
-                /* 这样能确保上面的文字颜色与下面“在GitHub上编辑”的颜色完全一致且更深 */
+                /* 【核心修复 1】统一使用次级文本颜色 */
                 color: var(--card-text-color-secondary) !important; 
+                
+                /* 【核心修复 2】强制不透明度为 1 (消除 opacity: 0.8 带来的变浅效果) */
+                opacity: 1 !important;
                 
                 font-size: 12px !important;
                 text-decoration: none;
@@ -52,9 +54,10 @@
                 font-family: inherit;
             }
 
-            /* 5. 底部 Git Hash 颜色保持蓝色 */
+            /* 5. 底部 Git Hash 保持蓝色 */
             .git-hash-text {
                 color: #1e90ff !important;
+                opacity: 1 !important;
             }
         </style>
 
