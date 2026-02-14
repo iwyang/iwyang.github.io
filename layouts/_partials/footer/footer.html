@@ -59,61 +59,67 @@
      =========================================================== */}}
 <footer class="site-footer">
     <style>
-        /* --- [核心修复] 强制统一第二行和第三行的样式 --- */
+        /* --- [核心样式控制] --- */
         
-        /* 1. 容器样式统一：设定为 14px */
+        /* 1. 基础排版统一 (第二行和第三行) */
         .site-footer .running-time,
         .site-footer .powerby {
-            font-size: 14px !important;        /* 统一调整为 14px */
+            font-size: 14px !important;        /* 统一字号 14px */
             line-height: 1.6 !important;       /* 统一行高 */
             margin: 10px 0 !important;         /* 统一间距 */
             display: block !important;
             font-weight: normal !important;    /* 统一不加粗 */
         }
 
-        /* 2. [关键] 强制所有子元素继承父级大小，消除差异 */
-        .site-footer .running-time *,
-        .site-footer .powerby * {
-            font-size: 14px !important;        /* 强制内部所有文字也是 14px */
-            font-weight: normal !important;    /* 强制内部不加粗 */
-        }
-
-        /* 3. 亮色模式下统一颜色 */
-        .site-footer .running-time,
+        /* 2. 第三行 (Power By) 保持静音灰色 */
         .site-footer .powerby,
-        .site-footer .running-time span,
-        .site-footer .powerby span,
-        .site-footer .running-time a,
-        .site-footer .powerby a {
+        .site-footer .powerby * {
             color: var(--sys-color-text-muted) !important;
         }
 
-        /* 4. 暗色模式下强制统一为高亮色 */
-        [data-scheme="dark"] .site-footer .running-time,
-        [data-scheme="dark"] .site-footer .powerby,
-        [data-scheme="dark"] .site-footer .running-time span,
-        [data-scheme="dark"] .site-footer .powerby span,
-        [data-scheme="dark"] .site-footer .running-time a,
-        [data-scheme="dark"] .site-footer .powerby a {
-            color: rgba(255, 255, 255, 0.7) !important;
+        /* 3. 第二行 (最近更新) 改为蓝色 #1e90ff */
+        .site-footer .running-time {
+            color: #1e90ff !important;
+        }
+        /* 强制内部的时间 span 继承这个蓝色 */
+        .site-footer .running-time span#site-last-update {
+            color: inherit !important;
         }
 
-        /* 5. 链接交互与特殊颜色 */
+        /* 4. 分隔符样式 (独立控制，保持灰色，不随文字变蓝) */
+        .footer-separator {
+            margin: 0 6px !important;
+            font-size: 14px !important;
+            color: var(--sys-color-text-muted) !important; /* 亮色模式灰色 */
+        }
+
+        /* 5. 暗色模式适配 */
+        /* 第三行和分隔符在暗色模式下变亮白，避免看不清 */
+        [data-scheme="dark"] .site-footer .powerby,
+        [data-scheme="dark"] .site-footer .powerby *,
+        [data-scheme="dark"] .footer-separator {
+            color: rgba(255, 255, 255, 0.7) !important;
+        }
+        /* 第二行在暗色模式下依然保持蓝色 #1e90ff (因为它够亮) */
+
+        /* 6. 链接交互 */
         .site-footer .running-time a,
         .site-footer .powerby a {
             text-decoration: none;
             cursor: pointer;
         }
         
-        .site-footer .running-time a:hover,
         .site-footer .powerby a:hover {
             color: var(--accent-color) !important;
             text-decoration: underline;
         }
-
-        /* Hash 链接保留蓝色 (特例，不随模式变色) */
-        .site-footer .running-time a[href*="commit"] {
-            color: #1e90ff !important;
+        
+        /* Hash 链接继承父级的蓝色 */
+        .site-footer .running-time a {
+            color: inherit !important;
+        }
+        .site-footer .running-time a:hover {
+            text-decoration: underline;
         }
     </style>
 
@@ -129,8 +135,8 @@
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ $lastBuildTime.Format "2006-01-02 15:04" }}">--</span>
 
         {{- if $gitHashShort -}}
-            {{/* 分隔符 */}}
-            <span style="margin: 0 6px;">|</span>
+            {{/* 分隔符：使用特定 class 保持灰色，不随文字变蓝 */}}
+            <span class="footer-separator">|</span>
             
             <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
                target="_blank" 
@@ -151,7 +157,7 @@
         {{- $DesignedBy := `<a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a>` -}}
 
         {{ T "footer.builtWith" (dict "Generator" $Generator) | safeHTML }} 
-        <span style="margin: 0 6px;">|</span> 
+        <span class="footer-separator">|</span> 
         {{ T "footer.designedBy" (dict "Theme" $Theme "DesignedBy" $DesignedBy) | safeHTML }}
     </section>
 </footer>
