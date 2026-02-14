@@ -1,6 +1,59 @@
 {{ define "main" }}
     <main class="main list-container">
-        
+        <style>
+            /* 1. 全局清除干扰 + 统一图标尺寸 */
+            .shuoshuo-meta svg, 
+            .shuoshuo-edit-link svg {
+                width: 12px !important;       /* 图标统一 12px */
+                height: 12px !important;
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                position: static !important;
+                transform: none !important;
+            }
+
+            /* 2. Flex 容器设置 */
+            .meta-wrapper {
+                display: flex !important;
+                align-items: center !important;
+                flex-wrap: wrap !important;
+                line-height: 1.5 !important;
+                gap: 20px !important; /* 保持块与块之间的间距 */
+            }
+
+            /* 3. 核心：统一所有元数据项的字体大小 */
+            .meta-item, 
+            .git-hash-text,
+            .shuoshuo-time, 
+            .shuoshuo-updated-time {
+                display: flex !important;
+                align-items: center !important;
+                gap: 6px !important;            /* 图标文字间距 */
+                color: #999;
+                font-size: 12px !important;     /* 【关键】上下全部强制为 12px */
+                text-decoration: none;
+                margin: 0 !important;
+                padding: 0 !important;
+            }
+
+            /* 4. 内部文字样式归零 */
+            .meta-item span, .meta-item time, .git-hash-text {
+                display: block !important;
+                margin: 0 !important;
+                padding: 0 !important;
+                line-height: 1 !important;      /* 行高1，配合 flex 居中 */
+                border: 0 !important;
+                font-size: 12px !important;     /* 双重保险 */
+                font-family: inherit;
+            }
+
+            /* 5. 底部 Git Hash 颜色特调 */
+            .git-hash-text {
+                color: #1e90ff !important;
+            }
+        </style>
+
         <div class="shuoshuo-list">
             {{ $paginator := .Paginate .Pages }}
             
@@ -30,42 +83,30 @@
         <script>
             document.addEventListener('DOMContentLoaded', () => {
                 const now = new Date();
-
-                // 1. 处理发布时间 (保持原逻辑不变)
-                const timeElements = document.querySelectorAll('.shuoshuo-time');
+                const timeElements = document.querySelectorAll('.shuoshuo-time, .shuoshuo-updated-time');
+                
                 timeElements.forEach(el => {
+                    updateTimeDisplay(el, now);
+                });
+
+                function updateTimeDisplay(el, now) {
                     const dateStr = el.getAttribute('datetime');
                     if (!dateStr) return;
+                    
                     const date = new Date(dateStr);
                     const diff = (now - date) / 1000;
-                    const textSpan = el.querySelector('.date-text');
-                    if (!textSpan) return;
+                    
+                    const textSpan = el.querySelector('span') || el;
 
-                    // 格式化 Title
                     const exactTime = formatExactTime(date);
-                    el.setAttribute('title', exactTime);
+                    if (!el.hasAttribute('title')) {
+                        const prefix = el.classList.contains('shuoshuo-updated-time') ? "更新于 " : "发布于 ";
+                        el.setAttribute('title', prefix + exactTime);
+                    }
 
-                    // 计算相对时间
                     textSpan.innerText = getRelativeTime(diff);
-                });
+                }
 
-                // 2. 新增：处理更新时间 (Lastmod)
-                const lastmodElements = document.querySelectorAll('.git-lastmod-time');
-                lastmodElements.forEach(el => {
-                    const dateStr = el.getAttribute('datetime');
-                    if (!dateStr) return;
-                    const date = new Date(dateStr);
-                    const diff = (now - date) / 1000;
-
-                    // 格式化 Title (显示为 2026-02-14 09:50)
-                    const exactTime = formatExactTime(date);
-                    el.setAttribute('title', exactTime);
-
-                    // 计算相对时间并更新文本
-                    el.innerText = getRelativeTime(diff);
-                });
-
-                // --- 辅助函数：格式化时间 (YYYY-MM-DD HH:mm) ---
                 function formatExactTime(date) {
                     const year = date.getFullYear();
                     const month = String(date.getMonth() + 1).padStart(2, '0');
@@ -75,7 +116,6 @@
                     return year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
                 }
 
-                // --- 辅助函数：计算相对时间 ---
                 function getRelativeTime(diff) {
                     if (diff < 60) { return '刚刚'; }
                     else if (diff < 3600) { return Math.floor(diff / 60) + ' 分钟前'; }
@@ -91,13 +131,38 @@
 
 {{/* --- 核心模具 --- */}}
 {{ define "partials/shuoshuo-card-logic" }}
+{{- $gitHashFull := "" -}}
+{{- $gitHashShort := "" -}}
+{{- $updateTime := .Lastmod -}}
+
+{{- if .GitInfo -}}
+    {{- $gitHashFull = .GitInfo.Hash -}}
+    {{- $gitHashShort = substr .GitInfo.Hash 0 7 -}}
+    {{- $updateTime = .GitInfo.AuthorDate -}}
+{{- end -}}
+
 <article class="shuoshuo-card">
     <div class="shuoshuo-header">
-        <div class="shuoshuo-meta">
-            <time class="shuoshuo-time" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
-                {{ partial "helper/icon" "date" }}
-                <span class="date-text">{{ .Date.Format "2006-01-02" }}</span>
+        <div class="shuoshuo-meta meta-wrapper">
+            
+            {{/* 1. 发布时间 */}}
+            <time class="shuoshuo-time meta-item" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                <span>{{ .Date.Format "2006-01-02" }}</span>
             </time>
+
+            {{/* 2. 更新时间 */}}
+            {{ $created := .Date.Unix }}
+            {{ $updated := $updateTime.Unix }}
+            {{ $diff := sub $updated $created }}
+
+            {{ if gt $diff 1800 }}
+                <span class="shuoshuo-updated-time meta-item" 
+                      datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
+                    <span>{{ $updateTime.Format "2006-01-02" }}</span>
+                </span>
+            {{ end }}
         </div>
     </div>
 
@@ -114,37 +179,31 @@
     {{ end }}
 
     <div class="shuoshuo-footer-info">
-        {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-        <div class="shuoshuo-edit-link">
-            {{ partial "helper/icon" "external-link" }}
-            {{/* 修改处1：添加了 text-decoration: none; 去除下划线 */}}
-            <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
-               target="_blank" 
-               rel="noopener noreferrer" 
-               style="color: inherit; text-decoration: none;">
-                在 GitHub 上编辑此页
-            </a>
-        </div>
-        {{ end }}
+        <div class="shuoshuo-edit-link meta-wrapper">
+            
+            {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
+                {{/* 左下角：编辑链接 */}}
+                <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   class="meta-item">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <span>在 GitHub 上编辑此页</span>
+                </a>
+            {{ end }}
 
-        {{- if .Lastmod -}}
-        <div class="shuoshuo-git-info">
-            {{ partial "helper/icon" "clock" }}
-            <span style="color: #999;">
-                更新于 
-                {{/* 修改处2：添加 span class 和 datetime 属性，用于 JS 计算相对时间 */}}
-                <span class="git-lastmod-time" datetime="{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}">
-                    {{ .Lastmod.Format "2006-01-02 15:04" }}
-                </span>
-                
-                {{- if .GitInfo -}}
-                    <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ .GitInfo.Hash }}" target="_blank" rel="noopener noreferrer" style="color: #1e90ff; font-weight: normal; margin-left: 5px; text-decoration: none;">
-                       #{{ substr .GitInfo.Hash 0 7 }}
-                    </a>
-                {{- end -}}
-            </span>
+            {{/* 右下角：Git Hash */}}
+            {{- if $gitHashShort -}}
+                <a class="git-hash-text"
+                   href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
+                   target="_blank" 
+                   rel="noopener noreferrer" 
+                   title="Commit Hash: {{ $gitHashShort }}">
+                   #{{ $gitHashShort }}
+                </a>
+            {{- end -}}
+
         </div>
-        {{- end -}}
     </div>
 </article>
 {{ end }}
