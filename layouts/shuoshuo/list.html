@@ -188,7 +188,7 @@
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 10px !important;">
             
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                {{/* 左下角：编辑链接 (修改：颜色改为 #1e90ff) */}}
+                {{/* 左下角：编辑链接 (蓝色 #1e90ff) */}}
                 <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
@@ -200,11 +200,11 @@
                 </a>
             {{ end }}
 
-            {{/* 右下角：Git Hash (带竖线) */}}
+            {{/* 右下角：Git Hash */}}
             {{- if $gitHashShort -}}
-                {{/* 如果有编辑链接，则显示竖线 (颜色 var(--sys-color-text-muted)，大小 14px) */}}
+                {{/* 竖线分隔符：(修改：颜色 #1e90ff，大小 14px) */}}
                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                    <span style="font-size: 14px; color: var(--sys-color-text-muted);">|</span>
+                    <span style="font-size: 14px; color: #1e90ff;">|</span>
                 {{ end }}
 
                 <a class="git-hash-text"
