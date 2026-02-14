@@ -70,7 +70,13 @@
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ $lastBuildTime.Format "2006-01-02 15:04" }}">--</span>
 
         {{- if $gitHashShort -}}
-            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener" style="color: #1e90ff; margin-left: 5px; text-decoration: none;">#{{ $gitHashShort }}</a>
+            <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
+               target="_blank" 
+               rel="noopener" 
+               title="Commit Hash: {{ $gitHashShort }}"
+               style="color: #1e90ff; margin-left: 5px; text-decoration: none;">
+               #{{ $gitHashShort }}
+            </a>
         {{- end -}}
     </section>
     
