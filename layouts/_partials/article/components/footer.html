@@ -23,8 +23,8 @@
     
     {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
     <section class="article-edit-container" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        {{/* 左侧：编辑链接 (加深颜色：改用 card-text-color-main，字号 14px) */}}
-        <a style="color: var(--card-text-color-main); font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;" 
+        {{/* 左侧：编辑链接 (修改：颜色改为 #1e90ff，字号 14px) */}}
+        <a style="color: #1e90ff; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;" 
            href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
            target="_blank" 
            rel="noopener noreferrer"

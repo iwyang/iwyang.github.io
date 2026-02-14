@@ -188,12 +188,12 @@
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 10px !important;">
             
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                {{/* 左下角：编辑链接 (加深颜色：使用 card-text-color-main) */}}
+                {{/* 左下角：编辑链接 (修改：颜色改为 #1e90ff) */}}
                 <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
                    class="meta-item"
-                   style="color: var(--card-text-color-main) !important; font-size: 14px !important;" 
+                   style="color: #1e90ff !important; font-size: 14px !important;" 
                    title="前往 GitHub 编辑此页">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     <span>编辑此页</span>
@@ -202,7 +202,7 @@
 
             {{/* 右下角：Git Hash (带竖线) */}}
             {{- if $gitHashShort -}}
-                {{/* 如果有编辑链接，则显示竖线 (修改：颜色 var(--sys-color-text-muted)，大小 14px) */}}
+                {{/* 如果有编辑链接，则显示竖线 (颜色 var(--sys-color-text-muted)，大小 14px) */}}
                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
                     <span style="font-size: 14px; color: var(--sys-color-text-muted);">|</span>
                 {{ end }}
