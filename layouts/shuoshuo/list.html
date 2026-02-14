@@ -1,11 +1,11 @@
 {{ define "main" }}
     <main class="main list-container">
         <style>
-            /* 1. 图标与基础重置 */
+            /* 1. 全局清除干扰 + 统一图标尺寸 */
             .shuoshuo-meta svg, 
             .shuoshuo-edit-link svg {
-                width: 14px !important;
-                height: 14px !important;
+                width: 12px !important;       /* 图标统一 12px */
+                height: 12px !important;
                 display: block !important;
                 margin: 0 !important;
                 padding: 0 !important;
@@ -19,7 +19,7 @@
                 align-items: center !important;
                 flex-wrap: wrap !important;
                 line-height: 1.5 !important;
-                gap: 20px !important;
+                gap: 20px !important; /* 保持块与块之间的间距 */
             }
 
             /* 3. 核心：统一所有元数据项的视觉表现 */
@@ -29,18 +29,17 @@
             .shuoshuo-updated-time {
                 display: flex !important;
                 align-items: center !important;
-                gap: 6px !important;
-                
-                /* 【核心修复 1】统一使用次级文本颜色 */
+                gap: 6px !important;            /* 图标文字间距 */
                 color: var(--card-text-color-secondary) !important; 
-                
-                /* 【核心修复 2】强制不透明度为 1 (消除 opacity: 0.8 带来的变浅效果) */
                 opacity: 1 !important;
-                
-                font-size: 12px !important;
+                font-size: 12px !important;     /* 上下全部强制为 12px */
                 text-decoration: none;
                 margin: 0 !important;
                 padding: 0 !important;
+
+                /* 【核心修复】移除移动端点击时的长方形高亮背景 */
+                -webkit-tap-highlight-color: transparent !important;
+                outline: none !important;
             }
 
             /* 4. 内部文字样式归零 */
@@ -48,16 +47,15 @@
                 display: block !important;
                 margin: 0 !important;
                 padding: 0 !important;
-                line-height: 1 !important;
+                line-height: 1 !important;      /* 行高1，配合 flex 居中 */
                 border: 0 !important;
-                font-size: 12px !important;
+                font-size: 12px !important;     /* 双重保险 */
                 font-family: inherit;
             }
 
-            /* 5. 底部 Git Hash 保持蓝色 */
+            /* 5. 底部 Git Hash 颜色特调 */
             .git-hash-text {
                 color: #1e90ff !important;
-                opacity: 1 !important;
             }
         </style>
 
