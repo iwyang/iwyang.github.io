@@ -10,6 +10,18 @@
         .article-edit-container a:hover {
             text-decoration: underline !important;
         }
+
+        /* 3. 核心修改：添加上方虚线分割线，参考说说页面卡片底部样式 */
+        .article-edit-container {
+            border-top: 1px dashed var(--body-background); /* 虚线分割线 */
+            padding-top: 15px;      /* 上内边距，与线保持距离 */
+            margin-top: 20px;       /* 上外边距，与上方版权/标签区域保持距离 */
+            width: 100%;            /* 确保分割线横贯全屏 */
+            display: flex; 
+            align-items: center; 
+            gap: 10px; 
+            flex-wrap: wrap;
+        }
     </style>
 
     {{ partial "article/components/tags" . }}
@@ -22,8 +34,8 @@
     {{ end }}
     
     {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-    <section class="article-edit-container" style="display: flex; align-items: center; gap: 10px; flex-wrap: wrap;">
-        {{/* 左侧：编辑链接 (修改：颜色改为 #1e90ff，字号 14px) */}}
+    <section class="article-edit-container">
+        {{/* 左侧：编辑链接 (颜色 #1e90ff，字号 14px) */}}
         <a style="color: #1e90ff; font-size: 14px; text-decoration: none; display: flex; align-items: center; gap: 8px;" 
            href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
            target="_blank" 
@@ -33,7 +45,7 @@
             <span>编辑此页</span>
         </a>
         
-        {{/* 右侧：Git Hash (带竖线，加深颜色) */}}
+        {{/* 右侧：Git Hash (带竖线) */}}
         {{- if .GitInfo -}}
             {{/* 竖线分隔符：颜色改为 #1e90ff，字号 14px */}}
             <span style="font-size: 14px; color: #1e90ff;">|</span>
