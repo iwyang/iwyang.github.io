@@ -71,55 +71,47 @@
             font-weight: normal !important;    /* 统一不加粗 */
         }
 
-        /* 2. 第三行 (Power By) 保持静音灰色 */
+        /* 2. 第二行 (最近更新) 强制设为蓝色 #1e90ff (亮色 & 暗色模式) */
+        .site-footer .running-time,
+        .site-footer .running-time *,
+        [data-scheme="dark"] .site-footer .running-time,
+        [data-scheme="dark"] .site-footer .running-time * {
+            color: #1e90ff !important;
+        }
+
+        /* 3. 第三行 (Power By) 样式控制 */
+        /* 亮色模式：静音灰色 */
         .site-footer .powerby,
         .site-footer .powerby * {
             color: var(--sys-color-text-muted) !important;
         }
-
-        /* 3. 第二行 (最近更新) 改为蓝色 #1e90ff */
-        .site-footer .running-time {
-            color: #1e90ff !important;
-        }
-        /* 强制内部的时间 span 继承这个蓝色 */
-        .site-footer .running-time span#site-last-update {
-            color: inherit !important;
+        /* 暗色模式：变亮白，避免看不清 */
+        [data-scheme="dark"] .site-footer .powerby,
+        [data-scheme="dark"] .site-footer .powerby * {
+            color: rgba(255, 255, 255, 0.7) !important;
         }
 
-        /* 4. 分隔符样式 (独立控制，保持灰色，不随文字变蓝) */
+        /* 4. 分隔符样式 */
         .footer-separator {
             margin: 0 6px !important;
             font-size: 14px !important;
-            color: var(--sys-color-text-muted) !important; /* 亮色模式灰色 */
         }
-
-        /* 5. 暗色模式适配 */
-        /* 第三行和分隔符在暗色模式下变亮白，避免看不清 */
-        [data-scheme="dark"] .site-footer .powerby,
-        [data-scheme="dark"] .site-footer .powerby *,
-        [data-scheme="dark"] .footer-separator {
-            color: rgba(255, 255, 255, 0.7) !important;
-        }
-        /* 第二行在暗色模式下依然保持蓝色 #1e90ff (因为它够亮) */
-
-        /* 6. 链接交互 */
-        .site-footer .running-time a,
-        .site-footer .powerby a {
-            text-decoration: none;
-            cursor: pointer;
-        }
-        
-        .site-footer .powerby a:hover {
-            color: var(--accent-color) !important;
-            text-decoration: underline;
-        }
-        
-        /* Hash 链接继承父级的蓝色 */
-        .site-footer .running-time a {
+        /* 第三行分隔符随第三行文字变色 */
+        .site-footer .powerby .footer-separator {
             color: inherit !important;
         }
-        .site-footer .running-time a:hover {
-            text-decoration: underline;
+
+        /* 5. 链接交互 */
+        .site-footer a {
+            text-decoration: none !important;
+            cursor: pointer;
+        }
+        .site-footer a:hover {
+            text-decoration: underline !important;
+        }
+        /* 第三行链接悬停变为主色调 */
+        .site-footer .powerby a:hover {
+            color: var(--accent-color) !important;
         }
     </style>
 
@@ -135,7 +127,6 @@
         最近更新：<span id="site-last-update" data-time="{{ $lastBuildTime.Format "2006-01-02T15:04:05Z07:00" }}" title="{{ $lastBuildTime.Format "2006-01-02 15:04" }}">--</span>
 
         {{- if $gitHashShort -}}
-            {{/* 分隔符：使用特定 class 保持灰色，不随文字变蓝 */}}
             <span class="footer-separator">|</span>
             
             <a href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
@@ -178,7 +169,6 @@
             var minute = String(lastBuildTime.getMinutes()).padStart(2, '0');
             
             var exactTime = year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
-
             updateEl.setAttribute('title', exactTime);
 
             var text = '';
