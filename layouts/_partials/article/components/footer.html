@@ -1,6 +1,12 @@
 <footer class="article-footer">
     <style>
-        /* 增加悬停下划线效果，保持字体大小 */
+        /* 1. 移除移动端点击链接时的长方形高亮背景 */
+        .article-edit-container a {
+            -webkit-tap-highlight-color: transparent !important;
+            outline: none !important;
+        }
+
+        /* 2. 增加悬停下划线效果，保持字体大小 */
         .article-edit-container a:hover {
             text-decoration: underline !important;
         }
