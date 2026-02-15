@@ -1,179 +1,245 @@
 {{ define "main" }}
     <main class="main list-container">
+        {{/* 1. 全局初始化分页器 */}}
+        {{ $paginator := .Paginate .Pages }}
+
         <style>
-            /* =========================================
-               统一元数据样式 (说说页)
-               ========================================= */
-
-            /* 1. 容器 Flex 布局 */
-            .meta-wrapper {
-                display: flex !important;
-                align-items: center !important;
-                flex-wrap: wrap !important;
-                line-height: 1 !important; 
-                gap: 20px !important;      
-            }
-
-            /* 2. 单个元数据项 (核心通用样式) */
-            .meta-item, 
-            .shuoshuo-edit-link a,
-            .shuoshuo-time,
-            .shuoshuo-updated-time {
-                display: flex !important;
-                align-items: center !important;
-                
-                /* 间距统一为 8px (与文章页一致) */
-                gap: 8px !important;
-                
-                /* 【核心确认】字号统一为 14px (与文章页 article.html 一致) */
-                font-size: 14px !important;     
-                
-                line-height: 1 !important;
-                text-decoration: none;
-                margin: 0 !important;
-                padding: 0 !important;
-                border: 0 !important;
-                background: none !important;
-                
-                /* 颜色与透明度统一 */
-                color: var(--card-text-color-secondary) !important; 
-                opacity: 1 !important; 
-                
-                -webkit-tap-highlight-color: transparent !important;
-                outline: none !important;
-            }
-
-            /* 3. 统一图标尺寸 */
-            .shuoshuo-meta svg, 
-            .shuoshuo-edit-link svg,
-            .shuoshuo-time svg,
-            .shuoshuo-updated-time svg {
-                width: 14px !important;       
-                height: 14px !important;      
-                min-width: 14px !important;   
-                display: block !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                position: static !important;
-                transform: none !important;
-                
-                opacity: 1 !important;   
-                color: inherit !important;              
-            }
-
-            /* 4. 内部文字标签归零 (双重保险，防止子元素继承错误字号) */
-            .meta-item span, 
-            .meta-item time, 
-            .shuoshuo-updated-time span,
-            .shuoshuo-edit-link span {
-                display: block !important;
-                margin: 0 !important;
-                padding: 0 !important;
-                line-height: 1 !important;    
-                
-                /* 【核心确认】强制子元素也为 14px */
-                font-size: 14px !important;   
-                
-                font-family: inherit;
-                font-weight: normal !important;
-                color: inherit !important;
-            }
-
-            /* 5. 底部链接专用颜色 (蓝色) */
-            .shuoshuo-edit-link a,
-            .shuoshuo-edit-link .git-hash-text {
-                color: #1e90ff !important;
-                transition: opacity 0.3s ease;
-            }
+            /* --- 仅保留切换按钮样式 --- */
+            .sort-controls { display: flex; justify-content: center; gap: 15px; margin: 30px 0; }
+            .sort-btn { padding: 8px 24px; border: 1px solid #1e90ff; border-radius: 20px; color: #1e90ff; cursor: pointer; transition: all 0.3s ease; background: transparent; font-size: 14px; font-weight: 500; display: flex; align-items: center; gap: 6px; outline: none; }
+            .sort-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; }
+            .sort-btn.active { background: #1e90ff; color: #fff; box-shadow: 0 4px 10px rgba(30, 144, 255, 0.3); }
+            .sort-btn:hover:not(.active) { background: rgba(30, 144, 255, 0.1); }
             
-            /* 【修改点】分隔符颜色调整为 #1e90ff，并移除透明度 */
-            .shuoshuo-edit-link .separator {
-                color: #1e90ff !important;
-                opacity: 1 !important;
-            }
+            /* 视图切换动画 */
+            .view-container { animation: fadeIn 0.4s ease; }
+            @keyframes fadeIn { from { opacity: 0; transform: translateY(5px); } to { opacity: 1; transform: translateY(0); } }
 
-            .shuoshuo-edit-link a:hover {
-                opacity: 0.7 !important;
-                text-decoration: underline;
-            }
+            /* --- 元数据样式 (保持不变) --- */
+            .meta-wrapper { display: flex !important; align-items: center !important; flex-wrap: wrap !important; line-height: 1 !important; gap: 20px !important; }
+            .meta-item, .shuoshuo-edit-link a, .shuoshuo-time, .shuoshuo-updated-time { display: flex !important; align-items: center !important; gap: 8px !important; font-size: 14px !important; line-height: 1 !important; text-decoration: none; margin: 0 !important; padding: 0 !important; border: 0 !important; background: none !important; color: var(--card-text-color-secondary) !important; opacity: 1 !important; -webkit-tap-highlight-color: transparent !important; outline: none !important; }
+            .shuoshuo-meta svg, .shuoshuo-edit-link svg, .shuoshuo-time svg, .shuoshuo-updated-time svg { width: 14px !important; height: 14px !important; min-width: 14px !important; display: block !important; margin: 0 !important; padding: 0 !important; position: static !important; transform: none !important; opacity: 1 !important; color: inherit !important; }
+            .meta-item span, .meta-item time, .shuoshuo-updated-time span, .shuoshuo-edit-link span { display: block !important; margin: 0 !important; padding: 0 !important; line-height: 1 !important; font-size: 14px !important; font-family: inherit; font-weight: normal !important; color: inherit !important; }
+            .shuoshuo-edit-link a, .shuoshuo-edit-link .git-hash-text { color: #1e90ff !important; transition: opacity 0.3s ease; }
+            .shuoshuo-edit-link .separator { color: #1e90ff !important; opacity: 1 !important; }
+            .shuoshuo-edit-link a:hover { opacity: 0.7 !important; text-decoration: underline; }
+
+            /* 已删除所有分页相关的自定义 CSS
+               完全依赖 custom.scss 中的 .pagination 样式
+            */
         </style>
 
-        <div class="shuoshuo-list">
-            {{ $paginator := .Paginate .Pages }}
-            
-            <div class="waterfall-column">
-                {{ range $index, $element := $paginator.Pages }}
-                    {{ if eq (mod $index 2) 0 }}
-                        {{ partial "shuoshuo-card-logic" . }}
-                    {{ end }}
-                {{ end }}
-            </div>
+        <div class="sort-controls">
+            <button class="sort-btn active" onclick="switchMode('date')" id="btn-date">
+                <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
+                按发布时间
+            </button>
+            <button class="sort-btn" onclick="switchMode('updated')" id="btn-updated">
+                <svg viewBox="0 0 24 24"><path d="M23 4v6h-6"></path><path d="M1 20v-6h6"></path><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>
+                按最近更新
+            </button>
+        </div>
 
-            <div class="waterfall-column">
-                {{ range $index, $element := $paginator.Pages }}
-                    {{ if eq (mod $index 2) 1 }}
-                        {{ partial "shuoshuo-card-logic" . }}
+        <div id="view-date" class="view-container">
+            <div class="shuoshuo-list">
+                <div class="waterfall-column">
+                    {{ range $index, $element := $paginator.Pages }}
+                        {{ if eq (mod $index 2) 0 }}{{ partial "shuoshuo-card-logic" . }}{{ end }}
                     {{ end }}
-                {{ end }}
+                </div>
+                <div class="waterfall-column">
+                    {{ range $index, $element := $paginator.Pages }}
+                        {{ if eq (mod $index 2) 1 }}{{ partial "shuoshuo-card-logic" . }}{{ end }}
+                    {{ end }}
+                </div>
+            </div>
+            <div class="shuoshuo-pagination">
+                {{ partial "pagination.html" . }}
             </div>
         </div>
 
-        <div class="shuoshuo-pagination">
-            {{ partial "pagination.html" . }}
+        <div id="view-updated" class="view-container" style="display: none;">
+            <div class="shuoshuo-list" id="js-list-container">
+                <div class="waterfall-column" id="js-col-1"></div>
+                <div class="waterfall-column" id="js-col-2"></div>
+            </div>
+            
+            <div class="shuoshuo-pagination">
+                <div id="js-pagination-container"></div>
+            </div>
         </div>
 
         {{ partial "footer/footer.html" . }}
 
+        <div id="updated-posts-storage" style="display: none;">
+            {{ range .Pages.ByLastmod.Reverse }}
+                <div class="stored-post-wrapper">
+                    {{ partial "shuoshuo-card-logic" . }}
+                </div>
+            {{ end }}
+        </div>
+
         <script>
-            document.addEventListener('DOMContentLoaded', () => {
-                const now = new Date();
-                const timeElements = document.querySelectorAll('.shuoshuo-time, .shuoshuo-updated-time');
+            const PER_PAGE = {{ $paginator.PagerSize }}; 
+            let currentPage = 1;
+            
+            const storageContainer = document.getElementById('updated-posts-storage');
+            const allPostWrappers = Array.from(storageContainer.children);
+            const totalPosts = allPostWrappers.length;
+
+            function switchMode(mode) {
+                const viewDate = document.getElementById('view-date');
+                const viewUpdated = document.getElementById('view-updated');
+                const btnDate = document.getElementById('btn-date');
+                const btnUpdated = document.getElementById('btn-updated');
+
+                if (mode === 'date') {
+                    viewDate.style.display = 'block';
+                    viewUpdated.style.display = 'none';
+                    btnDate.classList.add('active');
+                    btnUpdated.classList.remove('active');
+                } else {
+                    viewDate.style.display = 'none';
+                    viewUpdated.style.display = 'block';
+                    btnDate.classList.remove('active');
+                    btnUpdated.classList.add('active');
+                    if (document.getElementById('js-col-1').innerHTML === '') {
+                        renderUpdatedPage(1);
+                    }
+                }
+            }
+
+            function renderUpdatedPage(page) {
+                currentPage = page;
+                const start = (page - 1) * PER_PAGE;
+                const end = start + PER_PAGE;
+
+                const col1 = document.getElementById('js-col-1');
+                const col2 = document.getElementById('js-col-2');
+                col1.innerHTML = '';
+                col2.innerHTML = '';
+
+                const pageItems = allPostWrappers.slice(start, end);
                 
-                timeElements.forEach(el => {
-                    updateTimeDisplay(el, now);
+                pageItems.forEach((wrapper, index) => {
+                    const cardContent = wrapper.firstElementChild.cloneNode(true);
+                    if (index % 2 === 0) {
+                        col1.appendChild(cardContent);
+                    } else {
+                        col2.appendChild(cardContent);
+                    }
                 });
 
-                function updateTimeDisplay(el, now) {
-                    const dateStr = el.getAttribute('datetime');
-                    if (!dateStr) return;
-                    
-                    const date = new Date(dateStr);
-                    const diff = (now - date) / 1000;
-                    
-                    const textSpan = el.querySelector('span') || el;
+                renderPagination();
+                refreshTimeDisplay();
+                
+                if(page > 1) {
+                    const listContainer = document.querySelector('.list-container');
+                    if(listContainer) listContainer.scrollIntoView({ behavior: 'smooth' });
+                }
+            }
 
-                    const exactTime = formatExactTime(date);
-                    if (!el.hasAttribute('title')) {
-                        const prefix = el.classList.contains('shuoshuo-updated-time') ? "更新于 " : "发布于 ";
-                        el.setAttribute('title', prefix + exactTime);
+            // 生成与系统分页完全一致的 HTML 结构
+            function renderPagination() {
+                const totalPages = Math.ceil(totalPosts / PER_PAGE);
+                const container = document.getElementById('js-pagination-container');
+                
+                // 使用系统的 pagination 类名
+                container.className = 'pagination'; 
+                container.innerHTML = '';
+
+                if (totalPages <= 1) return;
+
+                // --- 上一页按钮 ---
+                const prevLink = document.createElement('a');
+                prevLink.className = `page-link ${currentPage <= 1 ? 'disabled' : ''}`;
+                prevLink.href = currentPage > 1 ? 'javascript:void(0);' : '';
+                if (currentPage > 1) {
+                    prevLink.onclick = () => renderUpdatedPage(currentPage - 1);
+                }
+                prevLink.setAttribute('aria-label', 'Previous page');
+                if (currentPage <= 1) {
+                    prevLink.setAttribute('aria-disabled', 'true');
+                }
+                prevLink.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-left"><polyline points="15 18 9 12 15 6"></polyline></svg>`;
+                container.appendChild(prevLink);
+
+                // --- 页码 ---
+                let startPage = Math.max(1, currentPage - 2);
+                let endPage = Math.min(totalPages, currentPage + 2);
+
+                if (totalPages <= 5) {
+                    startPage = 1;
+                    endPage = totalPages;
+                } else {
+                    if (currentPage <= 3) { endPage = 5; }
+                    if (currentPage >= totalPages - 2) { startPage = totalPages - 4; }
+                }
+
+                for (let i = startPage; i <= endPage; i++) {
+                    const pageLink = document.createElement('a');
+                    // 使用 current 类而不是 active 类
+                    pageLink.className = `page-link ${i === currentPage ? 'current' : ''}`;
+                    pageLink.href = i === currentPage ? '' : 'javascript:void(0);';
+                    if (i !== currentPage) {
+                        pageLink.onclick = () => renderUpdatedPage(i);
                     }
-
-                    textSpan.innerText = getRelativeTime(diff);
+                    pageLink.setAttribute('aria-label', `Page ${i}`);
+                    if (i === currentPage) {
+                        pageLink.setAttribute('aria-current', 'page');
+                    }
+                    pageLink.innerText = i;
+                    container.appendChild(pageLink);
                 }
 
-                function formatExactTime(date) {
-                    const year = date.getFullYear();
-                    const month = String(date.getMonth() + 1).padStart(2, '0');
-                    const day = String(date.getDate()).padStart(2, '0');
-                    const hour = String(date.getHours()).padStart(2, '0');
-                    const minute = String(date.getMinutes()).padStart(2, '0');
-                    return year + '-' + month + '-' + day + ' ' + hour + ':' + minute;
+                // --- 下一页按钮 ---
+                const nextLink = document.createElement('a');
+                nextLink.className = `page-link ${currentPage >= totalPages ? 'disabled' : ''}`;
+                nextLink.href = currentPage < totalPages ? 'javascript:void(0);' : '';
+                if (currentPage < totalPages) {
+                    nextLink.onclick = () => renderUpdatedPage(currentPage + 1);
                 }
+                nextLink.setAttribute('aria-label', 'Next page');
+                if (currentPage >= totalPages) {
+                    nextLink.setAttribute('aria-disabled', 'true');
+                }
+                nextLink.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-right"><polyline points="9 18 15 12 9 6"></polyline></svg>`;
+                container.appendChild(nextLink);
+            }
 
-                function getRelativeTime(diff) {
-                    if (diff < 60) { return '刚刚'; }
-                    else if (diff < 3600) { return Math.floor(diff / 60) + ' 分钟前'; }
-                    else if (diff < 86400) { return Math.floor(diff / 3600) + ' 小时前'; }
-                    else if (diff < 2592000) { return Math.floor(diff / 86400) + ' 天前'; }
-                    else if (diff < 31536000) { return Math.floor(diff / 2592000) + ' 个月前'; }
-                    else { return Math.floor(diff / 31536000) + ' 年前'; }
-                }
+            function refreshTimeDisplay() {
+                const now = new Date();
+                const timeElements = document.querySelectorAll('#js-list-container .shuoshuo-time, #js-list-container .shuoshuo-updated-time');
+                timeElements.forEach(el => updateTimeDisplay(el, now));
+            }
+
+            function updateTimeDisplay(el, now) {
+                const dateStr = el.getAttribute('datetime');
+                if (!dateStr) return;
+                const date = new Date(dateStr);
+                const diff = (now - date) / 1000;
+                const textSpan = el.querySelector('span') || el;
+                textSpan.innerText = getRelativeTime(diff);
+            }
+
+            function getRelativeTime(diff) {
+                if (diff < 60) return '刚刚';
+                else if (diff < 3600) return Math.floor(diff / 60) + ' 分钟前';
+                else if (diff < 86400) return Math.floor(diff / 3600) + ' 小时前';
+                else if (diff < 2592000) return Math.floor(diff / 86400) + ' 天前';
+                else if (diff < 31536000) return Math.floor(diff / 2592000) + ' 个月前';
+                else return Math.floor(diff / 31536000) + ' 年前';
+            }
+            
+            document.addEventListener('DOMContentLoaded', () => {
+                const now = new Date();
+                document.querySelectorAll('#view-date .shuoshuo-time, #view-date .shuoshuo-updated-time').forEach(el => updateTimeDisplay(el, now));
             });
         </script>
     </main>
 {{ end }}
 
-{{/* --- 核心模具 --- */}}
+{{/* --- 保持 partial 不变 --- */}}
 {{ define "partials/shuoshuo-card-logic" }}
 {{- $gitHashFull := "" -}}
 {{- $gitHashShort := "" -}}
@@ -188,32 +254,24 @@
 <article class="shuoshuo-card">
     <div class="shuoshuo-header">
         <div class="shuoshuo-meta meta-wrapper">
-            
-            {{/* 1. 发布时间 */}}
             <time class="shuoshuo-time meta-item" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 <span>{{ .Date.Format "2006-01-02" }}</span>
             </time>
-
-            {{/* 2. 更新时间 */}}
             {{ $created := .Date.Unix }}
             {{ $updated := $updateTime.Unix }}
             {{ $diff := sub $updated $created }}
-
             {{ if gt $diff 1800 }}
-                <span class="shuoshuo-updated-time meta-item" 
-                      datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
+                <span class="shuoshuo-updated-time meta-item" datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                     <span>{{ $updateTime.Format "2006-01-02" }}</span>
                 </span>
             {{ end }}
         </div>
     </div>
-
     <div class="shuoshuo-content style-cs-content article-post">
         {{ .Content }}
     </div>
-    
     {{ with .Resources.GetMatch "cover.*" }}
     <div class="shuoshuo-image photo-gallery">
         <a href="{{ .RelPermalink }}" target="_blank" class="gallery-link">
@@ -221,38 +279,18 @@
         </a>
     </div>
     {{ end }}
-
     <div class="shuoshuo-footer-info">
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 15px !important;">
-            
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                {{/* 左下角：编辑链接 */}}
-                <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="meta-item"
-                   title="前往 GitHub 编辑此页">
+                <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener noreferrer" class="meta-item" title="前往 GitHub 编辑此页">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     <span>编辑此页</span>
                 </a>
             {{ end }}
-
-            {{/* 右下角：Git Hash */}}
             {{- if $gitHashShort -}}
-                {{/* 竖线分隔符 */}}
-                {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                    <span class="separator">|</span>
-                {{ end }}
-
-                <a class="meta-item git-hash-text"
-                   href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   title="Commit Hash: {{ $gitHashShort }}">
-                   #{{ $gitHashShort }}
-                </a>
+                {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}<span class="separator">|</span>{{ end }}
+                <a class="meta-item git-hash-text" href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener noreferrer" title="Commit Hash: {{ $gitHashShort }}">#{{ $gitHashShort }}</a>
             {{- end -}}
-
         </div>
     </div>
 </article>
