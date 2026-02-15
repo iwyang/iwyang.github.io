@@ -4375,7 +4375,7 @@
  &gt;docker-compose 关机或者重启docker同时重启容器restart always的配置&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://chinese.freecodecamp.org/news/how-to-remove-images-in-docker/" target="_blank" rel="noopener"
  &gt;如何删除 Docker 镜像和容器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>测试文章</title><link>https://bore.vip/archives/10e12067/</link><pubDate>Sun, 15 Feb 2026 10:45:18 +0800</pubDate><guid>https://bore.vip/archives/10e12067/</guid><description>&lt;p&gt;这是一篇测试文章，更新测试文章&lt;/p&gt;</description></item><item><title>Alist挂载网盘</title><link>https://bore.vip/archives/c6592a10/</link><pubDate>Sat, 06 Apr 2024 17:19:21 +0000</pubDate><guid>https://bore.vip/archives/c6592a10/</guid><description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：https://github.com/alist-org/alist&lt;/strong&gt;&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>Alist挂载网盘</title><link>https://bore.vip/archives/c6592a10/</link><pubDate>Sat, 06 Apr 2024 17:19:21 +0000</pubDate><guid>https://bore.vip/archives/c6592a10/</guid><description>&lt;p&gt;&lt;strong&gt;AList 开源项目地址：https://github.com/alist-org/alist&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;AList 文档：https://alist.nn.ci/zh/guide/&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;本地启动（在alist所在目录打开cmd）：&lt;code&gt;alist server&lt;/code&gt;&lt;/p&gt;
 &lt;h2 id="安装"&gt;安装
