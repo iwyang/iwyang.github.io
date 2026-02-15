@@ -2,7 +2,7 @@
     <main class="main list-container">
         <style>
             /* =========================================
-               统一元数据样式 (顶部和底部完全一致)
+               统一元数据样式 (说说页)
                ========================================= */
 
             /* 1. 容器 Flex 布局 */
@@ -22,10 +22,12 @@
                 display: flex !important;
                 align-items: center !important;
                 
-                /* 【修改点】将间距从 6px 调整为 8px，与 article.html 保持一致 */
+                /* 间距统一为 8px (与文章页一致) */
                 gap: 8px !important;
                 
-                font-size: 14px !important;     /* 统一字号 */
+                /* 【核心确认】字号统一为 14px (与文章页 article.html 一致) */
+                font-size: 14px !important;     
+                
                 line-height: 1 !important;
                 text-decoration: none;
                 margin: 0 !important;
@@ -33,7 +35,7 @@
                 border: 0 !important;
                 background: none !important;
                 
-                /* 强制统一颜色 */
+                /* 颜色与透明度统一 */
                 color: var(--card-text-color-secondary) !important; 
                 opacity: 1 !important; 
                 
@@ -59,7 +61,7 @@
                 color: inherit !important;              
             }
 
-            /* 4. 内部文字标签归零 */
+            /* 4. 内部文字标签归零 (双重保险，防止子元素继承错误字号) */
             .meta-item span, 
             .meta-item time, 
             .shuoshuo-updated-time span,
@@ -68,10 +70,12 @@
                 margin: 0 !important;
                 padding: 0 !important;
                 line-height: 1 !important;    
+                
+                /* 【核心确认】强制子元素也为 14px */
                 font-size: 14px !important;   
+                
                 font-family: inherit;
                 font-weight: normal !important;
-                
                 color: inherit !important;
             }
 
