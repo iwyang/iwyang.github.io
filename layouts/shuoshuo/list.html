@@ -5,79 +5,90 @@
                统一元数据样式 (顶部和底部完全一致)
                ========================================= */
 
-            /* 1. 容器 Flex 布局 - 确保垂直居中 */
+            /* 1. 容器 Flex 布局 */
             .meta-wrapper {
                 display: flex !important;
                 align-items: center !important;
                 flex-wrap: wrap !important;
-                line-height: 1 !important; /* 关键：防止行高撑开 */
-                gap: 20px !important;      /* 统一各组数据之间的间距 */
+                line-height: 1 !important; 
+                gap: 20px !important;      
             }
 
-            /* 2. 单个元数据项 (图标+文字) */
-            /* 同时作用于顶部的时间和底部的编辑链接 */
+            /* 2. 单个元数据项 (核心通用样式) */
             .meta-item, 
             .shuoshuo-edit-link a,
             .shuoshuo-time,
             .shuoshuo-updated-time {
                 display: flex !important;
                 align-items: center !important;
-                gap: 6px !important;            /* 图标与文字的间距：统一为 6px */
-                font-size: 14px !important;     /* 【核心】统一文字大小为 14px */
+                gap: 6px !important;            /* 统一间距 */
+                font-size: 14px !important;     /* 统一字号 */
+                line-height: 1 !important;
                 text-decoration: none;
                 margin: 0 !important;
                 padding: 0 !important;
                 border: 0 !important;
                 background: none !important;
-                line-height: 1 !important;
                 
-                /* 颜色继承，底部链接会单独覆盖为蓝色 */
-                color: var(--card-text-color-secondary); 
+                /* 【核心修改】强制统一颜色，防止"修改时间"变色 */
+                color: var(--card-text-color-secondary) !important; 
+                opacity: 1 !important; /* 确保不产生透明度差异 */
                 
                 /* 移除点击高亮 */
                 -webkit-tap-highlight-color: transparent !important;
                 outline: none !important;
             }
 
-            /* 3. 统一图标尺寸 (核心修复) */
-            /* 强制所有元数据区域的图标大小一致 */
+            /* 3. 统一图标尺寸 */
             .shuoshuo-meta svg, 
             .shuoshuo-edit-link svg,
             .shuoshuo-time svg,
             .shuoshuo-updated-time svg {
-                width: 14px !important;       /* 【核心】统一图标宽度 */
-                height: 14px !important;      /* 【核心】统一图标高度 */
-                min-width: 14px !important;   /* 防止被压缩 */
+                width: 14px !important;       
+                height: 14px !important;      
+                min-width: 14px !important;   
                 display: block !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 position: static !important;
                 transform: none !important;
-                opacity: 0.8;                 /* 统一透明度 */
+                
+                /* 图标可以稍微浅一点，与文字区分 */
+                opacity: 0.8 !important;   
+                color: inherit !important;              
             }
 
-            /* 4. 内部文字标签归零，确保继承父级 14px */
+            /* 4. 内部文字标签归零 */
             .meta-item span, 
             .meta-item time, 
+            .shuoshuo-updated-time span,
             .shuoshuo-edit-link span {
                 display: block !important;
                 margin: 0 !important;
                 padding: 0 !important;
                 line-height: 1 !important;    
-                font-size: 14px !important;   /* 确保继承 */
+                font-size: 14px !important;   
                 font-family: inherit;
                 font-weight: normal !important;
+                
+                /* 【核心修改】确保内部 span 继承外部颜色 */
+                color: inherit !important;
             }
 
-            /* 5. 底部链接专用颜色 (保留蓝色) */
+            /* 5. 底部链接专用颜色 (蓝色) - 覆盖上面的灰色设置 */
             .shuoshuo-edit-link a,
-            .shuoshuo-edit-link .git-hash-text,
-            .shuoshuo-edit-link .separator {
+            .shuoshuo-edit-link .git-hash-text {
                 color: #1e90ff !important;
                 transition: opacity 0.3s ease;
             }
+            /* 分隔符颜色单独处理 */
+            .shuoshuo-edit-link .separator {
+                color: var(--card-text-color-secondary) !important;
+                opacity: 0.5 !important;
+            }
+
             .shuoshuo-edit-link a:hover {
-                opacity: 0.7;
+                opacity: 0.7 !important;
                 text-decoration: underline;
             }
         </style>
@@ -207,7 +218,6 @@
     {{ end }}
 
     <div class="shuoshuo-footer-info">
-        {{/* 这里的 gap 设为 15px */}}
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 15px !important;">
             
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
@@ -226,7 +236,7 @@
             {{- if $gitHashShort -}}
                 {{/* 竖线分隔符 */}}
                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                    <span class="separator" style="font-size: 14px; opacity: 0.5;">|</span>
+                    <span class="separator">|</span>
                 {{ end }}
 
                 <a class="meta-item git-hash-text"

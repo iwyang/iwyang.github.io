@@ -9,38 +9,49 @@
             flex-wrap: wrap !important;
             gap: 20px !important;       /* 每一项之间的间距 */
             margin-top: 10px !important;
-            color: var(--card-text-color-secondary) !important;
+            /* 移除容器层级的颜色限制，改由子元素强制控制 */
         }
 
-        /* 2. 单项：图标+文字 */
+        /* 2. 单项：图标+文字 (核心修改) */
         .article-meta-item {
             display: flex !important;
             align-items: center !important;
             gap: 6px !important;        /* 图标与文字的间距 */
-            font-size: 14px !important; /* 【核心】统一文字为 14px */
+            font-size: 14px !important; /* 统一文字为 14px */
             line-height: 1 !important;
             text-decoration: none !important;
+
+            /* 【核心修改】强制统一颜色和不透明度，与 list.html 保持一致 */
+            color: var(--card-text-color-secondary) !important;
+            opacity: 1 !important; 
         }
 
         /* 3. 图标：尺寸锁定 */
         .article-meta-item svg {
-            width: 14px !important;     /* 【核心】统一图标宽度 */
-            height: 14px !important;    /* 【核心】统一图标高度 */
+            width: 14px !important;     /* 统一图标宽度 */
+            height: 14px !important;    /* 统一图标高度 */
             display: block !important;
             margin: 0 !important;
             padding: 0 !important;
-            opacity: 0.8;
             position: static !important;
             transform: none !important;
+
+            /* 图标样式与 list.html 保持一致 */
+            opacity: 0.8 !important;
+            color: inherit !important; 
         }
 
-        /* 4. 文字：消除行高干扰 */
+        /* 4. 文字：消除行高干扰并强制继承颜色 */
         .article-meta-item time,
         .article-meta-item span {
             font-size: 14px !important;
             line-height: 1 !important;
             display: block !important;
             margin: 0 !important;
+            
+            /* 【核心修改】确保内部文字继承外部的高亮颜色 */
+            color: inherit !important;
+            font-weight: normal !important;
         }
     </style>
 
