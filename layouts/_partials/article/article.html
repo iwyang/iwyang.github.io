@@ -21,7 +21,7 @@
             display: flex !important;
             align-items: center !important;
             
-            /* 【修改点】将间距从 6px 调整为 8px，与首页 details.html 保持一致 */
+            /* 间距保持 8px */
             gap: 8px !important;        
             
             font-size: 14px !important; 
@@ -98,7 +98,9 @@
                 {{/* 更新时间 */}}
                 {{- $updateTime := .Lastmod -}}
                 {{- if .GitInfo -}}{{- $updateTime = .GitInfo.AuthorDate -}}{{- end -}}
-                {{- if gt (sub $updateTime.Unix .Date.Unix) 1800 -}}
+                
+                {{/* 【核心修改】将阈值从 1800 改为 0，只要有更新就立即显示 */}}
+                {{- if gt (sub $updateTime.Unix .Date.Unix) 0 -}}
                 <div class="article-meta-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                         <path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path>
