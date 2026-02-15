@@ -1,23 +1,18 @@
 <article class="{{ if .Params.image }}has-image {{ end }}main-article">
     
-    {{/* --- 样式补丁：独立元数据样式 (彻底脱离主题默认样式) --- */}}
+    {{/* --- 样式补丁：独立元数据样式 --- */}}
     <style>
-        /* 1. 容器：完全重写 Flex 布局，不依赖 article-time */
+        /* 1. 容器：Flex 布局 */
         .article-meta-info {
             display: flex !important;
             align-items: center !important;
             flex-wrap: wrap !important;
             gap: 15px !important;       
             margin-top: 12px !important;
-            margin-bottom: 8px !important; /* 补充因删除 article-time 丢失的边距 */
+            margin-bottom: 8px !important;
             
-            /* 【核心修复】强制不透明度为 1 */
+            /* 强制不透明度为 1 */
             opacity: 1 !important; 
-            
-            /* 【颜色修复】
-               如果觉得 Secondary (灰色) 还是太暗，可以将下方变量改为 var(--card-text-color-main) 
-               目前的设置是为了和“说说”页面的代码保持变量一致。
-            */
             color: var(--card-text-color-secondary) !important;
         }
 
@@ -25,7 +20,10 @@
         .article-meta-item {
             display: flex !important;
             align-items: center !important;
-            gap: 6px !important;        
+            
+            /* 【修改点】将间距从 6px 调整为 8px，与首页 details.html 保持一致 */
+            gap: 8px !important;        
+            
             font-size: 14px !important; 
             line-height: 1 !important;
             text-decoration: none !important;
@@ -89,11 +87,7 @@
                 <a href="{{ .RelPermalink }}">{{ .Title }}</a>
             </h2>
 
-            {{/* 2. 元数据区域 
-               【重要修改】删除了 class="article-time" 
-               只保留 class="article-meta-info"
-               这能防止主题默认 CSS 强制让文字变暗 
-            */}}
+            {{/* 2. 元数据区域 */}}
             <footer class="article-meta-info">
                 {{/* 发布时间 */}}
                 <div class="article-meta-item">

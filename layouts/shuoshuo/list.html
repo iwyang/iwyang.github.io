@@ -21,7 +21,10 @@
             .shuoshuo-updated-time {
                 display: flex !important;
                 align-items: center !important;
-                gap: 6px !important;            /* 统一间距 */
+                
+                /* 【修改点】将间距从 6px 调整为 8px，与 article.html 保持一致 */
+                gap: 8px !important;
+                
                 font-size: 14px !important;     /* 统一字号 */
                 line-height: 1 !important;
                 text-decoration: none;
@@ -30,11 +33,10 @@
                 border: 0 !important;
                 background: none !important;
                 
-                /* 【核心修改】强制统一颜色，防止"修改时间"变色 */
+                /* 强制统一颜色 */
                 color: var(--card-text-color-secondary) !important; 
-                opacity: 1 !important; /* 确保不产生透明度差异 */
+                opacity: 1 !important; 
                 
-                /* 移除点击高亮 */
                 -webkit-tap-highlight-color: transparent !important;
                 outline: none !important;
             }
@@ -53,7 +55,6 @@
                 position: static !important;
                 transform: none !important;
                 
-                /* 【核心修改】透明度改为 1，确保图标颜色与文字完全一致 */
                 opacity: 1 !important;   
                 color: inherit !important;              
             }
@@ -71,11 +72,10 @@
                 font-family: inherit;
                 font-weight: normal !important;
                 
-                /* 【核心修改】确保内部 span 继承外部颜色 */
                 color: inherit !important;
             }
 
-            /* 5. 底部链接专用颜色 (蓝色) - 覆盖上面的灰色设置 */
+            /* 5. 底部链接专用颜色 (蓝色) */
             .shuoshuo-edit-link a,
             .shuoshuo-edit-link .git-hash-text {
                 color: #1e90ff !important;
