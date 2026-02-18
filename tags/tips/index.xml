@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Bore's Notes</title><link>https://bore.vip/tags/tips/</link><description>Recent content in Tips on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 09 Feb 2026 22:08:24 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Bore's Notes</title><link>https://bore.vip/tags/tips/</link><description>Recent content in Tips on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 14:58:15 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;注：本攻略来自网上&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;整理的攻略：中国：明月 法国：依视路 德国：蔡司，罗敦司得 日本：豪雅，精工 韩国：凯米
@@ -73,8 +73,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;setInterval&lt;span class="o"&gt;(&lt;/span&gt;skip,200&lt;span class="o"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Notepad++批量修改文件内容</title><link>https://bore.vip/archives/ef06a4ae/</link><pubDate>Wed, 13 Jul 2022 17:43:13 +0000</pubDate><guid>https://bore.vip/archives/ef06a4ae/</guid><description>&lt;p&gt;所需软件：{% btn &amp;lsquo;&lt;a class="link" href="https://notepad-plus-plus.org/downloads/%27,Notepad&amp;#43;&amp;#43;,far" target="_blank" rel="noopener"
- &gt;https://notepad-plus-plus.org/downloads/',Notepad++,far&lt;/a&gt; fa-hand-point-right,blue larger %}&lt;/p&gt;
+&lt;/div&gt;</description></item><item><title>Notepad++批量修改文件内容</title><link>https://bore.vip/archives/ef06a4ae/</link><pubDate>Wed, 13 Jul 2022 17:43:13 +0000</pubDate><guid>https://bore.vip/archives/ef06a4ae/</guid><description>&lt;p&gt;所需软件： &lt;a class="link" href="https://notepad-plus-plus.org/downloads/" target="_blank" rel="noopener"
+ &gt;Notepad++&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;步骤：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;将所需替换文件放到同一个文件夹里。&lt;/li&gt;

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo on Bore's Notes</title><link>https://bore.vip/tags/hexo/</link><description>Recent content in Hexo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 10 Feb 2026 11:53:12 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo on Bore's Notes</title><link>https://bore.vip/tags/hexo/</link><description>Recent content in Hexo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 14:58:15 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
 &lt;p&gt;官网：https://usememos.com/&lt;/p&gt;
 &lt;p&gt;仓库地址：https://github.com/usememos/memos&lt;/p&gt;
@@ -1192,8 +1192,7 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
  &gt;pipenv install 包名 报错问题解决&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://www.imaegoo.com/2022/twikoo-data-export/" target="_blank" rel="noopener"
  &gt;Twikoo 评论数据导出教程&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>hexo butterfly主题配置与使用</title><link>https://bore.vip/archives/5b629e16/</link><pubDate>Fri, 04 Feb 2022 09:20:42 +0000</pubDate><guid>https://bore.vip/archives/5b629e16/</guid><description>&lt;p&gt;开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：{% btn &amp;lsquo;&lt;a class="link" href="https://butterfly.js.org/%27,Butterfly,far" target="_blank" rel="noopener"
- &gt;https://butterfly.js.org/',Butterfly,far&lt;/a&gt; fa-hand-point-right,blue larger %}&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>hexo butterfly主题配置与使用</title><link>https://bore.vip/archives/5b629e16/</link><pubDate>Fri, 04 Feb 2022 09:20:42 +0000</pubDate><guid>https://bore.vip/archives/5b629e16/</guid><description>&lt;p&gt;开始使用hexo butterfly主题，简单记录一下。主题安装文档网站：https://butterfly.js.org/&lt;/p&gt;
 &lt;p&gt;在你的 Hexo 根目录里：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
