@@ -9,7 +9,38 @@ date: 2021-07-24 01:15:26
 cover: false
 ---
 
+##  修改文件名
 
+遍历当前目录下的所有 `.md` 文件，为每个文件创建一个同名文件夹，并将文件移动进去重命名为 `index.md`
+
+您可以将以下代码保存为 `batch_convert.sh`
+
+```bash
+#!/bin/bash
+
+# 遍历当前目录下所有的 .md 文件
+for file in *.md; do
+    # 检查文件是否存在（防止没有 md 文件时报错）
+    [ -e "$file" ] || continue
+
+    # 1. 获取文件名（不带扩展名），例如将 "A.md" 转换为 "A"
+    dir_name="${file%.*}"
+
+    # 排除 index.md 自身（防止递归处理或错误创建 index 文件夹）
+    if [ "$dir_name" == "index" ]; then
+        continue
+    fi
+
+    # 2. 创建同名文件夹（如果文件夹已存在也不会报错）
+    mkdir -p "$dir_name"
+
+    # 3. 将文件复制到文件夹中并重命名为 index.md
+    # 这步操作等同于：先复制进去，再改名
+    mv "$file" "$dir_name/index.md"
+
+    echo "已处理: $file -> $dir_name/index.md"
+done
+```
 
 又换主题了，这回使用的是[hugo-theme-stack](https://github.com/CaiJimmy/hugo-theme-stack)，无意发现这款主题，正合我意，够简单，最重要的是支持本地搜索，再不用弄哪个`Alogia`了。
 
