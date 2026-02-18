@@ -18977,7 +18977,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;other&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;分类&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="附使用git-submodule管理hugo主题"&gt;附：使用Git Submodule管理Hugo主题
+&lt;/div&gt;&lt;h2 id="hugo添加说说"&gt;hugo添加说说
+&lt;/h2&gt;&lt;p&gt;添加说说：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/shuoshuo/list.html&lt;/p&gt;
+&lt;p&gt;首页轮播：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/home.html&lt;/p&gt;
+&lt;p&gt;CSS：https://github.com/iwyang/iwyang.github.io/blob/develop/assets/scss/custom.scss&lt;/p&gt;
+&lt;h2 id="附使用git-submodule管理hugo主题"&gt;附：使用Git Submodule管理Hugo主题
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;如果克隆库的时候要初始化子模块，请加上 &lt;code&gt;--recursive&lt;/code&gt; 参数，如：&lt;/li&gt;
 &lt;/ul&gt;
