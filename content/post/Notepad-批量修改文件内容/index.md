@@ -14,7 +14,7 @@ description:
 top_img:
 ---
 
-所需软件：{% btn 'https://notepad-plus-plus.org/downloads/',Notepad++,far fa-hand-point-right,blue larger %}
+所需软件： [Notepad++](https://notepad-plus-plus.org/downloads/)
 
 步骤：
 
