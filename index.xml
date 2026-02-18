@@ -13187,9 +13187,7 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;p&gt;1.先按快捷键&lt;code&gt;Ctrl+Shift+U&lt;/code&gt;去色。&lt;/p&gt;
 &lt;p&gt;2.&lt;code&gt;Ctrl+L&lt;/code&gt;调出色阶，白色吸管点背景。如果对比不够，继续调整色阶的滑块。&lt;/p&gt;
 &lt;p&gt;3.&lt;code&gt;Ctrl+J&lt;/code&gt;复制一个图层，点击&lt;code&gt;滤镜—其它—高反差保留&lt;/code&gt;，设置为2个像素。&lt;/p&gt;
-&lt;p&gt;4.图层混合模式改成&lt;code&gt;线性光&lt;/code&gt;（或者&lt;code&gt;柔光&lt;/code&gt;）。&lt;/p&gt;</description></item><item><title>怎样提取PPT里的背景音乐</title><link>https://bore.vip/archives/fceaf4e8/</link><pubDate>Wed, 17 Nov 2021 11:08:52 +0000</pubDate><guid>https://bore.vip/archives/fceaf4e8/</guid><description>&lt;p&gt;1.确保PPT扩展名为&lt;code&gt;.pptx&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;2.将PPT扩展名改为&lt;code&gt;.rar&lt;/code&gt;&lt;/p&gt;
-&lt;p&gt;3.用压缩软件打开，音乐文件在&lt;code&gt;/ppt/media&lt;/code&gt;文件夹下。&lt;/p&gt;</description></item><item><title>三年级数学上册册第四单元《小树有多少棵》教学反思</title><link>https://bore.vip/archives/7273e00a/</link><pubDate>Sun, 10 Oct 2021 12:38:29 +0000</pubDate><guid>https://bore.vip/archives/7273e00a/</guid><description>&lt;p&gt;这是三年级的第一次公开课，国庆来了第一天第一节课就开始上。本次公开课的课题是《小树有多少棵》，主要内容是探究并整十、整百数乘一位数的口算方法。在上课开始我通过“对口令”的小游戏使学生来快速进入学习状态，让他们对今天所学知识有一个初步的了解。接着就是探究整十、整百数乘一位数的口算方法，主要有以下四步：（1）先独立列出算式（2）尝试用自己喜欢的方法获得计算结果（3）交流计算方法：连加、列举法、表内乘法等（4）总结算法。纵观本次公开课主要存在以下问题：&lt;/p&gt;
+&lt;p&gt;4.图层混合模式改成&lt;code&gt;线性光&lt;/code&gt;（或者&lt;code&gt;柔光&lt;/code&gt;）。&lt;/p&gt;</description></item><item><title>三年级数学上册册第四单元《小树有多少棵》教学反思</title><link>https://bore.vip/archives/7273e00a/</link><pubDate>Sun, 10 Oct 2021 12:38:29 +0000</pubDate><guid>https://bore.vip/archives/7273e00a/</guid><description>&lt;p&gt;这是三年级的第一次公开课，国庆来了第一天第一节课就开始上。本次公开课的课题是《小树有多少棵》，主要内容是探究并整十、整百数乘一位数的口算方法。在上课开始我通过“对口令”的小游戏使学生来快速进入学习状态，让他们对今天所学知识有一个初步的了解。接着就是探究整十、整百数乘一位数的口算方法，主要有以下四步：（1）先独立列出算式（2）尝试用自己喜欢的方法获得计算结果（3）交流计算方法：连加、列举法、表内乘法等（4）总结算法。纵观本次公开课主要存在以下问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;缺少板书，虽然多媒体课件什么都有，但是黑板上一定要有板书，其实在上课结束时我就意识到这一点。&lt;/p&gt;
@@ -17062,7 +17060,64 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;h2 id="第七单元-年月日"&gt;第七单元 年月日
 &lt;/h2&gt;&lt;p&gt;判断某一年是平年还是闰年&lt;/p&gt;
 &lt;p&gt;1.看年份后两位数能不能被4整除，能被4整除就是闰年，不能就是平年。&lt;/p&gt;
-&lt;p&gt;2.整百年份看年份前两位数能否被4整除。&lt;/p&gt;</description></item><item><title>Hugo Stack主题配置与使用</title><link>https://bore.vip/archives/3bf3725e/</link><pubDate>Sat, 24 Jul 2021 01:15:26 +0000</pubDate><guid>https://bore.vip/archives/3bf3725e/</guid><description>&lt;p&gt;又换主题了，这回使用的是&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
+&lt;p&gt;2.整百年份看年份前两位数能否被4整除。&lt;/p&gt;</description></item><item><title>Hugo Stack主题配置与使用</title><link>https://bore.vip/archives/3bf3725e/</link><pubDate>Sat, 24 Jul 2021 01:15:26 +0000</pubDate><guid>https://bore.vip/archives/3bf3725e/</guid><description>&lt;h2 id="修改文件名"&gt;修改文件名
+&lt;/h2&gt;&lt;p&gt;遍历当前目录下的所有 &lt;code&gt;.md&lt;/code&gt; 文件，为每个文件创建一个同名文件夹，并将文件移动进去重命名为 &lt;code&gt;index.md&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;您可以将以下代码保存为 &lt;code&gt;batch_convert.sh&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;span class="lnt"&gt;24
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 遍历当前目录下所有的 .md 文件&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;for&lt;/span&gt; file in *.md&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;do&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 检查文件是否存在（防止没有 md 文件时报错）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;[&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 1. 获取文件名（不带扩展名），例如将 &amp;#34;A.md&amp;#34; 转换为 &amp;#34;A&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;dir_name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="si"&gt;${&lt;/span&gt;&lt;span class="nv"&gt;file&lt;/span&gt;&lt;span class="p"&gt;%.*&lt;/span&gt;&lt;span class="si"&gt;}&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 排除 index.md 自身（防止递归处理或错误创建 index 文件夹）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;[&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$dir_name&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;==&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;index&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;]&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;continue&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 2. 创建同名文件夹（如果文件夹已存在也不会报错）&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; mkdir -p &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$dir_name&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 3. 将文件复制到文件夹中并重命名为 index.md&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 这步操作等同于：先复制进去，再改名&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; mv &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$dir_name&lt;/span&gt;&lt;span class="s2"&gt;/index.md&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;已处理: &lt;/span&gt;&lt;span class="nv"&gt;$file&lt;/span&gt;&lt;span class="s2"&gt; -&amp;gt; &lt;/span&gt;&lt;span class="nv"&gt;$dir_name&lt;/span&gt;&lt;span class="s2"&gt;/index.md&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;又换主题了，这回使用的是&lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener"
  &gt;hugo-theme-stack&lt;/a&gt;，无意发现这款主题，正合我意，够简单，最重要的是支持本地搜索，再不用弄哪个&lt;code&gt;Alogia&lt;/code&gt;了。&lt;/p&gt;
 &lt;h2 id="下载主题更新主题"&gt;下载主题&amp;amp;更新主题
 &lt;/h2&gt;&lt;ol&gt;
@@ -24895,10 +24950,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;p&gt;1.用&lt;code&gt;DiskGenius&lt;/code&gt;给移动硬盘分区：新建一个5G大小的&lt;code&gt;FAT32&lt;/code&gt;格式的分区，用来安装PE；硬盘其他空间新建一个&lt;code&gt;NTFS&lt;/code&gt;格式的分区，用来存放文件。&lt;/p&gt;
 &lt;p&gt;2.打开&lt;a class="link" href="http://www.wepe.com.cn/download.html" target="_blank" rel="noopener"
  &gt;微PE工具箱&lt;/a&gt;，右下角选择&lt;code&gt;安装PE到移动硬盘&lt;/code&gt;，第一主分区选择刚才建立的&lt;code&gt;FAT32&lt;/code&gt;分区，然后点击&lt;code&gt;立即安装进移动硬盘&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;3.将操作系统等相关文件复制到&lt;code&gt;FAT32&lt;/code&gt;分区里，便于安装系统使用。&lt;/p&gt;</description></item><item><title>人声伴奏分离分离神器：Spleeter GUI_v2.5</title><link>https://bore.vip/archives/1a6c27e2/</link><pubDate>Mon, 15 Jun 2020 05:09:25 +0000</pubDate><guid>https://bore.vip/archives/1a6c27e2/</guid><description>&lt;p&gt;使用方法：&lt;/p&gt;
-&lt;p&gt;1.首先安装&lt;code&gt;SpleeterGUI_v2.5.msi&lt;/code&gt;，安装到任意位置即可。&lt;/p&gt;
-&lt;p&gt;2.然后进入&lt;code&gt;训练模型&lt;/code&gt;目录，以管理员模式运行&lt;code&gt;安装SpleeterGUI之后右键管理员模式运行这个.bat&lt;/code&gt;。最后相应文件夹会被拷贝到&lt;code&gt;C:\Users\Admin\AppData\Roaming&lt;/code&gt;目录下，如果卸载该软件，也要手动删除此文件夹。&lt;/p&gt;
-&lt;p&gt;总结：此软件除了消音乐伴奏外，还可以去视频（例如MTV）里的人声。&lt;/p&gt;</description></item><item><title>一年级数学括号最大能填几</title><link>https://bore.vip/archives/b156363c/</link><pubDate>Tue, 02 Jun 2020 02:02:25 +0000</pubDate><guid>https://bore.vip/archives/b156363c/</guid><description>&lt;p&gt;求“括号最大能填几”，分两步计算。例如：&lt;/p&gt;
+&lt;p&gt;3.将操作系统等相关文件复制到&lt;code&gt;FAT32&lt;/code&gt;分区里，便于安装系统使用。&lt;/p&gt;</description></item><item><title>一年级数学括号最大能填几</title><link>https://bore.vip/archives/b156363c/</link><pubDate>Tue, 02 Jun 2020 02:02:25 +0000</pubDate><guid>https://bore.vip/archives/b156363c/</guid><description>&lt;p&gt;求“括号最大能填几”，分两步计算。例如：&lt;/p&gt;
 &lt;p&gt;(1) &lt;strong&gt;39-( )＞14&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;

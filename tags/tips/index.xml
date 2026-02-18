@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Bore's Notes</title><link>https://bore.vip/tags/tips/</link><description>Recent content in Tips on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 14:58:15 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>&lt;blockquote&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Tips on Bore's Notes</title><link>https://bore.vip/tags/tips/</link><description>Recent content in Tips on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 15:52:01 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/tips/index.xml" rel="self" type="application/rss+xml"/><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>&lt;blockquote&gt;
 &lt;p&gt;注：本攻略来自网上&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;p&gt;整理的攻略：中国：明月 法国：依视路 德国：蔡司，罗敦司得 日本：豪雅，精工 韩国：凯米
@@ -342,10 +342,7 @@
 &lt;p&gt;1.用&lt;code&gt;DiskGenius&lt;/code&gt;给移动硬盘分区：新建一个5G大小的&lt;code&gt;FAT32&lt;/code&gt;格式的分区，用来安装PE；硬盘其他空间新建一个&lt;code&gt;NTFS&lt;/code&gt;格式的分区，用来存放文件。&lt;/p&gt;
 &lt;p&gt;2.打开&lt;a class="link" href="http://www.wepe.com.cn/download.html" target="_blank" rel="noopener"
  &gt;微PE工具箱&lt;/a&gt;，右下角选择&lt;code&gt;安装PE到移动硬盘&lt;/code&gt;，第一主分区选择刚才建立的&lt;code&gt;FAT32&lt;/code&gt;分区，然后点击&lt;code&gt;立即安装进移动硬盘&lt;/code&gt;。&lt;/p&gt;
-&lt;p&gt;3.将操作系统等相关文件复制到&lt;code&gt;FAT32&lt;/code&gt;分区里，便于安装系统使用。&lt;/p&gt;</description></item><item><title>人声伴奏分离分离神器：Spleeter GUI_v2.5</title><link>https://bore.vip/archives/1a6c27e2/</link><pubDate>Mon, 15 Jun 2020 05:09:25 +0000</pubDate><guid>https://bore.vip/archives/1a6c27e2/</guid><description>&lt;p&gt;使用方法：&lt;/p&gt;
-&lt;p&gt;1.首先安装&lt;code&gt;SpleeterGUI_v2.5.msi&lt;/code&gt;，安装到任意位置即可。&lt;/p&gt;
-&lt;p&gt;2.然后进入&lt;code&gt;训练模型&lt;/code&gt;目录，以管理员模式运行&lt;code&gt;安装SpleeterGUI之后右键管理员模式运行这个.bat&lt;/code&gt;。最后相应文件夹会被拷贝到&lt;code&gt;C:\Users\Admin\AppData\Roaming&lt;/code&gt;目录下，如果卸载该软件，也要手动删除此文件夹。&lt;/p&gt;
-&lt;p&gt;总结：此软件除了消音乐伴奏外，还可以去视频（例如MTV）里的人声。&lt;/p&gt;</description></item><item><title>提高搜索效率的7个小技巧</title><link>https://bore.vip/archives/92094531/</link><pubDate>Wed, 27 May 2020 08:54:25 +0000</pubDate><guid>https://bore.vip/archives/92094531/</guid><description>&lt;h2 id="排除关键词"&gt;排除关键词
+&lt;p&gt;3.将操作系统等相关文件复制到&lt;code&gt;FAT32&lt;/code&gt;分区里，便于安装系统使用。&lt;/p&gt;</description></item><item><title>提高搜索效率的7个小技巧</title><link>https://bore.vip/archives/92094531/</link><pubDate>Wed, 27 May 2020 08:54:25 +0000</pubDate><guid>https://bore.vip/archives/92094531/</guid><description>&lt;h2 id="排除关键词"&gt;排除关键词
 &lt;/h2&gt;&lt;p&gt;方法是：减号+关键词&lt;/p&gt;
 &lt;p&gt;功能是：排除一些 不想要的关键词&lt;/p&gt;
 &lt;p&gt;例如：&lt;code&gt;锤子 -锤子手机&lt;/code&gt;&lt;/p&gt;
