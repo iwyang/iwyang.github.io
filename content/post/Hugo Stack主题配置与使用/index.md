@@ -1066,6 +1066,14 @@ widget:
             other: 分类
 ```
 
+## hugo添加说说
+
+添加说说：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/shuoshuo/list.html
+
+首页轮播：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/home.html
+
+CSS：https://github.com/iwyang/iwyang.github.io/blob/develop/assets/scss/custom.scss
+
 ## 附：使用Git Submodule管理Hugo主题
 
 + 如果克隆库的时候要初始化子模块，请加上 `--recursive` 参数，如：
