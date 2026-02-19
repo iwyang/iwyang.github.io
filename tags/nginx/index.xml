@@ -170,12 +170,14 @@
 &lt;p&gt;&lt;code&gt;letsencrypt certonly --webroot -w /var/www/hexo -d iwyang.top&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这样，在 /var/www/hexo 目录下创建临时文件 .well-known/acme-challenge ，通过这个文件来证明对域名 iwyang.top 的控制权，然后 Let’s Encrypt 验证服务器发出 HTTP 请求，验证每个请求的域的 DNS 解析，验证成功即颁发证书。&lt;/p&gt;
 &lt;p&gt;生成的 pem 和 key 在 &lt;code&gt;/etc/letsencrypt/live/&lt;/code&gt; 目录下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;cert.pem 用户证书
+
+ &lt;blockquote&gt;
+ &lt;p&gt;cert.pem 用户证书
 chain.pem 中间证书
 fullchain.pem 证书链, chain.pem + cert.pem
 privkey.pem 证书私钥&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;`&lt;/p&gt;
 &lt;h4 id="自动续期"&gt;自动续期
 &lt;/h4&gt;&lt;p&gt;Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。&lt;/p&gt;

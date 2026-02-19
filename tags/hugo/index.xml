@@ -596,9 +596,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="配置ssl证书"&gt;配置ssl证书
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;这里记下怎样添加 Let’s Encrypt 免费证书。（貌似只有上传了文件到网站目录，才能申请证书成功。）如果想启用阿里证书，可查看：&lt;a class="link" href="https://bore.vip/archives/enable-ssl-on-nginx/#%e5%90%af%e7%94%a8%e9%98%bf%e9%87%8c%e5%85%8d%e8%b4%b9%e8%af%81%e4%b9%a6" &gt;启用阿里免费证书&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id="安装certbot"&gt;安装Certbot
 &lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -3108,9 +3110,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/div&gt;&lt;h2 id="显示右侧工具栏分类目录"&gt;&lt;del&gt;显示右侧工具栏分类目录&lt;/del&gt;
 &lt;/h2&gt;&lt;p&gt;&lt;del&gt;参考 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/169" target="_blank" rel="noopener"
  &gt;https://github.com/CaiJimmy/hugo-theme-stack/issues/169&lt;/a&gt;&lt;/del&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;最新版主题已默认开启分类目录工具栏&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;最新版主题已默认开启分类目录工具栏&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;Create &lt;code&gt;categories.html&lt;/code&gt; in layouts/partials/widget&lt;/li&gt;
 &lt;/ol&gt;
@@ -3190,9 +3194,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;li&gt;Download categories.svg paste to &lt;code&gt;assets/icons&lt;/code&gt;, from &lt;a class="link" href="https://github.com/rmdhnreza/rmdhnreza.my.id/tree/main/assets/icons" target="_blank" rel="noopener"
  &gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：可以按需删除图标。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：可以按需删除图标。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="文章底部添加在-github-上编辑此页"&gt;文章底部添加&lt;code&gt;在 GitHub 上编辑此页&lt;/code&gt;
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;拷贝主题目录&lt;code&gt;/layouts/partials/article/components/footer.html&lt;/code&gt;到网站根目录，修改为：&lt;/li&gt;
@@ -3311,14 +3317,16 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;lastmod&lt;/code&gt;：文章里 lastmod 字段&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;:defalut&lt;/code&gt;：默认时间&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;里写：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;里写：&lt;/p&gt;
 &lt;p&gt;[frontmatter]
 lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:fileModTime&amp;rdquo;, &amp;ldquo;:defalut&amp;rdquo;]&lt;/p&gt;
 &lt;p&gt;enableGitInfo = true&lt;/p&gt;
 &lt;p&gt;gitRepo = &amp;ldquo;&lt;a class="link" href="https://github.com/iwyang/hugo%22" target="_blank" rel="noopener"
  &gt;https://github.com/iwyang/hugo"&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.&lt;code&gt;.github/workflows/xx.yml&lt;/code&gt;：&lt;/p&gt;
 &lt;p&gt;yml 文件中添加 2 行设置当前环境时区&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -5257,9 +5265,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;p&gt;参考：&lt;a class="link" href="https://bore.vip/hugo-install-on-coding-and-gitee/#1-%E6%9C%AC%E5%9C%B0%E6%93%8D%E4%BD%9C" target="_blank" rel="noopener"
  &gt;hugo部署到coding&amp;amp;gitee-本地操作部分&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="服务器操作"&gt;服务器操作
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意：这里是参照服务器搭建hexo，所以代码里hexo没有改成hugo，不过这没有任何影响&lt;/strong&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意：这里是参照服务器搭建hexo，所以代码里hexo没有改成hugo，不过这没有任何影响&lt;/strong&gt;。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;准备工作：如果服务器端口不是22，先要更改SSH端口，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -5816,9 +5826,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id="创建并配置站点"&gt;创建并配置站点
-&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;以下命令均在&amp;rsquo;Git Bash&amp;rsquo;中运行&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h4&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;以下命令均在&amp;rsquo;Git Bash&amp;rsquo;中运行&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;进入你想存放 Hugo 网站文件夹的目录，执行以下命令：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -6093,9 +6105,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS:这里&lt;code&gt;Git Bash&lt;/code&gt;开头会报错：&lt;code&gt;warning: LF will be replaced by CRLF&lt;/code&gt;，解决方法：在&lt;code&gt;git add .&lt;/code&gt;前面添加：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS:这里&lt;code&gt;Git Bash&lt;/code&gt;开头会报错：&lt;code&gt;warning: LF will be replaced by CRLF&lt;/code&gt;，解决方法：在&lt;code&gt;git add .&lt;/code&gt;前面添加：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1

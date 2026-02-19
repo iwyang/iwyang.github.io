@@ -422,10 +422,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;* */24 * * *&lt;/code&gt;改成&lt;code&gt;* */48 * * *&lt;/code&gt;每两天运行一次&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
  &gt;crontab guru&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="创建github访问token"&gt;创建github访问token
 &lt;/h3&gt;&lt;p&gt;参考：&lt;a class="link" href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noopener"
  &gt;管理个人访问令牌&lt;/a&gt;&lt;/p&gt;
@@ -452,10 +454,12 @@
 &lt;h3 id="添加环境变量secret"&gt;添加环境变量secret
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;settings/secrets(Secrets and variables)/actions&lt;/code&gt;里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。&lt;/p&gt;
 &lt;p&gt;如果部署完成之后，运行显示错误是：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;repo-sync
+
+ &lt;blockquote&gt;
+ &lt;p&gt;repo-sync
 Failed to create or merge pull request: HttpError: Validation Failed: {“resource”:”PullRequest”,”code”:”custom”,”message”:”No commits between knight000:master and ngosang:master”}&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;就证明初步成功了，因为你部署了workflow所以比原仓库新，等原仓库更新后点&lt;code&gt;Re-run jobs&lt;/code&gt;就可以测试是否正确部署了。&lt;/p&gt;
 &lt;h3 id="自动提交修改到gitee未测试"&gt;自动提交修改到Gitee(未测试)
 &lt;/h3&gt;&lt;p&gt;以下action文件来自https://juejin.cn/post/6894928345830522887&lt;/p&gt;
@@ -1269,9 +1273,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git config --global merge.ours.driver &lt;span class="nb"&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;true&lt;/code&gt; 是一个永远返回成功的命令。当 Git 遇到冲突并调用这个驱动时，它会认为“已经处理好了”，从而保留你本地当前分支的文件内容。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;true&lt;/code&gt; 是一个永远返回成功的命令。当 Git 遇到冲突并调用这个驱动时，它会认为“已经处理好了”，从而保留你本地当前分支的文件内容。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -1729,9 +1735,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git config --global merge.keep_theirs.driver &lt;span class="s2"&gt;&amp;#34;cat %B &amp;gt; %A&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;%B&lt;/code&gt; 代表来源（上游）文件，&lt;code&gt;%A&lt;/code&gt; 代表本地文件。该命令会将上游内容直接覆盖到本地。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;%B&lt;/code&gt; 代表来源（上游）文件，&lt;code&gt;%A&lt;/code&gt; 代表本地文件。该命令会将上游内容直接覆盖到本地。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -2749,9 +2757,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="配置ssl证书"&gt;配置ssl证书
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;这里记下怎样添加 Let’s Encrypt 免费证书。（貌似只有上传了文件到网站目录，才能申请证书成功。）如果想启用阿里证书，可查看：&lt;a class="link" href="https://bore.vip/archives/enable-ssl-on-nginx/#%e5%90%af%e7%94%a8%e9%98%bf%e9%87%8c%e5%85%8d%e8%b4%b9%e8%af%81%e4%b9%a6" &gt;启用阿里免费证书&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id="安装certbot"&gt;安装Certbot
 &lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;

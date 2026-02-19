@@ -1,8 +1,10 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo on Bore's Notes</title><link>https://bore.vip/tags/hexo/</link><description>Recent content in Hexo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 15:52:01 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hexo on Bore's Notes</title><link>https://bore.vip/tags/hexo/</link><description>Recent content in Hexo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 15:52:01 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hexo/index.xml" rel="self" type="application/rss+xml"/><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>
+ &lt;blockquote&gt;
+ &lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
 &lt;p&gt;官网：https://usememos.com/&lt;/p&gt;
 &lt;p&gt;仓库地址：https://github.com/usememos/memos&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="docker部署"&gt;Docker部署
 &lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -63,9 +65,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过访问 &lt;code&gt;localhost:5230&lt;/code&gt; 即可打开 Memos，首次安装会提示注册用户，请记牢您的而密码。数据文件默认存储在 &lt;strong&gt;&lt;code&gt;~/.memos&lt;/code&gt;&lt;/strong&gt; 中。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：如果使用vultr，注意由于默认vultr什么端口都没有开放，安装后要记得要开放5230端口：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：如果使用vultr，注意由于默认vultr什么端口都没有开放，安装后要记得要开放5230端口：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -90,8 +94,9 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;可选命令：&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;可选命令：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;cp -r /root/.memos /root/.memos.archive&lt;/code&gt; 事先备份，以防万一（将&lt;code&gt;/root/.memos&lt;/code&gt;文件夹下的数据库复制到&lt;code&gt;/root/.memos.archive&lt;/code&gt;文件夹下）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;docker image prune &lt;/code&gt; 用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像&lt;/p&gt;
 &lt;p&gt;提示：&lt;/p&gt;
@@ -105,7 +110,8 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Are you sure you want to continue? [y/N] 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -143,9 +149,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="l"&gt;port 5230&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/root/data/docker_data/memos/.memos/&lt;/code&gt;这个可以换成你自己服务器的路径；&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;/root/data/docker_data/memos/.memos/&lt;/code&gt;这个可以换成你自己服务器的路径；&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;5.卸载&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -480,9 +488,11 @@
 {% endnote %}&lt;/p&gt;
 &lt;p&gt;3.&lt;code&gt;#tag &lt;/code&gt;后面必须有个空格才能创建tag&lt;/p&gt;
 &lt;h2 id="首页轮播"&gt;首页轮播
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;API 调用最新 10 条 memos 在博客首页轮播显示。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;API 调用最新 10 条 memos 在博客首页轮播显示。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -578,10 +588,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="单页部署代码"&gt;单页部署代码
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;已做 js 文件调用处理，找个页面丢入以下 html + js + css 即可。当然，得先部署个 &lt;a class="link" href="https://immmmm.com/hi-memos/" target="_blank" rel="noopener"
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;已做 js 文件调用处理，找个页面丢入以下 html + js + css 即可。当然，得先部署个 &lt;a class="link" href="https://immmmm.com/hi-memos/" target="_blank" rel="noopener"
  &gt;Memos&lt;/a&gt;，或者，找个好朋友开个 id 也可以。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1073,15 +1085,17 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;微信关注自己的企业微信账号，然后用其他非博主邮箱在网站留言，试试即时通知吧！&lt;/p&gt;
 &lt;h2 id="更换-cdn-镜像"&gt;更换 CDN 镜像
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;如果遇到默认 CDN 加载速度缓慢，可更换其他 CDN 镜像。以下为可供选择的公共 CDN，其中一些 CDN 可能需要数天时间同步最新版本：&lt;/p&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果遇到默认 CDN 加载速度缓慢，可更换其他 CDN 镜像。以下为可供选择的公共 CDN，其中一些 CDN 可能需要数天时间同步最新版本：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://lib.baomitu.com/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.jsdelivr.net/npm/twikoo@1.6.4/dist/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;例如&lt;a class="link" href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"
  &gt;Butterfly主题 &lt;/a&gt;：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -1128,10 +1142,12 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ twikoo: https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;以前记得只需更改后端版本号即可，不知什么时候开始还要更改前端CDN才行。也许主题前端没有更新到最新的版本号。这时只有自定义CDN了，还好&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;以前记得只需更改后端版本号即可，不知什么时候开始还要更改前端CDN才行。也许主题前端没有更新到最新的版本号。这时只有自定义CDN了，还好&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;butterfly&lt;/code&gt;主题很容易就能自定义CDN&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="更换表情cdn"&gt;更换表情CDN
 &lt;/h2&gt;&lt;p&gt;仓库地址：&lt;a class="link" href="https://github.com/zhheo" target="_blank" rel="noopener"
  &gt;zhheo&lt;/a&gt;/&lt;a class="link" href="https://github.com/zhheo/Sticker-Heo" target="_blank" rel="noopener"
@@ -1148,9 +1164,11 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="twikoo-导出评论数据"&gt;Twikoo 导出评论数据
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Twikoo前端后台只有导入数据功能，没有导出，要想导出数据，看下面。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;Twikoo前端后台只有导入数据功能，没有导出，要想导出数据，看下面。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="导出-twikoo-在-vercel-的数据"&gt;导出 Twikoo 在 Vercel 的数据
 &lt;/h3&gt;&lt;p&gt;1.下载并安装 MongoDB 数据库工具，下载地址：https://www.mongodb.com/try/download/database-tools；&lt;/p&gt;
 &lt;p&gt;`&lt;/p&gt;
@@ -1385,9 +1403,11 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;no-icon&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;no-icon&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1469,9 +1489,11 @@ warning 提示块标籤
 &lt;p&gt;{% note danger no-icon %}
 danger 提示块标籤
 {% endnote %}&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;flat&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;flat&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1589,9 +1611,11 @@ danger 提示块标籤
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;no-icon&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;no-icon&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -1661,9 +1685,11 @@ danger 提示块标籤
 {% note green no-icon %}
 前端最讨厌的浏览器
 {% endnote %}&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;flat&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;flat&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -2100,9 +2126,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;p&gt;如果你想把一些文字、內容隱藏起來，並提供按鈕讓用戶點擊顯示。可以使用這個標籤外掛。&lt;/p&gt;
 &lt;p&gt;{% tabs tag-hide %}&lt;/p&gt;
 &lt;!-- tab Toggle --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.3.0以上支持&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;2.3.0以上支持&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;如果你需要展示的內容太多，可以把它隱藏在收縮框裏，需要時再把它展開。&lt;/p&gt;
 &lt;p&gt;( display 不能包含英文逗號，可用&lt;code&gt;&amp;amp;sbquo;&lt;/code&gt;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -2117,9 +2145,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% endhideToggle %}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -2180,9 +2210,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;p&gt;color: 按鈕文字的顏色(可選)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2219,9 +2251,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;li&gt;bg: 按鈕的背景顏色(可選)&lt;/li&gt;
 &lt;li&gt;color: 按鈕文字的顏色(可選)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2885,9 +2919,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
  &gt;Tag Plugins Plus&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="侧边栏添加微博热搜"&gt;侧边栏添加微博热搜
 &lt;/h2&gt;&lt;h3 id="新建侧边栏"&gt;新建侧边栏
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;官方文档：https://butterfly.js.org/posts/ea33ab97/，想要了解更多可以查看这篇文章。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;官方文档：https://butterfly.js.org/posts/ea33ab97/，想要了解更多可以查看这篇文章。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;打开&lt;code&gt;_data&lt;/code&gt;文件夹，创建一个&lt;code&gt;widget.yml&lt;/code&gt;文件，在里面粘贴如下代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -2909,10 +2945,12 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;/css/weibo.css&amp;#34;&amp;gt;&amp;lt;div id=&amp;#34;weiboContent&amp;#34;&amp;gt;&amp;lt;img src=&amp;#34;https://bu.dusays.com/2022/05/01/626e88f349943.gif&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;script src=&amp;#34;/js/weibo.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;上面图像也可用本地路径：&lt;code&gt;/img/loading.gif&lt;/code&gt; ，如果想删除加载动画可删除下面这行：&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;上面图像也可用本地路径：&lt;code&gt;/img/loading.gif&lt;/code&gt; ，如果想删除加载动画可删除下面这行：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;https://bu.dusays.com/2022/05/01/626e88f349943.gif&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;自用：&lt;/strong&gt;(这里填top表示所有地方都显示，buttom表示只在非文章页面显示，如主页等等)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -3285,9 +3323,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
  &gt;Eurkon&lt;/a&gt;/&lt;strong&gt;&lt;a class="link" href="https://github.com/Eurkon/weibo-top-api" target="_blank" rel="noopener"
  &gt;weibo-top-api&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;虽然 Vercel 的访问应当没有次数限制，但是不排除存在因访问次数过多而限流等限制。所以还是建议各位自建 API。使用 Vercel 部署，完全免费。且无需服务器。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;最后记得修改&lt;code&gt;weibo.js&lt;/code&gt;里的api地址，即：&lt;code&gt;https://weibo-top-api.vercel.app/api&lt;/code&gt;改成&lt;code&gt;https://你的域名//api&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;最后记得修改&lt;code&gt;weibo.js&lt;/code&gt;里的api地址，即：&lt;code&gt;https://weibo-top-api.vercel.app/api&lt;/code&gt;改成&lt;code&gt;https://你的域名//api&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="自建第三方-api"&gt;自建第三方 API
 &lt;/h3&gt;&lt;p&gt;查看：https://blog.leonus.cn/2022/weibo.html&lt;/p&gt;
 &lt;h2 id="友链朋友圈弃用用下方的"&gt;&lt;del&gt;友链朋友圈&lt;/del&gt;（弃用，用下方的）
@@ -4245,9 +4285,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="配置ssl证书"&gt;配置ssl证书
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;这里记下怎样添加 Let’s Encrypt 免费证书。（貌似只有上传了文件到网站目录，才能申请证书成功。）如果想启用阿里证书，可查看：&lt;a class="link" href="https://bore.vip/archives/enable-ssl-on-nginx/#%e5%90%af%e7%94%a8%e9%98%bf%e9%87%8c%e5%85%8d%e8%b4%b9%e8%af%81%e4%b9%a6" &gt;启用阿里免费证书&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id="安装certbot"&gt;安装Certbot
 &lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -6256,15 +6298,19 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
  &gt;GitHub Actions 实现 Hexo 自动部署&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>hexo通过git备份&amp;还原源码</title><link>https://bore.vip/archives/c5bb486d/</link><pubDate>Sun, 10 May 2020 15:09:25 +0000</pubDate><guid>https://bore.vip/archives/c5bb486d/</guid><description>&lt;p&gt;上回做过&lt;a class="link" href="https://bore.vip/archives/a0c508c1.html" target="_blank" rel="noopener"
  &gt;hexo迁移笔记&lt;/a&gt;，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;!-- more --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。
 我们采取的远程仓库部署策略是：使用coding的私人仓库，一个仓库两个分支。仓库即[&lt;a class="link" href="http://yourname.coding.me" target="_blank" rel="noopener"
  &gt;yourname.coding.me&lt;/a&gt;]，一个分支[master]用于托管演示页面，一个分支[backup]用于备份Hexo博客站点的必要文件。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="备份"&gt;备份
 &lt;/h2&gt;&lt;p&gt;多机同步更新的前提：backup分支（也可以是其他名称的分支或者新的仓库）&lt;/p&gt;
 &lt;p&gt;Hexo博客站点的必要文件：&lt;/p&gt;
@@ -6933,9 +6979,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;使用atom.xml会出现乱码，更多选项查看插件说明。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;使用atom.xml会出现乱码，更多选项查看插件说明。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://tding.top/archives/567debe0.html" target="_blank" rel="noopener"
  &gt;本博客当前使用的插件总结&lt;/a&gt;&lt;/p&gt;</description></item><item><title>hexo部署到centos服务器</title><link>https://bore.vip/archives/d693fd5d/</link><pubDate>Sat, 25 Apr 2020 10:37:25 +0000</pubDate><guid>https://bore.vip/archives/d693fd5d/</guid><description>&lt;p&gt;服务器环境：Centos 8 x64&lt;/p&gt;
@@ -7620,9 +7668,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;h3 id="github-pages-对自定义域上-https"&gt;Github Pages 对自定义域上 Https
 &lt;/h3&gt;&lt;p&gt;在GitHub pages绑定域名，&lt;strong&gt;这里暂时不要勾选SSL&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id="解决cname反复被删问题"&gt;解决CNAME反复被删问题
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;一般我们会将Hexo博客搭建到Github上，如果在Github上为其配置一个自定义的域名时，会自动在项目仓库根目录下新添加一个&lt;code&gt;CNAME&lt;/code&gt;文件。但是这里有个问题，如果将Hexo博客重新部署一遍后，Github仓库里的这个&lt;code&gt;CNAME&lt;/code&gt;文件就会消失掉，又需要重新配置一遍。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;一般我们会将Hexo博客搭建到Github上，如果在Github上为其配置一个自定义的域名时，会自动在项目仓库根目录下新添加一个&lt;code&gt;CNAME&lt;/code&gt;文件。但是这里有个问题，如果将Hexo博客重新部署一遍后，Github仓库里的这个&lt;code&gt;CNAME&lt;/code&gt;文件就会消失掉，又需要重新配置一遍。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;**其实这里有个技巧，我们可以将需要上传部署到Github的文件都放在&lt;code&gt;source&lt;/code&gt;文件夹里，例如&lt;code&gt;CNAME&lt;/code&gt;文件、&lt;code&gt;favicon.ico&lt;/code&gt;、或者其他的图片等等，这样在执行&lt;code&gt;hexo d&lt;/code&gt;这个命令之后，这些文件就不会被删除了。 **&lt;/p&gt;
 &lt;p&gt;然后在&lt;strong&gt;站点配置文件&lt;/strong&gt;&lt;code&gt;_config.yml&lt;/code&gt;中添加&lt;code&gt;skip_render&lt;/code&gt;配置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -7652,9 +7702,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;h2 id="部署到-gitee"&gt;部署到 gitee
 &lt;/h2&gt;&lt;p&gt;和部署到coding大同小异，但需要注意以下几点：&lt;/p&gt;
 &lt;p&gt;免费版gitee page不支持绑定域名、不支持自动部署，并且上传了代码服务里才有gitee pages选项。还有关于首页地址见官方文档：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如何创建一个首页访问地址不带二级目录的 pages，如ipvb.gitee.io？&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如何创建一个首页访问地址不带二级目录的 pages，如ipvb.gitee.io？&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;答：如果你想你的 pages 首页访问地址不带二级目录，如ipvb.gitee.io，你需要建立一个与自己个性地址同名的仓库，如 &lt;a class="link" href="https://gitee.com/ipvb" target="_blank" rel="noopener"
  &gt;https://gitee.com/ipvb&lt;/a&gt; 这个用户，想要创建一个自己的站点，但不想以子目录的方式访问，想以ipvb.gitee.io直接访问，那么他就可以创建一个名字为ipvb的仓库 &lt;a class="link" href="https://gitee.com/ipvb/ipvb" target="_blank" rel="noopener"
  &gt;https://gitee.com/ipvb/ipvb&lt;/a&gt; 部署完成后，就可以以 &lt;a class="link" href="https://ipvb.gitee.io" target="_blank" rel="noopener"

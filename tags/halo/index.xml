@@ -6,9 +6,11 @@
  &gt;Joe2.0 样式指南&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="安装--更新"&gt;安装 &amp;amp; 更新
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;安装前请确保 Halo版本 和主题的兼容性，V1.0.10 及以上版本仅支持 Halo 1.5+，以下版本兼容到 Halo 1.4.11，请知悉。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;安装前请确保 Halo版本 和主题的兼容性，V1.0.10 及以上版本仅支持 Halo 1.5+，以下版本兼容到 Halo 1.4.11，请知悉。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;复制主题仓库地址 &lt;a class="link" href="https://github.com/qinhua/halo-theme-joe2.0.git" target="_blank" rel="noopener"
@@ -59,9 +61,11 @@
 &lt;h2 id="插入多媒体"&gt;插入多媒体
 &lt;/h2&gt;&lt;h3 id="插入音乐"&gt;插入音乐
 &lt;/h3&gt;&lt;p&gt;怎样在文章中插入网易云播放器？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;id：网易云歌单 ID 或 歌曲 ID（可从歌曲网址中获取）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;id：网易云歌单 ID 或 歌曲 ID（可从歌曲网址中获取）&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;歌单&lt;/li&gt;
 &lt;/ul&gt;
@@ -109,9 +113,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="插入视频"&gt;插入视频
 &lt;/h3&gt;&lt;p&gt;文章中如何插入视频？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题已集成 dplayer，只需要在编辑文章时使用 joe-dplayer 标签插入视频地址即可（建议 MP4 格式，其它格式未必支持，切记前后要空一行），它接受如下属性：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题已集成 dplayer，只需要在编辑文章时使用 joe-dplayer 标签插入视频地址即可（建议 MP4 格式，其它格式未必支持，切记前后要空一行），它接受如下属性：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;src：视频地址（必传）&lt;/li&gt;
 &lt;li&gt;width：阅读器宽度，默认为 100%&lt;/li&gt;
@@ -195,9 +201,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;joe-abtn radius="12px" content="圆角按钮"&gt;&lt;/joe-abtn&gt;&lt;/p&gt;
 &lt;h3 id="便条按钮"&gt;便条按钮
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;便条按钮不能自定义色彩，必须使用一个图标，其他的的和上面的多彩按钮一样&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;便条按钮不能自定义色彩，必须使用一个图标，其他的的和上面的多彩按钮一样&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -370,14 +378,18 @@
 &lt;joe-message type="error" content="错误消息"&gt;&lt;/joe-message&gt;&lt;/p&gt;
 &lt;h2 id="常见问题"&gt;常见问题
 &lt;/h2&gt;&lt;p&gt;1.如何自定义导航条菜单图标？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题自身已经引入了部分 iconfont 图标，你可以直接用（全在这里），如果想在这个基础上增加图标，可联系我加入该项目的图标组，加入后即可获取最新的字体链接进行替换（template/module/link.ftl 中第 25 行）。iconfont 使用方式如下：
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题自身已经引入了部分 iconfont 图标，你可以直接用（全在这里），如果想在这个基础上增加图标，可联系我加入该项目的图标组，加入后即可获取最新的字体链接进行替换（template/module/link.ftl 中第 25 行）。iconfont 使用方式如下：
 （目前主题菜单只支持字体图标，若要用图片请自行修改代码）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.如何设置文章仅评论后可见？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题目前支持文章页的 评论后可见功能，只要在后台管理中发布文章时设置-元数据 enable_read_limit 为 true 即可。设置之后&amp;gt;文章页默认只展示一屏高度的内容，剩余内容需要评论后才可见（如果文章内容小于一屏高度，则此功能会被忽略）。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题目前支持文章页的 评论后可见功能，只要在后台管理中发布文章时设置-元数据 enable_read_limit 为 true 即可。设置之后&amp;gt;文章页默认只展示一屏高度的内容，剩余内容需要评论后才可见（如果文章内容小于一屏高度，则此功能会被忽略）。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;3.怎样开启防盗链&lt;/p&gt;
 &lt;p&gt;很简单，直接在 nginx 里配一下就可以，不过记得添加白名单（如 logo 和 avatar），配置如下：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -650,9 +662,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;上面代码中最后的&lt;code&gt;rm -f web_$(date +&amp;quot;%Y%m%d&amp;quot;).tar.gz&lt;/code&gt;，表示删除本地的临时文件。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;在&lt;strong&gt;Debian&lt;/strong&gt;下要讲&lt;code&gt;-a&lt;/code&gt; 改成 &lt;code&gt;-A&lt;/code&gt;（如下）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;在&lt;strong&gt;Debian&lt;/strong&gt;下要讲&lt;code&gt;-a&lt;/code&gt; 改成 &lt;code&gt;-A&lt;/code&gt;（如下）&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -1424,9 +1438,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="装-java-运行环境"&gt;装 Java 运行环境
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;若已经存在 Java 运行环境的可略过这一步。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;若已经存在 Java 运行环境的可略过这一步。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -1642,9 +1658,11 @@
 &lt;/h3&gt;&lt;p&gt;上面我们已经完成了 Halo 的整个配置和安装过程，接下来我们对其进行更完善的配置，比如：&lt;code&gt;需要开机自启？&lt;/code&gt;，&lt;code&gt;更简单的启动方式？&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;实现以上功能我们只需要新增一个配置文件即可，也就是使用 &lt;code&gt;Systemd&lt;/code&gt; 来完成这些工作。&lt;/p&gt;
 &lt;p&gt;1.退出 halo 账户，登录到 root 账户&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果当前就是 root 账户，请略过此步骤。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如果当前就是 root 账户，请略过此步骤。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2657,9 +2675,11 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;certbot certonly --webroot -w /data/wwwroot/bore.vip -d bore.vip -m 455343442@qq.com --agree-tos
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -2956,9 +2976,11 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;certbot renew --dry-run
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;letsencrypt renew --dry-run --agree-tos&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如果一切正常，就可以编辑 crontab 定期运行以下命令：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -3055,9 +3077,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="版本升级"&gt;版本升级
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;我们假设你存放运行包的路径为 ~/app，运行包的文件名为 halo.jar，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;我们假设你存放运行包的路径为 ~/app，运行包的文件名为 halo.jar，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;停止正在运行的服务&lt;/li&gt;
 &lt;/ol&gt;
@@ -3082,9 +3106,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv ~/app/halo.jar ~/app/halo.jar.archive
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;需要注意的是，.halo.archive 和 halo.jar.archive 文件名不一定要根据此文档命名，这里仅仅是个示例。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;需要注意的是，.halo.archive 和 halo.jar.archive 文件名不一定要根据此文档命名，这里仅仅是个示例。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;清空 leveldb 缓存（如果有使用 leveldb 作为缓存策略）&lt;/li&gt;
 &lt;/ol&gt;
@@ -3146,9 +3172,11 @@
 &lt;li&gt;按照表单提示输入用户名和邮箱，点击 获取 按钮即可发送带有验证码的邮件。&lt;/li&gt;
 &lt;li&gt;按照表单填写验证码和新密码，点击重置密码即可。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 Got reset password code 关键字即可获取到验证码。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 Got reset password code 关键字即可获取到验证码。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="附修改-nginx-配置文件"&gt;附：修改 Nginx 配置文件
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;使用你熟悉的工具打开配置文件，此教程使用 vi。&lt;/li&gt;

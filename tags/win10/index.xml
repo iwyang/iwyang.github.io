@@ -79,9 +79,11 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2018/9/3 版本：BIOS Version: E5CN63WW,EC Version:E5IT23WW
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Fn+F2&lt;/code&gt;进入bios，&lt;code&gt;Fn+F12&lt;/code&gt;选择启动顺序。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;Fn+F2&lt;/code&gt;进入bios，&lt;code&gt;Fn+F12&lt;/code&gt;选择启动顺序。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;1.打开联想服务的驱动与下载网页：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveDownloads_index.html" target="_blank" rel="noopener"
  &gt;查找驱动程序及工具软件&lt;/a&gt;，选择&lt;code&gt;在站内查找设备驱动&lt;/code&gt;， 输入你的电脑主机编号（可以在电脑背面的标签上找到，也可以安装联想电脑管家，会自动检测你的主机编号），确定后进入驱动下载界面。联想小新700（主机编号：R90JZRF4）直接点击：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&amp;amp;selname=r90jzrf4" target="_blank" rel="noopener"
  &gt;小新 700-15ISK&lt;/a&gt;&lt;/p&gt;

@@ -569,9 +569,11 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tightvncserver&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:&lt;code&gt;sudo apt install tightvncserver&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:&lt;code&gt;sudo apt install tightvncserver&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;4.为了在安装后完成VNC服务器的初始配置，使用&lt;code&gt;vncserver&lt;/code&gt; 命令来设置安全密码并创建初始配置文件。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -992,9 +994,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="debian-10安装wine-70"&gt;Debian 10安装wine 7.0
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，&lt;strong&gt;根本就没必要装wine&lt;/strong&gt;，不过还是记录以下&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，&lt;strong&gt;根本就没必要装wine&lt;/strong&gt;，不过还是记录以下&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="step-1-prerequsiteis"&gt;Step 1: Prerequsiteis
 &lt;/h3&gt;&lt;p&gt;In order to run Winehq, You need to enable i386 architecture on your Debian system. Also, import the GPG key to your system by which the wine packages are signed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -3339,10 +3343,12 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/6c31209c/#%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8kkapi" &gt;开机启动 kkapi&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="chatgpt设置定时任务"&gt;ChatGPT设置定时任务
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
  &gt;crontab guru&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;1.提问：每隔2天运行一次&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;回答：要设置一个每隔2天运行一次的cron作业，你可以使用以下cron表达式：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;

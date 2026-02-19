@@ -169,27 +169,33 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps -a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;docker ps -a -q 分解&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;docker ps -a -q 分解&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker ps&lt;/code&gt; 列出&lt;strong&gt;活动&lt;/strong&gt;中容器。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-a&lt;/code&gt; 这个选项用于列出&lt;strong&gt;所有&lt;/strong&gt;容器，包括停止运行的。如果没有这个选项，则默认只列出在运行的容器。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-q&lt;/code&gt; 这个选项列出容器的数字 ID，而不是容器的所有信息。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.要启动已停止的容器，请使用&lt;code&gt;docker start命令+容器ID或容器名&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;ul&gt;
 &lt;li&gt;停止所有容器运行：&lt;code&gt;docker stop $(docker ps -a -q)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;3.通过&lt;code&gt;docker rm&lt;/code&gt;命令来删除不用的容器。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;ul&gt;
 &lt;li&gt;先使用&lt;code&gt;docker ps -a&lt;/code&gt;命令查找相关镜像关联的容器的&lt;strong&gt;容器ID或名称&lt;/strong&gt;，然后通过&lt;code&gt;docker rm&lt;/code&gt;命令来删除其删除。&lt;/li&gt;
 &lt;li&gt;删除所有停止运行的容器：&lt;code&gt;docker rm $(docker ps -a -q)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="docker-容器开机自启"&gt;&lt;strong&gt;Docker 容器开机自启&lt;/strong&gt;
 &lt;/h3&gt;&lt;p&gt;1.在使用docker run启动容器时，使用&amp;ndash;restart参数来设置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -3021,28 +3027,34 @@
  &gt;gemini&lt;/a&gt;：，上传&lt;code&gt;/src/app/api/search&lt;/code&gt;下面的5个路由文件，&lt;strong&gt;提问&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;标题：解决后端存储与前端搜索关键词的“空格不敏感”聚合问题&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 现状描述：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“我的系统中有一个视频搜索功能，后端使用 Kvrocks（兼容 Redis）存储。目前发现一个 Bug：当用户搜索带空格的关键词（如‘剑来 第二季’）和不带空格的关键词（如‘剑来第二季’）时，返回的播放源数量不一致。带空格的链接能搜到更多源，而无空格的链接漏掉了很多源。”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“我的系统中有一个视频搜索功能，后端使用 Kvrocks（兼容 Redis）存储。目前发现一个 Bug：当用户搜索带空格的关键词（如‘剑来 第二季’）和不带空格的关键词（如‘剑来第二季’）时，返回的播放源数量不一致。带空格的链接能搜到更多源，而无空格的链接漏掉了很多源。”&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;2. 提供核心代码：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“这是我处理搜索的核心文件：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“这是我处理搜索的核心文件：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;route.ts&lt;/code&gt; / &lt;code&gt;ws.route.ts&lt;/code&gt;：负责发起搜索请求。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;one.route.ts&lt;/code&gt;：负责在播放页精准匹配特定源。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;suggestions.route.ts&lt;/code&gt;：负责搜索建议。 （此处粘贴你之前的代码片段）”&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;3. 明确逻辑预期：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“我希望实现以下效果：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“我希望实现以下效果：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;搜索阶段&lt;/strong&gt;：无论用户输入是否有空格，都能同时查询带空格和不带空格的 Key。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;过滤阶段&lt;/strong&gt;：在对比标题时，自动忽略空格和大小写，实现‘脱水匹配’。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;展示阶段&lt;/strong&gt;：依然保留数据库原始的标题显示格式，不要修改原始数据。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;请告诉我为了实现这个‘全链路空格容错’，我需要分别修改这几个文件的哪些位置？”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="加空格搜索"&gt;加空格搜索
 &lt;/h2&gt;&lt;p&gt;方法如上，还是问&lt;a class="link" href="https://gemini.google.com/app" target="_blank" rel="noopener"
  &gt;gemini&lt;/a&gt;：，上传&lt;code&gt;/src/app/api/search&lt;/code&gt;下面的5个路由文件，&lt;strong&gt;提问&lt;/strong&gt;：&lt;/p&gt;
@@ -3064,21 +3076,25 @@
 &lt;hr&gt;
 &lt;p&gt;&lt;del&gt;如果你希望效果更完美（包含联想词）：&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;&lt;del&gt;你可以在提问最后加上：&lt;/del&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;del&gt;“同时，请帮我修改 &lt;code&gt;suggestions.route.ts&lt;/code&gt; 的逻辑，让搜索建议在返回结果时，如果发现匹配季数的内容，自动补全另一种（带空格或不带空格）的建议项。”&lt;/del&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;del&gt;“同时，请帮我修改 &lt;code&gt;suggestions.route.ts&lt;/code&gt; 的逻辑，让搜索建议在返回结果时，如果发现匹配季数的内容，自动补全另一种（带空格或不带空格）的建议项。”&lt;/del&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="去冒号搜索"&gt;去冒号搜索
 &lt;/h2&gt;&lt;p&gt;上传&lt;code&gt;\src\app\api\search\route.ts&lt;/code&gt;、&lt;code&gt;\src\app\api\search\ws\route.ts&lt;/code&gt;、&lt;code&gt;\src\app\search\page.tsx&lt;/code&gt;、&lt;code&gt;\src\app\play\page.tsx&lt;/code&gt;四个文件，问&lt;a class="link" href="https://gemini.google.com/app" target="_blank" rel="noopener"
  &gt;gemini&lt;/a&gt;：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“请帮我增强搜索逻辑。当输入包含&lt;strong&gt;冒号&lt;/strong&gt;或&lt;strong&gt;副标题&lt;/strong&gt;时，实现&lt;strong&gt;去符号化搜索&lt;/strong&gt;。要求：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“请帮我增强搜索逻辑。当输入包含&lt;strong&gt;冒号&lt;/strong&gt;或&lt;strong&gt;副标题&lt;/strong&gt;时，实现&lt;strong&gt;去符号化搜索&lt;/strong&gt;。要求：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;拆分生成&lt;/strong&gt;：提取冒号前后的内容，分别生成『主标题+空格+副标题』、『主标题副标题紧凑版』以及『仅副标题版』进行并发搜索。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;兼容符号&lt;/strong&gt;：自动处理中英文冒号互换，确保不同资源站的命名差异都能被召回。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;前端放宽&lt;/strong&gt;：修改前端聚合过滤逻辑，使其允许匹配副标题子项，防止有效结果被误杀。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;无感匹配&lt;/strong&gt;：在播放页换源时，通过『去除符号比对』实现标题的包含关系匹配，而非简单的开头匹配。”&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;PS：很多ai认为只用改前两个文件，只有&lt;a class="link" href="https://claude.ai/new" target="_blank" rel="noopener"
  &gt;claude&lt;/a&gt;发现：&lt;/p&gt;

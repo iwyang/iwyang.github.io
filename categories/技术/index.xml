@@ -169,27 +169,33 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker ps -a
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;docker ps -a -q 分解&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;docker ps -a -q 分解&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;docker ps&lt;/code&gt; 列出&lt;strong&gt;活动&lt;/strong&gt;中容器。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-a&lt;/code&gt; 这个选项用于列出&lt;strong&gt;所有&lt;/strong&gt;容器，包括停止运行的。如果没有这个选项，则默认只列出在运行的容器。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;-q&lt;/code&gt; 这个选项列出容器的数字 ID，而不是容器的所有信息。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.要启动已停止的容器，请使用&lt;code&gt;docker start命令+容器ID或容器名&lt;/code&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;ul&gt;
 &lt;li&gt;停止所有容器运行：&lt;code&gt;docker stop $(docker ps -a -q)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;3.通过&lt;code&gt;docker rm&lt;/code&gt;命令来删除不用的容器。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;ul&gt;
+
+ &lt;blockquote&gt;
+ &lt;ul&gt;
 &lt;li&gt;先使用&lt;code&gt;docker ps -a&lt;/code&gt;命令查找相关镜像关联的容器的&lt;strong&gt;容器ID或名称&lt;/strong&gt;，然后通过&lt;code&gt;docker rm&lt;/code&gt;命令来删除其删除。&lt;/li&gt;
 &lt;li&gt;删除所有停止运行的容器：&lt;code&gt;docker rm $(docker ps -a -q)&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="docker-容器开机自启"&gt;&lt;strong&gt;Docker 容器开机自启&lt;/strong&gt;
 &lt;/h3&gt;&lt;p&gt;1.在使用docker run启动容器时，使用&amp;ndash;restart参数来设置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -3021,28 +3027,34 @@
  &gt;gemini&lt;/a&gt;：，上传&lt;code&gt;/src/app/api/search&lt;/code&gt;下面的5个路由文件，&lt;strong&gt;提问&lt;/strong&gt;：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;标题：解决后端存储与前端搜索关键词的“空格不敏感”聚合问题&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;1. 现状描述：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“我的系统中有一个视频搜索功能，后端使用 Kvrocks（兼容 Redis）存储。目前发现一个 Bug：当用户搜索带空格的关键词（如‘剑来 第二季’）和不带空格的关键词（如‘剑来第二季’）时，返回的播放源数量不一致。带空格的链接能搜到更多源，而无空格的链接漏掉了很多源。”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“我的系统中有一个视频搜索功能，后端使用 Kvrocks（兼容 Redis）存储。目前发现一个 Bug：当用户搜索带空格的关键词（如‘剑来 第二季’）和不带空格的关键词（如‘剑来第二季’）时，返回的播放源数量不一致。带空格的链接能搜到更多源，而无空格的链接漏掉了很多源。”&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;2. 提供核心代码：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“这是我处理搜索的核心文件：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“这是我处理搜索的核心文件：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;route.ts&lt;/code&gt; / &lt;code&gt;ws.route.ts&lt;/code&gt;：负责发起搜索请求。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;one.route.ts&lt;/code&gt;：负责在播放页精准匹配特定源。&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;suggestions.route.ts&lt;/code&gt;：负责搜索建议。 （此处粘贴你之前的代码片段）”&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;3. 明确逻辑预期：&lt;/strong&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“我希望实现以下效果：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“我希望实现以下效果：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;搜索阶段&lt;/strong&gt;：无论用户输入是否有空格，都能同时查询带空格和不带空格的 Key。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;过滤阶段&lt;/strong&gt;：在对比标题时，自动忽略空格和大小写，实现‘脱水匹配’。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;展示阶段&lt;/strong&gt;：依然保留数据库原始的标题显示格式，不要修改原始数据。&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;请告诉我为了实现这个‘全链路空格容错’，我需要分别修改这几个文件的哪些位置？”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="加空格搜索"&gt;加空格搜索
 &lt;/h2&gt;&lt;p&gt;方法如上，还是问&lt;a class="link" href="https://gemini.google.com/app" target="_blank" rel="noopener"
  &gt;gemini&lt;/a&gt;：，上传&lt;code&gt;/src/app/api/search&lt;/code&gt;下面的5个路由文件，&lt;strong&gt;提问&lt;/strong&gt;：&lt;/p&gt;
@@ -3064,21 +3076,25 @@
 &lt;hr&gt;
 &lt;p&gt;&lt;del&gt;如果你希望效果更完美（包含联想词）：&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;&lt;del&gt;你可以在提问最后加上：&lt;/del&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;del&gt;“同时，请帮我修改 &lt;code&gt;suggestions.route.ts&lt;/code&gt; 的逻辑，让搜索建议在返回结果时，如果发现匹配季数的内容，自动补全另一种（带空格或不带空格）的建议项。”&lt;/del&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;del&gt;“同时，请帮我修改 &lt;code&gt;suggestions.route.ts&lt;/code&gt; 的逻辑，让搜索建议在返回结果时，如果发现匹配季数的内容，自动补全另一种（带空格或不带空格）的建议项。”&lt;/del&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="去冒号搜索"&gt;去冒号搜索
 &lt;/h2&gt;&lt;p&gt;上传&lt;code&gt;\src\app\api\search\route.ts&lt;/code&gt;、&lt;code&gt;\src\app\api\search\ws\route.ts&lt;/code&gt;、&lt;code&gt;\src\app\search\page.tsx&lt;/code&gt;、&lt;code&gt;\src\app\play\page.tsx&lt;/code&gt;四个文件，问&lt;a class="link" href="https://gemini.google.com/app" target="_blank" rel="noopener"
  &gt;gemini&lt;/a&gt;：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;“请帮我增强搜索逻辑。当输入包含&lt;strong&gt;冒号&lt;/strong&gt;或&lt;strong&gt;副标题&lt;/strong&gt;时，实现&lt;strong&gt;去符号化搜索&lt;/strong&gt;。要求：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;“请帮我增强搜索逻辑。当输入包含&lt;strong&gt;冒号&lt;/strong&gt;或&lt;strong&gt;副标题&lt;/strong&gt;时，实现&lt;strong&gt;去符号化搜索&lt;/strong&gt;。要求：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;拆分生成&lt;/strong&gt;：提取冒号前后的内容，分别生成『主标题+空格+副标题』、『主标题副标题紧凑版』以及『仅副标题版』进行并发搜索。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;兼容符号&lt;/strong&gt;：自动处理中英文冒号互换，确保不同资源站的命名差异都能被召回。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;前端放宽&lt;/strong&gt;：修改前端聚合过滤逻辑，使其允许匹配副标题子项，防止有效结果被误杀。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;无感匹配&lt;/strong&gt;：在播放页换源时，通过『去除符号比对』实现标题的包含关系匹配，而非简单的开头匹配。”&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;hr&gt;
 &lt;p&gt;PS：很多ai认为只用改前两个文件，只有&lt;a class="link" href="https://claude.ai/new" target="_blank" rel="noopener"
  &gt;claude&lt;/a&gt;发现：&lt;/p&gt;
@@ -4953,9 +4969,11 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-sql" data-lang="sql"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;sudo&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;apt&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;install&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="n"&gt;tightvncserver&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:&lt;code&gt;sudo apt install tightvncserver&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果是debian 11，还需要安装dbus-x11 依赖关系，以确保与VNC服务器的正常连接:&lt;code&gt;sudo apt install tightvncserver&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;4.为了在安装后完成VNC服务器的初始配置，使用&lt;code&gt;vncserver&lt;/code&gt; 命令来设置安全密码并创建初始配置文件。&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -5376,9 +5394,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="debian-10安装wine-70"&gt;Debian 10安装wine 7.0
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，&lt;strong&gt;根本就没必要装wine&lt;/strong&gt;，不过还是记录以下&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;貌似debian 10只能装wine 7.0，装不了wine 8.0。debian 11才能安装wine 8.0，wine 8.0可以微信，不过都是乱码，&lt;strong&gt;根本就没必要装wine&lt;/strong&gt;，不过还是记录以下&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="step-1-prerequsiteis"&gt;Step 1: Prerequsiteis
 &lt;/h3&gt;&lt;p&gt;In order to run Winehq, You need to enable i386 architecture on your Debian system. Also, import the GPG key to your system by which the wine packages are signed.&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -6115,10 +6135,12 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;code&gt;* */24 * * *&lt;/code&gt;改成&lt;code&gt;* */48 * * *&lt;/code&gt;每两天运行一次&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
  &gt;crontab guru&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="创建github访问token"&gt;创建github访问token
 &lt;/h3&gt;&lt;p&gt;参考：&lt;a class="link" href="https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens" target="_blank" rel="noopener"
  &gt;管理个人访问令牌&lt;/a&gt;&lt;/p&gt;
@@ -6145,10 +6167,12 @@
 &lt;h3 id="添加环境变量secret"&gt;添加环境变量secret
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;settings/secrets(Secrets and variables)/actions&lt;/code&gt;里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。&lt;/p&gt;
 &lt;p&gt;如果部署完成之后，运行显示错误是：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;repo-sync
+
+ &lt;blockquote&gt;
+ &lt;p&gt;repo-sync
 Failed to create or merge pull request: HttpError: Validation Failed: {“resource”:”PullRequest”,”code”:”custom”,”message”:”No commits between knight000:master and ngosang:master”}&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;就证明初步成功了，因为你部署了workflow所以比原仓库新，等原仓库更新后点&lt;code&gt;Re-run jobs&lt;/code&gt;就可以测试是否正确部署了。&lt;/p&gt;
 &lt;h3 id="自动提交修改到gitee未测试"&gt;自动提交修改到Gitee(未测试)
 &lt;/h3&gt;&lt;p&gt;以下action文件来自https://juejin.cn/post/6894928345830522887&lt;/p&gt;
@@ -6892,45 +6916,63 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;p&gt;（2）输入“/”选择相应角色&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;10.角色扮演法提问&lt;/strong&gt;(一个角色，一个聊天室)&lt;/p&gt;
 &lt;p&gt;例如：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请你扮演一位语言学习专家，擅长以有趣的方式教导一般人语言效果。我现在正在学习英文，在英文口说方面有困难，请给我五个练习英文口说的意见&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请你扮演一位语言学习专家，擅长以有趣的方式教导一般人语言效果。我现在正在学习英文，在英文口说方面有困难，请给我五个练习英文口说的意见&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;11.固定角色设定&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;例一：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请扮演一个专业文字编辑跟翻译，帮我归纳及重点整理英文内容，请使用简体中文回复，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请扮演一个专业文字编辑跟翻译，帮我归纳及重点整理英文内容，请使用简体中文回复，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;例二：Email助理&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请扮演一个专业英文助理及翻译，帮助我回覆中文或是英文信件，内容要正式，此规则应用接下来所有对话，不需要我再重复&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请扮演一个专业英文助理及翻译，帮助我回覆中文或是英文信件，内容要正式，此规则应用接下来所有对话，不需要我再重复&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;例三：回一封信&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请帮我用友善的态度回复以下信件，我刚好那一天有私事不能参加，但很高兴收到邀请，祝活动顺利：&amp;ldquo;附上原信内容&amp;rdquo;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请帮我用友善的态度回复以下信件，我刚好那一天有私事不能参加，但很高兴收到邀请，祝活动顺利：&amp;ldquo;附上原信内容&amp;rdquo;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;例四：程式码老师&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请扮演一位Python老师，指导我写出我需要的Python程式码，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请扮演一位Python老师，指导我写出我需要的Python程式码，此规则应用所有我们的对话，规则不需要我再重复。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;12.指定作答风格&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;范例：目标读者为中老年人的新闻报道&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;写一篇新闻报道，以中国记者的文笔，生动活泼地介绍过去五个重要的人工智能发展事件给中国的中老年族群，（不要提到“生动活泼地文笔”，不要提到“中老年族群”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;写一篇新闻报道，以中国记者的文笔，生动活泼地介绍过去五个重要的人工智能发展事件给中国的中老年族群，（不要提到“生动活泼地文笔”，不要提到“中老年族群”&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;范例：目标读者为年轻读者的社群平台贴文&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;写一篇社群平台贴文,以年轻人编辑的文笔、非正式、casual的方式、加入大量的emoji ,生动活泼地介绍过去五个重要的人工智能发展的事件给中国的年轻族群&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;写一篇社群平台贴文,以年轻人编辑的文笔、非正式、casual的方式、加入大量的emoji ,生动活泼地介绍过去五个重要的人工智能发展的事件给中国的年轻族群&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;范例：以简短的文字及表格整理作答&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请用一段简短的文字，解释什么是大型语言模型，举例三个语言模型及其特色，以表格呈现。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请用一段简短的文字，解释什么是大型语言模型，举例三个语言模型及其特色，以表格呈现。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;13.长篇文章创作&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;角色扮演+架构建立&lt;/p&gt;
 &lt;p&gt;（1）范例：指定角色并提案文章标题&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请你扮演人工智慧专家，我要写一篇关于人工智慧的发展与AI人型机器人未来对人类生活的影响的长篇文章，这篇文章会发表在个人部落格，请列出十个吸引人的文章标题&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请你扮演人工智慧专家，我要写一篇关于人工智慧的发展与AI人型机器人未来对人类生活的影响的长篇文章，这篇文章会发表在个人部落格，请列出十个吸引人的文章标题&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;修改标题：&lt;code&gt;提供类似“AI人型机器人的崛起：改变未来生活的无限可能＂另外五个版本标题&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;（1.1）请写出10个关于“即将被AI取代的工作”文章标题&lt;/p&gt;
 &lt;p&gt;（2）请写出“AI人型机器人的变革之力：探索未来生活的新篇章”的文章大纲&lt;/p&gt;
@@ -6944,31 +6986,41 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;p&gt;（5）重写（rephrase）“一段话”&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;13.资料归纳整理&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;范例：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;请扮演一个专业文字编辑及翻译，帮我归纳及重点整理以下新闻，请使用简体中文：“新闻或者是资料内容”&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;请扮演一个专业文字编辑及翻译，帮我归纳及重点整理以下新闻，请使用简体中文：“新闻或者是资料内容”&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;范例：精准翻译并将专有名词原文附于译文后&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;ChatGFT,请扮演一名专业的翻译者，将以下英文论文段落精地翻译成繁体中文，适用于学术论文。在翻译过程中，对于专有名词和带有引号的字词，请在繁体中文译文后用括号附上英文原文。例如：美德(virtue)丶汤姆(Tom)以及被引号包围的字词如&amp;quot;word&amp;quot;。请确保翻译结果字数不超过N个字，并在必要时将原文分成较小的段落进行翻译。&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;ChatGFT,请扮演一名专业的翻译者，将以下英文论文段落精地翻译成繁体中文，适用于学术论文。在翻译过程中，对于专有名词和带有引号的字词，请在繁体中文译文后用括号附上英文原文。例如：美德(virtue)丶汤姆(Tom)以及被引号包围的字词如&amp;quot;word&amp;quot;。请确保翻译结果字数不超过N个字，并在必要时将原文分成较小的段落进行翻译。&lt;/p&gt;
 &lt;p&gt;“在这里贴上原文”&lt;/p&gt;
 &lt;p&gt;根据以上要求，请将这雨个段落分别翻译成繁体中文，并在适当的地方加上英文原文。请注意保持翻译的精准性和一致性，并避免增加原文没有的句子。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;14.ChatPDF&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;15.ChatGPT标记法&lt;/strong&gt;（gpt-4才能使用）&lt;/p&gt;
 &lt;p&gt;范例：分批输入大量资料，使用@帮资料编号&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;我接下来要在多个对话中，提供给你用 「@」编号的文章内容，请先记住，但 请不要摘要，此规则不需我再重复，适 用于接下来你所有回答&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;我接下来要在多个对话中，提供给你用 「@」编号的文章内容，请先记住，但 请不要摘要，此规则不需我再重复，适 用于接下来你所有回答&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;1)&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;先记住@1的文章内容：
+
+ &lt;blockquote&gt;
+ &lt;p&gt;先记住@1的文章内容：
 文章内容&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;ps:如果gpt还是给出摘要，提醒：不要摘要，记住规则&lt;/p&gt;
 &lt;p&gt;2）&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;综合总结@1@2@3全部内容&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;综合总结@1@2@3全部内容&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;16.写电脑自动化程式&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;17.Newbing&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id="附1bwg无法使用chatgpt"&gt;附1：bwg无法使用chatgpt
@@ -6981,8 +7033,9 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/ol&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://github.com/Alvin9999/new-pac/issues/1407" target="_blank" rel="noopener"
  &gt;Chat GPT是不是&lt;/a&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：有些脚本自带分流，分流种类：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：有些脚本自带分流，分流种类：&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;IPv6分流&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;可以指定网站只走IPv6，应用场景【1.Google人机验证 2.流媒体解锁】&lt;/li&gt;
@@ -6993,14 +7046,17 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;li&gt;指定网站通过WARP分流 &lt;strong&gt;(如：chatgpt，记得不要设置warp全局，只需要添加openai.com域名即可，不然速度会降低）&lt;/strong&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;&lt;strong&gt;其他分流&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="附2chatgpt-设置定时任务"&gt;附2：ChatGPT 设置定时任务
 &lt;/h3&gt;&lt;p&gt;查看：&lt;a class="link" href="https://bore.vip/archives/964093b3/#ChatGPT%e8%ae%be%e7%bd%ae%e5%ae%9a%e6%97%b6%e4%bb%bb%e5%8a%a1" &gt;ChatGPT 设置定时任务&lt;/a&gt;&lt;/p&gt;
 &lt;h3 id="附3chatgptsed-替换冒号以及冒号后面内容"&gt;附3：ChatGPTsed 替换冒号以及冒号后面内容
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;windows 上使用linux命令，先安装：&lt;a class="link" href="https://git-scm.com/downloads" target="_blank" rel="noopener"
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;windows 上使用linux命令，先安装：&lt;a class="link" href="https://git-scm.com/downloads" target="_blank" rel="noopener"
  &gt;Git for Windows&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;提问：&lt;code&gt;sed 替换冒号以及冒号后面内容&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;在Linux和macOS系统中，你可以使用&lt;code&gt;sed&lt;/code&gt;命令来替换冒号以及冒号后面的内容。&lt;code&gt;sed&lt;/code&gt;是一个流编辑器，可以用于在文本中执行替换等操作。下面是使用&lt;code&gt;sed&lt;/code&gt;命令替换冒号以及冒号后面的内容的示例：&lt;/p&gt;
 &lt;p&gt;假设你有一个文本文件名为 &lt;code&gt;example.txt&lt;/code&gt;，其内容如下：&lt;/p&gt;
@@ -7058,13 +7114,17 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;这样会直接在 &lt;code&gt;example.txt&lt;/code&gt; 文件上进行修改。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：合并txt（cmd上操作）： &lt;code&gt;type *txt&amp;gt;&amp;gt;all.txt&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;</description></item><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：合并txt（cmd上操作）： &lt;code&gt;type *txt&amp;gt;&amp;gt;all.txt&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;</description></item><item><title>Memos部署记录</title><link>https://bore.vip/archives/d5e37958/</link><pubDate>Tue, 20 Sep 2022 19:44:19 +0000</pubDate><guid>https://bore.vip/archives/d5e37958/</guid><description>
+ &lt;blockquote&gt;
+ &lt;p&gt;Memos是什么：一个开源的、支持私有化部署的碎片化知识卡片管理工具。可以说是支持 Docker 自部署的 flomo&lt;/p&gt;
 &lt;p&gt;官网：https://usememos.com/&lt;/p&gt;
 &lt;p&gt;仓库地址：https://github.com/usememos/memos&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="docker部署"&gt;Docker部署
 &lt;/h2&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -7125,9 +7185,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;通过访问 &lt;code&gt;localhost:5230&lt;/code&gt; 即可打开 Memos，首次安装会提示注册用户，请记牢您的而密码。数据文件默认存储在 &lt;strong&gt;&lt;code&gt;~/.memos&lt;/code&gt;&lt;/strong&gt; 中。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS：如果使用vultr，注意由于默认vultr什么端口都没有开放，安装后要记得要开放5230端口：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：如果使用vultr，注意由于默认vultr什么端口都没有开放，安装后要记得要开放5230端口：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -7152,8 +7214,9 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker-compose up -d
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;可选命令：&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;可选命令：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;cp -r /root/.memos /root/.memos.archive&lt;/code&gt; 事先备份，以防万一（将&lt;code&gt;/root/.memos&lt;/code&gt;文件夹下的数据库复制到&lt;code&gt;/root/.memos.archive&lt;/code&gt;文件夹下）&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;docker image prune &lt;/code&gt; 用来删除不再使用的 docker 对象。删除所有未被 tag 标记和未被容器使用的镜像&lt;/p&gt;
 &lt;p&gt;提示：&lt;/p&gt;
@@ -7167,7 +7230,8 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;Are you sure you want to continue? [y/N] 
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;Docker&lt;/strong&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -7205,9 +7269,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;--&lt;span class="l"&gt;port 5230&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;/root/data/docker_data/memos/.memos/&lt;/code&gt;这个可以换成你自己服务器的路径；&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;/root/data/docker_data/memos/.memos/&lt;/code&gt;这个可以换成你自己服务器的路径；&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;5.卸载&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -7542,9 +7608,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 {% endnote %}&lt;/p&gt;
 &lt;p&gt;3.&lt;code&gt;#tag &lt;/code&gt;后面必须有个空格才能创建tag&lt;/p&gt;
 &lt;h2 id="首页轮播"&gt;首页轮播
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;API 调用最新 10 条 memos 在博客首页轮播显示。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;API 调用最新 10 条 memos 在博客首页轮播显示。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -7640,10 +7708,12 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="单页部署代码"&gt;单页部署代码
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;已做 js 文件调用处理，找个页面丢入以下 html + js + css 即可。当然，得先部署个 &lt;a class="link" href="https://immmmm.com/hi-memos/" target="_blank" rel="noopener"
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;已做 js 文件调用处理，找个页面丢入以下 html + js + css 即可。当然，得先部署个 &lt;a class="link" href="https://immmmm.com/hi-memos/" target="_blank" rel="noopener"
  &gt;Memos&lt;/a&gt;，或者，找个好朋友开个 id 也可以。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -7737,9 +7807,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;p&gt;&lt;a class="link" href="https://1900.live/build_your_own_flomo_applications/" target="_blank" rel="noopener"
  &gt;搭建属于你自己的 flomo 应用 :Memos&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;a class="link" href="https://blog.laoda.de/archives/docker-install-memos" target="_blank" rel="noopener"
- &gt;好玩儿的Docker项目&lt;/a&gt;&lt;/p&gt;</description></item><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;注：本攻略来自网上&lt;/p&gt;
-&lt;/blockquote&gt;
+ &gt;好玩儿的Docker项目&lt;/a&gt;&lt;/p&gt;</description></item><item><title>配眼镜攻略</title><link>https://bore.vip/archives/c71649d1/</link><pubDate>Wed, 17 Aug 2022 08:38:34 +0000</pubDate><guid>https://bore.vip/archives/c71649d1/</guid><description>
+ &lt;blockquote&gt;
+ &lt;p&gt;注：本攻略来自网上&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;整理的攻略：中国：明月 法国：依视路 德国：蔡司，罗敦司得 日本：豪雅，精工 韩国：凯米
 网店：宝岛，（​宝岛眼​镜官方旗舰店）依视路（依视路旗舰店），蔡司（Zeiss 蔡司官方旗舰店）
 国产总结：明月，万新，康耐特，新天鸿，优立，伟星，唯尊，鸿晨，schuman，洪旭
@@ -7753,9 +7825,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 镀膜：镀膜的好处体现在透光率和耐磨度 但又不起决定作用 ，防辐射 防紫外线的镀膜确实有用 但是感受发黄有反光 不是 it 没必要选择 所以不是杂牌同度数同折射率一百两百和和上千基本没差距 还有抗疲劳和多焦点的 已成年没必要选择 其实没有完全证据证明这类镜片有效 ，酌情考虑，不要相信立等可取 那那么巧刚好有你参数基本符合的镜片 等几天吧 。
 配镜：了解前面的品牌数据 就开始配镜了 验光很重要 去三甲医院或大型连锁眼镜店
 推荐宝岛 因为他们会在公众号有你的数据档案 ， 后续不管 在网上配还是 线下配 数据都精确​。&lt;/p&gt;
-&lt;p&gt;（网友：我是去的线下同仁验光测的，然后买的京东京造。）&lt;/p&gt;</description></item><item><title>解决网页视频播放器进度条禁止拖动</title><link>https://bore.vip/archives/82f1bd2/</link><pubDate>Mon, 08 Aug 2022 13:09:22 +0000</pubDate><guid>https://bore.vip/archives/82f1bd2/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;本文转自：https://blog.csdn.net/weixin_46435234/article/details/114437203&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;p&gt;（网友：我是去的线下同仁验光测的，然后买的京东京造。）&lt;/p&gt;</description></item><item><title>解决网页视频播放器进度条禁止拖动</title><link>https://bore.vip/archives/82f1bd2/</link><pubDate>Mon, 08 Aug 2022 13:09:22 +0000</pubDate><guid>https://bore.vip/archives/82f1bd2/</guid><description>
+ &lt;blockquote&gt;
+ &lt;p&gt;本文转自：https://blog.csdn.net/weixin_46435234/article/details/114437203&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;1.点击键盘F12键，进入开发者模式&lt;/p&gt;
 &lt;p&gt;2.发现标志,html5播放器，属于原生支持最方便实现加速的&lt;/p&gt;
 &lt;p&gt;3.在开发者模式中找到Console 调式窗口，输入以下代码 可以设置视频播放速度&lt;/p&gt;
@@ -9606,9 +9680,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
  &gt;Joe2.0 样式指南&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="安装--更新"&gt;安装 &amp;amp; 更新
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;安装前请确保 Halo版本 和主题的兼容性，V1.0.10 及以上版本仅支持 Halo 1.5+，以下版本兼容到 Halo 1.4.11，请知悉。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;安装前请确保 Halo版本 和主题的兼容性，V1.0.10 及以上版本仅支持 Halo 1.5+，以下版本兼容到 Halo 1.4.11，请知悉。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;复制主题仓库地址 &lt;a class="link" href="https://github.com/qinhua/halo-theme-joe2.0.git" target="_blank" rel="noopener"
@@ -9659,9 +9735,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;h2 id="插入多媒体"&gt;插入多媒体
 &lt;/h2&gt;&lt;h3 id="插入音乐"&gt;插入音乐
 &lt;/h3&gt;&lt;p&gt;怎样在文章中插入网易云播放器？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;id：网易云歌单 ID 或 歌曲 ID（可从歌曲网址中获取）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;id：网易云歌单 ID 或 歌曲 ID（可从歌曲网址中获取）&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;歌单&lt;/li&gt;
 &lt;/ul&gt;
@@ -9709,9 +9787,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="插入视频"&gt;插入视频
 &lt;/h3&gt;&lt;p&gt;文章中如何插入视频？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题已集成 dplayer，只需要在编辑文章时使用 joe-dplayer 标签插入视频地址即可（建议 MP4 格式，其它格式未必支持，切记前后要空一行），它接受如下属性：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题已集成 dplayer，只需要在编辑文章时使用 joe-dplayer 标签插入视频地址即可（建议 MP4 格式，其它格式未必支持，切记前后要空一行），它接受如下属性：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ul&gt;
 &lt;li&gt;src：视频地址（必传）&lt;/li&gt;
 &lt;li&gt;width：阅读器宽度，默认为 100%&lt;/li&gt;
@@ -9795,9 +9875,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;joe-abtn radius="12px" content="圆角按钮"&gt;&lt;/joe-abtn&gt;&lt;/p&gt;
 &lt;h3 id="便条按钮"&gt;便条按钮
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;便条按钮不能自定义色彩，必须使用一个图标，其他的的和上面的多彩按钮一样&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;便条按钮不能自定义色彩，必须使用一个图标，其他的的和上面的多彩按钮一样&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -9970,14 +10052,18 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;joe-message type="error" content="错误消息"&gt;&lt;/joe-message&gt;&lt;/p&gt;
 &lt;h2 id="常见问题"&gt;常见问题
 &lt;/h2&gt;&lt;p&gt;1.如何自定义导航条菜单图标？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题自身已经引入了部分 iconfont 图标，你可以直接用（全在这里），如果想在这个基础上增加图标，可联系我加入该项目的图标组，加入后即可获取最新的字体链接进行替换（template/module/link.ftl 中第 25 行）。iconfont 使用方式如下：
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题自身已经引入了部分 iconfont 图标，你可以直接用（全在这里），如果想在这个基础上增加图标，可联系我加入该项目的图标组，加入后即可获取最新的字体链接进行替换（template/module/link.ftl 中第 25 行）。iconfont 使用方式如下：
 （目前主题菜单只支持字体图标，若要用图片请自行修改代码）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.如何设置文章仅评论后可见？&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;主题目前支持文章页的 评论后可见功能，只要在后台管理中发布文章时设置-元数据 enable_read_limit 为 true 即可。设置之后&amp;gt;文章页默认只展示一屏高度的内容，剩余内容需要评论后才可见（如果文章内容小于一屏高度，则此功能会被忽略）。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;主题目前支持文章页的 评论后可见功能，只要在后台管理中发布文章时设置-元数据 enable_read_limit 为 true 即可。设置之后&amp;gt;文章页默认只展示一屏高度的内容，剩余内容需要评论后才可见（如果文章内容小于一屏高度，则此功能会被忽略）。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;3.怎样开启防盗链&lt;/p&gt;
 &lt;p&gt;很简单，直接在 nginx 里配一下就可以，不过记得添加白名单（如 logo 和 avatar），配置如下：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -10559,15 +10645,17 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;微信关注自己的企业微信账号，然后用其他非博主邮箱在网站留言，试试即时通知吧！&lt;/p&gt;
 &lt;h2 id="更换-cdn-镜像"&gt;更换 CDN 镜像
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;如果遇到默认 CDN 加载速度缓慢，可更换其他 CDN 镜像。以下为可供选择的公共 CDN，其中一些 CDN 可能需要数天时间同步最新版本：&lt;/p&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;如果遇到默认 CDN 加载速度缓慢，可更换其他 CDN 镜像。以下为可供选择的公共 CDN，其中一些 CDN 可能需要数天时间同步最新版本：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://lib.baomitu.com/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.bootcdn.net/ajax/libs/twikoo/1.6.4/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;https://cdn.jsdelivr.net/npm/twikoo@1.6.4/dist/twikoo.all.min.js&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;例如&lt;a class="link" href="https://github.com/jerryc127/hexo-theme-butterfly" target="_blank" rel="noopener"
  &gt;Butterfly主题 &lt;/a&gt;：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -10614,10 +10702,12 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ twikoo: https://cdn.staticfile.org/twikoo/1.6.4/twikoo.all.min.js
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;以前记得只需更改后端版本号即可，不知什么时候开始还要更改前端CDN才行。也许主题前端没有更新到最新的版本号。这时只有自定义CDN了，还好&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;以前记得只需更改后端版本号即可，不知什么时候开始还要更改前端CDN才行。也许主题前端没有更新到最新的版本号。这时只有自定义CDN了，还好&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;butterfly&lt;/code&gt;主题很容易就能自定义CDN&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="更换表情cdn"&gt;更换表情CDN
 &lt;/h2&gt;&lt;p&gt;仓库地址：&lt;a class="link" href="https://github.com/zhheo" target="_blank" rel="noopener"
  &gt;zhheo&lt;/a&gt;/&lt;a class="link" href="https://github.com/zhheo/Sticker-Heo" target="_blank" rel="noopener"
@@ -10634,9 +10724,11 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="twikoo-导出评论数据"&gt;Twikoo 导出评论数据
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;Twikoo前端后台只有导入数据功能，没有导出，要想导出数据，看下面。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;Twikoo前端后台只有导入数据功能，没有导出，要想导出数据，看下面。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="导出-twikoo-在-vercel-的数据"&gt;导出 Twikoo 在 Vercel 的数据
 &lt;/h3&gt;&lt;p&gt;1.下载并安装 MongoDB 数据库工具，下载地址：https://www.mongodb.com/try/download/database-tools；&lt;/p&gt;
 &lt;p&gt;`&lt;/p&gt;
@@ -10871,9 +10963,11 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;no-icon&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;no-icon&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -10955,9 +11049,11 @@ warning 提示块标籤
 &lt;p&gt;{% note danger no-icon %}
 danger 提示块标籤
 {% endnote %}&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;flat&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;flat&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -11075,9 +11171,11 @@ danger 提示块标籤
  &lt;/tr&gt;
  &lt;/tbody&gt;
 &lt;/table&gt;
-&lt;blockquote&gt;
-&lt;p&gt;no-icon&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;no-icon&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -11147,9 +11245,11 @@ danger 提示块标籤
 {% note green no-icon %}
 前端最讨厌的浏览器
 {% endnote %}&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;flat&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;flat&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -11586,9 +11686,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;p&gt;如果你想把一些文字、內容隱藏起來，並提供按鈕讓用戶點擊顯示。可以使用這個標籤外掛。&lt;/p&gt;
 &lt;p&gt;{% tabs tag-hide %}&lt;/p&gt;
 &lt;!-- tab Toggle --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;2.3.0以上支持&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;2.3.0以上支持&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;如果你需要展示的內容太多，可以把它隱藏在收縮框裏，需要時再把它展開。&lt;/p&gt;
 &lt;p&gt;( display 不能包含英文逗號，可用&lt;code&gt;&amp;amp;sbquo;&lt;/code&gt;)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -11603,9 +11705,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;{% endhideToggle %}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -11666,9 +11770,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;p&gt;color: 按鈕文字的顏色(可選)&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -11705,9 +11811,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;li&gt;bg: 按鈕的背景顏色(可選)&lt;/li&gt;
 &lt;li&gt;color: 按鈕文字的顏色(可選)&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Demo&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Demo&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -12371,9 +12479,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
  &gt;Tag Plugins Plus&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="侧边栏添加微博热搜"&gt;侧边栏添加微博热搜
 &lt;/h2&gt;&lt;h3 id="新建侧边栏"&gt;新建侧边栏
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;官方文档：https://butterfly.js.org/posts/ea33ab97/，想要了解更多可以查看这篇文章。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;官方文档：https://butterfly.js.org/posts/ea33ab97/，想要了解更多可以查看这篇文章。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;打开&lt;code&gt;_data&lt;/code&gt;文件夹，创建一个&lt;code&gt;widget.yml&lt;/code&gt;文件，在里面粘贴如下代码:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -12395,10 +12505,12 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;html&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="l"&gt;&amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;/css/weibo.css&amp;#34;&amp;gt;&amp;lt;div id=&amp;#34;weiboContent&amp;#34;&amp;gt;&amp;lt;img src=&amp;#34;https://bu.dusays.com/2022/05/01/626e88f349943.gif&amp;#34;&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;script src=&amp;#34;/js/weibo.js&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;上面图像也可用本地路径：&lt;code&gt;/img/loading.gif&lt;/code&gt; ，如果想删除加载动画可删除下面这行：&lt;/p&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;上面图像也可用本地路径：&lt;code&gt;/img/loading.gif&lt;/code&gt; ，如果想删除加载动画可删除下面这行：&lt;/p&gt;
 &lt;p&gt;&lt;code&gt;&amp;lt;img src=&amp;quot;https://bu.dusays.com/2022/05/01/626e88f349943.gif&amp;quot;&amp;gt;&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;自用：&lt;/strong&gt;(这里填top表示所有地方都显示，buttom表示只在非文章页面显示，如主页等等)&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -12771,9 +12883,11 @@ Demo 4 - 自定义Tab名 + 只有icon + icon和Tab名
  &gt;Eurkon&lt;/a&gt;/&lt;strong&gt;&lt;a class="link" href="https://github.com/Eurkon/weibo-top-api" target="_blank" rel="noopener"
  &gt;weibo-top-api&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;虽然 Vercel 的访问应当没有次数限制，但是不排除存在因访问次数过多而限流等限制。所以还是建议各位自建 API。使用 Vercel 部署，完全免费。且无需服务器。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;最后记得修改&lt;code&gt;weibo.js&lt;/code&gt;里的api地址，即：&lt;code&gt;https://weibo-top-api.vercel.app/api&lt;/code&gt;改成&lt;code&gt;https://你的域名//api&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;最后记得修改&lt;code&gt;weibo.js&lt;/code&gt;里的api地址，即：&lt;code&gt;https://weibo-top-api.vercel.app/api&lt;/code&gt;改成&lt;code&gt;https://你的域名//api&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="自建第三方-api"&gt;自建第三方 API
 &lt;/h3&gt;&lt;p&gt;查看：https://blog.leonus.cn/2022/weibo.html&lt;/p&gt;
 &lt;h2 id="友链朋友圈弃用用下方的"&gt;&lt;del&gt;友链朋友圈&lt;/del&gt;（弃用，用下方的）
@@ -13300,9 +13414,11 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git config --global merge.ours.driver &lt;span class="nb"&gt;true&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;true&lt;/code&gt; 是一个永远返回成功的命令。当 Git 遇到冲突并调用这个驱动时，它会认为“已经处理好了”，从而保留你本地当前分支的文件内容。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;true&lt;/code&gt; 是一个永远返回成功的命令。当 Git 遇到冲突并调用这个驱动时，它会认为“已经处理好了”，从而保留你本地当前分支的文件内容。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -13760,9 +13876,11 @@ deal_subscribe_issue.yml处理固定格式的issue，打上固定标签，评论
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git config --global merge.keep_theirs.driver &lt;span class="s2"&gt;&amp;#34;cat %B &amp;gt; %A&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;%B&lt;/code&gt; 代表来源（上游）文件，&lt;code&gt;%A&lt;/code&gt; 代表本地文件。该命令会将上游内容直接覆盖到本地。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;原理：&lt;/strong&gt; &lt;code&gt;%B&lt;/code&gt; 代表来源（上游）文件，&lt;code&gt;%A&lt;/code&gt; 代表本地文件。该命令会将上游内容直接覆盖到本地。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
@@ -14780,9 +14898,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="配置ssl证书"&gt;配置ssl证书
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/58fed3fc/" &gt;Nginx 配置 ssl 证书&lt;/a&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;这里记下怎样添加 Let’s Encrypt 免费证书。（貌似只有上传了文件到网站目录，才能申请证书成功。）如果想启用阿里证书，可查看：&lt;a class="link" href="https://bore.vip/archives/enable-ssl-on-nginx/#%e5%90%af%e7%94%a8%e9%98%bf%e9%87%8c%e5%85%8d%e8%b4%b9%e8%af%81%e4%b9%a6" &gt;启用阿里免费证书&lt;/a&gt;&lt;/p&gt;
 &lt;h4 id="安装certbot"&gt;安装Certbot
 &lt;/h4&gt;&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -17521,9 +17641,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/div&gt;&lt;h2 id="显示右侧工具栏分类目录"&gt;&lt;del&gt;显示右侧工具栏分类目录&lt;/del&gt;
 &lt;/h2&gt;&lt;p&gt;&lt;del&gt;参考 &lt;a class="link" href="https://github.com/CaiJimmy/hugo-theme-stack/issues/169" target="_blank" rel="noopener"
  &gt;https://github.com/CaiJimmy/hugo-theme-stack/issues/169&lt;/a&gt;&lt;/del&gt;&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;最新版主题已默认开启分类目录工具栏&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;最新版主题已默认开启分类目录工具栏&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;Create &lt;code&gt;categories.html&lt;/code&gt; in layouts/partials/widget&lt;/li&gt;
 &lt;/ol&gt;
@@ -17603,9 +17725,11 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;li&gt;Download categories.svg paste to &lt;code&gt;assets/icons&lt;/code&gt;, from &lt;a class="link" href="https://github.com/rmdhnreza/rmdhnreza.my.id/tree/main/assets/icons" target="_blank" rel="noopener"
  &gt;here&lt;/a&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：可以按需删除图标。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;：可以按需删除图标。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="文章底部添加在-github-上编辑此页"&gt;文章底部添加&lt;code&gt;在 GitHub 上编辑此页&lt;/code&gt;
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;拷贝主题目录&lt;code&gt;/layouts/partials/article/components/footer.html&lt;/code&gt;到网站根目录，修改为：&lt;/li&gt;
@@ -17724,14 +17848,16 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;li&gt;&lt;code&gt;lastmod&lt;/code&gt;：文章里 lastmod 字段&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;:defalut&lt;/code&gt;：默认时间&lt;/li&gt;
 &lt;/ul&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;里写：&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;config.toml&lt;/code&gt;里写：&lt;/p&gt;
 &lt;p&gt;[frontmatter]
 lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:fileModTime&amp;rdquo;, &amp;ldquo;:defalut&amp;rdquo;]&lt;/p&gt;
 &lt;p&gt;enableGitInfo = true&lt;/p&gt;
 &lt;p&gt;gitRepo = &amp;ldquo;&lt;a class="link" href="https://github.com/iwyang/hugo%22" target="_blank" rel="noopener"
  &gt;https://github.com/iwyang/hugo"&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;2.&lt;code&gt;.github/workflows/xx.yml&lt;/code&gt;：&lt;/p&gt;
 &lt;p&gt;yml 文件中添加 2 行设置当前环境时区&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -19364,10 +19490,12 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;更多查看：&lt;a class="link" href="https://bore.vip/archives/6c31209c/#%e5%bc%80%e6%9c%ba%e5%90%af%e5%8a%a8kkapi" &gt;开机启动 kkapi&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="chatgpt设置定时任务"&gt;ChatGPT设置定时任务
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：ChatGPT有时给出的答案可能是错误的，需要验证：&lt;a class="link" href="https://crontab.guru/" target="_blank" rel="noopener"
  &gt;crontab guru&lt;/a&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;strong&gt;1.提问：每隔2天运行一次&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;回答：要设置一个每隔2天运行一次的cron作业，你可以使用以下cron表达式：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -19598,9 +19726,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;上面代码中最后的&lt;code&gt;rm -f web_$(date +&amp;quot;%Y%m%d&amp;quot;).tar.gz&lt;/code&gt;，表示删除本地的临时文件。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;在&lt;strong&gt;Debian&lt;/strong&gt;下要讲&lt;code&gt;-a&lt;/code&gt; 改成 &lt;code&gt;-A&lt;/code&gt;（如下）&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意&lt;/strong&gt;在&lt;strong&gt;Debian&lt;/strong&gt;下要讲&lt;code&gt;-a&lt;/code&gt; 改成 &lt;code&gt;-A&lt;/code&gt;（如下）&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -20372,9 +20502,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="装-java-运行环境"&gt;装 Java 运行环境
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;若已经存在 Java 运行环境的可略过这一步。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;若已经存在 Java 运行环境的可略过这一步。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -20590,9 +20722,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h3&gt;&lt;p&gt;上面我们已经完成了 Halo 的整个配置和安装过程，接下来我们对其进行更完善的配置，比如：&lt;code&gt;需要开机自启？&lt;/code&gt;，&lt;code&gt;更简单的启动方式？&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;实现以上功能我们只需要新增一个配置文件即可，也就是使用 &lt;code&gt;Systemd&lt;/code&gt; 来完成这些工作。&lt;/p&gt;
 &lt;p&gt;1.退出 halo 账户，登录到 root 账户&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果当前就是 root 账户，请略过此步骤。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如果当前就是 root 账户，请略过此步骤。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -21605,9 +21739,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;certbot certonly --webroot -w /data/wwwroot/bore.vip -d bore.vip -m 455343442@qq.com --agree-tos
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -21904,9 +22040,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;certbot renew --dry-run
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：用上面的命令，不要用下面的命令。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;&lt;code&gt;letsencrypt renew --dry-run --agree-tos&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;如果一切正常，就可以编辑 crontab 定期运行以下命令：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -22003,9 +22141,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="版本升级"&gt;版本升级
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;我们假设你存放运行包的路径为 ~/app，运行包的文件名为 halo.jar，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;我们假设你存放运行包的路径为 ~/app，运行包的文件名为 halo.jar，且使用了 systemd 进行进程管理，如有不同，下列命令请按需修改。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol&gt;
 &lt;li&gt;停止正在运行的服务&lt;/li&gt;
 &lt;/ol&gt;
@@ -22030,9 +22170,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mv ~/app/halo.jar ~/app/halo.jar.archive
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;需要注意的是，.halo.archive 和 halo.jar.archive 文件名不一定要根据此文档命名，这里仅仅是个示例。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;需要注意的是，.halo.archive 和 halo.jar.archive 文件名不一定要根据此文档命名，这里仅仅是个示例。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;清空 leveldb 缓存（如果有使用 leveldb 作为缓存策略）&lt;/li&gt;
 &lt;/ol&gt;
@@ -22094,9 +22236,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;按照表单提示输入用户名和邮箱，点击 获取 按钮即可发送带有验证码的邮件。&lt;/li&gt;
 &lt;li&gt;按照表单填写验证码和新密码，点击重置密码即可。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;blockquote&gt;
-&lt;p&gt;需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 Got reset password code 关键字即可获取到验证码。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;需要注意的是，第 2 步中的获取验证码需要事先配置了 SMTP 发信设置，否则无法发送验证码。但你可以登录服务器查看 Halo 运行日志，搜索 Got reset password code 关键字即可获取到验证码。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="附修改-nginx-配置文件"&gt;附：修改 Nginx 配置文件
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;使用你熟悉的工具打开配置文件，此教程使用 vi。&lt;/li&gt;
@@ -22374,8 +22518,9 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
  &gt;4.windows 10 配置Java 环境变量&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://www.myfreax.com/how-to-set-or-change-timezone-on-centos-8/" target="_blank" rel="noopener"
  &gt;5.如何设置或更改系统时区在CentOS 8&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>GitHub+jsDelivr+PicGo+Typora打造免费高速图床&amp;&amp;npm图床</title><link>https://bore.vip/archives/407b2bc4/</link><pubDate>Tue, 21 Jul 2020 08:32:00 +0000</pubDate><guid>https://bore.vip/archives/407b2bc4/</guid><description>&lt;blockquote&gt;
-&lt;p&gt;2022.5.17 因为&lt;code&gt;jsdelivr&lt;/code&gt;不再稳定，此法已失效。现在还是利用&lt;code&gt;typecho&lt;/code&gt;将插入到文章的图片自动复制到&lt;code&gt;/source/img/&lt;/code&gt;文件夹下，方法如下:&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>GitHub+jsDelivr+PicGo+Typora打造免费高速图床&amp;&amp;npm图床</title><link>https://bore.vip/archives/407b2bc4/</link><pubDate>Tue, 21 Jul 2020 08:32:00 +0000</pubDate><guid>https://bore.vip/archives/407b2bc4/</guid><description>
+ &lt;blockquote&gt;
+ &lt;p&gt;2022.5.17 因为&lt;code&gt;jsdelivr&lt;/code&gt;不再稳定，此法已失效。现在还是利用&lt;code&gt;typecho&lt;/code&gt;将插入到文章的图片自动复制到&lt;code&gt;/source/img/&lt;/code&gt;文件夹下，方法如下:&lt;/p&gt;
 &lt;p&gt;1.在&lt;code&gt;typora&lt;/code&gt;菜单栏点击 &lt;code&gt;格式-&amp;gt;图像-&amp;gt;设置图片根目录&lt;/code&gt;，将&lt;code&gt;hexo/source&lt;/code&gt;作为其根目录即可。&lt;/p&gt;
 &lt;p&gt;2.首先在 hexo &amp;gt; source目录下建一个文件夹叫img，用来保存博客中的图片。然后打开Typora的 文件 &amp;gt; 偏好设置，进行如下设置。&lt;/p&gt;
 &lt;p&gt;&lt;img src="https://bore.vip/archives/407b2bc4/00.jpg"
@@ -22514,7 +22659,8 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;手动将图片文件夹放到上述文件夹下，然后在源码模式，一个个输入图片相对路径。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="配置github"&gt;配置github
 &lt;/h2&gt;&lt;h3 id="新建公共仓库"&gt;新建公共仓库
 &lt;/h3&gt;&lt;p&gt;新建一个公共仓库，例如我建的仓库地址：&lt;code&gt;https://github.com/iwyang/pic&lt;/code&gt;，注意一定要勾选&lt;strong&gt;使用Readme文件初始化这个仓库&lt;/strong&gt;，否则后面会无法上传图片。&lt;/p&gt;
@@ -22525,9 +22671,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;h3 id="安装picgo"&gt;安装PicGo
 &lt;/h3&gt;&lt;p&gt;访问&lt;a class="link" href="https://github.com/Molunerfinn/PicGo/releases" target="_blank" rel="noopener"
  &gt;PicGo Releases&lt;/a&gt;直接下载你的操作系统对应的安装包并完成安装。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;注：在安装的时候安装目录千万不能选C:\Program Files\下的任何地方，因为PicGo无法解析这一路径，如果你不知道安装在哪里的话，选择仅为我安装，否则在设置Typora时会出现错误。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;注：在安装的时候安装目录千万不能选C:\Program Files\下的任何地方，因为PicGo无法解析这一路径，如果你不知道安装在哪里的话，选择仅为我安装，否则在设置Typora时会出现错误。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h3 id="配置picgo"&gt;配置PicGo
 &lt;/h3&gt;&lt;p&gt;在PicGo设置里作如下修改：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -22701,9 +22849,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;https://cdn1.tianli0.top/npm/iwyang@1.0.2/speak/butterfly-ispeak-swiper.min.js
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;通过ping看出，&lt;code&gt;unpkg&lt;/code&gt;比&lt;code&gt;jsd&lt;/code&gt;要稳定、速度要更快，所以优先使用&lt;code&gt;unpkg&lt;/code&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;通过ping看出，&lt;code&gt;unpkg&lt;/code&gt;比&lt;code&gt;jsd&lt;/code&gt;要稳定、速度要更快，所以优先使用&lt;code&gt;unpkg&lt;/code&gt;&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;9.每次更新 npm 图床都需要先修改&lt;code&gt;[AssetsRepo]\package.json&lt;/code&gt;里的 &lt;code&gt;version&lt;/code&gt;, 也就是版本号。
 而 &lt;code&gt;npm version patch&lt;/code&gt; 即为更新 package.json 里的版本号的指令，效果是末尾版本号 + 1，例如 &lt;code&gt;0.0.1=&amp;gt;0.0.2&lt;/code&gt;、&lt;code&gt;1.1.3=&amp;gt;1.1.4&lt;/code&gt;。免去了打开 &lt;code&gt;package.json&lt;/code&gt; 再修改版本号的麻烦。（大版本更新还是需要手动改的）。更新 npm 图床务必要记得更新 &lt;code&gt;package.json&lt;/code&gt; 里的版本号！&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -22730,9 +22880,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="利用github-actions发布包"&gt;利用GitHub actions发布包
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;此部分内容还未测试&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;此部分内容还未测试&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;1.如果每次都要在本地进行 npm publish 的话，npm 的提交是整个包一起上传的，不存在增量更新，耗时不说，而且还往往需要架梯子才能正常上传。所以我们可以把它交给 github action 来完成。&lt;/p&gt;
 &lt;p&gt;在 &lt;a class="link" href="https://www.npmjs.com/" target="_blank" rel="noopener"
  &gt;npm 官网&lt;/a&gt; -&amp;gt;&lt;code&gt;头像&lt;/code&gt; -&amp;gt;&lt;code&gt;Access Tokens&lt;/code&gt;-&amp;gt;&lt;code&gt;Generate New Token&lt;/code&gt;, 勾选&lt;code&gt;Automation&lt;/code&gt;选项，&lt;code&gt;Token&lt;/code&gt; 只会显示这一次，之后如果忘记了就只能重新生成重新配置了。&lt;/p&gt;
@@ -22827,12 +22979,14 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git push
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;此处的四行指令顺序严格。
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;此处的四行指令顺序严格。
 每次更新 npm 图床都需要先修改&lt;code&gt;[AssetsRepo]\package.json&lt;/code&gt;里的 &lt;code&gt;version&lt;/code&gt;, 也就是版本号。
 而 &lt;code&gt;npm version patch&lt;/code&gt; 即为更新 package.json 里的版本号的指令，效果是末尾版本号 + 1，例如 &lt;code&gt;0.0.1=&amp;gt;0.0.2&lt;/code&gt;、&lt;code&gt;1.1.3=&amp;gt;1.1.4&lt;/code&gt;。免去了打开 &lt;code&gt;package.json&lt;/code&gt; 再修改版本号的麻烦。（大版本更新还是需要手动改的）
 更新 npm 图床务必要记得更新 &lt;code&gt;package.json&lt;/code&gt; 里的版本号！&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;5.总结：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;GitHub 图床仓库大小不能超过 1G。当仓库超过 1G 后会有人工审核仓库内容，如果发现用来做图床，轻则删库重则封号。&lt;/li&gt;
@@ -24608,9 +24762,11 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;2018/9/3 版本：BIOS Version: E5CN63WW,EC Version:E5IT23WW
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;code&gt;Fn+F2&lt;/code&gt;进入bios，&lt;code&gt;Fn+F12&lt;/code&gt;选择启动顺序。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;code&gt;Fn+F2&lt;/code&gt;进入bios，&lt;code&gt;Fn+F12&lt;/code&gt;选择启动顺序。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;1.打开联想服务的驱动与下载网页：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveDownloads_index.html" target="_blank" rel="noopener"
  &gt;查找驱动程序及工具软件&lt;/a&gt;，选择&lt;code&gt;在站内查找设备驱动&lt;/code&gt;， 输入你的电脑主机编号（可以在电脑背面的标签上找到，也可以安装联想电脑管家，会自动检测你的主机编号），确定后进入驱动下载界面。联想小新700（主机编号：R90JZRF4）直接点击：&lt;a class="link" href="https://newsupport.lenovo.com.cn/driveList.html?fromsource=driveList&amp;amp;selname=r90jzrf4" target="_blank" rel="noopener"
  &gt;小新 700-15ISK&lt;/a&gt;&lt;/p&gt;
@@ -25019,12 +25175,14 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;p&gt;&lt;code&gt;letsencrypt certonly --webroot -w /var/www/hexo -d iwyang.top&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;这样，在 /var/www/hexo 目录下创建临时文件 .well-known/acme-challenge ，通过这个文件来证明对域名 iwyang.top 的控制权，然后 Let’s Encrypt 验证服务器发出 HTTP 请求，验证每个请求的域的 DNS 解析，验证成功即颁发证书。&lt;/p&gt;
 &lt;p&gt;生成的 pem 和 key 在 &lt;code&gt;/etc/letsencrypt/live/&lt;/code&gt; 目录下&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;cert.pem 用户证书
+
+ &lt;blockquote&gt;
+ &lt;p&gt;cert.pem 用户证书
 chain.pem 中间证书
 fullchain.pem 证书链, chain.pem + cert.pem
 privkey.pem 证书私钥&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;`&lt;/p&gt;
 &lt;h4 id="自动续期"&gt;自动续期
 &lt;/h4&gt;&lt;p&gt;Let’s Encrypt 的证书有效期为 90 天，不过我们可以通过 crontab 定时运行命令更新证书。&lt;/p&gt;
@@ -25811,9 +25969,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;参考：&lt;a class="link" href="https://bore.vip/hugo-install-on-coding-and-gitee/#1-%E6%9C%AC%E5%9C%B0%E6%93%8D%E4%BD%9C" target="_blank" rel="noopener"
  &gt;hugo部署到coding&amp;amp;gitee-本地操作部分&lt;/a&gt;&lt;/p&gt;
 &lt;h2 id="服务器操作"&gt;服务器操作
-&lt;/h2&gt;&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;注意：这里是参照服务器搭建hexo，所以代码里hexo没有改成hugo，不过这没有任何影响&lt;/strong&gt;。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h2&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;&lt;strong&gt;注意：这里是参照服务器搭建hexo，所以代码里hexo没有改成hugo，不过这没有任何影响&lt;/strong&gt;。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;准备工作：如果服务器端口不是22，先要更改SSH端口，&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -26370,9 +26530,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h4 id="创建并配置站点"&gt;创建并配置站点
-&lt;/h4&gt;&lt;blockquote&gt;
-&lt;p&gt;以下命令均在&amp;rsquo;Git Bash&amp;rsquo;中运行&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h4&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;以下命令均在&amp;rsquo;Git Bash&amp;rsquo;中运行&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;进入你想存放 Hugo 网站文件夹的目录，执行以下命令：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -26647,9 +26809,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;blockquote&gt;
-&lt;p&gt;PS:这里&lt;code&gt;Git Bash&lt;/code&gt;开头会报错：&lt;code&gt;warning: LF will be replaced by CRLF&lt;/code&gt;，解决方法：在&lt;code&gt;git add .&lt;/code&gt;前面添加：&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS:这里&lt;code&gt;Git Bash&lt;/code&gt;开头会报错：&lt;code&gt;warning: LF will be replaced by CRLF&lt;/code&gt;，解决方法：在&lt;code&gt;git add .&lt;/code&gt;前面添加：&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -26727,15 +26891,19 @@ privkey.pem 证书私钥&lt;/p&gt;
  &gt;5.git运行突然提示 remote: error: The last gc run reported the following&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;</description></item><item><title>hexo通过git备份&amp;还原源码</title><link>https://bore.vip/archives/c5bb486d/</link><pubDate>Sun, 10 May 2020 15:09:25 +0000</pubDate><guid>https://bore.vip/archives/c5bb486d/</guid><description>&lt;p&gt;上回做过&lt;a class="link" href="https://bore.vip/archives/a0c508c1.html" target="_blank" rel="noopener"
  &gt;hexo迁移笔记&lt;/a&gt;，基本思路是利用U盘拷贝，或者网盘自动同步来备份，这回是通过git备份还原hexo源码。&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;Hexo博客存在一个问题：我们仅仅将博客的静态页面文件部署到了github远程仓库中，而我们的站点源文件仍在本地存储。如果存储站点源文件的电脑系统崩溃了，或者我们换了其他电脑，我们便无法实时更新博客了。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;!-- more --&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如果选择重新搭建站点，不仅过程繁琐，而且还需要大量时间安装依赖、主题配置、博客优化，极其麻烦。所以我们需要将站点必要文件也部署到远程仓库中。然而github的私有仓库是要收费的，如果用免费仓库，暴露hexo源码，尤其是配置文件是很不安全的，因为配置文件中可能含有你的隐私信息，比如各种秘钥等。所以有一个私人仓库是很有利的。你可以通过购买服务器搭建自己的git私人服务器并备份hexo源码。你也可以在coding等这样提供私人仓库的服务商进行hexo源码备份。
 我们采取的远程仓库部署策略是：使用coding的私人仓库，一个仓库两个分支。仓库即[&lt;a class="link" href="http://yourname.coding.me" target="_blank" rel="noopener"
  &gt;yourname.coding.me&lt;/a&gt;]，一个分支[master]用于托管演示页面，一个分支[backup]用于备份Hexo博客站点的必要文件。&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="备份"&gt;备份
 &lt;/h2&gt;&lt;p&gt;多机同步更新的前提：backup分支（也可以是其他名称的分支或者新的仓库）&lt;/p&gt;
 &lt;p&gt;Hexo博客站点的必要文件：&lt;/p&gt;
@@ -27404,9 +27572,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;template&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;blockquote&gt;
-&lt;p&gt;使用atom.xml会出现乱码，更多选项查看插件说明。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/div&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;使用atom.xml会出现乱码，更多选项查看插件说明。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://tding.top/archives/567debe0.html" target="_blank" rel="noopener"
  &gt;本博客当前使用的插件总结&lt;/a&gt;&lt;/p&gt;</description></item><item><title>hexo部署到centos服务器</title><link>https://bore.vip/archives/d693fd5d/</link><pubDate>Sat, 25 Apr 2020 10:37:25 +0000</pubDate><guid>https://bore.vip/archives/d693fd5d/</guid><description>&lt;p&gt;服务器环境：Centos 8 x64&lt;/p&gt;
@@ -28091,9 +28261,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;h3 id="github-pages-对自定义域上-https"&gt;Github Pages 对自定义域上 Https
 &lt;/h3&gt;&lt;p&gt;在GitHub pages绑定域名，&lt;strong&gt;这里暂时不要勾选SSL&lt;/strong&gt;。&lt;/p&gt;
 &lt;h3 id="解决cname反复被删问题"&gt;解决CNAME反复被删问题
-&lt;/h3&gt;&lt;blockquote&gt;
-&lt;p&gt;一般我们会将Hexo博客搭建到Github上，如果在Github上为其配置一个自定义的域名时，会自动在项目仓库根目录下新添加一个&lt;code&gt;CNAME&lt;/code&gt;文件。但是这里有个问题，如果将Hexo博客重新部署一遍后，Github仓库里的这个&lt;code&gt;CNAME&lt;/code&gt;文件就会消失掉，又需要重新配置一遍。&lt;/p&gt;
-&lt;/blockquote&gt;
+&lt;/h3&gt;
+ &lt;blockquote&gt;
+ &lt;p&gt;一般我们会将Hexo博客搭建到Github上，如果在Github上为其配置一个自定义的域名时，会自动在项目仓库根目录下新添加一个&lt;code&gt;CNAME&lt;/code&gt;文件。但是这里有个问题，如果将Hexo博客重新部署一遍后，Github仓库里的这个&lt;code&gt;CNAME&lt;/code&gt;文件就会消失掉，又需要重新配置一遍。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;**其实这里有个技巧，我们可以将需要上传部署到Github的文件都放在&lt;code&gt;source&lt;/code&gt;文件夹里，例如&lt;code&gt;CNAME&lt;/code&gt;文件、&lt;code&gt;favicon.ico&lt;/code&gt;、或者其他的图片等等，这样在执行&lt;code&gt;hexo d&lt;/code&gt;这个命令之后，这些文件就不会被删除了。 **&lt;/p&gt;
 &lt;p&gt;然后在&lt;strong&gt;站点配置文件&lt;/strong&gt;&lt;code&gt;_config.yml&lt;/code&gt;中添加&lt;code&gt;skip_render&lt;/code&gt;配置：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -28123,9 +28295,11 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;h2 id="部署到-gitee"&gt;部署到 gitee
 &lt;/h2&gt;&lt;p&gt;和部署到coding大同小异，但需要注意以下几点：&lt;/p&gt;
 &lt;p&gt;免费版gitee page不支持绑定域名、不支持自动部署，并且上传了代码服务里才有gitee pages选项。还有关于首页地址见官方文档：&lt;/p&gt;
-&lt;blockquote&gt;
-&lt;p&gt;如何创建一个首页访问地址不带二级目录的 pages，如ipvb.gitee.io？&lt;/p&gt;
-&lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;如何创建一个首页访问地址不带二级目录的 pages，如ipvb.gitee.io？&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;p&gt;答：如果你想你的 pages 首页访问地址不带二级目录，如ipvb.gitee.io，你需要建立一个与自己个性地址同名的仓库，如 &lt;a class="link" href="https://gitee.com/ipvb" target="_blank" rel="noopener"
  &gt;https://gitee.com/ipvb&lt;/a&gt; 这个用户，想要创建一个自己的站点，但不想以子目录的方式访问，想以ipvb.gitee.io直接访问，那么他就可以创建一个名字为ipvb的仓库 &lt;a class="link" href="https://gitee.com/ipvb/ipvb" target="_blank" rel="noopener"
  &gt;https://gitee.com/ipvb/ipvb&lt;/a&gt; 部署完成后，就可以以 &lt;a class="link" href="https://ipvb.gitee.io" target="_blank" rel="noopener"
