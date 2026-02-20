@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 15:52:01 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 20 Feb 2026 12:17:50 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;参考chatgpt&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;在你的 fork 仓库中新建：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -1245,9 +1245,9 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;p&gt;3.在拉取请求底部附近，单击 &lt;strong&gt;Resolve conflicts（解决冲突）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;**提示：**如果停用 **Resolve conflicts（解决冲突）**按钮，则拉取请求的合并冲突过于复杂而无法在 GitHub Enterprise Server 上解决，或站点管理员已禁用仓库之间拉取请求的冲突编辑器。 必须使用备用 Git 客户端或在命令行上使用 Git 解决合并冲突。 更多信息请参阅“&lt;a class="link" href="https://docs.github.com/cn/enterprise-server@2.21/articles/resolving-a-merge-conflict-using-the-command-line" target="_blank" rel="noopener"
  &gt;使用命令行解决合并冲突&lt;/a&gt;”。&lt;/p&gt;
-&lt;p&gt;4.决定您是否想只保持分支的更改、只保持其他分支的更改，还是进行全新的更改（可能包含两个分支的更改）。 删除冲突标记 &lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code&gt;, &lt;code&gt;=======&lt;/code&gt;, &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; 并在最终合并中进行所需的更改。&lt;/p&gt;
+&lt;p&gt;4.决定您是否想只保持分支的更改、只保持其他分支的更改，还是进行全新的更改（可能包含两个分支的更改）。 删除冲突标记 &lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code&gt;, &lt;code&gt;=======&lt;/code&gt;, &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; 并在最终合并中进行所需的更改（&lt;strong&gt;让AI帮你解决冲突&lt;/strong&gt;）。&lt;/p&gt;
 &lt;p&gt;5.如果文件中有多个合并冲突，请向下滚动到下一组冲突标记，然后重复步骤 4 和步骤 5 以解决合并冲突。&lt;/p&gt;
-&lt;p&gt;6.解决文件中的所有冲突后，单击 &lt;strong&gt;Mark as resolved（标记为已解决）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;6.解决文件中的所有冲突后（&lt;strong&gt;让AI帮你解决冲突&lt;/strong&gt;），单击 &lt;strong&gt;Mark as resolved（标记为已解决）&lt;/strong&gt;。&lt;/p&gt;
 &lt;p&gt;7.如果您有多个冲突文件，请在“冲突文件”下的页面左侧选择您要编辑的下一个文件，并重复步骤 4 到 7，直到您解决所有拉取请求的合并冲突。&lt;/p&gt;
 &lt;p&gt;8.解决所有合并冲突后，单击 &lt;strong&gt;Commit merge（提交合并）&lt;/strong&gt;。 这会将整个基本分支合并到头部分支。&lt;/p&gt;
 &lt;p&gt;9.如果出现提示，请审查您要提交的分支。 如果要提交到此分支，请单击 &lt;strong&gt;I understand, update *BRANCH*（我已了解，请更新 BRANCH）&lt;/strong&gt;。&lt;/p&gt;
