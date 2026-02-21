@@ -12,8 +12,8 @@ TYPORA_PATH="D:\Program Files\Typora\Typora.exe"
 
 echo -e "${CYAN}💬 开始新建一条说说...${NC}"
 
-# 1. 提示用户输入说说名称
-echo -en "${YELLOW}👉 请输入说说标题/文件名 (例如: my-status): ${NC}"
+# 1. 提示用户输入说说名称 (这里作为文件夹名称)
+echo -en "${YELLOW}👉 请输入说说文件夹名称 (例如: my-status): ${NC}"
 read SHUO_NAME
 
 # 检查输入是否为空
@@ -23,8 +23,8 @@ if [ -z "$SHUO_NAME" ]; then
     exit 1
 fi
 
-# 2. 构建路径 (说说通常直接使用 .md 文件)
-RELATIVE_PATH="shuoshuo/${SHUO_NAME}.md"
+# 2. 构建路径 (修改为使用 Page Bundle 模式：生成 index.md)
+RELATIVE_PATH="shuoshuo/${SHUO_NAME}/index.md"
 FULL_PATH="content/${RELATIVE_PATH}"
 
 # 3. 执行 Hugo 命令新建说说
