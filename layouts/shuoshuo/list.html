@@ -96,6 +96,17 @@
                 opacity: 0.7 !important;
                 text-decoration: underline;
             }
+
+            /* =========================================
+               新增：6. 标签悬停样式
+               ========================================= */
+            .shuoshuo-tag {
+                transition: color 0.3s ease, opacity 0.3s ease;
+            }
+            .shuoshuo-tag:hover {
+                color: #1e90ff !important;
+                opacity: 0.8 !important;
+            }
         </style>
 
         <div class="shuoshuo-list" id="masonry-container" style="opacity: 0; transition: opacity 0.4s ease;">
@@ -129,22 +140,18 @@
                 const leftCol = document.getElementById('waterfall-left');
                 const rightCol = document.getElementById('waterfall-right');
                 
-                // 获取所有按时间线生成好的卡片
                 const masonryItems = Array.from(leftCol.querySelectorAll('.shuoshuo-card'));
 
                 function applyMasonryLayout() {
-                    // 如果是手机端（屏幕小于 768px），不需要分两列，全堆在左列即可
                     if (window.innerWidth <= 768) {
                         masonryItems.forEach(item => leftCol.appendChild(item));
                         masonryContainer.style.opacity = 1;
                         return;
                     }
 
-                    // PC端重新分配：清空两列
                     leftCol.innerHTML = '';
                     rightCol.innerHTML = '';
                     
-                    // 遍历每一张卡片，哪一列比较矮，就塞进哪一列
                     masonryItems.forEach(item => {
                         if (leftCol.offsetHeight <= rightCol.offsetHeight) {
                             leftCol.appendChild(item);
@@ -153,17 +160,12 @@
                         }
                     });
                     
-                    // 分配完毕，显示容器
                     masonryContainer.style.opacity = 1;
                 }
 
-                // 初始化排版
                 applyMasonryLayout();
-
-                // 监听窗口大小改变（比如从PC缩放到手机，重新排版）
                 window.addEventListener('resize', applyMasonryLayout);
 
-                // 图片加载是个异步过程，图片加载完成会撑开卡片高度，所以必须等图片加载完再精准计算一次
                 const images = masonryContainer.querySelectorAll('img');
                 let loadedCount = 0;
                 if (images.length > 0) {
@@ -296,7 +298,6 @@
             {{ $updated := $updateTime.Unix }}
             {{ $diff := sub $updated $created }}
 
-            {{/* 设置为 30分钟 (1800s) 容错 */}}
             {{ if gt $diff 1800 }}
                 <span class="shuoshuo-updated-time meta-item" 
                       datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -311,11 +312,24 @@
         {{ .Content }}
     </div>
     
+    {{/* =========================================
+         新增：标签区域 (紧贴正文下方)
+         ========================================= */}}
+    {{ if .Params.tags }}
+    <div class="shuoshuo-tags meta-wrapper" style="margin-top: 15px !important; margin-bottom: 5px !important; gap: 10px !important;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; color: var(--card-text-color-secondary);"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
+        {{ range .Params.tags }}
+            <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}/" class="meta-item shuoshuo-tag" title="查看标签: {{ . }}">
+                <span>#{{ . }}</span>
+            </a>
+        {{ end }}
+    </div>
+    {{ end }}
+
     <div class="shuoshuo-footer-info">
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 15px !important;">
             
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                {{/* 左下角：编辑链接 */}}
                 <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
                    target="_blank" 
                    rel="noopener noreferrer" 
@@ -326,9 +340,7 @@
                 </a>
             {{ end }}
 
-            {{/* 右下角：Git Hash */}}
             {{- if $gitHashShort -}}
-                {{/* 竖线分隔符 */}}
                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
                     <span class="separator">|</span>
                 {{ end }}

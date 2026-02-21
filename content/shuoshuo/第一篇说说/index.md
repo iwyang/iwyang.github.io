@@ -1,6 +1,7 @@
 ---
 date: 2026-02-09T17:07:45+08:00
 # layout: "shuoshuo" # 如果你在 content/shuoshuo/_index.md 里写过布局，这里可以不写
+tags: ["折腾"]
 ---
 
 

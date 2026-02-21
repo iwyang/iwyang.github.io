@@ -9,6 +9,6 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-tags: [""]
+tags: ["日常"]
 ---
 今天一定要在11点钟之前睡觉

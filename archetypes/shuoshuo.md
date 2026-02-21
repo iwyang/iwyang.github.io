@@ -1,6 +1,15 @@
 ---
+title: "{{ .File.ContentBaseName | title }}"
+slug: "{{ substr (md5 (printf "%s%s" .Date (replace .TranslationBaseName "-" " " | title))) 4 8 }}"
+description: ""
 date: {{ .Date }}
-# layout: "shuoshuo" # 如果你在 content/shuoshuo/_index.md 里写过布局，这里可以不写
+lastmod: {{ .Date }}
+draft: false
+toc: true
+weight: false
+image: ""
+categories: [""]
+tags: [""]
 ---
 
- 
+  

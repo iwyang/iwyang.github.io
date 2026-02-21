@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-tags: [""]
+tags: ["日常"]
 ---
 不喜欢人多的地方，只喜欢一个人待着。
 >还有至少3小时才能回家😳，再也不来了，还是在家舒服。
