@@ -152,11 +152,13 @@
              3. 渲染顶部导航栏 (按条数降序排列)
              ========================================= */}}
         <div class="shuoshuo-tags-nav">
+            {{/* 新增：计算所有说说的总条数 */}}
+            {{ $totalShuo := len (where .Site.RegularPages "Section" "shuoshuo") }}
             <a href="/shuoshuo/" class="{{ if not $.Data.Term }}active{{ end }}">
-                🏷️ 全部
+                🏷️ 全部 <span class="tag-count">{{ $totalShuo }}</span>
             </a>
             
-            {{/* 核心改动：按 count 降序(desc) 排序 */}}
+            {{/* 按 count 降序(desc) 排序 */}}
             {{ $sortedTags := sort ($.Scratch.Get "shuoTagsSlice") "count" "desc" }}
             
             {{ range $sortedTags }}
