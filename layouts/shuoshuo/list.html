@@ -42,6 +42,37 @@
             }
 
             /* =========================================
+               新增：说说图片网格布局 (永远九宫格: 一行3张)
+               ========================================= */
+            .shuoshuo-image-gallery {
+                display: grid;
+                grid-template-columns: repeat(3, 1fr); /* 强制永远 3 列 */
+                gap: 8px;
+                margin-top: 12px;
+                margin-bottom: 12px;
+            }
+
+            .shuoshuo-image-gallery .shuoshuo-image {
+                display: block !important;
+                aspect-ratio: 1 / 1; /* 正方形裁剪 */
+                overflow: hidden;
+                border-radius: 8px;
+                text-decoration: none;
+            }
+            .shuoshuo-image-gallery .shuoshuo-image img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+                margin: 0 !important;
+                display: block;
+                border-radius: 8px;
+                transition: transform 0.3s ease;
+            }
+            .shuoshuo-image-gallery .shuoshuo-image:hover img {
+                transform: scale(1.03); /* 轻微放大交互 */
+            }
+
+            /* =========================================
                统一元数据样式 (说说卡片)
                ========================================= */
             .meta-wrapper {
@@ -200,36 +231,64 @@
                 const masonryItems = Array.from(leftCol.querySelectorAll('.shuoshuo-card'));
 
                 /* =========================================
-                   1. 先处理图片结构和相册绑定 (修复抖动的核心)
+                   1. 先处理图片结构、相册绑定和九宫格布局
                    ========================================= */
                 const shuoshuoCards = document.querySelectorAll('.shuoshuo-card');
                 
                 shuoshuoCards.forEach((card, index) => {
                     const galleryId = 'gallery-' + index;
                     const contentImages = card.querySelectorAll('.shuoshuo-content img');
-                    
+                    if (contentImages.length === 0) return;
+
+                    let galleries = new Map();
+
                     contentImages.forEach(img => {
                         let fileName = img.src.split('/').pop().split('?')[0].split('#')[0];
                         try { fileName = decodeURIComponent(fileName); } catch (e) {}
                         fileName = fileName || '图片';
 
+                        let wrapperA;
                         const parent = img.parentElement;
                         if (parent.tagName === 'A') {
-                            parent.setAttribute('data-fancybox', galleryId);
-                            if (!parent.hasAttribute('data-caption')) {
-                                parent.setAttribute('data-caption', img.alt || img.title || fileName);
+                            wrapperA = parent;
+                            wrapperA.setAttribute('data-fancybox', galleryId);
+                            if (!wrapperA.hasAttribute('data-caption')) {
+                                wrapperA.setAttribute('data-caption', img.alt || img.title || fileName);
                             }
-                            parent.classList.add('shuoshuo-image');
-                            parent.style.display = 'block';
+                            wrapperA.classList.add('shuoshuo-image');
                         } else {
-                            const a = document.createElement('a');
-                            a.href = img.src;
-                            a.setAttribute('data-fancybox', galleryId);
-                            a.setAttribute('data-caption', img.alt || img.title || fileName);
-                            a.classList.add('shuoshuo-image');
-                            a.style.display = 'block';
-                            img.parentNode.insertBefore(a, img);
-                            a.appendChild(img);
+                            wrapperA = document.createElement('a');
+                            wrapperA.href = img.src;
+                            wrapperA.setAttribute('data-fancybox', galleryId);
+                            wrapperA.setAttribute('data-caption', img.alt || img.title || fileName);
+                            wrapperA.classList.add('shuoshuo-image');
+                            img.parentNode.insertBefore(wrapperA, img);
+                            wrapperA.appendChild(img);
+                        }
+                        
+                        // 收集同一父级(通常是 <p>)下的图片，用于构建网格容器
+                        const imgParent = wrapperA.parentElement;
+                        if (!galleries.has(imgParent)) {
+                            galleries.set(imgParent, []);
+                        }
+                        galleries.get(imgParent).push(wrapperA);
+                    });
+
+                    // 将同组的图片用网格容器包裹起来
+                    galleries.forEach((wrappers, parent) => {
+                        const galleryDiv = document.createElement('div');
+                        galleryDiv.className = 'shuoshuo-image-gallery'; // 统一使用同一个 class
+                        
+                        // 插入到第一张图片的前面
+                        parent.insertBefore(galleryDiv, wrappers[0]);
+
+                        // 将所有 a 标签移入网格容器
+                        wrappers.forEach(w => galleryDiv.appendChild(w));
+
+                        // 如果原父容器被清空了(只剩空白符)，直接用 gallery 替换它，保持排版整洁
+                        if (parent.tagName === 'P' && parent.textContent.trim() === '') {
+                            parent.parentNode.insertBefore(galleryDiv, parent);
+                            parent.remove();
                         }
                     });
                 });
