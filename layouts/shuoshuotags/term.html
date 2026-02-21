@@ -229,34 +229,56 @@
                     });
                 } else { masonryContainer.style.opacity = 1; }
 
-                const contentImages = document.querySelectorAll('.shuoshuo-content img');
-                contentImages.forEach(img => {
-                    let fileName = img.src.split('/').pop().split('?')[0].split('#')[0];
-                    try { fileName = decodeURIComponent(fileName); } catch (e) {}
-                    fileName = fileName || '图片';
+                /* =========================================
+                   核心修复：按说说卡片独立划分相册 ID
+                   ========================================= */
+                const shuoshuoCards = document.querySelectorAll('.shuoshuo-card');
+                
+                shuoshuoCards.forEach((card, index) => {
+                    // 为当前这条说说生成唯一的相册 ID
+                    const galleryId = 'gallery-' + index;
+                    const contentImages = card.querySelectorAll('.shuoshuo-content img');
+                    
+                    contentImages.forEach(img => {
+                        let fileName = img.src.split('/').pop().split('?')[0].split('#')[0];
+                        try { fileName = decodeURIComponent(fileName); } catch (e) {}
+                        fileName = fileName || '图片';
 
-                    const parent = img.parentElement;
-                    if (parent.tagName === 'A') {
-                        if (!parent.hasAttribute('data-fancybox')) {
-                            parent.setAttribute('data-fancybox', 'gallery');
-                            parent.setAttribute('data-caption', img.alt || img.title || fileName);
+                        const parent = img.parentElement;
+                        if (parent.tagName === 'A') {
+                            // 直接覆盖或设置 data-fancybox 属性为当前相册 ID
+                            parent.setAttribute('data-fancybox', galleryId);
+                            if (!parent.hasAttribute('data-caption')) {
+                                parent.setAttribute('data-caption', img.alt || img.title || fileName);
+                            }
                             parent.classList.add('shuoshuo-image');
                             parent.style.display = 'block';
+                        } else {
+                            const a = document.createElement('a');
+                            a.href = img.src;
+                            a.setAttribute('data-fancybox', galleryId);
+                            a.setAttribute('data-caption', img.alt || img.title || fileName);
+                            a.classList.add('shuoshuo-image');
+                            a.style.display = 'block';
+                            img.parentNode.insertBefore(a, img);
+                            a.appendChild(img);
                         }
-                    } else {
-                        const a = document.createElement('a');
-                        a.href = img.src;
-                        a.setAttribute('data-fancybox', 'gallery');
-                        a.setAttribute('data-caption', img.alt || img.title || fileName);
-                        a.classList.add('shuoshuo-image');
-                        a.style.display = 'block';
-                        img.parentNode.insertBefore(a, img);
-                        a.appendChild(img);
-                    }
+                    });
                 });
 
                 if (typeof Fancybox !== "undefined") {
-                    Fancybox.bind('[data-fancybox="gallery"]', { Hash: false, Thumbs: { autoStart: false }, Toolbar: { display: { left: ["infobar"], middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], right: ["slideshow", "download", "close"], }, }, });
+                    // 修改绑定逻辑：匹配所有以 gallery- 开头的 data-fancybox
+                    Fancybox.bind('[data-fancybox^="gallery-"]', { 
+                        Hash: false, 
+                        Thumbs: { autoStart: false }, 
+                        Toolbar: { 
+                            display: { 
+                                left: ["infobar"], 
+                                middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], 
+                                right: ["slideshow", "download", "close"], 
+                            }, 
+                        }, 
+                    });
                 }
 
                 const now = new Date();
