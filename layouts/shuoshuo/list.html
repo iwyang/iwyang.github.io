@@ -61,7 +61,7 @@
                 color: inherit !important;              
             }
 
-            /* 4. 内部文字标签归零 (双重保险，防止子元素继承错误字号) */
+            /* 4. 内部文字标签归零 */
             .meta-item span, 
             .meta-item time, 
             .shuoshuo-updated-time span,
@@ -98,24 +98,16 @@
             }
         </style>
 
-        <div class="shuoshuo-list">
+        <div class="shuoshuo-list" id="masonry-container" style="opacity: 0; transition: opacity 0.4s ease;">
             {{ $paginator := .Paginate .Pages }}
             
-            <div class="waterfall-column">
-                {{ range $index, $element := $paginator.Pages }}
-                    {{ if eq (mod $index 2) 0 }}
-                        {{ partial "shuoshuo-card-logic" . }}
-                    {{ end }}
+            <div class="waterfall-column" id="waterfall-left">
+                {{ range $paginator.Pages }}
+                    {{ partial "shuoshuo-card-logic" . }}
                 {{ end }}
             </div>
 
-            <div class="waterfall-column">
-                {{ range $index, $element := $paginator.Pages }}
-                    {{ if eq (mod $index 2) 1 }}
-                        {{ partial "shuoshuo-card-logic" . }}
-                    {{ end }}
-                {{ end }}
-            </div>
+            <div class="waterfall-column" id="waterfall-right"></div>
         </div>
 
         <div class="shuoshuo-pagination">
@@ -124,8 +116,112 @@
 
         {{ partial "footer/footer.html" . }}
 
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
+        <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
+
         <script>
             document.addEventListener('DOMContentLoaded', () => {
+                
+                /* ========================================================
+                   1. 真正的瀑布流计算逻辑 (解决时间线错位问题)
+                   ======================================================== */
+                const masonryContainer = document.getElementById('masonry-container');
+                const leftCol = document.getElementById('waterfall-left');
+                const rightCol = document.getElementById('waterfall-right');
+                
+                // 获取所有按时间线生成好的卡片
+                const masonryItems = Array.from(leftCol.querySelectorAll('.shuoshuo-card'));
+
+                function applyMasonryLayout() {
+                    // 如果是手机端（屏幕小于 768px），不需要分两列，全堆在左列即可
+                    if (window.innerWidth <= 768) {
+                        masonryItems.forEach(item => leftCol.appendChild(item));
+                        masonryContainer.style.opacity = 1;
+                        return;
+                    }
+
+                    // PC端重新分配：清空两列
+                    leftCol.innerHTML = '';
+                    rightCol.innerHTML = '';
+                    
+                    // 遍历每一张卡片，哪一列比较矮，就塞进哪一列
+                    masonryItems.forEach(item => {
+                        if (leftCol.offsetHeight <= rightCol.offsetHeight) {
+                            leftCol.appendChild(item);
+                        } else {
+                            rightCol.appendChild(item);
+                        }
+                    });
+                    
+                    // 分配完毕，显示容器
+                    masonryContainer.style.opacity = 1;
+                }
+
+                // 初始化排版
+                applyMasonryLayout();
+
+                // 监听窗口大小改变（比如从PC缩放到手机，重新排版）
+                window.addEventListener('resize', applyMasonryLayout);
+
+                // 图片加载是个异步过程，图片加载完成会撑开卡片高度，所以必须等图片加载完再精准计算一次
+                const images = masonryContainer.querySelectorAll('img');
+                let loadedCount = 0;
+                if (images.length > 0) {
+                    images.forEach(img => {
+                        if (img.complete) {
+                            loadedCount++;
+                            if (loadedCount === images.length) applyMasonryLayout();
+                        } else {
+                            img.addEventListener('load', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
+                            img.addEventListener('error', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
+                        }
+                    });
+                } else {
+                    masonryContainer.style.opacity = 1;
+                }
+
+                /* ========================================================
+                   2. Markdown 正文图片自动套用 Fancybox 灯箱
+                   ======================================================== */
+                const contentImages = document.querySelectorAll('.shuoshuo-content img');
+                contentImages.forEach(img => {
+                    const parent = img.parentElement;
+                    if (parent.tagName === 'A') {
+                        if (!parent.hasAttribute('data-fancybox')) {
+                            parent.setAttribute('data-fancybox', 'gallery');
+                            parent.setAttribute('data-caption', img.alt || img.title || '说说图片');
+                            parent.classList.add('shuoshuo-image');
+                            parent.style.display = 'block';
+                        }
+                    } else {
+                        const a = document.createElement('a');
+                        a.href = img.src;
+                        a.setAttribute('data-fancybox', 'gallery');
+                        a.setAttribute('data-caption', img.alt || img.title || '说说图片');
+                        a.classList.add('shuoshuo-image');
+                        a.style.display = 'block';
+                        img.parentNode.insertBefore(a, img);
+                        a.appendChild(img);
+                    }
+                });
+
+                if (typeof Fancybox !== "undefined") {
+                    Fancybox.bind('[data-fancybox="gallery"]', {
+                        Hash: false, 
+                        Thumbs: { autoStart: false },
+                        Toolbar: {
+                            display: {
+                                left: ["infobar"],
+                                middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"],
+                                right: ["slideshow", "download", "close"],
+                            },
+                        },
+                    });
+                }
+
+                /* ========================================================
+                   3. 相对时间计算逻辑 (几天前、几小时前)
+                   ======================================================== */
                 const now = new Date();
                 const timeElements = document.querySelectorAll('.shuoshuo-time, .shuoshuo-updated-time');
                 
@@ -148,7 +244,6 @@
                         el.setAttribute('title', prefix + exactTime);
                     }
 
-                    // 前端JS只负责渲染相对时间文字，不控制显隐逻辑
                     textSpan.innerText = getRelativeTime(diff);
                 }
 
@@ -201,7 +296,7 @@
             {{ $updated := $updateTime.Unix }}
             {{ $diff := sub $updated $created }}
 
-            {{/* 【修改点】设置为 30分钟 (1800s) 容错 */}}
+            {{/* 设置为 30分钟 (1800s) 容错 */}}
             {{ if gt $diff 1800 }}
                 <span class="shuoshuo-updated-time meta-item" 
                       datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
@@ -216,14 +311,6 @@
         {{ .Content }}
     </div>
     
-    {{ with .Resources.GetMatch "cover.*" }}
-    <div class="shuoshuo-image photo-gallery">
-        <a href="{{ .RelPermalink }}" target="_blank" class="gallery-link">
-            <img src="{{ .RelPermalink }}" loading="lazy" alt="说说图片" style="border-radius: 8px; margin-top: 10px; width: 100%; height: auto; object-fit: cover;">
-        </a>
-    </div>
-    {{ end }}
-
     <div class="shuoshuo-footer-info">
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 15px !important;">
             
