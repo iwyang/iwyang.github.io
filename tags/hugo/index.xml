@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 18 Feb 2026 18:49:55 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub Actions利用FTP&amp;&amp;rsync自动部署hugo-hexo到Centos 8</title><link>https://bore.vip/archives/c7ccd27d/</link><pubDate>Sun, 15 Aug 2021 08:39:34 +0000</pubDate><guid>https://bore.vip/archives/c7ccd27d/</guid><description>&lt;h2 id="rsync同步"&gt;rsync同步
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 21 Feb 2026 14:34:22 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>GitHub Actions利用FTP&amp;&amp;rsync自动部署hugo-hexo到Centos 8</title><link>https://bore.vip/archives/c7ccd27d/</link><pubDate>Sun, 15 Aug 2021 08:39:34 +0000</pubDate><guid>https://bore.vip/archives/c7ccd27d/</guid><description>&lt;h2 id="rsync同步"&gt;rsync同步
 &lt;/h2&gt;&lt;p&gt;这是一份&lt;strong&gt;没有任何遗漏、从零开始&lt;/strong&gt;的终极部署指南。为了彻底解决你之前遇到的权限（Permission denied）和命令缺失（rsync not found）问题，请严格按照这 5 个阶段操作。&lt;/p&gt;
 &lt;p&gt;我们采用**“重置一切”**的策略，确保环境绝对干净。&lt;/p&gt;
 &lt;hr&gt;
@@ -4239,7 +4239,8 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="添加音乐短代码"&gt;添加音乐短代码
-&lt;/h2&gt;&lt;p&gt;1.网站根目录新建文件&lt;code&gt;layouts\shortcodes\music.html&lt;/code&gt;&lt;/p&gt;
+&lt;/h2&gt;&lt;h3 id="网易音乐"&gt;网易音乐
+&lt;/h3&gt;&lt;p&gt;1.网站根目录新建文件&lt;code&gt;layouts\shortcodes\music.html&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -4371,6 +4372,101 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;p&gt;&lt;strong&gt;autoplay&lt;/strong&gt; &lt;em&gt;[可选]&lt;/em&gt;&lt;/p&gt;
 &lt;p&gt;是否自动播放音乐, 默认值是 &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt;
 &lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="本地音乐"&gt;本地音乐
+&lt;/h3&gt;&lt;p&gt;1.新建layouts/_shortcodes/audio.html&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;span class="lnt"&gt;16
+&lt;/span&gt;&lt;span class="lnt"&gt;17
+&lt;/span&gt;&lt;span class="lnt"&gt;18
+&lt;/span&gt;&lt;span class="lnt"&gt;19
+&lt;/span&gt;&lt;span class="lnt"&gt;20
+&lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
+&lt;/span&gt;&lt;span class="lnt"&gt;23
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-gdscript3" data-lang="gdscript3"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Get&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Get&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;title&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;default&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt; &lt;span class="err"&gt;核心：尝试从当前文章资源中匹配该文件&lt;/span&gt; &lt;span class="o"&gt;*/&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;audio&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Page&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;Resources&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GetMatch&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;audio&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;audio&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;RelPermalink&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="k"&gt;else&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;/*&lt;/span&gt; &lt;span class="err"&gt;如果找不到，则视为&lt;/span&gt; &lt;span class="k"&gt;static&lt;/span&gt; &lt;span class="err"&gt;目录下的绝对路径&lt;/span&gt; &lt;span class="o"&gt;*/&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;src&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt; &lt;span class="o"&gt;|&lt;/span&gt; &lt;span class="n"&gt;safeURL&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;{{&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt; &lt;span class="n"&gt;end&lt;/span&gt; &lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="p"&gt;}}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt; &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;local-audio-wrapper&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;margin: 20px 0; background: var(--card-background); padding: 15px; border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt; &lt;span class="k"&gt;class&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;audio-title&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;font-size: 14px; color: var(--card-text-color-main); margin-bottom: 10px; font-weight: bold; display: flex; align-items: center; gap: 8px;&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;svg&lt;/span&gt; &lt;span class="n"&gt;xmlns&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;http://www.w3.org/2000/svg&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;16&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;height&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;16&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;viewBox&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;0 0 24 24&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;fill&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;none&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;currentColor&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;width&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;2&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linecap&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;round&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;stroke&lt;/span&gt;&lt;span class="o"&gt;-&lt;/span&gt;&lt;span class="n"&gt;linejoin&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;round&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt; &lt;span class="n"&gt;d&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;M9 18V5l12-2v13&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt; &lt;span class="n"&gt;cx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;6&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;cy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;18&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt; &lt;span class="n"&gt;cx&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;18&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;cy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;16&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;r&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;3&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;circle&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;svg&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;span&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="p"&gt;{{&lt;/span&gt; &lt;span class="o"&gt;$&lt;/span&gt;&lt;span class="n"&gt;title&lt;/span&gt; &lt;span class="p"&gt;}}&lt;/span&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;span&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;audio&lt;/span&gt; &lt;span class="n"&gt;controls&lt;/span&gt; &lt;span class="nb"&gt;preload&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;style&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;width: 100%; height: 40px;&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;&lt;/span&gt;&lt;span class="n"&gt;source&lt;/span&gt; &lt;span class="n"&gt;src&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;{{ $src }}&amp;#34;&lt;/span&gt; &lt;span class="n"&gt;type&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;audio/mpeg&amp;#34;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;audio&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="o"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="n"&gt;div&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;2.使用方法&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;
+&lt;p&gt;基础用法（自动匹配文件名）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;div class="local-audio-wrapper" style="margin: 20px 0; background: var(--card-background); padding: 15px; border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);"&gt;
+ &lt;div class="audio-title" style="font-size: 14px; color: var(--card-text-color-main); margin-bottom: 10px; font-weight: bold; display: flex; align-items: center; gap: 8px;"&gt;
+ &lt;svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="M9 18V5l12-2v13"&gt;&lt;/path&gt;&lt;circle cx="6" cy="18" r="3"&gt;&lt;/circle&gt;&lt;circle cx="18" cy="16" r="3"&gt;&lt;/circle&gt;&lt;/svg&gt;
+ &lt;span&gt;hefeng.mp3&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;audio controls preload="metadata" style="width: 100%; height: 40px;"&gt;
+ &lt;source src="hefeng.mp3" type="audio/mpeg"&gt;
+ &lt;/audio&gt;
+ &lt;/div&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;进阶用法（自定义显示标题）：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-markdown" data-lang="markdown"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;div class="local-audio-wrapper" style="margin: 20px 0; background: var(--card-background); padding: 15px; border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);"&gt;
+ &lt;div class="audio-title" style="font-size: 14px; color: var(--card-text-color-main); margin-bottom: 10px; font-weight: bold; display: flex; align-items: center; gap: 8px;"&gt;
+ &lt;svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"&gt;&lt;path d="M9 18V5l12-2v13"&gt;&lt;/path&gt;&lt;circle cx="6" cy="18" r="3"&gt;&lt;/circle&gt;&lt;circle cx="18" cy="16" r="3"&gt;&lt;/circle&gt;&lt;/svg&gt;
+ &lt;span&gt;我的收藏 - 和风物语&lt;/span&gt;
+ &lt;/div&gt;
+ &lt;audio controls preload="metadata" style="width: 100%; height: 40px;"&gt;
+ &lt;source src="" type="audio/mpeg"&gt;
+ &lt;/audio&gt;
+ &lt;/div&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h2 id="更改分类标签页面显示中文"&gt;更改分类、标签、页面显示中文
 &lt;/h2&gt;&lt;ol&gt;
