@@ -124,12 +124,13 @@ a, button, input, textarea, select,
 /* =========================================
    场景 A：只有 1 张图时（保持真实比例，居中）
    ========================================= */
-.shuoshuo-content p:has(.shuoshuo-image:only-child) {
+.shuoshuo-content p:has(.shuoshuo-image:only-child),
+.shuoshuo-content p:has(img):not(:has(img ~ img)) {
     display: flex;
     justify-content: center;
     margin-top: 10px;
 
-    .shuoshuo-image {
+    .shuoshuo-image, > img {
         margin-top: 0 !important;
         display: block !important;
         width: fit-content;
@@ -138,30 +139,31 @@ a, button, input, textarea, select,
         overflow: hidden;
         cursor: zoom-in;
         line-height: 0;
-
-        img {
-            transition: transform 0.4s ease;
-            display: block; 
-            max-width: 100%; 
-            max-height: 350px; /* 限制最高，防止单张竖图拉垮瀑布流 */
-            width: auto;       
-            height: auto;      
-        }
-        
-        &:hover img { transform: scale(1.03); }
     }
+
+    img {
+        transition: transform 0.4s ease;
+        display: block; 
+        max-width: 100%; 
+        max-height: 350px; 
+        width: auto;       
+        height: auto;      
+    }
+    
+    &:hover img { transform: scale(1.03); }
 }
 
 /* =========================================
    场景 B：有 2 张及以上图片时（开启朋友圈九宫格模式）
    ========================================= */
-.shuoshuo-content p:has(.shuoshuo-image:not(:only-child)) {
+.shuoshuo-content p:has(.shuoshuo-image:not(:only-child)),
+.shuoshuo-content p:has(img ~ img) {
     display: grid;
     grid-template-columns: repeat(2, 1fr); /* 强制 2 列等宽并排 */
     gap: 10px; /* 图片之间的间距 */
     margin-top: 10px;
 
-    .shuoshuo-image {
+    .shuoshuo-image, > img {
         margin-top: 0 !important;
         display: block !important;
         width: 100%;
@@ -170,18 +172,18 @@ a, button, input, textarea, select,
         overflow: hidden;
         cursor: zoom-in;
         line-height: 0;
-
-        img {
-            transition: transform 0.4s ease;
-            display: block; 
-            width: 100%; 
-            height: 100%;
-            object-fit: cover; /* 居中提取画面核心，不拉伸挤压 */
-            object-position: center; 
-        }
-        
-        &:hover img { transform: scale(1.03); }
     }
+
+    img {
+        transition: transform 0.4s ease;
+        display: block; 
+        width: 100%; 
+        height: 100%;
+        object-fit: cover; /* 居中提取画面核心，不拉伸挤压 */
+        object-position: center; 
+    }
+    
+    &:hover img { transform: scale(1.03); }
 }
 
 /* --- 底部信息 --- */

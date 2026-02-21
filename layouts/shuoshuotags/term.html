@@ -199,43 +199,12 @@
                 const rightCol = document.getElementById('waterfall-right');
                 const masonryItems = Array.from(leftCol.querySelectorAll('.shuoshuo-card'));
 
-                function applyMasonryLayout() {
-                    if (window.innerWidth <= 768) {
-                        masonryItems.forEach(item => leftCol.appendChild(item));
-                        masonryContainer.style.opacity = 1;
-                        return;
-                    }
-                    leftCol.innerHTML = '';
-                    rightCol.innerHTML = '';
-                    masonryItems.forEach(item => {
-                        if (leftCol.offsetHeight <= rightCol.offsetHeight) leftCol.appendChild(item);
-                        else rightCol.appendChild(item);
-                    });
-                    masonryContainer.style.opacity = 1;
-                }
-
-                applyMasonryLayout();
-                window.addEventListener('resize', applyMasonryLayout);
-
-                const images = masonryContainer.querySelectorAll('img');
-                let loadedCount = 0;
-                if (images.length > 0) {
-                    images.forEach(img => {
-                        if (img.complete) { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); } 
-                        else {
-                            img.addEventListener('load', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
-                            img.addEventListener('error', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
-                        }
-                    });
-                } else { masonryContainer.style.opacity = 1; }
-
                 /* =========================================
-                   核心修复：按说说卡片独立划分相册 ID
+                   1. 先处理图片结构和相册绑定 (修复抖动的核心)
                    ========================================= */
                 const shuoshuoCards = document.querySelectorAll('.shuoshuo-card');
                 
                 shuoshuoCards.forEach((card, index) => {
-                    // 为当前这条说说生成唯一的相册 ID
                     const galleryId = 'gallery-' + index;
                     const contentImages = card.querySelectorAll('.shuoshuo-content img');
                     
@@ -246,7 +215,6 @@
 
                         const parent = img.parentElement;
                         if (parent.tagName === 'A') {
-                            // 直接覆盖或设置 data-fancybox 属性为当前相册 ID
                             parent.setAttribute('data-fancybox', galleryId);
                             if (!parent.hasAttribute('data-caption')) {
                                 parent.setAttribute('data-caption', img.alt || img.title || fileName);
@@ -267,7 +235,6 @@
                 });
 
                 if (typeof Fancybox !== "undefined") {
-                    // 修改绑定逻辑：匹配所有以 gallery- 开头的 data-fancybox
                     Fancybox.bind('[data-fancybox^="gallery-"]', { 
                         Hash: false, 
                         Thumbs: { autoStart: false }, 
@@ -281,6 +248,45 @@
                     });
                 }
 
+                /* =========================================
+                   2. 结构就位后，再计算瀑布流布局
+                   ========================================= */
+                function applyMasonryLayout() {
+                    if (window.innerWidth <= 768) {
+                        masonryItems.forEach(item => leftCol.appendChild(item));
+                        masonryContainer.style.opacity = 1;
+                        return;
+                    }
+                    leftCol.innerHTML = '';
+                    rightCol.innerHTML = '';
+                    masonryItems.forEach(item => {
+                        if (leftCol.offsetHeight <= rightCol.offsetHeight) leftCol.appendChild(item);
+                        else rightCol.appendChild(item);
+                    });
+                    masonryContainer.style.opacity = 1;
+                }
+
+                applyMasonryLayout();
+                window.addEventListener('resize', applyMasonryLayout);
+
+                /* =========================================
+                   3. 监听图片加载，修正高度
+                   ========================================= */
+                const images = masonryContainer.querySelectorAll('img');
+                let loadedCount = 0;
+                if (images.length > 0) {
+                    images.forEach(img => {
+                        if (img.complete) { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); } 
+                        else {
+                            img.addEventListener('load', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
+                            img.addEventListener('error', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
+                        }
+                    });
+                } else { masonryContainer.style.opacity = 1; }
+
+                /* =========================================
+                   4. 处理相对时间
+                   ========================================= */
                 const now = new Date();
                 const timeElements = document.querySelectorAll('.shuoshuo-time, .shuoshuo-updated-time');
                 timeElements.forEach(el => updateTimeDisplay(el, now));
