@@ -34,3 +34,8 @@ lastmod = [":git", "lastmod", ":fileModTime", ":default"]
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
+	
+[taxonomies]
+  category = "categories"
+  tag = "tags"
+  shuoshuotag = "shuoshuotags" # 这一行是新增的专属标签系统	

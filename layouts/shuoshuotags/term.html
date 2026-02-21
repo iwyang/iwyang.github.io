@@ -9,15 +9,15 @@
                 display: flex;
                 flex-wrap: wrap;
                 gap: 12px;
-                margin-top: 10px;
-                margin-bottom: 30px;
+                margin-top: 0px;      
+                margin-bottom: 15px;  
             }
             .shuoshuo-tags-nav a {
                 display: inline-flex;
                 align-items: center;
                 padding: 6px 16px;
                 border-radius: 20px;
-                background: var(--card-background); /* 适配夜间模式卡片底色 */
+                background: var(--card-background); 
                 color: var(--card-text-color-secondary);
                 font-size: 14px;
                 text-decoration: none;
@@ -121,11 +121,11 @@
         </style>
 
         {{/* =========================================
-             1. 智能计算说说专属标签数量 
+             1. 智能计算说说专属标签数量 (数据源改为 shuoshuotags)
              ========================================= */}}
         {{ $.Scratch.Set "shuoTagsCount" dict }}
         {{ range where .Site.RegularPages "Section" "shuoshuo" }}
-            {{ range .Params.tags }}
+            {{ range .Params.shuoshuotags }}
                 {{ $t := . | lower }}
                 {{ $dict := $.Scratch.Get "shuoTagsCount" }}
                 {{ if isset $dict $t }}
@@ -140,29 +140,27 @@
              2. 将字典转为可排序的数组 (Slice)
              ========================================= */}}
         {{ $.Scratch.Set "shuoTagsSlice" slice }}
-        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+        {{ range $name, $taxonomy := .Site.Taxonomies.shuoshuotags }}
             {{ $shuoCount := index ($.Scratch.Get "shuoTagsCount") ($name | lower) }}
             {{ if $shuoCount }}
-                {{/* 将标签名和对应的数量存入数组 */}}
                 {{ $.Scratch.Add "shuoTagsSlice" (dict "name" $name "count" $shuoCount) }}
             {{ end }}
         {{ end }}
 
         {{/* =========================================
-             3. 渲染顶部导航栏 (按条数降序排列)
+             3. 渲染顶部导航栏 
              ========================================= */}}
         <div class="shuoshuo-tags-nav">
-            {{/* 新增：计算所有说说的总条数 */}}
             {{ $totalShuo := len (where .Site.RegularPages "Section" "shuoshuo") }}
             <a href="/shuoshuo/" class="{{ if not $.Data.Term }}active{{ end }}">
                 🏷️ 全部 <span class="tag-count">{{ $totalShuo }}</span>
             </a>
             
-            {{/* 按 count 降序(desc) 排序 */}}
             {{ $sortedTags := sort ($.Scratch.Get "shuoTagsSlice") "count" "desc" }}
             
             {{ range $sortedTags }}
-                <a href="{{ "/tags/" | relLangURL }}{{ .name | urlize }}/" 
+                {{/* 路由路径更新为 shuoshuotags */}}
+                <a href="{{ "/shuoshuotags/" | relLangURL }}{{ .name | urlize }}/" 
                    class="{{ if eq ($.Data.Term | default "") (.name | lower) }}active{{ end }}">
                     #{{ .name }} <span class="tag-count">{{ .count }}</span>
                 </a>
@@ -233,11 +231,15 @@
 
                 const contentImages = document.querySelectorAll('.shuoshuo-content img');
                 contentImages.forEach(img => {
+                    let fileName = img.src.split('/').pop().split('?')[0].split('#')[0];
+                    try { fileName = decodeURIComponent(fileName); } catch (e) {}
+                    fileName = fileName || '图片';
+
                     const parent = img.parentElement;
                     if (parent.tagName === 'A') {
                         if (!parent.hasAttribute('data-fancybox')) {
                             parent.setAttribute('data-fancybox', 'gallery');
-                            parent.setAttribute('data-caption', img.alt || img.title || '说说图片');
+                            parent.setAttribute('data-caption', img.alt || img.title || fileName);
                             parent.classList.add('shuoshuo-image');
                             parent.style.display = 'block';
                         }
@@ -245,7 +247,7 @@
                         const a = document.createElement('a');
                         a.href = img.src;
                         a.setAttribute('data-fancybox', 'gallery');
-                        a.setAttribute('data-caption', img.alt || img.title || '说说图片');
+                        a.setAttribute('data-caption', img.alt || img.title || fileName);
                         a.classList.add('shuoshuo-image');
                         a.style.display = 'block';
                         img.parentNode.insertBefore(a, img);
@@ -332,11 +334,11 @@
         {{ .Content }}
     </div>
     
-    {{ if .Params.tags }}
+    {{ if .Params.shuoshuotags }}
     <div class="shuoshuo-tags meta-wrapper" style="margin-top: 15px !important; margin-bottom: 5px !important; gap: 10px !important;">
         <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="width: 14px; height: 14px; color: var(--card-text-color-secondary);"><path d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"></path><line x1="7" y1="7" x2="7.01" y2="7"></line></svg>
-        {{ range .Params.tags }}
-            <a href="{{ "tags/" | relLangURL }}{{ . | urlize }}/" class="meta-item shuoshuo-tag" title="查看标签: {{ . }}">
+        {{ range .Params.shuoshuotags }}
+            <a href="{{ "shuoshuotags/" | relLangURL }}{{ . | urlize }}/" class="meta-item shuoshuo-tag" title="查看标签: {{ . }}">
                 <span>#{{ . }}</span>
             </a>
         {{ end }}

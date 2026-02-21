@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-tags: ["追番"]
+shuoshuotags: ["追番"]
 ---
 
 折腾完博客后，又要开始追番了，看完凡人不想看仙逆了，感觉两者是一种类型的。

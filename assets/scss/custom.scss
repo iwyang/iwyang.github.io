@@ -225,7 +225,7 @@ a, button, input, textarea, select,
 
 
 /* =================================================================
-   3. 首页通知条 (Notice Board)
+   3. 首页通知条 (Notice Board) - ★修复区域★
    ================================================================= */
 .notice-board-container {
     background: var(--card-background);
@@ -256,10 +256,48 @@ a, button, input, textarea, select,
     svg { width: 24px; height: 24px; }
 }
 
-.swiper.myNoticeSwiper { flex: 1; height: 54px !important; }
+.swiper.myNoticeSwiper { flex: 1; height: 54px !important; overflow: hidden; }
 .notice-slide { height: 54px !important; display: flex !important; align-items: center !important; width: 100% !important; outline: none; }
-.notice-link { display: flex !important; align-items: center !important; height: 100% !important; width: 100%; text-decoration: none; color: var(--card-text-color-main); cursor: inherit; outline: none; }
-.notice-text { font-size: 16px !important; line-height: 1.4; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; width: 100%; display: block; margin-top: 1px; }
+
+/* 关键修复 1：整体改为 Flex 容器 */
+.notice-link { 
+    display: flex !important; 
+    align-items: center !important; 
+    height: 100% !important; 
+    width: 100%; 
+    text-decoration: none; 
+    color: var(--card-text-color-main); 
+    cursor: inherit; 
+    outline: none;
+    overflow: hidden;
+}
+
+/* 关键修复 2：允许文字缩小截断，但绝不占满 100% 宽度挤走图标 */
+.notice-text { 
+    font-size: 16px !important; 
+    line-height: 1.4; 
+    white-space: nowrap; 
+    overflow: hidden; 
+    text-overflow: ellipsis; 
+    flex: 0 1 auto;  /* 重要：文字过长时可收缩截断 */
+}
+
+/* 关键修复 3：保证图标无论如何都不会被缩小或挤出可视范围 */
+.notice-media-icons {
+    display: inline-flex;
+    align-items: center;
+    flex: 0 0 auto;  /* 重要：绝对禁止缩小 */
+    gap: 6px;
+    margin-left: 6px;
+    color: var(--card-text-color-secondary); 
+}
+.notice-media-icons svg {
+    width: 1.25em;
+    height: 1.25em;
+    vertical-align: middle;
+    fill: currentColor;
+    opacity: 0.9;
+}
 
 /* 动态箭头 */
 @keyframes arrow-move { 0%, 100% { transform: translateX(0); opacity: 0.9; } 50% { transform: translateX(4px); opacity: 1; } }

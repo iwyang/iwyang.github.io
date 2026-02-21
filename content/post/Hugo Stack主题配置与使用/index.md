@@ -950,6 +950,8 @@ hasCJKLanguage: true
 
 ## 添加音乐短代码
 
+### 网易音乐
+
 1.网站根目录新建文件`layouts\shortcodes\music.html`
 
 ```html
@@ -1024,6 +1026,49 @@ hasCJKLanguage: true
 - **autoplay** *[可选]*
 
   是否自动播放音乐, 默认值是 `false`.
+
+### 本地音乐
+
+1.新建layouts/_shortcodes/audio.html
+
+```
+{{- $name := .Get 0 -}}
+{{- $title := .Get "title" | default $name -}}
+
+{{/* 核心：尝试从当前文章资源中匹配该文件 */}}
+{{- $audio := .Page.Resources.GetMatch $name -}}
+{{- $src := "" -}}
+
+{{- if $audio -}}
+    {{- $src = $audio.RelPermalink -}}
+{{- else -}}
+    {{/* 如果找不到，则视为 static 目录下的绝对路径 */}}
+    {{- $src = $name | safeURL -}}
+{{- end -}}
+
+<div class="local-audio-wrapper" style="margin: 20px 0; background: var(--card-background); padding: 15px; border-radius: var(--card-border-radius); box-shadow: var(--shadow-l2);">
+    <div class="audio-title" style="font-size: 14px; color: var(--card-text-color-main); margin-bottom: 10px; font-weight: bold; display: flex; align-items: center; gap: 8px;">
+        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"></path><circle cx="6" cy="18" r="3"></circle><circle cx="18" cy="16" r="3"></circle></svg>
+        <span>{{ $title }}</span>
+    </div>
+    <audio controls preload="metadata" style="width: 100%; height: 40px;">
+        <source src="{{ $src }}" type="audio/mpeg">
+        </audio>
+</div>
+```
+
+2.使用方法
+
++ 基础用法（自动匹配文件名）：
+  ```markdown
+  {{< audio "hefeng.mp3" >}}
+  ```
+
++ 进阶用法（自定义显示标题）：
+
+  ```markdown
+  {{< audio src="hefeng.mp3" title="我的收藏 - 和风物语" >}}
+  ```
 
 ## 更改分类、标签、页面显示中文
 
