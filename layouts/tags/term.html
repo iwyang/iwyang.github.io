@@ -1,14 +1,48 @@
 {{ define "main" }}
     <main class="main list-container">
-        <div class="tag-header" style="text-align: center; margin: 20px 0 30px 0;">
-            <h1 style="font-size: 22px; color: var(--card-text-color-main); margin: 0;">
-                🏷️ 标签: <span style="color: #1e90ff;">#{{ .Title }}</span>
-            </h1>
-        </div>
 
         <style>
             /* =========================================
-               统一元数据样式 (说说标签归档页)
+               新增：说说专属标签导航栏样式
+               ========================================= */
+            .shuoshuo-tags-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 12px;
+                margin-top: 10px;
+                margin-bottom: 30px;
+            }
+            .shuoshuo-tags-nav a {
+                display: inline-flex;
+                align-items: center;
+                padding: 6px 16px;
+                border-radius: 20px;
+                background: var(--card-background); /* 适配夜间模式卡片底色 */
+                color: var(--card-text-color-secondary);
+                font-size: 14px;
+                text-decoration: none;
+                transition: all 0.3s ease;
+                box-shadow: 0 2px 4px rgba(0,0,0,0.04);
+                border: 1px solid transparent;
+            }
+            .shuoshuo-tags-nav a:hover {
+                color: #1e90ff;
+                border-color: #1e90ff;
+            }
+            .shuoshuo-tags-nav a.active {
+                background: #1e90ff;
+                color: #fff !important;
+                border-color: #1e90ff;
+                box-shadow: 0 4px 8px rgba(30,144,255,0.3);
+            }
+            .shuoshuo-tags-nav a .tag-count {
+                margin-left: 4px;
+                font-size: 12px;
+                opacity: 0.9;
+            }
+
+            /* =========================================
+               统一元数据样式 (说说卡片)
                ========================================= */
             .meta-wrapper {
                 display: flex !important;
@@ -86,6 +120,56 @@
             }
         </style>
 
+        {{/* =========================================
+             1. 智能计算说说专属标签数量 
+             ========================================= */}}
+        {{ $.Scratch.Set "shuoTagsCount" dict }}
+        {{ range where .Site.RegularPages "Section" "shuoshuo" }}
+            {{ range .Params.tags }}
+                {{ $t := . | lower }}
+                {{ $dict := $.Scratch.Get "shuoTagsCount" }}
+                {{ if isset $dict $t }}
+                    {{ $.Scratch.SetInMap "shuoTagsCount" $t (add (index $dict $t) 1) }}
+                {{ else }}
+                    {{ $.Scratch.SetInMap "shuoTagsCount" $t 1 }}
+                {{ end }}
+            {{ end }}
+        {{ end }}
+
+        {{/* =========================================
+             2. 将字典转为可排序的数组 (Slice)
+             ========================================= */}}
+        {{ $.Scratch.Set "shuoTagsSlice" slice }}
+        {{ range $name, $taxonomy := .Site.Taxonomies.tags }}
+            {{ $shuoCount := index ($.Scratch.Get "shuoTagsCount") ($name | lower) }}
+            {{ if $shuoCount }}
+                {{/* 将标签名和对应的数量存入数组 */}}
+                {{ $.Scratch.Add "shuoTagsSlice" (dict "name" $name "count" $shuoCount) }}
+            {{ end }}
+        {{ end }}
+
+        {{/* =========================================
+             3. 渲染顶部导航栏 (按条数降序排列)
+             ========================================= */}}
+        <div class="shuoshuo-tags-nav">
+            <a href="/shuoshuo/" class="{{ if not $.Data.Term }}active{{ end }}">
+                🏷️ 全部
+            </a>
+            
+            {{/* 核心改动：按 count 降序(desc) 排序 */}}
+            {{ $sortedTags := sort ($.Scratch.Get "shuoTagsSlice") "count" "desc" }}
+            
+            {{ range $sortedTags }}
+                <a href="{{ "/tags/" | relLangURL }}{{ .name | urlize }}/" 
+                   class="{{ if eq ($.Data.Term | default "") (.name | lower) }}active{{ end }}">
+                    #{{ .name }} <span class="tag-count">{{ .count }}</span>
+                </a>
+            {{ end }}
+        </div>
+
+        {{/* =========================================
+             4. 瀑布流容器及渲染
+             ========================================= */}}
         <div class="shuoshuo-list" id="masonry-container" style="opacity: 0; transition: opacity 0.4s ease;">
             {{ $paginator := .Paginate .Pages }}
             
@@ -104,6 +188,7 @@
 
         {{ partial "footer/footer.html" . }}
 
+        {{/* 灯箱及脚本 */}}
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.css" />
         <script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0/dist/fancybox/fancybox.umd.js"></script>
 
@@ -112,7 +197,6 @@
                 const masonryContainer = document.getElementById('masonry-container');
                 const leftCol = document.getElementById('waterfall-left');
                 const rightCol = document.getElementById('waterfall-right');
-                
                 const masonryItems = Array.from(leftCol.querySelectorAll('.shuoshuo-card'));
 
                 function applyMasonryLayout() {
@@ -121,18 +205,12 @@
                         masonryContainer.style.opacity = 1;
                         return;
                     }
-
                     leftCol.innerHTML = '';
                     rightCol.innerHTML = '';
-                    
                     masonryItems.forEach(item => {
-                        if (leftCol.offsetHeight <= rightCol.offsetHeight) {
-                            leftCol.appendChild(item);
-                        } else {
-                            rightCol.appendChild(item);
-                        }
+                        if (leftCol.offsetHeight <= rightCol.offsetHeight) leftCol.appendChild(item);
+                        else rightCol.appendChild(item);
                     });
-                    
                     masonryContainer.style.opacity = 1;
                 }
 
@@ -143,17 +221,13 @@
                 let loadedCount = 0;
                 if (images.length > 0) {
                     images.forEach(img => {
-                        if (img.complete) {
-                            loadedCount++;
-                            if (loadedCount === images.length) applyMasonryLayout();
-                        } else {
+                        if (img.complete) { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); } 
+                        else {
                             img.addEventListener('load', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
                             img.addEventListener('error', () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); });
                         }
                     });
-                } else {
-                    masonryContainer.style.opacity = 1;
-                }
+                } else { masonryContainer.style.opacity = 1; }
 
                 const contentImages = document.querySelectorAll('.shuoshuo-content img');
                 contentImages.forEach(img => {
@@ -178,41 +252,24 @@
                 });
 
                 if (typeof Fancybox !== "undefined") {
-                    Fancybox.bind('[data-fancybox="gallery"]', {
-                        Hash: false, 
-                        Thumbs: { autoStart: false },
-                        Toolbar: {
-                            display: {
-                                left: ["infobar"],
-                                middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"],
-                                right: ["slideshow", "download", "close"],
-                            },
-                        },
-                    });
+                    Fancybox.bind('[data-fancybox="gallery"]', { Hash: false, Thumbs: { autoStart: false }, Toolbar: { display: { left: ["infobar"], middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], right: ["slideshow", "download", "close"], }, }, });
                 }
 
                 const now = new Date();
                 const timeElements = document.querySelectorAll('.shuoshuo-time, .shuoshuo-updated-time');
-                
-                timeElements.forEach(el => {
-                    updateTimeDisplay(el, now);
-                });
+                timeElements.forEach(el => updateTimeDisplay(el, now));
 
                 function updateTimeDisplay(el, now) {
                     const dateStr = el.getAttribute('datetime');
                     if (!dateStr) return;
-                    
                     const date = new Date(dateStr);
                     const diff = (now - date) / 1000;
-                    
                     const textSpan = el.querySelector('span') || el;
-
                     const exactTime = formatExactTime(date);
                     if (!el.hasAttribute('title')) {
                         const prefix = el.classList.contains('shuoshuo-updated-time') ? "更新于 " : "发布于 ";
                         el.setAttribute('title', prefix + exactTime);
                     }
-
                     textSpan.innerText = getRelativeTime(diff);
                 }
 
@@ -226,12 +283,12 @@
                 }
 
                 function getRelativeTime(diff) {
-                    if (diff < 60) { return '刚刚'; }
-                    else if (diff < 3600) { return Math.floor(diff / 60) + ' 分钟前'; }
-                    else if (diff < 86400) { return Math.floor(diff / 3600) + ' 小时前'; }
-                    else if (diff < 2592000) { return Math.floor(diff / 86400) + ' 天前'; }
-                    else if (diff < 31536000) { return Math.floor(diff / 2592000) + ' 个月前'; }
-                    else { return Math.floor(diff / 31536000) + ' 年前'; }
+                    if (diff < 60) return '刚刚';
+                    else if (diff < 3600) return Math.floor(diff / 60) + ' 分钟前';
+                    else if (diff < 86400) return Math.floor(diff / 3600) + ' 小时前';
+                    else if (diff < 2592000) return Math.floor(diff / 86400) + ' 天前';
+                    else if (diff < 31536000) return Math.floor(diff / 2592000) + ' 个月前';
+                    else return Math.floor(diff / 31536000) + ' 年前';
                 }
             });
         </script>
@@ -253,19 +310,15 @@
 <article class="shuoshuo-card">
     <div class="shuoshuo-header">
         <div class="shuoshuo-meta meta-wrapper">
-            
             <time class="shuoshuo-time meta-item" datetime="{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}">
                 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                 <span>{{ .Date.Format "2006-01-02" }}</span>
             </time>
-
             {{ $created := .Date.Unix }}
             {{ $updated := $updateTime.Unix }}
             {{ $diff := sub $updated $created }}
-
             {{ if gt $diff 1800 }}
-                <span class="shuoshuo-updated-time meta-item" 
-                      datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
+                <span class="shuoshuo-updated-time meta-item" datetime="{{ $updateTime.Format "2006-01-02T15:04:05Z07:00" }}">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"></path><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"></path></svg>
                     <span>{{ $updateTime.Format "2006-01-02" }}</span>
                 </span>
@@ -290,32 +343,20 @@
 
     <div class="shuoshuo-footer-info">
         <div class="shuoshuo-edit-link meta-wrapper" style="gap: 15px !important;">
-            
             {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
-                <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   class="meta-item"
-                   title="前往 GitHub 编辑此页">
+                <a href="https://github.com/iwyang/iwyang.github.io/edit/develop/content/{{ replace .File.Path "\\" "/" }}" target="_blank" rel="noopener noreferrer" class="meta-item" title="前往 GitHub 编辑此页">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     <span>编辑此页</span>
                 </a>
             {{ end }}
-
             {{- if $gitHashShort -}}
                 {{ if and (.Site.Params.article.edit.enabled) (not (eq .Params.edit false)) }}
                     <span class="separator">|</span>
                 {{ end }}
-
-                <a class="meta-item git-hash-text"
-                   href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" 
-                   target="_blank" 
-                   rel="noopener noreferrer" 
-                   title="Commit Hash: {{ $gitHashShort }}">
+                <a class="meta-item git-hash-text" href="https://github.com/iwyang/iwyang.github.io/commit/{{ $gitHashFull }}" target="_blank" rel="noopener noreferrer" title="Commit Hash: {{ $gitHashShort }}">
                    #{{ $gitHashShort }}
                 </a>
             {{- end -}}
-
         </div>
     </div>
 </article>
