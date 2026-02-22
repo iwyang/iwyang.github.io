@@ -2,7 +2,7 @@
     <main class="main list-container">
 
         {{/* =========================================
-             1. 智能计算说说专属标签数量 (使用 Hugo 原生高性能 API)
+             1. 智能计算说说专属标签数量
              ========================================= */}}
         <div class="shuoshuo-tags-nav">
             {{ $totalShuo := len (where .Site.RegularPages "Section" "shuoshuo") }}
@@ -107,29 +107,32 @@
                             (leftCol.offsetHeight <= rightCol.offsetHeight ? leftCol : rightCol).appendChild(item);
                         });
                     }
-                    masonryContainer.style.opacity = 1;
+                    masonryContainer.style.opacity = 1; // 只要执行过一次，立刻解除白屏
                 }
 
-                // 添加防抖(Debounce)优化性能
-                let resizeTimer;
-                window.addEventListener('resize', () => {
-                    clearTimeout(resizeTimer);
-                    resizeTimer = setTimeout(applyMasonryLayout, 150);
-                });
+                // 使用防抖(Debounce)优化性能，合并频繁的重排请求
+                let layoutTimer;
+                const debouncedLayout = () => {
+                    clearTimeout(layoutTimer);
+                    layoutTimer = setTimeout(applyMasonryLayout, 150);
+                };
 
-                /* 3. 监听图片加载 */
+                window.addEventListener('resize', debouncedLayout);
+
+                /* 3. 核心修复：立即显示 + 监听图片动态重排 */
+                // 第一步：不等待图片，立即展示文字和框架！解决白屏问题。
+                applyMasonryLayout();
+
+                // 第二步：监听图片加载。图片撑开容器时，动态调整瀑布流防止长短不齐。
                 const images = masonryContainer.querySelectorAll('img');
-                let loadedCount = 0;
                 if (images.length > 0) {
                     images.forEach(img => {
-                        if (img.complete) { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); } 
-                        else {
-                            const checkLoad = () => { loadedCount++; if (loadedCount === images.length) applyMasonryLayout(); };
-                            img.addEventListener('load', checkLoad);
-                            img.addEventListener('error', checkLoad);
+                        if (!img.complete) {
+                            img.addEventListener('load', debouncedLayout);
+                            img.addEventListener('error', debouncedLayout);
                         }
                     });
-                } else { applyMasonryLayout(); }
+                }
 
                 /* 4. 处理相对时间 */
                 const now = new Date();
