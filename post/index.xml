@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 23 Feb 2026 16:47:05 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Mon, 23 Feb 2026 18:52:39 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装-docker"&gt;安装 Docker
 &lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -19291,84 +19291,71 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;p&gt;添加说说：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/shuoshuo/list.html&lt;/p&gt;
 &lt;p&gt;首页轮播：https://github.com/iwyang/iwyang.github.io/blob/develop/layouts/home.html&lt;/p&gt;
 &lt;p&gt;CSS：https://github.com/iwyang/iwyang.github.io/blob/develop/assets/scss/custom.scss&lt;/p&gt;
-&lt;h2 id="安卓发布说说"&gt;安卓发布说说
-&lt;/h2&gt;&lt;p&gt;没问题！经历了前面的踩坑，你现在已经掌握了底层原理。这次我们把所有经验融会贯通，制定一份**“绝对避坑、零报错、完美中文显示”**的终极保姆级执行手册。&lt;/p&gt;
+&lt;p&gt;这份“终极保姆级手册”已经非常完善了！结合我们最后确认的**“Token 常量化安全方案”&lt;strong&gt;以及&lt;/strong&gt;“区分变量类型”**的细节，我为你对第二步和第三步进行了优化修改。&lt;/p&gt;
+&lt;p&gt;这样修改后，既保证了你以后操作不用每次都粘贴 Token，又防止了 &lt;code&gt;DIR_NAME&lt;/code&gt; 错误弹出输入框，彻底实现了“一劳永逸”。&lt;/p&gt;
+&lt;p&gt;以下是为你修改和升级后的**“安卓发布说说终极版执行手册”**，你可以直接把这份文档存进你的博客或者备忘录里：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id="安卓一键发布-hugo-说说-http-shortcuts-终极版"&gt;安卓一键发布 Hugo 说说 (HTTP Shortcuts 终极版)
+&lt;/h2&gt;&lt;p&gt;经历了乱码、路径报错和 Token 安全问题，这份手册将所有经验融会贯通，制定了**“绝对避坑、零报错、完美中文显示、Token高安全”**的终极执行方案。&lt;/p&gt;
 &lt;p&gt;请清空之前的设置（或者新建一个快捷方式），我们从零开始，一步步拿下它！&lt;/p&gt;
 &lt;hr&gt;
 &lt;h3 id="-第一步获取全新的-github-token安全第一"&gt;🚨 第一步：获取全新的 GitHub Token（安全第一）
-&lt;/h3&gt;&lt;p&gt;因为你之前的 Token 已经在视频中暴露，为了你的仓库安全，&lt;strong&gt;请务必先做这一步&lt;/strong&gt;：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;为了你的仓库安全，避免明文泄露，&lt;strong&gt;请务必先做这一步&lt;/strong&gt;：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;登录 GitHub ➔ &lt;code&gt;Settings&lt;/code&gt; ➔ &lt;code&gt;Developer settings&lt;/code&gt; ➔ &lt;code&gt;Personal access tokens (classic)&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;找到旧的 Token，点击 &lt;strong&gt;Delete&lt;/strong&gt; 彻底删除。&lt;/li&gt;
+&lt;li&gt;找到旧的 Token（如果有暴露过），点击 &lt;strong&gt;Delete&lt;/strong&gt; 彻底删除。&lt;/li&gt;
 &lt;li&gt;点击 &lt;strong&gt;Generate new token (classic)&lt;/strong&gt;，勾选 &lt;strong&gt;&lt;code&gt;repo&lt;/code&gt;&lt;/strong&gt; 权限，生成一个新的。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;复制新 Token&lt;/strong&gt;，保存在手机备忘录里备用（不要发出来）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;复制新 Token&lt;/strong&gt;，保存在手机备忘录里备用，千万不要在截图或视频中发出来。&lt;/li&gt;
 &lt;/ol&gt;
 &lt;hr&gt;
-&lt;h3 id="-第二步建立-5-个变量杜绝乱码与路径报错"&gt;🛠️ 第二步：建立 5 个变量（杜绝乱码与路径报错）
-&lt;/h3&gt;&lt;p&gt;打开 HTTP Shortcuts App，点击底部中间的 &lt;strong&gt;&lt;code&gt;{ }&lt;/code&gt;&lt;/strong&gt; 图标。我们需要建 5个输入变量。&lt;/p&gt;
-&lt;h4 id="1-创建-5-个输入文本变量"&gt;1. 创建 5 个“输入文本”变量
+&lt;h3 id="-第二步建立-6-个变量分类建立杜绝乱码与泄露"&gt;🛠️ 第二步：建立 6 个变量（分类建立，杜绝乱码与泄露）
+&lt;/h3&gt;&lt;p&gt;打开 HTTP Shortcuts App，点击底部中间的 &lt;strong&gt;&lt;code&gt;{ }&lt;/code&gt;&lt;/strong&gt; 图标。我们需要分三种类型建立 6 个变量。&lt;/p&gt;
+&lt;h4 id="1-创建5-个输入文本-input-text变量"&gt;1. 创建5 个“输入文本 (Input Text)”变量
 &lt;/h4&gt;&lt;p&gt;依次点击 &lt;code&gt;+&lt;/code&gt; ➔ 选择 &lt;strong&gt;输入文本&lt;/strong&gt;，创建以下三个：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;变量 1&lt;/strong&gt;：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_FILENAME&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;1. 请输入文件名&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量 1&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_FILENAME&lt;/code&gt; | &lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;1. 请输入文件名&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：在“高级设置”中，&lt;strong&gt;绝对不要勾选“JSON 编码”&lt;/strong&gt;！&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;变量 2&lt;/strong&gt;：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_TAGS&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;2. 输入标签 (逗号隔开)&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量 2&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_TAGS&lt;/code&gt; | &lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;2. 输入标签 (逗号隔开)&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：&lt;strong&gt;不要勾选“JSON 编码”&lt;/strong&gt;！&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;变量 3&lt;/strong&gt;：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_CONTENT&lt;/code&gt;&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;3. 记录此刻的闪念...&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量 3&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;INPUT_CONTENT&lt;/code&gt; | &lt;strong&gt;对话框标题&lt;/strong&gt;：&lt;code&gt;3. 记录此刻的闪念...&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：&lt;strong&gt;务必勾选“多行”&lt;/strong&gt;；&lt;strong&gt;不要勾选“JSON 编码”&lt;/strong&gt;！&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;变量 4&lt;/strong&gt;：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;DIR_NAME&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量 4&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;DIR_NAME&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：&lt;strong&gt;不要勾选“JSON 编码”&lt;/strong&gt;！&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;变量 5&lt;/strong&gt;：&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;BASE64_CONTENT&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;变量 5&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;BASE64_CONTENT&lt;/code&gt;&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：&lt;strong&gt;务必勾选“多行”&lt;/strong&gt;；&lt;strong&gt;不要勾选“JSON 编码”&lt;/strong&gt;！&lt;/p&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
+&lt;h4 id="2-创建-1-个常量-constant保护-token-安全"&gt;2. 创建 1 个“常量 (Constant)”（保护 Token 安全）
+&lt;/h4&gt;&lt;p&gt;回到变量列表，点击 &lt;code&gt;+&lt;/code&gt; ➔ 选择 &lt;strong&gt;常量&lt;/strong&gt;：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;变量 6&lt;/strong&gt; ➔ &lt;strong&gt;名称&lt;/strong&gt;：&lt;code&gt;MY_GITHUB_TOKEN&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;值 (Value)&lt;/strong&gt;：直接粘贴你刚才生成的 &lt;code&gt;ghp_&lt;/code&gt; 开头的新 Token。(记得勾选&lt;code&gt;将值视为密文&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;&lt;em&gt;（这样以后无论你怎么截图分享配置，Token 都被隐藏在这个变量里了，极度安全且不用每次手动输入）&lt;/em&gt;&lt;/li&gt;
+&lt;/ul&gt;
 &lt;hr&gt;
 &lt;h3 id="-第三步配置快捷方式核心组装"&gt;🚀 第三步：配置快捷方式（核心组装）
 &lt;/h3&gt;&lt;p&gt;回到 App 首页，点击 &lt;code&gt;+&lt;/code&gt; ➔ &lt;strong&gt;新建快捷方式&lt;/strong&gt;。&lt;/p&gt;
 &lt;h4 id="1-植入终极查表法脚本"&gt;1. 植入终极查表法脚本
-&lt;/h4&gt;&lt;p&gt;点击 &lt;strong&gt;脚本编写&lt;/strong&gt; ➔ &lt;strong&gt;在执行前运行 JavaScript&lt;/strong&gt;，&lt;strong&gt;完整粘贴&lt;/strong&gt;你提供的这段“手动挡”无敌代码：&lt;/p&gt;
+&lt;/h4&gt;&lt;p&gt;点击 &lt;strong&gt;脚本编写&lt;/strong&gt; ➔ &lt;strong&gt;在执行前运行 JavaScript&lt;/strong&gt;，&lt;strong&gt;完整粘贴&lt;/strong&gt;这段“手动挡”无敌代码（完全不依赖系统内置函数，彻底告别中文乱码）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -19531,20 +19518,27 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;&lt;strong&gt;方法&lt;/strong&gt;：改成 &lt;strong&gt;&lt;code&gt;PUT&lt;/code&gt;&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;URL&lt;/strong&gt;：手动输入 &lt;code&gt;https://api.github.com/repos/iwyang/iwyang.github.io/contents/content/shuoshuo/&lt;/code&gt;。&lt;/li&gt;
 &lt;li&gt;⚠️ &lt;strong&gt;避坑关键&lt;/strong&gt;：输入到这里时，&lt;strong&gt;点击键盘上方的 &lt;code&gt;{ }&lt;/code&gt; 按钮&lt;/strong&gt;，从列表里选择 &lt;code&gt;DIR_NAME&lt;/code&gt;，然后再接着输入 &lt;code&gt;/index.md&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;最终看起来应该是：&lt;code&gt;.../shuoshuo/{DIR_NAME}/index.md&lt;/code&gt;（确保 &lt;code&gt;{DIR_NAME}&lt;/code&gt; 是被识别的高亮变量块，绝不能是 &lt;code&gt;%7B...&lt;/code&gt;）。&lt;/li&gt;
+&lt;li&gt;最终看起来应该是：&lt;code&gt;.../shuoshuo/{DIR_NAME}/index.md&lt;/code&gt;（确保 &lt;code&gt;{DIR_NAME}&lt;/code&gt; 是被识别的高亮变量块，绝不能是手动敲打的 &lt;code&gt;%7B...&lt;/code&gt;）。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;h4 id="3-配置认证请求头"&gt;3. 配置认证（请求头）
+&lt;h4 id="3-配置认证请求头---安全升级版"&gt;3. 配置认证（请求头 - 安全升级版）
 &lt;/h4&gt;&lt;p&gt;点击 &lt;strong&gt;请求头&lt;/strong&gt; ➔ 点击 &lt;strong&gt;+&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
-&lt;li&gt;&lt;strong&gt;第一行&lt;/strong&gt; ➔ 键：&lt;code&gt;Authorization&lt;/code&gt; | 值：&lt;code&gt;Bearer 你的新Token&lt;/code&gt;（注意 Bearer 后有空格）。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;第二行&lt;/strong&gt; ➔ 键：&lt;code&gt;Accept&lt;/code&gt; | 值：&lt;code&gt;application/vnd.github.v3+json&lt;/code&gt;。&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第一行&lt;/strong&gt; ➔ 键：&lt;code&gt;Authorization&lt;/code&gt; | 值：输入 &lt;code&gt;Bearer &lt;/code&gt;（注意后面有一个空格），然后点击右侧的 &lt;strong&gt;&lt;code&gt;{ }&lt;/code&gt; 按钮&lt;/strong&gt;，选择你刚刚创建的常量变量 &lt;strong&gt;&lt;code&gt;MY_GITHUB_TOKEN&lt;/code&gt;&lt;/strong&gt;。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;*最终效果：&lt;code&gt;Bearer {MY_GITHUB_TOKEN}*&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;第二行&lt;/strong&gt; ➔ 键：&lt;code&gt;Accept&lt;/code&gt; | 值：&lt;code&gt;application/vnd.github.v3+json&lt;/code&gt;。&lt;/p&gt;
+&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h4 id="4-配置防-422-报错请求体"&gt;4. 配置防 422 报错（请求体）
 &lt;/h4&gt;&lt;p&gt;点击 &lt;strong&gt;请求体/请求参数&lt;/strong&gt;：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;类型&lt;/strong&gt;：选择 &lt;strong&gt;自定义类型&lt;/strong&gt;。&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;内容类型&lt;/strong&gt;：填入 &lt;code&gt;application/json&lt;/code&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;正文&lt;/strong&gt;：严格按照下面的格式敲。输入 &lt;code&gt;{BASE64_CONTENT}&lt;/code&gt; 时，&lt;strong&gt;务必点击右侧的 &lt;code&gt;{ }&lt;/code&gt; 按钮插入&lt;/strong&gt;，不能手动打括号！&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;正文&lt;/strong&gt;：严格按照下面的格式敲。输入 &lt;code&gt;{BASE64_CONTENT}&lt;/code&gt; 时，&lt;strong&gt;务必点击右侧的 &lt;code&gt;{ }&lt;/code&gt; 按钮插入&lt;/strong&gt;，不能手动打大括号！&lt;/li&gt;
 &lt;/ul&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -19564,8 +19558,8 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;h3 id="-第四步保存与终极测试"&gt;🎉 第四步：保存与终极测试
 &lt;/h3&gt;&lt;ol&gt;
 &lt;li&gt;点击右上角的 &lt;strong&gt;✔&lt;/strong&gt; 确认保存。&lt;/li&gt;
-&lt;li&gt;点击运行这个快捷方式。&lt;/li&gt;
-&lt;li&gt;按顺序测试：&lt;/li&gt;
+&lt;li&gt;将这个快捷方式添加到桌面。&lt;/li&gt;
+&lt;li&gt;点击运行测试：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;ul&gt;
 &lt;li&gt;框1填：&lt;code&gt;测试终极版&lt;/code&gt;&lt;/li&gt;
@@ -19573,7 +19567,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;框3填：&lt;code&gt;这段查表法 Base64 代码太牛了，彻底告别乱码！😎&lt;/code&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;ol start="4"&gt;
-&lt;li&gt;如果你看到手机底部弹出执行成功（或状态码 201），恭喜你，去你的 &lt;code&gt;bore.vip&lt;/code&gt; 博客上刷新看看吧，完美的中文、完美的 Page Bundle 目录结构、完美的标签解析，全部搞定！&lt;/li&gt;
+&lt;li&gt;如果你看到手机底部弹出执行成功（或状态码 &lt;code&gt;201&lt;/code&gt;），恭喜你！去你的博客上刷新看看吧：完美的中文显示、完美的 Page Bundle 目录结构、极度安全的 Token 隔离，全部搞定！&lt;/li&gt;
 &lt;/ol&gt;
 &lt;h2 id="附使用git-submodule管理hugo主题"&gt;附：使用Git Submodule管理Hugo主题
 &lt;/h2&gt;&lt;ul&gt;
