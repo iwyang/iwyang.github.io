@@ -28,8 +28,22 @@
 
 .shuoshuo-content {
     font-size: 1.6rem; line-height: 1.8; color: var(--card-text-color-main);
+    
     p { margin: 0.5em 0; }
+    
     a { color: var(--accent-color); text-decoration: none; &:hover { text-decoration: underline; } }
+    
+    /* 👇 修正：精准定位行内代码，绝对不污染多行代码块 👇 */
+    p code, li code {
+        background-color: rgba(128, 128, 128, 0.08); /* 稍微调淡一点背景色，更自然 */
+        color: #e83e8c; /* 经典的行内代码粉红色 */
+        font-family: Consolas, Monaco, "Courier New", monospace;
+        padding: 0.2em 0.4em;
+        margin: 0 0.2em;
+        border-radius: 4px;
+        font-size: 0.85em;
+    }
+    
     blockquote {
         position: relative; margin: 10px 0; padding: 0 0 0 46px; 
         background: none !important; border: none !important; color: var(--card-text-color-main);
