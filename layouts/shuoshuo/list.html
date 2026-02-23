@@ -95,8 +95,10 @@
                         Hash: false, 
                         Thumbs: { autoStart: false }, 
                         Toolbar: { display: { left: ["infobar"], middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], right: ["slideshow", "download", "close"] } },
-                        // 核心修复：点击背景空白处关闭图片
-                        backdropClick: "close"
+                        // 1. 允许点击背景空白处关闭
+                        backdropClick: "close",
+                        // 2. 强制关闭移动端的“紧凑模式”，防止它屏蔽点击事件
+                        compact: false
                     });
                 }
 
