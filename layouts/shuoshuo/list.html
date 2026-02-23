@@ -92,8 +92,11 @@
 
                 if (typeof Fancybox !== "undefined") {
                     Fancybox.bind('[data-fancybox^="gallery-"]', { 
-                        Hash: false, Thumbs: { autoStart: false }, 
-                        Toolbar: { display: { left: ["infobar"], middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], right: ["slideshow", "download", "close"] } } 
+                        Hash: false, 
+                        Thumbs: { autoStart: false }, 
+                        Toolbar: { display: { left: ["infobar"], middle: ["zoomIn", "zoomOut", "toggle1to1", "rotateCCW", "rotateCW"], right: ["slideshow", "download", "close"] } },
+                        // 核心修复：点击背景空白处关闭图片
+                        backdropClick: "close"
                     });
                 }
 
