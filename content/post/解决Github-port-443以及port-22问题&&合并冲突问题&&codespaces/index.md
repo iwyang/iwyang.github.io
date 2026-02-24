@@ -260,9 +260,9 @@ git push origin main
     "prefix": "wz",
     "body": [
       "---",
-      "title: \"$1\"",
+      "title: \"${1:${TM_DIRECTORY/.*[\\\\\\/](.*)/$1/}}\"",
       "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
-      "slug: \"$2\"",
+      "slug: \"${2:${CURRENT_MONTH}${CURRENT_DATE}${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}}\"",
       "description: \"$3\"",
       "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
       "draft: false",
@@ -275,16 +275,16 @@ git push origin main
       "",
       "$0"
     ],
-    "description": "生成标准的博客文章 Front Matter (使用 tags 字段)"
+    "description": "自动抓取目录名作为标题，并生成唯一时间戳 Slug"
   },
 
   "Hugo Shuoshuo Front Matter": {
     "prefix": "ss",
     "body": [
       "---",
-      "title: \"$1\"",
+      "title: \"${1:${TM_DIRECTORY/.*[\\\\\\/](.*)/$1/}}\"",
       "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
-      "slug: \"$2\"",
+      "slug: \"${2:${CURRENT_MONTH}${CURRENT_DATE}${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}}\"",
       "description: \"$3\"",
       "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
       "draft: false",
@@ -297,7 +297,7 @@ git push origin main
       "",
       "$0"
     ],
-    "description": "生成说说的专属 Front Matter (使用 shuoshuotags 字段)"
+    "description": "说说专用：自动抓取目录名作为标题，并生成唯一时间戳 Slug"
   }
 }
 ```
@@ -469,9 +469,9 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
     "prefix": "wz",
     "body": [
       "---",
-      "title: \"$1\"",
+      "title: \"${1:${TM_DIRECTORY/.*[\\\\\\/](.*)/$1/}}\"",
       "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
-      "slug: \"$2\"",
+      "slug: \"${2:${CURRENT_MONTH}${CURRENT_DATE}${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}}\"",
       "description: \"$3\"",
       "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
       "draft: false",
@@ -484,16 +484,16 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
       "",
       "$0"
     ],
-    "description": "生成标准的博客文章 Front Matter (使用 tags 字段)"
+    "description": "自动抓取目录名作为标题，并生成唯一时间戳 Slug"
   },
 
   "Hugo Shuoshuo Front Matter": {
     "prefix": "ss",
     "body": [
       "---",
-      "title: \"$1\"",
+      "title: \"${1:${TM_DIRECTORY/.*[\\\\\\/](.*)/$1/}}\"",
       "date: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
-      "slug: \"$2\"",
+      "slug: \"${2:${CURRENT_MONTH}${CURRENT_DATE}${CURRENT_HOUR}${CURRENT_MINUTE}${CURRENT_SECOND}}\"",
       "description: \"$3\"",
       "lastmod: \"${CURRENT_YEAR}-${CURRENT_MONTH}-${CURRENT_DATE}T${CURRENT_HOUR}:${CURRENT_MINUTE}:${CURRENT_SECOND}+08:00\"",
       "draft: false",
@@ -506,7 +506,7 @@ GitHub 提供免费的 **Codespaces**（云端 VS Code）。
       "",
       "$0"
     ],
-    "description": "生成说说的专属 Front Matter (使用 shuoshuotags 字段)"
+    "description": "说说专用：自动抓取目录名作为标题，并生成唯一时间戳 Slug"
   }
 }
 ```
