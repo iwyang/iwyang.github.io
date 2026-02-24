@@ -1,0 +1,25 @@
+{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- $result := slice -}}
+
+{{- range $pages -}}
+    {{- $title := .Title -}}
+    {{- $permalink := .RelPermalink -}}
+    {{- if eq .Section "shuoshuo" -}}
+        {{- if .Title -}}
+            {{- $title = print "💬 " .Title -}}
+        {{- else -}}
+            {{- $title = print "💬 " (.Plain | truncate 15) -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $data := dict "title" $title "date" .Date "permalink" $permalink "content" (.Plain) -}}
+
+    {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
+    {{- if $image -}}
+        {{- $data = merge $data (dict "image" $image.Permalink) -}}
+    {{- end -}}
+
+    {{- $result = $result | append $data -}}
+{{- end -}}
+
+{{ jsonify $result }}
