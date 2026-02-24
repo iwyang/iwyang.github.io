@@ -1316,6 +1316,324 @@ setVariable('BASE64_CONTENT', encodeBase64UTF8(fm));
 
 4. 如果你看到手机底部弹出执行成功（或状态码 `201`），恭喜你！去你的博客上刷新看看吧：完美的中文显示、完美的 Page Bundle 目录结构、极度安全的 Token 隔离，全部搞定！
 
+## 说说加入系统搜索
+
+### 修改`params.toml`
+
+```toml
+mainSections = ["post","shuoshuo"]
+```
+
+### 首页、归档隐藏说说
+
+1.修改`blog/layouts/partials/helper/pages.html`
+
+`search.json` 和 `home.html` 都调用了 `partial "helper/pages.html"`，这个 partial 才是真正控制页面列表的地方
+
+```html
+{{- $pages := .Pages -}}
+
+{{- if .IsHome -}}
+    {{- $pages = where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+    {{- $pages = where $pages "Section" "!=" "shuoshuo" -}}
+{{- else if or (eq .Kind "section") (eq .Kind "taxonomy") (eq .Kind "term") -}}
+    {{- $subsections := .Sections -}}
+    {{- $pages = .Pages | complement $subsections -}}
+
+    {{- if eq (len $pages) 0 -}}
+        {{- $pages = $subsections -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $pages := partial "helper/pages-sort.html" (dict "Pages" $pages "Context" .) -}}
+
+{{- return $pages -}}
+```
+
+2.修改`\blog\layouts\page\search.json`，**不走 `helper/pages.html`，直接自己取 mainSections 的全量内容**：
+
+```json
+{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- $result := slice -}}
+
+{{- range $pages -}}
+    {{- $title := .Title -}}
+    {{- $permalink := .RelPermalink -}}
+    {{- $type := "article" -}}
+
+    {{- if eq .Section "shuoshuo" -}}
+        {{- $type = "shuoshuo" -}}
+        {{- if .Title -}}
+            {{- $title = print "💬 " .Title -}}
+        {{- else -}}
+            {{- $title = print "💬 " (.Plain | truncate 15) -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $data := dict "title" $title "date" .Date "permalink" $permalink "content" (.Plain) "type" $type -}}
+
+    {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
+    {{- if $image -}}
+        {{- $data = merge $data (dict "image" $image.Permalink) -}}
+    {{- end -}}
+
+    {{- $result = $result | append $data -}}
+{{- end -}}
+
+{{ jsonify $result }}
+```
+
+### 搜索结果分类
+
+1.修改`\blog\layouts\page\search.json`
+
+```json
+{{- $pages := where .Site.RegularPages "Type" "in" .Site.Params.mainSections -}}
+{{- $result := slice -}}
+
+{{- range $pages -}}
+    {{- $title := .Title -}}
+    {{- $permalink := .RelPermalink -}}
+    {{- $type := "article" -}}
+
+    {{- if eq .Section "shuoshuo" -}}
+        {{- $type = "shuoshuo" -}}
+        {{- if .Title -}}
+            {{- $title = print "💬 " .Title -}}
+        {{- else -}}
+            {{- $title = print "💬 " (.Plain | truncate 15) -}}
+        {{- end -}}
+    {{- end -}}
+
+    {{- $data := dict "title" $title "date" .Date "permalink" $permalink "content" (.Plain) "type" $type -}}
+
+    {{- $image := partial "helper/image" (dict "Image" .Params.image "Resources" .Resources) -}}
+    {{- if $image -}}
+        {{- $data = merge $data (dict "image" $image.Permalink) -}}
+    {{- end -}}
+
+    {{- $result = $result | append $data -}}
+{{- end -}}
+
+{{ jsonify $result }}
+```
+
+2.修改`layouts/partials/footer/custom.html`
+
+```html
+{{- /* 使用变量包裹 JS 代码，彻底避免 Hugo 模板引擎报错 */ -}}
+{{- $js := `
+document.addEventListener("DOMContentLoaded", () => {
+    const listSelector = ".search-result--list";
+    const itemSelector = "article";
+    const nativeTitleSelector = ".search-result--title"; 
+    const searchInputSelector = ".search-form input"; 
+
+    // 🌟 1. 注入样式
+    const style = document.createElement("style");
+    style.textContent = ".bore-custom-header { display: flex; align-items: center !important; flex-wrap: wrap !important; gap: 15px !important; margin-bottom: 24px !important; padding-bottom: 8px !important; border-bottom: 1px dashed rgba(128, 128, 128, 0.15); min-height: 42px; }" +
+        ".bore-hidden { display: none !important; }" + 
+        /* 🌟🌟🌟 修改点 1：彻底隐藏左侧纯文字统计 */
+        ".bore-search-stats { display: none !important; }" + 
+        /* 🌟🌟🌟 修改点 2：margin-left 改为 0，让选项卡靠左对齐 */
+        ".search-filter-tabs { --tab-bg: #ffffff; --tab-border: #e2e8f0; --tab-text: #64748b; --tab-active-bg: #1e90ff; --tab-active-text: #ffffff; --count-bg: #f1f5f9; --count-text: #64748b; --count-active-bg: #ffffff; --count-active-text: #1e90ff; display: flex; align-items: center; gap: 10px; margin-left: 0; }" +
+        '[data-scheme="dark"] .search-filter-tabs { --tab-bg: rgba(255, 255, 255, 0.04); --tab-border: rgba(255, 255, 255, 0.15); --tab-text: #a1a1aa; --tab-active-bg: #1e90ff; --tab-active-text: #ffffff; --count-bg: rgba(255, 255, 255, 0.12); --count-text: #e4e4e7; --count-active-bg: #ffffff; --count-active-text: #1e90ff; }' +
+        ".filter-tab { cursor: pointer; padding: 5px 12px 5px 16px; border-radius: 50px; font-size: 1.35rem; font-weight: 500; color: var(--tab-text); background: var(--tab-bg); border: 1px solid var(--tab-border); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 8px; user-select: none; line-height: 1.2; }" +
+        ".filter-tab:hover { border-color: #1e90ff; color: #1e90ff; background: rgba(30, 144, 255, 0.05); }" +
+        ".filter-tab:active { transform: scale(0.96); opacity: 0.8; }" +
+        ".filter-tab.active { background: var(--tab-active-bg); border-color: var(--tab-active-bg); color: var(--tab-active-text); font-weight: 600; box-shadow: 0 4px 12px rgba(30, 144, 255, 0.3); pointer-events: none; }" +
+        ".filter-count { font-size: 1.15rem; padding: 3px 8px; border-radius: 50px; background: var(--count-bg); color: var(--count-text); font-weight: 600; min-width: 24px; text-align: center; }" +
+        ".filter-tab.active .filter-count { background: var(--count-active-bg); color: var(--count-active-text); }" +
+        ".bore-search-empty-state { grid-column: 1 / -1; width: 100%; min-height: 40vh; display: flex; flex-direction: column; align-items: center; justify-content: center; animation: fadeIn 0.4s ease; }" +
+        ".bore-search-empty-icon-wrapper { color: var(--body-text-color); opacity: 0.4; transition: all 0.3s ease; margin-bottom: 24px; }" +
+        '[data-scheme="dark"] .bore-search-empty-icon-wrapper { color: #ffffff !important; opacity: 0.75 !important; }' +
+        ".bore-search-empty-icon { width: 80px; height: 80px; stroke-width: 1.2; }" +
+        ".bore-search-empty-text { font-size: 1.6rem; font-weight: 500; color: var(--body-text-color); opacity: 0.8; letter-spacing: 0.5px; }" +
+        "@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }" +
+        ".search-result--title { display: none !important; }"; // 彻底隐藏原版标题
+    document.head.appendChild(style);
+
+    let currentFilter = sessionStorage.getItem("bore-search-filter") || "all";
+    let layoutTimer;
+    let isObserving = false;
+    
+    // 防卡死监听器
+    const observer = new MutationObserver(() => {
+        clearTimeout(layoutTimer);
+        layoutTimer = setTimeout(() => { safelyUpdateDOM(); }, 20); 
+    });
+
+    const startObserve = () => {
+        if (isObserving) return;
+        const wrapper = document.querySelector(".search-wrapper") || document.body;
+        if (wrapper) {
+            observer.observe(wrapper, { childList: true, subtree: true });
+            isObserving = true;
+        }
+    };
+
+    const stopObserve = () => {
+        if (!isObserving) return;
+        observer.disconnect();
+        isObserving = false;
+    };
+
+    function safelyUpdateDOM() {
+        stopObserve();
+        updateDOM();
+        startObserve();
+    }
+
+    // 监听打字/退格，实时重置分类
+    const searchInput = document.querySelector(searchInputSelector);
+    if (searchInput) {
+        searchInput.addEventListener("input", () => {
+            if (currentFilter !== "all") {
+                currentFilter = "all";
+                sessionStorage.setItem("bore-search-filter", "all");
+                stopObserve();
+                const tabs = document.querySelector(".search-filter-tabs");
+                if (tabs) {
+                    tabs.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                    const allTab = tabs.querySelector("[data-type='all']");
+                    if (allTab) allTab.classList.add("active");
+                }
+                updateDisplayOnly();
+                startObserve();
+            }
+        });
+    }
+
+    // 解决后退缓存卡死
+    window.addEventListener("pageshow", (e) => {
+        if (e.persisted) {
+            currentFilter = sessionStorage.getItem("bore-search-filter") || "all";
+            safelyUpdateDOM();
+        }
+    });
+
+    startObserve();
+
+    function updateDOM() {
+        const nativeTitle = document.querySelector(nativeTitleSelector);
+        const list = document.querySelector(".search-result--list");
+        if (!nativeTitle || !searchInput || !list) return;
+
+        const isInputEmpty = searchInput.value.trim() === "";
+        let customHeader = document.querySelector(".bore-custom-header");
+
+        if (!customHeader && !isInputEmpty) {
+            customHeader = document.createElement("div");
+            customHeader.className = "bore-custom-header bore-hidden"; 
+            const stats = document.createElement("div");
+            stats.className = "bore-search-stats";
+            const tabs = document.createElement("div");
+            tabs.className = "search-filter-tabs";
+            
+            const tabData = [
+                { type: "all", label: "全部", id: "count-all" },
+                { type: "article", label: "文章", id: "count-article" },
+                { type: "shuoshuo", label: "说说", id: "count-shuoshuo" }
+            ];
+            
+            tabs.innerHTML = tabData.map(t => {
+                const isActive = t.type === currentFilter ? " active" : "";
+                return '<div class="filter-tab' + isActive + '" data-type="' + t.type + '">' + t.label + ' <span class="filter-count" id="' + t.id + '">0</span></div>';
+            }).join("");
+
+            customHeader.appendChild(stats);
+            customHeader.appendChild(tabs);
+            list.parentNode.insertBefore(customHeader, list);
+
+            tabs.querySelectorAll(".filter-tab").forEach(tab => {
+                tab.addEventListener("click", (e) => {
+                    e.stopPropagation();
+                    if (currentFilter === e.currentTarget.dataset.type) return; 
+                    stopObserve();
+                    tabs.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
+                    e.currentTarget.classList.add("active");
+                    currentFilter = e.currentTarget.dataset.type;
+                    sessionStorage.setItem("bore-search-filter", currentFilter);
+                    updateDisplayOnly(list);
+                    startObserve();
+                });
+            });
+        }
+
+        if (customHeader) {
+            const stats = customHeader.querySelector(".bore-search-stats");
+            if (stats && nativeTitle.textContent) {
+                const cleanTitle = nativeTitle.innerHTML.split("（")[0].split("(")[0].trim();
+                if (stats.innerHTML !== cleanTitle) {
+                    stats.innerHTML = cleanTitle;
+                }
+            }
+            
+            const articleCount = list.querySelectorAll(itemSelector).length;
+            const shouldHide = isInputEmpty || articleCount === 0;
+            
+            if (shouldHide) {
+                customHeader.classList.add("bore-hidden");
+            } else {
+                customHeader.classList.remove("bore-hidden");
+            }
+        }
+        updateDisplayOnly(list);
+    }
+
+    function updateDisplayOnly(listElement) {
+        const list = listElement || document.querySelector(".search-result--list");
+        if (!list) return;
+
+        const items = list.querySelectorAll("article");
+        let cAll = 0, cArt = 0, cShuo = 0;
+
+        items.forEach(item => {
+            const artTitle = item.querySelector(".article-title");
+            if (!artTitle) return;
+            const isShuo = artTitle.textContent.includes("💬");
+            cAll++;
+            if (isShuo) cShuo++; else cArt++;
+            let targetDisp = "";
+            if (currentFilter === "article") targetDisp = isShuo ? "none" : "";
+            else if (currentFilter === "shuoshuo") targetDisp = isShuo ? "" : "none";
+            if (item.style.display !== targetDisp) item.style.display = targetDisp;
+        });
+
+        const setTxt = (id, num) => { 
+            const el = document.getElementById(id); 
+            if (el && el.textContent !== String(num)) el.textContent = String(num); 
+        };
+        setTxt("count-all", cAll); setTxt("count-article", cArt); setTxt("count-shuoshuo", cShuo);
+
+        let emptyDiv = document.querySelector(".bore-search-empty-state");
+        const isInputEmpty = document.querySelector(searchInputSelector)?.value.trim() === "";
+        
+        let shouldShowEmpty = false;
+        if (!isInputEmpty && cAll > 0) {
+            if (currentFilter === "article" && cArt === 0) shouldShowEmpty = true;
+            if (currentFilter === "shuoshuo" && cShuo === 0) shouldShowEmpty = true;
+        }
+
+        if (shouldShowEmpty) {
+            if (!emptyDiv) {
+                emptyDiv = document.createElement("div");
+                emptyDiv.className = "bore-search-empty-state";
+                emptyDiv.innerHTML = '<div class="bore-search-empty-icon-wrapper"><svg class="bore-search-empty-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg></div><div class="bore-search-empty-text">该分类下暂无匹配内容</div>';
+                list.appendChild(emptyDiv);
+            }
+        } else if (emptyDiv) {
+            emptyDiv.remove();
+        }
+    }
+});
+` -}}
+
+<script>
+    {{ $js | safeJS }}
+</script>
+```
+
 ## 附：使用Git Submodule管理Hugo主题
 
 + 如果克隆库的时候要初始化子模块，请加上 `--recursive` 参数，如：
