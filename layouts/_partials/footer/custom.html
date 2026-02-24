@@ -10,8 +10,10 @@ document.addEventListener("DOMContentLoaded", () => {
     const style = document.createElement("style");
     style.textContent = ".bore-custom-header { display: flex; align-items: center !important; flex-wrap: wrap !important; gap: 15px !important; margin-bottom: 24px !important; padding-bottom: 8px !important; border-bottom: 1px dashed rgba(128, 128, 128, 0.15); min-height: 42px; }" +
         ".bore-hidden { display: none !important; }" + 
-        ".bore-search-stats { font-size: 1.5rem; color: var(--body-text-color); white-space: nowrap; }" +
-        ".search-filter-tabs { --tab-bg: #ffffff; --tab-border: #e2e8f0; --tab-text: #64748b; --tab-active-bg: #1e90ff; --tab-active-text: #ffffff; --count-bg: #f1f5f9; --count-text: #64748b; --count-active-bg: #ffffff; --count-active-text: #1e90ff; display: flex; align-items: center; gap: 10px; margin-left: auto; }" +
+        /* 🌟🌟🌟 修改点 1：彻底隐藏左侧纯文字统计 */
+        ".bore-search-stats { display: none !important; }" + 
+        /* 🌟🌟🌟 修改点 2：margin-left 改为 0，让选项卡靠左对齐 */
+        ".search-filter-tabs { --tab-bg: #ffffff; --tab-border: #e2e8f0; --tab-text: #64748b; --tab-active-bg: #1e90ff; --tab-active-text: #ffffff; --count-bg: #f1f5f9; --count-text: #64748b; --count-active-bg: #ffffff; --count-active-text: #1e90ff; display: flex; align-items: center; gap: 10px; margin-left: 0; }" +
         '[data-scheme="dark"] .search-filter-tabs { --tab-bg: rgba(255, 255, 255, 0.04); --tab-border: rgba(255, 255, 255, 0.15); --tab-text: #a1a1aa; --tab-active-bg: #1e90ff; --tab-active-text: #ffffff; --count-bg: rgba(255, 255, 255, 0.12); --count-text: #e4e4e7; --count-active-bg: #ffffff; --count-active-text: #1e90ff; }' +
         ".filter-tab { cursor: pointer; padding: 5px 12px 5px 16px; border-radius: 50px; font-size: 1.35rem; font-weight: 500; color: var(--tab-text); background: var(--tab-bg); border: 1px solid var(--tab-border); transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1); display: inline-flex; align-items: center; gap: 8px; user-select: none; line-height: 1.2; }" +
         ".filter-tab:hover { border-color: #1e90ff; color: #1e90ff; background: rgba(30, 144, 255, 0.05); }" +
@@ -138,7 +140,6 @@ document.addEventListener("DOMContentLoaded", () => {
         if (customHeader) {
             const stats = customHeader.querySelector(".bore-search-stats");
             if (stats && nativeTitle.textContent) {
-                // 🌟🌟🌟 核心修改：利用分割字符串的方法，完美切掉“（用时”及后面的内容
                 const cleanTitle = nativeTitle.innerHTML.split("（")[0].split("(")[0].trim();
                 if (stats.innerHTML !== cleanTitle) {
                     stats.innerHTML = cleanTitle;
