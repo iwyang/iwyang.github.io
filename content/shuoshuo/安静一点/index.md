@@ -1,7 +1,7 @@
 ---
 title: "安静一点"
 date: "2026-02-19T12:21:23+08:00"
-slug: ""
+slug: "4ul5pf7l"
 description: ""
 lastmod: "2026-02-19T12:21:23+08:00"
 draft: false

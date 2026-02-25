@@ -1,7 +1,7 @@
 ---
 title: "今天几点睡"
 date: "2026-02-12T22:20:43+08:00"
-slug: ""
+slug: "i6ayqcj8"
 description: ""
 lastmod: "2026-02-12T22:20:43+08:00"
 draft: false

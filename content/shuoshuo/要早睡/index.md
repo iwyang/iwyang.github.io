@@ -1,7 +1,7 @@
 ---
 title: "要早睡"
 date: "2026-02-11T00:14:39+08:00"
-slug: ""
+slug: "erb5zni9"
 description: ""
 lastmod: "2026-02-11T00:14:39+08:00"
 draft: false
