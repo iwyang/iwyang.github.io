@@ -18,6 +18,7 @@ favicon        = "img/avatar.png"
     avatar   = "img/avatar.png"
 
 [article]
+    readingTime = true  # 确保开启阅读时间/相关元数据功能
     [article.license]
         enabled = false
         default = "Licensed under CC BY-NC-SA 4.0"
