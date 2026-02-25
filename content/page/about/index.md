@@ -1,8 +1,8 @@
 ---
 title: 关于
 description: 
-date: 2026-02-09
-lastmod: 2026-02-09
+date: 2026-02-09 13:39:01
+lastmod: 2026-02-09 13:39:01
 slug: about
 menu:
     main: 
