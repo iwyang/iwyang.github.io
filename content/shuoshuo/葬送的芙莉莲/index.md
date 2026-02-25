@@ -9,6 +9,6 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["日常"]
+shuoshuotags: ["追番"]
 ---
 葬送的芙莉莲看起来很平淡
