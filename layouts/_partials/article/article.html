@@ -30,7 +30,7 @@
 
             {{/* 2. 元数据区域 */}}
             <footer class="article-meta-info">
-                {{/* 发布时间 */}}
+                {{/* 发布时间（相对时间 + hover 提示具体时间） */}}
                 <div class="article-meta-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg>
                     <time class="article-time--published" title='发布于 {{ .Date.Format "2006-01-02 15:04" }}'>
@@ -50,7 +50,7 @@
                 {{- $updateTime := .Lastmod -}}
                 {{- if .GitInfo -}}{{- $updateTime = .GitInfo.AuthorDate -}}{{- end -}}
                 
-                {{/* 设置 30 分钟 (1800s) 容错，避免刚发布就显示更新 */}}
+                {{/* 设置 30 分钟容错，避免刚发布就显示更新 */}}
                 {{- if gt (sub $updateTime.Unix .Date.Unix) 1800 -}}
                 <div class="article-meta-item">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
@@ -71,11 +71,11 @@
                 </div>
                 {{- end -}}
 
-                {{/* 字数统计（放在最后面） */}}
+                {{/* 3. 字数统计（放在最后，带 hover 提示） */}}
                 {{ if .Site.Params.article.readingTime }}
                 <div class="article-meta-item">
                     {{ partial "helper/icon" "pencil" }}
-                    <span class="article-words">
+                    <span class="article-words" title='字数: {{ .WordCount }} 字'>
                         {{ .WordCount }} 字
                     </span>
                 </div>
