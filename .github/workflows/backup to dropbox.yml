@@ -1,0 +1,42 @@
+name: Push to Dropbox (Latest Backup)
+
+on:
+  push:
+    branches:
+      - main  # 如果你的主分支名称是 master，请改为 master
+  workflow_dispatch: # 允许手动点击按钮触发
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 下载代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. 压缩项目文件 (排除 .git 以减小体积)
+      - name: Create Archive
+        run: tar -czf backup.tar.gz --exclude='.git' .
+
+      # 3. 使用 Refresh Token 获取临时的 Access Token
+      - name: Refresh Dropbox Token
+        id: dropbox_auth
+        run: |
+          RESPONSE=$(curl https://api.dropbox.com/oauth2/token \
+            -d grant_type=refresh_token \
+            -d refresh_token=${{ secrets.DROPBOX_REFRESH_TOKEN }} \
+            -u ${{ secrets.DROPBOX_APP_KEY }}:${{ secrets.DROPBOX_APP_SECRET }})
+          
+          # 解析 Token
+          TOKEN=$(echo $RESPONSE | jq -r '.access_token')
+          echo "ACCESS_TOKEN=$TOKEN" >> $GITHUB_ENV
+
+      # 4. 上传到 Dropbox 指定目录并覆盖旧文件
+      - name: Upload to Dropbox
+        run: |
+          # 目标路径已更新为：/资料/文档/个人/latest_backup.tar.gz
+          curl -X POST https://content.dropboxapi.com/2/files/upload \
+            --header "Authorization: Bearer ${{ env.ACCESS_TOKEN }}" \
+            --header "Dropbox-API-Arg: {\"path\": \"/资料/文档/个人/latest_backup.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": true}" \
+            --header "Content-Type: application/octet-stream" \
+            --data-binary @backup.tar.gz
