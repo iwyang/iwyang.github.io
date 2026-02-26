@@ -160,7 +160,10 @@ vi ~/docker/book/backup_to_dropbox.sh
 
 # ================= 配置区 =================
 REMOTE_NAME="dropbox_backup"
-REMOTE_DIR="资料/文档/个人" # Dropbox 云端路径，会自动创建
+
+# 【强烈建议】在“个人”目录下再建一个专用的“KOReader备份”文件夹
+REMOTE_DIR="资料/文档/个人/KOReader备份" 
+
 SOURCE_DIR="/root/docker/book/kosync_data"
 TEMP_BACKUP_DIR="/root/docker/book/backups"
 FILE_NAME="kosync_$(date +%Y%m%d_%H%M%S).tar.gz"
@@ -169,24 +172,23 @@ FILE_NAME="kosync_$(date +%Y%m%d_%H%M%S).tar.gz"
 mkdir -p $TEMP_BACKUP_DIR
 
 echo "开始打包数据库..."
-# 压缩时剔除多余目录层级
 tar -czvf $TEMP_BACKUP_DIR/$FILE_NAME -C "$(dirname "$SOURCE_DIR")" "$(basename "$SOURCE_DIR")"
 
-echo "正在上传至 Dropbox..."
+echo "正在上传新备份..."
 rclone copy $TEMP_BACKUP_DIR/$FILE_NAME $REMOTE_NAME:"$REMOTE_DIR"
 
 echo "正在清理云端旧文件，仅保留最新一份..."
-# 按时间倒序拉取文件列表，跳过第一个（最新），删除其余所有旧文件
-rclone lsf $REMOTE_NAME:"$REMOTE_DIR" --files-only --sort modtime --reverse | tail -n +2 | while read -r line; do
-    echo "删除过期备份: $line"
-    rclone deletefile $REMOTE_NAME:"$REMOTE_DIR/$line"
+# 【终极安全补丁】：增加了 --include "kosync_*.tar.gz"
+# 这样脚本在获取文件列表时，只看 kosync_ 开头的压缩包，绝对不会碰到你的其他文件！
+rclone lsf $REMOTE_NAME:"$REMOTE_DIR" --include "kosync_*.tar.gz" --files-only | sort -r | tail -n +2 | while read -r line; do
+    if [ -n "$line" ]; then
+        echo "安全删除过期备份: $line"
+        rclone deletefile $REMOTE_NAME:"$REMOTE_DIR/$line"
+    fi
 done
 
-# 清理 VPS 本地的临时压缩包
 rm -f $TEMP_BACKUP_DIR/$FILE_NAME
-
 echo "备份与清理任务全部完成！"
-
 ```
 
 ### 2. 赋予权限与设置定时任务
