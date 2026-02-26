@@ -269,6 +269,135 @@ git push origin master --force
 
 在部署脚本里也要作相应修改。
 
+## 备份到Dropbox
+
+这是一份为 Taihe 量身定制的完整教程。我们将配置 GitHub Actions，在你向 `develop` 分支推送代码时，自动将 **bore.vip** 的源码打包为 ZIP 格式，并上传到 Dropbox 的指定深度目录，且始终只保留最新一份。
+
+---
+
+### 第一阶段：准备 Dropbox 权限工具箱
+
+由于 Dropbox 的普通 Token 会过期，我们需要获取一个**永不过期**的 `Refresh Token`。
+
+1. **创建 App**：
+* 访问 [Dropbox App Console](https://www.dropbox.com/developers/apps)。
+* 点击 **Create app**。
+* 选择 **Scoped access** -> **Full Dropbox**。
+* 命名你的 App（例如：`Bore-Blog-Backup`）。
+
+
+2. **勾选权限 (Permissions)**：
+* 在 **Permissions** 选项卡中，务必勾选：`files.content.write` 和 `files.content.read`。
+* **点击页面底部的 Submit 保存。**
+
+
+3. **获取 App Key 和 Secret**：
+* 在 **Settings** 选项卡中，找到并记录 `App key` 和 `App secret`。
+
+
+4. **获取授权码 (Code)**：
+* 在浏览器打开以下链接（替换 `你的AppKey`）：
+`https://www.dropbox.com/oauth2/authorize?client_id=你的AppKey&token_access_type=offline&response_type=code`
+* 点击“允许”后，复制显示的**授权码**。
+
+
+5. **换取 Refresh Token**：
+* 在本地终端执行（需使用你的 10808 代理端口）：
+```bash
+curl -x http://127.0.0.1:10808 https://api.dropbox.com/oauth2/token \
+     -d code=你的授权码 \
+     -d grant_type=authorization_code \
+     -u 你的AppKey:你的AppSecret
+
+```
+
+
+* 保存返回 JSON 中的 `refresh_token`。
+
+---
+
+### 第二阶段：在 GitHub 仓库配置“保险箱”
+
+为了保护你的隐私，我们需要将密钥存放在 GitHub 的 Secrets 中。
+
+1. 打开你的 GitHub 仓库（存放 Hugo 源码的仓库）。
+2. 点击 **Settings** -> **Secrets and variables** -> **Actions**。
+3. 点击 **New repository secret**，依次添加：
+* `DROPBOX_APP_KEY`
+* `DROPBOX_APP_SECRET`
+* `DROPBOX_REFRESH_TOKEN`
+
+---
+
+### 第三阶段：编写自动化脚本
+
+在你的仓库根目录下创建文件：`.github/workflows/backup.yml`。
+
+```yaml
+name: Push to Dropbox (Develop Zip Backup)
+
+on:
+  push:
+    branches:
+      - develop  # 仅针对 develop 分支生效
+  workflow_dispatch: # 允许手动点击按钮触发
+
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    steps:
+      # 1. 下载代码
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      # 2. 创建 ZIP 压缩包
+      # 使用 -r 递归压缩，-x 排除 .git。生成在 ../ 以避免文件变动报错。
+      - name: Create Zip Archive
+        run: zip -r ../backup.zip . -x "*.git*"
+
+      # 3. 获取临时 Access Token
+      - name: Refresh Dropbox Token
+        id: dropbox_auth
+        run: |
+          RESPONSE=$(curl https://api.dropbox.com/oauth2/token \
+            -d grant_type=refresh_token \
+            -d refresh_token=${{ secrets.DROPBOX_REFRESH_TOKEN }} \
+            -u ${{ secrets.DROPBOX_APP_KEY }}:${{ secrets.DROPBOX_APP_SECRET }})
+          
+          TOKEN=$(echo $RESPONSE | jq -r '.access_token')
+          echo "ACCESS_TOKEN=$TOKEN" >> $GITHUB_ENV
+
+      # 4. 上传并覆盖
+      - name: Upload to Dropbox
+        run: |
+          # 目标路径：/资料/文档/个人/hugo blog backup/latest_backup.zip
+          curl -X POST https://content.dropboxapi.com/2/files/upload \
+            --header "Authorization: Bearer ${{ env.ACCESS_TOKEN }}" \
+            --header "Dropbox-API-Arg: {\"path\": \"/资料/文档/个人/hugo blog backup/latest_backup.zip\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": true}" \
+            --header "Content-Type: application/octet-stream" \
+            --data-binary @../backup.zip
+
+```
+
+---
+
+### 第四阶段：验证与运行
+
+1. **提交代码**：将该配置文件提交并推送至 `develop` 分支。
+2. **查看状态**：在 GitHub 仓库的 **Actions** 页面，你会看到名为 `Push to Dropbox` 的任务正在运行。
+3. **最终检查**：
+* 打开 Dropbox。
+* 依次进入文件夹：`资料` > `文档` > `个人` > `hugo blog backup`。
+* 确认 `latest_backup.zip` 已成功生成。
+
+### 为什么选择这个方案？
+
+* **空间优化**：使用 `overwrite` 模式，Dropbox 里永远只占一个文件的空间。
+* **兼容性高**：ZIP 格式在你常用的 Windows/macOS 环境下兼容性极佳。
+* **分支隔离**：完全符合你针对 `develop` 分支进行备份的需求。
+
+**既然你对自动化部署很有研究，需要我帮你再加一段脚本，在备份成功后向你的 Telegram 或企业微信发送一条通知吗？**
+
 ## 还原源码
 
 ~~重装系统后，Algolia的自动提交索引功能要重新部署一遍，具体可查看：[Hugo添加Algolia](https://bore.vip/hugo-theme-loveit-algolia/)。最后还要在博客目录里重新关联远程仓库，还是一样先备份源码到github，再部署网页到相应服务器。~~
