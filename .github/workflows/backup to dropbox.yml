@@ -1,16 +1,17 @@
-name: Push to Dropbox (Latest Backup)
+name: Push to Dropbox (Develop Branch Only)
 
 on:
   push:
     branches:
-      - main  # 如果你的主分支名称是 master，请改为 master
-  workflow_dispatch: # 允许手动点击按钮触发
+      - develop  # 核心设置：仅在 develop 分支有提交时触发备份
+  workflow_dispatch: # 允许你手动点击按钮随时备份当前分支
 
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
       # 1. 下载代码
+      # 默认会下载触发此 Action 的分支代码（即 develop）
       - name: Checkout Code
         uses: actions/checkout@v4
 
@@ -27,14 +28,14 @@ jobs:
             -d refresh_token=${{ secrets.DROPBOX_REFRESH_TOKEN }} \
             -u ${{ secrets.DROPBOX_APP_KEY }}:${{ secrets.DROPBOX_APP_SECRET }})
           
-          # 解析 Token
+          # 解析返回的 JSON 获取最新的 access_token
           TOKEN=$(echo $RESPONSE | jq -r '.access_token')
           echo "ACCESS_TOKEN=$TOKEN" >> $GITHUB_ENV
 
       # 4. 上传到 Dropbox 指定目录并覆盖旧文件
       - name: Upload to Dropbox
         run: |
-          # 目标路径已更新为：/资料/文档/个人/latest_backup.tar.gz
+          # 目标路径：/资料/文档/个人/latest_backup.tar.gz
           curl -X POST https://content.dropboxapi.com/2/files/upload \
             --header "Authorization: Bearer ${{ env.ACCESS_TOKEN }}" \
             --header "Dropbox-API-Arg: {\"path\": \"/资料/文档/个人/latest_backup.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": true}" \
