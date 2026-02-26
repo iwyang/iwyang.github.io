@@ -11,5 +11,5 @@ image: ""
 categories: [""]
 shuoshuotags: ["折腾"]
 ---
-这是第一条由安卓手机`http shortcuts`发布的说说。 
+这是第一条由安卓手机`http shortcuts`发布的说说。  
 
