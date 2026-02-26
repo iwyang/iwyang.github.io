@@ -1,23 +1,23 @@
-name: Push to Dropbox (Develop Branch Only)
+name: Push to Dropbox (Specific Personal Folder)
 
 on:
   push:
     branches:
-      - develop  # 仅备份 develop 分支
-  workflow_dispatch: # 允许手动触发
+      - develop  # 仅在 develop 分支提交时触发
+  workflow_dispatch:
 
 jobs:
   backup:
     runs-on: ubuntu-latest
     steps:
-      # 1. 下载代码
+      # 1. 检出代码
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      # 2. 压缩项目文件
-      # 核心改动：将生成的压缩包放在 ../ (上级目录)，彻底避开对当前目录 . 的干扰
-      - name: Create Archive
-        run: tar -czf ../backup.tar.gz --exclude='.git' .
+      # 2. 创建 ZIP 压缩包
+      # 排除了 .git 文件夹，且生成在项目目录之外，防止“文件变动”报错
+      - name: Create Zip Archive
+        run: zip -r ../backup.zip . -x "*.git*"
 
       # 3. 使用 Refresh Token 获取临时的 Access Token
       - name: Refresh Dropbox Token
@@ -31,12 +31,12 @@ jobs:
           TOKEN=$(echo $RESPONSE | jq -r '.access_token')
           echo "ACCESS_TOKEN=$TOKEN" >> $GITHUB_ENV
 
-      # 4. 上传到 Dropbox 指定目录
+      # 4. 上传到指定的深层目录并覆盖
       - name: Upload to Dropbox
         run: |
-          # 注意：这里的数据源改成了 @../backup.tar.gz
+          # 目标路径设定为：/资料/文档/个人/hugo blog backup/latest_backup.zip
           curl -X POST https://content.dropboxapi.com/2/files/upload \
             --header "Authorization: Bearer ${{ env.ACCESS_TOKEN }}" \
-            --header "Dropbox-API-Arg: {\"path\": \"/资料/文档/个人/latest_backup.tar.gz\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": true}" \
+            --header "Dropbox-API-Arg: {\"path\": \"/资料/文档/个人/hugo blog backup/latest_backup.zip\",\"mode\": \"overwrite\",\"autorename\": false,\"mute\": true}" \
             --header "Content-Type: application/octet-stream" \
-            --data-binary @../backup.tar.gz
+            --data-binary @../backup.zip
