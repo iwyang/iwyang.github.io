@@ -34,6 +34,8 @@ lastmod = [":git", "lastmod", ":fileModTime", ":default"]
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
+    # 👇 核心改动：必须允许 file 和 koreader 协议，否则链接会被 Hugo 自动抹除
+    allowedSchemes = ['http', 'https', 'mailto', 'tel', 'koreader', 'file']
 	
 [taxonomies]
   category = "categories"
