@@ -23,7 +23,6 @@ enableGitInfo = true
 [frontmatter]
 lastmod = [":git", "lastmod", ":fileModTime", ":default"]
 
-# 安全配置：允许读取环境变量（虽然上面的 HTML 已经不需要了，但加上更保险）
 [security]
   enableInlineShortcodes = false
   [security.exec]
@@ -34,10 +33,8 @@ lastmod = [":git", "lastmod", ":fileModTime", ":default"]
   [security.http]
     methods = ['(?i)GET|POST']
     urls = ['.*']
-    # 👇 核心改动：必须允许 file 和 koreader 协议，否则链接会被 Hugo 自动抹除
-    allowedSchemes = ['http', 'https', 'mailto', 'tel', 'koreader', 'file']
 	
 [taxonomies]
   category = "categories"
   tag = "tags"
-  shuoshuotag = "shuoshuotags" # 这一行是新增的专属标签系统	
+  shuoshuotag = "shuoshuotags"
