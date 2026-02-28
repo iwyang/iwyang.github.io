@@ -11,8 +11,7 @@ touch "$PROCESSED_LOG"
 
 # ==========================================================
 # 👇 核心进化：基于“划线原初时间”的绝对幂等切割引擎 👇
-# 修复1：使用 ${page} 避免 UTF-8 模式下变量名被吞噬
-# 修复2：智能分离引文与个人想法，剔除所有 KOReader 尾部垃圾
+# 包含修复：防止定界符冲突、强力净化无用链接、智能分离个人想法
 # ==========================================================
 PERL_ENGINE="/root/scripts/split_notes.pl"
 cat << 'PERL_EOF' > "$PERL_ENGINE"
@@ -28,10 +27,9 @@ close($fh);
 
 # --- 1. 全局净化 KOReader 残留垃圾 ---
 $raw =~ s/\r//g;
-$raw =~ s/\[在书中查看\]\(.*?\)//g; # 彻底干掉导出链接
-$raw =~ s/在书中查看//g;            # 兜底
-$raw =~ s/^_?Generated at:.*_?$//mg; # 干掉生成时间
-$raw =~ s/^##\s*$//mg;               # 干掉无用标题符
+$raw =~ s/^\s*\[?在书中查看\]?.*$//mg; 
+$raw =~ s/^_?Generated at:.*_?$//mg; 
+$raw =~ s/^##\s*$//mg;               
 
 my ($book, $author, $chapter) = ("未知书名", "未知作者", "未知章节");
 if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
@@ -79,10 +77,10 @@ foreach my $chunk (@chunks) {
 
     # 处理书摘引文
     $chunk =~ s/^\s+|\s+$//g;
-    $chunk =~ s/^\*+//;       # 去除前导星号
-    $chunk =~ s/\*+$//;       # 去除尾随星号
+    $chunk =~ s/^\*+//;       
+    $chunk =~ s/\*+$//;       
     $chunk =~ s/^\s+|\s+$//g;
-    $chunk =~ s/^/> /mg;      # 只给引文加 >
+    $chunk =~ s/^/> /mg;      
     
     # 处理个人想法
     if ($note) {
@@ -165,7 +163,14 @@ do
         fi
         
         git commit -m "Auto-publish: 批量书摘拆分 ($FILE) & Backup"
-        git pull --rebase origin develop
+        
+        # 👇 核心防卡死机制：尝试合并云端代码，如果遇到冲突报错，立刻中止，绝不卡死！ 👇
+        if ! git pull --rebase origin develop; then
+            echo "[$(date)] ⚠️ 警告：拉取云端代码时发生冲突！已自动取消合并。"
+            git rebase --abort
+            echo "[$(date)] ❌ 本次推送中断，将在下次有新笔记时自动重试。"
+            continue
+        fi
         
         if git push origin develop; then
             echo "[$(date)] 🚀 成功推送至 GitHub！(新书摘已独立上线)"

@@ -10,10 +10,9 @@ close($fh);
 
 # --- 1. 全局净化 KOReader 残留垃圾 ---
 $raw =~ s/\r//g;
-$raw =~ s/\[在书中查看\]\(.*?\)//g; # 彻底干掉导出链接
-$raw =~ s/在书中查看//g;            # 兜底
-$raw =~ s/^_?Generated at:.*_?$//mg; # 干掉生成时间
-$raw =~ s/^##\s*$//mg;               # 干掉无用标题符
+$raw =~ s/^\s*\[?在书中查看\]?.*$//mg; 
+$raw =~ s/^_?Generated at:.*_?$//mg; 
+$raw =~ s/^##\s*$//mg;               
 
 my ($book, $author, $chapter) = ("未知书名", "未知作者", "未知章节");
 if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
@@ -61,10 +60,10 @@ foreach my $chunk (@chunks) {
 
     # 处理书摘引文
     $chunk =~ s/^\s+|\s+$//g;
-    $chunk =~ s/^\*+//;       # 去除前导星号
-    $chunk =~ s/\*+$//;       # 去除尾随星号
+    $chunk =~ s/^\*+//;       
+    $chunk =~ s/\*+$//;       
     $chunk =~ s/^\s+|\s+$//g;
-    $chunk =~ s/^/> /mg;      # 只给引文加 >
+    $chunk =~ s/^/> /mg;      
     
     # 处理个人想法
     if ($note) {
