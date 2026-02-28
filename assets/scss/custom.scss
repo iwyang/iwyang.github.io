@@ -194,7 +194,6 @@
    9. KOReader 书摘典藏卡片版 (Book Note Card)
    ================================================================= */
 .book-note-card {
-    /* 👇 核心修改1：微微缩减底部的 padding，让空白刚刚好 👇 */
     padding: 1.8rem 1.8rem 1.2rem 1.8rem;
     margin: 2rem 0;
     background: rgba(128, 128, 128, 0.05); 
@@ -206,6 +205,13 @@
     &:hover {
         transform: translateY(-3px);
         box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    /* 👇 核心猎杀器：遇到 Hugo 生成的看不见的幽灵段落，直接灭口，彻底消除下巴空白 👇 */
+    p:empty {
+        display: none !important;
+        margin: 0 !important;
+        padding: 0 !important;
     }
 
     h3 {
@@ -297,7 +303,6 @@
         }
     }
 
-    /* 👇 核心修改2：专属防崩溃的 HTML 隔离带类名 👇 */
     .book-note-thought {
         margin-top: 1.5rem !important;
         padding-top: 1.5rem !important;
