@@ -33,10 +33,10 @@
     
     a { color: var(--accent-color); text-decoration: none; &:hover { text-decoration: underline; } }
     
-    /* 👇 修正：精准定位行内代码，绝对不污染多行代码块 👇 */
+    /* 修正：精准定位行内代码，绝对不污染多行代码块 */
     p code, li code {
-        background-color: rgba(128, 128, 128, 0.08); /* 稍微调淡一点背景色，更自然 */
-        color: #e83e8c; /* 经典的行内代码粉红色 */
+        background-color: rgba(128, 128, 128, 0.08); 
+        color: #e83e8c; 
         font-family: Consolas, Monaco, "Courier New", monospace;
         padding: 0.2em 0.4em;
         margin: 0 0.2em;
@@ -215,3 +215,79 @@
 .article-meta-item { display: flex !important; align-items: center !important; gap: 8px !important; font-size: 14px !important; line-height: 1 !important; text-decoration: none !important; color: inherit !important; opacity: 1 !important; }
 .article-meta-item svg { width: 14px !important; height: 14px !important; display: block !important; margin: 0 !important; padding: 0 !important; opacity: 1 !important; color: inherit !important; }
 .article-meta-item time, .article-meta-item span { font-size: 14px !important; line-height: 1 !important; display: block !important; margin: 0 !important; color: inherit !important; font-weight: normal !important; }
+
+/* =================================================================
+   9. KOReader 书摘典藏卡片版 (Book Note Card)
+   ================================================================= */
+.book-note-card {
+    padding: 1.8rem;
+    margin: 2rem 0;
+    /* 半透明灰色，完美自适应白天/黑夜模式 */
+    background: rgba(128, 128, 128, 0.05); 
+    border: 1px solid rgba(128, 128, 128, 0.1); 
+    border-radius: 16px; 
+    box-shadow: 0 4px 15px rgba(0,0,0,0.04); 
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    
+    &:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(0,0,0,0.06);
+    }
+
+    h3 {
+        margin-top: 0 !important;
+        display: flex;
+        flex-wrap: wrap;
+        align-items: baseline;
+        color: var(--card-text-color-main) !important;
+        
+        small {
+            margin-left: 0 !important; 
+            /* 👇 核心修改：将透明度提亮到 0.95，跟蓝框(meta)保持绝对一致 👇 */
+            opacity: 0.95;
+            color: var(--card-text-color-main);
+            @media (min-width: 600px) {
+                margin-left: 12px !important;
+            }
+        }
+    }
+
+    .book-note-meta {
+        font-size: 0.9em;
+        font-weight: normal;
+        opacity: 0.95;
+        margin-top: -0.5rem;
+        margin-bottom: 1.5rem;
+        color: var(--card-text-color-main); 
+    }
+
+    blockquote {
+        position: relative;
+        background: transparent !important;
+        /* 增加一个温暖醒目的左侧粗边框 */
+        border-left: 4px solid #f68c7e !important; 
+        padding: 1rem 1.5rem !important;
+        margin: 1.5rem 0 !important;
+        opacity: 0.95;
+        color: var(--card-text-color-main) !important;
+        
+        &::before {
+            content: "“" !important;
+            position: absolute;
+            font-size: 4em !important;
+            line-height: 1;
+            top: -0.1em !important;
+            left: 0.05em !important;
+            opacity: 0.85 !important; 
+            color: #f68c7e !important; 
+            display: inline-block;
+            font-family: Georgia, serif !important;
+        }
+        
+        p {
+            margin: 0.8rem 0 !important;
+            position: relative;
+            z-index: 1; 
+        }
+    }
+}
