@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 28 Feb 2026 15:26:35 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 28 Feb 2026 19:29:01 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装-docker"&gt;安装 Docker
 &lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -4391,9 +4391,10 @@
  &gt;docker-compose 关机或者重启docker同时重启容器restart always的配置&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://chinese.freecodecamp.org/news/how-to-remove-images-in-docker/" target="_blank" rel="noopener"
  &gt;如何删除 Docker 镜像和容器&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</title><link>https://bore.vip/archives/8458c80f/</link><pubDate>Fri, 27 Feb 2026 23:03:44 +0800</pubDate><guid>https://bore.vip/archives/8458c80f/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</title><link>https://bore.vip/archives/8458c80f/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/8458c80f/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 &lt;strong&gt;安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客&lt;/strong&gt; 的全链路。&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;：看书时划线并点击“导出”，1分钟内，经过时间格式化、去除冗余链接、排版精美的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;（完美分离引文与个人想法），就会自动挂载着专属标签，出现在你的博客说说页面上。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;实现效果&lt;/strong&gt;：看书时划线并点击“导出”，1分钟内，经过时间格式化、去除冗余链接、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的博客说说页面上。&lt;/p&gt;
+&lt;hr&gt;
 &lt;h2 id="阶段一手机端自动化搬运-foldersync"&gt;阶段一：手机端自动化搬运 (FolderSync)
 &lt;/h2&gt;&lt;p&gt;我们需要建立一条从手机到 VPS 的“私有通道”，并做到**“阅后即焚”**，防止旧笔记重复同步死循环。&lt;/p&gt;
 &lt;ol&gt;
@@ -4450,47 +4451,38 @@
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ssh-keygen -t ed25519 -C &lt;span class="s2"&gt;&amp;#34;你的GitHub邮箱&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;查看并复制你的公钥内容：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat ~/.ssh/id_ed25519.pub
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;登录 GitHub 网页端 ➡️ &lt;strong&gt;Settings&lt;/strong&gt; ➡️ &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; ➡️ &lt;strong&gt;New SSH key&lt;/strong&gt;，将刚才复制的内容粘贴进去并保存。&lt;/p&gt;
-&lt;h3 id="4-测试连接并克隆博客仓库"&gt;4. 测试连接并克隆博客仓库
-&lt;/h3&gt;&lt;p&gt;测试 VPS 是否能免密连接到 GitHub：&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ssh -T git@github.com
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;em&gt;(看到 &lt;code&gt;Hi &amp;lt;用户名&amp;gt;! You've successfully authenticated...&lt;/code&gt; 即为成功)&lt;/em&gt;&lt;/p&gt;
-&lt;p&gt;使用 &lt;strong&gt;SSH 地址&lt;/strong&gt; 克隆你的博客仓库到 VPS（注意替换）：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;查看并复制你的公钥内容 &lt;code&gt;cat ~/.ssh/id_ed25519.pub&lt;/code&gt;。
+登录 GitHub 网页端 ➡️ &lt;strong&gt;Settings&lt;/strong&gt; ➡️ &lt;strong&gt;SSH and GPG keys&lt;/strong&gt; ➡️ &lt;strong&gt;New SSH key&lt;/strong&gt;，将刚才复制的内容粘贴进去并保存。&lt;/p&gt;
+&lt;h3 id="4-测试连接克隆仓库与忽略日志"&gt;4. 测试连接、克隆仓库与忽略日志
+&lt;/h3&gt;&lt;p&gt;测试免密连接：&lt;code&gt;ssh -T git@github.com&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;克隆仓库并设置 &lt;code&gt;.gitignore&lt;/code&gt;（防止脚本生成的处理记录日志引发冲突）：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
 &lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /root
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git clone git@github.com:你的用户名/你的仓库名.git
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /root/你的仓库名
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;.processed_notes.log&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; .gitignore
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git add .gitignore
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git commit -m &lt;span class="s2"&gt;&amp;#34;Chore: 忽略同步记录日志文件&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git push origin develop
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
-&lt;h2 id="阶段三部署坚不可摧的核心脚本-独立拆分--防卡死版"&gt;阶段三：部署坚不可摧的核心脚本 (独立拆分 &amp;amp; 防卡死版)
-&lt;/h2&gt;&lt;p&gt;这份终极版脚本内置了&lt;strong&gt;强大的 Perl 智能切割引擎&lt;/strong&gt;。
-无论你一次性导出了多少条笔记，它都能：&lt;/p&gt;
+&lt;h2 id="阶段三部署坚不可摧的核心脚本-纯净工人模式"&gt;阶段三：部署坚不可摧的核心脚本 (纯净工人模式)
+&lt;/h2&gt;&lt;p&gt;这份终极版脚本内置了强大的 Perl 智能切割引擎，它具备三大极客特性：&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;像切蛋糕一样把它们&lt;strong&gt;强行拆分为独立的说说卡片&lt;/strong&gt;（基于原初划线时间生成绝对幂等的链接，拒绝重复发布）。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;完美分离“原著引文”与你的“个人想法”&lt;/strong&gt;。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;全自动暴力净化&lt;/strong&gt; KOReader 附带的各种“在书中查看”垃圾后缀。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;自带防卡死装甲&lt;/strong&gt;（遇 Git 冲突自动中止并重试）与&lt;strong&gt;云端热备份&lt;/strong&gt;（你的脚本源码会自动备份到博客 &lt;code&gt;vps-backup&lt;/code&gt; 目录下）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;动态章节追踪&lt;/strong&gt;：无论你一次导出多少跨章节的笔记，它都能精准识别并打上正确的章节标签。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;防 DOM 崩溃装甲&lt;/strong&gt;：利用 `` 魔法注释与专用的 &lt;code&gt;&amp;lt;hr&amp;gt;&lt;/code&gt; 标签，完美规避了 Hugo Markdown 解析器“吞噬标签、生成幽灵空行”的臭名昭著的 Bug。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;纯净工人模式 (无感去冲突)&lt;/strong&gt;：每次处理新笔记前，VPS 会强制 &lt;code&gt;git reset --hard&lt;/code&gt; 对齐云端。无论你在云端怎么删改旧笔记，本地都不会再发生致命的 modify/delete 冲突！&lt;/li&gt;
 &lt;/ol&gt;
 &lt;p&gt;创建脚本：&lt;code&gt;vi /root/scripts/sync_notes.sh&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -4661,22 +4653,6 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;164
 &lt;/span&gt;&lt;span class="lnt"&gt;165
 &lt;/span&gt;&lt;span class="lnt"&gt;166
-&lt;/span&gt;&lt;span class="lnt"&gt;167
-&lt;/span&gt;&lt;span class="lnt"&gt;168
-&lt;/span&gt;&lt;span class="lnt"&gt;169
-&lt;/span&gt;&lt;span class="lnt"&gt;170
-&lt;/span&gt;&lt;span class="lnt"&gt;171
-&lt;/span&gt;&lt;span class="lnt"&gt;172
-&lt;/span&gt;&lt;span class="lnt"&gt;173
-&lt;/span&gt;&lt;span class="lnt"&gt;174
-&lt;/span&gt;&lt;span class="lnt"&gt;175
-&lt;/span&gt;&lt;span class="lnt"&gt;176
-&lt;/span&gt;&lt;span class="lnt"&gt;177
-&lt;/span&gt;&lt;span class="lnt"&gt;178
-&lt;/span&gt;&lt;span class="lnt"&gt;179
-&lt;/span&gt;&lt;span class="lnt"&gt;180
-&lt;/span&gt;&lt;span class="lnt"&gt;181
-&lt;/span&gt;&lt;span class="lnt"&gt;182
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
@@ -4691,8 +4667,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;touch &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PROCESSED_LOG&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# ==========================================================&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 👇 核心进化：基于“划线原初时间”的绝对幂等切割引擎 👇&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 包含修复：防止定界符冲突、强力净化无用链接、智能分离个人想法&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 👇 核心引擎：基于“划线原初时间”的绝对幂等切割引擎 👇&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# ==========================================================&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nv"&gt;PERL_ENGINE&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;/root/scripts/split_notes.pl&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat &lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;PERL_EOF&amp;#39; &amp;gt; &amp;#34;$PERL_ENGINE&amp;#34;
@@ -4706,49 +4681,53 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my $raw = join(&amp;#34;&amp;#34;, &amp;lt;$fh&amp;gt;);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;close($fh);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;# --- 1. 全局净化 KOReader 残留垃圾 ---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$raw =~ s/\r//g;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$raw =~ s/^\s*\[?在书中查看\]?.*$//mg; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$raw =~ s/^_?Generated at:.*_?$//mg; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$raw =~ s/^##\s*$//mg; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my ($book, $author, $chapter) = (&amp;#34;未知书名&amp;#34;, &amp;#34;未知作者&amp;#34;, &amp;#34;未知章节&amp;#34;);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $book = $1; $author = $2; $chapter = $3;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my @chunks = split(/(?=(?:\*\* ?)?Page\s+\d+\s+@)/, $raw);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my $header = shift @chunks; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my ($book, $author, $current_chapter) = (&amp;#34;未知书名&amp;#34;, &amp;#34;未知作者&amp;#34;, &amp;#34;未知章节&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;if ($header =~ /^\s*#\s+([^\n]+)/m) { $book = $1; $book =~ s/^\s+|\s+$//g; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;if ($header =~ /^\s*#####\s+([^\n]+)/m) { $author = $1; $author =~ s/^\s+|\s+$//g; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;while ($header =~ /^\s*##\s+([^\n]+)/mg) { 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $c = $1; $c =~ s/^\s+|\s+$//g;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $current_chapter = $c if $c ne &amp;#34;&amp;#34;; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;my %months = (January=&amp;gt;&amp;#34;01&amp;#34;, February=&amp;gt;&amp;#34;02&amp;#34;, March=&amp;gt;&amp;#34;03&amp;#34;, April=&amp;gt;&amp;#34;04&amp;#34;, May=&amp;gt;&amp;#34;05&amp;#34;, June=&amp;gt;&amp;#34;06&amp;#34;, July=&amp;gt;&amp;#34;07&amp;#34;, August=&amp;gt;&amp;#34;08&amp;#34;, September=&amp;gt;&amp;#34;09&amp;#34;, October=&amp;gt;&amp;#34;10&amp;#34;, November=&amp;gt;&amp;#34;11&amp;#34;, December=&amp;gt;&amp;#34;12&amp;#34;);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;foreach my $chunk (@chunks) {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; next if $chunk =~ /^\s*$/; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $next_chapter = &amp;#34;&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; while ($chunk =~ s/^\s*##\s+([^\n]*)$//m) {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $c = $1; $c =~ s/^\s+|\s+$//g;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $next_chapter = $c if $c ne &amp;#34;&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\s*##\s*$//mg;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my ($page, $formatted_time, $dir_time, $fm_date, $slug) = (&amp;#34;&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;&amp;#34;, &amp;#34;&amp;#34;);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # --- 2. 提取时间与页码 ---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):(?:\d{2})\s+(AM|PM)\*?\*?\s*//i) {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $page = $1; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $d = $2; my $mon = ucfirst(lc($3)); my $y = $4; my $h = $5; my $m = $6; my $ampm = uc($7);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $m_num = $months{$mon} || &amp;#34;01&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $h += 12 if ($ampm eq &amp;#34;PM&amp;#34; &amp;amp;&amp;amp; $h &amp;lt; 12);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $h = 0 if ($ampm eq &amp;#34;AM&amp;#34; &amp;amp;&amp;amp; $h == 12);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $formatted_time = sprintf(&amp;#34;%04d-%02d-%02d %02d:%02d&amp;#34;, $y, $m_num, $d, $h, $m);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $dir_time = sprintf(&amp;#34;%04d-%02d-%02d %02d-%02d&amp;#34;, $y, $m_num, $d, $h, $m);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $fm_date = sprintf(&amp;#34;%04d-%02d-%02dT%02d:%02d:00+08:00&amp;#34;, $y, $m_num, $d, $h, $m);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $slug = sprintf(&amp;#34;note-%04d%02d%02d%02d%02d-%s&amp;#34;, $y, $m_num, $d, $h, $m, $page);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; } elsif ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})\*?\*?\s*//) {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $page = $1; my $y = $2; my $m_num = $3; my $d = $4; my $h = $5; my $m = $6;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $formatted_time = &amp;#34;$y-$m_num-$d $h:$m&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $dir_time = &amp;#34;$y-$m_num-$d $h-$m&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $fm_date = sprintf(&amp;#34;%04d-%02d-%02dT%02d:%02d:00+08:00&amp;#34;, $y, $m_num, $d, $h, $m);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $slug = sprintf(&amp;#34;note-%04d%02d%02d%02d%02d-%s&amp;#34;, $y, $m_num, $d, $h, $m, $page);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; } else {
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; next; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; } else { next; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # --- 3. 智能切割：引文(Quote) vs 个人想法(Note) ---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $note = &amp;#34;&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($chunk =~ m/^\s*---\s*$/m) {
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my @parts = split(/^\s*---\s*$/m, $chunk, 2);
@@ -4756,33 +4735,25 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $note = $parts[1] if @parts &amp;gt; 1;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # 处理书摘引文
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\s+|\s+$//g;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\*+//; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/\*+$//; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\s+|\s+$//g;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^/&amp;gt; /mg; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # 处理个人想法
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($note) {
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $note =~ s/^\s+|\s+$//g;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $note =~ s/^\*+//; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $note =~ s/\*+$//;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^\*+//; $chunk =~ s/\*+$//;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^/&amp;gt; /mg;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($note) { $note =~ s/^\s+|\s+$//g; $note =~ s/^\*+//; $note =~ s/\*+$//; $note =~ s/^\s+|\s+$//g; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # 组合为最终排版
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # 👇 保留结构：使用 hr 作为隔离带，在 CSS 里将它隐形 👇
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $final_text = $chunk;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $final_text .= &amp;#34;\n\n&amp;#34; . $note if $note;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($note ne &amp;#34;&amp;#34;) {
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; $final_text .= &amp;#34;\n\n&amp;lt;hr class=\&amp;#34;note-divider\&amp;#34;&amp;gt;\n\n$note&amp;#34;;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; next if $final_text =~ /^\s*$/; # 防止空文
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; next if $final_text =~ /^\s*$/; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # --- 4. 写入文件（安全隔离变量） ---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $display_title = &amp;#34;书摘：《$book》- 第${page}页 ($dir_time)&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $target_dir = &amp;#34;$content_dir/$display_title&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; system(&amp;#34;mkdir&amp;#34;, &amp;#34;-p&amp;#34;, $target_dir);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; my $target_file = &amp;#34;$target_dir/index.md&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; open(my $out, &amp;#39;&amp;gt;:encoding(UTF-8)&amp;#39;, $target_file) or next;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; # 👇 致命修复：注入 魔法注释，彻底解决套娃崩溃和幽灵空行 👇
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; print $out &amp;lt;&amp;lt;&amp;#34;MARKDOWN&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;title: &amp;#34;$display_title&amp;#34;
@@ -4798,7 +4769,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;div class=&amp;#34;book-note-card&amp;#34;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;### 📚 《$book》 &amp;lt;small style=&amp;#34;font-weight: normal; margin-left: 8px;&amp;#34;&amp;gt;👤 $author · 🔖 $chapter&amp;lt;/small&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;### 📚 《$book》 &amp;lt;small style=&amp;#34;font-weight: normal; margin-left: 8px;&amp;#34;&amp;gt;👤 $author · 🔖 $current_chapter&amp;lt;/small&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;div class=&amp;#34;book-note-meta&amp;#34;&amp;gt;📍 第 ${page} 页 | ⏱️ $formatted_time&amp;lt;/div&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
@@ -4807,6 +4778,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;/div&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;MARKDOWN
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; close($out);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt; if ($next_chapter ne &amp;#34;&amp;#34;) { $current_chapter = $next_chapter; }
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;PERL_EOF&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod +x &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PERL_ENGINE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
@@ -4820,50 +4792,38 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 接收到新文件: &lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; grep -Fxq &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PROCESSED_LOG&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ⚠️ 拦截：导出文件 &lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt; 已处理过，跳过！&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ⚠️ 跳过已处理文件。&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;continue&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 核心：调用引擎切割&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 🔄 正在强制对齐云端状态...&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BLOG_DIR&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git fetch origin
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git reset --hard origin/develop
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git clean -fd 
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; perl &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PERL_ENGINE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$WATCH_DIR&lt;/span&gt;&lt;span class="s2"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$CONTENT_DIR&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;BACKUP_DIR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BLOG_DIR&lt;/span&gt;&lt;span class="s2"&gt;/vps-backup&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; mkdir -p &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BACKUP_DIR&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; cp /root/scripts/sync_notes.sh &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BACKUP_DIR&lt;/span&gt;&lt;span class="s2"&gt;/&amp;#34;&lt;/span&gt; 2&amp;gt;/dev/null
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; cp /etc/systemd/system/koreader-sync.service &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BACKUP_DIR&lt;/span&gt;&lt;span class="s2"&gt;/&amp;#34;&lt;/span&gt; 2&amp;gt;/dev/null
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; cp &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PERL_ENGINE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BACKUP_DIR&lt;/span&gt;&lt;span class="s2"&gt;/&amp;#34;&lt;/span&gt; 2&amp;gt;/dev/null
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;cd&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$BLOG_DIR&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="o"&gt;||&lt;/span&gt; &lt;span class="nb"&gt;exit&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git add .
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 判断 Git 是否真的有新东西需要提交&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; git diff --staged --quiet&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 💡 检测到内容无变化（全是旧笔记），跳过 Git 推送环节。&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 💡 无变化，记录并跳过推送。&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PROCESSED_LOG&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;continue&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git commit -m &lt;span class="s2"&gt;&amp;#34;Auto-publish: 批量书摘拆分 (&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;) &amp;amp; Backup&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 👇 核心防卡死机制：尝试合并云端代码，如果遇到冲突报错，立刻中止，绝不卡死！ 👇&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; ! git pull --rebase origin develop&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ⚠️ 警告：拉取云端代码时发生冲突！已自动取消合并。&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git rebase --abort
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ❌ 本次推送中断，将在下次有新笔记时自动重试。&amp;#34;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;continue&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; git commit -m &lt;span class="s2"&gt;&amp;#34;Auto-publish: 批量书摘拆分 (&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;)&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;if&lt;/span&gt; git push origin develop&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="k"&gt;then&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 🚀 成功推送至 GitHub！(新书摘已独立上线)&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] 🚀 推送成功！&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &amp;gt;&amp;gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$PROCESSED_LOG&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;else&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ❌ 推送失败。&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;[&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;] ❌ 推送失败，等待下次重试。&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;fi&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;done&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;赋予执行权限，如果&lt;strong&gt;更新脚本&lt;/strong&gt;，请执行以下命令踢掉旧的后台进程：&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;赋予执行权限，如果&lt;strong&gt;更新脚本&lt;/strong&gt;，请执行以下命令踢掉旧进程：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -4907,7 +4867,7 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-ini" data-lang="ini"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[Unit]&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;KOReader to Hugo Auto Sync Service&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;Description&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;KOReader Notes Auto-Sync Service&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="na"&gt;After&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;network.target&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="k"&gt;[Service]&lt;/span&gt;
@@ -4933,7 +4893,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h3 id="3-极客排错利器实时日志监控"&gt;3. 极客排错利器：实时日志监控
-&lt;/h3&gt;&lt;p&gt;手机点击导出后，在 VPS 终端输入以下命令，即可如同看电影一般实时观察处理和推送的全过程：&lt;/p&gt;
+&lt;/h3&gt;&lt;p&gt;这是测试整个链路是否畅通的最强武器。手机点击导出后，在 VPS 终端输入以下命令，即可如同看电影一般，实时观察脚本处理、云端对齐和推送的全过程：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -4947,7 +4907,7 @@
 &lt;/h2&gt;&lt;p&gt;既然我们在手机端 FolderSync 设置了“同步后删除源文件”，那么传到 VPS 上的 &lt;code&gt;.md&lt;/code&gt; 原始笔记就成了我们最后的“容错备份缓冲”。我们可以让 VPS 保留它们 7 天后再自动销毁。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;输入 &lt;code&gt;crontab -e&lt;/code&gt; 开启定时任务编辑器。&lt;/li&gt;
-&lt;li&gt;在末尾添加以下规则（每天凌晨 4 点，自动查杀 7 天前的原始笔记）：&lt;/li&gt;
+&lt;li&gt;在末尾添加以下规则（每天凌晨 4 点，自动查杀 7 天前的原始垃圾笔记）：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -4959,9 +4919,9 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;hr&gt;
 &lt;h2 id="阶段六修复-github-actions-并发冲突-防连环车祸"&gt;阶段六：修复 GitHub Actions 并发冲突 (防连环车祸)
-&lt;/h2&gt;&lt;p&gt;如果你一次性导出了多篇独立笔记，VPS 脚本会连续进行多次独立的 &lt;code&gt;git push&lt;/code&gt;，这会导致 GitHub 瞬间触发多个并行编译任务，引发 &lt;code&gt;non-fast-forward&lt;/code&gt; 冲突报错，导致网页无法更新。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;如果你一次性导出了多篇独立笔记，VPS 会连续进行多次 &lt;code&gt;git push&lt;/code&gt;。这会导致 GitHub 瞬间触发多个并行编译任务，引发 &lt;code&gt;non-fast-forward&lt;/code&gt; 冲突报错，网页彻底罢工。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;解决方案：给 GitHub Actions 加上排队机制。&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;打开你博客仓库中的 &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; 文件，在文件顶部（和 &lt;code&gt;env:&lt;/code&gt; 差不多位置）加入 &lt;code&gt;concurrency&lt;/code&gt; 队列指令：&lt;/p&gt;
+&lt;p&gt;打开你博客仓库中的 &lt;code&gt;.github/workflows/deploy.yml&lt;/code&gt; 文件，在文件顶部加入 &lt;code&gt;concurrency&lt;/code&gt; 队列指令：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -5000,8 +4960,15 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c"&gt;# ...下面保持原样...&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;这样，多个编译任务会自动排队，或取消旧任务只跑最新的，彻底杜绝云端部署失败！&lt;/p&gt;
-&lt;p&gt;至此，这套坚如磐石、绝对幂等、自动拆分、永不丢失的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;这样，多个编译任务会自动排队，或直接取消旧任务只跑最新版，彻底杜绝云端部署失败！&lt;/p&gt;
+&lt;p&gt;至此，这套坚如磐石、绝对幂等、自动拆解章节、免 Git 冲突且永不丢失的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="第一部分服务端部署-docker-同步中心"&gt;第一部分：服务端部署 (Docker 同步中心)
 &lt;/h2&gt;&lt;p&gt;为了避免端口冲突，我们为同步服务分配 &lt;code&gt;3002&lt;/code&gt; 端口。&lt;/p&gt;
