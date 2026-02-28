@@ -11,7 +11,8 @@ touch "$PROCESSED_LOG"
 
 # ==========================================================
 # 👇 核心进化：基于“划线原初时间”的绝对幂等切割引擎 👇
-# 修复：防止内外层定界符冲突，外层改为 PERL_EOF，内层改为 MARKDOWN
+# 修复1：使用 ${page} 避免 UTF-8 模式下变量名被吞噬
+# 修复2：智能分离引文与个人想法，剔除所有 KOReader 尾部垃圾
 # ==========================================================
 PERL_ENGINE="/root/scripts/split_notes.pl"
 cat << 'PERL_EOF' > "$PERL_ENGINE"
@@ -25,9 +26,12 @@ open(my $fh, '<:encoding(UTF-8)', $file_path) or exit;
 my $raw = join("", <$fh>);
 close($fh);
 
-$raw =~ s/在书中查看//g;
-$raw =~ s/Generated at:.*//g;
+# --- 1. 全局净化 KOReader 残留垃圾 ---
 $raw =~ s/\r//g;
+$raw =~ s/\[在书中查看\]\(.*?\)//g; # 彻底干掉导出链接
+$raw =~ s/在书中查看//g;            # 兜底
+$raw =~ s/^_?Generated at:.*_?$//mg; # 干掉生成时间
+$raw =~ s/^##\s*$//mg;               # 干掉无用标题符
 
 my ($book, $author, $chapter) = ("未知书名", "未知作者", "未知章节");
 if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
@@ -42,7 +46,7 @@ foreach my $chunk (@chunks) {
 
     my ($page, $formatted_time, $dir_time, $fm_date, $slug) = ("", "", "", "", "");
     
-    # 提取时间并生成绝对固定的 FrontMatter 元数据
+    # --- 2. 提取时间与页码 ---
     if ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):(?:\d{2})\s+(AM|PM)\*?\*?\s*//i) {
         $page = $1; 
         my $d = $2; my $mon = ucfirst(lc($3)); my $y = $4; my $h = $5; my $m = $6; my $ampm = uc($7);
@@ -65,18 +69,40 @@ foreach my $chunk (@chunks) {
         next; 
     }
 
-    $chunk =~ s/^\s+|\s+$//g;
-    $chunk =~ s/^\*\s*//;
-    $chunk =~ s/\s*\*$//;
-    $chunk =~ s/^/> /mg;
-    next if $chunk eq "> "; 
+    # --- 3. 智能切割：引文(Quote) vs 个人想法(Note) ---
+    my $note = "";
+    if ($chunk =~ m/^\s*---\s*$/m) {
+        my @parts = split(/^\s*---\s*$/m, $chunk, 2);
+        $chunk = $parts[0];
+        $note = $parts[1] if @parts > 1;
+    }
 
-    my $display_title = "书摘：《$book》- 第$page页 ($dir_time)";
+    # 处理书摘引文
+    $chunk =~ s/^\s+|\s+$//g;
+    $chunk =~ s/^\*+//;       # 去除前导星号
+    $chunk =~ s/\*+$//;       # 去除尾随星号
+    $chunk =~ s/^\s+|\s+$//g;
+    $chunk =~ s/^/> /mg;      # 只给引文加 >
+    
+    # 处理个人想法
+    if ($note) {
+        $note =~ s/^\s+|\s+$//g;
+        $note =~ s/^\*+//; 
+        $note =~ s/\*+$//;
+    }
+
+    # 组合为最终排版
+    my $final_text = $chunk;
+    $final_text .= "\n\n" . $note if $note;
+    
+    next if $final_text =~ /^\s*$/; # 防止空文
+
+    # --- 4. 写入文件（安全隔离变量） ---
+    my $display_title = "书摘：《$book》- 第${page}页 ($dir_time)";
     my $target_dir = "$content_dir/$display_title";
     system("mkdir", "-p", $target_dir);
     my $target_file = "$target_dir/index.md";
     
-    # 写入文件
     open(my $out, '>:encoding(UTF-8)', $target_file) or next;
     print $out <<"MARKDOWN";
 ---
@@ -95,9 +121,9 @@ shuoshuotags: ["书摘"]
 
 ### 📚 《$book》 <small style="font-weight: normal; margin-left: 8px;">👤 $author · 🔖 $chapter</small>
 
-<div class="book-note-meta">📍 第 $page 页 | ⏱️ $formatted_time</div>
+<div class="book-note-meta">📍 第 ${page} 页 | ⏱️ $formatted_time</div>
 
-$chunk
+$final_text
 
 </div>
 MARKDOWN
