@@ -7,6 +7,11 @@ on:
   # 【优化1】新增手动触发按钮
   workflow_dispatch:
 
+# 👇 新增：完美的防并发“排队”机制，杜绝 Git 冲突报错 👇
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
 env:
   TZ: Asia/Shanghai
 
