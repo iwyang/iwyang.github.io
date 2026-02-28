@@ -243,7 +243,6 @@
         
         small {
             margin-left: 0 !important; 
-            /* 👇 核心修改：将透明度提亮到 0.95，跟蓝框(meta)保持绝对一致 👇 */
             opacity: 0.95;
             color: var(--card-text-color-main);
             @media (min-width: 600px) {
@@ -264,9 +263,11 @@
     blockquote {
         position: relative;
         background: transparent !important;
-        /* 增加一个温暖醒目的左侧粗边框 */
         border-left: 4px solid #f68c7e !important; 
-        padding: 1rem 1.5rem !important;
+        
+        /* 👇 核心修复：将底部的内边距(padding)极度压缩到 0.2rem，让红线完美收底 👇 */
+        padding: 0.8rem 1.5rem 0.2rem 1.5rem !important; 
+        
         margin: 1.5rem 0 !important;
         opacity: 0.95;
         color: var(--card-text-color-main) !important;
@@ -288,6 +289,11 @@
             margin: 0.8rem 0 !important;
             position: relative;
             z-index: 1; 
+        }
+
+        /* 配合 padding 的压缩，这里彻底消除最后一段文字的底部空白 */
+        p:last-child {
+            margin-bottom: 0 !important;
         }
     }
 }
