@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><title>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</title><link rel=canonical href=https://bore.vip/archives/8458c80f/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.0d84de6e292e186543ea63bdc61aa519c47562b453c19431b90534103ec3886b.css><meta property='og:title' content="终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流"><meta property='og:description' content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><meta property='og:url' content='https://bore.vip/archives/8458c80f/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hugo'><meta property='article:published_time' content='2026-02-27T23:03:44+08:00'><meta property='article:modified_time' content='2026-02-28T12:49:20+08:00'><meta name=twitter:title content="终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流"><meta name=twitter:description content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><title>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</title><link rel=canonical href=https://bore.vip/archives/8458c80f/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.0d84de6e292e186543ea63bdc61aa519c47562b453c19431b90534103ec3886b.css><meta property='og:title' content="终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流"><meta property='og:description' content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><meta property='og:url' content='https://bore.vip/archives/8458c80f/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='hugo'><meta property='article:tag' content='KOReader'><meta property='article:tag' content='自动化'><meta property='article:published_time' content='2026-02-27T23:03:44+08:00'><meta property='article:modified_time' content='2026-02-28T15:26:35+08:00'><meta name=twitter:title content="终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流"><meta name=twitter:description content="对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。\n本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客 的全链路。\n"><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
 </a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
@@ -8,11 +8,11 @@
 <span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
 <span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</a></li><li><a href=#阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</a><ol><li><a href=#1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</a></li><li><a href=#2-配置-git-全局身份>2. 配置 Git 全局身份</a></li><li><a href=#3-生成-ssh-密钥并对接-github>3. 生成 SSH 密钥并对接 GitHub</a></li><li><a href=#4-测试连接并克隆博客仓库>4. 测试连接并克隆博客仓库</a></li></ol></li><li><a href=#阶段三部署坚不可摧的核心脚本-防-windows-报错版>阶段三：部署坚不可摧的核心脚本 (防 Windows 报错版)</a></li><li><a href=#阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</a><ol><li><a href=#1-创建服务>1. 创建服务</a></li><li><a href=#2-激活并启动服务>2. 激活并启动服务</a></li><li><a href=#3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</a></li></ol></li><li><a href=#阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</a></li><li><a href=#-附录跨平台-git-pull-invalid-path-避坑指南>🛑 附录：跨平台 Git Pull <code>invalid path</code> 避坑指南</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/archives/8458c80f/>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</a></h2><footer class=article-meta-info><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</a></li><li><a href=#阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</a><ol><li><a href=#1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</a></li><li><a href=#2-配置-git-全局身份>2. 配置 Git 全局身份</a></li><li><a href=#3-生成-ssh-密钥并对接-github>3. 生成 SSH 密钥并对接 GitHub</a></li><li><a href=#4-测试连接并克隆博客仓库>4. 测试连接并克隆博客仓库</a></li></ol></li><li><a href=#阶段三部署坚不可摧的核心脚本-独立拆分--防卡死版>阶段三：部署坚不可摧的核心脚本 (独立拆分 & 防卡死版)</a></li><li><a href=#阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</a><ol><li><a href=#1-创建服务>1. 创建服务</a></li><li><a href=#2-激活并启动服务>2. 激活并启动服务</a></li><li><a href=#3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</a></li></ol></li><li><a href=#阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</a></li><li><a href=#阶段六修复-github-actions-并发冲突-防连环车祸>阶段六：修复 GitHub Actions 并发冲突 (防连环车祸)</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/archives/8458c80f/>终极指南：打造 KOReader 笔记全自动同步至 Hugo 博客的极客工作流</a></h2><footer class=article-meta-info><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 <time class=article-time--published title='发布于 2026-02-27 23:03'>16 小时前</time></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4A2 2 0 002 6v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121.0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-<time class=article-time--updated title='更新于 2026-02-28 12:49'>2 小时前</time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
-<span class=article-words title='字数: 2447 字'>2.4k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</a></li><li><a href=#阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</a><ol><li><a href=#1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</a></li><li><a href=#2-配置-git-全局身份>2. 配置 Git 全局身份</a></li><li><a href=#3-生成-ssh-密钥并对接-github>3. 生成 SSH 密钥并对接 GitHub</a></li><li><a href=#4-测试连接并克隆博客仓库>4. 测试连接并克隆博客仓库</a></li></ol></li><li><a href=#阶段三部署坚不可摧的核心脚本-防-windows-报错版>阶段三：部署坚不可摧的核心脚本 (防 Windows 报错版)</a></li><li><a href=#阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</a><ol><li><a href=#1-创建服务>1. 创建服务</a></li><li><a href=#2-激活并启动服务>2. 激活并启动服务</a></li><li><a href=#3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</a></li></ol></li><li><a href=#阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</a></li><li><a href=#-附录跨平台-git-pull-invalid-path-避坑指南>🛑 附录：跨平台 Git Pull <code>invalid path</code> 避坑指南</a></li></ol></nav></details></aside><section class=article-content><p>对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。</p><p>本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 <strong>安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客</strong> 的全链路。</p><p>实现效果：看书时划线并点击“导出”，1分钟内，经过时间格式化、去除冗余链接、排版精美的读书笔记就会自动挂载着专属标签，出现在你的博客说说页面上。</p><h2 id=阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</h2><p>我们需要建立一条从手机到 VPS 的“私有通道”。</p><ol><li><strong>KOReader 导出设置</strong>：阅读时划线，在菜单中选择“导出标注” -> 格式选择 Markdown。文件默认存放在手机的 <code>/storage/emulated/0/koreader/clipboard/</code> 目录下。</li><li><strong>配置 FolderSync App</strong>：<ul><li>在 App 内添加 <strong>SFTP</strong> 账户，填入 VPS 的 IP、端口 <code>22</code> 以及 root 账号密码。</li></ul></li><li><strong>创建文件夹同步对</strong>：<ul><li><strong>同步类型</strong>：选择 <strong>“到左侧文件夹”</strong>（单向上传至 VPS）。</li><li><strong>本地目录</strong>：选择手机的 <code>/koreader/clipboard/</code>。</li><li><strong>远程目录</strong>：在 VPS 上新建并选择 <code>/root/Koreader</code>。</li><li><strong>调度</strong>：开启 <strong>“即时同步”</strong>。</li></ul></li></ol><hr><h2 id=阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</h2><p>为了让后台脚本能全自动推送到 GitHub，必须在 VPS 上安装所需软件，并打通 SSH 免密通道。</p><h3 id=1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</h3><p>更新系统，并确保安装了 Git、SSH 客户端以及用于实时监听文件变动的 <code>inotify-tools</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+<time class=article-time--updated title='更新于 2026-02-28 15:26'>刚刚</time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
+<span class=article-words title='字数: 3212 字'>3.2k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</a></li><li><a href=#阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</a><ol><li><a href=#1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</a></li><li><a href=#2-配置-git-全局身份>2. 配置 Git 全局身份</a></li><li><a href=#3-生成-ssh-密钥并对接-github>3. 生成 SSH 密钥并对接 GitHub</a></li><li><a href=#4-测试连接并克隆博客仓库>4. 测试连接并克隆博客仓库</a></li></ol></li><li><a href=#阶段三部署坚不可摧的核心脚本-独立拆分--防卡死版>阶段三：部署坚不可摧的核心脚本 (独立拆分 & 防卡死版)</a></li><li><a href=#阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</a><ol><li><a href=#1-创建服务>1. 创建服务</a></li><li><a href=#2-激活并启动服务>2. 激活并启动服务</a></li><li><a href=#3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</a></li></ol></li><li><a href=#阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</a></li><li><a href=#阶段六修复-github-actions-并发冲突-防连环车祸>阶段六：修复 GitHub Actions 并发冲突 (防连环车祸)</a></li></ol></nav></details></aside><section class=article-content><p>对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。</p><p>本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。打通 <strong>安卓手机 (KOReader) ➡️ FolderSync (SFTP) ➡️ VPS (inotify) ➡️ Git自动化 ➡️ GitHub ➡️ Hugo 博客</strong> 的全链路。</p><p><strong>实现效果</strong>：看书时划线并点击“导出”，1分钟内，经过时间格式化、去除冗余链接、排版精美的<strong>独立卡片式读书笔记</strong>（完美分离引文与个人想法），就会自动挂载着专属标签，出现在你的博客说说页面上。</p><h2 id=阶段一手机端自动化搬运-foldersync>阶段一：手机端自动化搬运 (FolderSync)</h2><p>我们需要建立一条从手机到 VPS 的“私有通道”，并做到**“阅后即焚”**，防止旧笔记重复同步死循环。</p><ol><li><strong>KOReader 导出设置</strong>：阅读时划线，在菜单中选择“导出标注” -> 格式选择 Markdown。文件默认存放在手机的 <code>/storage/emulated/0/koreader/clipboard/</code> 目录下。</li><li><strong>配置 FolderSync App</strong>：<ul><li>在 App 内添加 <strong>SFTP</strong> 账户，填入 VPS 的 IP、端口 <code>22</code> 以及 root 账号密码。</li></ul></li><li><strong>创建文件夹同步对</strong>：<ul><li><strong>同步类型</strong>：选择 <strong>“到左侧文件夹”</strong>（单向上传至 VPS）。</li><li><strong>同步选项</strong>：<strong>必须勾选“同步后删除源文件”（Delete source files after sync）</strong>。这是为了实现“阅后即焚”，防止每次导出都把旧笔记重复传给 VPS。</li><li><strong>本地目录</strong>：选择手机的 <code>/koreader/clipboard/</code>。</li><li><strong>远程目录</strong>：在 VPS 上新建并选择 <code>/root/Koreader</code>。</li><li><strong>调度</strong>：开启 <strong>“即时同步”</strong>。</li></ul></li></ol><hr><h2 id=阶段二vps-基础环境与-git-深度配置>阶段二：VPS 基础环境与 Git 深度配置</h2><p>为了让后台脚本能全自动推送到 GitHub，必须在 VPS 上安装所需软件，并打通 SSH 免密通道。</p><h3 id=1-安装基础依赖-git-ssh-inotify>1. 安装基础依赖 (Git, SSH, inotify)</h3><p>更新系统，并确保安装了 Git、SSH 客户端以及用于实时监听文件变动的 <code>inotify-tools</code>。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>apt update <span class=o>&amp;&amp;</span> apt upgrade -y
 </span></span><span class=line><span class=cl>apt install git openssh-client inotify-tools -y
@@ -30,168 +30,299 @@
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /root
 </span></span><span class=line><span class=cl>git clone git@github.com:你的用户名/你的仓库名.git
-</span></span></code></pre></td></tr></table></div></div><hr><h2 id=阶段三部署坚不可摧的核心脚本-防-windows-报错版>阶段三：部署坚不可摧的核心脚本 (防 Windows 报错版)</h2><p>这份脚本内置了强大的 Perl 正则处理器，能够智能合并书籍信息、将繁琐的英文时间换算为极简的 24 小时制。
-<strong>特别注意：</strong> 脚本中生成文件夹时间的格式使用了横杠 <code>-</code> 而不是冒号 <code>:</code>，完美避开了 Windows 系统不允许文件夹名带冒号的巨坑。</p><p>创建脚本：<code>vi /root/scripts/sync_notes.sh</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span><span class=lnt>41
-</span><span class=lnt>42
-</span><span class=lnt>43
-</span><span class=lnt>44
-</span><span class=lnt>45
-</span><span class=lnt>46
-</span><span class=lnt>47
-</span><span class=lnt>48
-</span><span class=lnt>49
-</span><span class=lnt>50
-</span><span class=lnt>51
-</span><span class=lnt>52
-</span><span class=lnt>53
-</span><span class=lnt>54
-</span><span class=lnt>55
-</span><span class=lnt>56
-</span><span class=lnt>57
-</span><span class=lnt>58
-</span><span class=lnt>59
-</span><span class=lnt>60
-</span><span class=lnt>61
-</span><span class=lnt>62
-</span><span class=lnt>63
-</span><span class=lnt>64
-</span><span class=lnt>65
-</span><span class=lnt>66
-</span><span class=lnt>67
-</span><span class=lnt>68
-</span><span class=lnt>69
-</span><span class=lnt>70
-</span><span class=lnt>71
-</span><span class=lnt>72
-</span><span class=lnt>73
-</span><span class=lnt>74
-</span><span class=lnt>75
-</span><span class=lnt>76
-</span><span class=lnt>77
-</span><span class=lnt>78
-</span><span class=lnt>79
-</span><span class=lnt>80
-</span><span class=lnt>81
-</span><span class=lnt>82
-</span><span class=lnt>83
-</span><span class=lnt>84
-</span><span class=lnt>85
-</span><span class=lnt>86
-</span><span class=lnt>87
-</span><span class=lnt>88
-</span><span class=lnt>89
-</span><span class=lnt>90
-</span><span class=lnt>91
-</span><span class=lnt>92
-</span><span class=lnt>93
-</span><span class=lnt>94
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=阶段三部署坚不可摧的核心脚本-独立拆分--防卡死版>阶段三：部署坚不可摧的核心脚本 (独立拆分 & 防卡死版)</h2><p>这份终极版脚本内置了<strong>强大的 Perl 智能切割引擎</strong>。
+无论你一次性导出了多少条笔记，它都能：</p><ol><li>像切蛋糕一样把它们<strong>强行拆分为独立的说说卡片</strong>（基于原初划线时间生成绝对幂等的链接，拒绝重复发布）。</li><li><strong>完美分离“原著引文”与你的“个人想法”</strong>。</li><li><strong>全自动暴力净化</strong> KOReader 附带的各种“在书中查看”垃圾后缀。</li><li><strong>自带防卡死装甲</strong>（遇 Git 冲突自动中止并重试）与<strong>云端热备份</strong>（你的脚本源码会自动备份到博客 <code>vps-backup</code> 目录下）。</li></ol><p>创建脚本：<code>vi /root/scripts/sync_notes.sh</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span><span class=lnt>103
+</span><span class=lnt>104
+</span><span class=lnt>105
+</span><span class=lnt>106
+</span><span class=lnt>107
+</span><span class=lnt>108
+</span><span class=lnt>109
+</span><span class=lnt>110
+</span><span class=lnt>111
+</span><span class=lnt>112
+</span><span class=lnt>113
+</span><span class=lnt>114
+</span><span class=lnt>115
+</span><span class=lnt>116
+</span><span class=lnt>117
+</span><span class=lnt>118
+</span><span class=lnt>119
+</span><span class=lnt>120
+</span><span class=lnt>121
+</span><span class=lnt>122
+</span><span class=lnt>123
+</span><span class=lnt>124
+</span><span class=lnt>125
+</span><span class=lnt>126
+</span><span class=lnt>127
+</span><span class=lnt>128
+</span><span class=lnt>129
+</span><span class=lnt>130
+</span><span class=lnt>131
+</span><span class=lnt>132
+</span><span class=lnt>133
+</span><span class=lnt>134
+</span><span class=lnt>135
+</span><span class=lnt>136
+</span><span class=lnt>137
+</span><span class=lnt>138
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span><span class=lnt>167
+</span><span class=lnt>168
+</span><span class=lnt>169
+</span><span class=lnt>170
+</span><span class=lnt>171
+</span><span class=lnt>172
+</span><span class=lnt>173
+</span><span class=lnt>174
+</span><span class=lnt>175
+</span><span class=lnt>176
+</span><span class=lnt>177
+</span><span class=lnt>178
+</span><span class=lnt>179
+</span><span class=lnt>180
+</span><span class=lnt>181
+</span><span class=lnt>182
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
 </span></span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl><span class=c1># --- 核心配置区 ---</span>
 </span></span><span class=line><span class=cl><span class=nv>WATCH_DIR</span><span class=o>=</span><span class=s2>&#34;/root/Koreader&#34;</span>               
 </span></span><span class=line><span class=cl><span class=nv>BLOG_DIR</span><span class=o>=</span><span class=s2>&#34;/root/iwyang.github.io&#34;</span>        
 </span></span><span class=line><span class=cl><span class=nv>CONTENT_DIR</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$BLOG_DIR</span><span class=s2>/content/shuoshuo&#34;</span> 
+</span></span><span class=line><span class=cl><span class=nv>PROCESSED_LOG</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$BLOG_DIR</span><span class=s2>/.processed_notes.log&#34;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>mkdir -p <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>mkdir -p <span class=s2>&#34;</span><span class=nv>$CONTENT_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>mkdir -p <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$CONTENT_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>touch <span class=s2>&#34;</span><span class=nv>$PROCESSED_LOG</span><span class=s2>&#34;</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;🚀 守护进程启动：正在监听 </span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>inotifywait -m -e close_write --format <span class=s1>&#39;%f&#39;</span> <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span> <span class=p>|</span> <span class=k>while</span> <span class=nb>read</span> FILE
-</span></span><span class=line><span class=cl><span class=k>do</span>
-</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> <span class=o>==</span> *.md <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
-</span></span><span class=line><span class=cl>        <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] 接收到新文件: </span><span class=nv>$FILE</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 1. 提取书名与时间</span>
-</span></span><span class=line><span class=cl>        <span class=nv>CLEAN_NAME</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> <span class=p>|</span> sed -E <span class=s1>&#39;s/^[0-9-]{19}\s+//&#39;</span><span class=k>)</span>
-</span></span><span class=line><span class=cl>        <span class=nv>BOOK_TITLE</span><span class=o>=</span><span class=s2>&#34;</span><span class=si>${</span><span class=nv>CLEAN_NAME</span><span class=p>%.*</span><span class=si>}</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=c1># 时间格式使用横杠代替冒号，防止 Windows 本地 Git 拉取时报 invalid path 错误</span>
-</span></span><span class=line><span class=cl>        <span class=nv>NOW_TIME</span><span class=o>=</span><span class=k>$(</span>date +<span class=s2>&#34;%Y-%m-%d %H-%M&#34;</span><span class=k>)</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=nv>FULL_DISPLAY_NAME</span><span class=o>=</span><span class=s2>&#34;书摘：《</span><span class=nv>$BOOK_TITLE</span><span class=s2>》 (</span><span class=nv>$NOW_TIME</span><span class=s2>)&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 2. 创建 Page Bundle</span>
-</span></span><span class=line><span class=cl>        <span class=nv>TARGET_DIR</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$CONTENT_DIR</span><span class=s2>/</span><span class=nv>$FULL_DISPLAY_NAME</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>        mkdir -p <span class=s2>&#34;</span><span class=nv>$TARGET_DIR</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>        <span class=nv>TARGET_FILE</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$TARGET_DIR</span><span class=s2>/index.md&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 3. 生成变量</span>
-</span></span><span class=line><span class=cl>        <span class=nv>DATE_STR</span><span class=o>=</span><span class=k>$(</span>date +<span class=s2>&#34;%Y-%m-%dT%H:%M:%S+08:00&#34;</span><span class=k>)</span>
-</span></span><span class=line><span class=cl>        <span class=nv>SLUG_STR</span><span class=o>=</span><span class=s2>&#34;note-</span><span class=k>$(</span>date +<span class=s1>&#39;%Y%m%d%H%M%S&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 4. 文本清洗与排版优化 (典藏卡片版骨架)</span>
-</span></span><span class=line><span class=cl>        <span class=nv>raw_content</span><span class=o>=</span><span class=k>$(</span>grep -v -e <span class=s2>&#34;在书中查看&#34;</span> -e <span class=s2>&#34;Generated at:&#34;</span> <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>/</span><span class=nv>$FILE</span><span class=s2>&#34;</span><span class=k>)</span>
-</span></span><span class=line><span class=cl>        
-</span></span><span class=line><span class=cl>        <span class=c1># 使用强大的 Perl 脚本直接进行日期换算和格式重构</span>
-</span></span><span class=line><span class=cl>        <span class=nv>NOTE_CONTENT</span><span class=o>=</span><span class=k>$(</span><span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$raw_content</span><span class=s2>&#34;</span> <span class=p>|</span> perl -0777 -pe <span class=s1>&#39;
-</span></span></span><span class=line><span class=cl><span class=s1>            # A. 转换标题行 (书名作者章节合体，使用 small 标签)
-</span></span></span><span class=line><span class=cl><span class=s1>            s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+/### 📚 《$1》 &lt;small style=&#34;font-weight: normal; margin-left: 8px;&#34;&gt;👤 $2 · 🔖 $3&lt;\/small&gt;\n\n/s;
-</span></span></span><span class=line><span class=cl><span class=s1>            
-</span></span></span><span class=line><span class=cl><span class=s1>            # B. 提取英文时间并计算为 YYYY-MM-DD HH:MM 格式，包裹在 div.book-note-meta 中
-</span></span></span><span class=line><span class=cl><span class=s1>            s/^.*?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):\d{2}\s+(AM|PM).*$/
-</span></span></span><span class=line><span class=cl><span class=s1>                my ($page, $d, $mon, $y, $h, $m, $ampm) = ($1, $2, ucfirst(lc($3)), $4, $5, $6, uc($7));
-</span></span></span><span class=line><span class=cl><span class=s1>                my %months = (January=&gt;&#34;01&#34;, February=&gt;&#34;02&#34;, March=&gt;&#34;03&#34;, April=&gt;&#34;04&#34;, May=&gt;&#34;05&#34;, June=&gt;&#34;06&#34;, July=&gt;&#34;07&#34;, August=&gt;&#34;08&#34;, September=&gt;&#34;09&#34;, October=&gt;&#34;10&#34;, November=&gt;&#34;11&#34;, December=&gt;&#34;12&#34;);
-</span></span></span><span class=line><span class=cl><span class=s1>                my $m_num = $months{$mon} || &#34;01&#34;;
-</span></span></span><span class=line><span class=cl><span class=s1>                $h += 12 if ($ampm eq &#34;PM&#34; &amp;&amp; $h &lt; 12);
-</span></span></span><span class=line><span class=cl><span class=s1>                $h = 0 if ($ampm eq &#34;AM&#34; &amp;&amp; $h == 12);
-</span></span></span><span class=line><span class=cl><span class=s1>                sprintf(&#34;&lt;div class=\&#34;book-note-meta\&#34;&gt;📍 第 %s 页 | ⏱️ %04d-%02d-%02d %02d:%02d&lt;\/div&gt;\n\n&#34;, $page, $y, $m_num, $d, $h, $m);
-</span></span></span><span class=line><span class=cl><span class=s1>            /gemi;
-</span></span></span><span class=line><span class=cl><span class=s1>            
-</span></span></span><span class=line><span class=cl><span class=s1>            # 兜底匹配：如果时间已经是普通数字格式
-</span></span></span><span class=line><span class=cl><span class=s1>            s/^.*?Page\s+(\d+)\s+@\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}).*$/&lt;div class=\&#34;book-note-meta\&#34;&gt;📍 第 $1 页 | ⏱️ $2&lt;\/div&gt;\n\n/gm;
-</span></span></span><span class=line><span class=cl><span class=s1>            
-</span></span></span><span class=line><span class=cl><span class=s1>            # C. 跨行引用修复 (去掉首尾星号，并为每一行加上 &gt; )
-</span></span></span><span class=line><span class=cl><span class=s1>            s/^[ \t]*\*\s*(.*?)\s*\*[ \t]*$/ my $t = $1; $t =~ s!^!&gt; !mg; $t /msge;
-</span></span></span><span class=line><span class=cl><span class=s1>        &#39;</span><span class=k>)</span>
-</span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 5. 写入 Hugo 格式 (带 .book-note-card 包装)</span>
-</span></span><span class=line><span class=cl>        cat <span class=s>&lt;&lt;EOF &gt; &#34;$TARGET_FILE&#34;
+</span></span><span class=line><span class=cl><span class=c1># ==========================================================</span>
+</span></span><span class=line><span class=cl><span class=c1># 👇 核心进化：基于“划线原初时间”的绝对幂等切割引擎 👇</span>
+</span></span><span class=line><span class=cl><span class=c1># 包含修复：防止定界符冲突、强力净化无用链接、智能分离个人想法</span>
+</span></span><span class=line><span class=cl><span class=c1># ==========================================================</span>
+</span></span><span class=line><span class=cl><span class=nv>PERL_ENGINE</span><span class=o>=</span><span class=s2>&#34;/root/scripts/split_notes.pl&#34;</span>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt; &#39;PERL_EOF&#39; &gt; &#34;$PERL_ENGINE&#34;
+</span></span></span><span class=line><span class=cl><span class=s>use utf8;
+</span></span></span><span class=line><span class=cl><span class=s>use POSIX qw(strftime);
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>my $file_path = $ARGV[0];
+</span></span></span><span class=line><span class=cl><span class=s>my $content_dir = $ARGV[1];
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>open(my $fh, &#39;&lt;:encoding(UTF-8)&#39;, $file_path) or exit;
+</span></span></span><span class=line><span class=cl><span class=s>my $raw = join(&#34;&#34;, &lt;$fh&gt;);
+</span></span></span><span class=line><span class=cl><span class=s>close($fh);
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s># --- 1. 全局净化 KOReader 残留垃圾 ---
+</span></span></span><span class=line><span class=cl><span class=s>$raw =~ s/\r//g;
+</span></span></span><span class=line><span class=cl><span class=s>$raw =~ s/^\s*\[?在书中查看\]?.*$//mg; 
+</span></span></span><span class=line><span class=cl><span class=s>$raw =~ s/^_?Generated at:.*_?$//mg; 
+</span></span></span><span class=line><span class=cl><span class=s>$raw =~ s/^##\s*$//mg;               
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>my ($book, $author, $chapter) = (&#34;未知书名&#34;, &#34;未知作者&#34;, &#34;未知章节&#34;);
+</span></span></span><span class=line><span class=cl><span class=s>if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
+</span></span></span><span class=line><span class=cl><span class=s>    $book = $1; $author = $2; $chapter = $3;
+</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>my @chunks = split(/(?=(?:\*\* ?)?Page\s+\d+\s+@)/, $raw);
+</span></span></span><span class=line><span class=cl><span class=s>my %months = (January=&gt;&#34;01&#34;, February=&gt;&#34;02&#34;, March=&gt;&#34;03&#34;, April=&gt;&#34;04&#34;, May=&gt;&#34;05&#34;, June=&gt;&#34;06&#34;, July=&gt;&#34;07&#34;, August=&gt;&#34;08&#34;, September=&gt;&#34;09&#34;, October=&gt;&#34;10&#34;, November=&gt;&#34;11&#34;, December=&gt;&#34;12&#34;);
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>foreach my $chunk (@chunks) {
+</span></span></span><span class=line><span class=cl><span class=s>    next if $chunk =~ /^\s*$/; 
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>    my ($page, $formatted_time, $dir_time, $fm_date, $slug) = (&#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;, &#34;&#34;);
+</span></span></span><span class=line><span class=cl><span class=s>    
+</span></span></span><span class=line><span class=cl><span class=s>    # --- 2. 提取时间与页码 ---
+</span></span></span><span class=line><span class=cl><span class=s>    if ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):(?:\d{2})\s+(AM|PM)\*?\*?\s*//i) {
+</span></span></span><span class=line><span class=cl><span class=s>        $page = $1; 
+</span></span></span><span class=line><span class=cl><span class=s>        my $d = $2; my $mon = ucfirst(lc($3)); my $y = $4; my $h = $5; my $m = $6; my $ampm = uc($7);
+</span></span></span><span class=line><span class=cl><span class=s>        my $m_num = $months{$mon} || &#34;01&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>        $h += 12 if ($ampm eq &#34;PM&#34; &amp;&amp; $h &lt; 12);
+</span></span></span><span class=line><span class=cl><span class=s>        $h = 0 if ($ampm eq &#34;AM&#34; &amp;&amp; $h == 12);
+</span></span></span><span class=line><span class=cl><span class=s>        
+</span></span></span><span class=line><span class=cl><span class=s>        $formatted_time = sprintf(&#34;%04d-%02d-%02d %02d:%02d&#34;, $y, $m_num, $d, $h, $m);
+</span></span></span><span class=line><span class=cl><span class=s>        $dir_time = sprintf(&#34;%04d-%02d-%02d %02d-%02d&#34;, $y, $m_num, $d, $h, $m);
+</span></span></span><span class=line><span class=cl><span class=s>        $fm_date = sprintf(&#34;%04d-%02d-%02dT%02d:%02d:00+08:00&#34;, $y, $m_num, $d, $h, $m);
+</span></span></span><span class=line><span class=cl><span class=s>        $slug = sprintf(&#34;note-%04d%02d%02d%02d%02d-%s&#34;, $y, $m_num, $d, $h, $m, $page);
+</span></span></span><span class=line><span class=cl><span class=s>        
+</span></span></span><span class=line><span class=cl><span class=s>    } elsif ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})\*?\*?\s*//) {
+</span></span></span><span class=line><span class=cl><span class=s>        $page = $1; my $y = $2; my $m_num = $3; my $d = $4; my $h = $5; my $m = $6;
+</span></span></span><span class=line><span class=cl><span class=s>        $formatted_time = &#34;$y-$m_num-$d $h:$m&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>        $dir_time = &#34;$y-$m_num-$d $h-$m&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>        $fm_date = sprintf(&#34;%04d-%02d-%02dT%02d:%02d:00+08:00&#34;, $y, $m_num, $d, $h, $m);
+</span></span></span><span class=line><span class=cl><span class=s>        $slug = sprintf(&#34;note-%04d%02d%02d%02d%02d-%s&#34;, $y, $m_num, $d, $h, $m, $page);
+</span></span></span><span class=line><span class=cl><span class=s>    } else {
+</span></span></span><span class=line><span class=cl><span class=s>        next; 
+</span></span></span><span class=line><span class=cl><span class=s>    }
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>    # --- 3. 智能切割：引文(Quote) vs 个人想法(Note) ---
+</span></span></span><span class=line><span class=cl><span class=s>    my $note = &#34;&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>    if ($chunk =~ m/^\s*---\s*$/m) {
+</span></span></span><span class=line><span class=cl><span class=s>        my @parts = split(/^\s*---\s*$/m, $chunk, 2);
+</span></span></span><span class=line><span class=cl><span class=s>        $chunk = $parts[0];
+</span></span></span><span class=line><span class=cl><span class=s>        $note = $parts[1] if @parts &gt; 1;
+</span></span></span><span class=line><span class=cl><span class=s>    }
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>    # 处理书摘引文
+</span></span></span><span class=line><span class=cl><span class=s>    $chunk =~ s/^\s+|\s+$//g;
+</span></span></span><span class=line><span class=cl><span class=s>    $chunk =~ s/^\*+//;       
+</span></span></span><span class=line><span class=cl><span class=s>    $chunk =~ s/\*+$//;       
+</span></span></span><span class=line><span class=cl><span class=s>    $chunk =~ s/^\s+|\s+$//g;
+</span></span></span><span class=line><span class=cl><span class=s>    $chunk =~ s/^/&gt; /mg;      
+</span></span></span><span class=line><span class=cl><span class=s>    
+</span></span></span><span class=line><span class=cl><span class=s>    # 处理个人想法
+</span></span></span><span class=line><span class=cl><span class=s>    if ($note) {
+</span></span></span><span class=line><span class=cl><span class=s>        $note =~ s/^\s+|\s+$//g;
+</span></span></span><span class=line><span class=cl><span class=s>        $note =~ s/^\*+//; 
+</span></span></span><span class=line><span class=cl><span class=s>        $note =~ s/\*+$//;
+</span></span></span><span class=line><span class=cl><span class=s>    }
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>    # 组合为最终排版
+</span></span></span><span class=line><span class=cl><span class=s>    my $final_text = $chunk;
+</span></span></span><span class=line><span class=cl><span class=s>    $final_text .= &#34;\n\n&#34; . $note if $note;
+</span></span></span><span class=line><span class=cl><span class=s>    
+</span></span></span><span class=line><span class=cl><span class=s>    next if $final_text =~ /^\s*$/; # 防止空文
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>    # --- 4. 写入文件（安全隔离变量） ---
+</span></span></span><span class=line><span class=cl><span class=s>    my $display_title = &#34;书摘：《$book》- 第${page}页 ($dir_time)&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>    my $target_dir = &#34;$content_dir/$display_title&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>    system(&#34;mkdir&#34;, &#34;-p&#34;, $target_dir);
+</span></span></span><span class=line><span class=cl><span class=s>    my $target_file = &#34;$target_dir/index.md&#34;;
+</span></span></span><span class=line><span class=cl><span class=s>    
+</span></span></span><span class=line><span class=cl><span class=s>    open(my $out, &#39;&gt;:encoding(UTF-8)&#39;, $target_file) or next;
+</span></span></span><span class=line><span class=cl><span class=s>    print $out &lt;&lt;&#34;MARKDOWN&#34;;
 </span></span></span><span class=line><span class=cl><span class=s>---
-</span></span></span><span class=line><span class=cl><span class=s>title: &#34;$FULL_DISPLAY_NAME&#34;
-</span></span></span><span class=line><span class=cl><span class=s>date: &#34;$DATE_STR&#34;
-</span></span></span><span class=line><span class=cl><span class=s>slug: &#34;$SLUG_STR&#34;
-</span></span></span><span class=line><span class=cl><span class=s>lastmod: &#34;$DATE_STR&#34;
+</span></span></span><span class=line><span class=cl><span class=s>title: &#34;$display_title&#34;
+</span></span></span><span class=line><span class=cl><span class=s>date: &#34;$fm_date&#34;
+</span></span></span><span class=line><span class=cl><span class=s>slug: &#34;$slug&#34;
+</span></span></span><span class=line><span class=cl><span class=s>lastmod: &#34;$fm_date&#34;
 </span></span></span><span class=line><span class=cl><span class=s>draft: false
 </span></span></span><span class=line><span class=cl><span class=s>toc: false
 </span></span></span><span class=line><span class=cl><span class=s>weight: false
@@ -201,31 +332,76 @@
 </span></span></span><span class=line><span class=cl><span class=s>
 </span></span></span><span class=line><span class=cl><span class=s>&lt;div class=&#34;book-note-card&#34;&gt;
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s>$NOTE_CONTENT
+</span></span></span><span class=line><span class=cl><span class=s>### 📚 《$book》 &lt;small style=&#34;font-weight: normal; margin-left: 8px;&#34;&gt;👤 $author · 🔖 $chapter&lt;/small&gt;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>&lt;div class=&#34;book-note-meta&#34;&gt;📍 第 ${page} 页 | ⏱️ $formatted_time&lt;/div&gt;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>$final_text
 </span></span></span><span class=line><span class=cl><span class=s>
 </span></span></span><span class=line><span class=cl><span class=s>&lt;/div&gt;
-</span></span></span><span class=line><span class=cl><span class=s>EOF</span>
+</span></span></span><span class=line><span class=cl><span class=s>MARKDOWN
+</span></span></span><span class=line><span class=cl><span class=s>    close($out);
+</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>PERL_EOF</span>
+</span></span><span class=line><span class=cl>chmod +x <span class=s2>&#34;</span><span class=nv>$PERL_ENGINE</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=c1># ==========================================================</span>
 </span></span><span class=line><span class=cl>
-</span></span><span class=line><span class=cl>        <span class=c1># 6. 推送至 GitHub</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;🚀 守护进程启动：正在监听 </span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>inotifywait -m -e close_write --format <span class=s1>&#39;%f&#39;</span> <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>&#34;</span> <span class=p>|</span> <span class=k>while</span> <span class=nb>read</span> FILE
+</span></span><span class=line><span class=cl><span class=k>do</span>
+</span></span><span class=line><span class=cl>    <span class=k>if</span> <span class=o>[[</span> <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> <span class=o>==</span> *.md <span class=o>]]</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>        <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] 接收到新文件: </span><span class=nv>$FILE</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> grep -Fxq <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$PROCESSED_LOG</span><span class=s2>&#34;</span><span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] ⚠️ 拦截：导出文件 </span><span class=nv>$FILE</span><span class=s2> 已处理过，跳过！&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=c1># 核心：调用引擎切割</span>
+</span></span><span class=line><span class=cl>        perl <span class=s2>&#34;</span><span class=nv>$PERL_ENGINE</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$WATCH_DIR</span><span class=s2>/</span><span class=nv>$FILE</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$CONTENT_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>        <span class=nv>BACKUP_DIR</span><span class=o>=</span><span class=s2>&#34;</span><span class=nv>$BLOG_DIR</span><span class=s2>/vps-backup&#34;</span>
+</span></span><span class=line><span class=cl>        mkdir -p <span class=s2>&#34;</span><span class=nv>$BACKUP_DIR</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>        cp /root/scripts/sync_notes.sh <span class=s2>&#34;</span><span class=nv>$BACKUP_DIR</span><span class=s2>/&#34;</span> 2&gt;/dev/null
+</span></span><span class=line><span class=cl>        cp /etc/systemd/system/koreader-sync.service <span class=s2>&#34;</span><span class=nv>$BACKUP_DIR</span><span class=s2>/&#34;</span> 2&gt;/dev/null
+</span></span><span class=line><span class=cl>        cp <span class=s2>&#34;</span><span class=nv>$PERL_ENGINE</span><span class=s2>&#34;</span> <span class=s2>&#34;</span><span class=nv>$BACKUP_DIR</span><span class=s2>/&#34;</span> 2&gt;/dev/null
+</span></span><span class=line><span class=cl>
 </span></span><span class=line><span class=cl>        <span class=nb>cd</span> <span class=s2>&#34;</span><span class=nv>$BLOG_DIR</span><span class=s2>&#34;</span> <span class=o>||</span> <span class=nb>exit</span>
 </span></span><span class=line><span class=cl>        git add .
-</span></span><span class=line><span class=cl>        git commit -m <span class=s2>&#34;Auto-publish: </span><span class=nv>$FULL_DISPLAY_NAME</span><span class=s2>&#34;</span>
-</span></span><span class=line><span class=cl>        git pull --rebase origin develop
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 判断 Git 是否真的有新东西需要提交</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> git diff --staged --quiet<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] 💡 检测到内容无变化（全是旧笔记），跳过 Git 推送环节。&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> &gt;&gt; <span class=s2>&#34;</span><span class=nv>$PROCESSED_LOG</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        git commit -m <span class=s2>&#34;Auto-publish: 批量书摘拆分 (</span><span class=nv>$FILE</span><span class=s2>) &amp; Backup&#34;</span>
+</span></span><span class=line><span class=cl>        
+</span></span><span class=line><span class=cl>        <span class=c1># 👇 核心防卡死机制：尝试合并云端代码，如果遇到冲突报错，立刻中止，绝不卡死！ 👇</span>
+</span></span><span class=line><span class=cl>        <span class=k>if</span> ! git pull --rebase origin develop<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] ⚠️ 警告：拉取云端代码时发生冲突！已自动取消合并。&#34;</span>
+</span></span><span class=line><span class=cl>            git rebase --abort
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] ❌ 本次推送中断，将在下次有新笔记时自动重试。&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=k>continue</span>
+</span></span><span class=line><span class=cl>        <span class=k>fi</span>
 </span></span><span class=line><span class=cl>        
 </span></span><span class=line><span class=cl>        <span class=k>if</span> git push origin develop<span class=p>;</span> <span class=k>then</span>
-</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] 🚀 成功推送至 GitHub！&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] 🚀 成功推送至 GitHub！(新书摘已独立上线)&#34;</span>
+</span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;</span><span class=nv>$FILE</span><span class=s2>&#34;</span> &gt;&gt; <span class=s2>&#34;</span><span class=nv>$PROCESSED_LOG</span><span class=s2>&#34;</span>
 </span></span><span class=line><span class=cl>        <span class=k>else</span>
 </span></span><span class=line><span class=cl>            <span class=nb>echo</span> <span class=s2>&#34;[</span><span class=k>$(</span>date<span class=k>)</span><span class=s2>] ❌ 推送失败。&#34;</span>
 </span></span><span class=line><span class=cl>        <span class=k>fi</span>
 </span></span><span class=line><span class=cl>    <span class=k>fi</span>
 </span></span><span class=line><span class=cl><span class=k>done</span>
-</span></span></code></pre></td></tr></table></div></div><p>赋予执行权限：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x /root/scripts/sync_notes.sh
-</span></span></code></pre></td></tr></table></div></div><hr><p>如果<strong>更新脚本</strong>，请执行以下命令踢掉旧的后台进程</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><p>赋予执行权限，如果<strong>更新脚本</strong>，请执行以下命令踢掉旧的后台进程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>pkill -9 -f sync_notes.sh
+</span><span class=lnt>3
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>chmod +x /root/scripts/sync_notes.sh
+</span></span><span class=line><span class=cl>pkill -9 -f sync_notes.sh
 </span></span><span class=line><span class=cl>systemctl restart koreader-sync
-</span></span></code></pre></td></tr></table></div></div><h2 id=阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</h2><p>将脚本做成系统服务，确保 VPS 重启后依然坚守岗位。</p><h3 id=1-创建服务>1. 创建服务</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=阶段四注册系统服务与实时监控>阶段四：注册系统服务与实时监控</h2><p>将脚本做成系统服务，确保 VPS 重启后依然坚守岗位。</p><h3 id=1-创建服务>1. 创建服务</h3><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>vi /etc/systemd/system/koreader-sync.service
 </span></span></code></pre></td></tr></table></div></div><p>填入以下配置：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
@@ -257,31 +433,51 @@
 </span><span class=lnt>2
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>systemctl daemon-reload
 </span></span><span class=line><span class=cl>systemctl <span class=nb>enable</span> --now koreader-sync
-</span></span></code></pre></td></tr></table></div></div><h3 id=3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</h3><p>这是测试整个链路是否畅通的最强武器。手机点击导出后，在 VPS 终端输入以下命令，即可如同看电影一般，实时观察脚本处理和推送的全过程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></span></code></pre></td></tr></table></div></div><h3 id=3-极客排错利器实时日志监控>3. 极客排错利器：实时日志监控</h3><p>手机点击导出后，在 VPS 终端输入以下命令，即可如同看电影一般实时观察处理和推送的全过程：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>journalctl -u koreader-sync -f
-</span></span></code></pre></td></tr></table></div></div><p><em>(按 <code>Ctrl + C</code> 退出监控模式)</em></p><hr><h2 id=阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</h2><p>VPS 上的原始 <code>.md</code> 笔记在处理后就失去了保留价值，可以通过 <code>cron</code> 每天凌晨自动清理。</p><ol><li>输入 <code>crontab -e</code> 开启定时任务编辑器。</li><li>在末尾添加以下规则（每天凌晨 4 点，自动查杀 3 天前的原始垃圾笔记）：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=m>0</span> <span class=m>4</span> * * * find /root/Koreader -type f -name <span class=s2>&#34;*.md&#34;</span> -mtime +3 -delete
-</span></span></code></pre></td></tr></table></div></div><hr><h2 id=-附录跨平台-git-pull-invalid-path-避坑指南>🛑 附录：跨平台 Git Pull <code>invalid path</code> 避坑指南</h2><p>如果你在 VPS 上生成的文件夹名字中包含了冒号（例如 <code>20:10</code>），由于 Windows 系统严格禁止在文件名中使用冒号 <code>&lt; > : " / \ | ? *</code>，当你在本地电脑上执行 <code>git pull</code> 时，Git 会直接报错 <code>error: invalid path</code> 并且拒绝同步。</p><p><strong>补救方法：</strong></p><ol><li>首先参考本教程，将脚本中的时间格式修改为横杠（<code>-</code>），重启服务。</li><li>在 <strong>VPS 终端</strong>上，暴力删除那些带有冒号的非法文件夹，并推送到云端：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span><span class=lnt>3
-</span><span class=lnt>4
-</span><span class=lnt>5
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=nb>cd</span> /root/iwyang.github.io/content/shuoshuo/
-</span></span><span class=line><span class=cl>rm -rf *:*
-</span></span><span class=line><span class=cl>git add .
-</span></span><span class=line><span class=cl>git commit -m <span class=s2>&#34;Fix: 删除带有冒号的非法 Windows 路径&#34;</span>
-</span></span><span class=line><span class=cl>git push origin develop
-</span></span></code></pre></td></tr></table></div></div><ol start=3><li>在你的 <strong>本地 Windows 电脑</strong> 终端执行强行覆盖，与云端重新对齐：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span><span class=lnt>2
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>git fetch origin develop
-</span></span><span class=line><span class=cl>git reset --hard origin/develop
-</span></span></code></pre></td></tr></table></div></div><p>彻底解决跨平台同步死锁！</p><p>至此，这套坚如磐石的闭环系统已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！</p></section><footer class=article-footer><style>.article-edit-container a{-webkit-tap-highlight-color:transparent!important;outline:none!important}.article-edit-container a:hover{text-decoration:underline!important}.article-edit-container{border-top:1px dashed var(--body-background);padding-top:15px;margin-top:20px;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</style><section class=article-tags><style>.article-tags{margin-top:25px;margin-bottom:15px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.article-tags .tag-link{display:inline-flex!important;align-items:center!important;padding:4px 16px!important;background-color:rgba(30,144,255,8%)!important;color:#1e90ff!important;border-radius:999px!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;border:1px solid rgba(30,144,255,.2)!important;transition:all .3s ease!important}.article-tags .tag-link::before{content:"#"!important;margin-right:4px!important;color:inherit!important;font-weight:700!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 4px 12px rgba(30,144,255,.35)!important;border-color:#1e90ff!important}@media(prefers-color-scheme:dark){.article-tags .tag-link{background-color:rgba(88,166,255,.15)!important;color:#58a6ff!important;font-weight:600!important;border-color:rgba(88,166,255,.3)!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;box-shadow:0 4px 15px rgba(30,144,255,.4)!important}}</style><a href=/tags/hugo/ class=tag-link title=查看标签：Hugo>Hugo</a></section><section class=article-edit-container><a style=color:#1e90ff;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e6%89%93%e9%80%a0%20KOReader%20%e7%ac%94%e8%ae%b0%e5%85%a8%e8%87%aa%e5%8a%a8%e5%90%8c%e6%ad%a5%e8%87%b3%20Hugo%20%e5%8d%9a%e5%ae%a2%e7%9a%84%e6%9e%81%e5%ae%a2%e5%b7%a5%e4%bd%9c%e6%b5%81/index.md target=_blank rel="noopener noreferrer" title="前往 GitHub 编辑此页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=阶段五定时清理大扫除-cron>阶段五：定时清理大扫除 (Cron)</h2><p>既然我们在手机端 FolderSync 设置了“同步后删除源文件”，那么传到 VPS 上的 <code>.md</code> 原始笔记就成了我们最后的“容错备份缓冲”。我们可以让 VPS 保留它们 7 天后再自动销毁。</p><ol><li>输入 <code>crontab -e</code> 开启定时任务编辑器。</li><li>在末尾添加以下规则（每天凌晨 4 点，自动查杀 7 天前的原始笔记）：</li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=m>0</span> <span class=m>4</span> * * * find /root/Koreader -type f -name <span class=s2>&#34;*.md&#34;</span> -mtime +7 -delete
+</span></span></code></pre></td></tr></table></div></div><hr><h2 id=阶段六修复-github-actions-并发冲突-防连环车祸>阶段六：修复 GitHub Actions 并发冲突 (防连环车祸)</h2><p>如果你一次性导出了多篇独立笔记，VPS 脚本会连续进行多次独立的 <code>git push</code>，这会导致 GitHub 瞬间触发多个并行编译任务，引发 <code>non-fast-forward</code> 冲突报错，导致网页无法更新。</p><p><strong>解决方案：给 GitHub Actions 加上排队机制。</strong></p><p>打开你博客仓库中的 <code>.github/workflows/deploy.yml</code> 文件，在文件顶部（和 <code>env:</code> 差不多位置）加入 <code>concurrency</code> 队列指令：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span><span class=lnt> 2
+</span><span class=lnt> 3
+</span><span class=lnt> 4
+</span><span class=lnt> 5
+</span><span class=lnt> 6
+</span><span class=lnt> 7
+</span><span class=lnt> 8
+</span><span class=lnt> 9
+</span><span class=lnt>10
+</span><span class=lnt>11
+</span><span class=lnt>12
+</span><span class=lnt>13
+</span><span class=lnt>14
+</span><span class=lnt>15
+</span><span class=lnt>16
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>GitHub Page Deploy</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>develop</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c># 👇 核心：完美的防并发“排队”机制，杜绝多任务撞车报错 👇</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>concurrency</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>group</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.workflow }}-${{ github.ref }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>cancel-in-progress</span><span class=p>:</span><span class=w> </span><span class=kc>true</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>TZ</span><span class=p>:</span><span class=w> </span><span class=l>Asia/Shanghai</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=c># ...下面保持原样...</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>这样，多个编译任务会自动排队，或取消旧任务只跑最新的，彻底杜绝云端部署失败！</p><p>至此，这套坚如磐石、绝对幂等、自动拆分、永不丢失的<strong>真·极客闭环系统</strong>已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！</p></section><footer class=article-footer><style>.article-edit-container a{-webkit-tap-highlight-color:transparent!important;outline:none!important}.article-edit-container a:hover{text-decoration:underline!important}.article-edit-container{border-top:1px dashed var(--body-background);padding-top:15px;margin-top:20px;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</style><section class=article-tags><style>.article-tags{margin-top:25px;margin-bottom:15px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.article-tags .tag-link{display:inline-flex!important;align-items:center!important;padding:4px 16px!important;background-color:rgba(30,144,255,8%)!important;color:#1e90ff!important;border-radius:999px!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;border:1px solid rgba(30,144,255,.2)!important;transition:all .3s ease!important}.article-tags .tag-link::before{content:"#"!important;margin-right:4px!important;color:inherit!important;font-weight:700!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 4px 12px rgba(30,144,255,.35)!important;border-color:#1e90ff!important}@media(prefers-color-scheme:dark){.article-tags .tag-link{background-color:rgba(88,166,255,.15)!important;color:#58a6ff!important;font-weight:600!important;border-color:rgba(88,166,255,.3)!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;box-shadow:0 4px 15px rgba(30,144,255,.4)!important}}</style><a href=/tags/hugo/ class=tag-link title=查看标签：Hugo>Hugo
+</a><a href=/tags/koreader/ class=tag-link title=查看标签：KOReader>KOReader
+</a><a href=/tags/%E8%87%AA%E5%8A%A8%E5%8C%96/ class=tag-link title=查看标签：自动化>自动化</a></section><section class=article-edit-container><a style=color:#1e90ff;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e6%89%93%e9%80%a0%20KOReader%20%e7%ac%94%e8%ae%b0%e5%85%a8%e8%87%aa%e5%8a%a8%e5%90%8c%e6%ad%a5%e8%87%b3%20Hugo%20%e5%8d%9a%e5%ae%a2%e7%9a%84%e6%9e%81%e5%ae%a2%e5%b7%a5%e4%bd%9c%e6%b5%81/index.md target=_blank rel="noopener noreferrer" title="前往 GitHub 编辑此页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
 <span>编辑此页</span>
-</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/700cb03d36c076722c8a24061a862ef6a61b18ea target=_blank rel="noopener noreferrer" title="Commit Hash: #700cb03" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
-#700cb03</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/ca21a352/><div class=article-details><h2 class=article-title>Hugo Papermod主题配置与使用</h2></div></a></article><article><a href=/archives/3bf3725e/><div class=article-details><h2 class=article-title>Hugo Stack主题配置与使用</h2></div></a></article><article><a href=/archives/23eeae2f/><div class=article-details><h2 class=article-title>hugo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/c3be6469/><div class=article-details><h2 class=article-title>Hugo迁移笔记</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.6.45/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
+</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/e290b9e7d43dcfeaabf6ff8b8523beb80fc7e4d1 target=_blank rel="noopener noreferrer" title="Commit Hash: #e290b9e" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
+#e290b9e</a></section></footer></article><aside class=related-content--wrapper><h2 class=section-title>相关文章</h2><div class=related-content><div class="flex article-list--tile"><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/ca21a352/><div class=article-details><h2 class=article-title>Hugo Papermod主题配置与使用</h2></div></a></article><article><a href=/archives/3bf3725e/><div class=article-details><h2 class=article-title>Hugo Stack主题配置与使用</h2></div></a></article><article><a href=/archives/23eeae2f/><div class=article-details><h2 class=article-title>hugo利用Github Actions自动构建博客</h2></div></a></article><article><a href=/archives/c3be6469/><div class=article-details><h2 class=article-title>Hugo迁移笔记</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.6.45/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
 2020 -
-2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-02-28T07:10:13Z title="2026-02-28 07:10">--</span><span class=footer-separator>|</span>
-<a href=https://github.com/iwyang/iwyang.github.io/commit/0022df66854498e45b419aff0a5866a7d8f0306b target=_blank rel=noopener title="Commit Hash: 0022df6">#0022df6</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
+2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-02-28T07:26:35Z title="2026-02-28 07:26">--</span><span class=footer-separator>|</span>
+<a href=https://github.com/iwyang/iwyang.github.io/commit/e290b9e7d43dcfeaabf6ff8b8523beb80fc7e4d1 target=_blank rel=noopener title="Commit Hash: e290b9e">#e290b9e</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
 <span class=footer-separator>|</span>
 主题 <a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script>(function(){var e,t,n,o,i,a,r,c,l,d,s=document.getElementById("site-last-update");s&&(n=new Date(s.getAttribute("data-time")),o=new Date,e=(o-n)/1e3,i=n.getFullYear(),a=String(n.getMonth()+1).padStart(2,"0"),r=String(n.getDate()).padStart(2,"0"),c=String(n.getHours()).padStart(2,"0"),l=String(n.getMinutes()).padStart(2,"0"),d=i+"-"+a+"-"+r+" "+c+":"+l,s.setAttribute("title",d),t="",e<60?t="刚刚":e<3600?t=Math.floor(e/60)+" 分钟前":e<86400?t=Math.floor(e/3600)+" 小时前":e<2592e3?t=Math.floor(e/86400)+" 天前":e<31536e3?t=Math.floor(e/2592e3)+" 个月前":t=Math.floor(e/31536e3)+" 年前",s.innerText=t)})()</script><script type=module>
     import gallery from '\/ts\/gallery.js';
