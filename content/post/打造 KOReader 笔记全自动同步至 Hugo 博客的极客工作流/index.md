@@ -126,7 +126,8 @@ do
         # 👇 核心修复：时间格式使用横杠代替冒号，防止 Windows 本地 Git 拉取时报 invalid path 错误 👇
         NOW_TIME=$(date +"%Y-%m-%d %H-%M")
         
-        FULL_DISPLAY_NAME="读书笔记：《$BOOK_TITLE》 ($NOW_TIME)"
+        # 👇 修改点：将“读书笔记”改为“书摘” 👇
+        FULL_DISPLAY_NAME="书摘：《$BOOK_TITLE》 ($NOW_TIME)"
 
         # 2. 创建 Page Bundle
         TARGET_DIR="$CONTENT_DIR/$FULL_DISPLAY_NAME"
@@ -173,7 +174,8 @@ draft: false
 toc: false
 weight: false
 categories: [""]
-shuoshuotags: ["读书笔记"]
+# 👇 修改点：将标签改为“书摘” 👇
+shuoshuotags: ["书摘"]
 ---
 
 $NOTE_CONTENT
@@ -202,6 +204,13 @@ chmod +x /root/scripts/sync_notes.sh
 ```
 
 ---
+
+如果**更新脚本**，请执行以下命令踢掉旧的后台进程
+
+```bash
+pkill -9 -f sync_notes.sh
+systemctl restart koreader-sync
+```
 
 ## 阶段四：注册系统服务与实时监控
 
