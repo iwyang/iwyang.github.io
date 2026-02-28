@@ -137,32 +137,32 @@ do
         DATE_STR=$(date +"%Y-%m-%dT%H:%M:%S+08:00")
         SLUG_STR="note-$(date +'%Y%m%d%H%M%S')"
 
-        # 4. 文本清洗与排版优化 (时间转换 + 修复引用跨行失效)
+        # 4. 文本清洗与排版优化 (典藏卡片版骨架)
         raw_content=$(grep -v -e "在书中查看" -e "Generated at:" "$WATCH_DIR/$FILE")
         
         # 使用强大的 Perl 脚本直接进行日期换算和格式重构
         NOTE_CONTENT=$(echo "$raw_content" | perl -0777 -pe '
-            # A. 转换标题行 (书名作者章节合体)
+            # A. 转换标题行 (书名作者章节合体，使用 small 标签)
             s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+/### 📚 《$1》 <small style="font-weight: normal; margin-left: 8px;">👤 $2 · 🔖 $3<\/small>\n\n/s;
             
-            # B. 提取英文时间计算为 YYYY-MM-DD HH:MM 格式，并且使用 \n\n 完美隔开段落
+            # B. 提取英文时间并计算为 YYYY-MM-DD HH:MM 格式，包裹在 div.book-note-meta 中
             s/^.*?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):\d{2}\s+(AM|PM).*$/
                 my ($page, $d, $mon, $y, $h, $m, $ampm) = ($1, $2, ucfirst(lc($3)), $4, $5, $6, uc($7));
                 my %months = (January=>"01", February=>"02", March=>"03", April=>"04", May=>"05", June=>"06", July=>"07", August=>"08", September=>"09", October=>"10", November=>"11", December=>"12");
                 my $m_num = $months{$mon} || "01";
                 $h += 12 if ($ampm eq "PM" && $h < 12);
                 $h = 0 if ($ampm eq "AM" && $h == 12);
-                sprintf("📍 第 %s 页 | ⏱️ %04d-%02d-%02d %02d:%02d\n\n", $page, $y, $m_num, $d, $h, $m);
+                sprintf("<div class=\"book-note-meta\">📍 第 %s 页 | ⏱️ %04d-%02d-%02d %02d:%02d<\/div>\n\n", $page, $y, $m_num, $d, $h, $m);
             /gemi;
             
-            # 兜底匹配：如果时间已经是普通数字格式，直接提取
-            s/^.*?Page\s+(\d+)\s+@\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}).*$/📍 第 $1 页 | ⏱️ $2\n\n/gm;
+            # 兜底匹配：如果时间已经是普通数字格式
+            s/^.*?Page\s+(\d+)\s+@\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}).*$/<div class=\"book-note-meta\">📍 第 $1 页 | ⏱️ $2<\/div>\n\n/gm;
             
-            # C. 核心修复：支持多段落跨行引用！去掉首尾星号，并为每一行单独加上大引号 >
+            # C. 跨行引用修复 (去掉首尾星号，并为每一行加上 > )
             s/^[ \t]*\*\s*(.*?)\s*\*[ \t]*$/ my $t = $1; $t =~ s!^!> !mg; $t /msge;
         ')
 
-        # 5. 写入 Hugo 格式
+        # 5. 写入 Hugo 格式 (带 .book-note-card 包装)
         cat <<EOF > "$TARGET_FILE"
 ---
 title: "$FULL_DISPLAY_NAME"
@@ -176,7 +176,11 @@ categories: [""]
 shuoshuotags: ["书摘"]
 ---
 
+<div class="book-note-card">
+
 $NOTE_CONTENT
+
+</div>
 EOF
 
         # 6. 推送至 GitHub
