@@ -99,7 +99,7 @@ git clone git@github.com:你的用户名/你的仓库名.git
 这份脚本内置了强大的 Perl 正则处理器，能够智能合并书籍信息、将繁琐的英文时间换算为极简的 24 小时制。
 **特别注意：** 脚本中生成文件夹时间的格式使用了横杠 `-` 而不是冒号 `:`，完美避开了 Windows 系统不允许文件夹名带冒号的巨坑。
 
-创建脚本：`nano /root/scripts/sync_notes.sh`
+创建脚本：`vi /root/scripts/sync_notes.sh`
 
 ```bash
 #!/bin/bash
@@ -219,7 +219,7 @@ systemctl restart koreader-sync
 ### 1. 创建服务
 
 ```bash
-nano /etc/systemd/system/koreader-sync.service
+vi /etc/systemd/system/koreader-sync.service
 
 ```
 
