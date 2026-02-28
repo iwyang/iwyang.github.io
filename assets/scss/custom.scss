@@ -194,7 +194,8 @@
    9. KOReader 书摘典藏卡片版 (Book Note Card)
    ================================================================= */
 .book-note-card {
-    padding: 1.8rem 1.8rem 1.2rem 1.8rem;
+    /* 👇 这里把底部的 padding 极限压缩到了 1.2rem，因为没有虚线了 👇 */
+    padding: 1.8rem 1.8rem 1.2rem 1.8rem !important;
     margin: 2rem 0;
     background: rgba(128, 128, 128, 0.05); 
     border: 1px solid rgba(128, 128, 128, 0.1); 
@@ -207,8 +208,8 @@
         box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     }
 
-    /* 👇 核心猎杀器：遇到 Hugo 生成的看不见的幽灵段落，直接灭口，彻底消除下巴空白 👇 */
-    p:empty {
+    /* 绝对抹杀可能存在的幽灵空行 */
+    p:empty, p:has(br:only-child) {
         display: none !important;
         margin: 0 !important;
         padding: 0 !important;
@@ -303,15 +304,29 @@
         }
     }
 
-    .book-note-thought {
-        margin-top: 1.5rem !important;
-        padding-top: 1.5rem !important;
-        border-top: 1px dashed rgba(128, 128, 128, 0.25);
-        color: var(--card-text-color-main) !important;
-        opacity: 0.9;
-        font-size: 0.95em;
-        line-height: 1.8;
+    /* 👇 核心大招：完全隐形的空气墙！只提供极其微小的上下留白 👇 */
+    hr.note-divider {
+        border: none !important;
+        margin: 0.5rem 0 !important;
+        padding: 0 !important;
+        height: 0 !important;
+        background: transparent !important;
+    }
 
-        p { margin: 0 !important; }
+    /* 👇 隐形墙下方紧跟的所有段落（个人想法）统一排版 👇 */
+    hr.note-divider ~ p {
+        color: var(--card-text-color-main) !important;
+        opacity: 0.9 !important;
+        font-size: 0.95em !important;
+        line-height: 1.8 !important;
+    }
+    
+    hr.note-divider + p {
+        margin-top: 0 !important; 
+    }
+
+    /* 👇 终极兜底：卡片内最后一个可见元素的底部外边距强制清零 👇 */
+    > :last-child, > p:last-of-type {
+        margin-bottom: 0 !important;
     }
 }
