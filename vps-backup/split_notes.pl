@@ -12,18 +12,31 @@ close($fh);
 $raw =~ s/\r//g;
 $raw =~ s/^\s*\[?在书中查看\]?.*$//mg; 
 $raw =~ s/^_?Generated at:.*_?$//mg; 
-$raw =~ s/^##\s*$//mg;               
-
-my ($book, $author, $chapter) = ("未知书名", "未知作者", "未知章节");
-if ($raw =~ s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+//s) {
-    $book = $1; $author = $2; $chapter = $3;
-}
 
 my @chunks = split(/(?=(?:\*\* ?)?Page\s+\d+\s+@)/, $raw);
+my $header = shift @chunks; 
+
+# 提取书名、作者，并初始化第一章
+my ($book, $author, $current_chapter) = ("未知书名", "未知作者", "未知章节");
+if ($header =~ /^\s*#\s+([^\n]+)/m) { $book = $1; $book =~ s/^\s+|\s+$//g; }
+if ($header =~ /^\s*#####\s+([^\n]+)/m) { $author = $1; $author =~ s/^\s+|\s+$//g; }
+while ($header =~ /^\s*##\s+([^\n]+)/mg) { 
+    my $c = $1; $c =~ s/^\s+|\s+$//g;
+    $current_chapter = $c if $c ne ""; 
+}
+
 my %months = (January=>"01", February=>"02", March=>"03", April=>"04", May=>"05", June=>"06", July=>"07", August=>"08", September=>"09", October=>"10", November=>"11", December=>"12");
 
 foreach my $chunk (@chunks) {
     next if $chunk =~ /^\s*$/; 
+    
+    # 👇 核心修复：动态提取并剔除夹在 chunk 尾部的“下一章”标题（防血崩污染笔记） 👇
+    my $next_chapter = "";
+    while ($chunk =~ s/^\s*##\s+([^\n]*)$//m) {
+        my $c = $1; $c =~ s/^\s+|\s+$//g;
+        $next_chapter = $c if $c ne "";
+    }
+    $chunk =~ s/^\s*##\s*$//mg; # 兜底清空残留的纯 ## 空行
 
     my ($page, $formatted_time, $dir_time, $fm_date, $slug) = ("", "", "", "", "");
     
@@ -58,27 +71,24 @@ foreach my $chunk (@chunks) {
         $note = $parts[1] if @parts > 1;
     }
 
-    # 处理书摘引文
     $chunk =~ s/^\s+|\s+$//g;
     $chunk =~ s/^\*+//;       
     $chunk =~ s/\*+$//;       
     $chunk =~ s/^\s+|\s+$//g;
     $chunk =~ s/^/> /mg;      
     
-    # 处理个人想法
     if ($note) {
         $note =~ s/^\s+|\s+$//g;
         $note =~ s/^\*+//; 
         $note =~ s/\*+$//;
     }
 
-    # 组合为最终排版
     my $final_text = $chunk;
     $final_text .= "\n\n" . $note if $note;
     
-    next if $final_text =~ /^\s*$/; # 防止空文
+    next if $final_text =~ /^\s*$/; 
 
-    # --- 4. 写入文件（安全隔离变量） ---
+    # --- 4. 写入文件（精准使用 current_chapter） ---
     my $display_title = "书摘：《$book》- 第${page}页 ($dir_time)";
     my $target_dir = "$content_dir/$display_title";
     system("mkdir", "-p", $target_dir);
@@ -100,7 +110,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《$book》 <small style="font-weight: normal; margin-left: 8px;">👤 $author · 🔖 $chapter</small>
+### 📚 《$book》 <small style="font-weight: normal; margin-left: 8px;">👤 $author · 🔖 $current_chapter</small>
 
 <div class="book-note-meta">📍 第 ${page} 页 | ⏱️ $formatted_time</div>
 
@@ -109,4 +119,9 @@ $final_text
 </div>
 MARKDOWN
     close($out);
+    
+    # 👇 记录更新：把找到的下一章名称，交给下一次循环使用 👇
+    if ($next_chapter ne "") {
+        $current_chapter = $next_chapter;
+    }
 }
