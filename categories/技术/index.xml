@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 28 Feb 2026 11:32:01 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 28 Feb 2026 12:49:20 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>Debian 10 安装 Docker &amp; Docker Compose</title><link>https://bore.vip/archives/9755dbc8/</link><pubDate>Mon, 22 Aug 2022 17:56:32 +0000</pubDate><guid>https://bore.vip/archives/9755dbc8/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装-docker"&gt;安装 Docker
 &lt;/h2&gt;&lt;p&gt;1.首先，更新现有的软件包列表：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -4578,6 +4578,10 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;88
 &lt;/span&gt;&lt;span class="lnt"&gt;89
 &lt;/span&gt;&lt;span class="lnt"&gt;90
+&lt;/span&gt;&lt;span class="lnt"&gt;91
+&lt;/span&gt;&lt;span class="lnt"&gt;92
+&lt;/span&gt;&lt;span class="lnt"&gt;93
+&lt;/span&gt;&lt;span class="lnt"&gt;94
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
@@ -4615,32 +4619,32 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;DATE_STR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date +&lt;span class="s2"&gt;&amp;#34;%Y-%m-%dT%H:%M:%S+08:00&amp;#34;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;SLUG_STR&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;note-&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;date +&lt;span class="s1"&gt;&amp;#39;%Y%m%d%H%M%S&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 4. 文本清洗与排版优化 (时间转换 + 修复引用跨行失效)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 4. 文本清洗与排版优化 (典藏卡片版骨架)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;raw_content&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;grep -v -e &lt;span class="s2"&gt;&amp;#34;在书中查看&amp;#34;&lt;/span&gt; -e &lt;span class="s2"&gt;&amp;#34;Generated at:&amp;#34;&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$WATCH_DIR&lt;/span&gt;&lt;span class="s2"&gt;/&lt;/span&gt;&lt;span class="nv"&gt;$FILE&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 使用强大的 Perl 脚本直接进行日期换算和格式重构&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nv"&gt;NOTE_CONTENT&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;&lt;span class="nv"&gt;$raw_content&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt; &lt;span class="p"&gt;|&lt;/span&gt; perl -0777 -pe &lt;span class="s1"&gt;&amp;#39;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # A. 转换标题行 (书名作者章节合体)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # A. 转换标题行 (书名作者章节合体，使用 small 标签)
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; s/^\s*#\s+([^\n]+)\n+#*\s*([^\n]+)\n+#*\s*([^\n]+)\n+/### 📚 《$1》 &amp;lt;small style=&amp;#34;font-weight: normal; margin-left: 8px;&amp;#34;&amp;gt;👤 $2 · 🔖 $3&amp;lt;\/small&amp;gt;\n\n/s;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # B. 提取英文时间计算为 YYYY-MM-DD HH:MM 格式，并且使用 \n\n 完美隔开段落
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # B. 提取英文时间并计算为 YYYY-MM-DD HH:MM 格式，包裹在 div.book-note-meta 中
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; s/^.*?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):\d{2}\s+(AM|PM).*$/
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; my ($page, $d, $mon, $y, $h, $m, $ampm) = ($1, $2, ucfirst(lc($3)), $4, $5, $6, uc($7));
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; my %months = (January=&amp;gt;&amp;#34;01&amp;#34;, February=&amp;gt;&amp;#34;02&amp;#34;, March=&amp;gt;&amp;#34;03&amp;#34;, April=&amp;gt;&amp;#34;04&amp;#34;, May=&amp;gt;&amp;#34;05&amp;#34;, June=&amp;gt;&amp;#34;06&amp;#34;, July=&amp;gt;&amp;#34;07&amp;#34;, August=&amp;gt;&amp;#34;08&amp;#34;, September=&amp;gt;&amp;#34;09&amp;#34;, October=&amp;gt;&amp;#34;10&amp;#34;, November=&amp;gt;&amp;#34;11&amp;#34;, December=&amp;gt;&amp;#34;12&amp;#34;);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; my $m_num = $months{$mon} || &amp;#34;01&amp;#34;;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; $h += 12 if ($ampm eq &amp;#34;PM&amp;#34; &amp;amp;&amp;amp; $h &amp;lt; 12);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; $h = 0 if ($ampm eq &amp;#34;AM&amp;#34; &amp;amp;&amp;amp; $h == 12);
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; sprintf(&amp;#34;📍 第 %s 页 | ⏱️ %04d-%02d-%02d %02d:%02d\n\n&amp;#34;, $page, $y, $m_num, $d, $h, $m);
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; sprintf(&amp;#34;&amp;lt;div class=\&amp;#34;book-note-meta\&amp;#34;&amp;gt;📍 第 %s 页 | ⏱️ %04d-%02d-%02d %02d:%02d&amp;lt;\/div&amp;gt;\n\n&amp;#34;, $page, $y, $m_num, $d, $h, $m);
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; /gemi;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # 兜底匹配：如果时间已经是普通数字格式，直接提取
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; s/^.*?Page\s+(\d+)\s+@\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}).*$/📍 第 $1 页 | ⏱️ $2\n\n/gm;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # 兜底匹配：如果时间已经是普通数字格式
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; s/^.*?Page\s+(\d+)\s+@\s+(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}).*$/&amp;lt;div class=\&amp;#34;book-note-meta\&amp;#34;&amp;gt;📍 第 $1 页 | ⏱️ $2&amp;lt;\/div&amp;gt;\n\n/gm;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # C. 核心修复：支持多段落跨行引用！去掉首尾星号，并为每一行单独加上大引号 &amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; # C. 跨行引用修复 (去掉首尾星号，并为每一行加上 &amp;gt; )
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; s/^[ \t]*\*\s*(.*?)\s*\*[ \t]*$/ my $t = $1; $t =~ s!^!&amp;gt; !mg; $t /msge;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s1"&gt; &amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 5. 写入 Hugo 格式&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 5. 写入 Hugo 格式 (带 .book-note-card 包装)&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; cat &lt;span class="s"&gt;&amp;lt;&amp;lt;EOF &amp;gt; &amp;#34;$TARGET_FILE&amp;#34;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;title: &amp;#34;$FULL_DISPLAY_NAME&amp;#34;
@@ -4654,7 +4658,11 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;shuoshuotags: [&amp;#34;书摘&amp;#34;]
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;---
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;div class=&amp;#34;book-note-card&amp;#34;&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$NOTE_CONTENT
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;/div&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;EOF&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="c1"&gt;# 6. 推送至 GitHub&lt;/span&gt;
