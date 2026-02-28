@@ -27,3 +27,4 @@ resources
 
 assets/jsconfig.json
 .DS_Store
+.processed_notes.log
