@@ -87,6 +87,67 @@ ssh git@github.com
 **Please make sure you have the correct access rights and the repository exist**
 
 如果即使已经添加本地公钥到github，还提示以上错误，并且执行`ssh -T git@github.com`提示22端口关闭，解决方法见上。
+
+## 自动化处理冲突脚本（以自己为准）
+
+针对你“**以自己为准**”的需求，之前的处理逻辑确实有误（之前误删除了你的内容）。**正确的逻辑应该是：保留 `<<<<<<<` 到 `=======` 之间的内容（你的改动），并删除从 `=======` 到 `>>>>>>>` 及其标记的所有内容。**
+
+### 新建resolve_keep_ours.sh
+
+以下是一个一键自动化的 Bash 脚本：自动化处理冲突脚本 (`resolve_keep_ours.sh`)
+
+```
+#!/bin/bash
+
+# 1. 定义处理函数：以自己（本地/ours）为准
+# 逻辑：删除起始标记行，删除从分割线到结束标记的所有内容
+resolve_file() {
+    local file=$1
+    echo "正在处理: $file ..."
+    
+    # 使用 sed 实现：
+    # /^<<<<<<< /d                -> 删除所有以 <<<<<<< 开头的行
+    # /^=======/,/^>>>>>>> /d    -> 删除从 ======= 到 >>>>>>> 之间的所有行（含标记本身）
+    sed -i '/^<<<<<<< /d; /^=======/,/^>>>>>>> /d' "$file"
+    
+    echo "✅ 文件 $file 冲突已解决（已保留您的版本）。"
+}
+
+# 2. 检查是处理特定文件还是扫描所有 md 文件
+if [ -n "$1" ]; then
+    # 如果运行脚本时带了参数，如 ./script.sh test.md
+    if [ -f "$1" ]; then
+        resolve_file "$1"
+    else
+        echo "错误: 找不到文件 $1"
+    fi
+else
+    # 默认模式：处理当前目录下所有的 .md 文件
+    echo "开始扫描当前目录下所有 Markdown 文件..."
+    FILES=$(grep -l "^<<<<<<< " *.md 2>/dev/null)
+    
+    if [ -z "$FILES" ]; then
+        echo "未发现包含冲突标记的 .md 文件。"
+    else
+        for f in $FILES; do
+            resolve_file "$f"
+            # 如果在 Git 环境中，自动执行 git add
+            [ -d ".git" ] && git add "$f"
+        done
+        echo "-----------------------------------"
+        echo "所有冲突已批量处理完成！"
+    fi
+fi
+```
+
+### 如何使用
+
+1. **创建脚本**：将代码保存为 `resolve_keep_ours.sh`。
+2. **赋予权限**：在终端运行 `chmod +x resolve_keep_ours.sh`。
+3. **运行处理**：
+   - **处理指定文件**：`./resolve_keep_ours.sh 新建文本文档.md`
+   - **处理当前目录下所有冲突的 md 文件**：直接运行 `./resolve_keep_ours.sh`
+
 ## 解决合并冲突问题
 
 参考：[在 GitHub 上解决合并冲突](https://docs.github.com/cn/enterprise-server@2.21/github/collaborating-with-pull-requests/addressing-merge-conflicts/resolving-a-merge-conflict-on-github)
