@@ -12,7 +12,7 @@ cover: false
 最好首先克隆`github`上的源码。
 
 ```powershell
-git clone -b develop git@github.com:iwyang/hugo.git hugo --recursive
+git clone -b develop https://github.com/iwyang/iwyang.github.io.git blog --recursive
 ```
 
  首先当然是备份博客源文件。
