@@ -11,4 +11,9 @@ image: ""
 categories: [""]
 shuoshuotags: ["折腾"]
 ---
-最新版的Dropbox是不是不支持win10，安装完成后看不见图标了
+最新版的Dropbox是不是不支持win10，安装完成后看不见图标了。
+
+
+
+> 装了win11系统，开始安装Dropbox要`启用Tun`，安装完成后可以关闭，然后要设置代理，sock5—127.0.0.1—10808
+
