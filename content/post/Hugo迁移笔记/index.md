@@ -15,7 +15,16 @@ cover: false
 git clone -b develop https://github.com/iwyang/iwyang.github.io.git blog --recursive
 ```
 
- 首先当然是备份博客源文件。
+如果提交代码卡顿：
+
+```bash
+git config --global http.proxy http://127.0.0.1:10808
+git config --global https.proxy http://127.0.0.1:10808
+```
+
+---
+
+首先当然是备份博客源文件。
 
  ## 更换服务器
 
