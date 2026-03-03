@@ -1,9 +1,8 @@
 ---
 title: 求阴影部分面积
 categories: [教学]
-tags: [练习题,阴影面积]
+tags: [练习题]
 comments: true
-cover: /img/%E6%B1%82%E9%98%B4%E5%BD%B1%E9%83%A8%E5%88%86%E9%9D%A2%E7%A7%AF/1.jpg
 slug: 313793f1
 date: 2022-06-28 23:18:14
 sticky:

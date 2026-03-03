@@ -3,8 +3,7 @@ title: Flash小技巧
 categories:
   - 技术
 tags:
-  - flash
-  - tips
+  - 学习笔记
 slug: a88a84c4
 date: 2020-05-17 04:32:25
 cover: false

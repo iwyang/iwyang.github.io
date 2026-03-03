@@ -4,6 +4,7 @@ categories:
   - 技术
 tags:
   - docker
+  - linux
 comments: true
 cover: /img/cover/docker.jpg
 slug: 9755dbc8

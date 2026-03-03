@@ -3,7 +3,7 @@ title: 联想笔记本电脑升级bios
 categories:
   - 技术
 tags:
-  - win10
+  - windows
 slug: bb464c3c
 date: 2020-05-26 10:25:25
 cover: false

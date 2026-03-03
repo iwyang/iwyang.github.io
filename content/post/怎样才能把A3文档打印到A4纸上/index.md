@@ -3,7 +3,7 @@ title: 怎样才能把A3文档打印到A4纸上
 categories:
   - 技术
 tags:
-  - excel
+  - office
 slug: 415c867f
 date: 2021-08-26 11:34:14
 cover: false

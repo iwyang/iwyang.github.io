@@ -3,7 +3,7 @@ title: Memos部署记录
 categories:
   - 技术
 tags:
-  - hexo
+  - linux
 comments: true
 cover: /img/cover/memos.jpg
 slug: d5e37958

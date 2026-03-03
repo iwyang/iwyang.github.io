@@ -3,7 +3,7 @@ title: 查看Windows和Office激活状态的方法&&安装方法
 categories:
   - 技术
 tags:
-  - win10
+  - windows
 comments: true
 slug: 23a66736
 date: 2022-03-13 20:21:47

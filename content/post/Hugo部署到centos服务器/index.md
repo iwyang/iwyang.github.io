@@ -4,7 +4,7 @@ categories:
   - 技术
 tags:
   - hugo
-  - 服务器
+  - linux
 slug: 99e0f84a
 date: 2020-05-13 10:05:25
 cover: false

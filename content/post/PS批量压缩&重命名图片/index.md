@@ -3,7 +3,7 @@ title: PS批量压缩&重命名图片
 categories:
   - 技术
 tags:
-  - ps
+  - 学习笔记
 slug: 31774ac
 date: 2020-08-11 01:59:25
 cover: false

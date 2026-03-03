@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: ["技术"]
-tags: ["linux"]
+tags: ["koreader"]
 ---
 对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。
 

@@ -3,7 +3,7 @@ title: 希沃电子白板学习笔记
 categories:
   - 技术
 tags:
-  - tips
+  - 学习笔记
 slug: 538cd199
 date: 2021-03-22 15:54:25
 cover: /img/cover/seewo.jpg

@@ -3,7 +3,7 @@ title: 用PC Logo画五环
 categories:
   - 技术
 tags:
-  - tips
+  - 学习笔记
 slug: 1f16c2b4
 date: 2020-07-12 01:16:25
 cover: false

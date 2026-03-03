@@ -3,7 +3,7 @@ title: 在Centos服务器部署Halo
 categories:
   - 技术
 tags:
-  - 服务器
+  - linux
   - halo
 slug: 119bcfe3
 date: 2020-07-24 02:21:25

@@ -3,7 +3,7 @@ title: 去掉试卷图片灰色背景的方法
 categories:
   - 技术
 tags:
-  - word
+  - office
 slug: 382714ef
 date: 2022-01-20 09:01:18
 cover: false

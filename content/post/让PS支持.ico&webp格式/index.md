@@ -3,7 +3,7 @@ title: 让PS支持.ico&webp格式
 categories:
   - 技术
 tags:
-  - ps
+  - 学习笔记
 slug: c1a30035
 date: 2020-07-13 16:43:25
 cover: false

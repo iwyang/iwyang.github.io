@@ -3,9 +3,7 @@ title: GitHub Actions利用FTP&&rsync自动部署hugo-hexo到Centos 8
 categories:
   - 技术
 tags:
-  - 服务器
-  - hugo
-  - hexo
+  - linux
   - github
 slug: c7ccd27d
 date: 2021-08-15 08:39:34

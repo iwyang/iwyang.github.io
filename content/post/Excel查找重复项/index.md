@@ -3,7 +3,7 @@ title: Excel查找重复项
 categories:
   - 技术
 tags:
-  - excel
+  - office
 slug: 859eea1c
 date: 2020-06-29 05:54:25
 cover: false

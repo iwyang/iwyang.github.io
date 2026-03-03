@@ -3,7 +3,7 @@ title: pr学习笔记
 categories:
   - 技术
 tags:
-  - pr
+  - 学习笔记
 comments: true
 slug: 968db8c4
 date: 2022-03-17 23:06:45

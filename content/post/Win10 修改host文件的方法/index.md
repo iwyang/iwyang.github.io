@@ -3,7 +3,7 @@ title: Win10 修改host文件的方法
 categories:
   - 技术
 tags:
-  - win10
+  - windows
 slug: fd505a8d
 date: 2020-05-15 17:04:25
 cover: false

@@ -3,7 +3,7 @@ title: PS制作打印字体效果
 categories:
   - 技术
 tags:
-  - ps
+  - 学习笔记
 comments: true
 cover: /img/cover/ps.jpg
 slug: a4ea1c26

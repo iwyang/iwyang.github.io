@@ -3,7 +3,7 @@ title: AE学习笔记
 categories:
   - 技术
 tags:
-  - AE
+  - 学习笔记
 slug: da5ef671
 date: 2021-06-06 02:02:25
 cover: false

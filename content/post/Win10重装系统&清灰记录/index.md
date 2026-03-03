@@ -3,7 +3,7 @@ title: Win10重装系统&清灰记录&整机&护眼
 categories:
   - 技术
 tags:
-  - win10
+  - windows
 slug: 88857f5f
 date: 2020-05-24 06:36:25
 cover: false

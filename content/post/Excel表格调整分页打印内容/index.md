@@ -3,7 +3,7 @@ title: Excel表格调整分页打印内容
 categories:
   - 技术
 tags:
-  - excel
+  - office
 slug: fd9d6b5b
 date: 2020-05-18 13:31:25
 cover: false

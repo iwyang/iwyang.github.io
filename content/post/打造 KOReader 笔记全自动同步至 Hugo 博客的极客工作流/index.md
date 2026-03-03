@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: ["技术"]
-tags: ["hugo", "KOReader", "自动化", "折腾"]
+tags: ["hugo", "KOReader"]
 ---
 
 对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。

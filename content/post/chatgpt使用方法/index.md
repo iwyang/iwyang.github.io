@@ -3,9 +3,8 @@ title: chatgpt使用方法
 categories:
   - 技术
 tags:
-  - chatgpt
+  - ai
 comments: true
-cover: /img/cover/chatgpt.jpg
 slug: 692a32c1
 date: 2023-03-05 20:21:02
 sticky:

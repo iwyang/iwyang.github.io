@@ -3,11 +3,8 @@ title: office更改默认字体
 categories:
   - 技术
 tags:
-  - word
-  - excel
-  - ppt
+  - office
 comments: true
-cover: /img/cover/office.jpg
 slug: 144e85ab
 date: 2023-07-02 21:02:25
 sticky:

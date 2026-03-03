@@ -3,7 +3,7 @@ title: Ps2020更换照片底色
 categories:
   - 技术
 tags:
-  - ps
+  - 学习笔记
 slug: c327291f
 date: 2021-08-06 01:38:02
 cover: false

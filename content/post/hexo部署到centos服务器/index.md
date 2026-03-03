@@ -4,7 +4,7 @@ categories:
   - 技术
 tags:
   - hexo
-  - 服务器
+  - linux
 slug: d693fd5d
 date: 2020-04-25 10:37:25
 cover: false

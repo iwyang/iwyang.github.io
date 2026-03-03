@@ -3,7 +3,7 @@ title: Notepad++批量修改文件内容
 categories:
   - 技术
 tags:
-  - tips
+  - 学习笔记
 comments: true
 cover: ../img/cover/notepad.jpg
 slug: ef06a4ae
