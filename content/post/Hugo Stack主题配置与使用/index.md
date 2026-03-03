@@ -59,6 +59,30 @@ git submodule add https://github.com/iwyang/hugo-theme-stack/ themes/hugo-theme-
 git submodule update --remote
 ```
 
+3. Git 子模块（Submodule）更新冲突
+
+如果更新主题，出现冲突。
+
+#### 第一步：进入主题文件夹
+
+在终端（或你那个脚本所在的目录）运行：
+
+```bash
+cd themes/hugo-theme-stack
+```
+
+#### 第二步：处理冲突
+
+如果你想放弃本地修改（最简单）** 如果你觉得这些修改不重要，或者想重新开始：
+
+```bash
+# 强制重置所有已追踪的文件
+git reset --hard HEAD
+
+# 删除所有未追踪的文件和文件夹
+git clean -fd
+```
+
 ## 查看主题版本号
 
 ```bash
