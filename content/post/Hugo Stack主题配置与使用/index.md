@@ -693,13 +693,43 @@ jobs:
 }
 ```
 
-### 隐藏归档页面分类
+### 归档页面修改分类、加入标签云
 
-根目录`\layouts\archives.html`
+1.根目录`\layouts\archives.html`
 
 ```scss
 {{ define "body-class" }}template-archives{{ end }}
 {{ define "main" }}
+    
+    {{ if .Site.Taxonomies.categories }}
+    <div class="archives-group">
+        <h2 class="section-title">{{ T "widget.categoriesCloud.title" | default "分类" }}</h2>
+        <div class="widget tagCloud" style="background: transparent; box-shadow: none; padding: 0;">
+            <div class="tagCloud-tags">
+                {{ range .Site.Taxonomies.categories.ByCount }}
+                    <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
+                        {{ .Page.Title }}
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    {{ end }}
+
+    {{ if .Site.Taxonomies.tags }}
+    <div class="archives-group">
+        <h2 class="section-title">{{ T "widget.tagCloud.title" | default "标签云" }}</h2>
+        <div class="widget tagCloud" style="background: transparent; box-shadow: none; padding: 0;">
+            <div class="tagCloud-tags">
+                {{ range .Site.Taxonomies.tags.ByCount }}
+                    <a href="{{ .Page.RelPermalink }}" class="font_size_{{ .Count }}">
+                        {{ .Page.Title }}
+                    </a>
+                {{ end }}
+            </div>
+        </div>
+    </div>
+    {{ end }}
 
     {{ $pages := partial "helper/pages.html" .Site.Home }}
 
@@ -717,6 +747,37 @@ jobs:
 
     {{ partialCached "footer/footer" . }}
 {{ end }}
+```
+
+2.`根目录\assets\scss\custom.scss`
+
+```scss
+/* =================================================================
+   10. 分类与标签云：统一卡片式 UI 风格
+   ================================================================= */
+.tagCloud-tags a {
+    /* 调用主题自带的卡片背景、文字颜色和圆角 */
+    background-color: var(--card-background) !important;
+    color: var(--card-text-color-main) !important;
+    border-radius: var(--card-border-radius) !important; 
+    
+    /* 调用主题自带的卡片阴影，和下方文章卡片完全一致 */
+    box-shadow: var(--shadow-l1) !important;
+    
+    padding: 10px 18px !important;
+    border: none !important;
+    transition: transform 0.3s ease, box-shadow 0.3s ease, color 0.3s ease !important;
+    
+    /* 统一字体大小，去掉大小不一的杂乱感，看起来更像规整的卡片 */
+    font-size: 1.5rem !important; 
+}
+
+/* 鼠标悬浮时的交互效果 */
+.tagCloud-tags a:hover {
+    transform: translateY(-3px) !important;
+    box-shadow: var(--shadow-l2) !important; /* 悬浮时阴影加深 */
+    color: var(--accent-color) !important; /* 文字变成主题的强调色 */
+}
 ```
 
 ### 修改相关文章数目
