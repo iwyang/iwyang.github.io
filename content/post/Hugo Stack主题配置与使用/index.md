@@ -693,39 +693,30 @@ jobs:
 }
 ```
 
-### 删除分类图片
+### 隐藏归档页面分类
 
-根目录`assets/scss/partials/layout/list.scss`
+根目录`\layouts\archives.html`
 
 ```scss
-.subsection-list {
-    margin-bottom: var(--section-separation);
-    overflow-x: auto;
+{{ define "body-class" }}template-archives{{ end }}
+{{ define "main" }}
 
-    .article-list--tile {
-        display: flex;
-        padding-bottom: 15px;
+    {{ $pages := partial "helper/pages.html" .Site.Home }}
 
-        article {
-            width: 200px; //改爲200px
-            height: 50px; //改爲50px
-            margin-right: 5px; //改爲5px
-            flex-shrink: 0;
-            box-shadow: var(--shadow-l2); //改个卡片阴影
+    {{ range $pages.GroupByDate "2006" }}
+    {{ $id := lower (replace .Key " " "-") }}
+    <div class="archives-group" id="{{ $id }}">
+        <h2 class="archives-date section-title"><a href="{{ $.RelPermalink }}#{{ $id }}">{{ .Key }}</a></h2>
+        <div class="article-list--compact">
+            {{ range .Pages }}
+                {{ partial "article-list/compact" . }}
+            {{ end }}
+        </div>
+    </div>
+    {{ end }}
 
-            .article-title {
-                margin: 0;
-                font-size: 1.5rem; //改爲1.5rem，調整字體尺寸
-            }
-
-            .article-details {
-                padding: 20px;
-                justify-content: center; //添加justify-content設定，保持字體居中
-            }
-
-        }
-    }
-}
+    {{ partialCached "footer/footer" . }}
+{{ end }}
 ```
 
 ### 修改相关文章数目
