@@ -8,4 +8,4 @@ shuoshuotags: ["折腾"]
 
  以前移动端都是用nekoray刷tiktok，卡死，还以为是代理不行，今天换了一个工具，秒刷。
 
-PS：以后就刷tiktok了
+> PS：以后就刷tiktok了

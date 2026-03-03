@@ -14,4 +14,4 @@ shuoshuotags: ["折腾"]
 
 AMD 5600G 不能安装低版本win10，如win10 lstc2016，得安装win10 22h2。要不然雷电模拟器总提示显卡未安装好，而且有的网页点击会抖动。
 
-PS：为了装Dropbox，最终还是装了Win11。
+> PS：为了装Dropbox，最终还是装了Win11。
