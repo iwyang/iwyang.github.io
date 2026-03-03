@@ -3,7 +3,6 @@ title: Debian 10 安装 Docker & Docker Compose
 categories:
   - 技术
 tags:
-  - docker
   - linux
 comments: true
 cover: /img/cover/docker.jpg
