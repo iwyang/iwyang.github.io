@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>折腾 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/</link><description>Recent content in 折腾 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 03 Mar 2026 10:40:45 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>Dropbox不支持win10吗</title><link>https://bore.vip/shuoshuo/o56mq1q8/</link><pubDate>Mon, 02 Mar 2026 16:35:32 +0800</pubDate><guid>https://bore.vip/shuoshuo/o56mq1q8/</guid><description>&lt;p&gt;最新版的Dropbox是不是不支持win10，安装完成后看不见图标了。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>折腾 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/</link><description>Recent content in 折腾 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 04 Mar 2026 12:20:44 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>Dropbox不支持win10吗</title><link>https://bore.vip/shuoshuo/o56mq1q8/</link><pubDate>Mon, 02 Mar 2026 16:35:32 +0800</pubDate><guid>https://bore.vip/shuoshuo/o56mq1q8/</guid><description>&lt;p&gt;最新版的Dropbox是不是不支持win10，安装完成后看不见图标了。&lt;/p&gt;
 
  &lt;blockquote&gt;
  &lt;p&gt;PS：装了win11系统，开始安装Dropbox要&lt;code&gt;启用Tun&lt;/code&gt;，安装完成后可以关闭，然后要设置代理，sock5—127.0.0.1—10810&lt;/p&gt;
@@ -12,6 +12,11 @@
 
  &lt;blockquote&gt;
  &lt;p&gt;PS：为了装Dropbox，最终还是装了Win11。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：Intel CPU也不行，看来是系统版本太低，得把办公室、食堂系统都升级到Win11&lt;/p&gt;
 
  &lt;/blockquote&gt;</description></item><item><title>Koreader看书不错</title><link>https://bore.vip/shuoshuo/fkuzbe0t/</link><pubDate>Fri, 27 Feb 2026 07:45:04 +0800</pubDate><guid>https://bore.vip/shuoshuo/fkuzbe0t/</guid><description>&lt;p&gt;Koreader看书不错，在不同设备之间能同步进度，就是Windows上还没应用，不过用手机、平板、kindle就够了。&lt;/p&gt;
 
