@@ -20,7 +20,7 @@ tags: ["hugo", "KOReader"]
 
 ## 阶段一：本地端自动化搬运配置 (双端齐下)
 
-我们需要建立一条从阅读设备到 VPS 的“私有通道”。你可以根据自己的阅读场景，配置手机端或 PC 端（或两者皆备）。
+我们需要建立一条从阅读设备到 VPS 的“私有通道”。你可以根据自己的阅读场景，配置手机端或 PC端（或两者皆备）。
 
 ### 场景 A：手机端自动化搬运 (FolderSync)
 我们需要做到**“阅后即焚”**，防止旧笔记重复同步死循环。
@@ -35,7 +35,7 @@ tags: ["hugo", "KOReader"]
    * **远程目录**：在 VPS 上新建并选择 `/root/Koreader`。
    * **调度**：开启 **“即时同步”**。
 
-### 场景 B：Win11 WSL2 极速推送 (Rsync + SSH 触发)
+### 场景 B：Win11 WSL2 极速推送与软件安装 (Rsync + SSH 触发)
 如果你在电脑上阅读，配置 WSL 环境并使用脚本主动推送是最高效的方式。
 
 1. **Win11 安装 WSL2**：
@@ -48,13 +48,69 @@ tags: ["hugo", "KOReader"]
    networkingMode=mirrored
    autoProxy=true
 
-*注意：切勿添加 `localhostForwarding=true`，镜像模式下两端已共享网络，保留会引发报错。* 
+*注意：切勿添加 `localhostForwarding=true`，镜像模式下两端已共享网络，保留会引发报错。*
 
-3. **执行重启命令**： 在 PowerShell 中输入 `wsl --shutdown`。然后重新打开 Ubuntu 终端，**网络配置**即刻生效。
+3. **执行重启命令**：
+   在 PowerShell 中输入 `wsl --shutdown`。然后重新打开 Ubuntu 终端，**网络配置**即刻生效。
 
-4. **配置免密登录**：在 WSL 终端中执行 `ssh-keygen -t ed25519`，然后用 `ssh-copy-id -p 22 root@你的VPS_IP` 发送公钥。
+4. **避坑与准备：在 WSL 中安装 KOReader (可选)**：
+* 💡 **路径避坑**：如果你是从管理员 PowerShell 直接输入 `wsl` 进入的，你的提示符可能会显示在 `/mnt/c/Windows/system32`。**强烈建议**：在 WSL 里操作时，养成进终端先输入 `cd ~` 的习惯，回到你的 Linux 家目录（即 `/home/yang`）。在 `/mnt/c/`（Windows 分区）下操作 Linux 文件的性能非常差，且容易遇到权限限制问题（Permission Denied）。
+* **创建目录与下载安装包**：刚装好的 Ubuntu 不会默认创建 `Downloads` 等常用文件夹，我们需要手动创建并下载：
+```bash
+# 1. 刷新软件源列表，防止系统因包列表太旧而在安装依赖时报 404 错误
+sudo apt update
 
-5. **创建本地一键推送脚本**： 在 WSL 中执行 `vi ~/sync_notes.sh`，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 `chmod +x ~/sync_notes.sh`：
+# 2. 创建下载目录并进入 (-p 参数非常稳，父目录不存在也会一并创建)
+mkdir -p ~/Downloads
+cd ~/Downloads
+
+# 3. 下载 KOReader 安装包
+wget https://github.com/iwyang/backup/releases/download/koreader-v2025.10/koreader-2025.10-amd64.deb
+
+# 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)
+sudo chmod 644 ./koreader-2025.10-amd64.deb
+
+# 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)
+sudo apt install ./koreader-2025.10-amd64.deb -y
+```
+
+
+* 🏁 **最后的冲刺**：执行完安装后，你可以尝试直接输入 `koreader` 来启动它！
+
+
+5. **配置免密登录**：在 WSL 终端中执行 `ssh-keygen -t ed25519`，然后用 `ssh-copy-id -p 22 root@你的VPS_IP` 发送公钥。
+6. **测试免密登录**：
+```bash
+ssh -p 22 root@142.171.177.173
+
+```
+
+
+*如果直接进入了 VPS 而没有弹密码框，说明配置成功。输入 `exit` 退回 WSL。*
+如果还需密码，设置权限：
+* **强制修正权限**
+登录VPS，SSH 对 `root` 用户目录的权限极其敏感。执行这三行：
+
+
+```bash
+chmod 700 /root
+chmod 700 /root/.ssh
+chmod 600 /root/.ssh/authorized_keys
+
+```
+
+
+* **检查文件所有权**
+虽然你用的是 root，但最好确认一下文件是否归属正确：
+
+
+```bash
+chown -R root:root /root/.ssh
+
+```
+
+
+7. **创建本地一键推送脚本**： 在 WSL 中执行 `vi ~/sync_notes.sh`，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 `chmod +x ~/sync_notes.sh`：
 
 ```bash
 #!/bin/bash
@@ -81,6 +137,7 @@ else
     echo "❌ 同步失败，请检查网络。" >> "$LOG_FILE"
     exit 1
 fi
+
 ```
 
 ---
@@ -460,5 +517,6 @@ if %ERRORLEVEL% EQU 0 (
 
 至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的**真·极客闭环系统**已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！
 
+```
 
-
+```
