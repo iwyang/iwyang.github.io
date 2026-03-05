@@ -204,21 +204,46 @@ git push origin develop
 ```bash
 #!/bin/bash
 # ==========================================================
-# 脚本：sync_notes.sh (VPS 端)
-# 功能：自动生成 Perl 引擎、监听目录/响应远程指令、排版推送
+# 脚本：sync_notes.sh (VPS 端完全体)
+# 功能：自动生成 Perl 引擎、排版推送、并实现脚本自备份
 # ==========================================================
 
 # --- 1. 核心配置区 ---
 WATCH_DIR="/root/Koreader"               
 BLOG_DIR="/root/iwyang.github.io"        
 CONTENT_DIR="$BLOG_DIR/content/shuoshuo" 
+BACKUP_DIR="$BLOG_DIR/vps-backup"
 PROCESSED_LOG="$BLOG_DIR/.processed_notes.log"
 PERL_ENGINE="/root/scripts/split_notes.pl"
+SERVICE_FILE="/etc/systemd/system/koreader-sync.service"
 
-mkdir -p "$WATCH_DIR" "$CONTENT_DIR"
+mkdir -p "$WATCH_DIR" "$CONTENT_DIR" "$BACKUP_DIR"
 touch "$PROCESSED_LOG"
 
-# --- 2. 自动释放 Perl 切割引擎 ---
+# --- 2. 脚本自备份函数 ---
+backup_self() {
+    echo "[$(date)] 💾 正在同步脚本与配置至 GitHub 仓库..."
+    
+    # 备份当前脚本文件和 systemd 服务文件
+    cp "$0" "$BACKUP_DIR/sync_notes.sh"
+    if [ -f "$SERVICE_FILE" ]; then
+        cp "$SERVICE_FILE" "$BACKUP_DIR/"
+    fi
+    
+    cd "$BLOG_DIR" || exit
+    git add "$BACKUP_DIR"
+    
+    # 检查是否有变动，有变动才提交
+    if ! git diff --staged --quiet; then
+        git commit -m "Backup: Auto-update VPS scripts [$(date +'%Y-%m-%d %H:%M')]"
+        git push origin develop
+        echo "[$(date)] ✅ 运维脚本已安全备份至云端。"
+    else
+        echo "[$(date)] 💡 脚本无变动，跳过备份。"
+    fi
+}
+
+# --- 3. 自动释放 Perl 切割引擎 (完整代码) ---
 cat << 'PERL_EOF' > "$PERL_ENGINE"
 use utf8;
 use POSIX qw(strftime);
@@ -250,6 +275,7 @@ my %months = (January=>"01", February=>"02", March=>"03", April=>"04", May=>"05"
 
 foreach my $chunk (@chunks) {
     next if $chunk =~ /^\s*$/; 
+    
     my $next_chapter = "";
     while ($chunk =~ s/^\s*##\s+([^\n]*)$//m) {
         my $c = $1; $c =~ s/^\s+|\s+$//g;
@@ -258,36 +284,49 @@ foreach my $chunk (@chunks) {
     $chunk =~ s/^\s*##\s*$//mg;
 
     my ($page, $formatted_time, $dir_time, $fm_date, $slug) = ("", "", "", "", "");
+    
     if ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{1,2})\s+([a-zA-Z]+)\s+(\d{4})\s+(\d{2}):(\d{2}):(?:\d{2})\s+(AM|PM)\*?\*?\s*//i) {
-        $page = $1; my $d = $2; my $mon = ucfirst(lc($3)); my $y = $4; my $h = $5; my $m = $6; my $ampm = uc($7);
+        $page = $1; 
+        my $d = $2; my $mon = ucfirst(lc($3)); my $y = $4; my $h = $5; my $m = $6; my $ampm = uc($7);
         my $m_num = $months{$mon} || "01";
-        $h += 12 if ($ampm eq "PM" && $h < 12); $h = 0 if ($ampm eq "AM" && $h == 12);
+        $h += 12 if ($ampm eq "PM" && $h < 12);
+        $h = 0 if ($ampm eq "AM" && $h == 12);
         $formatted_time = sprintf("%04d-%02d-%02d %02d:%02d", $y, $m_num, $d, $h, $m);
         $dir_time = sprintf("%04d-%02d-%02d %02d-%02d", $y, $m_num, $d, $h, $m);
         $fm_date = sprintf("%04d-%02d-%02dT%02d:%02d:00+08:00", $y, $m_num, $d, $h, $m);
         $slug = sprintf("note-%04d%02d%02d%02d%02d-%s", $y, $m_num, $d, $h, $m, $page);
     } elsif ($chunk =~ s/^\s*(?:\*\* ?)?Page\s+(\d+)\s+@\s+(\d{4})-(\d{2})-(\d{2})\s+(\d{2}):(\d{2})\*?\*?\s*//) {
         $page = $1; my $y = $2; my $m_num = $3; my $d = $4; my $h = $5; my $m = $6;
-        $formatted_time = "$y-$m_num-$d $h:$m"; $dir_time = "$y-$m_num-$d $h-$m";
+        $formatted_time = "$y-$m_num-$d $h:$m";
+        $dir_time = "$y-$m_num-$d $h-$m";
         $fm_date = sprintf("%04d-%02d-%02dT%02d:%02d:00+08:00", $y, $m_num, $d, $h, $m);
         $slug = sprintf("note-%04d%02d%02d%02d%02d-%s", $y, $m_num, $d, $h, $m, $page);
     } else { next; }
 
     my $note = "";
     if ($chunk =~ m/^\s*---\s*$/m) {
-        my @parts = split(/^\s*---\s*$/m, $chunk, 2); $chunk = $parts[0]; $note = $parts[1] if @parts > 1;
+        my @parts = split(/^\s*---\s*$/m, $chunk, 2);
+        $chunk = $parts[0];
+        $note = $parts[1] if @parts > 1;
     }
-    $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^\*+//; $chunk =~ s/\*+$//; $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^/> /mg;
+
+    $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^\*+//; $chunk =~ s/\*+$//;
+    $chunk =~ s/^\s+|\s+$//g; $chunk =~ s/^/> /mg;
     if ($note) { $note =~ s/^\s+|\s+$//g; $note =~ s/^\*+//; $note =~ s/\*+$//; $note =~ s/^\s+|\s+$//g; }
 
     my $final_text = $chunk;
-    if ($note ne "") { $final_text .= "\n\n<hr class=\"note-divider\">\n\n$note"; }
+    if ($note ne "") {
+        $final_text .= "\n\n<hr class=\"note-divider\">\n\n$note";
+    }
+    
     next if $final_text =~ /^\s*$/; 
 
     my $display_title = "书摘：《$book》- 第${page}页 ($dir_time)";
     my $target_dir = "$content_dir/$display_title";
     system("mkdir", "-p", $target_dir);
-    open(my $out, '>:encoding(UTF-8)', "$target_dir/index.md") or next;
+    my $target_file = "$target_dir/index.md";
+    
+    open(my $out, '>:encoding(UTF-8)', $target_file) or next;
     print $out <<"MARKDOWN";
 ---
 title: "$display_title"
@@ -317,28 +356,33 @@ MARKDOWN
 PERL_EOF
 chmod +x "$PERL_ENGINE"
 
-# --- 3. 核心处理逻辑 ---
+# --- 4. 核心处理逻辑 ---
 run_process() {
     local FILE=$1
     echo "[$(date)] 🔄 正在处理新文件: $FILE"
     
     cd "$BLOG_DIR" || exit
+    
     # 强制对齐云端，无感去冲突
-    git fetch origin && git reset --hard origin/develop && git clean -fd 
+    git fetch origin
+    git reset --hard origin/develop
+    git clean -fd 
 
+    # 调用刚生成的 Perl 引擎切割笔记
     perl "$PERL_ENGINE" "$WATCH_DIR/$FILE" "$CONTENT_DIR"
 
+    # 提交发布笔记
     git add .
-    if git diff --staged --quiet; then
-        echo "[$(date)] 💡 无变化，记录并跳过推送。"
-        echo "$FILE" >> "$PROCESSED_LOG"
-    else
+    if ! git diff --staged --quiet; then
         git commit -m "Auto-publish: 批量书摘拆分 ($FILE)"
-        git push origin develop && echo "$FILE" >> "$PROCESSED_LOG" && echo "[$(date)] 🚀 推送成功！"
+        git push origin develop
+        echo "[$(date)] 🚀 笔记推送成功！"
+    else
+        echo "[$(date)] 💡 笔记无变化，跳过推送。"
     fi
 }
 
-# --- 4. 逻辑分流 A：WSL 主动唤醒 (无阻断) ---
+# --- 5. 逻辑分流 A：WSL 主动唤醒 (触发自备份) ---
 if [ "$1" == "--now" ]; then
     echo "收到主动触发信号，扫描新笔记..."
     for f in "$WATCH_DIR"/*.md; do
@@ -346,25 +390,28 @@ if [ "$1" == "--now" ]; then
         FILENAME=$(basename "$f")
         if ! grep -Fxq "$FILENAME" "$PROCESSED_LOG"; then
             run_process "$FILENAME"
+            # 记录已处理，防止重复
+            echo "$FILENAME" >> "$PROCESSED_LOG"
         fi
     done
+    
+    # 💡 笔记处理完毕后，执行脚本自备份
+    backup_self
+    
     exit 0 # 处理完立刻退出，不卡死远程 SSH
 fi
 
-# --- 5. 逻辑分流 B：24小时守护进程模式 ---
-echo "🚀 守护进程启动：正在监听 $WATCH_DIR"
-# 监听 close_write (手机直传) 和 moved_to (Rsync 重命名)
+# --- 6. 逻辑分流 B：24小时守护进程模式 ---
+echo "🚀 哨兵已就位，正在监听 $WATCH_DIR"
 inotifywait -m -e close_write -e moved_to --format '%f' "$WATCH_DIR" | while read FILE
 do
     if [[ "$FILE" == *.md ]] && [[ "$FILE" != .* ]]; then
-        if grep -Fxq "$FILE" "$PROCESSED_LOG"; then
-            echo "[$(date)] ⚠️ 跳过已处理文件。"
-            continue
+        if ! grep -Fxq "$FILE" "$PROCESSED_LOG"; then
+            run_process "$FILE"
+            echo "$FILE" >> "$PROCESSED_LOG"
         fi
-        run_process "$FILE"
     fi
 done
-
 ```
 
 赋予执行权限。如果日后**更新脚本**，请执行以下命令踢掉旧进程：
