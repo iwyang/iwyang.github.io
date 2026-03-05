@@ -205,7 +205,7 @@ git push origin develop
 #!/bin/bash
 # ==========================================================
 # 脚本：sync_notes.sh (VPS 端完全体)
-# 功能：自动生成 Perl 引擎、排版推送、并实现脚本自备份
+# 功能：自动生成 Perl 引擎、排版推送、并实现智能脚本自备份
 # ==========================================================
 
 # --- 1. 核心配置区 ---
@@ -217,14 +217,20 @@ PROCESSED_LOG="$BLOG_DIR/.processed_notes.log"
 PERL_ENGINE="/root/scripts/split_notes.pl"
 SERVICE_FILE="/etc/systemd/system/koreader-sync.service"
 
-mkdir -p "$WATCH_DIR" "$CONTENT_DIR" "$BACKUP_DIR"
+mkdir -p "$WATCH_DIR" "$CONTENT_DIR"
 touch "$PROCESSED_LOG"
 
-# --- 2. 脚本自备份函数 ---
+# --- 2. 智能脚本自备份函数 ---
 backup_self() {
-    echo "[$(date)] 💾 正在同步脚本与配置至 GitHub 仓库..."
+    echo "[$(date)] 💾 正在检查运维脚本备份状态..."
     
-    # 备份当前脚本文件和 systemd 服务文件
+    # 核心修复：防止被 git clean 误杀，每次备份前强制检测目录
+    if [ ! -d "$BACKUP_DIR" ]; then
+        echo "[$(date)] 🆕 未检测到备份目录，正在初始化创建并准备首次备份..."
+        mkdir -p "$BACKUP_DIR"
+    fi
+    
+    # 将最新脚本和配置文件复制到备份区
     cp "$0" "$BACKUP_DIR/sync_notes.sh"
     if [ -f "$SERVICE_FILE" ]; then
         cp "$SERVICE_FILE" "$BACKUP_DIR/"
@@ -233,17 +239,17 @@ backup_self() {
     cd "$BLOG_DIR" || exit
     git add "$BACKUP_DIR"
     
-    # 检查是否有变动，有变动才提交
+    # 智能判断：首次新建文件夹放入文件，或文件内容有改动时，都会触发推送
     if ! git diff --staged --quiet; then
         git commit -m "Backup: Auto-update VPS scripts [$(date +'%Y-%m-%d %H:%M')]"
         git push origin develop
-        echo "[$(date)] ✅ 运维脚本已安全备份至云端。"
+        echo "[$(date)] ✅ 运维脚本已安全备份至 GitHub 仓库！"
     else
-        echo "[$(date)] 💡 脚本无变动，跳过备份。"
+        echo "[$(date)] 💡 脚本无变动，跳过云端备份。"
     fi
 }
 
-# --- 3. 自动释放 Perl 切割引擎 (完整代码) ---
+# --- 3. 自动释放 Perl 切割引擎 ---
 cat << 'PERL_EOF' > "$PERL_ENGINE"
 use utf8;
 use POSIX qw(strftime);
@@ -363,12 +369,12 @@ run_process() {
     
     cd "$BLOG_DIR" || exit
     
-    # 强制对齐云端，无感去冲突
+    # 强制对齐云端，清理可能干扰的未追踪文件
     git fetch origin
     git reset --hard origin/develop
     git clean -fd 
 
-    # 调用刚生成的 Perl 引擎切割笔记
+    # 调用生成的 Perl 引擎切割笔记
     perl "$PERL_ENGINE" "$WATCH_DIR/$FILE" "$CONTENT_DIR"
 
     # 提交发布笔记
@@ -382,7 +388,7 @@ run_process() {
     fi
 }
 
-# --- 5. 逻辑分流 A：WSL 主动唤醒 (触发自备份) ---
+# --- 5. 逻辑分流 A：WSL 主动唤醒 (无阻断) ---
 if [ "$1" == "--now" ]; then
     echo "收到主动触发信号，扫描新笔记..."
     for f in "$WATCH_DIR"/*.md; do
@@ -395,10 +401,10 @@ if [ "$1" == "--now" ]; then
         fi
     done
     
-    # 💡 笔记处理完毕后，执行脚本自备份
+    # 笔记处理完毕后，强制执行一遍智能自备份检查
     backup_self
     
-    exit 0 # 处理完立刻退出，不卡死远程 SSH
+    exit 0 # 处理完立刻退出，释放本地终端
 fi
 
 # --- 6. 逻辑分流 B：24小时守护进程模式 ---
@@ -409,6 +415,9 @@ do
         if ! grep -Fxq "$FILE" "$PROCESSED_LOG"; then
             run_process "$FILE"
             echo "$FILE" >> "$PROCESSED_LOG"
+            
+            # 被动触发处理笔记后，也顺带检查一下是否需要备份脚本
+            backup_self
         fi
     fi
 done
