@@ -1,8 +1,8 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Mar 2026 17:46:35 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Mar 2026 18:13:16 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
-&lt;/h2&gt;&lt;p&gt;我们需要建立一条从阅读设备到 VPS 的“私有通道”。你可以根据自己的阅读场景，配置手机端或 PC 端（或两者皆备）。&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;我们需要建立一条从阅读设备到 VPS 的“私有通道”。你可以根据自己的阅读场景，配置手机端或 PC端（或两者皆备）。&lt;/p&gt;
 &lt;h3 id="场景-a手机端自动化搬运-foldersync"&gt;场景 A：手机端自动化搬运 (FolderSync)
 &lt;/h3&gt;&lt;p&gt;我们需要做到**“阅后即焚”**，防止旧笔记重复同步死循环。&lt;/p&gt;
 &lt;ol&gt;
@@ -22,7 +22,7 @@
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ol&gt;
-&lt;h3 id="场景-bwin11-wsl2-极速推送-rsync--ssh-触发"&gt;场景 B：Win11 WSL2 极速推送 (Rsync + SSH 触发)
+&lt;h3 id="场景-bwin11-wsl2-极速推送与软件安装-rsync--ssh-触发"&gt;场景 B：Win11 WSL2 极速推送与软件安装 (Rsync + SSH 触发)
 &lt;/h3&gt;&lt;p&gt;如果你在电脑上阅读，配置 WSL 环境并使用脚本主动推送是最高效的方式。&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
@@ -48,14 +48,100 @@
 &lt;p&gt;&lt;em&gt;注意：切勿添加 &lt;code&gt;localhostForwarding=true&lt;/code&gt;，镜像模式下两端已共享网络，保留会引发报错。&lt;/em&gt;&lt;/p&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;执行重启命令&lt;/strong&gt;： 在 PowerShell 中输入 &lt;code&gt;wsl --shutdown&lt;/code&gt;。然后重新打开 Ubuntu 终端，&lt;strong&gt;网络配置&lt;/strong&gt;即刻生效。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;执行重启命令&lt;/strong&gt;：
+在 PowerShell 中输入 &lt;code&gt;wsl --shutdown&lt;/code&gt;。然后重新打开 Ubuntu 终端，&lt;strong&gt;网络配置&lt;/strong&gt;即刻生效。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;
-&lt;p&gt;&lt;strong&gt;配置免密登录&lt;/strong&gt;：在 WSL 终端中执行 &lt;code&gt;ssh-keygen -t ed25519&lt;/code&gt;，然后用 &lt;code&gt;ssh-copy-id -p 22 root@你的VPS_IP&lt;/code&gt; 发送公钥。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;避坑与准备：在 WSL 中安装 KOReader (可选)&lt;/strong&gt;：&lt;/p&gt;
 &lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;strong&gt;创建本地一键推送脚本&lt;/strong&gt;： 在 WSL 中执行 &lt;code&gt;vi ~/sync_notes.sh&lt;/code&gt;，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 &lt;code&gt;chmod +x ~/sync_notes.sh&lt;/code&gt;：&lt;/p&gt;
-&lt;/li&gt;
+&lt;/ol&gt;
+&lt;ul&gt;
+&lt;li&gt;💡 &lt;strong&gt;路径避坑&lt;/strong&gt;：如果你是从管理员 PowerShell 直接输入 &lt;code&gt;wsl&lt;/code&gt; 进入的，你的提示符可能会显示在 &lt;code&gt;/mnt/c/Windows/system32&lt;/code&gt;。&lt;strong&gt;强烈建议&lt;/strong&gt;：在 WSL 里操作时，养成进终端先输入 &lt;code&gt;cd ~&lt;/code&gt; 的习惯，回到你的 Linux 家目录（即 &lt;code&gt;/home/yang&lt;/code&gt;）。在 &lt;code&gt;/mnt/c/&lt;/code&gt;（Windows 分区）下操作 Linux 文件的性能非常差，且容易遇到权限限制问题（Permission Denied）。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;创建目录与下载安装包&lt;/strong&gt;：刚装好的 Ubuntu 不会默认创建 &lt;code&gt;Downloads&lt;/code&gt; 等常用文件夹，我们需要手动创建并下载：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;span class="lnt"&gt;12
+&lt;/span&gt;&lt;span class="lnt"&gt;13
+&lt;/span&gt;&lt;span class="lnt"&gt;14
+&lt;/span&gt;&lt;span class="lnt"&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 刷新软件源列表，防止系统因包列表太旧而在安装依赖时报 404 错误&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt update
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 2. 创建下载目录并进入 (-p 参数非常稳，父目录不存在也会一并创建)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;mkdir -p ~/Downloads
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Downloads
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 下载 KOReader 安装包&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2025.10/koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader-2025.10-amd64.deb -y
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;🏁 &lt;strong&gt;最后的冲刺&lt;/strong&gt;：执行完安装后，你可以尝试直接输入 &lt;code&gt;koreader&lt;/code&gt; 来启动它！&lt;/li&gt;
+&lt;/ul&gt;
+&lt;ol start="5"&gt;
+&lt;li&gt;&lt;strong&gt;配置免密登录&lt;/strong&gt;：在 WSL 终端中执行 &lt;code&gt;ssh-keygen -t ed25519&lt;/code&gt;，然后用 &lt;code&gt;ssh-copy-id -p 22 root@你的VPS_IP&lt;/code&gt; 发送公钥。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;测试免密登录&lt;/strong&gt;：&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;ssh -p &lt;span class="m"&gt;22&lt;/span&gt; root@142.171.177.173
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;em&gt;如果直接进入了 VPS 而没有弹密码框，说明配置成功。输入 &lt;code&gt;exit&lt;/code&gt; 退回 WSL。&lt;/em&gt;
+如果还需密码，设置权限：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;强制修正权限&lt;/strong&gt;
+登录VPS，SSH 对 &lt;code&gt;root&lt;/code&gt; 用户目录的权限极其敏感。执行这三行：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;700&lt;/span&gt; /root
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;700&lt;/span&gt; /root/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chmod &lt;span class="m"&gt;600&lt;/span&gt; /root/.ssh/authorized_keys
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;检查文件所有权&lt;/strong&gt;
+虽然你用的是 root，但最好确认一下文件是否归属正确：&lt;/li&gt;
+&lt;/ul&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;chown -R root:root /root/.ssh
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;ol start="7"&gt;
+&lt;li&gt;&lt;strong&gt;创建本地一键推送脚本&lt;/strong&gt;： 在 WSL 中执行 &lt;code&gt;vi ~/sync_notes.sh&lt;/code&gt;，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 &lt;code&gt;chmod +x ~/sync_notes.sh&lt;/code&gt;：&lt;/li&gt;
 &lt;/ol&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
@@ -725,7 +811,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;最终体验&lt;/strong&gt;：现在你看完书，只需在桌面上双击这个图标。一个极客风的黑绿窗口瞬间弹出，行云流水般跑完同步指令，然后在你默念“一、二”后，乖乖地自动消失。&lt;/p&gt;
-&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
+&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="第一部分服务端部署-docker-同步中心"&gt;第一部分：服务端部署 (Docker 同步中心)
 &lt;/h2&gt;&lt;p&gt;为了避免端口冲突，我们为同步服务分配 &lt;code&gt;3002&lt;/code&gt; 端口。&lt;/p&gt;
