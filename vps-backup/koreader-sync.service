@@ -1,0 +1,13 @@
+[Unit]
+Description=KOReader Notes Auto-Sync Service
+After=network.target
+
+[Service]
+Type=simple
+User=root
+ExecStart=/root/scripts/sync_notes.sh
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
