@@ -72,6 +72,9 @@ sudo chmod 644 ./koreader-2025.10-amd64.deb
 
 # 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)
 sudo apt install ./koreader-2025.10-amd64.deb -y
+
+# 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
+sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
 ```
 
 
