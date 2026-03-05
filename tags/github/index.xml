@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 03 Mar 2026 16:08:22 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Github on Bore's Notes</title><link>https://bore.vip/tags/github/</link><description>Recent content in Github on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Mar 2026 20:38:01 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/github/index.xml" rel="self" type="application/rss+xml"/><item><title>利用Github Actions自动同步Fork&amp;&amp;自动同步Releases</title><link>https://bore.vip/archives/12dd937c/</link><pubDate>Thu, 13 Jul 2023 18:02:15 +0000</pubDate><guid>https://bore.vip/archives/12dd937c/</guid><description>&lt;h2 id="自动同步fork现在用的"&gt;自动同步Fork（现在用的）
 &lt;/h2&gt;&lt;p&gt;&lt;strong&gt;参考chatgpt&lt;/strong&gt;:&lt;/p&gt;
 &lt;p&gt;在你的 fork 仓库中新建：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -1237,7 +1237,17 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;Please make sure you have the correct access rights and the repository exist&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;如果即使已经添加本地公钥到github，还提示以上错误，并且执行&lt;code&gt;ssh -T git@github.com&lt;/code&gt;提示22端口关闭，解决方法见上。&lt;/p&gt;
-&lt;h2 id="自动化处理冲突脚本以自己为准"&gt;自动化处理冲突脚本（以自己为准）
+&lt;h2 id="git-正确显示中文路径"&gt;Git 正确显示中文路径
+&lt;/h2&gt;&lt;p&gt;打开你的终端（Terminal/PowerShell/Git Bash），输入以下命令：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;git config --global core.quotepath &lt;span class="nb"&gt;false&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="自动化处理冲突脚本以自己为准"&gt;自动化处理冲突脚本（以自己为准）
 &lt;/h2&gt;&lt;p&gt;针对你“&lt;strong&gt;以自己为准&lt;/strong&gt;”的需求，之前的处理逻辑确实有误（之前误删除了你的内容）。&lt;strong&gt;正确的逻辑应该是：保留 &lt;code&gt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&amp;lt;&lt;/code&gt; 到 &lt;code&gt;=======&lt;/code&gt; 之间的内容（你的改动），并删除从 &lt;code&gt;=======&lt;/code&gt; 到 &lt;code&gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&amp;gt;&lt;/code&gt; 及其标记的所有内容。&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id="新建resolve_keep_ourssh"&gt;新建resolve_keep_ours.sh
 &lt;/h3&gt;&lt;p&gt;以下是一个一键自动化的 Bash 脚本：自动化处理冲突脚本 (&lt;code&gt;resolve_keep_ours.sh&lt;/code&gt;)&lt;/p&gt;
