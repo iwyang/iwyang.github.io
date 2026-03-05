@@ -50,9 +50,11 @@ tags: ["hugo", "KOReader"]
 
 *注意：切勿添加 `localhostForwarding=true`，镜像模式下两端已共享网络，保留会引发报错。* 
 
-3. **配置免密登录**：在 WSL 终端中执行 `ssh-keygen -t ed25519`，然后用 `ssh-copy-id -p 22 root@你的VPS_IP` 发送公钥。
+3. **执行重启命令**： 在 PowerShell 中输入 `wsl --shutdown`。然后重新打开 Ubuntu 终端，**网络配置**即刻生效。
 
-4. **创建本地一键推送脚本**： 在 WSL 中执行 `vi ~/sync_notes.sh`，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 `chmod +x ~/sync_notes.sh`：
+4. **配置免密登录**：在 WSL 终端中执行 `ssh-keygen -t ed25519`，然后用 `ssh-copy-id -p 22 root@你的VPS_IP` 发送公钥。
+
+5. **创建本地一键推送脚本**： 在 WSL 中执行 `vi ~/sync_notes.sh`，贴入以下代码（注意修改用户名和 IP），并赋予执行权限 `chmod +x ~/sync_notes.sh`：
 
 ```bash
 #!/bin/bash
