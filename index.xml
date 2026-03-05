@@ -48,6 +48,9 @@
 &lt;p&gt;&lt;em&gt;注意：切勿添加 &lt;code&gt;localhostForwarding=true&lt;/code&gt;，镜像模式下两端已共享网络，保留会引发报错。&lt;/em&gt;&lt;/p&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;
+&lt;p&gt;&lt;strong&gt;执行重启命令&lt;/strong&gt;： 在 PowerShell 中输入 &lt;code&gt;wsl --shutdown&lt;/code&gt;。然后重新打开 Ubuntu 终端，&lt;strong&gt;网络配置&lt;/strong&gt;即刻生效。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
 &lt;p&gt;&lt;strong&gt;配置免密登录&lt;/strong&gt;：在 WSL 终端中执行 &lt;code&gt;ssh-keygen -t ed25519&lt;/code&gt;，然后用 &lt;code&gt;ssh-copy-id -p 22 root@你的VPS_IP&lt;/code&gt; 发送公钥。&lt;/p&gt;
 &lt;/li&gt;
 &lt;li&gt;

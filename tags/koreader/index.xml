@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>KOReader on Bore's Notes</title><link>https://bore.vip/tags/koreader/</link><description>Recent content in KOReader on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Mar 2026 17:40:15 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/koreader/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Koreader on Bore's Notes</title><link>https://bore.vip/tags/koreader/</link><description>Recent content in Koreader on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 05 Mar 2026 17:46:35 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/koreader/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
@@ -47,6 +47,9 @@
 &lt;/ol&gt;
 &lt;p&gt;&lt;em&gt;注意：切勿添加 &lt;code&gt;localhostForwarding=true&lt;/code&gt;，镜像模式下两端已共享网络，保留会引发报错。&lt;/em&gt;&lt;/p&gt;
 &lt;ol start="3"&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;执行重启命令&lt;/strong&gt;： 在 PowerShell 中输入 &lt;code&gt;wsl --shutdown&lt;/code&gt;。然后重新打开 Ubuntu 终端，&lt;strong&gt;网络配置&lt;/strong&gt;即刻生效。&lt;/p&gt;
+&lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;配置免密登录&lt;/strong&gt;：在 WSL 终端中执行 &lt;code&gt;ssh-keygen -t ed25519&lt;/code&gt;，然后用 &lt;code&gt;ssh-copy-id -p 22 root@你的VPS_IP&lt;/code&gt; 发送公钥。&lt;/p&gt;
 &lt;/li&gt;
