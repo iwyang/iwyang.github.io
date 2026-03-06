@@ -710,18 +710,7 @@
 &lt;/h2&gt;&lt;h3 id="创建dropbox应用"&gt;创建Dropbox应用
 &lt;/h3&gt;&lt;p&gt;首先，需要创建一个Dropbox应用，可以从该网址进行创建：https://www.dropbox.com/developers/apps/create&lt;/p&gt;
 &lt;p&gt;在这里，应用类型选择&lt;code&gt;Dropbox API&lt;/code&gt;，数据存储类型选择&lt;code&gt;App folder&lt;/code&gt;，然后&lt;code&gt;命名&lt;/code&gt;创建。然后切换到&lt;code&gt;Permissions&lt;/code&gt;选项卡，勾选相应权限。最后记录下&lt;code&gt;App key&lt;/code&gt;，&lt;code&gt;App secret&lt;/code&gt;，下面要用。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg"
-	width="800"
-	height="419"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="190"
-		data-flex-basis="458px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="458px" data-flex-grow="190" height="419" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg" width="800"&gt;&lt;/p&gt;
 &lt;h3 id="下载dropbox_uploadersh"&gt;下载dropbox_uploader.sh
 &lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/andreafabrizi/Dropbox-Uploader/" target="_blank" rel="noopener"
  &gt;dropbox_uploader&lt;/a&gt; 是一个第三方Dropbox备份脚本，首先下载脚本：&lt;/p&gt;

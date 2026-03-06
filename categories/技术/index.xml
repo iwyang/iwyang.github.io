@@ -2194,32 +2194,10 @@
 &lt;/h2&gt;&lt;p&gt;RaiDrive官网：&lt;a class="link" href="http://www.raidrive.com/" target="_blank" rel="noopener"
  &gt;http://www.raidrive.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;挂载成功后，通过RaiDrive挂载各大网盘到本地电脑上&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/raidrive.jpg"
-	width="1024"
-	height="750"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="136"
-		data-flex-basis="327px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="327px" data-flex-grow="136" height="750" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/raidrive.jpg" srcset="https://bore.vip/archives/c6592a10/raidrive_hu_fce512194f2ea219.jpg 800w, https://bore.vip/archives/c6592a10/raidrive.jpg 1024w" width="1024"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到potplay"&gt;挂载到potplay
 &lt;/h2&gt;&lt;p&gt;Potplayer播放器挂载alist网盘里的视频&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/potplayer.jpg"
-	width="1000"
-	height="630"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="158"
-		data-flex-basis="380px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="380px" data-flex-grow="158" height="630" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/potplayer.jpg" srcset="https://bore.vip/archives/c6592a10/potplayer_hu_131e62dc1c340d2b.jpg 800w, https://bore.vip/archives/c6592a10/potplayer.jpg 1000w" width="1000"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到安卓"&gt;挂载到安卓
 &lt;/h2&gt;&lt;p&gt;安卓可以挂载到 es文件浏览器&lt;/p&gt;
 &lt;p&gt;我的网络—右上角三点—新建webdav&lt;/p&gt;
@@ -2592,44 +2570,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="potplayer无边框透明美化"&gt;potplayer无边框透明美化
 &lt;/h2&gt;&lt;p&gt;1.打开播放器按“F5”或右键PotPlayer播放界面点击选项进入设置界面，点开“基本”然后把启始项把窗口位置改成居中，把默认的320乘以240的窗口尺寸，建议1280乘以720，当然你也可以改成自己喜欢的尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/1.jpg"
-	width="751"
-	height="564"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="564" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/1.jpg" width="751"&gt;&lt;/p&gt;
 &lt;p&gt;2.然后把默认皮肤下的视频下自动隐藏和全屏时防止遮盖进行勾选&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/2.jpg"
-	width="746"
-	height="563"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="132"
-		data-flex-basis="318px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="318px" data-flex-grow="132" height="563" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/2.jpg" width="746"&gt;&lt;/p&gt;
 &lt;p&gt;3.接着把播放里面的窗口尺寸改成无边框尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/3.jpg"
-	width="700"
-	height="526"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="526" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/3.jpg" width="700"&gt;&lt;/p&gt;
 &lt;p&gt;4.皮肤安装也非常简单，直接打开PotPlayer皮肤设置，然后选择打开皮肤文件夹，将下载的皮肤粘贴进去。&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.freedidi.com/7539.html" target="_blank" rel="noopener"
@@ -3079,18 +3024,7 @@
 5.在“令牌名称”下，输入令牌的名称。
 6.在“过期时间”下，选择令牌的过期时间（永不过期）。&lt;/p&gt;
 &lt;p&gt;7.然后权限要开启&lt;strong&gt;repo&lt;/strong&gt;和&lt;strong&gt;workflow&lt;/strong&gt;的权限&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/12dd937c/github.png"
-	width="843"
-	height="337"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="250"
-		data-flex-basis="600px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="600px" data-flex-grow="250" height="337" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/12dd937c/github.png" srcset="https://bore.vip/archives/12dd937c/github_hu_8fe96332967a06a5.png 800w, https://bore.vip/archives/12dd937c/github.png 843w" width="843"&gt;&lt;/p&gt;
 &lt;p&gt;8.创建完成后复制token内容&lt;/p&gt;
 &lt;h3 id="添加环境变量secret"&gt;添加环境变量secret
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;settings/secrets(Secrets and variables)/actions&lt;/code&gt;里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。&lt;/p&gt;
@@ -9214,18 +9148,7 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;li&gt;将所需替换文件放到同一个文件夹里。&lt;/li&gt;
 &lt;li&gt;用&lt;code&gt;Notepad++&lt;/code&gt;打开其中的一个文件，执行&lt;code&gt;搜索—查找—文件查找&lt;/code&gt;填好&lt;code&gt;查找目标、替换为、文件类型（如：*.md）、目录&lt;/code&gt;，最后点击&lt;code&gt;在文件中替换&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/ef06a4ae/1.jpg"
-	width="671"
-	height="439"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="152"
-		data-flex-basis="366px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="366px" data-flex-grow="152" height="439" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/ef06a4ae/1.jpg" width="671"&gt;&lt;/p&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://blog.csdn.net/weixin_43269414/article/details/107839575" target="_blank" rel="noopener"
  &gt;windows批量查找替换多个文本文件中的内容&lt;/a&gt;&lt;/p&gt;</description></item><item><title>Debian使用备忘</title><link>https://bore.vip/archives/9eb70758/</link><pubDate>Sun, 29 May 2022 01:12:45 +0000</pubDate><guid>https://bore.vip/archives/9eb70758/</guid><description>&lt;p&gt;由于一些原因，之前服务器上用的Centos换成了Debian。Debian虽然和Centos大同小异，但是还是有些东西要记一下。&lt;/p&gt;
 &lt;p&gt;{% note warning flat %}
@@ -11527,33 +11450,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;del&gt;6、输入：&lt;code&gt;cscript ospp.vbs /dstatus&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;7、直接输入&lt;code&gt;cscript “C:\Program Files\Microsoft Office\Office16\ospp.vbs” /dstatus&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;8、显示&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/202203132026632.png"
-	width="695"
-	height="313"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="222"
-		data-flex-basis="532px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="532px" data-flex-grow="222" height="313" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/202203132026632.png" width="695"&gt;&lt;/p&gt;
 &lt;p&gt;可以看到还剩179天到期，到期可以再jh。&lt;/p&gt;
 &lt;p&gt;9.如果上面图片末尾未显示jh相关信息，复制图中的&lt;code&gt;SKU ID&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;10.然后输入&lt;code&gt;slmgr /xpr xxxxxxxxxxxxxxxxxxxxx(sku id)&lt;/code&gt; ，回车。显示：&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/jihuo.png"
-	width="327"
-	height="179"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="438px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="438px" data-flex-grow="182" height="179" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/jihuo.png" width="327"&gt;&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -11922,18 +11823,7 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;关联资源：云函数 weixin-push (上文创建的云函数)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/9a366c6/202202061010000.jpg"
-	width="500"
-	height="390"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="128"
-		data-flex-basis="307px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="307px" data-flex-grow="128" height="390" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/9a366c6/202202061010000.jpg" width="500"&gt;&lt;/p&gt;
 &lt;p&gt;至此，云函数创建完成。可以使用下面这样的方式，拼接一个 URL，浏览器访问，看看手机微信能不能接收到消息。&lt;/p&gt;
 &lt;p&gt;云函数的访问服务 URL + 触发路径 + ?id = 你的企业微信 ID + secert = 上文记录的 secert + Id = 上文记录的 AgentId + &amp;amp;msg = 随便测试一下吧&lt;/p&gt;
 &lt;p&gt;如我下面这样的：&lt;/p&gt;
@@ -18532,18 +18422,7 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uptime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;0 0 * * 0&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/b32c2189/20210802091341.jpg"
-	width="808"
-	height="408"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="198"
-		data-flex-basis="475px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="475px" data-flex-grow="198" height="408" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/b32c2189/20210802091341.jpg" srcset="https://bore.vip/archives/b32c2189/20210802091341_hu_491923be3c8929c0.jpg 800w, https://bore.vip/archives/b32c2189/20210802091341.jpg 808w" width="808"&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;编辑后 GItHub Actions 会自动更新 upptime 配置信息&lt;/li&gt;
 &lt;/ul&gt;
@@ -21763,18 +21642,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;选择几何图形后，双击屏幕可快速画出图形。出现红点是正方形（正方体）。&lt;/li&gt;
 &lt;li&gt;蒙层的使用（刮刮乐）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/20210418203212.jpg"
-	width="595"
-	height="130"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="457"
-		data-flex-basis="1098px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="1098px" data-flex-grow="457" height="130" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/20210418203212.jpg" width="595"&gt;&lt;/p&gt;
 &lt;p&gt;要实现以上效果，切记首先要画两个矩形，然后双击输入文字，将需要设置蒙层这一形状置于顶层。千万不要先输入两个文本框，这样无法形成遮挡效果。&lt;/p&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;
@@ -21828,18 +21696,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;备课端，依次打开&lt;code&gt;学科工具—数学画板—我的画板—自行创作&lt;/code&gt;，可自己制作画板。（只有在备课端才可以制作画板，授课端是不行的）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/sxhauban.jpg"
-	width="800"
-	height="555"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="345px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="345px" data-flex-grow="144" height="555" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/sxhauban.jpg" width="800"&gt;&lt;/p&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;
 &lt;p&gt;怎样标记角：选择&lt;code&gt;绘图|标注&lt;/code&gt;工具，将&lt;code&gt;绘图|标注工具&lt;/code&gt;移至角的顶点，鼠标后面会出现一个角的符号，按住鼠标左键可拖动角。右侧可改变标记的样式。（除了标记角，&lt;code&gt;绘图|标注&lt;/code&gt;工具还可以标注线）&lt;/p&gt;
@@ -21886,18 +21743,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;选择重命名格式。&lt;/li&gt;
 &lt;li&gt;点击&lt;code&gt;确定&lt;/code&gt;，开始执行批处理动作。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/31774ac/20200811103621.jpeg"
-	width="1155"
-	height="549"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="210"
-		data-flex-basis="504px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="504px" data-flex-grow="210" height="549" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/31774ac/20200811103621.jpeg" srcset="https://bore.vip/archives/31774ac/20200811103621_hu_52156cadfdab8cf4.jpeg 800w, https://bore.vip/archives/31774ac/20200811103621.jpeg 1155w" width="1155"&gt;&lt;/p&gt;
 &lt;h2 id="批量压缩图片"&gt;批量压缩图片
 &lt;/h2&gt;&lt;p&gt;在上一步保存图片时其实可以适当调整图片大小，如果对图片大小还是不满意的话。可接上一步批量压缩图片。先打开一张图片，然后记录动作：依次点击&lt;code&gt;文件—导出—存储为Web所有格式（旧版）&lt;/code&gt;，然后调整大小后保存，完成后点击&lt;code&gt;停止记录动作&lt;/code&gt;。接着批量压缩图片可以参考上面的操作。&lt;/p&gt;
 &lt;h2 id="总结"&gt;总结
@@ -22454,18 +22300,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;h3 id="创建dropbox应用"&gt;创建Dropbox应用
 &lt;/h3&gt;&lt;p&gt;首先，需要创建一个Dropbox应用，可以从该网址进行创建：https://www.dropbox.com/developers/apps/create&lt;/p&gt;
 &lt;p&gt;在这里，应用类型选择&lt;code&gt;Dropbox API&lt;/code&gt;，数据存储类型选择&lt;code&gt;App folder&lt;/code&gt;，然后&lt;code&gt;命名&lt;/code&gt;创建。然后切换到&lt;code&gt;Permissions&lt;/code&gt;选项卡，勾选相应权限。最后记录下&lt;code&gt;App key&lt;/code&gt;，&lt;code&gt;App secret&lt;/code&gt;，下面要用。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg"
-	width="800"
-	height="419"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="190"
-		data-flex-basis="458px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="458px" data-flex-grow="190" height="419" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg" width="800"&gt;&lt;/p&gt;
 &lt;h3 id="下载dropbox_uploadersh"&gt;下载dropbox_uploader.sh
 &lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/andreafabrizi/Dropbox-Uploader/" target="_blank" rel="noopener"
  &gt;dropbox_uploader&lt;/a&gt; 是一个第三方Dropbox备份脚本，首先下载脚本：&lt;/p&gt;

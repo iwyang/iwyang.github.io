@@ -2194,32 +2194,10 @@
 &lt;/h2&gt;&lt;p&gt;RaiDrive官网：&lt;a class="link" href="http://www.raidrive.com/" target="_blank" rel="noopener"
  &gt;http://www.raidrive.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;挂载成功后，通过RaiDrive挂载各大网盘到本地电脑上&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/raidrive.jpg"
-	width="1024"
-	height="750"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="136"
-		data-flex-basis="327px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="327px" data-flex-grow="136" height="750" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/raidrive.jpg" srcset="https://bore.vip/archives/c6592a10/raidrive_hu_fce512194f2ea219.jpg 800w, https://bore.vip/archives/c6592a10/raidrive.jpg 1024w" width="1024"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到potplay"&gt;挂载到potplay
 &lt;/h2&gt;&lt;p&gt;Potplayer播放器挂载alist网盘里的视频&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/potplayer.jpg"
-	width="1000"
-	height="630"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="158"
-		data-flex-basis="380px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="380px" data-flex-grow="158" height="630" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/potplayer.jpg" srcset="https://bore.vip/archives/c6592a10/potplayer_hu_131e62dc1c340d2b.jpg 800w, https://bore.vip/archives/c6592a10/potplayer.jpg 1000w" width="1000"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到安卓"&gt;挂载到安卓
 &lt;/h2&gt;&lt;p&gt;安卓可以挂载到 es文件浏览器&lt;/p&gt;
 &lt;p&gt;我的网络—右上角三点—新建webdav&lt;/p&gt;
@@ -2592,44 +2570,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="potplayer无边框透明美化"&gt;potplayer无边框透明美化
 &lt;/h2&gt;&lt;p&gt;1.打开播放器按“F5”或右键PotPlayer播放界面点击选项进入设置界面，点开“基本”然后把启始项把窗口位置改成居中，把默认的320乘以240的窗口尺寸，建议1280乘以720，当然你也可以改成自己喜欢的尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/1.jpg"
-	width="751"
-	height="564"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="564" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/1.jpg" width="751"&gt;&lt;/p&gt;
 &lt;p&gt;2.然后把默认皮肤下的视频下自动隐藏和全屏时防止遮盖进行勾选&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/2.jpg"
-	width="746"
-	height="563"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="132"
-		data-flex-basis="318px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="318px" data-flex-grow="132" height="563" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/2.jpg" width="746"&gt;&lt;/p&gt;
 &lt;p&gt;3.接着把播放里面的窗口尺寸改成无边框尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/3.jpg"
-	width="700"
-	height="526"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="526" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/3.jpg" width="700"&gt;&lt;/p&gt;
 &lt;p&gt;4.皮肤安装也非常简单，直接打开PotPlayer皮肤设置，然后选择打开皮肤文件夹，将下载的皮肤粘贴进去。&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.freedidi.com/7539.html" target="_blank" rel="noopener"
@@ -3079,18 +3024,7 @@
 5.在“令牌名称”下，输入令牌的名称。
 6.在“过期时间”下，选择令牌的过期时间（永不过期）。&lt;/p&gt;
 &lt;p&gt;7.然后权限要开启&lt;strong&gt;repo&lt;/strong&gt;和&lt;strong&gt;workflow&lt;/strong&gt;的权限&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/12dd937c/github.png"
-	width="843"
-	height="337"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="250"
-		data-flex-basis="600px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="600px" data-flex-grow="250" height="337" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/12dd937c/github.png" srcset="https://bore.vip/archives/12dd937c/github_hu_8fe96332967a06a5.png 800w, https://bore.vip/archives/12dd937c/github.png 843w" width="843"&gt;&lt;/p&gt;
 &lt;p&gt;8.创建完成后复制token内容&lt;/p&gt;
 &lt;h3 id="添加环境变量secret"&gt;添加环境变量secret
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;settings/secrets(Secrets and variables)/actions&lt;/code&gt;里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。&lt;/p&gt;
@@ -9214,61 +9148,17 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;li&gt;将所需替换文件放到同一个文件夹里。&lt;/li&gt;
 &lt;li&gt;用&lt;code&gt;Notepad++&lt;/code&gt;打开其中的一个文件，执行&lt;code&gt;搜索—查找—文件查找&lt;/code&gt;填好&lt;code&gt;查找目标、替换为、文件类型（如：*.md）、目录&lt;/code&gt;，最后点击&lt;code&gt;在文件中替换&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/ef06a4ae/1.jpg"
-	width="671"
-	height="439"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="152"
-		data-flex-basis="366px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="366px" data-flex-grow="152" height="439" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/ef06a4ae/1.jpg" width="671"&gt;&lt;/p&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://blog.csdn.net/weixin_43269414/article/details/107839575" target="_blank" rel="noopener"
  &gt;windows批量查找替换多个文本文件中的内容&lt;/a&gt;&lt;/p&gt;</description></item><item><title>求阴影部分面积</title><link>https://bore.vip/archives/313793f1/</link><pubDate>Tue, 28 Jun 2022 23:18:14 +0000</pubDate><guid>https://bore.vip/archives/313793f1/</guid><description>&lt;h2 id="题型一"&gt;题型一
-&lt;/h2&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/313793f1/1.jpg"
-	width="600"
-	height="400"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
-	
-&gt;&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="360px" data-flex-grow="150" height="400" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/313793f1/1.jpg" width="600"&gt;&lt;/p&gt;
 &lt;p&gt;此题用相似三角形最简单，3/a=b/8，ab=24 但小学阶段就用上图方法为好。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="题型二"&gt;题型二
-&lt;/h2&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/313793f1/1-16604674519182.jpg"
-	width="555"
-	height="370"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
-	
-&gt;&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="360px" data-flex-grow="150" height="370" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/313793f1/1-16604674519182.jpg" width="555"&gt;&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="题型三"&gt;题型三
-&lt;/h2&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/313793f1/1-16604674769534.jpg"
-	width="600"
-	height="400"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="150"
-		data-flex-basis="360px"
-	
-&gt;&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="360px" data-flex-grow="150" height="400" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/313793f1/1-16604674769534.jpg" width="600"&gt;&lt;/p&gt;
 &lt;p&gt;如图将圆柱斜切一刀求体积。将圆柱补齐，所求图形的体积为高5cm圆柱体积的一半。&lt;/p&gt;
 &lt;p&gt;PS：可先用希沃白板画出图形，利用克隆等小工具展示拼接图形的过程。&lt;/p&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://www.bilibili.com/video/BV1T94y1174i?spm_id_from=333.999.0.0&amp;amp;vd_source=cb4a6ad8978ef3ac986f741316ee2cc3" target="_blank" rel="noopener"
@@ -11572,33 +11462,11 @@ vim颜色太花眼了，所以最后把它卸载：&lt;/p&gt;
 &lt;del&gt;6、输入：&lt;code&gt;cscript ospp.vbs /dstatus&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;7、直接输入&lt;code&gt;cscript “C:\Program Files\Microsoft Office\Office16\ospp.vbs” /dstatus&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;8、显示&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/202203132026632.png"
-	width="695"
-	height="313"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="222"
-		data-flex-basis="532px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="532px" data-flex-grow="222" height="313" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/202203132026632.png" width="695"&gt;&lt;/p&gt;
 &lt;p&gt;可以看到还剩179天到期，到期可以再jh。&lt;/p&gt;
 &lt;p&gt;9.如果上面图片末尾未显示jh相关信息，复制图中的&lt;code&gt;SKU ID&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;10.然后输入&lt;code&gt;slmgr /xpr xxxxxxxxxxxxxxxxxxxxx(sku id)&lt;/code&gt; ，回车。显示：&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/jihuo.png"
-	width="327"
-	height="179"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="438px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="438px" data-flex-grow="182" height="179" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/jihuo.png" width="327"&gt;&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;
@@ -11967,18 +11835,7 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;关联资源：云函数 weixin-push (上文创建的云函数)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/9a366c6/202202061010000.jpg"
-	width="500"
-	height="390"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="128"
-		data-flex-basis="307px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="307px" data-flex-grow="128" height="390" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/9a366c6/202202061010000.jpg" width="500"&gt;&lt;/p&gt;
 &lt;p&gt;至此，云函数创建完成。可以使用下面这样的方式，拼接一个 URL，浏览器访问，看看手机微信能不能接收到消息。&lt;/p&gt;
 &lt;p&gt;云函数的访问服务 URL + 触发路径 + ?id = 你的企业微信 ID + secert = 上文记录的 secert + Id = 上文记录的 AgentId + &amp;amp;msg = 随便测试一下吧&lt;/p&gt;
 &lt;p&gt;如我下面这样的：&lt;/p&gt;
@@ -18634,18 +18491,7 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uptime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;0 0 * * 0&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/b32c2189/20210802091341.jpg"
-	width="808"
-	height="408"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="198"
-		data-flex-basis="475px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="475px" data-flex-grow="198" height="408" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/b32c2189/20210802091341.jpg" srcset="https://bore.vip/archives/b32c2189/20210802091341_hu_491923be3c8929c0.jpg 800w, https://bore.vip/archives/b32c2189/20210802091341.jpg 808w" width="808"&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;编辑后 GItHub Actions 会自动更新 upptime 配置信息&lt;/li&gt;
 &lt;/ul&gt;
@@ -18687,18 +18533,7 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;h2 id="第五单元-周长"&gt;第五单元 周长
 &lt;/h2&gt;&lt;p&gt;1.把一个长方形平均分成两个形状相同、大小相等的小长方形，小长方形的周长是原来长方形周长的一半．（×）&lt;/p&gt;
 &lt;p&gt;解析：如图：长方形平均分成两个小长方形后，周长比原来增加了两条原长方形的长或者是宽，所以小长方形的周长等于原来的长方形的周长的一半与一条长（或宽）的和，原题说法错误．
-&lt;img src="https://bore.vip/archives/dec02429/202111201424614.png"
-	width="189"
-	height="49"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="385"
-		data-flex-basis="925px"
-	
-&gt;&lt;/p&gt;
+&lt;img class="gallery-image" data-flex-basis="925px" data-flex-grow="385" height="49" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/dec02429/202111201424614.png" width="189"&gt;&lt;/p&gt;
 &lt;h2 id="第七单元-年月日"&gt;第七单元 年月日
 &lt;/h2&gt;&lt;p&gt;判断某一年是平年还是闰年&lt;/p&gt;
 &lt;p&gt;1.看年份后两位数能不能被4整除，能被4整除就是闰年，不能就是平年。&lt;/p&gt;
@@ -21915,18 +21750,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;p&gt;通过这节课的学习，你学到了什么？&lt;/p&gt;
 &lt;p&gt;七、板书设计&lt;/p&gt;
 &lt;p&gt;412-89=323（只） 514-126=298（只）&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/1cf58c3e/5.jpg"
-	width="500"
-	height="125"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="400"
-		data-flex-basis="960px"
-	
-&gt;&lt;/p&gt;</description></item><item><title>二年级数学下册第五单元《小蝌蚪的成长》教学反思</title><link>https://bore.vip/archives/90a296ba/</link><pubDate>Fri, 23 Apr 2021 12:40:43 +0000</pubDate><guid>https://bore.vip/archives/90a296ba/</guid><description>&lt;p&gt;这是本学期我第二次上公开课，本次公开课的课题是《小蝌蚪的成长》，这是一节计算教学课。首先我用猜谜语的方式来导入新课，吸引了学生的注意力，进而引导学生以后遇到小蝌蚪要保护它，树立了学生的环保意识。在探究三位数减三位数连续退位减法的计算方法时，我充分鼓励学生大胆表达自己的计算方法。在拨计数器这一块，为了解决传统计数器不能“借一当十”问题，我利用希沃白板的“克隆与拖拽”功能来形象地给学生演示了“借一当十”的过程及原理，帮助学生更好地理解算法。纵观本节公开课，我觉得存在以下问题：&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="960px" data-flex-grow="400" height="125" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/1cf58c3e/5.jpg" width="500"&gt;&lt;/p&gt;</description></item><item><title>二年级数学下册第五单元《小蝌蚪的成长》教学反思</title><link>https://bore.vip/archives/90a296ba/</link><pubDate>Fri, 23 Apr 2021 12:40:43 +0000</pubDate><guid>https://bore.vip/archives/90a296ba/</guid><description>&lt;p&gt;这是本学期我第二次上公开课，本次公开课的课题是《小蝌蚪的成长》，这是一节计算教学课。首先我用猜谜语的方式来导入新课，吸引了学生的注意力，进而引导学生以后遇到小蝌蚪要保护它，树立了学生的环保意识。在探究三位数减三位数连续退位减法的计算方法时，我充分鼓励学生大胆表达自己的计算方法。在拨计数器这一块，为了解决传统计数器不能“借一当十”问题，我利用希沃白板的“克隆与拖拽”功能来形象地给学生演示了“借一当十”的过程及原理，帮助学生更好地理解算法。纵观本节公开课，我觉得存在以下问题：&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;
 &lt;p&gt;在总结算法的过程中，应该多鼓励学生自己说，而不是自己一味去说。&lt;/p&gt;
@@ -22038,18 +21862,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;选择几何图形后，双击屏幕可快速画出图形。出现红点是正方形（正方体）。&lt;/li&gt;
 &lt;li&gt;蒙层的使用（刮刮乐）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/20210418203212.jpg"
-	width="595"
-	height="130"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="457"
-		data-flex-basis="1098px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="1098px" data-flex-grow="457" height="130" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/20210418203212.jpg" width="595"&gt;&lt;/p&gt;
 &lt;p&gt;要实现以上效果，切记首先要画两个矩形，然后双击输入文字，将需要设置蒙层这一形状置于顶层。千万不要先输入两个文本框，这样无法形成遮挡效果。&lt;/p&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;
@@ -22103,18 +21916,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;备课端，依次打开&lt;code&gt;学科工具—数学画板—我的画板—自行创作&lt;/code&gt;，可自己制作画板。（只有在备课端才可以制作画板，授课端是不行的）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/sxhauban.jpg"
-	width="800"
-	height="555"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="345px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="345px" data-flex-grow="144" height="555" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/sxhauban.jpg" width="800"&gt;&lt;/p&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;
 &lt;p&gt;怎样标记角：选择&lt;code&gt;绘图|标注&lt;/code&gt;工具，将&lt;code&gt;绘图|标注工具&lt;/code&gt;移至角的顶点，鼠标后面会出现一个角的符号，按住鼠标左键可拖动角。右侧可改变标记的样式。（除了标记角，&lt;code&gt;绘图|标注&lt;/code&gt;工具还可以标注线）&lt;/p&gt;
@@ -22180,18 +21982,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;li&gt;选择重命名格式。&lt;/li&gt;
 &lt;li&gt;点击&lt;code&gt;确定&lt;/code&gt;，开始执行批处理动作。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/31774ac/20200811103621.jpeg"
-	width="1155"
-	height="549"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="210"
-		data-flex-basis="504px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="504px" data-flex-grow="210" height="549" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/31774ac/20200811103621.jpeg" srcset="https://bore.vip/archives/31774ac/20200811103621_hu_52156cadfdab8cf4.jpeg 800w, https://bore.vip/archives/31774ac/20200811103621.jpeg 1155w" width="1155"&gt;&lt;/p&gt;
 &lt;h2 id="批量压缩图片"&gt;批量压缩图片
 &lt;/h2&gt;&lt;p&gt;在上一步保存图片时其实可以适当调整图片大小，如果对图片大小还是不满意的话。可接上一步批量压缩图片。先打开一张图片，然后记录动作：依次点击&lt;code&gt;文件—导出—存储为Web所有格式（旧版）&lt;/code&gt;，然后调整大小后保存，完成后点击&lt;code&gt;停止记录动作&lt;/code&gt;。接着批量压缩图片可以参考上面的操作。&lt;/p&gt;
 &lt;h2 id="总结"&gt;总结
@@ -22748,18 +22539,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/h2&gt;&lt;h3 id="创建dropbox应用"&gt;创建Dropbox应用
 &lt;/h3&gt;&lt;p&gt;首先，需要创建一个Dropbox应用，可以从该网址进行创建：https://www.dropbox.com/developers/apps/create&lt;/p&gt;
 &lt;p&gt;在这里，应用类型选择&lt;code&gt;Dropbox API&lt;/code&gt;，数据存储类型选择&lt;code&gt;App folder&lt;/code&gt;，然后&lt;code&gt;命名&lt;/code&gt;创建。然后切换到&lt;code&gt;Permissions&lt;/code&gt;选项卡，勾选相应权限。最后记录下&lt;code&gt;App key&lt;/code&gt;，&lt;code&gt;App secret&lt;/code&gt;，下面要用。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg"
-	width="800"
-	height="419"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="190"
-		data-flex-basis="458px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="458px" data-flex-grow="190" height="419" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/3a4bd17/dropbox_uploader.jpg" width="800"&gt;&lt;/p&gt;
 &lt;h3 id="下载dropbox_uploadersh"&gt;下载dropbox_uploader.sh
 &lt;/h3&gt;&lt;p&gt;&lt;a class="link" href="https://github.com/andreafabrizi/Dropbox-Uploader/" target="_blank" rel="noopener"
  &gt;dropbox_uploader&lt;/a&gt; 是一个第三方Dropbox备份脚本，首先下载脚本：&lt;/p&gt;
@@ -27190,56 +26970,12 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
  &gt;7.子模块&lt;/a&gt;&lt;/li&gt;
 &lt;li&gt;&lt;a class="link" href="https://blog.zhixuan.dev/posts/ce103e3b/" target="_blank" rel="noopener"
  &gt;8.Stack主题 + GitHub Action&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;</description></item><item><title>一年级数学下册数图形有几个</title><link>https://bore.vip/archives/585d2a79/</link><pubDate>Mon, 29 Jun 2020 06:10:25 +0000</pubDate><guid>https://bore.vip/archives/585d2a79/</guid><description>&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/1.gif"
-	width="404"
-	height="148"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="272"
-		data-flex-basis="655px"
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/2.gif"
-	width="400"
-	height="235"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="170"
-		data-flex-basis="408px"
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/3.gif"
-	width="272"
-	height="160"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="170"
-		data-flex-basis="408px"
-	
-&gt;&lt;/p&gt;
+&lt;/ul&gt;</description></item><item><title>一年级数学下册数图形有几个</title><link>https://bore.vip/archives/585d2a79/</link><pubDate>Mon, 29 Jun 2020 06:10:25 +0000</pubDate><guid>https://bore.vip/archives/585d2a79/</guid><description>&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="655px" data-flex-grow="272" height="148" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/585d2a79/1.gif" width="404"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="408px" data-flex-grow="170" height="235" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/585d2a79/2.gif" width="400"&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="408px" data-flex-grow="170" height="160" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/585d2a79/3.gif" width="272"&gt;&lt;/p&gt;
 &lt;h4 id="思路"&gt;思路：
 &lt;/h4&gt;&lt;p&gt;以最后一个数三角形有几个为例：&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/585d2a79/4.png"
-	width="272"
-	height="160"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="170"
-		data-flex-basis="408px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="408px" data-flex-grow="170" height="160" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/585d2a79/4.png" width="272"&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;首先给小三角形编号：1号、2号、3号。&lt;/li&gt;
 &lt;li&gt;先数小三角形有几个：3个&lt;/li&gt;
@@ -31095,39 +30831,13 @@ privkey.pem 证书私钥&lt;/p&gt;
 &lt;p&gt;第六步：当微课讲解完毕后，快速按下快捷键“F10” 结束，在弹出的界面可以预览刚才录制好的微课。再点“Save”按键保存文件。方法二是先关闭PPT课件，然后按下软件界面上的“Stop”按键结束，再点“Save”按键保存文件。&lt;/p&gt;
 &lt;h3 id="422智能手机拍摄"&gt;4.2.2智能手机拍摄
 &lt;/h3&gt;&lt;p&gt;相对录屏软件，手机拍摄所需要的条件相对来说简单些。一般说来只需要一个手机，一支笔(也可选择不同颜色的笔)和一张纸。当然也可以用电脑对所拍摄视频进行后期编辑。另外手机拍摄应该要用到两个人。具体实施方案如下：用笔在纸上展现教学过程，边讲解边演算，可以用不同颜色的笔书写、画图、标记等行为，例如对重点内容可以用红笔勾出。此外要讲解时要做到尽量保证语音清晰，演算过程逻辑性强，教授或解答过程明了易懂。下面这张图片很清楚地展现手机拍摄微课的场景。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/b33dfdc7/1.jpg"
-	width="692"
-	height="388"
-	loading="lazy"
-	
-		alt="img"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="178"
-		data-flex-basis="428px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" class="gallery-image" data-flex-basis="428px" data-flex-grow="178" height="388" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/b33dfdc7/1.jpg" width="692"&gt;&lt;/p&gt;
 &lt;p&gt;图4.1 手机拍摄微课&lt;/p&gt;
 &lt;h3 id="423-数码摄像机拍摄"&gt;4.2.3 数码摄像机拍摄
 &lt;/h3&gt;&lt;p&gt;用数码摄像机拍摄相对来说比较繁琐。一般说来高校里的微课比赛更多地是采用这种方式。它往往是利用PPT展开教学过程，用数码摄像机实时记录课堂教学过程中的教师、学生、多媒体教学信号等教学实景画面。相对于以上几种方法，这种方法制作成本相对来说要高些，往往需要比较专业的人员协助拍摄。此外，大多数人在摄像机前讲课还是会紧张的，怎样在20分钟左右时间里把课程的节奏控制得当，都需要下工夫，所以往往在拍摄前要准备脚本，必要时也需要排练预演。在拍摄时，摄像师应注意调整摄像机的机位、高度和仰俯，多采用中景、近景和特写等小景别画面，多使用固定镜头，以保证视频质量。另外，由于教师的形象要出现在屏幕上，因此教师要仪表端庄，衣着整洁得体，教态自然，举止得当。总的来说，这种方法比较传统，特别适合于讲授型、讲题类和答疑类的微课的拍摄。&lt;/p&gt;
 &lt;h3 id="424-可汗学院微课录制方式"&gt;4.2.4 可汗学院微课录制方式
 &lt;/h3&gt;&lt;p&gt;利用可汗学院模式也是中国微课网所推荐的一种方式，它的制作方法一般说来是通过手写板和画图工具对教学过程进行讲解演示，并使用屏幕录像软件录制[10]。具体步骤如下：第一步，安装手写板或交互白板及其配套的专用笔等工具，并使之与电脑连接；第二步，使用演示软件如PPT对教学过程进行演示；第三步，利用手写板或交互白板自带的摄录软件或专业录屏软件，录制教学过程。总的来说，）；这种方法制作比较简单，便捷，适合用于常用简笔画图示来讲解的课程，如数学、物理等课程的公式推导、美术课程等。下面的一张图片很清楚地展现了可汗学院录制方式。&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/b33dfdc7/2.jpg"
-	width="500"
-	height="358"
-	loading="lazy"
-	
-		alt="img"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="139"
-		data-flex-basis="335px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img alt="img" class="gallery-image" data-flex-basis="335px" data-flex-grow="139" height="358" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/b33dfdc7/2.jpg" width="500"&gt;&lt;/p&gt;
 &lt;p&gt;图4.2 可汗学院录制方式&lt;/p&gt;
 &lt;h3 id="425-其他方式"&gt;4.2.5 其他方式
 &lt;/h3&gt;&lt;p&gt;其实制作微课并不一定说局限于以上几种方法，我们也是鼓励其他的一些方法。现在互联网高速发展，平板电脑也日益流行起来。我们也可以选择用平板电脑制作微课，在平板电脑上有几款应用可以用来制作微课，例如Show Me、Educreations、Ask3[11]。下面就来具体说一下Show Me这款应用吧。Show Me是一个非常好的移动学习平台。制作微课你也可以选择用它来做，制作方法也是比较简单的，只要你的平板电脑上安装了Show Me App，你就可以录制微课了，录制完成之后，你也可以将其并上传到Show Me学习平台上去。Show Me不仅是个分享平台，也是一个学习平台。如果你想学习一些知识，你可以选择在里面搜索到你想要学习的东西，你可选择在线学习，也可以下载下来自主学习。我们可以看到无论是制作微课，还是自主学习,Show Me这款软件使用起来都是非常简单的。&lt;/p&gt;

@@ -26,18 +26,7 @@
 &lt;li&gt;将所需替换文件放到同一个文件夹里。&lt;/li&gt;
 &lt;li&gt;用&lt;code&gt;Notepad++&lt;/code&gt;打开其中的一个文件，执行&lt;code&gt;搜索—查找—文件查找&lt;/code&gt;填好&lt;code&gt;查找目标、替换为、文件类型（如：*.md）、目录&lt;/code&gt;，最后点击&lt;code&gt;在文件中替换&lt;/code&gt;。&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/ef06a4ae/1.jpg"
-	width="671"
-	height="439"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="152"
-		data-flex-basis="366px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="366px" data-flex-grow="152" height="439" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/ef06a4ae/1.jpg" width="671"&gt;&lt;/p&gt;
 &lt;p&gt;参考：&lt;a class="link" href="https://blog.csdn.net/weixin_43269414/article/details/107839575" target="_blank" rel="noopener"
  &gt;windows批量查找替换多个文本文件中的内容&lt;/a&gt;&lt;/p&gt;</description></item><item><title>pr学习笔记</title><link>https://bore.vip/archives/968db8c4/</link><pubDate>Thu, 17 Mar 2022 23:06:45 +0000</pubDate><guid>https://bore.vip/archives/968db8c4/</guid><description>&lt;p&gt;决定把pr系统地过一遍，看能不能坚持下来。&lt;/p&gt;
 &lt;p&gt;1.源窗口，&lt;code&gt;i&lt;/code&gt;标记入点，&lt;code&gt;o&lt;/code&gt;标记出点，可以将需要的一小段素材拖到视频轨道。&lt;/p&gt;
@@ -84,18 +73,7 @@
 &lt;li&gt;选择几何图形后，双击屏幕可快速画出图形。出现红点是正方形（正方体）。&lt;/li&gt;
 &lt;li&gt;蒙层的使用（刮刮乐）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/20210418203212.jpg"
-	width="595"
-	height="130"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="457"
-		data-flex-basis="1098px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="1098px" data-flex-grow="457" height="130" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/20210418203212.jpg" width="595"&gt;&lt;/p&gt;
 &lt;p&gt;要实现以上效果，切记首先要画两个矩形，然后双击输入文字，将需要设置蒙层这一形状置于顶层。千万不要先输入两个文本框，这样无法形成遮挡效果。&lt;/p&gt;
 &lt;ol start="7"&gt;
 &lt;li&gt;
@@ -149,18 +127,7 @@
 &lt;/h2&gt;&lt;ol&gt;
 &lt;li&gt;备课端，依次打开&lt;code&gt;学科工具—数学画板—我的画板—自行创作&lt;/code&gt;，可自己制作画板。（只有在备课端才可以制作画板，授课端是不行的）&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/538cd199/sxhauban.jpg"
-	width="800"
-	height="555"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="144"
-		data-flex-basis="345px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="345px" data-flex-grow="144" height="555" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/538cd199/sxhauban.jpg" width="800"&gt;&lt;/p&gt;
 &lt;ol start="2"&gt;
 &lt;li&gt;
 &lt;p&gt;怎样标记角：选择&lt;code&gt;绘图|标注&lt;/code&gt;工具，将&lt;code&gt;绘图|标注工具&lt;/code&gt;移至角的顶点，鼠标后面会出现一个角的符号，按住鼠标左键可拖动角。右侧可改变标记的样式。（除了标记角，&lt;code&gt;绘图|标注&lt;/code&gt;工具还可以标注线）&lt;/p&gt;
@@ -186,18 +153,7 @@
 &lt;li&gt;选择重命名格式。&lt;/li&gt;
 &lt;li&gt;点击&lt;code&gt;确定&lt;/code&gt;，开始执行批处理动作。&lt;/li&gt;
 &lt;/ul&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/31774ac/20200811103621.jpeg"
-	width="1155"
-	height="549"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="210"
-		data-flex-basis="504px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="504px" data-flex-grow="210" height="549" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/31774ac/20200811103621.jpeg" srcset="https://bore.vip/archives/31774ac/20200811103621_hu_52156cadfdab8cf4.jpeg 800w, https://bore.vip/archives/31774ac/20200811103621.jpeg 1155w" width="1155"&gt;&lt;/p&gt;
 &lt;h2 id="批量压缩图片"&gt;批量压缩图片
 &lt;/h2&gt;&lt;p&gt;在上一步保存图片时其实可以适当调整图片大小，如果对图片大小还是不满意的话。可接上一步批量压缩图片。先打开一张图片，然后记录动作：依次点击&lt;code&gt;文件—导出—存储为Web所有格式（旧版）&lt;/code&gt;，然后调整大小后保存，完成后点击&lt;code&gt;停止记录动作&lt;/code&gt;。接着批量压缩图片可以参考上面的操作。&lt;/p&gt;
 &lt;h2 id="总结"&gt;总结

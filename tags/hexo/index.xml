@@ -352,18 +352,7 @@ PS：获取应用Secret时，可能会将其推送到企业微信客户端，这
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;关联资源：云函数 weixin-push (上文创建的云函数)
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/9a366c6/202202061010000.jpg"
-	width="500"
-	height="390"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="128"
-		data-flex-basis="307px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="307px" data-flex-grow="128" height="390" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/9a366c6/202202061010000.jpg" width="500"&gt;&lt;/p&gt;
 &lt;p&gt;至此，云函数创建完成。可以使用下面这样的方式，拼接一个 URL，浏览器访问，看看手机微信能不能接收到消息。&lt;/p&gt;
 &lt;p&gt;云函数的访问服务 URL + 触发路径 + ?id = 你的企业微信 ID + secert = 上文记录的 secert + Id = 上文记录的 AgentId + &amp;amp;msg = 随便测试一下吧&lt;/p&gt;
 &lt;p&gt;如我下面这样的：&lt;/p&gt;

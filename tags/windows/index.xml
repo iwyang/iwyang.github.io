@@ -22,33 +22,11 @@
 &lt;del&gt;6、输入：&lt;code&gt;cscript ospp.vbs /dstatus&lt;/code&gt;&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;7、直接输入&lt;code&gt;cscript “C:\Program Files\Microsoft Office\Office16\ospp.vbs” /dstatus&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;8、显示&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/202203132026632.png"
-	width="695"
-	height="313"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="222"
-		data-flex-basis="532px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="532px" data-flex-grow="222" height="313" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/202203132026632.png" width="695"&gt;&lt;/p&gt;
 &lt;p&gt;可以看到还剩179天到期，到期可以再jh。&lt;/p&gt;
 &lt;p&gt;9.如果上面图片末尾未显示jh相关信息，复制图中的&lt;code&gt;SKU ID&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;10.然后输入&lt;code&gt;slmgr /xpr xxxxxxxxxxxxxxxxxxxxx(sku id)&lt;/code&gt; ，回车。显示：&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/23a66736/jihuo.png"
-	width="327"
-	height="179"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="182"
-		data-flex-basis="438px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="438px" data-flex-grow="182" height="179" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/23a66736/jihuo.png" width="327"&gt;&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;ul&gt;
 &lt;li&gt;

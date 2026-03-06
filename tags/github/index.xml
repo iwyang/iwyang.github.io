@@ -438,18 +438,7 @@
 5.在“令牌名称”下，输入令牌的名称。
 6.在“过期时间”下，选择令牌的过期时间（永不过期）。&lt;/p&gt;
 &lt;p&gt;7.然后权限要开启&lt;strong&gt;repo&lt;/strong&gt;和&lt;strong&gt;workflow&lt;/strong&gt;的权限&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/12dd937c/github.png"
-	width="843"
-	height="337"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="250"
-		data-flex-basis="600px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="600px" data-flex-grow="250" height="337" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/12dd937c/github.png" srcset="https://bore.vip/archives/12dd937c/github_hu_8fe96332967a06a5.png 800w, https://bore.vip/archives/12dd937c/github.png 843w" width="843"&gt;&lt;/p&gt;
 &lt;p&gt;8.创建完成后复制token内容&lt;/p&gt;
 &lt;h3 id="添加环境变量secret"&gt;添加环境变量secret
 &lt;/h3&gt;&lt;p&gt;在&lt;code&gt;settings/secrets(Secrets and variables)/actions&lt;/code&gt;里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。&lt;/p&gt;
@@ -4203,18 +4192,7 @@ SSH 规定，如果这个文件权限太开放，它会拒绝登录。&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="nt"&gt;uptime&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;&lt;span class="w"&gt; &lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;0 0 * * 0&amp;#34;&lt;/span&gt;&lt;span class="w"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;&lt;img src="https://bore.vip/archives/b32c2189/20210802091341.jpg"
-	width="808"
-	height="408"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="198"
-		data-flex-basis="475px"
-	
-&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="475px" data-flex-grow="198" height="408" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/b32c2189/20210802091341.jpg" srcset="https://bore.vip/archives/b32c2189/20210802091341_hu_491923be3c8929c0.jpg 800w, https://bore.vip/archives/b32c2189/20210802091341.jpg 808w" width="808"&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;编辑后 GItHub Actions 会自动更新 upptime 配置信息&lt;/li&gt;
 &lt;/ul&gt;

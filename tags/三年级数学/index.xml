@@ -65,18 +65,7 @@
 &lt;h2 id="第五单元-周长"&gt;第五单元 周长
 &lt;/h2&gt;&lt;p&gt;1.把一个长方形平均分成两个形状相同、大小相等的小长方形，小长方形的周长是原来长方形周长的一半．（×）&lt;/p&gt;
 &lt;p&gt;解析：如图：长方形平均分成两个小长方形后，周长比原来增加了两条原长方形的长或者是宽，所以小长方形的周长等于原来的长方形的周长的一半与一条长（或宽）的和，原题说法错误．
-&lt;img src="https://bore.vip/archives/dec02429/202111201424614.png"
-	width="189"
-	height="49"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="385"
-		data-flex-basis="925px"
-	
-&gt;&lt;/p&gt;
+&lt;img class="gallery-image" data-flex-basis="925px" data-flex-grow="385" height="49" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/dec02429/202111201424614.png" width="189"&gt;&lt;/p&gt;
 &lt;h2 id="第七单元-年月日"&gt;第七单元 年月日
 &lt;/h2&gt;&lt;p&gt;判断某一年是平年还是闰年&lt;/p&gt;
 &lt;p&gt;1.看年份后两位数能不能被4整除，能被4整除就是闰年，不能就是平年。&lt;/p&gt;

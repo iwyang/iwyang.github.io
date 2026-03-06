@@ -866,32 +866,10 @@
 &lt;/h2&gt;&lt;p&gt;RaiDrive官网：&lt;a class="link" href="http://www.raidrive.com/" target="_blank" rel="noopener"
  &gt;http://www.raidrive.com&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;挂载成功后，通过RaiDrive挂载各大网盘到本地电脑上&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/raidrive.jpg"
-	width="1024"
-	height="750"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="136"
-		data-flex-basis="327px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="327px" data-flex-grow="136" height="750" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/raidrive.jpg" srcset="https://bore.vip/archives/c6592a10/raidrive_hu_fce512194f2ea219.jpg 800w, https://bore.vip/archives/c6592a10/raidrive.jpg 1024w" width="1024"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到potplay"&gt;挂载到potplay
 &lt;/h2&gt;&lt;p&gt;Potplayer播放器挂载alist网盘里的视频&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/potplayer.jpg"
-	width="1000"
-	height="630"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="158"
-		data-flex-basis="380px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="380px" data-flex-grow="158" height="630" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/potplayer.jpg" srcset="https://bore.vip/archives/c6592a10/potplayer_hu_131e62dc1c340d2b.jpg 800w, https://bore.vip/archives/c6592a10/potplayer.jpg 1000w" width="1000"&gt;&lt;/p&gt;
 &lt;h2 id="挂载到安卓"&gt;挂载到安卓
 &lt;/h2&gt;&lt;p&gt;安卓可以挂载到 es文件浏览器&lt;/p&gt;
 &lt;p&gt;我的网络—右上角三点—新建webdav&lt;/p&gt;
@@ -1264,44 +1242,11 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="potplayer无边框透明美化"&gt;potplayer无边框透明美化
 &lt;/h2&gt;&lt;p&gt;1.打开播放器按“F5”或右键PotPlayer播放界面点击选项进入设置界面，点开“基本”然后把启始项把窗口位置改成居中，把默认的320乘以240的窗口尺寸，建议1280乘以720，当然你也可以改成自己喜欢的尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/1.jpg"
-	width="751"
-	height="564"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="564" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/1.jpg" width="751"&gt;&lt;/p&gt;
 &lt;p&gt;2.然后把默认皮肤下的视频下自动隐藏和全屏时防止遮盖进行勾选&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/2.jpg"
-	width="746"
-	height="563"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="132"
-		data-flex-basis="318px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="318px" data-flex-grow="132" height="563" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/2.jpg" width="746"&gt;&lt;/p&gt;
 &lt;p&gt;3.接着把播放里面的窗口尺寸改成无边框尺寸&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://bore.vip/archives/c6592a10/3.jpg"
-	width="700"
-	height="526"
-	loading="lazy"
-	
- 
-	
-		class="gallery-image" 
-		data-flex-grow="133"
-		data-flex-basis="319px"
-	
-&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img class="gallery-image" data-flex-basis="319px" data-flex-grow="133" height="526" loading="lazy" sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src="https://bore.vip/archives/c6592a10/3.jpg" width="700"&gt;&lt;/p&gt;
 &lt;p&gt;4.皮肤安装也非常简单，直接打开PotPlayer皮肤设置，然后选择打开皮肤文件夹，将下载的皮肤粘贴进去。&lt;/p&gt;
 &lt;h2 id="参考链接"&gt;参考链接
 &lt;/h2&gt;&lt;p&gt;&lt;a class="link" href="https://www.freedidi.com/7539.html" target="_blank" rel="noopener"
