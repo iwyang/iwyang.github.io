@@ -1,0 +1,27 @@
+---
+title: "书摘：《剑来》- 第331页 (2026-03-06 19-31)"
+date: "2026-03-06T19:31:00+08:00"
+slug: "note-202603061931-331"
+lastmod: "2026-03-06T19:31:00+08:00"
+draft: false
+toc: false
+weight: false
+categories: [""]
+shuoshuotags: ["书摘"]
+---
+
+<div class="book-note-card">
+
+### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第七章 拳谱</small>
+
+<div class="book-note-meta">📍 第 331 页 | ⏱️ 2026-03-06 19:31</div>
+
+> 陈平安嗯嗯嗯着，明显心思都牵挂在那部拳谱上，他指向一个字：“宁姑娘，这个念啥？”
+> 宁姚气不打一处来：“滚！”
+> 陈平安一脸怀疑，宁姚怒目相视，指着那串文字：“真念‘滚’！此拳悟自大骊观雨，拳势滚走之势，拳罡如泼墨大雨，跌落人间后，滚走于大骊皇宫之龙壁，倾泻直下！”
+
+<hr class="note-divider">
+
+哈哈
+
+</div>
