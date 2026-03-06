@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>折腾 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/</link><description>Recent content in 折腾 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Mar 2026 10:17:52 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>智慧食堂走直连</title><link>https://bore.vip/shuoshuo/be8ea9cd/</link><pubDate>Wed, 04 Mar 2026 22:39:20 +0800</pubDate><guid>https://bore.vip/shuoshuo/be8ea9cd/</guid><description>&lt;p&gt;智慧食堂走v2ray直连&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>折腾 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/</link><description>Recent content in 折腾 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Mar 2026 19:40:35 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%98%E8%85%BE/index.xml" rel="self" type="application/rss+xml"/><item><title>智慧食堂走直连</title><link>https://bore.vip/shuoshuo/be8ea9cd/</link><pubDate>Wed, 04 Mar 2026 22:39:20 +0800</pubDate><guid>https://bore.vip/shuoshuo/be8ea9cd/</guid><description>&lt;p&gt;智慧食堂走v2ray直连&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;outboundTag (出站标签)&lt;/strong&gt;：选择 &lt;strong&gt;&lt;code&gt;direct&lt;/code&gt;&lt;/strong&gt;（这表示不走代理，直接连接）。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;domain (域名)&lt;/strong&gt;：输入 &lt;code&gt;domain:sanxiacloud.com&lt;/code&gt;。&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;别名 (Alias)&lt;/strong&gt;：随便起个名字，比如 &lt;code&gt;智慧食堂直连&lt;/code&gt;。&lt;/p&gt;
@@ -16,6 +16,11 @@
 
  &lt;blockquote&gt;
  &lt;p&gt;PS：安装完Win11后，无法进入PE，进bios关闭安全启动。&lt;/p&gt;
+
+ &lt;/blockquote&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：以后装系统只装最新的系统，不瞎折腾了，这几天不停的重装系统，真是服了。&lt;/p&gt;
 
  &lt;/blockquote&gt;</description></item><item><title>Dropbox不支持win10吗</title><link>https://bore.vip/shuoshuo/o56mq1q8/</link><pubDate>Mon, 02 Mar 2026 16:35:32 +0800</pubDate><guid>https://bore.vip/shuoshuo/o56mq1q8/</guid><description>&lt;p&gt;最新版的Dropbox是不是不支持win10，安装完成后看不见图标了。&lt;/p&gt;
 
