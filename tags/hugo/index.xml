@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Mar 2026 17:12:27 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Mar 2026 22:31:00 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
@@ -1048,14 +1048,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;最终体验&lt;/strong&gt;：现在你看完书，只需在桌面上双击这个图标。一个极客风的黑绿窗口瞬间弹出，行云流水般跑完同步指令，然后在你默念“一、二”后，乖乖地自动消失。&lt;/p&gt;
-&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-fallback" data-lang="fallback"&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description></item><item><title>Hugo Papermod主题配置与使用</title><link>https://bore.vip/archives/ca21a352/</link><pubDate>Mon, 09 Aug 2021 00:54:56 +0000</pubDate><guid>https://bore.vip/archives/ca21a352/</guid><description>&lt;p&gt;最近一两天又在折腾主题，这回是&lt;a class="link" href="https://git.io/hugopapermod" target="_blank" rel="noopener"
+&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;</description></item><item><title>Hugo Papermod主题配置与使用</title><link>https://bore.vip/archives/ca21a352/</link><pubDate>Mon, 09 Aug 2021 00:54:56 +0000</pubDate><guid>https://bore.vip/archives/ca21a352/</guid><description>&lt;p&gt;最近一两天又在折腾主题，这回是&lt;a class="link" href="https://git.io/hugopapermod" target="_blank" rel="noopener"
  &gt;Hugo-PaperMod&lt;/a&gt;主题，虽然还没打算换，但还是记录一下吧。&lt;/p&gt;
 &lt;h2 id="基本操作"&gt;基本操作
 &lt;/h2&gt;&lt;p&gt;查看文档：&lt;strong&gt;&lt;a class="link" href="https://github.com/adityatelange/hugo-PaperMod/wiki/Features" target="_blank" rel="noopener"
