@@ -145,6 +145,46 @@ fi
 
 ---
 
++ **如果WSL用的是root**
+
+```bash
+#!/bin/bash
+# 功能: 同步 KOReader 笔记至 VPS，并远程瞬间唤醒切割引擎
+
+# 👇 核心修改：路径全部指向本地的 /root 目录
+LOCAL_NOTE_DIR="/root/.config/koreader/clipboard/"  
+LOG_FILE="/root/koreader_sync.log"
+
+# VPS 端信息保持不变
+REMOTE_USER="root"
+REMOTE_IP="你的VPS_IP" # 记得填入你的实际 IP，比如 142.171.177.173
+REMOTE_PORT="22" 
+REMOTE_DIR="/root/Koreader/" 
+REMOTE_SCRIPT="/root/scripts/sync_notes.sh" 
+
+if [ ! -d "$LOCAL_NOTE_DIR" ]; then 
+    echo "❌ 找不到笔记目录: $LOCAL_NOTE_DIR"
+    exit 1
+fi
+
+echo "正在将笔记同步至 VPS ($REMOTE_IP)..."
+rsync -avz -e "ssh -p $REMOTE_PORT" --delete "$LOCAL_NOTE_DIR" "$REMOTE_USER@$REMOTE_IP:$REMOTE_DIR" >> "$LOG_FILE" 2>&1
+
+if [ $? -eq 0 ]; then
+    echo "正在通知 VPS 执行笔记切割与发布..."
+    ssh -p $REMOTE_PORT $REMOTE_USER@$REMOTE_IP "bash $REMOTE_SCRIPT --now" >> "$LOG_FILE" 2>&1
+else
+    echo "❌ 同步失败，请检查网络。" >> "$LOG_FILE"
+    exit 1
+fi
+```
+
++ 更新权限
+
+```bash
+chmod +x /root/sync_notes.sh
+```
+
 ## 阶段二：VPS 基础环境与 Git 深度配置
 
 为了让后台脚本能全自动推送到 GitHub，必须在 VPS 上安装所需软件，并打通云端提交通道。
@@ -552,6 +592,45 @@ if %ERRORLEVEL% EQU 0 (
     pause
 )
 
+```
+
+**如果WSL用的是root**
+
+```bat
+@echo off
+:: 设置字符集为 UTF-8，防止中文乱码
+chcp 65001 >nul
+title KOReader 笔记极速同步引擎
+color 0A
+
+echo ===================================================
+echo     🚀 正在唤醒 WSL 执行 KOReader 笔记同步...
+echo ===================================================
+echo.
+
+:: 👇 核心修改：身份和路径必须统一，全部使用 root
+wsl -u root bash -c "/root/sync_notes.sh"
+
+:: 智能判断环节：检查 WSL 脚本的返回值
+if %ERRORLEVEL% EQU 0 (
+    echo.
+    echo ===================================================
+    echo     ✅ 远端发布成功！窗口将在 2 秒后自动关闭...
+    echo ===================================================
+    :: 倒计时 2 秒后自动退出
+    timeout /t 2 >nul
+    exit
+) else (
+    echo.
+    :: 失败时把字体变成红色警告
+    color 0C
+    echo ===================================================
+    echo     ❌ 同步似乎遇到了问题，请检查上方的报错信息。
+    echo ===================================================
+   
+    :: 只有失败时才会暂停，等你排查问题
+    pause
+)
 ```
 
 **最终体验**：现在你看完书，只需在桌面上双击这个图标。一个极客风的黑绿窗口瞬间弹出，行云流水般跑完同步指令，然后在你默念“一、二”后，乖乖地自动消失。
