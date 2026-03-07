@@ -406,3 +406,13 @@
 .template-archives .archives-date a {
     color: inherit !important;
 }
+
+/* =================================================================
+   12. 彻底隐藏文章底部的“相关文章”板块 (防主题更新)
+   ================================================================= */
+.related-content,
+aside.related-content,
+.article-list--tile,
+.section-title:has(+ .subsection-list .article-list--tile) {
+    display: none !important;
+}
