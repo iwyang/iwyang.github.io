@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Fri, 06 Mar 2026 22:31:00 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/categories/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 07 Mar 2026 11:15:48 +0800</lastBuildDate><atom:link href="https://bore.vip/categories/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
@@ -19588,9 +19588,8 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;&amp;lt;/&lt;/span&gt;&lt;span class="nt"&gt;style&lt;/span&gt;&lt;span class="p"&gt;&amp;gt;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id="删除相关文章分类图片修改相关文章数目"&gt;删除相关文章、分类图片，修改相关文章数目
-&lt;/h2&gt;&lt;h3 id="删除相关文章图片"&gt;删除相关文章图片
-&lt;/h3&gt;&lt;p&gt;请在你的 &lt;code&gt;article.scss&lt;/code&gt; 文件中找到 &lt;code&gt;.related-content&lt;/code&gt; 这一块（大约在文件中间偏下的位置），将它&lt;strong&gt;完全替换&lt;/strong&gt;为以下代码：&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id="隐藏相关文章"&gt;隐藏相关文章
+&lt;/h2&gt;&lt;p&gt;&lt;code&gt;blog\assets\scss\custom.scss&lt;/code&gt; 文件&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -19610,91 +19609,29 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;span class="lnt"&gt;15
 &lt;/span&gt;&lt;span class="lnt"&gt;16
 &lt;/span&gt;&lt;span class="lnt"&gt;17
-&lt;/span&gt;&lt;span class="lnt"&gt;18
-&lt;/span&gt;&lt;span class="lnt"&gt;19
-&lt;/span&gt;&lt;span class="lnt"&gt;20
-&lt;/span&gt;&lt;span class="lnt"&gt;21
-&lt;/span&gt;&lt;span class="lnt"&gt;22
-&lt;/span&gt;&lt;span class="lnt"&gt;23
-&lt;/span&gt;&lt;span class="lnt"&gt;24
-&lt;/span&gt;&lt;span class="lnt"&gt;25
-&lt;/span&gt;&lt;span class="lnt"&gt;26
-&lt;/span&gt;&lt;span class="lnt"&gt;27
-&lt;/span&gt;&lt;span class="lnt"&gt;28
-&lt;/span&gt;&lt;span class="lnt"&gt;29
-&lt;/span&gt;&lt;span class="lnt"&gt;30
-&lt;/span&gt;&lt;span class="lnt"&gt;31
-&lt;/span&gt;&lt;span class="lnt"&gt;32
-&lt;/span&gt;&lt;span class="lnt"&gt;33
-&lt;/span&gt;&lt;span class="lnt"&gt;34
-&lt;/span&gt;&lt;span class="lnt"&gt;35
-&lt;/span&gt;&lt;span class="lnt"&gt;36
-&lt;/span&gt;&lt;span class="lnt"&gt;37
-&lt;/span&gt;&lt;span class="lnt"&gt;38
-&lt;/span&gt;&lt;span class="lnt"&gt;39
-&lt;/span&gt;&lt;span class="lnt"&gt;40
-&lt;/span&gt;&lt;span class="lnt"&gt;41
-&lt;/span&gt;&lt;span class="lnt"&gt;42
-&lt;/span&gt;&lt;span class="lnt"&gt;43
-&lt;/span&gt;&lt;span class="lnt"&gt;44
-&lt;/span&gt;&lt;span class="lnt"&gt;45
-&lt;/span&gt;&lt;span class="lnt"&gt;46
-&lt;/span&gt;&lt;span class="lnt"&gt;47
-&lt;/span&gt;&lt;span class="lnt"&gt;48
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-scss" data-lang="scss"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nc"&gt;.related-content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;overflow-x&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;padding-bottom&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt;&lt;span class="o"&gt;&amp;gt;&lt;/span&gt;&lt;span class="nc"&gt;.flex&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;float&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;left&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nt"&gt;article&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;margin-right&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;15&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;flex-shrink&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;overflow&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;hidden&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;width&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;250&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; 
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/* 1. 将原本的 height: 150px 改为自适应，消除大片空白 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;auto&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;min-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* 设置一个舒适的最小高度 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/* 2. 彻底隐藏图片容器 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nc"&gt;.article-image&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-scss" data-lang="scss"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;/* =================================================================
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; 12. 彻底隐藏文章底部的“相关文章”板块并消除多余间距
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt; ================================================================= */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;/* 针对新版主题：隐藏包含相关文章列表的无名 aside 容器，彻底消除因为隐藏内容导致的占位空白 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;aside&lt;/span&gt;&lt;span class="nd"&gt;:has&lt;/span&gt;&lt;span class="o"&gt;(&lt;/span&gt;&lt;span class="nc"&gt;.article-list--tile&lt;/span&gt;&lt;span class="o"&gt;)&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;none&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/* 3. 新增详情区域样式：让文字在卡片中垂直/水平居中 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nc"&gt;.article-details&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;20&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;flex&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;align-items&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;center&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;justify-content&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;center&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;min-height&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;80&lt;/span&gt;&lt;span class="kt"&gt;px&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;box-sizing&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;border-box&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nc"&gt;.article-title&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;font-size&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;1&lt;/span&gt;&lt;span class="mf"&gt;.6&lt;/span&gt;&lt;span class="kt"&gt;rem&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* 稍微缩小一点字号显得更精致 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;text-align&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;center&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* 文字居中对齐 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;color&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="nf"&gt;var&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="o"&gt;--&lt;/span&gt;&lt;span class="n"&gt;card-text-color-main&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt; &lt;span class="cm"&gt;/* 强制文字显示为主题的正常颜色 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="cm"&gt;/* 4. 移除带图片时附带的黑色半透明渐变遮罩 */&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="k"&gt;&amp;amp;&lt;/span&gt;&lt;span class="nc"&gt;.has-image&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="nc"&gt;.article-details&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;background&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;transparent&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cm"&gt;/* 兼容老版本主题的类名，以防万一 */&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nc"&gt;.related-content&lt;/span&gt;&lt;span class="o"&gt;,&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nt"&gt;aside&lt;/span&gt;&lt;span class="nc"&gt;.related-content&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;display&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="ni"&gt;none&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;margin&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; &lt;span class="na"&gt;padding&lt;/span&gt;&lt;span class="o"&gt;:&lt;/span&gt; &lt;span class="mi"&gt;0&lt;/span&gt; &lt;span class="k"&gt;!important&lt;/span&gt;&lt;span class="p"&gt;;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="归档页面修改分类加入标签云"&gt;归档页面修改分类、加入标签云
-&lt;/h3&gt;&lt;p&gt;1.根目录&lt;code&gt;\layouts\archives.html&lt;/code&gt;&lt;/p&gt;
+&lt;/div&gt;&lt;h2 id="归档页面修改分类加入标签云"&gt;归档页面修改分类、加入标签云
+&lt;/h2&gt;&lt;p&gt;1.根目录&lt;code&gt;\layouts\archives.html&lt;/code&gt;&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
@@ -19900,18 +19837,7 @@ lastmod = [&amp;quot;:git&amp;quot;, &amp;ldquo;lastmod&amp;rdquo;, &amp;ldquo;:
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h3 id="修改相关文章数目"&gt;修改相关文章数目
-&lt;/h3&gt;&lt;p&gt;根目录&lt;code&gt;layouts/partials/article/components/related-contents.html&lt;/code&gt;&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
-&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-html" data-lang="html"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; {{ $related := (where (.Site.RegularPages.Related .) &amp;#34;Params.hidden&amp;#34; &amp;#34;!=&amp;#34; true) | first 3 }} //修改数字即可
-&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;&lt;p&gt;数字设为0，即关闭&lt;code&gt;相关文章&lt;/code&gt;。&lt;/p&gt;
-&lt;h2 id="加入字数统计站点总字数统计"&gt;加入字数统计、站点总字数统计
+&lt;/div&gt;&lt;h2 id="加入字数统计站点总字数统计"&gt;加入字数统计、站点总字数统计
 &lt;/h2&gt;&lt;h3 id="加入字数统计"&gt;加入字数统计
 &lt;/h3&gt;&lt;p&gt;1.直接用阅读时间改的，图标路径为根目录&lt;code&gt;assets\icons&lt;/code&gt;&lt;/p&gt;
 &lt;p&gt;根目录&lt;code&gt;layouts\partials\article\components\details.html&lt;/code&gt;&lt;/p&gt;
