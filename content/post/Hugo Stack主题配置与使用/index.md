@@ -636,64 +636,31 @@ jobs:
 </style>
 ```
 
-## 删除相关文章、分类图片，修改相关文章数目
+## 隐藏相关文章
 
-### 删除相关文章图片
-
-请在你的 `article.scss` 文件中找到 `.related-content` 这一块（大约在文件中间偏下的位置），将它**完全替换**为以下代码：
+ `blog\assets\scss\custom.scss` 文件
 
 ```scss
-.related-content {
-    overflow-x: auto;
-    padding-bottom: 15px;
+/* =================================================================
+   12. 彻底隐藏文章底部的“相关文章”板块并消除多余间距
+   ================================================================= */
+/* 针对新版主题：隐藏包含相关文章列表的无名 aside 容器，彻底消除因为隐藏内容导致的占位空白 */
+aside:has(.article-list--tile) {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
 
-    &>.flex {
-        float: left;
-    }
-
-    article {
-        margin-right: 15px;
-        flex-shrink: 0;
-        overflow: hidden;
-        width: 250px;
-        
-        /* 1. 将原本的 height: 150px 改为自适应，消除大片空白 */
-        height: auto;
-        min-height: 80px; /* 设置一个舒适的最小高度 */
-
-        /* 2. 彻底隐藏图片容器 */
-        .article-image {
-            display: none !important;
-        }
-
-        /* 3. 新增详情区域样式：让文字在卡片中垂直/水平居中 */
-        .article-details {
-            padding: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            min-height: 80px;
-            box-sizing: border-box;
-        }
-
-        .article-title {
-            font-size: 1.6rem; /* 稍微缩小一点字号显得更精致 */
-            margin: 0;
-            text-align: center; /* 文字居中对齐 */
-            color: var(--card-text-color-main) !important; /* 强制文字显示为主题的正常颜色 */
-        }
-
-        /* 4. 移除带图片时附带的黑色半透明渐变遮罩 */
-        &.has-image {
-            .article-details {
-                background: transparent;
-            }
-        }
-    }
+/* 兼容老版本主题的类名，以防万一 */
+.related-content,
+aside.related-content {
+    display: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
 }
 ```
 
-### 归档页面修改分类、加入标签云
+## 归档页面修改分类、加入标签云
 
 1.根目录`\layouts\archives.html`
 
@@ -800,16 +767,6 @@ jobs:
     color: inherit !important;
 }
 ```
-
-### 修改相关文章数目
-
-根目录`layouts/partials/article/components/related-contents.html`
-
-```html
- {{ $related := (where (.Site.RegularPages.Related .) "Params.hidden" "!=" true) | first 3 }}  //修改数字即可
-```
-
-数字设为0，即关闭`相关文章`。
 
 ## 加入字数统计、站点总字数统计
 
