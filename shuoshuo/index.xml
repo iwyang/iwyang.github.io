@@ -138,8 +138,8 @@
  &lt;/blockquote&gt;
 
  &lt;blockquote&gt;
- &lt;p&gt;PS:：KOReader 的字体文件夹路径如下：&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;设备类型对应路径：&lt;/strong&gt;&lt;/p&gt;
+ &lt;p&gt;PS：KOReader 的字体文件夹路径如下：
+&lt;strong&gt;设备类型对应路径：&lt;/strong&gt;&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;&lt;strong&gt;Kindle&lt;/strong&gt;：&lt;code&gt;/mnt/us/koreader/fonts/&lt;/code&gt;&lt;/li&gt;
 &lt;li&gt;&lt;strong&gt;Kobo&lt;/strong&gt;：&lt;code&gt;/mnt/onboard/.adds/koreader/fonts/&lt;/code&gt;&lt;/li&gt;
