@@ -1688,6 +1688,39 @@ document.addEventListener("DOMContentLoaded", () => {
 </script>
 ```
 
+## 说说批量换标签
+
+例如：将`shuoshuotags: ["折腾"]`换成`shuoshuotags: ["技术"]`
+
+新建bash脚本，`replace_tags.sh`
+
+```
+#!/bin/bash
+
+# --- 配置项 ---
+# 目标目录，默认当前目录。也可以修改为具体路径，如 "/Users/yourname/blog/posts"
+TARGET_DIR="."
+
+echo "🚀 开始扫描 $TARGET_DIR 目录下的 Markdown 文件..."
+
+# --- 兼容性处理 ---
+# 检测操作系统，macOS 的 sed -i 需要一个空字符串参数，而 Linux 不需要
+if [[ "$OSTYPE" == "darwin"* ]]; then
+    SED_CMD=(sed -i '')
+else
+    SED_CMD=(sed -i)
+fi
+
+# --- 执行替换 ---
+# 逻辑说明：
+# 1. find 寻找所有 .md 后缀的文件
+# 2. ^shuoshuotags: 确保只匹配行首，防止误伤正文代码块
+# 3. \["折腾"\] 对中括号进行转义
+find "$TARGET_DIR" -type f -name "*.md" -print0 | xargs -0 "${SED_CMD[@]}" 's/^shuoshuotags: \["折腾"\]/shuoshuotags: \["技术"\]/g'
+
+echo "✅ 替换完成！所有 frontmatter 中的 [\"折腾\"] 已更新为 [\"技术\"]。"
+```
+
 ## 附：使用Git Submodule管理Hugo主题
 
 + 如果克隆库的时候要初始化子模块，请加上 `--recursive` 参数，如：
