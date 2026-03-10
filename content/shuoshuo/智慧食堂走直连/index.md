@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 
 智慧食堂走v2ray直连

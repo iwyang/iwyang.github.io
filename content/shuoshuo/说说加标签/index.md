@@ -9,7 +9,7 @@ toc: false
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 给说说加上标签，感觉还不错。
 

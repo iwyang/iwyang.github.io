@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 最新版的Dropbox是不是不支持win10，安装完成后看不见图标了。
 

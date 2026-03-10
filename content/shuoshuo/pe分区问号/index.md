@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 PE下快速分区完后，C盘和D盘会显示问号，这时重启重新进入PE就正常了，以前也遇到过居然给忘记了。另外安装win10、win11选择GPT。
 

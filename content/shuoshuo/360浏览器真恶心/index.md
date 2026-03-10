@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 
   360浏览器不知道怎么又自己安装了，真是服了。

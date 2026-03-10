@@ -9,7 +9,7 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 
 无语，为了把kindle越狱装Koreader，成功变成砖了，搞得我现在还在瞎折腾。

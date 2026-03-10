@@ -9,6 +9,6 @@ toc: true
 weight: false
 image: ""
 categories: [""]
-shuoshuotags: ["折腾"]
+shuoshuotags: ["技术"]
 ---
 docker部署的影视聚合网站看剧很方便，就是晚上可能看的人多，会有点卡。 
