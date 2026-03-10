@@ -1,4 +1,15 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>说说 on Bore's Notes</title><link>https://bore.vip/shuoshuo/</link><description>Recent content in 说说 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://bore.vip/shuoshuo/index.xml" rel="self" type="application/rss+xml"/><item><title>书摘：《剑来》- 第617页 (2026-03-10 20-28)</title><link>https://bore.vip/shuoshuo/note-202603102028-617/</link><pubDate>Tue, 10 Mar 2026 20:28:00 +0800</pubDate><guid>https://bore.vip/shuoshuo/note-202603102028-617/</guid><description>&lt;div class="book-note-card"&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>说说 on Bore's Notes</title><link>https://bore.vip/shuoshuo/</link><description>Recent content in 说说 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><atom:link href="https://bore.vip/shuoshuo/index.xml" rel="self" type="application/rss+xml"/><item><title>Epub修改标题</title><link>https://bore.vip/shuoshuo/580dbb64/</link><pubDate>Tue, 10 Mar 2026 20:51:25 +0800</pubDate><guid>https://bore.vip/shuoshuo/580dbb64/</guid><description>&lt;p&gt;epub修改标题的方法。EPUB 本质上是一个 ZIP 压缩包：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;将 &lt;code&gt;.epub&lt;/code&gt; 后缀改为 &lt;code&gt;.zip&lt;/code&gt; 并解压。&lt;/li&gt;
+&lt;li&gt;进入解压后的文件夹，找到 &lt;strong&gt;&lt;code&gt;content.opf&lt;/code&gt;&lt;/strong&gt; 文件（通常在 &lt;code&gt;OEBPS&lt;/code&gt; 或 &lt;code&gt;EPUB&lt;/code&gt; 目录下）。&lt;/li&gt;
+&lt;li&gt;用文本编辑器打开它，找到 &lt;code&gt;&amp;lt;dc:title&amp;gt;&lt;/code&gt; 标签。
+&lt;ul&gt;
+&lt;li&gt;你会看到类似：&lt;code&gt;&amp;lt;dc:title&amp;gt;剑来（1-54册）完结精校版&amp;lt;/dc:title&amp;gt;&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;直接改成：&lt;strong&gt;&lt;code&gt;&amp;lt;dc:title&amp;gt;剑来&amp;lt;/dc:title&amp;gt;&lt;/code&gt;&lt;/strong&gt;，保存。&lt;/li&gt;
+&lt;li&gt;全选所有文件，重新压缩回 &lt;code&gt;.zip&lt;/code&gt; 格式，最后把后缀改回 &lt;code&gt;.epub&lt;/code&gt;。&lt;/li&gt;
+&lt;/ol&gt;</description></item><item><title>书摘：《剑来》- 第617页 (2026-03-10 20-28)</title><link>https://bore.vip/shuoshuo/note-202603102028-617/</link><pubDate>Tue, 10 Mar 2026 20:28:00 +0800</pubDate><guid>https://bore.vip/shuoshuo/note-202603102028-617/</guid><description>&lt;div class="book-note-card"&gt;
 &lt;h3 id="-剑来--烽火戏诸侯---第二章-先生"&gt;📚 《剑来》 &lt;small style="font-weight: normal; margin-left: 8px;"&gt;👤 烽火戏诸侯 · 🔖 第二章 先生&lt;/small&gt;
 &lt;/h3&gt;&lt;div class="book-note-meta"&gt;📍 第 617 页 | ⏱️ 2026-03-10 20:28&lt;/div&gt;
 
