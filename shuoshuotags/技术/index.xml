@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 19 Mar 2026 19:25:10 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>B站下载工具</title><link>https://bore.vip/shuoshuo/fee24682/</link><pubDate>Thu, 19 Mar 2026 19:17:54 +0800</pubDate><guid>https://bore.vip/shuoshuo/fee24682/</guid><description>&lt;p&gt;B站下载工具：&lt;a class="link" href="https://github.com/yutto-dev/yutto" target="_blank" rel="noopener"
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>技术 on Bore's Notes</title><link>https://bore.vip/shuoshuotags/%E6%8A%80%E6%9C%AF/</link><description>Recent content in 技术 on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Thu, 19 Mar 2026 19:32:52 +0800</lastBuildDate><atom:link href="https://bore.vip/shuoshuotags/%E6%8A%80%E6%9C%AF/index.xml" rel="self" type="application/rss+xml"/><item><title>B站下载工具</title><link>https://bore.vip/shuoshuo/fee24682/</link><pubDate>Thu, 19 Mar 2026 19:17:54 +0800</pubDate><guid>https://bore.vip/shuoshuo/fee24682/</guid><description>&lt;p&gt;B站下载工具：&lt;a class="link" href="https://github.com/yutto-dev/yutto" target="_blank" rel="noopener"
  &gt;yutto&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;1.请直接在你的 VPS 终端完整执行下面这一整块代码：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
@@ -31,9 +31,11 @@
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
-&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bili &lt;span class="s2"&gt;&amp;#34;https://www.bilibili.com/video/BV1TezzYhEfn/&amp;#34;&lt;/span&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; /home/admin/bili
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bili &lt;span class="s2"&gt;&amp;#34;https://www.bilibili.com/video/BV1TezzYhEfn/&amp;#34;&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;3.下载合集&lt;/p&gt;
@@ -43,6 +45,15 @@
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;bili &lt;span class="s2"&gt;&amp;#34;https://www.bilibili.com/video/BV1Cp4y1H7k7&amp;#34;&lt;/span&gt; -b
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4.清理镜像&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;docker system prune -f
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;</description></item><item><title>KOReader 2026 03 升级指令</title><link>https://bore.vip/shuoshuo/76d0ab96/</link><pubDate>Wed, 18 Mar 2026 18:48:41 +0800</pubDate><guid>https://bore.vip/shuoshuo/76d0ab96/</guid><description>&lt;p&gt;KOReader 2026.03 升级指令&lt;/p&gt;
