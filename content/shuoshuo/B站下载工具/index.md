@@ -32,6 +32,7 @@ chmod +x /usr/local/bin/bili
 2.下载单个视频
 
 ```bash
+cd /home/admin/bili
 bili "https://www.bilibili.com/video/BV1TezzYhEfn/"
 ```
 
@@ -39,5 +40,11 @@ bili "https://www.bilibili.com/video/BV1TezzYhEfn/"
 
 ```bash
 bili "https://www.bilibili.com/video/BV1Cp4y1H7k7" -b
+```
+
+4.清理镜像
+
+```bash
+docker system prune -f
 ```
 
