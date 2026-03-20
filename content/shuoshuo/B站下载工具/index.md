@@ -19,13 +19,14 @@ shuoshuotags: ["技术"]
 ```
 cat << 'EOF' > /usr/local/bin/bili
 #!/bin/bash
-# 你的终极凭证
+# 顺手删掉我们之前为了测试生成的配置文件，防止它捣乱
+rm -f yutto.toml .yutto_tmp.toml
+# 你最新的、绝对有效的凭证
 SESSDATA="你的SESSDATA"
-# 如果你只想下这一个，或者下合集，都直接用参数喂给它
-# "$@" 会把你输入的 URL 和 -b 等参数传过去
-docker run --rm -it -v "$(pwd):/app" siguremo/yutto "$@" --sessdata "$SESSDATA"
+# 最纯粹、你亲自验证过能跑通的命令格式！先传 URL ($@)，再传 --sessdata
+docker run --rm -it -v "$(pwd):/app" -w /app siguremo/yutto "$@" --sessdata "$SESSDATA"
 EOF
-# 授权
+# 重新授权
 chmod +x /usr/local/bin/bili
 ```
 
@@ -39,6 +40,7 @@ bili "https://www.bilibili.com/video/BV1TezzYhEfn/"
 3.下载合集
 
 ```bash
+cd /home/admin/bili
 bili "https://www.bilibili.com/video/BV1Cp4y1H7k7" -b
 ```
 
