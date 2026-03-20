@@ -11,7 +11,7 @@ image: ""
 categories: [""]
 shuoshuotags: ["技术"]
 ---
-KOReader 2026.03 升级指令
+KOReader 2026.03 升级指令 
   ```bash
   # 1. 进入下载目录
   mkdir -p ~/Downloads
