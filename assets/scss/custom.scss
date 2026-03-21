@@ -93,7 +93,7 @@
 
     /* 🌟 保留：只给长说说添加的折叠状态（不影响短说说）🌟 */
     &.is-collapsed {
-        max-height: 400px;
+        max-height: 300px;
         overflow: hidden;
         -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
         mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
