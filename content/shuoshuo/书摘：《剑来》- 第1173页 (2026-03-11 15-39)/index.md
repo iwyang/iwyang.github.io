@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第三章 树倒</small>
-
-<div class="book-note-meta">📍 第 1173 页 | ⏱️ 2026-03-11 15:39</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第三章 树倒 · 📍 第 1173 页</small>
 
 > 齐静春七窍流血，血肉模糊。魂魄破碎，比一件重重摔在地上的瓷器还碎得彻底。齐静春竟是快意至极的神色，闭目而笑，溘然而逝。
 > 天下有我齐静春。天下快哉，我亦快哉。

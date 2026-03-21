@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第六章 敲山</small>
-
-<div class="book-note-meta">📍 第 604 页 | ⏱️ 2026-03-05 22:42</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第六章 敲山 · 📍 第 604 页</small>
 
 > 男人想起那个坐镇此地的儒家圣人，嘴角满是鄙夷，冷哼一声。
 > 假若不是身处此方天地，老子一只手，就能捶杀你齐静春之流的三教神仙。

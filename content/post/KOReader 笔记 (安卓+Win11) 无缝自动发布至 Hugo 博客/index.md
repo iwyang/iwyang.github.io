@@ -359,9 +359,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《$book》 <small style="font-weight: normal; margin-left: 8px;">👤 $author · 🔖 $current_chapter</small>
-
-<div class="book-note-meta">📍 第 ${page} 页 | ⏱️ $formatted_time</div>
+### 📚 《$book》 <small>👤 $author · 🔖 $current_chapter · 📍 第 ${page} 页</small>
 
 $final_text
 

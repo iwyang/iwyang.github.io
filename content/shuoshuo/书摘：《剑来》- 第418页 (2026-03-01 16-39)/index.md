@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第四章 捕蛇鹰</small>
-
-<div class="book-note-meta">📍 第 418 页 | ⏱️ 2026-03-01 16:39</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第四章 捕蛇鹰 · 📍 第 418 页</small>
 
 > 齐静春看着时不时用右手擦拭脸庞的陈平安，两人已经走到杏花巷铁锁井附近，那边有妇人正在弯腰汲水，齐静春问道：“若有陌生人掉进水井，你若救人，就会死，你救不救？”
 > 陈平安想了想，反问道：“我想知道，真的救得了那个人吗？”

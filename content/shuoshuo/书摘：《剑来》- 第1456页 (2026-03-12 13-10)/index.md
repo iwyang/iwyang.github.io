@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第六章 梦想</small>
-
-<div class="book-note-meta">📍 第 1456 页 | ⏱️ 2026-03-12 13:10</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第六章 梦想 · 📍 第 1456 页</small>
 
 > 她沉声道：“陈平安，请你跟我念一遍那句誓言。可以吗？”
 > 她伸出一只手掌，轻轻竖起在陈平安身前。陈平安也伸出一只手掌，轻轻合掌在一起。

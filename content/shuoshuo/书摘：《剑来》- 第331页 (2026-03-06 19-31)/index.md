@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第七章 拳谱</small>
-
-<div class="book-note-meta">📍 第 331 页 | ⏱️ 2026-03-06 19:31</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第七章 拳谱 · 📍 第 331 页</small>
 
 > 陈平安嗯嗯嗯着，明显心思都牵挂在那部拳谱上，他指向一个字：“宁姑娘，这个念啥？”
 > 宁姚气不打一处来：“滚！”
