@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Tue, 10 Mar 2026 16:35:28 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Hugo on Bore's Notes</title><link>https://bore.vip/tags/hugo/</link><description>Recent content in Hugo on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 21 Mar 2026 10:27:44 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/hugo/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
@@ -548,8 +548,6 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;197
 &lt;/span&gt;&lt;span class="lnt"&gt;198
 &lt;/span&gt;&lt;span class="lnt"&gt;199
-&lt;/span&gt;&lt;span class="lnt"&gt;200
-&lt;/span&gt;&lt;span class="lnt"&gt;201
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="cp"&gt;#!/bin/bash
@@ -669,9 +667,7 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;div class=&amp;#34;book-note-card&amp;#34;&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;### 📚 《$book》 &amp;lt;small style=&amp;#34;font-weight: normal; margin-left: 8px;&amp;#34;&amp;gt;👤 $author · 🔖 $current_chapter&amp;lt;/small&amp;gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;&amp;lt;div class=&amp;#34;book-note-meta&amp;#34;&amp;gt;📍 第 ${page} 页 | ⏱️ $formatted_time&amp;lt;/div&amp;gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;### 📚 《$book》 &amp;lt;small&amp;gt;👤 $author · 🔖 $current_chapter · 📍 第 ${page} 页&amp;lt;/small&amp;gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;$final_text
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
