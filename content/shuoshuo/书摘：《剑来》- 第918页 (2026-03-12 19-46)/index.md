@@ -12,9 +12,7 @@ shuoshuotags: ["书摘"]
 
 <div class="book-note-card">
 
-### 📚 《剑来》 <small style="font-weight: normal; margin-left: 8px;">👤 烽火戏诸侯 · 🔖 第七章 大考落幕</small>
-
-<div class="book-note-meta">📍 第 918 页 | ⏱️ 2026-03-12 19:46</div>
+### 📚 《剑来》 <small>👤 烽火戏诸侯 · 🔖 第七章 大考落幕 · 📍 第 918 页</small>
 
 > “陈平安，那么从今天起，我就喊你小师叔好了！”
 > “为啥？”
@@ -29,4 +27,7 @@ shuoshuotags: ["书摘"]
 <hr class="note-divider">
 
 小师叔
+
+###
+
 </div>
