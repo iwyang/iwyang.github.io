@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sat, 21 Mar 2026 10:27:44 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Posts on Bore's Notes</title><link>https://bore.vip/post/</link><description>Recent content in Posts on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Sun, 29 Mar 2026 19:51:10 +0800</lastBuildDate><atom:link href="https://bore.vip/post/index.xml" rel="self" type="application/rss+xml"/><item><title>KOReader 笔记 (安卓+Win11) 无缝自动发布至 Hugo 博客</title><link>https://bore.vip/archives/koreader-sync-ultimate-guide/</link><pubDate>Sat, 28 Feb 2026 19:00:00 +0800</pubDate><guid>https://bore.vip/archives/koreader-sync-ultimate-guide/</guid><description>&lt;p&gt;对于习惯使用 KOReader 阅读（比如追《剑来》等网文）的极客来说，如何优雅地将高亮笔记汇集并展示出来，一直是个不断优化的命题。&lt;/p&gt;
 &lt;p&gt;本篇终极指南将带你从零开始，在 Linux VPS 上搭建一套坚不可摧的自动化系统。无论你是躺在床上用&lt;strong&gt;安卓手机&lt;/strong&gt;看书，还是坐在电脑前用 &lt;strong&gt;Windows 11 / WSL2&lt;/strong&gt; 阅读，只需轻轻一点，1 到 2 秒钟内，经过时间格式化、排版精美且完美分离“原著引文与个人想法”的&lt;strong&gt;独立卡片式读书笔记&lt;/strong&gt;，就会自动挂载着专属标签，出现在你的 Hugo 博客上。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="阶段一本地端自动化搬运配置-双端齐下"&gt;阶段一：本地端自动化搬运配置 (双端齐下)
@@ -25,10 +25,13 @@
 &lt;h3 id="场景-bwin11-wsl2-极速推送与软件安装-rsync--ssh-触发"&gt;场景 B：Win11 WSL2 极速推送与软件安装 (Rsync + SSH 触发)
 &lt;/h3&gt;&lt;p&gt;如果你在电脑上阅读，配置 WSL 环境并使用脚本主动推送是最高效的方式。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
-在 PowerShell (管理员) 中执行 &lt;code&gt;wsl --install&lt;/code&gt; 和 &lt;code&gt;wsl --install -d Ubuntu&lt;/code&gt;，安装完成后重启电脑并设置 Ubuntu 账号密码。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;开启镜像网络模式 (关键)&lt;/strong&gt;：
-按下 &lt;code&gt;Win + R&lt;/code&gt; 输入 &lt;code&gt;%UserProfile%&lt;/code&gt;，新建或修改 &lt;code&gt;.wslconfig&lt;/code&gt; 文件，填入：
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
+在 PowerShell (管理员) 中先执行 &lt;code&gt;wsl --install&lt;/code&gt; ，然后重启。接着执行 &lt;code&gt;wsl --install -d Ubuntu&lt;/code&gt;，安装后设置 Ubuntu 账号密码，默认是用户名是&lt;code&gt;Administrator&lt;/code&gt;，改成&lt;code&gt;yang&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;开启镜像网络模式 (关键)&lt;/strong&gt;：
+按下 &lt;code&gt;Win + R&lt;/code&gt; 输入 &lt;code&gt;%UserProfile%&lt;/code&gt;，新建或修改 &lt;code&gt;.wslconfig&lt;/code&gt; 文件，填入：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -89,13 +92,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Downloads
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 下载 KOReader 安装包&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2025.10/koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2026.03/koreader_2026.03-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader_2026.03-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader-2025.10-amd64.deb -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader_2026.03-1_amd64.deb -y
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install fonts-noto-cjk -y &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo fc-cache -f -v

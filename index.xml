@@ -25,10 +25,13 @@
 &lt;h3 id="场景-bwin11-wsl2-极速推送与软件安装-rsync--ssh-触发"&gt;场景 B：Win11 WSL2 极速推送与软件安装 (Rsync + SSH 触发)
 &lt;/h3&gt;&lt;p&gt;如果你在电脑上阅读，配置 WSL 环境并使用脚本主动推送是最高效的方式。&lt;/p&gt;
 &lt;ol&gt;
-&lt;li&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
-在 PowerShell (管理员) 中执行 &lt;code&gt;wsl --install&lt;/code&gt; 和 &lt;code&gt;wsl --install -d Ubuntu&lt;/code&gt;，安装完成后重启电脑并设置 Ubuntu 账号密码。&lt;/li&gt;
-&lt;li&gt;&lt;strong&gt;开启镜像网络模式 (关键)&lt;/strong&gt;：
-按下 &lt;code&gt;Win + R&lt;/code&gt; 输入 &lt;code&gt;%UserProfile%&lt;/code&gt;，新建或修改 &lt;code&gt;.wslconfig&lt;/code&gt; 文件，填入：
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
+在 PowerShell (管理员) 中先执行 &lt;code&gt;wsl --install&lt;/code&gt; ，然后重启。接着执行 &lt;code&gt;wsl --install -d Ubuntu&lt;/code&gt;，安装后设置 Ubuntu 账号密码，默认是用户名是&lt;code&gt;Administrator&lt;/code&gt;，改成&lt;code&gt;yang&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;开启镜像网络模式 (关键)&lt;/strong&gt;：
+按下 &lt;code&gt;Win + R&lt;/code&gt; 输入 &lt;code&gt;%UserProfile%&lt;/code&gt;，新建或修改 &lt;code&gt;.wslconfig&lt;/code&gt; 文件，填入：&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
 &lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
@@ -89,13 +92,13 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Downloads
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 下载 KOReader 安装包&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2025.10/koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2026.03/koreader_2026.03-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader-2025.10-amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader_2026.03-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader-2025.10-amd64.deb -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader_2026.03-1_amd64.deb -y
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install fonts-noto-cjk -y &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo fc-cache -f -v
