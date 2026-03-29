@@ -39,9 +39,10 @@ tags: ["hugo", "KOReader"]
 如果你在电脑上阅读，配置 WSL 环境并使用脚本主动推送是最高效的方式。
 
 1. **Win11 安装 WSL2**：
-   在 PowerShell (管理员) 中执行 `wsl --install` 和 `wsl --install -d Ubuntu`，安装完成后重启电脑并设置 Ubuntu 账号密码。
+   在 PowerShell (管理员) 中先执行 `wsl --install` ，然后重启。接着执行 `wsl --install -d Ubuntu`，安装后设置 Ubuntu 账号密码，默认是用户名是`Administrator`，改成`yang`
 2. **开启镜像网络模式 (关键)**：
    按下 `Win + R` 输入 `%UserProfile%`，新建或修改 `.wslconfig` 文件，填入：
+   
    ```ini
    [wsl2]
    memory=2GB
@@ -65,13 +66,13 @@ mkdir -p ~/Downloads
 cd ~/Downloads
 
 # 3. 下载 KOReader 安装包
-wget https://github.com/iwyang/backup/releases/download/koreader-v2025.10/koreader-2025.10-amd64.deb
+wget https://github.com/iwyang/backup/releases/download/koreader-v2026.03/koreader_2026.03-1_amd64.deb
 
 # 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)
-sudo chmod 644 ./koreader-2025.10-amd64.deb
+sudo chmod 644 ./koreader_2026.03-1_amd64.deb
 
 # 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)
-sudo apt install ./koreader-2025.10-amd64.deb -y
+sudo apt install ./koreader_2026.03-1_amd64.deb -y
 
 # 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
 sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
