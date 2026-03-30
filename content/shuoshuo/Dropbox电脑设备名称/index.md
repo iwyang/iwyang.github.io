@@ -20,5 +20,5 @@ shuoshuotags: ["技术"]
 >PS: 电脑设备名称，方便重装系统后安装dropbox
 >
 >+ 食堂 DESKTOP-62QTIJH
-
+>+ 寝室 DESKTOP-IRDBSA0
 
