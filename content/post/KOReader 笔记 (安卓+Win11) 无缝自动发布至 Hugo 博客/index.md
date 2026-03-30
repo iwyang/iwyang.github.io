@@ -49,7 +49,7 @@ tags: ["hugo", "KOReader"]
    networkingMode=mirrored
    autoProxy=true
 
-*注意：切勿添加 `localhostForwarding=true`，镜像模式下两端已共享网络，保留会引发报错。*
+*注意：切勿添加 `localhostForwarding=true`，镜像模式下两端已共享网络，保留会引发报错。*（win10 lstc2021网络看附录）
 
 3. **执行重启命令**：
    在 PowerShell 中输入 `wsl --shutdown`。然后重新打开 Ubuntu 终端，**网络配置**即刻生效。
@@ -635,3 +635,48 @@ if %ERRORLEVEL% EQU 0 (
 **最终体验**：现在你看完书，只需在桌面上双击这个图标。一个极客风的黑绿窗口瞬间弹出，行云流水般跑完同步指令，然后在你默念“一、二”后，乖乖地自动消失。
 
 至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的**真·极客闭环系统**已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！
+
+## 附录：win10 无法使用镜像网络模式
+
+win10 lstc2021无法使用镜像网络模式，解决方法：
+
+1.Windows 代理软件开启"允许局域网连接"
+
+2.WSL2 会动态分配一个网关 IP，通过它访问宿主机：
+
+```bash
+# 获取宿主机 IP
+export HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+
+# 设置代理
+export http_proxy="http://$HOST_IP:10810"
+export https_proxy="http://$HOST_IP:10810"
+export all_proxy="socks5://$HOST_IP:10810"
+
+echo "宿主机 IP: $HOST_IP"
+```
+
+3.写入 `~/.bashrc` 永久生效：
+
+```bash
+cat >> ~/.bashrc << 'EOF'
+
+# WSL2 代理设置
+export HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk '{print $2}')
+export http_proxy="http://$HOST_IP:10810"
+export https_proxy="http://$HOST_IP:10810"
+export all_proxy="socks5://$HOST_IP:10810"
+EOF
+
+source ~/.bashrc
+```
+
+4.验证是否成功，运行以下命令查看返回的头信息：
+
+```bash
+curl -I https://www.google.com
+```
+
+如果返回 `HTTP/2 200`，恭喜你，代理已经打通了！
+
+**PS：win11 23h2与win10 lstc2021所占内存差不多，并且wsl2在win11更为流畅。**
