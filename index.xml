@@ -48,7 +48,7 @@
 &lt;/div&gt;
 &lt;/div&gt;&lt;/li&gt;
 &lt;/ol&gt;
-&lt;p&gt;&lt;em&gt;注意：切勿添加 &lt;code&gt;localhostForwarding=true&lt;/code&gt;，镜像模式下两端已共享网络，保留会引发报错。&lt;/em&gt;&lt;/p&gt;
+&lt;p&gt;&lt;em&gt;注意：切勿添加 &lt;code&gt;localhostForwarding=true&lt;/code&gt;，镜像模式下两端已共享网络，保留会引发报错。&lt;/em&gt;（win10 lstc2021网络看附录）&lt;/p&gt;
 &lt;ol start="3"&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;执行重启命令&lt;/strong&gt;：
@@ -1047,7 +1047,73 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;&lt;strong&gt;最终体验&lt;/strong&gt;：现在你看完书，只需在桌面上双击这个图标。一个极客风的黑绿窗口瞬间弹出，行云流水般跑完同步指令，然后在你默念“一、二”后，乖乖地自动消失。&lt;/p&gt;
-&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
+&lt;p&gt;至此，这套坚如磐石、绝对幂等、涵盖手机与 PC 双平台的&lt;strong&gt;真·极客闭环系统&lt;/strong&gt;已经完全确立。拿起设备安心阅读吧，剩下的繁杂代码，就交给服务器的齿轮去默默运转！&lt;/p&gt;
+&lt;h2 id="附录win10-无法使用镜像网络模式"&gt;附录：win10 无法使用镜像网络模式
+&lt;/h2&gt;&lt;p&gt;win10 lstc2021无法使用镜像网络模式，解决方法：&lt;/p&gt;
+&lt;p&gt;1.Windows 代理软件开启&amp;quot;允许局域网连接&amp;quot;&lt;/p&gt;
+&lt;p&gt;2.WSL2 会动态分配一个网关 IP，通过它访问宿主机：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;span class="lnt"&gt;3
+&lt;/span&gt;&lt;span class="lnt"&gt;4
+&lt;/span&gt;&lt;span class="lnt"&gt;5
+&lt;/span&gt;&lt;span class="lnt"&gt;6
+&lt;/span&gt;&lt;span class="lnt"&gt;7
+&lt;/span&gt;&lt;span class="lnt"&gt;8
+&lt;/span&gt;&lt;span class="lnt"&gt;9
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 获取宿主机 IP&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;HOST_IP&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="k"&gt;$(&lt;/span&gt;cat /etc/resolv.conf &lt;span class="p"&gt;|&lt;/span&gt; grep nameserver &lt;span class="p"&gt;|&lt;/span&gt; awk &lt;span class="s1"&gt;&amp;#39;{print $2}&amp;#39;&lt;/span&gt;&lt;span class="k"&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 设置代理&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;http_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;http://&lt;/span&gt;&lt;span class="nv"&gt;$HOST_IP&lt;/span&gt;&lt;span class="s2"&gt;:10810&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;https_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;http://&lt;/span&gt;&lt;span class="nv"&gt;$HOST_IP&lt;/span&gt;&lt;span class="s2"&gt;:10810&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;export&lt;/span&gt; &lt;span class="nv"&gt;all_proxy&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;socks5://&lt;/span&gt;&lt;span class="nv"&gt;$HOST_IP&lt;/span&gt;&lt;span class="s2"&gt;:10810&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;echo&lt;/span&gt; &lt;span class="s2"&gt;&amp;#34;宿主机 IP: &lt;/span&gt;&lt;span class="nv"&gt;$HOST_IP&lt;/span&gt;&lt;span class="s2"&gt;&amp;#34;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;3.写入 &lt;code&gt;~/.bashrc&lt;/code&gt; 永久生效：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;cat &amp;gt;&amp;gt; ~/.bashrc &lt;span class="s"&gt;&amp;lt;&amp;lt; &amp;#39;EOF&amp;#39;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;# WSL2 代理设置
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;export HOST_IP=$(cat /etc/resolv.conf | grep nameserver | awk &amp;#39;{print $2}&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;export http_proxy=&amp;#34;http://$HOST_IP:10810&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;export https_proxy=&amp;#34;http://$HOST_IP:10810&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;export all_proxy=&amp;#34;socks5://$HOST_IP:10810&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="s"&gt;EOF&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;source&lt;/span&gt; ~/.bashrc
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;4.验证是否成功，运行以下命令查看返回的头信息：&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;curl -I https://www.google.com
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;如果返回 &lt;code&gt;HTTP/2 200&lt;/code&gt;，恭喜你，代理已经打通了！&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS：win11 23h2与win10 lstc2021所占内存差不多，并且wsl2在win11更为流畅。&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="第一部分服务端部署-docker-同步中心"&gt;第一部分：服务端部署 (Docker 同步中心)
 &lt;/h2&gt;&lt;p&gt;为了避免端口冲突，我们为同步服务分配 &lt;code&gt;3002&lt;/code&gt; 端口。&lt;/p&gt;
