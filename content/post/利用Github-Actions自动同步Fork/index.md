@@ -495,7 +495,6 @@ jobs:
 **PS：双击第一次会闪退，要双击第二次**，第一次上传部署成功后，以后只用在网页修改`release-sync.yml`，增加备份仓库信息即可。
 
 ```bash
-cat << 'EOF' > setup_backup.sh
 #!/bin/bash
 
 # --- 定义错误处理函数 ---
@@ -523,7 +522,7 @@ COMMIT_MSG=${USER_INPUT:-$DEFAULT_MSG}
 echo "确认信息: $COMMIT_MSG"
 echo "---------------------------------------"
 
-# 3. 生成 Workflow 文件
+# 3. 生成 Workflow 文件 (已替换为终极时间戳排序版)
 echo "📂 正在生成 GitHub Actions 配置文件..."
 mkdir -p .github/workflows/
 
@@ -533,70 +532,103 @@ permissions:
   contents: write
 
 on:
-  # --- 新增：代码推送时自动触发 ---
   push:
     branches: 
       - main
-  # ---------------------------
   workflow_dispatch:
+    inputs:
+      force_resync:
+        description: '是否强制重新同步所有项目'
+        required: false
+        default: 'false'
   schedule:
     - cron: '0 3 * * *'
 
 jobs:
-  sync-job:
+  sync-by-real-time:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        include:
-          - source: "2dust/v2rayN"
-            alias: "v2rayN"
-          - source: "2dust/v2rayNG"
-            alias: "v2rayNG"
-          - source: "orion-lib/OrionTV"
-            alias: "OrionTV"
-          - source: "MoonTechLab/Selene"
-            alias: "Selene"
-          - source: "zbezj/HEU_KMS_Activator"
-            alias: "HEU_KMS"
-
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
-      - name: Sync Release
+      - name: Time-Travel Sync
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          SOURCE_REPO: ${{ matrix.source }}
-          ALIAS: ${{ matrix.alias }}
+          FORCE_SYNC: ${{ github.event.inputs.force_resync }}
         run: |
-          ORIGINAL_TAG=$(gh release view --repo $SOURCE_REPO --json tagName --jq .tagName)
-          NEW_TAG="${ALIAS}-${ORIGINAL_TAG}"
-          
-          echo "Checking $SOURCE_REPO latest: $ORIGINAL_TAG"
+          repos=(
+            "2dust/v2rayN|v2rayN"
+            "2dust/v2rayNG|v2rayNG"
+            "orion-lib/OrionTV|OrionTV"
+            "MoonTechLab/Selene|Selene"
+            "zbezj/HEU_KMS_Activator|HEU_KMS"
+            "eritpchy/FingerprintPay|FingerprintPay"
+            "connectbot/connectbot|connectbot"
+            "koreader/koreader|koreader"
+            "Dr-TSNG/ZygiskNext|ZygiskNext"
+            "JingMatrix/LSPosed|LSPosed"
+            "Xposed-Modules-Repo/com.y7.fingerpay|com.y7.fingerpay"
+            "twoone-3/AdGuardHomeForRoot|AdGuardHomeForRoot"
+          )
 
-          if gh release view $NEW_TAG > /dev/null 2>&1; then
-            echo "Version $NEW_TAG already exists, skipping."
-            exit 0
-          fi
-
-          OLD_TAGS=$(gh release list --limit 100 --json tagName --jq ".[].tagName" | grep "^${ALIAS}-" || true)
-          for tag in $OLD_TAGS; do
-            echo "Deleting old backup: $tag"
-            gh release delete $tag --yes --cleanup-tag
+          echo "获取原作者发布时间..."
+          rm -f repo_list.txt
+          for item in "${repos[@]}"; do
+            src=$(echo $item | cut -d'|' -f1)
+            alias=$(echo $item | cut -d'|' -f2)
+            pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2>/dev/null || echo "1970-01-01T00:00:00Z")
+            echo "$pub_date|$src|$alias" >> repo_list.txt
           done
 
-          mkdir -p ./temp_assets
-          gh release download $ORIGINAL_TAG --repo $SOURCE_REPO --pattern "*" --dir ./temp_assets
+          # 按时间升序排序，保证 Git 历史线顺畅（老的先提交，新的后提交）
+          sort -o repo_list_sorted.txt repo_list.txt
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
 
-          TITLE=$(gh release view $ORIGINAL_TAG --repo $SOURCE_REPO --json name --jq .name)
-          [ -z "$TITLE" ] && TITLE=$ORIGINAL_TAG
-          
-          gh release create $NEW_TAG ./temp_assets/* \
-            --title "[$ALIAS] $TITLE" \
-            --notes "Sync Date: $(date '+%Y-%m-%d %H:%M:%S') | Source: https://github.com/$SOURCE_REPO"
-          
-          echo "Project $ALIAS sync complete!"
+          while IFS='|' read -r date src alias; do
+            echo "=========================================="
+            echo "正在处理: $alias (原作者更新于: $date)"
+            
+            ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
+            NEW_TAG="${alias}-${ORIGINAL_TAG}"
+
+            if [ "$FORCE_SYNC" != "true" ]; then
+              if gh release view $NEW_TAG > /dev/null 2>&1; then
+                echo "跳过 $alias"
+                continue
+              fi
+            fi
+
+            # 【核心黑科技】：将 Git 提交时间伪装成原作者的发布时间！
+            export GIT_AUTHOR_DATE="$date"
+            export GIT_COMMITTER_DATE="$date"
+
+            mkdir -p sync_logs
+            echo "Upstream Date: $date" > sync_logs/${alias}.log
+            git add sync_logs/${alias}.log
+            
+            # 因为修改了底层时间，这笔提交会被 GitHub 识别为发生在那一天的历史操作
+            git commit -m "Sync $alias version $ORIGINAL_TAG" || true
+            git pull --rebase origin main
+            git push origin main
+            
+            # 删除旧版并同步资源
+            gh release delete $NEW_TAG --yes --cleanup-tag 2>/dev/null || true
+            
+            mkdir -p ./temp_assets && rm -rf ./temp_assets/*
+            gh release download $ORIGINAL_TAG --repo $src --pattern "*" --dir ./temp_assets
+            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name || echo $ORIGINAL_TAG)
+            
+            # 创建 Release
+            gh release create $NEW_TAG ./temp_assets/* \
+              --title "[$alias] $TITLE" \
+              --notes "Sync Date: $(date '+%Y-%m-%d %H:%M:%S') | Upstream Update: $date"
+            
+            echo "$alias 同步完成!"
+          done < repo_list_sorted.txt
 INNER_EOF
 
 # 4. Git 提交与推送
@@ -629,11 +661,116 @@ if git push -u origin main --force; then
 else
     die "推送失败！请检查网络连接或 GitHub 权限。"
 fi
-EOF
-
-chmod +x setup_backup.sh
-echo "✅ 脚本已更新。请再次运行【双击运行.bat】"
 ```
+
+3. `release-sync.yml`
+
+```yaml
+name: Release Sync
+permissions:
+  contents: write
+
+on:
+  push:
+    branches: 
+      - main
+  workflow_dispatch:
+    inputs:
+      force_resync:
+        description: '是否强制重新同步所有项目'
+        required: false
+        default: 'false'
+  schedule:
+    - cron: '0 3 * * *'
+
+jobs:
+  sync-by-real-time:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Time-Travel Sync
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          FORCE_SYNC: ${{ github.event.inputs.force_resync }}
+        run: |
+          repos=(
+            "2dust/v2rayN|v2rayN"
+            "2dust/v2rayNG|v2rayNG"
+            "orion-lib/OrionTV|OrionTV"
+            "MoonTechLab/Selene|Selene"
+            "zbezj/HEU_KMS_Activator|HEU_KMS"
+            "eritpchy/FingerprintPay|FingerprintPay"
+            "connectbot/connectbot|connectbot"
+            "koreader/koreader|koreader"
+            "Dr-TSNG/ZygiskNext|ZygiskNext"
+            "JingMatrix/LSPosed|LSPosed"
+            "Xposed-Modules-Repo/com.y7.fingerpay|com.y7.fingerpay"
+            "twoone-3/AdGuardHomeForRoot|AdGuardHomeForRoot"
+          )
+
+          echo "获取原作者发布时间..."
+          rm -f repo_list.txt
+          for item in "${repos[@]}"; do
+            src=$(echo $item | cut -d'|' -f1)
+            alias=$(echo $item | cut -d'|' -f2)
+            pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2>/dev/null || echo "1970-01-01T00:00:00Z")
+            echo "$pub_date|$src|$alias" >> repo_list.txt
+          done
+
+          # 按时间升序排序，保证 Git 历史线顺畅（老的先提交，新的后提交）
+          sort -o repo_list_sorted.txt repo_list.txt
+          
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          while IFS='|' read -r date src alias; do
+            echo "=========================================="
+            echo "正在处理: $alias (原作者更新于: $date)"
+            
+            ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
+            NEW_TAG="${alias}-${ORIGINAL_TAG}"
+
+            if [ "$FORCE_SYNC" != "true" ]; then
+              if gh release view $NEW_TAG > /dev/null 2>&1; then
+                echo "跳过 $alias"
+                continue
+              fi
+            fi
+
+            # 【核心黑科技】：将 Git 提交时间伪装成原作者的发布时间！
+            export GIT_AUTHOR_DATE="$date"
+            export GIT_COMMITTER_DATE="$date"
+
+            mkdir -p sync_logs
+            echo "Upstream Date: $date" > sync_logs/${alias}.log
+            git add sync_logs/${alias}.log
+            
+            # 因为修改了底层时间，这笔提交会被 GitHub 识别为发生在那一天的历史操作
+            git commit -m "Sync $alias version $ORIGINAL_TAG" || true
+            git pull --rebase origin main
+            git push origin main
+            
+            # 删除旧版并同步资源
+            gh release delete $NEW_TAG --yes --cleanup-tag 2>/dev/null || true
+            
+            mkdir -p ./temp_assets && rm -rf ./temp_assets/*
+            gh release download $ORIGINAL_TAG --repo $src --pattern "*" --dir ./temp_assets
+            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name || echo $ORIGINAL_TAG)
+            
+            # 创建 Release
+            gh release create $NEW_TAG ./temp_assets/* \
+              --title "[$alias] $TITLE" \
+              --notes "Sync Date: $(date '+%Y-%m-%d %H:%M:%S') | Upstream Update: $date"
+            
+            echo "$alias 同步完成!"
+          done < repo_list_sorted.txt
+```
+
+更新代码后，去网页端点 **Run workflow**，把 `force_resync` 填为 **`true`**，跑一次。
 
 ## 参考链接
 
