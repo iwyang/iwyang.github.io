@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><title>利用Github Actions自动同步Fork&&自动同步Releases</title><link rel=canonical href=https://bore.vip/archives/12dd937c/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.6db26ad8b902f43ff95cddef07ddfb797bfe303710f6f073d3e5d8ca7a6105e2.css><meta property='og:title' content="利用Github Actions自动同步Fork&&自动同步Releases"><meta property='og:description' content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><meta property='og:url' content='https://bore.vip/archives/12dd937c/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='github'><meta property='article:published_time' content='2023-07-13T18:02:15+00:00'><meta property='article:modified_time' content='2026-02-13T19:09:47+08:00'><meta name=twitter:title content="利用Github Actions自动同步Fork&&自动同步Releases"><meta name=twitter:description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><title>利用Github Actions自动同步Fork&&自动同步Releases</title><link rel=canonical href=https://bore.vip/archives/12dd937c/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.6db26ad8b902f43ff95cddef07ddfb797bfe303710f6f073d3e5d8ca7a6105e2.css><meta property='og:title' content="利用Github Actions自动同步Fork&&自动同步Releases"><meta property='og:description' content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><meta property='og:url' content='https://bore.vip/archives/12dd937c/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='github'><meta property='article:published_time' content='2023-07-13T18:02:15+00:00'><meta property='article:modified_time' content='2026-04-17T17:31:06+08:00'><meta name=twitter:title content="利用Github Actions自动同步Fork&&自动同步Releases"><meta name=twitter:description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
 </a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
@@ -10,8 +10,8 @@
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#自动同步fork现在用的>自动同步Fork（现在用的）</a></li><li><a href=#自动同步fork以前用的>自动同步Fork（以前用的）</a></li><li><a href=#自动同步fork以以前用的>自动同步Fork（以以前用的）</a><ol><li><a href=#创建workflow>创建workflow</a></li><li><a href=#创建github访问token>创建github访问token</a></li><li><a href=#添加环境变量secret>添加环境变量secret</a></li><li><a href=#自动提交修改到gitee未测试>自动提交修改到Gitee(未测试)</a></li></ol></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/archives/12dd937c/>利用Github Actions自动同步Fork&&自动同步Releases</a></h2><footer class=article-meta-info><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 <time class=article-time--published title='发布于 2023-07-13 18:02'>2 年前</time></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4A2 2 0 002 6v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121.0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-<time class=article-time--updated title='更新于 2026-02-13 19:09'>2 个月前</time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
-<span class=article-words title='字数: 4912 字'>4.9k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<time class=article-time--updated title='更新于 2026-04-17 17:31'>刚刚</time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
+<span class=article-words title='字数: 5724 字'>5.7k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
 <span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#自动同步fork现在用的>自动同步Fork（现在用的）</a></li><li><a href=#自动同步fork以前用的>自动同步Fork（以前用的）</a></li><li><a href=#自动同步fork以以前用的>自动同步Fork（以以前用的）</a><ol><li><a href=#创建workflow>创建workflow</a></li><li><a href=#创建github访问token>创建github访问token</a></li><li><a href=#添加环境变量secret>添加环境变量secret</a></li><li><a href=#自动提交修改到gitee未测试>自动提交修改到Gitee(未测试)</a></li></ol></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=自动同步fork现在用的>自动同步Fork（现在用的）</h2><p><strong>参考chatgpt</strong>:</p><p>在你的 fork 仓库中新建：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>.github/workflows/sync.yml</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div><p>内容如下（可直接复制）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
@@ -833,151 +833,411 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 </span><span class=lnt>136
 </span><span class=lnt>137
 </span><span class=lnt>138
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl>cat <span class=s>&lt;&lt; &#39;EOF&#39; &gt; setup_backup.sh
-</span></span></span><span class=line><span class=cl><span class=s>#!/bin/bash
+</span><span class=lnt>139
+</span><span class=lnt>140
+</span><span class=lnt>141
+</span><span class=lnt>142
+</span><span class=lnt>143
+</span><span class=lnt>144
+</span><span class=lnt>145
+</span><span class=lnt>146
+</span><span class=lnt>147
+</span><span class=lnt>148
+</span><span class=lnt>149
+</span><span class=lnt>150
+</span><span class=lnt>151
+</span><span class=lnt>152
+</span><span class=lnt>153
+</span><span class=lnt>154
+</span><span class=lnt>155
+</span><span class=lnt>156
+</span><span class=lnt>157
+</span><span class=lnt>158
+</span><span class=lnt>159
+</span><span class=lnt>160
+</span><span class=lnt>161
+</span><span class=lnt>162
+</span><span class=lnt>163
+</span><span class=lnt>164
+</span><span class=lnt>165
+</span><span class=lnt>166
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-bash data-lang=bash><span class=line><span class=cl><span class=cp>#!/bin/bash
+</span></span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># --- 定义错误处理函数 ---</span>
+</span></span><span class=line><span class=cl>die<span class=o>()</span> <span class=o>{</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;❌ 错误: </span><span class=nv>$1</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;---------------------------------------&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>read</span> -p <span class=s2>&#34;🔴 脚本运行失败。请按回车键关闭窗口...&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>exit</span> <span class=m>1</span>
+</span></span><span class=line><span class=cl><span class=o>}</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;🚀 初始化程序启动...&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 1. 检查 Git</span>
+</span></span><span class=line><span class=cl><span class=k>if</span> ! git --version &gt; /dev/null 2&gt;<span class=p>&amp;</span>1<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    die <span class=s2>&#34;未检测到 Git，请先安装 Git for Windows。&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 2. 获取用户输入</span>
+</span></span><span class=line><span class=cl><span class=nv>DEFAULT_MSG</span><span class=o>=</span><span class=s2>&#34;更新配置：</span><span class=k>$(</span>date <span class=s1>&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;---------------------------------------&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;📅 当前时间: </span><span class=k>$(</span>date <span class=s1>&#39;+%Y-%m-%d %H:%M:%S&#39;</span><span class=k>)</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>read</span> -p <span class=s2>&#34;请输入提交信息 (直接回车默认: </span><span class=nv>$DEFAULT_MSG</span><span class=s2>): &#34;</span> USER_INPUT
+</span></span><span class=line><span class=cl><span class=nv>COMMIT_MSG</span><span class=o>=</span><span class=si>${</span><span class=nv>USER_INPUT</span><span class=k>:-</span><span class=nv>$DEFAULT_MSG</span><span class=si>}</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;确认信息: </span><span class=nv>$COMMIT_MSG</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;---------------------------------------&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 3. 生成 Workflow 文件 (已替换为终极时间戳排序版)</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;📂 正在生成 GitHub Actions 配置文件...&#34;</span>
+</span></span><span class=line><span class=cl>mkdir -p .github/workflows/
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>cat <span class=s>&lt;&lt; &#39;INNER_EOF&#39; &gt; .github/workflows/release-sync.yml
+</span></span></span><span class=line><span class=cl><span class=s>name: Release Sync
+</span></span></span><span class=line><span class=cl><span class=s>permissions:
+</span></span></span><span class=line><span class=cl><span class=s>  contents: write
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s># --- 定义错误处理函数 ---
-</span></span></span><span class=line><span class=cl><span class=s>die() {
-</span></span></span><span class=line><span class=cl><span class=s>    echo &#34;&#34;
-</span></span></span><span class=line><span class=cl><span class=s>    echo &#34;❌ 错误: $1&#34;
-</span></span></span><span class=line><span class=cl><span class=s>    echo &#34;---------------------------------------&#34;
-</span></span></span><span class=line><span class=cl><span class=s>    read -p &#34;🔴 脚本运行失败。请按回车键关闭窗口...&#34;
-</span></span></span><span class=line><span class=cl><span class=s>    exit 1
-</span></span></span><span class=line><span class=cl><span class=s>}
+</span></span></span><span class=line><span class=cl><span class=s>on:
+</span></span></span><span class=line><span class=cl><span class=s>  push:
+</span></span></span><span class=line><span class=cl><span class=s>    branches: 
+</span></span></span><span class=line><span class=cl><span class=s>      - main
+</span></span></span><span class=line><span class=cl><span class=s>  workflow_dispatch:
+</span></span></span><span class=line><span class=cl><span class=s>    inputs:
+</span></span></span><span class=line><span class=cl><span class=s>      force_resync:
+</span></span></span><span class=line><span class=cl><span class=s>        description: &#39;是否强制重新同步所有项目&#39;
+</span></span></span><span class=line><span class=cl><span class=s>        required: false
+</span></span></span><span class=line><span class=cl><span class=s>        default: &#39;false&#39;
+</span></span></span><span class=line><span class=cl><span class=s>  schedule:
+</span></span></span><span class=line><span class=cl><span class=s>    - cron: &#39;0 3 * * *&#39;
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;🚀 初始化程序启动...&#34;
+</span></span></span><span class=line><span class=cl><span class=s>jobs:
+</span></span></span><span class=line><span class=cl><span class=s>  sync-by-real-time:
+</span></span></span><span class=line><span class=cl><span class=s>    runs-on: ubuntu-latest
+</span></span></span><span class=line><span class=cl><span class=s>    steps:
+</span></span></span><span class=line><span class=cl><span class=s>      - name: Checkout
+</span></span></span><span class=line><span class=cl><span class=s>        uses: actions/checkout@v4
+</span></span></span><span class=line><span class=cl><span class=s>        with:
+</span></span></span><span class=line><span class=cl><span class=s>          fetch-depth: 0
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s># 1. 检查 Git
-</span></span></span><span class=line><span class=cl><span class=s>if ! git --version &gt; /dev/null 2&gt;&amp;1; then
-</span></span></span><span class=line><span class=cl><span class=s>    die &#34;未检测到 Git，请先安装 Git for Windows。&#34;
-</span></span></span><span class=line><span class=cl><span class=s>fi
+</span></span></span><span class=line><span class=cl><span class=s>      - name: Time-Travel Sync
+</span></span></span><span class=line><span class=cl><span class=s>        env:
+</span></span></span><span class=line><span class=cl><span class=s>          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+</span></span></span><span class=line><span class=cl><span class=s>          FORCE_SYNC: ${{ github.event.inputs.force_resync }}
+</span></span></span><span class=line><span class=cl><span class=s>        run: |
+</span></span></span><span class=line><span class=cl><span class=s>          repos=(
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;2dust/v2rayN|v2rayN&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;2dust/v2rayNG|v2rayNG&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;orion-lib/OrionTV|OrionTV&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;MoonTechLab/Selene|Selene&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;zbezj/HEU_KMS_Activator|HEU_KMS&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;eritpchy/FingerprintPay|FingerprintPay&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;connectbot/connectbot|connectbot&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;koreader/koreader|koreader&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;Dr-TSNG/ZygiskNext|ZygiskNext&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;JingMatrix/LSPosed|LSPosed&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;Xposed-Modules-Repo/com.y7.fingerpay|com.y7.fingerpay&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            &#34;twoone-3/AdGuardHomeForRoot|AdGuardHomeForRoot&#34;
+</span></span></span><span class=line><span class=cl><span class=s>          )
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s># 2. 获取用户输入
-</span></span></span><span class=line><span class=cl><span class=s>DEFAULT_MSG=&#34;更新配置：$(date &#39;+%Y-%m-%d %H:%M:%S&#39;)&#34;
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;---------------------------------------&#34;
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;📅 当前时间: $(date &#39;+%Y-%m-%d %H:%M:%S&#39;)&#34;
-</span></span></span><span class=line><span class=cl><span class=s>read -p &#34;请输入提交信息 (直接回车默认: $DEFAULT_MSG): &#34; USER_INPUT
-</span></span></span><span class=line><span class=cl><span class=s>COMMIT_MSG=${USER_INPUT:-$DEFAULT_MSG}
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;确认信息: $COMMIT_MSG&#34;
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;---------------------------------------&#34;
+</span></span></span><span class=line><span class=cl><span class=s>          echo &#34;获取原作者发布时间...&#34;
+</span></span></span><span class=line><span class=cl><span class=s>          rm -f repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=s>          for item in &#34;${repos[@]}&#34;; do
+</span></span></span><span class=line><span class=cl><span class=s>            src=$(echo $item | cut -d&#39;|&#39; -f1)
+</span></span></span><span class=line><span class=cl><span class=s>            alias=$(echo $item | cut -d&#39;|&#39; -f2)
+</span></span></span><span class=line><span class=cl><span class=s>            pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2&gt;/dev/null || echo &#34;1970-01-01T00:00:00Z&#34;)
+</span></span></span><span class=line><span class=cl><span class=s>            echo &#34;$pub_date|$src|$alias&#34; &gt;&gt; repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=s>          done
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s># 3. 生成 Workflow 文件
-</span></span></span><span class=line><span class=cl><span class=s>echo &#34;📂 正在生成 GitHub Actions 配置文件...&#34;
-</span></span></span><span class=line><span class=cl><span class=s>mkdir -p .github/workflows/
+</span></span></span><span class=line><span class=cl><span class=s>          # 按时间升序排序，保证 Git 历史线顺畅（老的先提交，新的后提交）
+</span></span></span><span class=line><span class=cl><span class=s>          sort -o repo_list_sorted.txt repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=s>          
+</span></span></span><span class=line><span class=cl><span class=s>          git config user.name &#34;github-actions[bot]&#34;
+</span></span></span><span class=line><span class=cl><span class=s>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;
 </span></span></span><span class=line><span class=cl><span class=s>
-</span></span></span><span class=line><span class=cl><span class=s>cat &lt;&lt; &#39;INNER_EOF</span><span class=s1>&#39; &gt; .github/workflows/release-sync.yml
-</span></span></span><span class=line><span class=cl><span class=s1>name: Release Sync
-</span></span></span><span class=line><span class=cl><span class=s1>permissions:
-</span></span></span><span class=line><span class=cl><span class=s1>  contents: write
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>on:
-</span></span></span><span class=line><span class=cl><span class=s1>  # --- 新增：代码推送时自动触发 ---
-</span></span></span><span class=line><span class=cl><span class=s1>  push:
-</span></span></span><span class=line><span class=cl><span class=s1>    branches: 
-</span></span></span><span class=line><span class=cl><span class=s1>      - main
-</span></span></span><span class=line><span class=cl><span class=s1>  # ---------------------------
-</span></span></span><span class=line><span class=cl><span class=s1>  workflow_dispatch:
-</span></span></span><span class=line><span class=cl><span class=s1>  schedule:
-</span></span></span><span class=line><span class=cl><span class=s1>    - cron: &#39;</span><span class=m>0</span> <span class=m>3</span> * * *<span class=s1>&#39;
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>jobs:
-</span></span></span><span class=line><span class=cl><span class=s1>  sync-job:
-</span></span></span><span class=line><span class=cl><span class=s1>    runs-on: ubuntu-latest
-</span></span></span><span class=line><span class=cl><span class=s1>    strategy:
-</span></span></span><span class=line><span class=cl><span class=s1>      fail-fast: false
-</span></span></span><span class=line><span class=cl><span class=s1>      matrix:
-</span></span></span><span class=line><span class=cl><span class=s1>        include:
-</span></span></span><span class=line><span class=cl><span class=s1>          - source: &#34;2dust/v2rayN&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            alias: &#34;v2rayN&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>          - source: &#34;2dust/v2rayNG&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            alias: &#34;v2rayNG&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>          - source: &#34;orion-lib/OrionTV&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            alias: &#34;OrionTV&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>          - source: &#34;MoonTechLab/Selene&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            alias: &#34;Selene&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>          - source: &#34;zbezj/HEU_KMS_Activator&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            alias: &#34;HEU_KMS&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>    steps:
-</span></span></span><span class=line><span class=cl><span class=s1>      - name: Checkout
-</span></span></span><span class=line><span class=cl><span class=s1>        uses: actions/checkout@v4
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>      - name: Sync Release
-</span></span></span><span class=line><span class=cl><span class=s1>        env:
-</span></span></span><span class=line><span class=cl><span class=s1>          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-</span></span></span><span class=line><span class=cl><span class=s1>          SOURCE_REPO: ${{ matrix.source }}
-</span></span></span><span class=line><span class=cl><span class=s1>          ALIAS: ${{ matrix.alias }}
-</span></span></span><span class=line><span class=cl><span class=s1>        run: |
-</span></span></span><span class=line><span class=cl><span class=s1>          ORIGINAL_TAG=$(gh release view --repo $SOURCE_REPO --json tagName --jq .tagName)
-</span></span></span><span class=line><span class=cl><span class=s1>          NEW_TAG=&#34;${ALIAS}-${ORIGINAL_TAG}&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>          
-</span></span></span><span class=line><span class=cl><span class=s1>          echo &#34;Checking $SOURCE_REPO latest: $ORIGINAL_TAG&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>          if gh release view $NEW_TAG &gt; /dev/null 2&gt;&amp;1; then
-</span></span></span><span class=line><span class=cl><span class=s1>            echo &#34;Version $NEW_TAG already exists, skipping.&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            exit 0
-</span></span></span><span class=line><span class=cl><span class=s1>          fi
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>          OLD_TAGS=$(gh release list --limit 100 --json tagName --jq &#34;.[].tagName&#34; | grep &#34;^${ALIAS}-&#34; || true)
-</span></span></span><span class=line><span class=cl><span class=s1>          for tag in $OLD_TAGS; do
-</span></span></span><span class=line><span class=cl><span class=s1>            echo &#34;Deleting old backup: $tag&#34;
-</span></span></span><span class=line><span class=cl><span class=s1>            gh release delete $tag --yes --cleanup-tag
-</span></span></span><span class=line><span class=cl><span class=s1>          done
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>          mkdir -p ./temp_assets
-</span></span></span><span class=line><span class=cl><span class=s1>          gh release download $ORIGINAL_TAG --repo $SOURCE_REPO --pattern &#34;*&#34; --dir ./temp_assets
-</span></span></span><span class=line><span class=cl><span class=s1>
-</span></span></span><span class=line><span class=cl><span class=s1>          TITLE=$(gh release view $ORIGINAL_TAG --repo $SOURCE_REPO --json name --jq .name)
-</span></span></span><span class=line><span class=cl><span class=s1>          [ -z &#34;$TITLE&#34; ] &amp;&amp; TITLE=$ORIGINAL_TAG
-</span></span></span><span class=line><span class=cl><span class=s1>          
-</span></span></span><span class=line><span class=cl><span class=s1>          gh release create $NEW_TAG ./temp_assets/* \
-</span></span></span><span class=line><span class=cl><span class=s1>            --title &#34;[$ALIAS] $TITLE&#34; \
-</span></span></span><span class=line><span class=cl><span class=s1>            --notes &#34;Sync Date: $(date &#39;</span>+%Y-%m-%d %H:%M:%S<span class=err>&#39;</span><span class=o>)</span> <span class=p>|</span> Source: https://github.com/<span class=nv>$SOURCE_REPO</span><span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>          
-</span></span></span><span class=line><span class=cl><span class=s2>          echo &#34;</span>Project <span class=nv>$ALIAS</span> sync complete!<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>INNER_EOF
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2># 4. Git 提交与推送
-</span></span></span><span class=line><span class=cl><span class=s2>echo &#34;</span>📦 执行 Git 仓库操作...<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>git init &gt; /dev/null 2&gt;&amp;1
-</span></span></span><span class=line><span class=cl><span class=s2>git remote remove origin &gt; /dev/null 2&gt;&amp;1
-</span></span></span><span class=line><span class=cl><span class=s2>git remote add origin https://github.com/iwyang/backup || die &#34;</span>无法添加远程仓库<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>git branch -M main
-</span></span></span><span class=line><span class=cl><span class=s2>git add .
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>if ! git diff-index --quiet HEAD --; then
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span>📝 提交更改: <span class=nv>$COMMIT_MSG</span><span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    git commit -m &#34;</span><span class=nv>$COMMIT_MSG</span><span class=s2>&#34; || die &#34;</span>Git 提交失败<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>else
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span>ℹ️ 文件无变化，跳过提交步骤。<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>fi
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>echo &#34;</span>☁️ 正在推送到 GitHub...<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>if git push -u origin main --force; then
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span><span class=o>=======================================</span><span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span>✅ 推送成功！Actions 将立即开始运行。<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span>✨ 窗口将在 <span class=m>2</span> 秒后自动关闭...<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    echo &#34;</span><span class=o>=======================================</span><span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>    sleep 2
-</span></span></span><span class=line><span class=cl><span class=s2>    exit 0
-</span></span></span><span class=line><span class=cl><span class=s2>else
-</span></span></span><span class=line><span class=cl><span class=s2>    die &#34;</span>推送失败！请检查网络连接或 GitHub 权限。<span class=s2>&#34;
-</span></span></span><span class=line><span class=cl><span class=s2>fi
-</span></span></span><span class=line><span class=cl><span class=s2>EOF
-</span></span></span><span class=line><span class=cl><span class=s2>
-</span></span></span><span class=line><span class=cl><span class=s2>chmod +x setup_backup.sh
-</span></span></span><span class=line><span class=cl><span class=s2>echo &#34;</span>✅ 脚本已更新。请再次运行【双击运行.bat】<span class=s2>&#34;
-</span></span></span></code></pre></td></tr></table></div></div><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://knight.abn-team.top/2023/03/29/GithunActionAutoSync2Gitee/ target=_blank rel=noopener>GithunActionAutoSync2Gitee</a></li><li><a class=link href=https://zhuanlan.zhihu.com/p/500768626 target=_blank rel=noopener>利用Github Actions自动同步Fork</a></li><li><a class=link href=https://github.com/tgymnich/fork-sync target=_blank rel=noopener>fork-sync</a></li></ul></section><footer class=article-footer><style>.article-edit-container a{-webkit-tap-highlight-color:transparent!important;outline:none!important}.article-edit-container a:hover{text-decoration:underline!important}.article-edit-container{border-top:1px dashed var(--body-background);padding-top:15px;margin-top:20px;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</style><section class=article-tags><style>.article-tags{margin-top:25px;margin-bottom:15px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.article-tags .tag-link{display:inline-flex!important;align-items:center!important;padding:4px 16px!important;background-color:rgba(30,144,255,8%)!important;color:#1e90ff!important;border-radius:999px!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;border:1px solid rgba(30,144,255,.2)!important;transition:all .3s ease!important}.article-tags .tag-link::before{content:"#"!important;margin-right:4px!important;color:inherit!important;font-weight:700!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 4px 12px rgba(30,144,255,.35)!important;border-color:#1e90ff!important}@media(prefers-color-scheme:dark){.article-tags .tag-link{background-color:rgba(88,166,255,.15)!important;color:#58a6ff!important;font-weight:600!important;border-color:rgba(88,166,255,.3)!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;box-shadow:0 4px 15px rgba(30,144,255,.4)!important}}</style><a href=/tags/github/ class=tag-link title=查看标签：Github>Github</a></section><section class=article-edit-container><a style=color:#1e90ff;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e5%88%a9%e7%94%a8Github-Actions%e8%87%aa%e5%8a%a8%e5%90%8c%e6%ad%a5Fork/index.md target=_blank rel="noopener noreferrer" title="前往 GitHub 编辑此页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+</span></span></span><span class=line><span class=cl><span class=s>          while IFS=&#39;|&#39; read -r date src alias; do
+</span></span></span><span class=line><span class=cl><span class=s>            echo &#34;==========================================&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            echo &#34;正在处理: $alias (原作者更新于: $date)&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
+</span></span></span><span class=line><span class=cl><span class=s>            NEW_TAG=&#34;${alias}-${ORIGINAL_TAG}&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>            if [ &#34;$FORCE_SYNC&#34; != &#34;true&#34; ]; then
+</span></span></span><span class=line><span class=cl><span class=s>              if gh release view $NEW_TAG &gt; /dev/null 2&gt;&amp;1; then
+</span></span></span><span class=line><span class=cl><span class=s>                echo &#34;跳过 $alias&#34;
+</span></span></span><span class=line><span class=cl><span class=s>                continue
+</span></span></span><span class=line><span class=cl><span class=s>              fi
+</span></span></span><span class=line><span class=cl><span class=s>            fi
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>            # 【核心黑科技】：将 Git 提交时间伪装成原作者的发布时间！
+</span></span></span><span class=line><span class=cl><span class=s>            export GIT_AUTHOR_DATE=&#34;$date&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            export GIT_COMMITTER_DATE=&#34;$date&#34;
+</span></span></span><span class=line><span class=cl><span class=s>
+</span></span></span><span class=line><span class=cl><span class=s>            mkdir -p sync_logs
+</span></span></span><span class=line><span class=cl><span class=s>            echo &#34;Upstream Date: $date&#34; &gt; sync_logs/${alias}.log
+</span></span></span><span class=line><span class=cl><span class=s>            git add sync_logs/${alias}.log
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            # 因为修改了底层时间，这笔提交会被 GitHub 识别为发生在那一天的历史操作
+</span></span></span><span class=line><span class=cl><span class=s>            git commit -m &#34;Sync $alias version $ORIGINAL_TAG&#34; || true
+</span></span></span><span class=line><span class=cl><span class=s>            git pull --rebase origin main
+</span></span></span><span class=line><span class=cl><span class=s>            git push origin main
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            # 删除旧版并同步资源
+</span></span></span><span class=line><span class=cl><span class=s>            gh release delete $NEW_TAG --yes --cleanup-tag 2&gt;/dev/null || true
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            mkdir -p ./temp_assets &amp;&amp; rm -rf ./temp_assets/*
+</span></span></span><span class=line><span class=cl><span class=s>            gh release download $ORIGINAL_TAG --repo $src --pattern &#34;*&#34; --dir ./temp_assets
+</span></span></span><span class=line><span class=cl><span class=s>            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name || echo $ORIGINAL_TAG)
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            # 创建 Release
+</span></span></span><span class=line><span class=cl><span class=s>            gh release create $NEW_TAG ./temp_assets/* \
+</span></span></span><span class=line><span class=cl><span class=s>              --title &#34;[$alias] $TITLE&#34; \
+</span></span></span><span class=line><span class=cl><span class=s>              --notes &#34;Sync Date: $(date &#39;+%Y-%m-%d %H:%M:%S&#39;) | Upstream Update: $date&#34;
+</span></span></span><span class=line><span class=cl><span class=s>            
+</span></span></span><span class=line><span class=cl><span class=s>            echo &#34;$alias 同步完成!&#34;
+</span></span></span><span class=line><span class=cl><span class=s>          done &lt; repo_list_sorted.txt
+</span></span></span><span class=line><span class=cl><span class=s>INNER_EOF</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=c1># 4. Git 提交与推送</span>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;📦 执行 Git 仓库操作...&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git init &gt; /dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>git remote remove origin &gt; /dev/null 2&gt;<span class=p>&amp;</span><span class=m>1</span>
+</span></span><span class=line><span class=cl>git remote add origin https://github.com/iwyang/backup <span class=o>||</span> die <span class=s2>&#34;无法添加远程仓库&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl>git branch -M main
+</span></span><span class=line><span class=cl>git add .
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> ! git diff-index --quiet HEAD --<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;📝 提交更改: </span><span class=nv>$COMMIT_MSG</span><span class=s2>&#34;</span>
+</span></span><span class=line><span class=cl>    git commit -m <span class=s2>&#34;</span><span class=nv>$COMMIT_MSG</span><span class=s2>&#34;</span> <span class=o>||</span> die <span class=s2>&#34;Git 提交失败&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;ℹ️ 文件无变化，跳过提交步骤。&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=nb>echo</span> <span class=s2>&#34;☁️ 正在推送到 GitHub...&#34;</span>
+</span></span><span class=line><span class=cl>
+</span></span><span class=line><span class=cl><span class=k>if</span> git push -u origin main --force<span class=p>;</span> <span class=k>then</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;=======================================&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;✅ 推送成功！Actions 将立即开始运行。&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;✨ 窗口将在 2 秒后自动关闭...&#34;</span>
+</span></span><span class=line><span class=cl>    <span class=nb>echo</span> <span class=s2>&#34;=======================================&#34;</span>
+</span></span><span class=line><span class=cl>    sleep <span class=m>2</span>
+</span></span><span class=line><span class=cl>    <span class=nb>exit</span> <span class=m>0</span>
+</span></span><span class=line><span class=cl><span class=k>else</span>
+</span></span><span class=line><span class=cl>    die <span class=s2>&#34;推送失败！请检查网络连接或 GitHub 权限。&#34;</span>
+</span></span><span class=line><span class=cl><span class=k>fi</span>
+</span></span></code></pre></td></tr></table></div></div><ol start=3><li><code>release-sync.yml</code></li></ol><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span><span class=lnt>  2
+</span><span class=lnt>  3
+</span><span class=lnt>  4
+</span><span class=lnt>  5
+</span><span class=lnt>  6
+</span><span class=lnt>  7
+</span><span class=lnt>  8
+</span><span class=lnt>  9
+</span><span class=lnt> 10
+</span><span class=lnt> 11
+</span><span class=lnt> 12
+</span><span class=lnt> 13
+</span><span class=lnt> 14
+</span><span class=lnt> 15
+</span><span class=lnt> 16
+</span><span class=lnt> 17
+</span><span class=lnt> 18
+</span><span class=lnt> 19
+</span><span class=lnt> 20
+</span><span class=lnt> 21
+</span><span class=lnt> 22
+</span><span class=lnt> 23
+</span><span class=lnt> 24
+</span><span class=lnt> 25
+</span><span class=lnt> 26
+</span><span class=lnt> 27
+</span><span class=lnt> 28
+</span><span class=lnt> 29
+</span><span class=lnt> 30
+</span><span class=lnt> 31
+</span><span class=lnt> 32
+</span><span class=lnt> 33
+</span><span class=lnt> 34
+</span><span class=lnt> 35
+</span><span class=lnt> 36
+</span><span class=lnt> 37
+</span><span class=lnt> 38
+</span><span class=lnt> 39
+</span><span class=lnt> 40
+</span><span class=lnt> 41
+</span><span class=lnt> 42
+</span><span class=lnt> 43
+</span><span class=lnt> 44
+</span><span class=lnt> 45
+</span><span class=lnt> 46
+</span><span class=lnt> 47
+</span><span class=lnt> 48
+</span><span class=lnt> 49
+</span><span class=lnt> 50
+</span><span class=lnt> 51
+</span><span class=lnt> 52
+</span><span class=lnt> 53
+</span><span class=lnt> 54
+</span><span class=lnt> 55
+</span><span class=lnt> 56
+</span><span class=lnt> 57
+</span><span class=lnt> 58
+</span><span class=lnt> 59
+</span><span class=lnt> 60
+</span><span class=lnt> 61
+</span><span class=lnt> 62
+</span><span class=lnt> 63
+</span><span class=lnt> 64
+</span><span class=lnt> 65
+</span><span class=lnt> 66
+</span><span class=lnt> 67
+</span><span class=lnt> 68
+</span><span class=lnt> 69
+</span><span class=lnt> 70
+</span><span class=lnt> 71
+</span><span class=lnt> 72
+</span><span class=lnt> 73
+</span><span class=lnt> 74
+</span><span class=lnt> 75
+</span><span class=lnt> 76
+</span><span class=lnt> 77
+</span><span class=lnt> 78
+</span><span class=lnt> 79
+</span><span class=lnt> 80
+</span><span class=lnt> 81
+</span><span class=lnt> 82
+</span><span class=lnt> 83
+</span><span class=lnt> 84
+</span><span class=lnt> 85
+</span><span class=lnt> 86
+</span><span class=lnt> 87
+</span><span class=lnt> 88
+</span><span class=lnt> 89
+</span><span class=lnt> 90
+</span><span class=lnt> 91
+</span><span class=lnt> 92
+</span><span class=lnt> 93
+</span><span class=lnt> 94
+</span><span class=lnt> 95
+</span><span class=lnt> 96
+</span><span class=lnt> 97
+</span><span class=lnt> 98
+</span><span class=lnt> 99
+</span><span class=lnt>100
+</span><span class=lnt>101
+</span><span class=lnt>102
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Release Sync</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>permissions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>contents</span><span class=p>:</span><span class=w> </span><span class=l>write</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w> 
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>main</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>inputs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>force_resync</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>description</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;是否强制重新同步所有项目&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>required</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>default</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;false&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0 3 * * *&#39;</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync-by-real-time</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v4</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Time-Travel Sync</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>GH_TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITHUB_TOKEN }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>FORCE_SYNC</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.inputs.force_resync }}</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          repos=(
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;2dust/v2rayN|v2rayN&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;2dust/v2rayNG|v2rayNG&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;orion-lib/OrionTV|OrionTV&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;MoonTechLab/Selene|Selene&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;zbezj/HEU_KMS_Activator|HEU_KMS&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;eritpchy/FingerprintPay|FingerprintPay&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;connectbot/connectbot|connectbot&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;koreader/koreader|koreader&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;Dr-TSNG/ZygiskNext|ZygiskNext&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;JingMatrix/LSPosed|LSPosed&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;Xposed-Modules-Repo/com.y7.fingerpay|com.y7.fingerpay&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            &#34;twoone-3/AdGuardHomeForRoot|AdGuardHomeForRoot&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          )
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          echo &#34;获取原作者发布时间...&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          rm -f repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=sd>          for item in &#34;${repos[@]}&#34;; do
+</span></span></span><span class=line><span class=cl><span class=sd>            src=$(echo $item | cut -d&#39;|&#39; -f1)
+</span></span></span><span class=line><span class=cl><span class=sd>            alias=$(echo $item | cut -d&#39;|&#39; -f2)
+</span></span></span><span class=line><span class=cl><span class=sd>            pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2&gt;/dev/null || echo &#34;1970-01-01T00:00:00Z&#34;)
+</span></span></span><span class=line><span class=cl><span class=sd>            echo &#34;$pub_date|$src|$alias&#34; &gt;&gt; repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=sd>          done
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          # 按时间升序排序，保证 Git 历史线顺畅（老的先提交，新的后提交）
+</span></span></span><span class=line><span class=cl><span class=sd>          sort -o repo_list_sorted.txt repo_list.txt
+</span></span></span><span class=line><span class=cl><span class=sd>          
+</span></span></span><span class=line><span class=cl><span class=sd>          git config user.name &#34;github-actions[bot]&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>          while IFS=&#39;|&#39; read -r date src alias; do
+</span></span></span><span class=line><span class=cl><span class=sd>            echo &#34;==========================================&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            echo &#34;正在处理: $alias (原作者更新于: $date)&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
+</span></span></span><span class=line><span class=cl><span class=sd>            NEW_TAG=&#34;${alias}-${ORIGINAL_TAG}&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            if [ &#34;$FORCE_SYNC&#34; != &#34;true&#34; ]; then
+</span></span></span><span class=line><span class=cl><span class=sd>              if gh release view $NEW_TAG &gt; /dev/null 2&gt;&amp;1; then
+</span></span></span><span class=line><span class=cl><span class=sd>                echo &#34;跳过 $alias&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>                continue
+</span></span></span><span class=line><span class=cl><span class=sd>              fi
+</span></span></span><span class=line><span class=cl><span class=sd>            fi
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            # 【核心黑科技】：将 Git 提交时间伪装成原作者的发布时间！
+</span></span></span><span class=line><span class=cl><span class=sd>            export GIT_AUTHOR_DATE=&#34;$date&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            export GIT_COMMITTER_DATE=&#34;$date&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>
+</span></span></span><span class=line><span class=cl><span class=sd>            mkdir -p sync_logs
+</span></span></span><span class=line><span class=cl><span class=sd>            echo &#34;Upstream Date: $date&#34; &gt; sync_logs/${alias}.log
+</span></span></span><span class=line><span class=cl><span class=sd>            git add sync_logs/${alias}.log
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            # 因为修改了底层时间，这笔提交会被 GitHub 识别为发生在那一天的历史操作
+</span></span></span><span class=line><span class=cl><span class=sd>            git commit -m &#34;Sync $alias version $ORIGINAL_TAG&#34; || true
+</span></span></span><span class=line><span class=cl><span class=sd>            git pull --rebase origin main
+</span></span></span><span class=line><span class=cl><span class=sd>            git push origin main
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            # 删除旧版并同步资源
+</span></span></span><span class=line><span class=cl><span class=sd>            gh release delete $NEW_TAG --yes --cleanup-tag 2&gt;/dev/null || true
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            mkdir -p ./temp_assets &amp;&amp; rm -rf ./temp_assets/*
+</span></span></span><span class=line><span class=cl><span class=sd>            gh release download $ORIGINAL_TAG --repo $src --pattern &#34;*&#34; --dir ./temp_assets
+</span></span></span><span class=line><span class=cl><span class=sd>            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name || echo $ORIGINAL_TAG)
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            # 创建 Release
+</span></span></span><span class=line><span class=cl><span class=sd>            gh release create $NEW_TAG ./temp_assets/* \
+</span></span></span><span class=line><span class=cl><span class=sd>              --title &#34;[$alias] $TITLE&#34; \
+</span></span></span><span class=line><span class=cl><span class=sd>              --notes &#34;Sync Date: $(date &#39;+%Y-%m-%d %H:%M:%S&#39;) | Upstream Update: $date&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>            
+</span></span></span><span class=line><span class=cl><span class=sd>            echo &#34;$alias 同步完成!&#34;
+</span></span></span><span class=line><span class=cl><span class=sd>          done &lt; repo_list_sorted.txt</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><p>更新代码后，去网页端点 <strong>Run workflow</strong>，把 <code>force_resync</code> 填为 <strong><code>true</code></strong>，跑一次。</p><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://knight.abn-team.top/2023/03/29/GithunActionAutoSync2Gitee/ target=_blank rel=noopener>GithunActionAutoSync2Gitee</a></li><li><a class=link href=https://zhuanlan.zhihu.com/p/500768626 target=_blank rel=noopener>利用Github Actions自动同步Fork</a></li><li><a class=link href=https://github.com/tgymnich/fork-sync target=_blank rel=noopener>fork-sync</a></li></ul></section><footer class=article-footer><style>.article-edit-container a{-webkit-tap-highlight-color:transparent!important;outline:none!important}.article-edit-container a:hover{text-decoration:underline!important}.article-edit-container{border-top:1px dashed var(--body-background);padding-top:15px;margin-top:20px;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</style><section class=article-tags><style>.article-tags{margin-top:25px;margin-bottom:15px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.article-tags .tag-link{display:inline-flex!important;align-items:center!important;padding:4px 16px!important;background-color:rgba(30,144,255,8%)!important;color:#1e90ff!important;border-radius:999px!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;border:1px solid rgba(30,144,255,.2)!important;transition:all .3s ease!important}.article-tags .tag-link::before{content:"#"!important;margin-right:4px!important;color:inherit!important;font-weight:700!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 4px 12px rgba(30,144,255,.35)!important;border-color:#1e90ff!important}@media(prefers-color-scheme:dark){.article-tags .tag-link{background-color:rgba(88,166,255,.15)!important;color:#58a6ff!important;font-weight:600!important;border-color:rgba(88,166,255,.3)!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;box-shadow:0 4px 15px rgba(30,144,255,.4)!important}}</style><a href=/tags/github/ class=tag-link title=查看标签：Github>Github</a></section><section class=article-edit-container><a style=color:#1e90ff;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e5%88%a9%e7%94%a8Github-Actions%e8%87%aa%e5%8a%a8%e5%90%8c%e6%ad%a5Fork/index.md target=_blank rel="noopener noreferrer" title="前往 GitHub 编辑此页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
 <span>编辑此页</span>
-</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/d52b079a165689f2bc59fb4a4d0cea61b8f7618f target=_blank rel="noopener noreferrer" title="Commit Hash: #d52b079" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
-#d52b079</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/archives/2284a148/><div class=article-details><h2 class=article-title>解决Github Port 443以及Port 22问题&&合并冲突问题&&amp;codespaces</h2></div></a></article><article><a href=/archives/4e8cacb0/><div class=article-details><h2 class=article-title>利用github Actions自动同步项目到gitee并自动部署Gitee Pages</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/b32c2189/><div class=article-details><h2 class=article-title>upptime-利用Github-Actions检测网站运行状态</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.7.6/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
+</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/51ca8a84e159076fba8987c4b9f81b8449223677 target=_blank rel="noopener noreferrer" title="Commit Hash: #51ca8a8" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
+#51ca8a8</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/archives/2284a148/><div class=article-details><h2 class=article-title>解决Github Port 443以及Port 22问题&&合并冲突问题&&amp;codespaces</h2></div></a></article><article><a href=/archives/4e8cacb0/><div class=article-details><h2 class=article-title>利用github Actions自动同步项目到gitee并自动部署Gitee Pages</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/b32c2189/><div class=article-details><h2 class=article-title>upptime-利用Github-Actions检测网站运行状态</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.7.6/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
 2020 -
-2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-04-16T10:50:12Z title="2026-04-16 10:50">--</span><span class=footer-separator>|</span>
-<a href=https://github.com/iwyang/iwyang.github.io/commit/fe8081825dc8c821a209596a0d2cc0f5d2591d96 target=_blank rel=noopener title="Commit Hash: fe80818">#fe80818</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
+2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-04-17T09:31:06Z title="2026-04-17 09:31">--</span><span class=footer-separator>|</span>
+<a href=https://github.com/iwyang/iwyang.github.io/commit/51ca8a84e159076fba8987c4b9f81b8449223677 target=_blank rel=noopener title="Commit Hash: 51ca8a8">#51ca8a8</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
 <span class=footer-separator>|</span>
 主题 <a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script>(function(){var e,t,n,o,i,a,r,c,l,d,s=document.getElementById("site-last-update");s&&(n=new Date(s.getAttribute("data-time")),o=new Date,e=(o-n)/1e3,i=n.getFullYear(),a=String(n.getMonth()+1).padStart(2,"0"),r=String(n.getDate()).padStart(2,"0"),c=String(n.getHours()).padStart(2,"0"),l=String(n.getMinutes()).padStart(2,"0"),d=i+"-"+a+"-"+r+" "+c+":"+l,s.setAttribute("title",d),t="",e<60?t="刚刚":e<3600?t=Math.floor(e/60)+" 分钟前":e<86400?t=Math.floor(e/3600)+" 小时前":e<2592e3?t=Math.floor(e/86400)+" 天前":e<31536e3?t=Math.floor(e/2592e3)+" 个月前":t=Math.floor(e/31536e3)+" 年前",s.innerText=t)})()</script><script type=module>
     import gallery from '\/ts\/gallery.js';
