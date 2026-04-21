@@ -488,6 +488,8 @@ jobs:
 
 ## 新建一仓库专门备份Releases 
 
+### 新建脚本生成release-sync.yml
+
 1.新建仓库：https://github.com/iwyang/backup
 
 2.本地任意一文件夹新建脚本：`setup_backup.sh`，双击运行，它会帮你自动创建Workflow 文件，并将源码上传到指定仓库。
@@ -526,7 +528,7 @@ echo "---------------------------------------"
 echo "📂 正在生成 GitHub Actions 配置文件..."
 mkdir -p .github/workflows/
 
-# 这里已经替换为我们的终极版 Action 脚本
+# 注意：这里使用的是 'INNER_EOF'，带有单引号，可防止 Bash 在生成文件时意外解析里面的 $ 变量
 cat << 'INNER_EOF' > .github/workflows/release-sync.yml
 name: Release Sync
 permissions:
@@ -563,7 +565,6 @@ jobs:
             "2dust/v2rayN|v2rayN"
             "2dust/v2rayNG|v2rayNG"
             "orion-lib/OrionTV|OrionTV"
-            "MoonTechLab/Selene|Selene"
             "zbezj/HEU_KMS_Activator|HEU_KMS"
             "eritpchy/FingerprintPay|FingerprintPay"
             "connectbot/connectbot|connectbot"
@@ -579,7 +580,7 @@ jobs:
           for item in "${repos[@]}"; do
             src=$(echo $item | cut -d'|' -f1)
             alias=$(echo $item | cut -d'|' -f2)
-            pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2>/dev/null || echo "1970-01-01T00:00:00Z")
+            pub_date=$(gh release view --repo "$src" --json publishedAt --jq .publishedAt 2>/dev/null || echo "1970-01-01T00:00:00Z")
             echo "$pub_date|$src|$alias" >> repo_list.txt
           done
 
@@ -597,15 +598,26 @@ jobs:
             echo "=========================================="
             echo "正在处理 [$current_index/$total_items]: $alias (原作者更新于: $date)"
             
-            ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
+            ORIGINAL_TAG=$(gh release view --repo "$src" --json tagName --jq .tagName)
             NEW_TAG="${alias}-${ORIGINAL_TAG}"
 
             if [ "$FORCE_SYNC" != "true" ]; then
-              if gh release view $NEW_TAG > /dev/null 2>&1; then
+              if gh release view "$NEW_TAG" > /dev/null 2>&1; then
                 echo "跳过已存在的: $alias"
                 continue
               fi
             fi
+
+            # ==== 核心修复：清理同别名的历史 Release ====
+            echo "正在清理 [$alias] 的所有历史旧版本..."
+            OLD_TAGS=$(gh release list --limit 100 --json tagName --jq ".[].tagName" | grep "^${alias}-" || true)
+            for OLD_TAG in $OLD_TAGS; do
+              echo "删除旧版本: $OLD_TAG"
+              gh release delete "$OLD_TAG" --yes --cleanup-tag 2>/dev/null || true
+            done
+            # 兜底清理当前试图创建的 tag，防残留引发冲突
+            gh release delete "$NEW_TAG" --yes --cleanup-tag 2>/dev/null || true
+            # ============================================
 
             # 【核心修复】：注入穿越时间
             export GIT_AUTHOR_DATE="$date"
@@ -617,12 +629,11 @@ jobs:
             git pull --rebase origin main || true
             git push origin main
             
-            # 清理旧数据并下载新资源
-            gh release delete $NEW_TAG --yes --cleanup-tag 2>/dev/null || true
+            # 下载新资源
             mkdir -p ./temp_assets && rm -rf ./temp_assets/*
-            gh release download $ORIGINAL_TAG --repo $src --pattern "*" --dir ./temp_assets
+            gh release download "$ORIGINAL_TAG" --repo "$src" --pattern "*" --dir ./temp_assets
             
-            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name)
+            TITLE=$(gh release view "$ORIGINAL_TAG" --repo "$src" --json name --jq .name)
             if [ -z "$TITLE" ] || [ "$TITLE" == "null" ]; then
               TITLE="$ORIGINAL_TAG"
             fi
@@ -635,12 +646,12 @@ jobs:
             # 将排在最后的一个（时间最新的）标记为 Latest
             if [ "$current_index" -eq "$total_items" ]; then
               echo "标记为最新的 Release..."
-              gh release create $NEW_TAG ./temp_assets/* \
+              gh release create "$NEW_TAG" ./temp_assets/* \
                 --title "[$alias] $TITLE" \
                 --notes-file release_notes.md \
                 --latest
             else
-              gh release create $NEW_TAG ./temp_assets/* \
+              gh release create "$NEW_TAG" ./temp_assets/* \
                 --title "[$alias] $TITLE" \
                 --notes-file release_notes.md \
                 --latest=false
@@ -683,7 +694,7 @@ else
 fi
 ```
 
-3. `release-sync.yml`
+### 直接新建`release-sync.yml`
 
 ```yaml
 name: Release Sync
@@ -717,11 +728,11 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           FORCE_SYNC: ${{ github.event.inputs.force_resync }}
         run: |
+          # 定义项目列表：格式为 "上游仓库|本地别名"
           repos=(
             "2dust/v2rayN|v2rayN"
             "2dust/v2rayNG|v2rayNG"
             "orion-lib/OrionTV|OrionTV"
-            "MoonTechLab/Selene|Selene"
             "zbezj/HEU_KMS_Activator|HEU_KMS"
             "eritpchy/FingerprintPay|FingerprintPay"
             "connectbot/connectbot|connectbot"
@@ -737,11 +748,12 @@ jobs:
           for item in "${repos[@]}"; do
             src=$(echo $item | cut -d'|' -f1)
             alias=$(echo $item | cut -d'|' -f2)
+            # 获取上游最新发布的发布时间
             pub_date=$(gh release view --repo $src --json publishedAt --jq .publishedAt 2>/dev/null || echo "1970-01-01T00:00:00Z")
             echo "$pub_date|$src|$alias" >> repo_list.txt
           done
 
-          # 【升序排列】：按照时间从旧到新处理，确保时间线顺畅
+          # 【升序排列】：按照时间从旧到新处理，确保提交时间线顺畅
           sort -t'|' -k1,1 repo_list.txt -o repo_list_sorted.txt
           
           git config user.name "github-actions[bot]"
@@ -755,32 +767,45 @@ jobs:
             echo "=========================================="
             echo "正在处理 [$current_index/$total_items]: $alias (原作者更新于: $date)"
             
+            # 获取上游最新的 Tag 名
             ORIGINAL_TAG=$(gh release view --repo $src --json tagName --jq .tagName)
             NEW_TAG="${alias}-${ORIGINAL_TAG}"
 
+            # 检查本地是否已经存在该版本（如果不是强制同步）
             if [ "$FORCE_SYNC" != "true" ]; then
-              if gh release view $NEW_TAG > /dev/null 2>&1; then
-                echo "跳过已存在的: $alias"
+              if gh release view "$NEW_TAG" > /dev/null 2>&1; then
+                echo "跳过已存在的最新版: $alias ($ORIGINAL_TAG)"
                 continue
               fi
             fi
 
-            # 【核心修复】：注入穿越时间
+            # ==== 核心修复：彻底清理该项目的所有历史 Release 和 Tag ====
+            echo "正在清理 [$alias] 的所有历史旧版本..."
+            # 使用 JSON 格式获取标签名，避免被标题中的空格干扰
+            OLD_TAGS=$(gh release list --limit 100 --json tagName --jq ".[].tagName" | grep "^${alias}-" || true)
+            for OLD_TAG in $OLD_TAGS; do
+              echo "删除旧版本: $OLD_TAG"
+              gh release delete "$OLD_TAG" --yes --cleanup-tag 2>/dev/null || true
+            done
+            # 额外删除一次目标 Tag，确保万无一失
+            gh release delete "$NEW_TAG" --yes --cleanup-tag 2>/dev/null || true
+            # ========================================================
+
+            # 【时间穿越】：注入原始发布时间到 Git 提交
             export GIT_AUTHOR_DATE="$date"
             export GIT_COMMITTER_DATE="$date"
 
-            # 使用 --allow-empty 强制产生一个 Commit。
-            # 这样就算没有文件变化，这个 Tag 也会绑定到一个具有独立时间的 Commit 上，GitHub 排序就不会乱了！
+            # 产生一个带时间戳的空提交，用于绑定 Release
             git commit --allow-empty -m "Release $alias $ORIGINAL_TAG"
             git pull --rebase origin main || true
             git push origin main
             
-            # 清理旧数据并下载新资源
-            gh release delete $NEW_TAG --yes --cleanup-tag 2>/dev/null || true
+            # 下载上游资源
             mkdir -p ./temp_assets && rm -rf ./temp_assets/*
-            gh release download $ORIGINAL_TAG --repo $src --pattern "*" --dir ./temp_assets
+            gh release download "$ORIGINAL_TAG" --repo "$src" --pattern "*" --dir ./temp_assets
             
-            TITLE=$(gh release view $ORIGINAL_TAG --repo $src --json name --jq .name)
+            # 获取 Release 标题
+            TITLE=$(gh release view "$ORIGINAL_TAG" --repo "$src" --json name --jq .name)
             if [ -z "$TITLE" ] || [ "$TITLE" == "null" ]; then
               TITLE="$ORIGINAL_TAG"
             fi
@@ -788,17 +813,20 @@ jobs:
             CLEAN_DATE=$(echo "$date" | tr 'T' ' ' | tr -d 'Z')
             SYNC_TIME=$(date '+%Y-%m-%d %H:%M:%S')
             
+            # 生成发布说明
             echo "**Upstream Release:** [🔗 $src@$ORIGINAL_TAG](https://github.com/$src/releases/tag/$ORIGINAL_TAG) | **Upstream Update:** $CLEAN_DATE | **Sync Date:** $SYNC_TIME" > release_notes.md
             
-            # 将排在最后的一个（时间最新的）标记为 Latest
+            # 创建新的 Release
+            # 只有处理到排序后的最后一个项目时，才将其标记为 --latest
             if [ "$current_index" -eq "$total_items" ]; then
-              echo "标记为最新的 Release..."
-              gh release create $NEW_TAG ./temp_assets/* \
+              echo "创建并标记为最新的 Release..."
+              gh release create "$NEW_TAG" ./temp_assets/* \
                 --title "[$alias] $TITLE" \
                 --notes-file release_notes.md \
                 --latest
             else
-              gh release create $NEW_TAG ./temp_assets/* \
+              echo "创建 Release..."
+              gh release create "$NEW_TAG" ./temp_assets/* \
                 --title "[$alias] $TITLE" \
                 --notes-file release_notes.md \
                 --latest=false
