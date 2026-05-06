@@ -835,6 +835,26 @@ const mainTitle = (videoTitleRef.current || '')
          { label: '2024', value: '2024' },
 ```
 
+## 修改豆瓣默认数据代理
+
+修改`src/app/admin/page.tsx`
+
+```diff
+    Announcement: '',
+    SearchDownstreamMaxPage: 1,
+    SiteInterfaceCacheTime: 7200,
+- DoubanProxyType: 'cmliussss-cdn-tencent',
++ DoubanProxyType: 'cmliussss-cdn-ali',
+    DoubanProxy: '',
+- DoubanImageProxyType: 'cmliussss-cdn-tencent',
++ DoubanImageProxyType: 'cmliussss-cdn-ali',
+    DoubanImageProxy: '',
+    DisableYellowFilter: false,
+    FluidSearch: true,
+```
+
+
+
 ## 播放源排序
 
 问[gemini](https://gemini.google.com/app)：
