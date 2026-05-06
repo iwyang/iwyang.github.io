@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Bore's Notes</title><link>https://bore.vip/tags/linux/</link><description>Recent content in Linux on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 04 Mar 2026 07:30:14 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Thu, 18 Jul 2024 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Linux on Bore's Notes</title><link>https://bore.vip/tags/linux/</link><description>Recent content in Linux on Bore's Notes</description><generator>Hugo -- gohugo.io</generator><language>zh-CN</language><lastBuildDate>Wed, 06 May 2026 19:24:49 +0800</lastBuildDate><atom:link href="https://bore.vip/tags/linux/index.xml" rel="self" type="application/rss+xml"/><item><title>debian 10安装xfce桌面和配置vnc和wine</title><link>https://bore.vip/archives/26d4b8da/</link><pubDate>Thu, 18 Jul 2024 19:36:29 +0000</pubDate><guid>https://bore.vip/archives/26d4b8da/</guid><description>&lt;p&gt;Debian10 上安装部分应用，速度几乎为0，至少需要Debian11以上，512M内存足够。&lt;/p&gt;
 &lt;h2 id="安装桌面环境和vnc服务器"&gt;安装桌面环境和VNC服务器
 &lt;/h2&gt;&lt;p&gt;默认情况下，Debian 11的服务器并没有安装图形化桌面环境或VNC服务器，所以你将从安装这些开始。
 在选择 VNC 服务器和桌面环境方面，您有很多选择。在本教程中，你将安装最新的Xfce桌面环境和TightVNC软件包，这些软件包可从Ubuntu官方仓库获得。Xfce和TightVNC都以轻量级和快速著称，这将有助于确保即使在较慢的互联网连接上，VNC连接也能顺利和稳定。&lt;/p&gt;
@@ -3160,6 +3160,36 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ { label: &amp;#39;2026&amp;#39;, value: &amp;#39;2026&amp;#39; },
 &lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; { label: &amp;#39;2025&amp;#39;, value: &amp;#39;2025&amp;#39; },
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; { label: &amp;#39;2024&amp;#39;, value: &amp;#39;2024&amp;#39; },
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="修改豆瓣默认数据代理"&gt;修改豆瓣默认数据代理
+&lt;/h2&gt;&lt;p&gt;修改&lt;code&gt;src/app/admin/page.tsx&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-diff" data-lang="diff"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Announcement: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; SearchDownstreamMaxPage: 1,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; SiteInterfaceCacheTime: 7200,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- DoubanProxyType: &amp;#39;cmliussss-cdn-tencent&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ DoubanProxyType: &amp;#39;cmliussss-cdn-ali&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DoubanProxy: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- DoubanImageProxyType: &amp;#39;cmliussss-cdn-tencent&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ DoubanImageProxyType: &amp;#39;cmliussss-cdn-ali&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DoubanImageProxy: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DisableYellowFilter: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; FluidSearch: true,
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="播放源排序"&gt;播放源排序

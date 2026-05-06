@@ -6532,6 +6532,36 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; { label: &amp;#39;2024&amp;#39;, value: &amp;#39;2024&amp;#39; },
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
+&lt;/div&gt;&lt;h2 id="修改豆瓣默认数据代理"&gt;修改豆瓣默认数据代理
+&lt;/h2&gt;&lt;p&gt;修改&lt;code&gt;src/app/admin/page.tsx&lt;/code&gt;&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt; 1
+&lt;/span&gt;&lt;span class="lnt"&gt; 2
+&lt;/span&gt;&lt;span class="lnt"&gt; 3
+&lt;/span&gt;&lt;span class="lnt"&gt; 4
+&lt;/span&gt;&lt;span class="lnt"&gt; 5
+&lt;/span&gt;&lt;span class="lnt"&gt; 6
+&lt;/span&gt;&lt;span class="lnt"&gt; 7
+&lt;/span&gt;&lt;span class="lnt"&gt; 8
+&lt;/span&gt;&lt;span class="lnt"&gt; 9
+&lt;/span&gt;&lt;span class="lnt"&gt;10
+&lt;/span&gt;&lt;span class="lnt"&gt;11
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-diff" data-lang="diff"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; Announcement: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; SearchDownstreamMaxPage: 1,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; SiteInterfaceCacheTime: 7200,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- DoubanProxyType: &amp;#39;cmliussss-cdn-tencent&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ DoubanProxyType: &amp;#39;cmliussss-cdn-ali&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DoubanProxy: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gd"&gt;- DoubanImageProxyType: &amp;#39;cmliussss-cdn-tencent&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="gi"&gt;+ DoubanImageProxyType: &amp;#39;cmliussss-cdn-ali&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DoubanImageProxy: &amp;#39;&amp;#39;,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; DisableYellowFilter: false,
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt; FluidSearch: true,
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
 &lt;/div&gt;&lt;h2 id="播放源排序"&gt;播放源排序
 &lt;/h2&gt;&lt;p&gt;问&lt;a class="link" href="https://gemini.google.com/app" target="_blank" rel="noopener"
  &gt;gemini&lt;/a&gt;：&lt;/p&gt;
