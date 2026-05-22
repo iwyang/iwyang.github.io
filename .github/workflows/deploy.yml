@@ -64,7 +64,7 @@ jobs:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-avzr --delete"
           SOURCE: "public/"
-          REMOTE_HOST: "142.171.177.173"
+          REMOTE_HOST: "198.23.251.69"
           REMOTE_USER: "admin"
           TARGET: "/var/www/blog/"
           EXCLUDE: "/.git/, /.github/"
