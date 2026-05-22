@@ -8,8 +8,8 @@ draft: false
 toc: true
 weight: false
 image: ""
-categories: ["技术"]
-shuoshuotags: [""]
+categories: [""]
+shuoshuotags: ["技术"]
 ---
 
   RN有点拉，从DC02迁移到DC03，数据也不备份，还好所有数据都在本地，说提前发过邮件，可我也没看到邮件呀！
