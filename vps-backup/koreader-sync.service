@@ -5,9 +5,9 @@ After=network.target
 [Service]
 Type=simple
 User=root
-ExecStart=/root/scripts/sync_notes.sh
+ExecStart=/bin/bash /root/scripts/sync_notes.sh
 Restart=always
-RestartSec=5
+RestartSec=10
 
 [Install]
 WantedBy=multi-user.target
