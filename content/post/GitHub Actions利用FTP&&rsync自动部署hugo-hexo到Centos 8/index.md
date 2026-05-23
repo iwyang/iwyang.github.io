@@ -57,6 +57,9 @@ sudo chmod -R 755 /var/www/blog
 即使目录已存在，也请运行一遍以修正权限。
 ```bash
 # 确保在用户主目录下
+sudo groupadd admin
+sudo useradd -m -g admin admin
+sudo passwd admin
 cd /home/admin
 
 # 创建 .ssh 目录
@@ -252,7 +255,126 @@ git push origin develop
 
 这一次，GitHub Actions **一定会变绿**。现在开始操作吧！
 
+## 配置域名访问
+
+**文件同步到VPS上以后，就要配置域名了**
+
+```
+vi /etc/nginx/conf.d/blog.conf
+```
+
+```
+server {
+  listen  80 ;
+  listen [::]:80;
+  root /var/www/blog;
+  server_name bore.vip www.bore.vip;
+  access_log  /var/log/nginx/hugo_access.log;
+  error_log   /var/log/nginx/hugo_error.log;
+  error_page 404 =  /404.html;
+  location ~* ^.+\.(ico|gif|jpg|jpeg|png)$ {
+    root /var/www/blog;
+    access_log   off;
+    expires      1d;
+  }
+  location ~* ^.+\.(css|js|txt|xml|swf|wav)$ {
+    root /var/www/blog;
+    access_log   off;
+    expires      10m;
+  }
+  location / {
+    root /var/www/blog;
+    if (-f $request_filename) {
+    rewrite ^/(.*)$  /$1 break;
+    }
+  }
+  location /nginx_status {
+    stub_status on;
+    access_log off;
+ }
+}
+```
+
+重启Nginx：`systemctl restart nginx`
+
+## 申请SSL证书
+
+参考：[Nginx 配置 ssl 证书](/archives/58fed3fc/#Debian10上的操作)
+
+1.申请证书
+
+```
+sudo apt-get install letsencrypt -y
+```
+
+```
+certbot certonly --webroot -w /var/www/blog -d bore.vip -m 455343442@qq.com --agree-tos
+```
+
+2.编辑 Nginx
+
+```
+vi /etc/nginx/conf.d/blog.conf
+```
+
+```bash
+server {
+    listen 80;
+    listen [::]:80;
+    root /var/www/blog;
+    server_name  bore.vip www.bore.vip;
+
+    # 【关键】优先处理验证请求，防止被下方的 HTTPS 强制跳转拦截
+    location /.well-known/acme-challenge/ {
+        root /var/www/blog;
+        allow all;
+    }
+
+    # 处理域名跳转 (www -> non-www)
+    if ($host != 'bore.vip' ) {
+        rewrite ^/(.*)$ [https://bore.vip/$1](https://bore.vip/$1) permanent;
+    }
+
+    # 强制跳转 HTTPS
+    if ($scheme != "https") {
+        return 301 https://$host$request_uri;
+    }
+
+    listen 443 ssl; # managed by Certbot
+
+    # RSA 证书路径 (由 Certbot 自动管理)
+    ssl_certificate /etc/letsencrypt/live/bore.vip/fullchain.pem; # managed by Certbot
+    ssl_certificate_key /etc/letsencrypt/live/bore.vip/privkey.pem; # managed by Certbot
+}
+
+```
+
+3.证书自动续期
+
+先运行以下命令来测试证书的自动更新：
+
+```
+certbot renew --dry-run
+```
+
+如果一切正常，就可以编辑 crontab 定期运行以下命令：
+
+```
+crontab -e
+```
+
+```
+30 2 * */2 * /usr/bin/certbot renew --quiet && /bin/systemctl restart nginx
+```
+
+查看证书有效期的命令：
+
+```
+openssl x509 -noout -dates -in /etc/letsencrypt/live/bore.vip/cert.pem
+```
+
 ## rsync vs FTP 
+
 相比于传统的 FTP 或简单的文件拷贝，**rsync (Remote Sync)** 在网站部署和文件同步中具有压倒性的优势。对于维护像 **bore.vip** 这样基于 Hugo 的静态博客，rsync 是目前公认的最优选方案。
 
 以下是 rsync 的核心优势：

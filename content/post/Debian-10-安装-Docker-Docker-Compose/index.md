@@ -385,30 +385,15 @@ docker-compose up -d
 
 参考：[域名访问](/archives/d5e37958/?highlight=mem#配置域名访问)
 
-```yaml
-server {
+```fallback
+vi /etc/nginx/conf.d/tv.conf
+```
+```
+server
+{
   listen 80;
   server_name tv.bore.vip;
-
-  # Redirect all HTTP traffic to HTTPS
-  return 301 https://$host$request_uri;
-}
-
-server {
-  listen 443 ssl http2;
-  server_name tv.bore.vip;
-  root /data/wwwroot/tv.bore.vip;
-
-  # SSL setting
-  ssl_certificate /etc/letsencrypt/live/tv.bore.vip/fullchain.pem;
-  ssl_certificate_key /etc/letsencrypt/live/tv.bore.vip/privkey.pem;
-  ssl_protocols TLSv1.1 TLSv1.2 TLSv1.3;
-  ssl_ciphers EECDH+CHACHA20:EECDH+CHACHA20-draft:EECDH+AES128:RSA+AES128:EECDH+AES256:RSA+AES256:EECDH+3DES:RSA+3DES:!MD5;
-  ssl_prefer_server_ciphers on;
-  ssl_session_cache shared:SSL:10m;
-  ssl_session_timeout 10m;
-  add_header Strict-Transport-Security "max-age=31536000";
-
+  
   # proxy to 3000
   location / {
     proxy_pass http://127.0.0.1:3000;
@@ -422,13 +407,160 @@ server {
     add_header Cache-Control no-cache;
     expires 12h;
   }
-
   location ^~ /.well-known/acme-challenge/ {
     default_type "text/plain";
     allow all;
     root /data/wwwroot/tv.bore.vip/;
-  }
+  }  
 }
+```
+
+重启Nginx：`systemctl restart nginx`
+
+### 申请SSL证书
+
+参考：[Nginx 配置 ssl 证书](/archives/58fed3fc/#Debian10上的操作)
+
+1.新建文件夹：
+
+```bash
+mkdir -p /data/wwwroot/tv.bore.vip
+```
+
+2.申请证书
+
+```
+sudo apt-get install letsencrypt -y
+```
+
+```
+certbot certonly --webroot -w /data/wwwroot/tv.bore.vip -d tv.bore.vip -m 455343442@qq.com --agree-tos
+```
+
+3.编辑 Nginx
+
+```
+vi /etc/nginx/conf.d/tv.conf
+```
+
+```bash
+# ==========================================
+# 1. HTTP 流量处理：强制跳转 HTTPS & 允许证书续签
+# ==========================================
+server {
+    listen 80;
+    listen [::]:80; # 完美支持 IPv6
+    server_name tv.bore.vip;
+
+    # Let's Encrypt 自动化续签通道（保持 HTTP 可访问）
+    location ^~ /.well-known/acme-challenge/ {
+        default_type "text/plain";
+        allow all;
+        root /data/wwwroot/tv.bore.vip;
+    }
+
+    # 将所有其他普通的 HTTP 请求 301 重定向到 HTTPS
+    location / {
+        return 301 https://$host$request_uri;
+    }
+}
+
+# ==========================================
+# 2. HTTPS 流量处理：安全合规、高性能反向代理
+# ==========================================
+server {
+    listen 443 ssl;
+    listen [::]:443 ssl; # 完美支持 IPv6
+    server_name tv.bore.vip;
+    root /data/wwwroot/tv.bore.vip;
+
+    # 现代 Nginx (1.25.1+) 标准 HTTP/2 开启方式
+    http2 on;
+
+    # SSL 证书路径
+    ssl_certificate /etc/letsencrypt/live/tv.bore.vip/fullchain.pem;
+    ssl_certificate_key /etc/letsencrypt/live/tv.bore.vip/privkey.pem;
+
+    # 【优化】安全协议与加密套件（剔除不安全的 TLS 1.1 及老旧暗号）
+    ssl_protocols TLSv1.2 TLSv1.3;
+    ssl_ciphers ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:DHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384;
+    ssl_prefer_server_ciphers off; # 在 TLS 1.3 中关闭此项以允许客户端自主选择最佳加密
+
+    # 【优化】SSL 会话复用（减少握手延迟，提升访问速度）
+    ssl_session_cache shared:SSL:10m;
+    ssl_session_timeout 1d;
+    ssl_session_tickets off;
+
+    # 【优化】全方位增强型安全响应头
+    add_header Strict-Transport-Security "max-age=31536000; includeSubDomains" always; # 强制 HSTS
+    add_header X-Content-Type-Options "nosniff" always;                              # 防 MIME 类型嗅探
+    add_header X-Frame-Options "DENY" always;                                         # 防点击劫持
+    add_header X-XSS-Protection "1; mode=block" always;                               # 开启浏览器 XSS 拦截
+
+    # ==========================================
+    # 反向代理核心业务（3000端口后端）
+    # ==========================================
+    location / {
+        proxy_pass http://127.0.0.1:3000;
+        
+        # 基础代理透传请求头
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-Forwarded-Proto $scheme;
+        proxy_set_header REMOTE-HOST $remote_addr;
+
+        # 【优化】支持 WebSockets（解决诸如 Socket.io/实时渲染框架可能出现的 400/502 错误）
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+
+        # 向上游缓存状态透传
+        add_header X-Cache $upstream_cache_status;
+
+        # 【优化】修复原本矛盾的缓存头
+        # 既然是动态代理，后端数据应当保持最新，这里强制浏览器不缓存
+        add_header Cache-Control "no-store, no-cache, must-revalidate, proxy-revalidate, max-age=0";
+        expires -1;
+    }
+
+    # 安全起见，HTTPS 下也保留续签路径
+    location ^~ /.well-known/acme-challenge/ {
+        default_type "text/plain";
+        allow all;
+        root /data/wwwroot/tv.bore.vip;
+    }  
+}
+```
+
+4.重启Nginx
+
+```
+systemctl restart nginx
+```
+
+5.证书自动更新
+
+先运行以下命令来测试证书的自动更新：
+
+```
+certbot renew --dry-run
+```
+
+如果一切正常，就可以编辑 crontab 定期运行以下命令：
+
+```
+crontab -e
+```
+
+```
+30 2 * */2 * /usr/bin/certbot renew --quiet && /bin/systemctl restart nginx
+```
+
+查看证书有效期的命令：
+
+```
+openssl x509 -noout -dates -in /etc/letsencrypt/live/tv.bore.vip/cert.pem
 ```
 
 ### 视频源配置
@@ -466,6 +598,8 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 
 ## 自定义tv
 
+  **PS：https://github.com/iwyang/yangtv**
+
 ### fork仓库
 
 这一步简单，fork后可克隆到本地修改代码，修改完成后提交，注意先**添加本地SSH公钥**到仓库，参考：[配置 SSH 公钥](/archives/8b53a475/#配置SSH-公钥)
@@ -473,7 +607,7 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 克隆：
 
 ```
-git clone https://github.com/iwyang/DecoTV.git
+git clone https://github.com/iwyang/yangtv.git
 ```
 
 修改后提交：
@@ -544,9 +678,9 @@ vi docker-compose.yml
 
 ```yaml
 services:
-  decotv-core:
-    image: ghcr.io/iwyang/decotv:latest
-    container_name: decotv-core
+  yangtv-core:
+    image: ghcr.io/iwyang/yangtv:latest
+    container_name: yangtv-core
     restart: always  # You can keep 'unless-stopped' or 'always' as preferred
     ports:
       - '3000:3000'
@@ -554,36 +688,37 @@ services:
       - USERNAME=admin
       - PASSWORD=你的密码
       - NEXT_PUBLIC_STORAGE_TYPE=kvrocks
-      - KVROCKS_URL=redis://decotv-kvrocks:6666
+      - KVROCKS_URL=redis://yangtv-kvrocks:6666
       - NEXT_PUBLIC_DISABLE_YELLOW_FILTER=false
     networks:
-      - decotv-network
+      - yangtv-network
     depends_on:
-      - decotv-kvrocks
+      - yangtv-kvrocks
 
-  decotv-kvrocks:
+  yangtv-kvrocks:
     image: apache/kvrocks
-    container_name: decotv-kvrocks
+    container_name: yangtv-kvrocks
     restart: always  # You can keep 'unless-stopped' or 'always' as preferred
     volumes:
       - kvrocks-data:/var/lib/kvrocks
     networks:
-      - decotv-network
+      - yangtv-network
 
   watchtower:
     image: containrrr/watchtower
-    container_name: watchtower
+    container_name: watchtower-yangtv
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
     command: --interval 86400 --cleanup
     restart: always  # You can keep 'unless-stopped' or 'always' as preferred
 
 networks:
-  decotv-network:
+  yangtv-network:
     driver: bridge
 
 volumes:
   kvrocks-data:
+
 ```
 
 ## 修改TV logo和PWA启动图片

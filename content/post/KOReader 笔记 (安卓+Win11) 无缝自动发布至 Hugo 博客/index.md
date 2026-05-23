@@ -85,8 +85,7 @@ sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
 5. **配置免密登录**：在 WSL 终端中执行 `ssh-keygen -t ed25519`，然后用 `ssh-copy-id -p 22 root@你的VPS_IP` 发送公钥。
 6. **测试免密登录**：
 ```bash
-ssh -p 22 root@142.171.177.173
-
+ssh -p 22 root@198.23.251.69
 ```
 
 
@@ -158,7 +157,7 @@ LOG_FILE="/root/koreader_sync.log"
 
 # VPS 端信息保持不变
 REMOTE_USER="root"
-REMOTE_IP="你的VPS_IP" # 记得填入你的实际 IP，比如 142.171.177.173
+REMOTE_IP="你的VPS_IP" # 记得填入你的实际 IP，比如 198.23.251.69
 REMOTE_PORT="22" 
 REMOTE_DIR="/root/Koreader/" 
 REMOTE_SCRIPT="/root/scripts/sync_notes.sh" 
