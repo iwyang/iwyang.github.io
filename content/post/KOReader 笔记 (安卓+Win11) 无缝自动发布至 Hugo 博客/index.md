@@ -76,6 +76,9 @@ sudo apt install ./koreader_2026.03-1_amd64.deb -y
 
 # 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
 sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
+
+# 7. 回到主目录
+cd
 ```
 
 
