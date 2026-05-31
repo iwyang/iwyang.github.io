@@ -1244,9 +1244,9 @@ CSS：https://github.com/iwyang/iwyang.github.io/blob/develop/assets/scss/custom
 点击 **脚本编写** ➔ **在执行前运行 JavaScript**，**完整粘贴**这段“手动挡”无敌代码（完全不依赖系统内置函数，彻底告别中文乱码）：
 
 ```javascript
-const nameInput = getVariable('INPUT_FILENAME');
-const tagsInput = getVariable('INPUT_TAGS');
-const contentInput = getVariable('INPUT_CONTENT');
+const nameInput = getVariable("INPUT_FILENAME");
+const tagsInput = getVariable("INPUT_TAGS");
+const contentInput = getVariable("INPUT_CONTENT");
 
 let tagLine = '""';
 if (tagsInput) {
@@ -1254,11 +1254,15 @@ if (tagsInput) {
     if (tags.length > 0) tagLine = tags.join(', ');
 }
 
+// 修改点：使用最稳妥的字符串拼接方式生成本地时间，彻底解决差 8 小时的问题
 const now = new Date();
-const isoTime = new Date(now.getTime() + 8*60*60000).toISOString().replace("Z", "+08:00");
+const pad = (n) => n < 10 ? '0' + n : n;
+const isoTime = now.getFullYear() + '-' + pad(now.getMonth()+1) + '-' + pad(now.getDate()) + 'T' + pad(now.getHours()) + ':' + pad(now.getMinutes()) + ':' + pad(now.getSeconds()) + '+08:00';
+
 const dir = nameInput ? nameInput.trim() : ("bb-" + now.getTime());
 const slug = Math.random().toString(36).substring(2, 10);
 
+// 文件头信息 (Front Matter)
 const fm = [
     "---",
     `title: "${dir}"`,
@@ -1268,9 +1272,7 @@ const fm = [
     `lastmod: ${isoTime}`,
     "draft: false",
     "toc: true",
-    "weight: false",
     'image: ""',
-    'categories: [""]',
     `shuoshuotags: [${tagLine}]`,
     "---",
     contentInput
@@ -1317,8 +1319,8 @@ function encodeBase64UTF8(str) {
     return result;
 }
 
-setVariable('DIR_NAME', dir);
-setVariable('BASE64_CONTENT', encodeBase64UTF8(fm));
+setVariable("DIR_NAME", dir);
+setVariable("BASE64_CONTENT", encodeBase64UTF8(fm));
 ```
 
 #### 2. 配置无错 URL（基本设置）

@@ -169,8 +169,12 @@ on:
     branches:
       - develop
   # 【优化1】新增手动触发按钮
-  # 允许你在不修改代码的情况下，在 GitHub Actions 界面手动点击重新部署
   workflow_dispatch:
+
+# 👇 新增：完美的防并发“排队”机制，杜绝 Git 冲突报错 👇
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 env:
   TZ: Asia/Shanghai
@@ -200,14 +204,16 @@ jobs:
           path: |
             ~/.cache/hugo_cache
             resources
-          # 【优化2】更智能的缓存 Key
-          # 如果 go.sum 不存在（有些简单项目没有），则使用 hugo 配置文件做哈希，防止缓存失效
           key: ${{ runner.os }}-hugo-${{ hashFiles('go.sum') || hashFiles('hugo.*') }}
           restore-keys: |
             ${{ runner.os }}-hugo-
 
       - name: Build Hugo
-        run: hugo --gc --minify --logLevel info
+        # 👇 核心修改：在这里加上了 --buildFuture，强制渲染刚发出来的“未来”文章
+        run: hugo --gc --minify --logLevel info --buildFuture
+        # 【核心修正】注入 Token 供页脚 API 请求使用
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Deploy to GitHub Pages
         uses: peaceiris/actions-gh-pages@v4
@@ -218,20 +224,15 @@ jobs:
           commit_message: ${{ github.event.head_commit.message }}
 
       - name: Deploy to Server (Rsync)
-        # 【优化3】锁定插件版本
-        # 建议使用具体的版本号 (v5.1.0) 而不是 @main
-        # @main 是开发版，可能会突然引入 Bug 导致你部署失败
         uses: easingthemes/ssh-deploy@v5.1.0
         with:
           SSH_PRIVATE_KEY: ${{ secrets.SERVER_SSH_KEY }}
           ARGS: "-avzr --delete"
           SOURCE: "public/"
-          REMOTE_HOST: "142.171.177.173"
+          REMOTE_HOST: "198.23.251.69"
           REMOTE_USER: "admin"
           TARGET: "/var/www/blog/"
           EXCLUDE: "/.git/, /.github/"
-          # 【优化4】跳过 Host Key 检查
-          # 防止 VPS 重装或 IP 变动后，GitHub 报错 "Host key verification failed"
           SSH_CMD_ARGS: "-o StrictHostKeyChecking=no"
 ```
 
