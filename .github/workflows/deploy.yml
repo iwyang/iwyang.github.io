@@ -45,7 +45,8 @@ jobs:
             ${{ runner.os }}-hugo-
 
       - name: Build Hugo
-        run: hugo --gc --minify --logLevel info
+        # 👇 核心修改：在这里加上了 --buildFuture，强制渲染刚发出来的“未来”文章
+        run: hugo --gc --minify --logLevel info --buildFuture
         # 【核心修正】注入 Token 供页脚 API 请求使用
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
