@@ -1725,7 +1725,7 @@ echo "✅ 替换完成！所有 frontmatter 中的 [\"折腾\"] 已更新为 [\"
 
 ## 附：使用Git Submodule管理Hugo主题
 
-+ 如果克隆库的时候要初始化子模块，请加上 `--recursive` 参数，如：
++ 如果克隆库的时候要初始化子模块，请加上 `--recursive` 参数，如：  
 
 ```bash
 git clone -b develop git@github.com:iwyang/iwyang.github.io.git blog --recursive
