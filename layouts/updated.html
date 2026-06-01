@@ -1,0 +1,16 @@
+{{ define "body-class" }}template-archives{{ end }}
+{{ define "main" }}
+    <div class="archives-group">
+        <h2 class="section-title">{{ .Title }}</h2>
+        
+        <div class="article-list--compact">
+            {{ $pages := partial "helper/pages.html" .Site.Home }}
+            
+            {{ range $pages.ByLastmod.Reverse }}
+                {{ partial "article-list/compact-updated" . }}
+            {{ end }}
+        </div>
+    </div>
+
+    {{ partialCached "footer/footer" . }}
+{{ end }}
