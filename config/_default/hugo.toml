@@ -21,7 +21,7 @@ enableGitInfo = true
     shortname = "hugo-theme-stack"
 	
 [frontmatter]
-lastmod = [":git", "lastmod", ":fileModTime", ":default"]
+lastmod = ["lastmod", ":git", ":fileModTime", ":default"]
 
 [security]
   enableInlineShortcodes = false
