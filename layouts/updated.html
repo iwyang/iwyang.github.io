@@ -6,11 +6,43 @@
         <div class="article-list--compact">
             {{ $pages := partial "helper/pages.html" .Site.Home }}
             
-            {{ range $pages.ByLastmod.Reverse }}
+            {{/* 强制按最后修改时间倒序排列 */}}
+            {{ range sort $pages "Lastmod" "desc" }}
                 {{ partial "article-list/compact-updated" . }}
             {{ end }}
         </div>
     </div>
 
     {{ partialCached "footer/footer" . }}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeElements = document.querySelectorAll('time.dynamic-update-time');
+            const now = new Date(); // 获取访客打开网页时的真实时间
+
+            timeElements.forEach(el => {
+                const dateStr = el.getAttribute('datetime');
+                if (!dateStr) return;
+                
+                const date = new Date(dateStr);
+                const diff = (now - date) / 1000; // 计算当前时间与文章更新时间相差的秒数
+                
+                let text = '刚刚更新';
+                if (diff >= 31536000) {
+                    text = Math.floor(diff / 31536000) + ' 年前更新';
+                } else if (diff >= 2592000) {
+                    text = Math.floor(diff / 2592000) + ' 个月前更新';
+                } else if (diff >= 86400) {
+                    text = Math.floor(diff / 86400) + ' 天前更新';
+                } else if (diff >= 3600) {
+                    text = Math.floor(diff / 3600) + ' 小时前更新';
+                } else if (diff >= 60) {
+                    text = Math.floor(diff / 60) + ' 分钟前更新';
+                }
+                
+                // 将计算好的相对时间渲染到页面上
+                el.innerText = text;
+            });
+        });
+    </script>
 {{ end }}

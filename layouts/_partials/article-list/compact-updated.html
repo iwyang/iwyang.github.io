@@ -5,16 +5,8 @@
                 {{- .Title -}}
             </h2>
             <footer class="article-time">
-                <time datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}' title='更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}'>
-                    {{- $duration := sub now.Unix .Lastmod.Unix -}}
-                    {{- if lt $duration 0 -}}刚刚
-                    {{- else if lt $duration 60 -}}刚刚
-                    {{- else if lt $duration 3600 -}}{{ div $duration 60 }} 分钟前
-                    {{- else if lt $duration 86400 -}}{{ div $duration 3600 }} 小时前
-                    {{- else if lt $duration 2592000 -}}{{ div $duration 86400 }} 天前
-                    {{- else if lt $duration 31536000 -}}{{ div $duration 2592000 }} 个月前
-                    {{- else -}}{{ div $duration 31536000 }} 年前
-                    {{- end -}}
+                <time class="dynamic-update-time" datetime='{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}' title='更新于 {{ .Lastmod.Format "2006-01-02 15:04" }}'>
+                    {{ .Lastmod.Format "2006-01-02" }} 更新
                 </time>
             </footer>
         </div>
