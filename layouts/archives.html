@@ -37,8 +37,9 @@
     <div class="archives-group">
         <h2 class="section-title">{{ T "widget.recent.title" | default "最近更新" }}</h2>
         <div class="article-list--compact">
-            {{ range first 3 $pages.ByLastmod.Reverse }}
-                {{ partial "article-list/compact" . }}
+            
+            {{ range first 3 (sort $pages "Lastmod" "desc") }}
+                {{ partial "article-list/compact-updated" . }}
             {{ end }}
             
             {{ if gt (len $pages) 3 }}
@@ -69,4 +70,34 @@
     {{ end }}
 
     {{ partialCached "footer/footer" . }}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const timeElements = document.querySelectorAll('time.dynamic-update-time');
+            const now = new Date();
+
+            timeElements.forEach(el => {
+                const dateStr = el.getAttribute('datetime');
+                if (!dateStr) return;
+                
+                const date = new Date(dateStr);
+                const diff = (now - date) / 1000;
+                
+                let text = '刚刚更新';
+                if (diff >= 31536000) {
+                    text = Math.floor(diff / 31536000) + ' 年前更新';
+                } else if (diff >= 2592000) {
+                    text = Math.floor(diff / 2592000) + ' 个月前更新';
+                } else if (diff >= 86400) {
+                    text = Math.floor(diff / 86400) + ' 天前更新';
+                } else if (diff >= 3600) {
+                    text = Math.floor(diff / 3600) + ' 小时前更新';
+                } else if (diff >= 60) {
+                    text = Math.floor(diff / 60) + ' 分钟前更新';
+                }
+                
+                el.innerText = text;
+            });
+        });
+    </script>
 {{ end }}
