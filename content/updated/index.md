@@ -1,4 +1,4 @@
 ---
-title: "所有文章 (按更新时间排列)"
+title: "最近更新"
 layout: "updated"
 ---
