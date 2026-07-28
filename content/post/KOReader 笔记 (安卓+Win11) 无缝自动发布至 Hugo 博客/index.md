@@ -40,9 +40,12 @@ tags: ["hugo", "KOReader"]
 
 1. **Win11 安装 WSL2**：
    在 PowerShell (管理员) 中先执行 `wsl --install` ，然后重启。接着执行 `wsl --install -d Ubuntu`，安装后设置 Ubuntu 账号密码，默认是用户名是`Administrator`，改成`yang`
+
+   > PS：如果安装失败，查看附录
+
 2. **开启镜像网络模式 (关键)**：
    按下 `Win + R` 输入 `%UserProfile%`，新建或修改 `.wslconfig` 文件，填入：
-   
+
    ```ini
    [wsl2]
    memory=2GB
@@ -66,13 +69,14 @@ mkdir -p ~/Downloads
 cd ~/Downloads
 
 # 3. 下载 KOReader 安装包
-wget https://github.com/iwyang/backup/releases/download/koreader-v2026.03/koreader_2026.03-1_amd64.deb
+wget https://github.com/iwyang/backup/releases/download/koreader-v2026.07/koreader_2026.07-1_amd64.deb
 
 # 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)
-sudo chmod 644 ./koreader_2026.03-1_amd64.deb
+sudo chmod 644 ./koreader_2026.07-1_amd64.deb
 
 # 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)
-sudo apt install ./koreader_2026.03-1_amd64.deb -y
+sudo dpkg -i /home/yang/Downloads/koreader_2026.07-1_amd64.deb
+rm ./koreader_2026.07-1_amd64.deb
 
 # 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
 sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
@@ -682,3 +686,49 @@ curl -I https://www.google.com
 如果返回 `HTTP/2 200`，恭喜你，代理已经打通了！
 
 **PS：win11 23h2与win10 lstc2021所占内存差不多，并且wsl2在win11更为流畅。**
+
+## 附录：WSL 安装与初始化常见问题排查总结
+## WSL 安装与初始化常见问题排查总结
+
+在 Windows 11 (23H2) 系统中安装 WSL 及 Ubuntu 时，主要会遇到**下载进度卡在 0.0%** 和 **WSL 2 内核缺失报错 (`0x800701bc`)** 两个核心问题。以下是完整的排查与解决方法：
+
+---
+
+### 问题一：执行 `wsl --install` 或更新时卡在 `0.0%`
+
+* **原因分析**：由于网络环境限制，命令行默认调用的 Microsoft Store（微软应用商店）或微软服务器下载通道被阻断，导致无法获取安装包或内核。
+* **解决方法**：采用**离线安装**与**指定下载通道**的方式绕过限制。
+  1. **手动下载离线包**：
+     * **Ubuntu 22.04 LTS 官方离线直链**：[https://aka.ms/wslubuntu2204](https://aka.ms/wslubuntu2204)（浏览器点击即可直接下载 `AppxBundle` 安装包）
+  2. **使用 PowerShell 本地导入**：
+     将下载好的文件重命名并放入根目录（例如 `C:\ubuntu.appx`），以管理员身份运行 PowerShell 执行命令：
+     ```powershell
+     Add-AppxPackage C:\ubuntu.appx
+     ```
+  3. **使用网页通道更新（若需在线更新）**：
+     通过官方指定的网页通道参数强制拉取：
+     ```powershell
+     wsl --update --web-download
+     ```
+
+---
+
+### 问题二：启动 Ubuntu 时报 `WslRegisterDistribution failed with error: 0x800701bc`
+
+* **原因分析**：系统底层的 WSL 2 Linux 内核缺失、版本过旧或未被系统正确加载。
+* **解决方法**：正确启用系统底层功能并更新内核组件。
+  1. **开启 Windows 必要功能**：
+     以管理员身份运行 PowerShell，手动开启子系统与虚拟机平台支持：
+     ```powershell
+     dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
+     dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
+     ```
+  2. **更新 WSL 核心组件**：
+     运行以下命令让系统自动匹配并更新内核：
+     ```powershell
+     wsl --update
+     ```
+  3. **重启电脑**：
+     完成上述操作后，**务必重启一次计算机**以加载内核驱动。
+  4. **初始化 Ubuntu**：
+     重启完成，再次打开开始菜单中的 Ubuntu，即可正常进入并设置 Linux 的用户名和密码。
