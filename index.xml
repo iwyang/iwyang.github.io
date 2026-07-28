@@ -217,6 +217,11 @@
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;Win11 安装 WSL2&lt;/strong&gt;：
 在 PowerShell (管理员) 中先执行 &lt;code&gt;wsl --install&lt;/code&gt; ，然后重启。接着执行 &lt;code&gt;wsl --install -d Ubuntu&lt;/code&gt;，安装后设置 Ubuntu 账号密码，默认是用户名是&lt;code&gt;Administrator&lt;/code&gt;，改成&lt;code&gt;yang&lt;/code&gt;&lt;/p&gt;
+
+ &lt;blockquote&gt;
+ &lt;p&gt;PS：如果安装失败，查看附录&lt;/p&gt;
+
+ &lt;/blockquote&gt;
 &lt;/li&gt;
 &lt;li&gt;
 &lt;p&gt;&lt;strong&gt;开启镜像网络模式 (关键)&lt;/strong&gt;：
@@ -274,6 +279,7 @@
 &lt;/span&gt;&lt;span class="lnt"&gt;19
 &lt;/span&gt;&lt;span class="lnt"&gt;20
 &lt;/span&gt;&lt;span class="lnt"&gt;21
+&lt;/span&gt;&lt;span class="lnt"&gt;22
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
 &lt;td class="lntd"&gt;
 &lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-bash" data-lang="bash"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 1. 刷新软件源列表，防止系统因包列表太旧而在安装依赖时报 404 错误&lt;/span&gt;
@@ -284,13 +290,14 @@
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;cd&lt;/span&gt; ~/Downloads
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 3. 下载 KOReader 安装包&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2026.03/koreader_2026.03-1_amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;wget https://github.com/iwyang/backup/releases/download/koreader-v2026.07/koreader_2026.07-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader_2026.03-1_amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo chmod &lt;span class="m"&gt;644&lt;/span&gt; ./koreader_2026.07-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)&lt;/span&gt;
-&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install ./koreader_2026.03-1_amd64.deb -y
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo dpkg -i /home/yang/Downloads/koreader_2026.07-1_amd64.deb
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;rm ./koreader_2026.07-1_amd64.deb
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="c1"&gt;# 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）&lt;/span&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;sudo apt install fonts-noto-cjk -y &lt;span class="o"&gt;&amp;amp;&amp;amp;&lt;/span&gt; sudo fc-cache -f -v
@@ -1308,7 +1315,84 @@
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;如果返回 &lt;code&gt;HTTP/2 200&lt;/code&gt;，恭喜你，代理已经打通了！&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;PS：win11 23h2与win10 lstc2021所占内存差不多，并且wsl2在win11更为流畅。&lt;/strong&gt;&lt;/p&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS：win11 23h2与win10 lstc2021所占内存差不多，并且wsl2在win11更为流畅。&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id="附录wsl-安装与初始化常见问题排查总结"&gt;附录：WSL 安装与初始化常见问题排查总结
+&lt;/h2&gt;&lt;h2 id="wsl-安装与初始化常见问题排查总结"&gt;WSL 安装与初始化常见问题排查总结
+&lt;/h2&gt;&lt;p&gt;在 Windows 11 (23H2) 系统中安装 WSL 及 Ubuntu 时，主要会遇到&lt;strong&gt;下载进度卡在 0.0%&lt;/strong&gt; 和 &lt;strong&gt;WSL 2 内核缺失报错 (&lt;code&gt;0x800701bc&lt;/code&gt;)&lt;/strong&gt; 两个核心问题。以下是完整的排查与解决方法：&lt;/p&gt;
+&lt;hr&gt;
+&lt;h3 id="问题一执行-wsl---install-或更新时卡在-00"&gt;问题一：执行 &lt;code&gt;wsl --install&lt;/code&gt; 或更新时卡在 &lt;code&gt;0.0%&lt;/code&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原因分析&lt;/strong&gt;：由于网络环境限制，命令行默认调用的 Microsoft Store（微软应用商店）或微软服务器下载通道被阻断，导致无法获取安装包或内核。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解决方法&lt;/strong&gt;：采用&lt;strong&gt;离线安装&lt;/strong&gt;与&lt;strong&gt;指定下载通道&lt;/strong&gt;的方式绕过限制。
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;手动下载离线包&lt;/strong&gt;：
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Ubuntu 22.04 LTS 官方离线直链&lt;/strong&gt;：&lt;a class="link" href="https://aka.ms/wslubuntu2204" target="_blank" rel="noopener"
+ &gt;https://aka.ms/wslubuntu2204&lt;/a&gt;（浏览器点击即可直接下载 &lt;code&gt;AppxBundle&lt;/code&gt; 安装包）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用 PowerShell 本地导入&lt;/strong&gt;：
+将下载好的文件重命名并放入根目录（例如 &lt;code&gt;C:\ubuntu.appx&lt;/code&gt;），以管理员身份运行 PowerShell 执行命令：
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="nb"&gt;Add-AppxPackage&lt;/span&gt; &lt;span class="n"&gt;C:&lt;/span&gt;&lt;span class="p"&gt;\&lt;/span&gt;&lt;span class="n"&gt;ubuntu&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;appx&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;使用网页通道更新（若需在线更新）&lt;/strong&gt;：
+通过官方指定的网页通道参数强制拉取：
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;wsl&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-update&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-web-download&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;hr&gt;
+&lt;h3 id="问题二启动-ubuntu-时报-wslregisterdistribution-failed-with-error-0x800701bc"&gt;问题二：启动 Ubuntu 时报 &lt;code&gt;WslRegisterDistribution failed with error: 0x800701bc&lt;/code&gt;
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;原因分析&lt;/strong&gt;：系统底层的 WSL 2 Linux 内核缺失、版本过旧或未被系统正确加载。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;解决方法&lt;/strong&gt;：正确启用系统底层功能并更新内核组件。
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;开启 Windows 必要功能&lt;/strong&gt;：
+以管理员身份运行 PowerShell，手动开启子系统与虚拟机平台支持：
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;span class="lnt"&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;online&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;enable-feature&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;featurename&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="nb"&gt;Microsoft-Windows&lt;/span&gt;&lt;span class="n"&gt;-Subsystem-Linux&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;norestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;dism&lt;/span&gt;&lt;span class="p"&gt;.&lt;/span&gt;&lt;span class="py"&gt;exe&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;online&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="nb"&gt;enable-feature&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;featurename&lt;/span&gt;&lt;span class="err"&gt;:&lt;/span&gt;&lt;span class="n"&gt;VirtualMachinePlatform&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;all&lt;/span&gt; &lt;span class="p"&gt;/&lt;/span&gt;&lt;span class="n"&gt;norestart&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;更新 WSL 核心组件&lt;/strong&gt;：
+运行以下命令让系统自动匹配并更新内核：
+&lt;div class="highlight"&gt;&lt;div class="chroma"&gt;
+&lt;table class="lntable"&gt;&lt;tr&gt;&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code&gt;&lt;span class="lnt"&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class="lntd"&gt;
+&lt;pre tabindex="0" class="chroma"&gt;&lt;code class="language-powershell" data-lang="powershell"&gt;&lt;span class="line"&gt;&lt;span class="cl"&gt;&lt;span class="n"&gt;wsl&lt;/span&gt; &lt;span class="p"&gt;-&lt;/span&gt;&lt;span class="n"&gt;-update&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;重启电脑&lt;/strong&gt;：
+完成上述操作后，&lt;strong&gt;务必重启一次计算机&lt;/strong&gt;以加载内核驱动。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;初始化 Ubuntu&lt;/strong&gt;：
+重启完成，再次打开开始菜单中的 Ubuntu，即可正常进入并设置 Linux 的用户名和密码。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+&lt;/ul&gt;</description></item><item><title>KOReader 自建进度同步与 Dropbox 全自动备份终极指南</title><link>https://bore.vip/archives/f2d557e4/</link><pubDate>Thu, 26 Feb 2026 22:57:28 +0800</pubDate><guid>https://bore.vip/archives/f2d557e4/</guid><description>&lt;p&gt;对于多设备（手机、平板）阅读的硬核书友而言，将阅读进度掌握在自己手里是最安心的。本教程将带你在 VPS（如 RackNerd）上使用 Docker 部署私有进度同步服务，并利用 Rclone 实现每天全自动备份到 Dropbox（且云端永远只保留最新的一份压缩包，不占空间）。&lt;/p&gt;
 &lt;hr&gt;
 &lt;h2 id="第一部分服务端部署-docker-同步中心"&gt;第一部分：服务端部署 (Docker 同步中心)
 &lt;/h2&gt;&lt;p&gt;为了避免端口冲突，我们为同步服务分配 &lt;code&gt;3002&lt;/code&gt; 端口。&lt;/p&gt;
