@@ -17,3 +17,5 @@ shuoshuotags: ["技术"]
 + 开机按F12等
 + 进入系统，按住shift键—点击重启—选择使用设备，选择USB Device
 + 进入系统，打开设置—搜索“高级启动”—点击“立即重新启动”—选择使用设备，选择USB Device
+
+surface book2 开机按Windows键进入bios
