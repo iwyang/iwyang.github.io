@@ -11,6 +11,6 @@ image: ""
 categories: [""]
 shuoshuotags: ["技术"]
 ---
-
+多开CPU内存优化软件
 + CPU管理 Process Lasso
 + 内存优化 Mem Reduct
