@@ -8,7 +8,11 @@ slug: 3bf3725e
 date: 2021-07-24 01:15:26
 cover: false
 ---
-
+##   克隆自定义主题
+```bash
+git clone https://github.com/iwyang/hugo-theme-stack.git
+```
+---
 ##   修改文件名
 
 遍历当前目录下的所有 `.md` 文件，为每个文件创建一个同名文件夹，并将文件移动进去重命名为 `index.md`
