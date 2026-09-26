@@ -596,6 +596,17 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 
 ---
 
+### 删除容器、镜像
+
+```
+cd /root/docker/tv
+docker-compose stop
+docker-compose down  
+docker image prune -f
+cd ..
+rm -rf /root/docker/tv
+```
+
 ## 自定义tv
 
   **PS：https://github.com/iwyang/yangtv**
