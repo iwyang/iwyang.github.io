@@ -77,6 +77,12 @@ PS：`putty`没有[FinalShell](https://www.hostbuf.com/)好用。
 ```bash
 apt install vim -y
 ```
+安装失败，用下面命令：
+
+```
+apt install vim=2:8.2.2434-3+deb11u1 vim-common=2:8.2.2434-3+deb11u1 -y --allow-downgrades
+```
+
 2.修改`vimrc.tiny`
 `vi /etc/vim/vimrc.tiny` 将其中的语句 `set compatible` 修改为 `set nocompatible` ，非兼容模式下可以解决方向键变ABCD的问题。
 
