@@ -602,7 +602,7 @@ PS：是否需要 `docker-compose down`？（问chatgpt）
 cd /root/docker/tv
 docker-compose stop
 docker-compose down  
-docker image prune -f
+docker network prune -f && docker system prune -a --volumes -f
 cd ..
 rm -rf /root/docker/tv
 ```
