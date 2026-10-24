@@ -26,10 +26,6 @@ links:
     description: 分享设计与科技生活  
     website: https://blog.zhheo.com/
     image: heo.jpg
-  - title: Leonus
-    description: 进一寸有进一寸的欢喜。
-    website: https://blog.leonus.cn/
-    image: leonus.jpg
   - title: 六月长河
     description: 记录，分享，生活与技术的时光印记！
     website: https://kingpo.vercel.app/
