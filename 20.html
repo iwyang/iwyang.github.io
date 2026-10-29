@@ -19,7 +19,14 @@
         radial-gradient(at 90% 15%, rgba(245, 158, 11, 0.08) 0px, transparent 50%),
         radial-gradient(at 50% 90%, rgba(59, 130, 246, 0.07) 0px, transparent 50%);
       user-select: none;
+      -webkit-user-select: none;
       -webkit-tap-highlight-color: transparent;
+      touch-action: manipulation;
+    }
+    button, select {
+      touch-action: manipulation;
+      user-select: none;
+      -webkit-user-select: none;
     }
     .tabular-nums {
       font-variant-numeric: tabular-nums;
@@ -72,6 +79,26 @@
     .pulse-retry {
       animation: pulseOrange 1.8s infinite;
     }
+    /* Responsive Numpad Grid: Mobile 4x3, Desktop (>640px) 6x2 */
+    .numpad-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 0.5rem;
+    }
+    @media (min-width: 641px) {
+      .numpad-grid {
+        grid-template-columns: repeat(6, minmax(0, 1fr));
+        gap: 0.625rem;
+      }
+      .numpad-grid [data-key="backspace"] {
+        grid-column: 6;
+        grid-row: 1;
+      }
+      .numpad-grid [data-key="enter"] {
+        grid-column: 6;
+        grid-row: 2;
+      }
+    }
     /* Custom Scrollbar */
     ::-webkit-scrollbar {
       width: 6px;
@@ -96,81 +123,89 @@
   <canvas id="confettiCanvas" class="fixed inset-0 pointer-events-none z-50"></canvas>
 
   <!-- Top Navigation & Status Header -->
-  <header class="sticky top-0 z-30 bg-white/90 backdrop-blur-md border-b border-emerald-100 shadow-sm">
-    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2.5">
-      <div class="flex flex-wrap items-center justify-between gap-2">
-        <!-- Brand Title -->
-        <div class="flex items-center gap-2.5">
-          <div class="w-10 h-10 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white shadow-sm font-black text-xl">
-            20
+  <header class="sticky top-0 z-30 bg-white/95 backdrop-blur-md border-b border-emerald-100 shadow-xs">
+    <div class="max-w-7xl mx-auto px-3 sm:px-6 py-2 sm:py-2.5">
+      <!-- Top Row: Brand Title + Single-Line Toolbar (Mode Select + Refresh + Sound) -->
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-2">
+        <!-- Brand Title Row -->
+        <div class="flex items-center justify-between gap-2">
+          <div class="flex items-center gap-2 min-w-0">
+            <div class="w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-2xl bg-gradient-to-br from-emerald-400 to-teal-600 flex items-center justify-center text-white shadow-xs font-black text-base sm:text-xl">
+              20
+            </div>
+            <div class="min-w-0">
+              <h1 class="text-base sm:text-lg font-extrabold text-slate-800 tracking-tight flex items-center gap-1.5 truncate">
+                <span class="truncate">20以内加减法全覆盖闯关</span>
+                <span class="hidden sm:inline-block text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700 shrink-0">无10以内算式</span>
+              </h1>
+              <p class="text-xs text-slate-500 hidden sm:block">不重不漏洗牌 · 错题自动回炉 · 100%掌握通关</p>
+            </div>
           </div>
-          <div>
-            <h1 class="text-base sm:text-lg font-extrabold text-slate-800 tracking-tight flex items-center gap-1.5">
-              20以内加减法全覆盖闯关
-              <span class="hidden sm:inline-block text-xs font-bold px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">无10以内算式</span>
-            </h1>
-            <p class="text-xs text-slate-500 hidden sm:block">不重不漏洗牌 · 错题自动回炉 · 100%掌握通关</p>
-          </div>
+
+          <!-- Mobile Quick Matrix Jump Button -->
+          <button id="btnMatrixJumpMobile" title="查看算式图鉴" class="md:hidden shrink-0 px-2.5 py-1 rounded-xl bg-emerald-50 active:bg-emerald-100 text-emerald-700 border border-emerald-200 font-extrabold text-xs flex items-center gap-1 transition">
+            <span>📋</span><span>算式图鉴</span>
+          </button>
         </div>
 
-        <!-- Mode Selector & Controls -->
-        <div class="flex flex-wrap items-center gap-2">
-          <!-- Mode Dropdown -->
-          <div class="relative">
-            <select id="modeSelect" aria-label="选择练习模式" class="appearance-none bg-emerald-50 hover:bg-emerald-100/80 text-emerald-900 font-bold text-xs sm:text-sm rounded-xl pl-3 pr-8 py-2 border border-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer transition">
+        <!-- Toolbar Row: Mode Dropdown + Refresh Button + Sound Button (Strictly single row, never wraps) -->
+        <div class="flex items-center gap-2 flex-nowrap w-full md:w-auto">
+          <!-- Mode Dropdown (flex-1 min-w-0 ensures it shrinks gracefully on narrow screens) -->
+          <div class="relative flex-1 min-w-0 md:w-64 md:flex-initial">
+            <select id="modeSelect" aria-label="选择练习模式" class="w-full truncate appearance-none bg-emerald-50 hover:bg-emerald-100/80 text-emerald-900 font-bold text-xs sm:text-sm rounded-xl pl-2.5 pr-7 h-[38px] border border-emerald-200 focus:outline-none focus:ring-2 focus:ring-emerald-400 cursor-pointer transition">
               <option value="core72">⭐ 模式一：核心进退位全集 (72道)</option>
               <option value="add36">➕ 模式二：仅20以内进位加法 (36道)</option>
               <option value="sub36">➖ 模式三：仅20以内退位减法 (36道)</option>
               <option value="full180">🏆 模式四：11~20全算式覆盖 (180道)</option>
             </select>
-            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2.5 text-emerald-700">
+            <div class="pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-emerald-700">
               <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M19 9l-7 7-7-7"/></svg>
             </div>
           </div>
 
-          <!-- Restart Button -->
-          <button id="btnResetRound" title="重新洗牌开始本模式" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-bold text-xs sm:text-sm flex items-center gap-1 transition">
-            <svg class="w-4 h-4 text-slate-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
-            <span class="hidden md:inline">重来</span>
+          <!-- Refresh / Reset Button (Fixed 38x38 on mobile, auto width on desktop) -->
+          <button id="btnResetRound" title="重新洗牌开始本模式" class="shrink-0 w-[38px] sm:w-auto h-[38px] sm:px-3 rounded-xl bg-slate-100 hover:bg-slate-200 active:bg-slate-300 text-slate-700 border border-slate-200/80 font-bold text-xs sm:text-sm flex items-center justify-center gap-1 transition">
+            <svg class="w-4 h-4 text-slate-600 shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"/></svg>
+            <span class="hidden sm:inline">重来</span>
           </button>
 
-          <!-- Sound Toggle Button -->
-          <button id="btnSoundToggle" title="音效开关" class="p-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 transition">
-            <svg id="iconSoundOn" class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
-            <svg id="iconSoundOff" class="w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
+          <!-- Sound Toggle Button (Immediately to the right of Refresh Button, never wraps) -->
+          <button id="btnSoundToggle" title="音效开关" class="shrink-0 w-[38px] h-[38px] rounded-xl bg-amber-50 hover:bg-amber-100 active:bg-amber-200 text-amber-700 border border-amber-200 flex items-center justify-center transition">
+            <svg id="iconSoundOn" class="icon-sound-on w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M15.536 8.464a5 5 0 010 7.072m2.828-9.9a9 9 0 010 12.728M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/></svg>
+            <svg id="iconSoundOff" class="icon-sound-off w-5 h-5 hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M5.586 15H4a1 1 0 01-1-1v-4a1 1 0 011-1h1.586l4.707-4.707C10.923 3.663 12 4.109 12 5v14c0 .891-1.077 1.337-1.707.707L5.586 15z"/><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" d="M17 14l2-2m0 0l2-2m-2 2l-2-2m2 2l2 2"/></svg>
           </button>
         </div>
       </div>
 
       <!-- Progress Bar & Live Stats Strip -->
-      <div class="mt-2.5 flex flex-col sm:flex-row items-stretch sm:items-center gap-2 sm:gap-4 bg-slate-50/90 px-3 py-2 rounded-2xl border border-slate-200/70">
+      <div class="mt-2 flex flex-col sm:flex-row items-stretch sm:items-center gap-1.5 sm:gap-4 bg-slate-50/90 px-2.5 sm:px-3 py-1.5 sm:py-2 rounded-2xl border border-slate-200/70">
         <!-- Mastery Progress -->
-        <div class="flex-1 flex items-center gap-3">
+        <div class="flex-1 flex items-center gap-2 sm:gap-3">
           <div class="text-xs font-extrabold text-slate-600 whitespace-nowrap flex items-center gap-1">
             <span>🎯 已掌握</span>
-            <span id="progressText" class="text-emerald-600 text-sm tabular-nums">0 / 72</span>
+            <span id="progressText" class="text-emerald-600 text-xs sm:text-sm tabular-nums">0 / 72</span>
           </div>
-          <div class="flex-1 h-3 bg-slate-200 rounded-full overflow-hidden p-0.5">
+          <div class="flex-1 h-2.5 sm:h-3 bg-slate-200 rounded-full overflow-hidden p-0.5">
             <div id="progressBar" class="h-full bg-gradient-to-r from-emerald-400 to-teal-500 rounded-full transition-all duration-300" style="width: 0%"></div>
           </div>
-          <span id="queueRemainBadge" class="text-xs font-bold px-2 py-0.5 rounded-lg bg-slate-200/80 text-slate-600 tabular-nums whitespace-nowrap">
+          <span id="queueRemainBadge" class="text-[11px] sm:text-xs font-bold px-2 py-0.5 rounded-lg bg-slate-200/80 text-slate-600 tabular-nums whitespace-nowrap">
             待练 72
           </span>
         </div>
 
         <!-- Stats Pills: Combo, Retry Queue, Timer -->
-        <div class="flex items-center justify-between sm:justify-end gap-2 text-xs font-extrabold">
-          <div id="comboBadge" class="px-2.5 py-1 rounded-xl bg-orange-50 text-orange-600 border border-orange-200/80 flex items-center gap-1 tabular-nums">
+        <div class="flex items-center justify-between sm:justify-end gap-1.5 sm:gap-2 text-[11px] sm:text-xs font-extrabold">
+          <div id="comboBadge" class="flex-1 sm:flex-initial justify-center px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-xl bg-orange-50 text-orange-600 border border-orange-200/80 flex items-center gap-1 tabular-nums">
             <span>🔥 连击</span>
-            <span id="comboCount" class="text-sm">0</span>
+            <span id="comboCount" class="text-xs sm:text-sm">0</span>
           </div>
-          <div class="px-2.5 py-1 rounded-xl bg-amber-50 text-amber-700 border border-amber-200/80 flex items-center gap-1 tabular-nums" title="本轮曾答错并回炉的算式数">
+          <button id="btnJumpWrongBook" class="flex-1 sm:flex-initial justify-center px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200/80 flex items-center gap-1 tabular-nums transition" title="点击查看错题本">
             <span>🔄 错题本</span>
-            <span id="mistakeCount">0</span>
-          </div>
-          <div class="px-2.5 py-1 rounded-xl bg-sky-50 text-sky-700 border border-sky-200/80 flex items-center gap-1 tabular-nums">
+            <span id="mistakeCount" class="text-xs sm:text-sm">0</span>
+          </button>
+          <div class="flex-1 sm:flex-initial justify-center px-2 sm:px-2.5 py-0.5 sm:py-1 rounded-xl bg-sky-50 text-sky-700 border border-sky-200/80 flex items-center gap-1 tabular-nums">
             <span>⏱️ 用时</span>
-            <span id="timerText" class="text-sm">00:00</span>
+            <span id="timerText" class="text-xs sm:text-sm">00:00</span>
           </div>
         </div>
       </div>
@@ -178,18 +213,18 @@
   </header>
 
   <!-- Main Content Grid -->
-  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-4 grid grid-cols-1 lg:grid-cols-12 gap-5 items-start">
+  <main class="max-w-7xl mx-auto px-3 sm:px-6 pt-2.5 sm:pt-4 grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-5 items-start">
 
     <!-- Left Column: Question Card, Smart Hint & Numpad (7 cols on lg) -->
-    <section class="lg:col-span-7 flex flex-col gap-4">
+    <section class="lg:col-span-7 flex flex-col gap-3 sm:gap-4">
 
       <!-- Question Arena Card -->
-      <div id="questionCard" class="bg-white rounded-3xl p-4 sm:p-6 shadow-md border-2 border-emerald-100 relative overflow-hidden transition-all">
+      <div id="questionCard" class="bg-white rounded-3xl p-3.5 sm:p-6 shadow-md border-2 border-emerald-100 relative overflow-hidden transition-all">
         
         <!-- Card Top Meta Bar -->
-        <div class="flex items-center justify-between gap-2 mb-3">
-          <div class="flex items-center gap-2">
-            <span id="eqCategoryBadge" class="px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800">
+        <div class="flex items-center justify-between gap-2 mb-2 sm:mb-3">
+          <div class="flex items-center gap-1.5 sm:gap-2 flex-wrap">
+            <span id="eqCategoryBadge" class="px-2.5 sm:px-3 py-1 rounded-full text-xs font-extrabold bg-emerald-100 text-emerald-800">
               20以内进位加法
             </span>
             <span id="retryTag" class="hidden px-2.5 py-1 rounded-full text-xs font-extrabold bg-amber-100 text-amber-800 border border-amber-300 animate-pulse">
@@ -198,21 +233,21 @@
           </div>
 
           <!-- Toggle Hint Button -->
-          <button id="btnShowHint" class="px-3 py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-700 border border-amber-200 text-xs font-extrabold flex items-center gap-1.5 transition">
+          <button id="btnShowHint" class="px-2.5 sm:px-3 py-1 sm:py-1.5 rounded-xl bg-amber-50 hover:bg-amber-100 active:bg-amber-200 text-amber-700 border border-amber-200 text-xs font-extrabold flex items-center gap-1 transition shrink-0">
             <span>💡 凑十/破十提示</span>
             <span class="hidden sm:inline text-[11px] text-amber-500 font-normal">(H键)</span>
           </button>
         </div>
 
         <!-- Big Equation Display -->
-        <div class="my-4 sm:my-6 py-4 px-3 rounded-2xl bg-gradient-to-b from-slate-50 to-emerald-50/30 border border-slate-200/80 flex items-center justify-center">
+        <div class="my-2.5 sm:my-5 py-3 sm:py-4 px-3 rounded-2xl bg-gradient-to-b from-slate-50 to-emerald-50/30 border border-slate-200/80 flex items-center justify-center">
           <div class="flex items-center justify-center gap-2 sm:gap-4 text-4xl sm:text-6xl font-black tracking-tight tabular-nums text-slate-800">
             <span id="numA" class="text-slate-800">8</span>
             <span id="opSign" class="text-emerald-600">+</span>
             <span id="numB" class="text-slate-800">5</span>
             <span class="text-slate-400">=</span>
             <!-- Answer Input Box -->
-            <div id="answerBox" class="min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-white border-4 border-emerald-400 shadow-inner flex items-center justify-center text-emerald-700 transition-all">
+            <div id="answerBox" class="min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-white border-4 border-emerald-400 shadow-inner flex items-center justify-center text-emerald-700 transition-all">
               <span id="userInputText">?</span>
             </div>
           </div>
@@ -266,38 +301,39 @@
         </div>
 
         <!-- Input Mode Switch & Numpad Area -->
-        <div class="mt-2 pt-3 border-t border-slate-100">
-          <div class="flex flex-wrap items-center justify-between gap-2 mb-3 text-xs">
-            <span class="font-bold text-slate-500 flex items-center gap-1">
+        <div class="mt-2 pt-2.5 sm:pt-3 border-t border-slate-100">
+          <div class="flex items-center justify-between gap-2 mb-2.5 text-xs">
+            <span class="hidden md:flex font-bold text-slate-500 items-center gap-1">
               ⌨️ 支持点击下方数字键 或 使用电脑键盘输入
             </span>
-            <div class="flex items-center gap-1.5 bg-slate-100 p-1 rounded-xl">
-              <button id="btnModeAuto" class="px-2.5 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-sm transition">
+            <div class="flex items-center gap-1 bg-slate-100 p-1 rounded-xl w-full md:w-auto justify-center">
+              <button id="btnModeAuto" class="flex-1 md:flex-initial px-3 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-xs transition">
                 ⚡ 智能自动判题
               </button>
-              <button id="btnModeManual" class="px-2.5 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition">
+              <button id="btnModeManual" class="flex-1 md:flex-initial px-3 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition">
                 ⏎ 手动点确定
               </button>
             </div>
           </div>
 
-          <!-- Responsive Kid-Friendly Numpad -->
-          <div class="grid grid-cols-4 sm:grid-cols-6 gap-2.5">
-            <button data-key="1" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">1</button>
-            <button data-key="2" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">2</button>
-            <button data-key="3" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">3</button>
-            <button data-key="4" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">4</button>
-            <button data-key="5" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">5</button>
-            <button data-key="backspace" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-base font-extrabold text-rose-700 flex items-center justify-center gap-1">
-              <span>⌫</span><span class="text-xs sm:text-sm">退格</span>
+          <!-- Responsive Kid-Friendly Numpad:
+               Mobile (<=640px): 4 cols x 3 rows -> Row 1: 1 2 3 4 | Row 2: 5 6 7 8 | Row 3: 9 0 退格 确定
+               Desktop (>640px): 6 cols x 2 rows -> Row 1: 1 2 3 4 5 退格 | Row 2: 6 7 8 9 0 确定 -->
+          <div class="numpad-grid">
+            <button data-key="1" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">1</button>
+            <button data-key="2" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">2</button>
+            <button data-key="3" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">3</button>
+            <button data-key="4" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">4</button>
+            <button data-key="5" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">5</button>
+            <button data-key="6" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">6</button>
+            <button data-key="7" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">7</button>
+            <button data-key="8" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">8</button>
+            <button data-key="9" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">9</button>
+            <button data-key="0" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">0</button>
+            <button data-key="backspace" class="numpad-btn btn-key h-12 sm:h-14 rounded-2xl bg-rose-50 hover:bg-rose-100 active:bg-rose-200 border border-rose-200 text-sm sm:text-base font-extrabold text-rose-700 flex items-center justify-center gap-1">
+              <span>⌫</span><span>退格</span>
             </button>
-
-            <button data-key="6" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">6</button>
-            <button data-key="7" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">7</button>
-            <button data-key="8" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">8</button>
-            <button data-key="9" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">9</button>
-            <button data-key="0" class="numpad-btn btn-key h-13 sm:h-14 rounded-2xl bg-slate-50 hover:bg-emerald-50 active:bg-emerald-100 border border-slate-200 text-2xl font-black text-slate-800">0</button>
-            <button data-key="enter" class="numpad-btn btn-key btn-key-primary col-span-3 sm:col-span-1 h-13 sm:h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-base font-extrabold flex items-center justify-center gap-1">
+            <button data-key="enter" class="numpad-btn btn-key btn-key-primary h-12 sm:h-14 rounded-2xl bg-emerald-500 hover:bg-emerald-600 active:bg-emerald-700 text-white text-sm sm:text-base font-extrabold flex items-center justify-center gap-1">
               <span>✓</span><span>确定</span>
             </button>
           </div>
@@ -305,17 +341,17 @@
       </div>
 
       <!-- Rules & Coverage Explanation Card -->
-      <div class="bg-white/80 rounded-2xl p-3.5 border border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
+      <div class="bg-white/80 rounded-2xl p-3 sm:p-3.5 border border-slate-200/80 flex flex-wrap items-center justify-between gap-2 text-xs text-slate-600">
         <div class="flex items-center gap-2">
-          <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold">不重不漏保证</span>
+          <span class="px-2 py-0.5 rounded-md bg-emerald-100 text-emerald-800 font-bold shrink-0">不重不漏保证</span>
           <span>题库采用不放回洗牌；答对移出题池，答错自动排入队尾回炉重练，直到100%算式全部答对才通关。</span>
         </div>
-        <span class="text-slate-400">点击右侧图鉴任意算式可查看凑十/破十详解</span>
+        <span class="text-slate-400 hidden sm:inline">点击右侧图鉴任意算式可查看凑十/破十详解</span>
       </div>
     </section>
 
     <!-- Right Column: Real-Time Equation Mastery Matrix (算式全图鉴 / 打卡矩阵) (5 cols on lg) -->
-    <aside class="lg:col-span-5 bg-white rounded-3xl p-4 sm:p-5 shadow-md border-2 border-slate-100 flex flex-col">
+    <aside id="matrixSection" class="lg:col-span-5 bg-white rounded-3xl p-4 sm:p-5 shadow-md border-2 border-slate-100 flex flex-col scroll-mt-28">
       <!-- Matrix Header & Legend -->
       <div class="flex flex-wrap items-center justify-between gap-2 pb-3 border-b border-slate-100">
         <div>
@@ -873,6 +909,9 @@
       modeSelect: document.getElementById('modeSelect'),
       btnResetRound: document.getElementById('btnResetRound'),
       btnSoundToggle: document.getElementById('btnSoundToggle'),
+      btnMatrixJumpMobile: document.getElementById('btnMatrixJumpMobile'),
+      btnJumpWrongBook: document.getElementById('btnJumpWrongBook'),
+      matrixSection: document.getElementById('matrixSection'),
       iconSoundOn: document.getElementById('iconSoundOn'),
       iconSoundOff: document.getElementById('iconSoundOff'),
       progressText: document.getElementById('progressText'),
@@ -1000,8 +1039,8 @@
     function resetAnswerBoxStyle() {
       dom.userInputText.textContent = state.userInput === '' ? '?' : state.userInput;
       dom.answerBox.className = state.userInput === ''
-        ? 'min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-white border-4 border-emerald-400 shadow-inner flex items-center justify-center text-slate-300 transition-all'
-        : 'min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-white border-4 border-emerald-500 shadow-inner flex items-center justify-center text-emerald-700 transition-all';
+        ? 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-white border-4 border-emerald-400 shadow-inner flex items-center justify-center text-slate-300 transition-all'
+        : 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-white border-4 border-emerald-500 shadow-inner flex items-center justify-center text-emerald-700 transition-all';
     }
 
     // Handle digit input
@@ -1059,7 +1098,7 @@
         // If they were in the middle of correcting a wrong answer right on the card, advance to the next queued item
         if (state.awaitingNextAfterWrong) {
           sfx.playCorrect(1);
-          dom.answerBox.className = 'min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-emerald-50 border-4 border-emerald-500 flex items-center justify-center text-emerald-700 animate-pop';
+          dom.answerBox.className = 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-emerald-50 border-4 border-emerald-500 flex items-center justify-center text-emerald-700 animate-pop';
           state.isTransitioning = true;
           setTimeout(() => {
             advanceAfterWrong();
@@ -1082,7 +1121,7 @@
         if (state.combo > state.maxCombo) state.maxCombo = state.combo;
 
         sfx.playCorrect(state.combo);
-        dom.answerBox.className = 'min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-emerald-100 border-4 border-emerald-500 flex items-center justify-center text-emerald-700 animate-pop';
+        dom.answerBox.className = 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-emerald-100 border-4 border-emerald-500 flex items-center justify-center text-emerald-700 animate-pop';
         dom.questionCard.classList.add('animate-pop');
         setTimeout(() => dom.questionCard.classList.remove('animate-pop'), 300);
 
@@ -1110,7 +1149,7 @@
           state.awaitingNextAfterWrong = true;
         }
 
-        dom.answerBox.className = 'min-w-[88px] sm:min-w-[116px] h-16 sm:h-20 px-4 rounded-2xl bg-rose-50 border-4 border-rose-400 flex items-center justify-center text-rose-600 animate-shake';
+        dom.answerBox.className = 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-rose-50 border-4 border-rose-400 flex items-center justify-center text-rose-600 animate-shake';
         setTimeout(() => dom.answerBox.classList.remove('animate-shake'), 450);
 
         showFeedbackBanner(
@@ -1450,17 +1489,32 @@
       });
 
       // Reset Round
-      dom.btnResetRound.addEventListener('click', () => {
-        startRound();
-      });
+      dom.btnResetRound.addEventListener('click', () => startRound());
 
       // Sound Toggle
-      dom.btnSoundToggle.addEventListener('click', () => {
+      const toggleSound = () => {
         sfx.enabled = !sfx.enabled;
-        dom.iconSoundOn.classList.toggle('hidden', !sfx.enabled);
-        dom.iconSoundOff.classList.toggle('hidden', sfx.enabled);
+        document.querySelectorAll('.icon-sound-on').forEach(el => el.classList.toggle('hidden', !sfx.enabled));
+        document.querySelectorAll('.icon-sound-off').forEach(el => el.classList.toggle('hidden', sfx.enabled));
         if (sfx.enabled) sfx.playKeyClick();
-      });
+      };
+      dom.btnSoundToggle.addEventListener('click', toggleSound);
+
+      // Mobile Jump to Matrix Button
+      if (dom.btnMatrixJumpMobile && dom.matrixSection) {
+        dom.btnMatrixJumpMobile.addEventListener('click', () => {
+          dom.matrixSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
+
+      // Jump to Wrong Book Tab when clicking Mistake Pill in Header
+      if (dom.btnJumpWrongBook && dom.matrixSection) {
+        dom.btnJumpWrongBook.addEventListener('click', () => {
+          const wrongTabBtn = document.querySelector('.matrix-tab[data-tab="wrong"]');
+          if (wrongTabBtn) wrongTabBtn.click();
+          dom.matrixSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        });
+      }
 
       // Toggle Hint Button
       dom.btnShowHint.addEventListener('click', () => {
@@ -1494,13 +1548,13 @@
       // Auto-Submit vs Manual Mode Toggle
       dom.btnModeAuto.addEventListener('click', () => {
         state.autoSubmit = true;
-        dom.btnModeAuto.className = 'px-2.5 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-sm transition';
-        dom.btnModeManual.className = 'px-2.5 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
+        dom.btnModeAuto.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-xs transition';
+        dom.btnModeManual.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
       });
       dom.btnModeManual.addEventListener('click', () => {
         state.autoSubmit = false;
-        dom.btnModeManual.className = 'px-2.5 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-sm transition';
-        dom.btnModeAuto.className = 'px-2.5 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
+        dom.btnModeManual.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-xs transition';
+        dom.btnModeAuto.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
       });
 
       // On-Screen Numpad Buttons
