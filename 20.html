@@ -511,14 +511,12 @@
       }
 
       playCorrect(combo = 1) {
-        // Ascending cheerful chime, slightly higher pitch with higher combo
         const boost = Math.min(combo * 12, 120);
         this.playTone(523.25 + boost, 'triangle', 0.12, 0, 0.15);
         this.playTone(659.25 + boost, 'triangle', 0.18, 0.07, 0.16);
       }
 
       playWrong() {
-        // Gentle soft double low tone
         this.playTone(300, 'sine', 0.16, 0, 0.13);
         this.playTone(250, 'sine', 0.24, 0.12, 0.13);
       }
@@ -583,12 +581,10 @@
       }
 
       // 3) For Mode 4 (180道: 11~20全算式覆盖，90道加法 + 90道减法，排除10以内及含0算式)
-      // Addition: c in 11..20, b in 1..9, a = c - b >= 2. Total = 10 * 9 = 90道 (其中36道为进位加法，54道为10加几/十几加几不进位/凑20)
       if (mode === 'full180') {
         for (let c = 11; c <= 20; c++) {
           for (let b = 1; b <= 9; b++) {
             const a = c - b;
-            // Skip if already in carryAdditions (a in 2..9, b in 2..9, c in 11..18)
             const isCarry = (a >= 2 && a <= 9 && b >= 2 && b <= 9 && c >= 11 && c <= 18);
             if (!isCarry) {
               let cat = '20以内不进位加法';
@@ -615,7 +611,6 @@
           }
         }
 
-        // Subtraction: c in 11..20, a (subtrahend) in 1..9, b = c - a >= 2. Total = 10 * 9 = 90道
         for (let c = 11; c <= 20; c++) {
           for (let a = 1; a <= 9; a++) {
             const b = c - a;
@@ -675,16 +670,41 @@
 
       if (op === '+') {
         if (subType === 'carry_add') {
-          // 凑十法：拆第二个数 b 为 need (10 - a) 和 rem (b - need)
-          const need = 10 - a;
-          const rem = b - need;
-          return {
-            title: `凑十法：看大数 ${a}，分小数 ${b} 凑成 10`,
-            svgType: 'split_second_add',
-            a, b, answer, part1: need, part2: rem, firstStepRes: 10,
-            step1: `第一步：把 ${b} 拆成 ${need} 和 ${rem}，先算 ${a} + ${need} = 10`,
-            step2: `第二步：再算 10 + ${rem} = ${answer}`
-          };
+          // 凑十法核心原则：“看大数，分小数，凑成十”
+          if (a < b) {
+            // 前小后大（如 6 + 8 = 14）：大数是 b(8)，拆小数 a(6) 为 need(2) 和 rem(4)，先算 8 + 2 = 10，再算 10 + 4 = 14
+            const need = 10 - b;
+            const rem = a - need;
+            return {
+              title: `凑十法：看大数 ${b}，分小数 ${a} 凑成 10`,
+              svgType: 'split_first_make10_add',
+              a, b, answer, part1: rem, part2: need, firstStepRes: 10,
+              step1: `第一步：把 ${a} 拆成 ${need} 和 ${rem}，先算 ${b} + ${need} = 10`,
+              step2: `第二步：再算 10 + ${rem} = ${answer}`
+            };
+          } else if (a === b) {
+            // 两数相同（如 7 + 7 = 14）：拆第二个数 b
+            const need = 10 - a;
+            const rem = b - need;
+            return {
+              title: `凑十法：两数相同，拆 ${b} 与 ${a} 凑成 10`,
+              svgType: 'split_second_add',
+              a, b, answer, part1: need, part2: rem, firstStepRes: 10,
+              step1: `第一步：把 ${b} 拆成 ${need} 和 ${rem}，先算 ${a} + ${need} = 10`,
+              step2: `第二步：再算 10 + ${rem} = ${answer}`
+            };
+          } else {
+            // 前大后小（如 8 + 5 = 13）：看大数 a(8)，拆小数 b(5) 为 need(2) 和 rem(3)
+            const need = 10 - a;
+            const rem = b - need;
+            return {
+              title: `凑十法：看大数 ${a}，分小数 ${b} 凑成 10`,
+              svgType: 'split_second_add',
+              a, b, answer, part1: need, part2: rem, firstStepRes: 10,
+              step1: `第一步：把 ${b} 拆成 ${need} 和 ${rem}，先算 ${a} + ${need} = 10`,
+              step2: `第二步：再算 10 + ${rem} = ${answer}`
+            };
+          }
         } else if (subType === 'ten_add') {
           return {
             title: `十加几法：1个十 和 ${b}个一 合起来是 ${answer}`,
@@ -793,10 +813,10 @@
         `;
       }
 
-      if (svgType === 'poshi_sub' || svgType === 'split_first_add' || svgType === 'split_first_sub') {
-        const isPoshi = svgType === 'poshi_sub';
-        const opChar = svgType === 'split_first_add' ? '+' : '-';
-        const stepColor = '#f59e0b';
+      if (svgType === 'split_first_make10_add' || svgType === 'poshi_sub' || svgType === 'split_first_add' || svgType === 'split_first_sub') {
+        const isAdd = svgType === 'split_first_make10_add' || svgType === 'split_first_add';
+        const opChar = isAdd ? '+' : '-';
+        const stepColor = svgType === 'split_first_make10_add' ? '#10b981' : '#f59e0b';
         return `
           <svg viewBox="0 0 300 135" class="w-full max-w-[300px] h-auto font-black">
             <!-- Main Equation -->
@@ -823,12 +843,36 @@
         `;
       }
 
-      // Simple fallback SVG for想加算减 or 10+b
+      if (svgType === 'xiangjia_sub') {
+        return `
+          <svg viewBox="0 0 300 125" class="w-full max-w-[300px] h-auto font-black">
+            <!-- 上层：原减法算式 -->
+            <text x="65" y="34" font-size="24" text-anchor="middle" fill="#1e293b">${a}</text>
+            <text x="105" y="34" font-size="22" text-anchor="middle" fill="#059669">-</text>
+            <text x="140" y="34" font-size="24" text-anchor="middle" fill="#1e293b">${b}</text>
+            <text x="180" y="34" font-size="22" text-anchor="middle" fill="#94a3b8">=</text>
+            <rect x="204" y="10" width="52" height="32" rx="8" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+            <text x="230" y="33" font-size="22" text-anchor="middle" fill="#047857">${answer}</text>
+
+            <!-- 引导虚线箭头 -->
+            <path d="M 230 66 L 230 45" fill="none" stroke="#10b981" stroke-width="2.2" stroke-dasharray="3,2"/>
+            <polygon points="230,43 225,50 235,50" fill="#10b981"/>
+
+            <!-- 下层：想加算减提示框 -->
+            <rect x="16" y="66" width="268" height="46" rx="12" fill="#fef3c7" stroke="#f59e0b" stroke-width="2"/>
+            <text x="150" y="96" font-size="18" text-anchor="middle" fill="#b45309">
+              想：${b} + ( <tspan fill="#047857" font-size="20">${answer}</tspan> ) = ${a}
+            </text>
+          </svg>
+        `;
+      }
+
+      // Simple fallback SVG for 10+b
       return `
         <svg viewBox="0 0 300 95" class="w-full max-w-[300px] h-auto font-black">
-          <rect x="15" y="18" width="270" height="58" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
-          <text x="150" y="54" font-size="22" text-anchor="middle" fill="#047857">
-            ${svgType === 'xiangjia_sub' ? `想：${b} + (${answer}) = ${a}  ➔  ${a} - ${b} = ${answer}` : `1个十 + ${b}个一 = ${answer}`}
+          <rect x="12" y="18" width="276" height="58" rx="14" fill="#ecfdf5" stroke="#10b981" stroke-width="2"/>
+          <text x="150" y="54" font-size="19" text-anchor="middle" fill="#047857">
+            1个十 + ${b}个一 = ${answer}
           </text>
         </svg>
       `;
@@ -839,7 +883,6 @@
       const { a, b, op, answer } = eq;
       const legendEl = document.getElementById('tenFrameLegend');
 
-      // Build 20 cells (2 frames of 10)
       let cells = [];
       if (op === '+') {
         legendEl.innerHTML = `<span class="text-emerald-600 font-bold">● ${a}</span> + <span class="text-amber-500 font-bold">● ${b}</span>`;
@@ -885,8 +928,8 @@
     const state = {
       mode: 'core72',
       allEquations: [],
-      statusMap: new Map(), // id -> { status: 'pending'|'mastered_first'|'retrying'|'mastered_retry', wrongCount: 0 }
-      queue: [],            // Unmastered equations in shuffled order
+      statusMap: new Map(),
+      queue: [],
       currentEq: null,
       userInput: '',
       autoSubmit: true,
@@ -969,7 +1012,6 @@
       btnPlayAgainFull: document.getElementById('btnPlayAgainFull')
     };
 
-    // Start a full round or a custom mistake-only round
     function startRound(customEquations = null) {
       stopTimer();
       state.secondsElapsed = 0;
@@ -1028,6 +1070,7 @@
         dom.retryTag.classList.add('hidden');
       }
 
+      resetSubHintMethod();
       resetAnswerBoxStyle();
       dom.feedbackBanner.classList.add('hidden');
       dom.btnNextAfterWrong.classList.add('hidden');
@@ -1043,11 +1086,9 @@
         : 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-white border-4 border-emerald-500 shadow-inner flex items-center justify-center text-emerald-700 transition-all';
     }
 
-    // Handle digit input
     function handleDigitInput(digitStr) {
       if (state.isTransitioning || !state.currentEq) return;
 
-      // If currently showing wrong feedback, typing digits allows the child to enter the correct answer to advance
       if (state.userInput.length >= 2) {
         state.userInput = digitStr;
       } else {
@@ -1058,9 +1099,6 @@
 
       const expectedStr = String(state.currentEq.answer);
 
-      // Smart Auto-Submit check:
-      // Note: Across all 180 equations in 11~20 addition/subtraction, 1 is NEVER a complete single-digit answer (min answer is 2).
-      // So if the user types '1', always wait for the 2nd digit!
       if (state.autoSubmit) {
         if (state.userInput.length === expectedStr.length && state.userInput !== '1') {
           submitAnswer();
@@ -1082,7 +1120,6 @@
     function submitAnswer() {
       if (state.isTransitioning || !state.currentEq) return;
 
-      // If user already answered wrong and clicks Enter / Confirm to move to next question
       if (state.awaitingNextAfterWrong && state.userInput === '') {
         advanceAfterWrong();
         return;
@@ -1095,7 +1132,6 @@
       const st = state.statusMap.get(eq.id);
 
       if (numVal === eq.answer) {
-        // If they were in the middle of correcting a wrong answer right on the card, advance to the next queued item
         if (state.awaitingNextAfterWrong) {
           sfx.playCorrect(1);
           dom.answerBox.className = 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-emerald-50 border-4 border-emerald-500 flex items-center justify-center text-emerald-700 animate-pop';
@@ -1106,9 +1142,8 @@
           return;
         }
 
-        // Genuine First/Retry Mastery from Queue!
         state.isTransitioning = true;
-        state.queue.shift(); // Remove from active queue
+        state.queue.shift();
 
         if (st.wrongCount === 0) {
           st.status = 'mastered_first';
@@ -1134,7 +1169,6 @@
         }, 320);
 
       } else {
-        // WRONG ANSWER: Trigger gentle hint & re-queue at the back (错题回炉)
         sfx.playWrong();
         state.combo = 0;
 
@@ -1143,11 +1177,11 @@
           st.status = 'retrying';
           state.mistakeSet.add(eq.id);
 
-          // Move current problem from front of queue to the back of queue for re-practice
           const missedEq = state.queue.shift();
           state.queue.push(missedEq);
           state.awaitingNextAfterWrong = true;
         }
+        resetSubHintMethod();
 
         dom.answerBox.className = 'min-w-[82px] sm:min-w-[116px] h-14 sm:h-20 px-3 sm:px-4 rounded-2xl bg-rose-50 border-4 border-rose-400 flex items-center justify-center text-rose-600 animate-shake';
         setTimeout(() => dom.answerBox.classList.remove('animate-shake'), 450);
@@ -1158,7 +1192,6 @@
         );
         dom.btnNextAfterWrong.classList.remove('hidden');
 
-        // Clear input so child can immediately type the right answer to reinforce or click next
         state.userInput = '';
         updateHeaderAndProgress();
         renderHintPanel(eq);
@@ -1181,7 +1214,15 @@
       dom.feedbackMessage.innerHTML = `<span>${text}</span>`;
     }
 
-    // Render Smart Hint Panel (凑十法 / 破十法 / 平十法)
+    function resetSubHintMethod() {
+      state.subHintMethod = 'poshi';
+      document.querySelectorAll('.sub-method-btn').forEach(b => {
+        b.className = b.getAttribute('data-method') === 'poshi'
+          ? 'sub-method-btn px-2.5 py-1 rounded-lg bg-amber-500 text-white transition'
+          : 'sub-method-btn px-2.5 py-1 rounded-lg text-slate-600 hover:bg-amber-50 transition';
+      });
+    }
+
     function renderHintPanel(eq) {
       dom.hintPanel.classList.remove('hidden');
 
@@ -1259,7 +1300,6 @@
         return;
       }
 
-      // Separate Additions and Subtractions for clean structured display
       const adds = filtered.filter(e => e.op === '+');
       const subs = filtered.filter(e => e.op === '-');
 
@@ -1317,14 +1357,12 @@
 
       dom.matrixContainer.innerHTML = html;
 
-      // Bind click on matrix cells to open Inspection Modal
       dom.matrixContainer.querySelectorAll('.matrix-cell').forEach(btn => {
         btn.addEventListener('click', () => {
           const eqId = btn.getAttribute('data-eqid');
           const targetEq = state.allEquations.find(e => e.id === eqId);
           if (!targetEq) return;
 
-          // If user clicks the current active question, just toggle the main Hint Panel
           if (state.currentEq && state.currentEq.id === targetEq.id) {
             renderHintPanel(targetEq);
             return;
@@ -1435,7 +1473,6 @@
       dom.victoryModal.classList.add('flex');
     }
 
-    // Festive Canvas Confetti
     function launchConfetti() {
       const canvas = document.getElementById('confettiCanvas');
       const ctx = canvas.getContext('2d');
@@ -1482,16 +1519,13 @@
      * 7. EVENT LISTENERS (Touch, Mouse & Physical Keyboard)
      ********************************************************************/
     function bindEvents() {
-      // Mode Selector
       dom.modeSelect.addEventListener('change', (e) => {
         state.mode = e.target.value;
         startRound();
       });
 
-      // Reset Round
       dom.btnResetRound.addEventListener('click', () => startRound());
 
-      // Sound Toggle
       const toggleSound = () => {
         sfx.enabled = !sfx.enabled;
         document.querySelectorAll('.icon-sound-on').forEach(el => el.classList.toggle('hidden', !sfx.enabled));
@@ -1500,14 +1534,12 @@
       };
       dom.btnSoundToggle.addEventListener('click', toggleSound);
 
-      // Mobile Jump to Matrix Button
       if (dom.btnMatrixJumpMobile && dom.matrixSection) {
         dom.btnMatrixJumpMobile.addEventListener('click', () => {
           dom.matrixSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       }
 
-      // Jump to Wrong Book Tab when clicking Mistake Pill in Header
       if (dom.btnJumpWrongBook && dom.matrixSection) {
         dom.btnJumpWrongBook.addEventListener('click', () => {
           const wrongTabBtn = document.querySelector('.matrix-tab[data-tab="wrong"]');
@@ -1516,18 +1548,17 @@
         });
       }
 
-      // Toggle Hint Button
       dom.btnShowHint.addEventListener('click', () => {
         if (!state.currentEq) return;
         const isHidden = dom.hintPanel.classList.contains('hidden');
         if (isHidden) {
+          resetSubHintMethod();
           renderHintPanel(state.currentEq);
         } else {
           dom.hintPanel.classList.add('hidden');
         }
       });
 
-      // Subtraction Method Tabs (破十法 / 平十法 / 想加算减)
       document.querySelectorAll('.sub-method-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           state.subHintMethod = btn.getAttribute('data-method');
@@ -1540,12 +1571,10 @@
         });
       });
 
-      // Next Button After Wrong Answer
       dom.btnNextAfterWrong.addEventListener('click', () => {
         advanceAfterWrong();
       });
 
-      // Auto-Submit vs Manual Mode Toggle
       dom.btnModeAuto.addEventListener('click', () => {
         state.autoSubmit = true;
         dom.btnModeAuto.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-extrabold bg-white text-emerald-700 shadow-xs transition';
@@ -1557,7 +1586,6 @@
         dom.btnModeAuto.className = 'flex-1 md:flex-initial px-3 py-1 rounded-lg font-bold text-slate-600 hover:text-slate-900 transition';
       });
 
-      // On-Screen Numpad Buttons
       document.querySelectorAll('.numpad-btn').forEach(btn => {
         btn.addEventListener('click', () => {
           const key = btn.getAttribute('data-key');
@@ -1567,9 +1595,7 @@
         });
       });
 
-      // Physical Keyboard Input
       window.addEventListener('keydown', (e) => {
-        // Ignore if modal is open
         if (!dom.victoryModal.classList.contains('hidden')) return;
         if (!dom.inspectModal.classList.contains('hidden')) {
           if (e.key === 'Escape' || e.key === 'Enter') {
@@ -1597,7 +1623,6 @@
         }
       });
 
-      // Matrix Filter Tabs
       document.querySelectorAll('.matrix-tab').forEach(tab => {
         tab.addEventListener('click', () => {
           state.matrixFilter = tab.getAttribute('data-tab');
@@ -1610,7 +1635,6 @@
         });
       });
 
-      // Inspection Modal Close
       const closeInspect = () => {
         dom.inspectModal.classList.add('hidden');
         dom.inspectModal.classList.remove('flex');
@@ -1621,7 +1645,6 @@
         if (e.target === dom.inspectModal) closeInspect();
       });
 
-      // Victory Modal Buttons
       dom.btnPlayAgainFull.addEventListener('click', () => {
         startRound();
       });
@@ -1641,7 +1664,6 @@
       }
     }
 
-    // Initialize on window load
     window.onload = function () {
       bindEvents();
       startRound();
