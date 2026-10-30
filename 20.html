@@ -415,8 +415,8 @@
   </div>
 
   <!-- Victory / Completion Settlement Modal -->
-  <div id="victoryModal" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-300 animate-pop max-h-[90vh] flex flex-col">
+  <div id="victoryModal" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 cursor-pointer" title="点击空白处可直接重新洗牌再来一轮">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-300 animate-pop max-h-[90vh] flex flex-col cursor-default" title="">
       <div class="text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-4xl mb-2 shadow-inner">
           🏆
@@ -1629,7 +1629,13 @@
       });
 
       window.addEventListener('keydown', (e) => {
-        if (!dom.victoryModal.classList.contains('hidden')) return;
+        if (!dom.victoryModal.classList.contains('hidden')) {
+          if (e.key === 'Escape' || e.key === 'Enter') {
+            e.preventDefault();
+            startRound();
+          }
+          return;
+        }
         if (!dom.inspectModal.classList.contains('hidden')) {
           if (e.key === 'Escape' || e.key === 'Enter') {
             dom.inspectModal.classList.add('hidden');
@@ -1680,6 +1686,11 @@
 
       dom.btnPlayAgainFull.addEventListener('click', () => {
         startRound();
+      });
+      dom.victoryModal.addEventListener('click', (e) => {
+        if (e.target === dom.victoryModal) {
+          startRound();
+        }
       });
       dom.btnRetryMistakesOnly.addEventListener('click', () => {
         const missedEquations = state.allEquations.filter(eq => state.mistakeSet.has(eq.id));
