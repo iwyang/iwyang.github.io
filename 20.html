@@ -263,7 +263,7 @@
 
         <!-- Smart Step-by-Step Visual Hint Panel (凑十法 / 破十法 / 平十法) -->
         <div id="hintPanel" class="hidden mt-2 mb-3 rounded-2xl bg-amber-50/90 border-2 border-amber-200 p-3.5 sm:p-4 transition-all">
-          <div class="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3 border-b border-amber-200/70">
+          <div id="hintHeaderRow" class="flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3 border-b border-amber-200/70">
             <div class="flex items-center gap-2">
               <span class="text-base">🎓</span>
               <span id="hintTitle" class="font-extrabold text-amber-900 text-sm sm:text-base">凑十法分步图解</span>
@@ -276,7 +276,7 @@
             </div>
           </div>
 
-          <div class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
+          <div id="hintDetailBody" class="grid grid-cols-1 md:grid-cols-12 gap-4 items-center">
             <!-- Left: Textbook Branch Diagram (SVG) & Steps -->
             <div class="md:col-span-7 flex flex-col items-center sm:items-start gap-2">
               <div id="hintSvgContainer" class="w-full flex justify-center bg-white rounded-xl p-2 border border-amber-100 shadow-sm">
@@ -665,22 +665,23 @@
     /********************************************************************
      * 3. SMART MATH DECOMPOSITION (凑十法 / 破十法 / 平十法 图解引擎)
      ********************************************************************/
-    function getDecompositionData(eq, subMethod = 'poshi') {
+    function getDecompositionData(eq, subMethod = 'poshi', hideAnswer = false) {
       const { a, b, op, answer, subType } = eq;
+      const ansText = hideAnswer ? '?' : answer;
 
       if (op === '+') {
         if (subType === 'carry_add') {
           // 凑十法核心原则：“看大数，分小数，凑成十”
           if (a < b) {
-            // 前小后大（如 6 + 8 = 14）：大数是 b(8)，拆小数 a(6) 为 need(2) 和 rem(4)，先算 8 + 2 = 10，再算 10 + 4 = 14
+            // 前小后大（如 6 + 8 = 14）：大数是 b(8)，拆小数 a(6) 为 need(2) 和 rem(4)，先算 8 + 2 = 10，再算 10 + 4 = ?
             const need = 10 - b;
             const rem = a - need;
             return {
               title: `凑十法：看大数 ${b}，分小数 ${a} 凑成 10`,
               svgType: 'split_first_make10_add',
-              a, b, answer, part1: rem, part2: need, firstStepRes: 10,
+              a, b, answer: ansText, part1: rem, part2: need, firstStepRes: 10,
               step1: `第一步：把 ${a} 拆成 ${need} 和 ${rem}，先算 ${b} + ${need} = 10`,
-              step2: `第二步：再算 10 + ${rem} = ${answer}`
+              step2: `第二步：再算 10 + ${rem} = ${ansText}`
             };
           } else if (a === b) {
             // 两数相同（如 7 + 7 = 14）：拆第二个数 b
@@ -689,9 +690,9 @@
             return {
               title: `凑十法：两数相同，拆 ${b} 与 ${a} 凑成 10`,
               svgType: 'split_second_add',
-              a, b, answer, part1: need, part2: rem, firstStepRes: 10,
+              a, b, answer: ansText, part1: need, part2: rem, firstStepRes: 10,
               step1: `第一步：把 ${b} 拆成 ${need} 和 ${rem}，先算 ${a} + ${need} = 10`,
-              step2: `第二步：再算 10 + ${rem} = ${answer}`
+              step2: `第二步：再算 10 + ${rem} = ${ansText}`
             };
           } else {
             // 前大后小（如 8 + 5 = 13）：看大数 a(8)，拆小数 b(5) 为 need(2) 和 rem(3)
@@ -700,18 +701,18 @@
             return {
               title: `凑十法：看大数 ${a}，分小数 ${b} 凑成 10`,
               svgType: 'split_second_add',
-              a, b, answer, part1: need, part2: rem, firstStepRes: 10,
+              a, b, answer: ansText, part1: need, part2: rem, firstStepRes: 10,
               step1: `第一步：把 ${b} 拆成 ${need} 和 ${rem}，先算 ${a} + ${need} = 10`,
-              step2: `第二步：再算 10 + ${rem} = ${answer}`
+              step2: `第二步：再算 10 + ${rem} = ${ansText}`
             };
           }
         } else if (subType === 'ten_add') {
           return {
-            title: `十加几法：1个十 和 ${b}个一 合起来是 ${answer}`,
+            title: `十加几法：1个十 和 ${b}个一 合起来是几？`,
             svgType: 'simple_ten_add',
-            a, b, answer,
+            a, b, answer: ansText,
             step1: `第一步：10 表示 1个十，${b} 表示 ${b}个一`,
-            step2: `第二步：10 + ${b} = ${answer}`
+            step2: `第二步：10 + ${b} = ${ansText}`
           };
         } else {
           // 十几加几（不进位 或 凑20）：把 a 拆成 10 和 ones (a - 10)
@@ -720,9 +721,9 @@
           return {
             title: subType === 'make20_add' ? `凑20法：个位 ${ones} + ${b} 凑成 10` : `个位相加：先把个位 ${ones} 和 ${b} 相加`,
             svgType: 'split_first_add',
-            a, b, answer, part1: 10, part2: ones, firstStepRes: onesSum,
+            a, b, answer: ansText, part1: 10, part2: ones, firstStepRes: onesSum,
             step1: `第一步：把 ${a} 拆成 10 和 ${ones}，先算个位 ${ones} + ${b} = ${onesSum}`,
-            step2: `第二步：再算 10 + ${onesSum} = ${answer}`
+            step2: `第二步：再算 10 + ${onesSum} = ${ansText}`
           };
         }
       } else {
@@ -734,26 +735,26 @@
             return {
               title: `破十法：把 ${a} 拆成 ${ones} 和 10，先用 10 减 ${b}`,
               svgType: 'poshi_sub',
-              a, b, answer, part1: ones, part2: 10, firstStepRes: leftFrom10,
+              a, b, answer: ansText, part1: ones, part2: 10, firstStepRes: leftFrom10,
               step1: `第一步：把 ${a} 拆成 ${ones} 和 10，先算 10 - ${b} = ${leftFrom10}`,
-              step2: `第二步：再把剩下的 ${ones} 和 ${leftFrom10} 合起来：${ones} + ${leftFrom10} = ${answer}`
+              step2: `第二步：再把剩下的 ${ones} 和 ${leftFrom10} 合起来：${ones} + ${leftFrom10} = ${ansText}`
             };
           } else if (subMethod === 'pingshi') {
             const remSub = b - ones;
             return {
               title: `平十法(连减法)：把 ${b} 拆成 ${ones} 和 ${remSub}，先减到 10`,
               svgType: 'pingshi_sub',
-              a, b, answer, part1: ones, part2: remSub, firstStepRes: 10,
+              a, b, answer: ansText, part1: ones, part2: remSub, firstStepRes: 10,
               step1: `第一步：把 ${b} 拆成 ${ones} 和 ${remSub}，先算 ${a} - ${ones} = 10`,
-              step2: `第二步：再算 10 - ${remSub} = ${answer}`
+              step2: `第二步：再算 10 - ${remSub} = ${ansText}`
             };
           } else {
             return {
               title: `想加算减法：想 ${b} 加几等于 ${a}`,
               svgType: 'xiangjia_sub',
-              a, b, answer,
-              step1: `第一步：思考进位加法 ${b} + ( ${answer} ) = ${a}`,
-              step2: `第二步：所以 ${a} - ${b} = ${answer}`
+              a, b, answer: ansText,
+              step1: `第一步：思考进位加法 ${b} + ( ${ansText} ) = ${a}`,
+              step2: `第二步：所以 ${a} - ${b} = ${ansText}`
             };
           }
         } else if (subType === 'from20_sub') {
@@ -761,9 +762,9 @@
           return {
             title: `破十法：把 20 拆成 10 和 10，先算 10 - ${b}`,
             svgType: 'poshi_sub',
-            a, b, answer, part1: 10, part2: 10, firstStepRes: leftFrom10,
+            a, b, answer: ansText, part1: 10, part2: 10, firstStepRes: leftFrom10,
             step1: `第一步：把 20 拆成 10 和 10，先算 10 - ${b} = ${leftFrom10}`,
-            step2: `第二步：再算 10 + ${leftFrom10} = ${answer}`
+            step2: `第二步：再算 10 + ${leftFrom10} = ${ansText}`
           };
         } else {
           // 十几减几（不退位 或 减得10）
@@ -772,9 +773,9 @@
           return {
             title: `个位相减：把 ${a} 拆成 10 和 ${ones}，个位先减`,
             svgType: 'split_first_sub',
-            a, b, answer, part1: 10, part2: ones, firstStepRes: onesDiff,
+            a, b, answer: ansText, part1: 10, part2: ones, firstStepRes: onesDiff,
             step1: `第一步：把 ${a} 拆成 10 和 ${ones}，先算个位 ${ones} - ${b} = ${onesDiff}`,
-            step2: `第二步：再算 10 + ${onesDiff} = ${answer}`
+            step2: `第二步：再算 10 + ${onesDiff} = ${ansText}`
           };
         }
       }
@@ -879,7 +880,7 @@
     }
 
     // Render Dual Ten-Frames (双十格阵直观圆点)
-    function renderTenFramesHTML(eq) {
+    function renderTenFramesHTML(eq, hideAnswer = false) {
       const { a, b, op, answer } = eq;
       const legendEl = document.getElementById('tenFrameLegend');
 
@@ -892,7 +893,7 @@
           else cells.push('bg-slate-100 border-slate-200');
         }
       } else {
-        legendEl.innerHTML = `<span class="text-emerald-600 font-bold">● 剩${answer}</span> <span class="text-rose-400 font-bold">⊗ 减${b}</span>`;
+        legendEl.innerHTML = `<span class="text-emerald-600 font-bold">● 剩${hideAnswer ? '?' : answer}</span> <span class="text-rose-400 font-bold">⊗ 减${b}</span>`;
         for (let i = 0; i < 20; i++) {
           if (i < answer) {
             cells.push('bg-emerald-500 border-emerald-600');
@@ -979,6 +980,8 @@
       btnNextAfterWrong: document.getElementById('btnNextAfterWrong'),
 
       hintPanel: document.getElementById('hintPanel'),
+      hintHeaderRow: document.getElementById('hintHeaderRow'),
+      hintDetailBody: document.getElementById('hintDetailBody'),
       hintTitle: document.getElementById('hintTitle'),
       subMethodTabs: document.getElementById('subMethodTabs'),
       hintSvgContainer: document.getElementById('hintSvgContainer'),
@@ -1226,26 +1229,42 @@
     function renderHintPanel(eq) {
       dom.hintPanel.classList.remove('hidden');
 
-      if (eq.subType === 'borrow_sub') {
-        dom.subMethodTabs.classList.remove('hidden');
-      } else {
-        dom.subMethodTabs.classList.add('hidden');
-      }
-
-      const data = getDecompositionData(eq, state.subHintMethod);
+      const isWrongReview = state.awaitingNextAfterWrong;
+      const data = getDecompositionData(eq, state.subHintMethod, !isWrongReview);
       dom.hintTitle.textContent = data.title;
-      dom.hintSvgContainer.innerHTML = renderDecompositionSVG(data);
-      dom.hintStepsText.innerHTML = `
-        <div class="flex items-start gap-1.5 text-emerald-800">
-          <span class="px-1.5 py-0.2 bg-emerald-100 rounded text-xs">1</span>
-          <span>${data.step1}</span>
-        </div>
-        <div class="flex items-start gap-1.5 text-amber-900 mt-1">
-          <span class="px-1.5 py-0.2 bg-amber-100 rounded text-xs">2</span>
-          <span>${data.step2}</span>
-        </div>
-      `;
-      dom.tenFrameContainer.innerHTML = renderTenFramesHTML(eq);
+
+      if (!isWrongReview) {
+        // 答题时点开提示：仅显示红框内的一行方法口诀，隐藏下方完整拆解过程与切换按钮
+        dom.hintPanel.className = 'mt-2 mb-3 rounded-2xl bg-amber-50/90 border-2 border-amber-200 px-3.5 py-2.5 sm:px-4 sm:py-3 transition-all';
+        dom.hintHeaderRow.className = 'flex items-center justify-between gap-2';
+        dom.subMethodTabs.classList.add('hidden');
+        dom.hintDetailBody.classList.add('hidden');
+        dom.hintDetailBody.classList.remove('grid');
+      } else {
+        // 答错时：显示顶部口诀文字 + 下方完整枝形图、分步算式与双十格阵过程
+        dom.hintPanel.className = 'mt-2 mb-3 rounded-2xl bg-amber-50/90 border-2 border-amber-200 p-3.5 sm:p-4 transition-all';
+        dom.hintHeaderRow.className = 'flex flex-wrap items-center justify-between gap-2 pb-2.5 mb-3 border-b border-amber-200/70';
+        if (eq.subType === 'borrow_sub') {
+          dom.subMethodTabs.classList.remove('hidden');
+        } else {
+          dom.subMethodTabs.classList.add('hidden');
+        }
+        dom.hintDetailBody.classList.remove('hidden');
+        dom.hintDetailBody.classList.add('grid');
+
+        dom.hintSvgContainer.innerHTML = renderDecompositionSVG(data);
+        dom.hintStepsText.innerHTML = `
+          <div class="flex items-start gap-1.5 text-emerald-800">
+            <span class="px-1.5 py-0.2 bg-emerald-100 rounded text-xs">1</span>
+            <span>${data.step1}</span>
+          </div>
+          <div class="flex items-start gap-1.5 text-amber-900 mt-1">
+            <span class="px-1.5 py-0.2 bg-amber-100 rounded text-xs">2</span>
+            <span>${data.step2}</span>
+          </div>
+        `;
+        dom.tenFrameContainer.innerHTML = renderTenFramesHTML(eq, false);
+      }
     }
 
     /********************************************************************
@@ -1373,8 +1392,10 @@
     }
 
     function openInspectModal(eq) {
-      const data = getDecompositionData(eq, 'poshi');
       const st = state.statusMap.get(eq.id);
+      const isMastered = st && (st.status === 'mastered_first' || st.status === 'mastered_retry');
+      const hideAnswer = !isMastered;
+      const data = getDecompositionData(eq, 'poshi', hideAnswer);
       let badgeHtml = '<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-600 text-xs">待练习</span>';
       if (st.status === 'mastered_first') {
         badgeHtml = '<span class="px-2 py-0.5 rounded bg-emerald-100 text-emerald-700 text-xs">一次答对已掌握 ✓</span>';
@@ -1384,19 +1405,31 @@
         badgeHtml = `<span class="px-2 py-0.5 rounded bg-amber-500 text-white text-xs">已订正掌握 ✓ (曾错${st.wrongCount}次)</span>`;
       }
 
-      dom.inspectTitle.innerHTML = `${eq.display} = ${eq.answer} ${badgeHtml}`;
-      dom.inspectBody.innerHTML = `
-        <div class="text-xs font-extrabold text-amber-800 bg-amber-50 px-3 py-2 rounded-xl border border-amber-200">
-          ${data.title}
-        </div>
-        <div class="flex justify-center bg-slate-50 rounded-2xl p-3 border border-slate-200">
-          ${renderDecompositionSVG(data)}
-        </div>
-        <div class="space-y-1.5 text-xs font-bold text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200">
-          <div>1️⃣ ${data.step1}</div>
-          <div>2️⃣ ${data.step2}</div>
-        </div>
-      `;
+      dom.inspectTitle.innerHTML = `${eq.display} = ${hideAnswer ? '?' : eq.answer} ${badgeHtml}`;
+      if (hideAnswer) {
+        dom.inspectBody.innerHTML = `
+          <div class="text-sm font-extrabold text-amber-900 bg-amber-50 px-3.5 py-3 rounded-xl border border-amber-200 flex items-center gap-2">
+            <span>🎓</span>
+            <span>${data.title}</span>
+          </div>
+          <div class="text-xs text-slate-400 text-center pt-1">
+            （该算式尚未答对掌握，暂隐藏详细拆解过程与得数）
+          </div>
+        `;
+      } else {
+        dom.inspectBody.innerHTML = `
+          <div class="text-xs font-extrabold text-amber-800 bg-amber-50 px-3 py-2 rounded-xl border border-amber-200">
+            🎓 ${data.title}
+          </div>
+          <div class="flex justify-center bg-slate-50 rounded-2xl p-3 border border-slate-200">
+            ${renderDecompositionSVG(data)}
+          </div>
+          <div class="space-y-1.5 text-xs font-bold text-slate-700 bg-slate-50 p-3 rounded-xl border border-slate-200">
+            <div>1️⃣ ${data.step1}</div>
+            <div>2️⃣ ${data.step2}</div>
+          </div>
+        `;
+      }
       dom.inspectModal.classList.remove('hidden');
       dom.inspectModal.classList.add('flex');
     }
