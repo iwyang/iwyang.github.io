@@ -1191,7 +1191,7 @@
 
         showFeedbackBanner(
           false,
-          `💡 刚才填的是 ${numVal}，正确结果是 ${eq.answer}。看看下方图解，输入 ${eq.answer} 或点右侧按钮继续！`
+          `💡 刚才填的是 ${numVal}，正确结果是 ${eq.answer}。看看下方图解，输入 ${eq.answer} 或点下方按钮继续！`
         );
         dom.btnNextAfterWrong.classList.remove('hidden');
 
@@ -1212,7 +1212,7 @@
       if (isCorrect) {
         dom.feedbackBanner.className = 'rounded-2xl px-4 py-2.5 mb-3 text-sm font-extrabold flex items-center justify-between gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200';
       } else {
-        dom.feedbackBanner.className = 'rounded-2xl px-4 py-2.5 mb-3 text-xs sm:text-sm font-extrabold flex flex-wrap items-center justify-between gap-2 bg-amber-50 text-amber-900 border-2 border-amber-300';
+        dom.feedbackBanner.className = 'rounded-2xl px-4 py-2.5 mb-3 text-xs sm:text-sm font-extrabold flex flex-col items-start gap-2 bg-amber-50 text-amber-900 border-2 border-amber-300';
       }
       dom.feedbackMessage.innerHTML = `<span>${text}</span>`;
     }
