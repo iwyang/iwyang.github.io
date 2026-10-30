@@ -253,10 +253,10 @@
           </div>
         </div>
 
-        <!-- Feedback Banner (Shown on Correct / Wrong) -->
-        <div id="feedbackBanner" class="hidden rounded-2xl px-4 py-3 mb-3 text-sm font-bold flex items-center justify-between gap-2 transition-all">
-          <div id="feedbackMessage" class="flex items-center gap-2"></div>
-          <button id="btnNextAfterWrong" class="hidden px-3.5 py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 text-white font-extrabold text-xs shadow-sm transition shrink-0">
+        <!-- Feedback Banner (Shown on Correct / Wrong / Victory) -->
+        <div id="feedbackBanner" class="hidden rounded-2xl px-3.5 py-3 sm:px-4 mb-3 text-sm font-bold flex items-center justify-between gap-2 transition-all">
+          <div id="feedbackMessage" class="flex items-center gap-2 w-full"></div>
+          <button id="btnNextAfterWrong" class="hidden w-full sm:w-auto justify-center px-3.5 py-2 sm:py-1.5 rounded-xl bg-amber-500 hover:bg-amber-600 active:bg-amber-700 text-white font-extrabold text-xs shadow-xs flex items-center transition shrink-0">
             学会啦，下一题 (Enter) ➔
           </button>
         </div>
@@ -415,8 +415,9 @@
   </div>
 
   <!-- Victory / Completion Settlement Modal -->
-  <div id="victoryModal" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 cursor-pointer" title="点击空白处可直接重新洗牌再来一轮">
-    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-300 animate-pop max-h-[90vh] flex flex-col cursor-default" title="">
+  <div id="victoryModal" class="fixed inset-0 z-40 bg-slate-900/60 backdrop-blur-sm hidden items-center justify-center p-4 cursor-pointer" title="点击空白处关闭弹窗并保留成绩">
+    <div class="bg-white rounded-3xl max-w-lg w-full p-6 shadow-2xl border-4 border-emerald-300 animate-pop max-h-[90vh] flex flex-col relative cursor-default" title="">
+      <button id="btnCloseVictory" title="关闭弹窗，保留当前成绩与图鉴" class="absolute top-4 right-4 w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 font-bold flex items-center justify-center transition">✕</button>
       <div class="text-center">
         <div class="inline-flex items-center justify-center w-16 h-16 rounded-full bg-amber-100 text-4xl mb-2 shadow-inner">
           🏆
@@ -1004,6 +1005,7 @@
       btnCloseInspectBottom: document.getElementById('btnCloseInspectBottom'),
 
       victoryModal: document.getElementById('victoryModal'),
+      btnCloseVictory: document.getElementById('btnCloseVictory'),
       victorySubtitle: document.getElementById('victorySubtitle'),
       vicAccuracy: document.getElementById('vicAccuracy'),
       vicTime: document.getElementById('vicTime'),
@@ -1209,10 +1211,11 @@
 
     function showFeedbackBanner(isCorrect, text) {
       dom.feedbackBanner.classList.remove('hidden');
+      dom.feedbackMessage.className = 'flex items-center gap-2 w-full';
       if (isCorrect) {
-        dom.feedbackBanner.className = 'rounded-2xl px-4 py-2.5 mb-3 text-sm font-extrabold flex items-center justify-between gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200';
+        dom.feedbackBanner.className = 'rounded-2xl px-3.5 py-2.5 sm:px-4 mb-3 text-sm font-extrabold flex items-center justify-between gap-2 bg-emerald-50 text-emerald-800 border border-emerald-200';
       } else {
-        dom.feedbackBanner.className = 'rounded-2xl px-4 py-2.5 mb-3 text-xs sm:text-sm font-extrabold flex flex-col items-start gap-2 bg-amber-50 text-amber-900 border-2 border-amber-300';
+        dom.feedbackBanner.className = 'rounded-2xl px-3.5 py-2.5 sm:px-4 mb-3 text-xs sm:text-sm font-extrabold flex flex-col items-stretch sm:items-start gap-2 bg-amber-50 text-amber-900 border-2 border-amber-300';
       }
       dom.feedbackMessage.innerHTML = `<span>${text}</span>`;
     }
@@ -1461,13 +1464,51 @@
       dom.timerText.textContent = formatTime(state.secondsElapsed);
     }
 
+    function closeVictoryModal() {
+      dom.victoryModal.classList.add('hidden');
+      dom.victoryModal.classList.remove('flex');
+    }
+
+    function openVictoryModal() {
+      dom.victoryModal.classList.remove('hidden');
+      dom.victoryModal.classList.add('flex');
+    }
+
     function triggerVictory() {
       stopTimer();
+      state.currentEq = null;
+      state.isTransitioning = false;
       sfx.playVictory();
       launchConfetti();
 
       const total = state.allEquations.length;
       const acc = total > 0 ? Math.round((state.firstTryCorrectCount / total) * 100) : 100;
+
+      renderMatrix();
+      dom.feedbackBanner.classList.remove('hidden');
+      dom.feedbackBanner.className = 'rounded-2xl p-3 sm:px-4 sm:py-3 mb-3 bg-gradient-to-br from-emerald-50 via-teal-50/70 to-emerald-50 border-2 border-emerald-300/90 shadow-xs';
+      dom.feedbackMessage.className = 'flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2.5 w-full';
+      dom.feedbackMessage.innerHTML = `
+        <div class="flex items-center justify-between sm:justify-start gap-1.5 sm:gap-2.5 flex-nowrap w-full sm:w-auto">
+          <div class="flex items-center gap-1.5 text-emerald-950 font-black text-xs sm:text-sm whitespace-nowrap shrink-0">
+            <span class="w-6 h-6 rounded-lg bg-amber-100 border border-amber-300/80 flex items-center justify-center text-xs shadow-2xs shrink-0">🏆</span>
+            <span>全部通关</span>
+          </div>
+          <div class="flex items-center gap-1 sm:gap-1.5 text-[11px] sm:text-xs font-extrabold shrink-0">
+            <span class="px-2 py-0.5 rounded-lg bg-white/95 text-sky-700 border border-emerald-200/90 tabular-nums whitespace-nowrap shadow-2xs">⏱️ ${formatTime(state.secondsElapsed)}</span>
+            <span class="px-2 py-0.5 rounded-lg bg-white/95 text-emerald-700 border border-emerald-200/90 tabular-nums whitespace-nowrap shadow-2xs">🎯 正确率 ${acc}%</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 w-full sm:w-auto shrink-0">
+          <button onclick="openVictoryModal()" class="flex-1 sm:flex-initial py-2 sm:py-1.5 px-3 rounded-xl bg-white hover:bg-emerald-50 active:bg-emerald-100 text-emerald-800 border border-emerald-300 text-xs font-extrabold shadow-2xs flex items-center justify-center gap-1 transition cursor-pointer">
+            <span>📊</span><span>查看成绩单</span>
+          </button>
+          <button onclick="startRound()" class="flex-1 sm:flex-initial py-2 sm:py-1.5 px-3 rounded-xl bg-emerald-600 hover:bg-emerald-700 active:bg-emerald-800 text-white text-xs font-extrabold shadow-xs flex items-center justify-center gap-1 transition cursor-pointer">
+            <span>🎲</span><span>再来一轮</span>
+          </button>
+        </div>
+      `;
+      dom.btnNextAfterWrong.classList.add('hidden');
 
       dom.vicAccuracy.textContent = `${acc}%`;
       dom.vicTime.textContent = formatTime(state.secondsElapsed);
@@ -1630,7 +1671,10 @@
 
       window.addEventListener('keydown', (e) => {
         if (!dom.victoryModal.classList.contains('hidden')) {
-          if (e.key === 'Escape' || e.key === 'Enter') {
+          if (e.key === 'Escape') {
+            e.preventDefault();
+            closeVictoryModal();
+          } else if (e.key === 'Enter') {
             e.preventDefault();
             startRound();
           }
@@ -1687,9 +1731,10 @@
       dom.btnPlayAgainFull.addEventListener('click', () => {
         startRound();
       });
+      dom.btnCloseVictory.addEventListener('click', closeVictoryModal);
       dom.victoryModal.addEventListener('click', (e) => {
         if (e.target === dom.victoryModal) {
-          startRound();
+          closeVictoryModal();
         }
       });
       dom.btnRetryMistakesOnly.addEventListener('click', () => {
