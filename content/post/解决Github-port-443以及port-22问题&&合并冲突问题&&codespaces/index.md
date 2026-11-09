@@ -648,50 +648,57 @@ name: Fork-sync
 
 permissions:
   contents: write
+  actions: write   # 删除 workflow runs 需要此权限
 
 on:
   schedule:
-    - cron: "0 17 * * *"  # 每天北京时间凌晨1点运行
+    - cron: "0 19 * * *"  # 每天 UTC 19:00 = 北京时间凌晨 3 点运行
   workflow_dispatch:
 
 jobs:
   sync_latest_from_upstream:
-    name: Sync latest commits from upstream repo
+    name: Sync and Protect Local Configs
     runs-on: ubuntu-latest
+    timeout-minutes: 30
     if: ${{ github.event.repository.fork }}
 
     steps:
       - name: Checkout target repo
         uses: actions/checkout@v4
         with:
-          fetch-depth: 0 # 获取完整历史以支持合并
+          fetch-depth: 0
 
-      - name: Configure Git & Merge Driver
+      - name: Configure Git & Ours Driver
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          # 关键：在云端服务器注入 keep_theirs 驱动定义
-          git config merge.keep_theirs.driver "cat %B > %A"
+          # 关键：在 Action 服务器上激活 ours 驱动
+          git config merge.ours.driver true
 
       - name: Sync upstream changes
         run: |
-          # 添加 LunaTV 原始仓库作为上游
+          # 添加上游
           git remote add upstream https://github.com/hafrey1/LunaTV-config.git
           git fetch upstream main
-          
-          # 执行合并。Git 会读取 .gitattributes 并在冲突时调用 keep_theirs 驱动
-          git merge upstream/main --no-edit || (echo "检测到非规则内的核心冲突，需手动干预" && exit 1)
+
+          # 执行合并。此时 .gitattributes 里标记为 merge=ours 的文件会无视上游修改
+          git merge upstream/main --no-edit || (echo "检测到非受保护文件的核心冲突，需手动处理" && exit 1)
 
       - name: Push to origin
         run: |
-          # 将合并后的最新版本推送到你自己的仓库
           git push origin main
 
       - name: Delete workflow runs
-        uses: Mattraks/delete-workflow-runs@main
+        uses: Mattraks/delete-workflow-runs@v2
+        timeout-minutes: 20        # 首次需清理积压的几百条记录（约 1 秒/条），之后很快
+        continue-on-error: true    # 清理失败或超时不影响整体同步结果
         with:
-          retain_days: 0
+          token: ${{ github.token }}
+          repository: ${{ github.repository }}
+          retain_days: 7
           keep_minimum_runs: 5
+          # 只清理本工作流的记录，不扫描其他工作流和无法删除的孤儿记录
+          delete_workflow_pattern: Fork-sync
 ```
 
 ------
