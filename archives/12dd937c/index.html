@@ -1,4 +1,4 @@
-<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><title>利用Github Actions自动同步Fork&&自动同步Releases</title><link rel=canonical href=https://bore.vip/archives/12dd937c/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.1397dd1643ad5b7135124685fb4e3fbaf6cc9232f030d9fabd9488a6dc2bffa3.css><meta property='og:title' content="利用Github Actions自动同步Fork&&自动同步Releases"><meta property='og:description' content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><meta property='og:url' content='https://bore.vip/archives/12dd937c/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='github'><meta property='article:published_time' content='2023-07-13T18:02:15+00:00'><meta property='article:modified_time' content='2026-05-13T19:22:05+08:00'><meta name=twitter:title content="利用Github Actions自动同步Fork&&自动同步Releases"><meta name=twitter:description content='自动同步Fork（现在用的） 参考chatgpt:\n在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（可直接复制）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 name: Sync Upstream on: schedule: - cron: &#39;0 0 * * *&#39; # 每天自动同步一次 workflow_dispatch: # 手动触发按钮 watch: types: started jobs: sync: runs-on: ubuntu-latest steps: - name: Checkout uses: actions/checkout@v3 with: fetch-depth: 0 - name: Add upstream run: | git remote add upstream https://github.com/上游用户名/上游仓库.git git fetch upstream - name: Configure Git run: | git config user.name "github-actions[bot]" git config user.email "github-actions[bot]@users.noreply.github.com" - name: Merge upstream run: | git merge upstream/main --allow-unrelated-histories || true - name: Push run: | git push origin main 你需要修改两处:\n'><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
+<!doctype html><html lang=zh-CN dir=ltr><head><meta charset=utf-8><meta name=viewport content='width=device-width,initial-scale=1'><meta name=description content="自动同步Fork 在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（免填上游地址）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 name: Scheduled Repo Sync on: schedule: - cron: '0 0 * * *' workflow_dispatch: permissions: contents: write # 自动赋予仓库写入权限 jobs: sync: runs-on: ubuntu-latest steps: - name: Sync Fork with Upstream env: GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} run: | gh repo sync &#34;${{ github.repository }}&#34; --force 自动同步Releases 1.创建新的workflow，在仓库右上角点Add file，先输入workflows文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名Sync Upstream Releases.yaml。接着\n"><title>利用Github Actions自动同步Fork&&自动同步Releases</title><link rel=canonical href=https://bore.vip/archives/12dd937c/><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link rel=preload as=style href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap"><link rel=stylesheet href=/scss/style.min.1397dd1643ad5b7135124685fb4e3fbaf6cc9232f030d9fabd9488a6dc2bffa3.css><meta property='og:title' content="利用Github Actions自动同步Fork&&自动同步Releases"><meta property='og:description' content="自动同步Fork 在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（免填上游地址）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 name: Scheduled Repo Sync on: schedule: - cron: '0 0 * * *' workflow_dispatch: permissions: contents: write # 自动赋予仓库写入权限 jobs: sync: runs-on: ubuntu-latest steps: - name: Sync Fork with Upstream env: GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} run: | gh repo sync &#34;${{ github.repository }}&#34; --force 自动同步Releases 1.创建新的workflow，在仓库右上角点Add file，先输入workflows文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名Sync Upstream Releases.yaml。接着\n"><meta property='og:url' content='https://bore.vip/archives/12dd937c/'><meta property='og:site_name' content="Bore's Notes"><meta property='og:type' content='article'><meta property='article:section' content='Post'><meta property='article:tag' content='github'><meta property='article:published_time' content='2023-07-13T18:02:15+00:00'><meta property='article:modified_time' content='2026-11-09T17:58:22+08:00'><meta name=twitter:title content="利用Github Actions自动同步Fork&&自动同步Releases"><meta name=twitter:description content="自动同步Fork 在你的 fork 仓库中新建：\n1 .github/workflows/sync.yml 内容如下（免填上游地址）：\n1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 name: Scheduled Repo Sync on: schedule: - cron: '0 0 * * *' workflow_dispatch: permissions: contents: write # 自动赋予仓库写入权限 jobs: sync: runs-on: ubuntu-latest steps: - name: Sync Fork with Upstream env: GH_TOKEN: ${{ secrets.GITHUB_TOKEN }} run: | gh repo sync &#34;${{ github.repository }}&#34; --force 自动同步Releases 1.创建新的workflow，在仓库右上角点Add file，先输入workflows文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名Sync Upstream Releases.yaml。接着\n"><link rel="shortcut icon" href=/img/avatar.png><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;700&display=swap" rel=stylesheet></head><body class=article-page><script>(function(){const e="StackColorScheme";localStorage.getItem(e)||localStorage.setItem(e,"auto")})()</script><script>(function(){const t="StackColorScheme",e=localStorage.getItem(t),n=window.matchMedia("(prefers-color-scheme: dark)").matches===!0;e=="dark"||e==="auto"&&n?document.documentElement.dataset.scheme="dark":document.documentElement.dataset.scheme="light"})()</script><div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky"><button class="hamburger hamburger--spin" type=button id=toggle-menu aria-label=切换菜单>
 <span class=hamburger-box><span class=hamburger-inner></span></span></button><header><figure class=site-avatar><a href=/><img src=/img/avatar.png width=170 height=170 class=site-logo loading=lazy alt=Avatar>
 </a><span class=emoji>🍥</span></figure><div class=site-meta><h1 class=site-name><a href=/>Bore's Notes</a></h1><h2 class=site-description>博观而约取，厚积而薄发</h2></div></header><ol class=menu id=main-menu><li><a href=/><svg class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><polyline points="5 12 3 12 12 3 21 12 19 12"/><path d="M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7"/><path d="M9 21v-6a2 2 0 012-2h2a2 2 0 012 2v6"/></svg>
 <span>主页</span></a></li><li><a href=/about/><svg class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="12" cy="7" r="4"/><path d="M6 21v-2a4 4 0 014-4h4a4 4 0 014 4v2"/></svg>
@@ -8,13 +8,13 @@
 <span>链接</span></a></li><li><a href=/shuoshuo/><svg class="icon icon-tabler icon-tabler-message-circle" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 20l1.3-3.9A9 8 0 117.7 19L3 20"/><line x1="12" y1="12" x2="12" y2="12.01"/><line x1="8" y1="12" x2="8" y2="12.01"/><line x1="16" y1="12" x2="16" y2="12.01"/></svg>
 <span>说说</span></a></li><li class=menu-bottom-section><ol class=menu><li id=dark-mode-toggle><svg class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="8" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
 <svg class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><circle cx="16" cy="12" r="2"/><rect x="2" y="6" width="20" height="12" rx="6"/></svg>
-<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#自动同步fork现在用的>自动同步Fork（现在用的）</a></li><li><a href=#自动同步fork以前用的>自动同步Fork（以前用的）</a></li><li><a href=#自动同步fork以以前用的>自动同步Fork（以以前用的）</a><ol><li><a href=#创建workflow>创建workflow</a></li><li><a href=#创建github访问token>创建github访问token</a></li><li><a href=#添加环境变量secret>添加环境变量secret</a></li><li><a href=#自动提交修改到gitee未测试>自动提交修改到Gitee(未测试)</a></li></ol></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a><ol><li><a href=#新建脚本生成release-syncyml>新建脚本生成release-sync.yml</a></li><li><a href=#直接新建release-syncyml>直接新建<code>release-sync.yml</code></a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/archives/12dd937c/>利用Github Actions自动同步Fork&&自动同步Releases</a></h2><footer class=article-meta-info><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+<span>暗色模式</span></li></ol></li></ol></aside><aside class="sidebar right-sidebar sticky"><section class="widget archives"><div class=widget-icon><svg class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z"/><line x1="5" y1="9" x2="19" y2="9"/><line x1="5" y1="15" x2="19" y2="15"/><line x1="11" y1="4" x2="7" y2="20"/><line x1="17" y1="4" x2="13" y2="20"/></svg></div><h2 class="widget-title section-title">目录</h2><div class=widget--toc><nav class=toc-nav id=TableOfContents><ol><li><a href=#自动同步fork>自动同步Fork</a></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a><ol><li><a href=#新建脚本生成release-syncyml>新建脚本生成release-sync.yml</a></li><li><a href=#直接新建release-syncyml>直接新建<code>release-sync.yml</code></a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></div></section></aside><main class="main full-width"><article class=main-article><header class=article-header><div class=article-details><h2 class=article-title><a href=/archives/12dd937c/>利用Github Actions自动同步Fork&&自动同步Releases</a></h2><footer class=article-meta-info><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
 <time class=article-time--published datetime=2023-07-13T18:02:15Z><span>2023-07-13</span></time></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4A2 2 0 002 6v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121.0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-<time class=article-time--updated datetime=2026-05-13T19:22:05+08:00><span>2026-05-13</span></time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
-<span class=article-words title='字数: 6035 字'>6.0k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer><script>(function(){const e=new Date;document.querySelectorAll(".article-time--published, .article-time--updated").forEach(t=>{const i=t.getAttribute("datetime");if(!i)return;const s=new Date(i),n=(e-s)/1e3;if(!t.hasAttribute("title")){const e=`${s.getFullYear()}-${String(s.getMonth()+1).padStart(2,"0")}-${String(s.getDate()).padStart(2,"0")} ${String(s.getHours()).padStart(2,"0")}:${String(s.getMinutes()).padStart(2,"0")}`;t.setAttribute("title",(t.classList.contains("article-time--updated")?"更新于 ":"发布于 ")+e)}let o="刚刚";n>=31536e3?o=Math.floor(n/31536e3)+" 年前":n>=2592e3?o=Math.floor(n/2592e3)+" 个月前":n>=86400?o=Math.floor(n/86400)+" 天前":n>=3600?o=Math.floor(n/3600)+" 小时前":n>=60&&(o=Math.floor(n/60)+" 分钟前");const a=t.querySelector("span");a&&(a.innerText=o)})})()</script></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
-<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#自动同步fork现在用的>自动同步Fork（现在用的）</a></li><li><a href=#自动同步fork以前用的>自动同步Fork（以前用的）</a></li><li><a href=#自动同步fork以以前用的>自动同步Fork（以以前用的）</a><ol><li><a href=#创建workflow>创建workflow</a></li><li><a href=#创建github访问token>创建github访问token</a></li><li><a href=#添加环境变量secret>添加环境变量secret</a></li><li><a href=#自动提交修改到gitee未测试>自动提交修改到Gitee(未测试)</a></li></ol></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a><ol><li><a href=#新建脚本生成release-syncyml>新建脚本生成release-sync.yml</a></li><li><a href=#直接新建release-syncyml>直接新建<code>release-sync.yml</code></a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=自动同步fork现在用的>自动同步Fork（现在用的）</h2><p><strong>参考chatgpt</strong>:</p><p>在你的 fork 仓库中新建：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
+<time class=article-time--updated datetime=2026-11-09T17:58:22+08:00><span>2026-11-09</span></time></div><div class=article-meta-item><svg class="icon icon-tabler icon-tabler-pencil" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M4 20h4L18.5 9.5a1.5 1.5.0 00-4-4L4 16v4"/><line x1="13.5" y1="6.5" x2="17.5" y2="10.5"/></svg>
+<span class=article-words title='字数: 3544 字'>3.5k 字</span></div><div class=article-meta-item><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 19a2 2 0 01-2 2H4a2 2 0 01-2-2V5a2 2 0 012-2h5l2 3h9a2 2 0 012 2z"/></svg><div style=display:flex;gap:5px><a href=/categories/%E6%8A%80%E6%9C%AF/ title=查看分类：技术 style=color:inherit;text-decoration:none>技术</a></div></div></footer><script>(function(){const e=new Date;document.querySelectorAll(".article-time--published, .article-time--updated").forEach(t=>{const i=t.getAttribute("datetime");if(!i)return;const s=new Date(i),n=(e-s)/1e3;if(!t.hasAttribute("title")){const e=`${s.getFullYear()}-${String(s.getMonth()+1).padStart(2,"0")}-${String(s.getDate()).padStart(2,"0")} ${String(s.getHours()).padStart(2,"0")}:${String(s.getMinutes()).padStart(2,"0")}`;t.setAttribute("title",(t.classList.contains("article-time--updated")?"更新于 ":"发布于 ")+e)}let o="刚刚";n>=31536e3?o=Math.floor(n/31536e3)+" 年前":n>=2592e3?o=Math.floor(n/2592e3)+" 个月前":n>=86400?o=Math.floor(n/86400)+" 天前":n>=3600?o=Math.floor(n/3600)+" 小时前":n>=60&&(o=Math.floor(n/60)+" 分钟前");const a=t.querySelector("span");a&&(a.innerText=o)})})()</script></div></header><aside class=article-toc><details><summary><div class=article-toc-title><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-chevron-right"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M9 6l6 6-6 6"/></svg>
+<span>目录</span></div></summary><nav class=toc-nav><ol><li><a href=#自动同步fork>自动同步Fork</a></li><li><a href=#自动同步releases>自动同步Releases</a></li><li><a href=#新建一仓库专门备份releases>新建一仓库专门备份Releases</a><ol><li><a href=#新建脚本生成release-syncyml>新建脚本生成release-sync.yml</a></li><li><a href=#直接新建release-syncyml>直接新建<code>release-sync.yml</code></a></li></ol></li><li><a href=#参考链接>参考链接</a></li></ol></nav></details></aside><section class=article-content><h2 id=自动同步fork>自动同步Fork</h2><p>在你的 fork 仓库中新建：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
 </span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=l>.github/workflows/sync.yml</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p>内容如下（可直接复制）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
+</span></span></span></code></pre></td></tr></table></div></div><p>内容如下（免填上游地址）：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
 </span><span class=lnt> 2
 </span><span class=lnt> 3
 </span><span class=lnt> 4
@@ -33,395 +33,26 @@
 </span><span class=lnt>17
 </span><span class=lnt>18
 </span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Upstream</span><span class=w>
+</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Scheduled Repo Sync</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0 0 * * *&#39;</span><span class=w>   </span><span class=c># 每天自动同步一次</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>       </span><span class=c># 手动触发按钮  </span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>watch</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>types</span><span class=p>:</span><span class=w> </span><span class=l>started</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Add upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git remote add upstream https://github.com/上游用户名/上游仓库.git
-</span></span></span><span class=line><span class=cl><span class=sd>          git fetch upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Configure Git</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git config user.name &#34;github-actions[bot]&#34;
-</span></span></span><span class=line><span class=cl><span class=sd>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Merge upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git merge upstream/main --allow-unrelated-histories || true</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Push</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git push origin main</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p>你需要修改两处:</p><p>1.把：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>https://github.com/上游用户名/上游仓库.git
-</span></span></code></pre></td></tr></table></div></div><p>替换成你要同步的上游仓库地址。</p><p>2.如果上游主分支不是 <code>main</code>（例如是 <code>master</code>），你要改：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>upstream/main
-</span></span></code></pre></td></tr></table></div></div><p>为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>1
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-fallback data-lang=fallback><span class=line><span class=cl>upstream/master
-</span></span></code></pre></td></tr></table></div></div><p>最终为：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0 0 * * *&#39;</span><span class=w>   </span><span class=c># 每天自动同步一次</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>       </span><span class=c># 手动触发按钮  </span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>watch</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>types</span><span class=p>:</span><span class=w> </span><span class=l>started</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>fetch-depth</span><span class=p>:</span><span class=w> </span><span class=m>0</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Add upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git remote add upstream https://github.com/上游用户名/上游仓库.git
-</span></span></span><span class=line><span class=cl><span class=sd>          git fetch upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Configure Git</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git config user.name &#34;github-actions[bot]&#34;
-</span></span></span><span class=line><span class=cl><span class=sd>          git config user.email &#34;github-actions[bot]@users.noreply.github.com&#34;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Merge upstream</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git merge upstream/master --allow-unrelated-histories || true</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Push</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          git push origin master</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p>完成后：</p><ul><li>每天凌晨自动同步上游更新</li><li>你也可以在 Actions 页面手动点击“Run workflow”</li><li>不需要手动处理冲突（脚本里 <code>|| true</code> 自动跳过错误）</li></ul><h2 id=自动同步fork以前用的>自动同步Fork（以前用的）</h2><p>创建新的workflow，在仓库右上角点<code>Add file</code>，先输入<code>workflows</code>文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名<code>sync.yml</code>。接着</p><p>在<code>sync.yml</code>输入里面的内容：</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span><span class=lnt>35
-</span><span class=lnt>36
-</span><span class=lnt>37
-</span><span class=lnt>38
-</span><span class=lnt>39
-</span><span class=lnt>40
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Upstream Sync</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>permissions</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>contents</span><span class=p>:</span><span class=w> </span><span class=l>write</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s2>&#34;0 0 * * *&#34;</span><span class=w> </span><span class=c># every day</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;0 0 * * *&#39;</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>
+</span></span></span><span class=line><span class=cl><span class=nt>permissions</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>contents</span><span class=p>:</span><span class=w> </span><span class=l>write</span><span class=w> </span><span class=c># 自动赋予仓库写入权限</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync_latest_from_upstream</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync latest commits from upstream repo</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync</span><span class=p>:</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.repository.fork }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Step 1: run a standard checkout action</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Checkout target repo</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v3</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=c># Step 2: run the sync action</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync upstream changes</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>id</span><span class=p>:</span><span class=w> </span><span class=l>sync</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>aormsby/Fork-Sync-With-Upstream-action@v3.4</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>upstream_sync_repo</span><span class=p>:</span><span class=w> </span><span class=l>ChatGPTNextWeb/ChatGPT-Next-Web</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>upstream_sync_branch</span><span class=p>:</span><span class=w> </span><span class=l>main</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>target_sync_branch</span><span class=p>:</span><span class=w> </span><span class=l>main</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>target_repo_token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITHUB_TOKEN }}</span><span class=w> </span><span class=c># automatically generated, no need to set</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># Set test_mode true to run tests instead of the true action!!</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>test_mode</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync check</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>failure()</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Fork with Upstream</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>env</span><span class=p>:</span><span class=w>
+</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>GH_TOKEN</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITHUB_TOKEN }}</span><span class=w>
 </span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>run</span><span class=p>:</span><span class=w> </span><span class=p>|</span><span class=sd>
-</span></span></span><span class=line><span class=cl><span class=sd>          echo &#34;[Error] 由于上游仓库的 workflow 文件变更，导致 GitHub 自动暂停了本次自动更新，你需要手动 Sync Fork 一次，详细教程请查看：https://github.com/Yidadaa/ChatGPT-Next-Web/blob/main/README_CN.md#%E6%89%93%E5%BC%80%E8%87%AA%E5%8A%A8%E6%9B%B4%E6%96%B0&#34;
-</span></span></span><span class=line><span class=cl><span class=sd>          echo &#34;[Error] Due to a change in the workflow file of the upstream repository, GitHub has automatically suspended the scheduled automatic update. You need to manually sync your fork. Please refer to the detailed tutorial for instructions: https://github.com/Yidadaa/ChatGPT-Next-Web#enable-automatic-updates&#34;
-</span></span></span><span class=line><span class=cl><span class=sd>          exit 1</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><h2 id=自动同步fork以以前用的>自动同步Fork（以以前用的）</h2><p>虽然Github自带一个Sync Fork的按钮，但是每次都自己点总是麻烦的，所以有人搞了个Github Action来做这件事，https://github.com/tgymnich/fork-sync</p><h3 id=创建workflow>创建workflow</h3><p>创建新的workflow，在仓库右上角点<code>Add file</code>，先输入<code>workflows</code>文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名<code>sync.yml</code>。接着</p><p>在<code>sync.yml</code>输入里面的内容：</p><p><strong>官方：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Fork</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;*/30 * * * *&#39;</span><span class=w> </span><span class=c># every 30 minutes</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w> </span><span class=c># on button click</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>tgymnich/fork-sync@v2.0</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.PERSONAL_TOKEN }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>owner</span><span class=p>:</span><span class=w> </span><span class=l>llvm</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>base</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>head</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p><strong>注释：</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Fork</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w> </span><span class=c># push 时触发, 主要是为了测试配置有没有问题</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;* */24 * * *&#39;</span><span class=w> </span><span class=c># 每天一次</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>repo-sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>tgymnich/fork-sync@v2.0</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.TOKEN }}</span><span class=w> </span><span class=c>#Github Token，记得加入secrets</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>owner</span><span class=p>:</span><span class=w> </span><span class=l>ngosang</span><span class=w> </span><span class=c># fork 的上游仓库 user</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>head</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w> </span><span class=c># fork 的上游仓库 branch</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>base</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w> </span><span class=c># 本地仓库 branch</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p><strong>最终</strong><code>sync.yml</code></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>Sync Fork</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>schedule</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span>- <span class=nt>cron</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;* */24 * * *&#39;</span><span class=w> </span><span class=c># 每天一次</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>workflow_dispatch</span><span class=p>:</span><span class=w> </span><span class=c># on button click</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>tgymnich/fork-sync@v2.0</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.PERSONAL_TOKEN }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>owner</span><span class=p>:</span><span class=w> </span><span class=l>mack-a</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>base</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>head</span><span class=p>:</span><span class=w> </span><span class=l>master</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p><code>* */24 * * *</code>改成<code>* */48 * * *</code>每两天运行一次</p><blockquote><p>PS：ChatGPT有时给出的答案可能是错误的，需要验证：<a class=link href=https://crontab.guru/ target=_blank rel=noopener>crontab guru</a></p></blockquote><h3 id=创建github访问token>创建github访问token</h3><p>参考：<a class=link href=https://docs.github.com/zh/authentication/keeping-your-account-and-data-secure/managing-your-personal-access-tokens target=_blank rel=noopener>管理个人访问令牌</a></p><p>1.在任何页面的右上角，单击个人资料照片，然后单击“设置”。</p><p>2.在左侧边栏中，单击“ 开发人员设置”。
-3.请在左侧边栏的“ Personal access token”下，单击“细粒度令牌” 。
-4.单击“生成新令牌”。
-5.在“令牌名称”下，输入令牌的名称。
-6.在“过期时间”下，选择令牌的过期时间（永不过期）。</p><p>7.然后权限要开启<strong>repo</strong>和<strong>workflow</strong>的权限</p><p><img class=gallery-image data-flex-basis=600px data-flex-grow=250 height=337 loading=lazy sizes="(max-width: 767px) calc(100vw - 30px), (max-width: 1023px) 700px, (max-width: 1279px) 950px, 1232px" src=/archives/12dd937c/github.png srcset="/archives/12dd937c/github_hu_a1da46056d60a9e9.png 800w, /archives/12dd937c/github.png 843w" width=843></p><p>8.创建完成后复制token内容</p><h3 id=添加环境变量secret>添加环境变量secret</h3><p>在<code>settings/secrets(Secrets and variables)/actions</code>里把Github的Token设置上，比如workflow写的是secrets.PERSONAL_TOKEN，所以添加的时候Name填写PERSONAL_TOKEN，Secret里填写上一步创建Token内容。</p><p>如果部署完成之后，运行显示错误是：</p><blockquote><p>repo-sync
-Failed to create or merge pull request: HttpError: Validation Failed: {“resource”:”PullRequest”,”code”:”custom”,”message”:”No commits between knight000:master and ngosang:master”}</p></blockquote><p>就证明初步成功了，因为你部署了workflow所以比原仓库新，等原仓库更新后点<code>Re-run jobs</code>就可以测试是否正确部署了。</p><h3 id=自动提交修改到gitee未测试>自动提交修改到Gitee(未测试)</h3><p>以下action文件来自https://juejin.cn/post/6894928345830522887</p><p>把GITEE_PRIVATE_KEY、<a class=link href=https://gitee.com/profile/personal_access_tokens target=_blank rel=noopener>GITEE_TOKEN</a>、GITEE_USER都添加到secrets里，然后Gitee内<a class=link href=https://gitee.com/projects/import/url target=_blank rel=noopener>从URL导入仓库</a>，创建同名仓库即可同步。</p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt> 1
-</span><span class=lnt> 2
-</span><span class=lnt> 3
-</span><span class=lnt> 4
-</span><span class=lnt> 5
-</span><span class=lnt> 6
-</span><span class=lnt> 7
-</span><span class=lnt> 8
-</span><span class=lnt> 9
-</span><span class=lnt>10
-</span><span class=lnt>11
-</span><span class=lnt>12
-</span><span class=lnt>13
-</span><span class=lnt>14
-</span><span class=lnt>15
-</span><span class=lnt>16
-</span><span class=lnt>17
-</span><span class=lnt>18
-</span><span class=lnt>19
-</span><span class=lnt>20
-</span><span class=lnt>21
-</span><span class=lnt>22
-</span><span class=lnt>23
-</span><span class=lnt>24
-</span><span class=lnt>25
-</span><span class=lnt>26
-</span><span class=lnt>27
-</span><span class=lnt>28
-</span><span class=lnt>29
-</span><span class=lnt>30
-</span><span class=lnt>31
-</span><span class=lnt>32
-</span><span class=lnt>33
-</span><span class=lnt>34
-</span></code></pre></td><td class=lntd><pre tabindex=0 class=chroma><code class=language-yaml data-lang=yaml><span class=line><span class=cl><span class=c># 通过 Github actions， 在 Github 仓库的每一次 commit 后自动同步到 Gitee 上</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>sync2gitee</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>on</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>push</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>branches</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=l>master</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=nt>jobs</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>  </span><span class=nt>repo-sync</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>env</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>dst_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITEE_PRIVATE_KEY }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>dst_token</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITEE_TOKEN }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span><span class=nt>gitee_user</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITEE_USER }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>runs-on</span><span class=p>:</span><span class=w> </span><span class=l>ubuntu-latest</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>    </span><span class=nt>steps</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>actions/checkout@v2</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>persist-credentials</span><span class=p>:</span><span class=w> </span><span class=kc>false</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>      </span>- <span class=nt>name</span><span class=p>:</span><span class=w> </span><span class=l>sync github -&gt; gitee</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>uses</span><span class=p>:</span><span class=w> </span><span class=l>Yikun/hub-mirror-action@master</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>if</span><span class=p>:</span><span class=w> </span><span class=l>env.dst_key &amp;&amp; env.dst_token &amp;&amp; env.gitee_user</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>        </span><span class=nt>with</span><span class=p>:</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 必选，需要同步的 Github 用户（源）</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>src</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;github/${{ github.repository_owner }}&#39;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 必选，需要同步到的 Gitee 用户（目的）</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>dst</span><span class=p>:</span><span class=w> </span><span class=s1>&#39;gitee/${{ secrets.GITEE_USER }}&#39;</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 必选，Gitee公钥对应的私钥，https://gitee.com/profile/sshkeys</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>dst_key</span><span class=p>:</span><span class=w> </span><span class=l>${{ secrets.GITEE_PRIVATE_KEY }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 必选，Gitee对应的用于创建仓库的token，https://gitee.com/profile/personal_access_tokens</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>dst_token</span><span class=p>:</span><span class=w>  </span><span class=l>${{ secrets.GITEE_TOKEN }}</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 如果是组织，指定组织即可，默认为用户 user</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># account_type: org</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=c># 直接取当前项目的仓库名</span><span class=w>
-</span></span></span><span class=line><span class=cl><span class=w>          </span><span class=nt>static_list</span><span class=p>:</span><span class=w> </span><span class=l>${{ github.event.repository.name }}</span><span class=w>
-</span></span></span></code></pre></td></tr></table></div></div><p>因为有<code>if: env.dst_key && env.dst_token && env.gitee_user</code>这一句所以信息不足的情况下是会跳过执行，显示执行成功而不是显示错误，请注意。</p><h2 id=自动同步releases>自动同步Releases</h2><p>1.创建新的workflow，在仓库右上角点<code>Add file</code>，先输入<code>workflows</code>文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名<code>Sync Upstream Releases.yaml</code>。接着</p><p>在<code>Sync Upstream Releases.yaml</code>输入里面的内容：<strong>(注意修改<code>UPSTREAM_OWNER</code>和<code>UPSTREAM_REPO</code>,上游仓库拥有者和仓库名称)</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
+</span></span></span><span class=line><span class=cl><span class=sd>          gh repo sync &#34;${{ github.repository }}&#34; --force</span><span class=w>
+</span></span></span></code></pre></td></tr></table></div></div><h2 id=自动同步releases>自动同步Releases</h2><p>1.创建新的workflow，在仓库右上角点<code>Add file</code>，先输入<code>workflows</code>文件夹名，再点击空白位置，自动进入下一目录，然后输入文件名<code>Sync Upstream Releases.yaml</code>。接着</p><p>在<code>Sync Upstream Releases.yaml</code>输入里面的内容：<strong>(注意修改<code>UPSTREAM_OWNER</code>和<code>UPSTREAM_REPO</code>,上游仓库拥有者和仓库名称)</strong></p><div class=highlight><div class=chroma><table class=lntable><tr><td class=lntd><pre tabindex=0 class=chroma><code><span class=lnt>  1
 </span><span class=lnt>  2
 </span><span class=lnt>  3
 </span><span class=lnt>  4
@@ -1279,11 +910,11 @@ Failed to create or merge pull request: HttpError: Validation Failed: {“resour
 </span></span></span><span class=line><span class=cl><span class=sd>          done &lt; repo_list_sorted.txt</span><span class=w>
 </span></span></span></code></pre></td></tr></table></div></div><p>更新代码后，去网页端点 <strong>Run workflow</strong>，把 <code>force_resync</code> 填为 <strong><code>true</code></strong>，跑一次。</p><h2 id=参考链接>参考链接</h2><ul><li><a class=link href=https://knight.abn-team.top/2023/03/29/GithunActionAutoSync2Gitee/ target=_blank rel=noopener>GithunActionAutoSync2Gitee</a></li><li><a class=link href=https://zhuanlan.zhihu.com/p/500768626 target=_blank rel=noopener>利用Github Actions自动同步Fork</a></li><li><a class=link href=https://github.com/tgymnich/fork-sync target=_blank rel=noopener>fork-sync</a></li></ul></section><footer class=article-footer><style>.article-edit-container a{-webkit-tap-highlight-color:transparent!important;outline:none!important}.article-edit-container a:hover{text-decoration:underline!important}.article-edit-container{border-top:1px dashed rgba(128,128,128,.15);padding-top:15px;margin-top:20px;width:100%;display:flex;align-items:center;gap:10px;flex-wrap:wrap}</style><section class=article-tags><style>.article-tags{margin-top:25px;margin-bottom:15px;display:flex;flex-wrap:wrap;gap:12px;align-items:center}.article-tags .tag-link{display:inline-flex!important;align-items:center!important;padding:4px 16px!important;background-color:rgba(30,144,255,8%)!important;color:#1e90ff!important;border-radius:999px!important;text-decoration:none!important;font-size:14px!important;font-weight:500!important;border:1px solid rgba(30,144,255,.2)!important;transition:all .3s ease!important}.article-tags .tag-link::before{content:"#"!important;margin-right:4px!important;color:inherit!important;font-weight:700!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;transform:translateY(-3px)!important;box-shadow:0 4px 12px rgba(30,144,255,.35)!important;border-color:#1e90ff!important}@media(prefers-color-scheme:dark){.article-tags .tag-link{background-color:rgba(88,166,255,.15)!important;color:#58a6ff!important;font-weight:600!important;border-color:rgba(88,166,255,.3)!important}.article-tags .tag-link:hover{background-color:#1e90ff!important;color:#fff!important;box-shadow:0 4px 15px rgba(30,144,255,.4)!important}}</style><a href=/tags/github/ class=tag-link title=查看标签：Github>Github</a></section><section class=article-edit-container><a style=color:#1e90ff;font-size:14px;text-decoration:none;display:flex;align-items:center;gap:8px href=https://github.com/iwyang/iwyang.github.io/edit/develop/content/post/%e5%88%a9%e7%94%a8Github-Actions%e8%87%aa%e5%8a%a8%e5%90%8c%e6%ad%a5Fork/index.md target=_blank rel="noopener noreferrer" title="前往 GitHub 编辑此页"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:-2px"><path d="M18 13v6a2 2 0 01-2 2H5a2 2 0 01-2-2V8a2 2 0 012-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
 <span>编辑此页</span>
-</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/30dd1871ae80e4aa2c2e9bb05415afee6c5da4db target=_blank rel="noopener noreferrer" title="Commit Hash: #30dd187" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
-#30dd187</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/archives/2284a148/><div class=article-details><h2 class=article-title>解决Github Port 443以及Port 22问题&&合并冲突问题&&amp;codespaces</h2></div></a></article><article><a href=/archives/4e8cacb0/><div class=article-details><h2 class=article-title>利用github Actions自动同步项目到gitee并自动部署Gitee Pages</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/b32c2189/><div class=article-details><h2 class=article-title>upptime-利用Github-Actions检测网站运行状态</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.7.9/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
+</a><span style=font-size:14px;color:#1e90ff>|</span><a href=https://github.com/iwyang/iwyang.github.io/commit/d5461b9bbf365bb7633978ae55ed11540eb40bb7 target=_blank rel="noopener noreferrer" title="Commit Hash: #d5461b9" style=color:#1e90ff;font-weight:400;text-decoration:none;font-size:14px>
+#d5461b9</a></section></footer></article><aside><h2 class=section-title>相关文章</h2><div class=subsection-list><div class=article-list--tile><article><a href=/archives/2284a148/><div class=article-details><h2 class=article-title>解决Github Port 443以及Port 22问题&&合并冲突问题&&amp;codespaces</h2></div></a></article><article><a href=/archives/4e8cacb0/><div class=article-details><h2 class=article-title>利用github Actions自动同步项目到gitee并自动部署Gitee Pages</h2></div></a></article><article><a href=/archives/c7ccd27d/><div class=article-details><h2 class=article-title>GitHub Actions利用FTP&&amp;rsync自动部署hugo-hexo到Centos 8</h2></div></a></article><article><a href=/archives/b32c2189/><div class=article-details><h2 class=article-title>upptime-利用Github-Actions检测网站运行状态</h2></div></a></article><article><a href=/archives/db6e761/><div class=article-details><h2 class=article-title>hexo利用Github Actions自动构建博客</h2></div></a></article></div></div></aside><script src=//registry.npmmirror.com/twikoo/1.7.9/files/dist/twikoo.min.js></script><div id=tcomment></div><style>.twikoo{background-color:var(--card-background);border-radius:var(--card-border-radius);box-shadow:var(--shadow-l1);padding:var(--card-padding)}:root[data-scheme=dark]{--twikoo-body-text-color-main:rgba(255, 255, 255, 0.9);--twikoo-body-text-color:rgba(255, 255, 255, 0.7)}.twikoo .el-input-group__prepend,.twikoo .tk-action-icon,.twikoo .tk-submit-action-icon,.twikoo .tk-time,.twikoo .tk-comments-no,.twikoo .tk-comments-count{color:var(--twikoo-body-text-color)}.twikoo .el-input__inner,.twikoo .el-textarea__inner,.twikoo .tk-preview-container,.twikoo .tk-content,.twikoo .tk-nick,.twikoo .tk-send,.twikoo .tk-comments-no,.twikoo .el-input__count,.twikoo .tk-submit-action-icon{color:var(--twikoo-body-text-color-main)!important}.twikoo .el-button{color:var(--twikoo-body-text-color)!important}.twikoo .el-input__count{color:var(--twikoo-body-text-color)!important}.OwO .OwO-body{background-color:var(--body-background)!important;color:var(--body-text-color)!important}</style><script>twikoo.init({envId:"https://t.bore.vip",el:"#tcomment"})</script><footer class=site-footer><style>.site-footer .running-time,.site-footer .powerby{font-size:14px!important;line-height:1.6!important;margin:10px 0!important;display:block!important;font-weight:400!important}.site-footer .running-time,.site-footer .running-time *,[data-scheme=dark] .site-footer .running-time,[data-scheme=dark] .site-footer .running-time *{color:#1e90ff!important}.site-footer .powerby,.site-footer .powerby *{color:var(--sys-color-text-muted)!important}[data-scheme=dark] .site-footer .powerby,[data-scheme=dark] .site-footer .powerby *{color:rgba(255,255,255,.7)!important}.footer-separator{margin:0 6px!important;font-size:14px!important}.site-footer .running-time .footer-separator{color:#1e90ff!important;opacity:1!important}.site-footer .powerby .footer-separator{color:inherit!important}.site-footer a{text-decoration:none!important;cursor:pointer}.site-footer a:hover{text-decoration:underline!important}.site-footer .powerby a:hover{color:var(--accent-color)!important}</style><section class=copyright>&copy;
 2020 -
-2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-11-08T12:07:27Z title="2026-11-08 12:07">--</span><span class=footer-separator>|</span>
-<a href=https://github.com/iwyang/iwyang.github.io/commit/402ed3b92b85240d0eb86614e03fe8380a290bfa target=_blank rel=noopener title="Commit Hash: 402ed3b">#402ed3b</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
+2026 Bore's Notes</section><section class=running-time>最近更新：<span id=site-last-update data-time=2026-11-09T09:58:22Z title="2026-11-09 09:58">--</span><span class=footer-separator>|</span>
+<a href=https://github.com/iwyang/iwyang.github.io/commit/d5461b9bbf365bb7633978ae55ed11540eb40bb7 target=_blank rel=noopener title="Commit Hash: d5461b9">#d5461b9</a></section><section class=powerby>使用 <a href=https://gohugo.io/ target=_blank rel=noopener>Hugo</a> 构建
 <span class=footer-separator>|</span>
 主题 <a href=https://github.com/CaiJimmy/hugo-theme-stack target=_blank rel=noopener data-version=4.0.0>Stack</a> 由 <a href=https://jimmycai.com target=_blank rel=noopener>Jimmy</a> 设计</section></footer><script>(function(){var e,t,n,o,i,a,r,c,l,d,s=document.getElementById("site-last-update");s&&(n=new Date(s.getAttribute("data-time")),o=new Date,e=(o-n)/1e3,i=n.getFullYear(),a=String(n.getMonth()+1).padStart(2,"0"),r=String(n.getDate()).padStart(2,"0"),c=String(n.getHours()).padStart(2,"0"),l=String(n.getMinutes()).padStart(2,"0"),d=i+"-"+a+"-"+r+" "+c+":"+l,s.setAttribute("title",d),t="",e<60?t="刚刚":e<3600?t=Math.floor(e/60)+" 分钟前":e<86400?t=Math.floor(e/3600)+" 小时前":e<2592e3?t=Math.floor(e/86400)+" 天前":e<31536e3?t=Math.floor(e/2592e3)+" 个月前":t=Math.floor(e/31536e3)+" 年前",s.innerText=t)})()</script><script type=module>
     import gallery from '\/ts\/gallery.js';
