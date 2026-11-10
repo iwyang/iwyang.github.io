@@ -26,6 +26,7 @@ KOReader 2026.07 升级指令
   
   # 4. 执行升级安装
   # apt 会自动识别这是新版本并进行替换
+  sudo apt-get install -f
   sudo dpkg -i /home/yang/Downloads/koreader_2026.07.1-1_amd64.deb
   
   # 5. (可选) 清理安装包以节省空间
