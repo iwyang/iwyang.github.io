@@ -31,5 +31,9 @@ KOReader 2026.07 升级指令
   
   # 5. (可选) 清理安装包以节省空间
   rm ./koreader_2026.07.1-1_amd64.deb
+
+  #6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
+  sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
   ```
+
 
