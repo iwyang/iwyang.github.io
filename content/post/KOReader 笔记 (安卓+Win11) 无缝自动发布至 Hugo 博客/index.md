@@ -69,14 +69,15 @@ mkdir -p ~/Downloads
 cd ~/Downloads
 
 # 3. 下载 KOReader 安装包
-wget https://github.com/iwyang/backup/releases/download/koreader-v2026.07/koreader_2026.07-1_amd64.deb
+wget https://github.com/iwyang/backup/releases/download/koreader-v2026.07.1/koreader_2026.07.1-1_amd64.deb
 
 # 4. 消除 _apt 安全权限警告 (让沙盒用户有权读取这个本地安装包)
-sudo chmod 644 ./koreader_2026.07-1_amd64.deb
+sudo chmod 644 ./koreader_2026.07.1-1_amd64.deb
 
 # 5. 执行安装 (系统会自动下载并补齐 alsa-lib 等所需环境依赖)
-sudo dpkg -i /home/yang/Downloads/koreader_2026.07-1_amd64.deb
-rm ./koreader_2026.07-1_amd64.deb
+sudo apt-get install -f
+sudo dpkg -i /home/yang/Downloads/koreader_2026.07.1-1_amd64.deb
+rm ./koreader_2026.07.1-1_amd64.deb
 
 # 6. 修复标题栏“豆腐块”乱码 （wsl --shutdown 生效）
 sudo apt install fonts-noto-cjk -y && sudo fc-cache -f -v
