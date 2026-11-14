@@ -5,6 +5,7 @@ categories:
 tags:
   - linux
   - github
+  - hugo
 slug: c7ccd27d
 date: 2021-08-15 08:39:34
 cover: false
@@ -159,7 +160,7 @@ cat /home/admin/.ssh/authorized_keys
 **目标**：告诉 GitHub 怎么用这把钥匙。
 
 1. 打开项目中的 `.github/workflows/gh_pages.yml` 文件。
-2. **完全覆盖**为以下内容（确保没有任何缩进错误）：
+2. **完全覆盖**为以下内容（ 锁定稳定版本，避免 latest （v0.170.0） 自动升级导致缺少 Dart Sass 报错）：
 
 ```yaml
 name: GitHub Page Deploy
@@ -195,7 +196,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          # 👇 锁定稳定版本，避免 latest 自动升级导致缺少 Dart Sass 报错
+          hugo-version: '0.169.0'
           extended: true
 
       - name: Cache Hugo resources
