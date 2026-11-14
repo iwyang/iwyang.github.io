@@ -31,7 +31,8 @@ jobs:
       - name: Setup Hugo
         uses: peaceiris/actions-hugo@v3
         with:
-          hugo-version: 'latest'
+          # 👇 锁定稳定版本，避免 latest 自动升级导致缺少 Dart Sass 报错
+          hugo-version: '0.169.0'
           extended: true
 
       - name: Cache Hugo resources
