@@ -38,6 +38,10 @@ links:
     description: 服务器折腾不完全指南，定期分享一些好玩的东西，不定期记录生活。
     website: https://blog.laoda.de/
     image: laoda.jpg
+  - title: HZH
+    description: Welcome to HZH
+    website: https://clannad.top/
+    image: hzh.jpg
 
 menu:
     main: 
