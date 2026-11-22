@@ -211,4 +211,34 @@ crontab -e
 
 🎉 **至此，你的“多端阅读+自建同步+自动单例备份”系统已全部搭建完毕！你可以先手动运行一次脚本 `~/docker/book/backup_to_dropbox.sh`，去你的 Dropbox 网页端看看是不是已经躺着那个压缩包了。**
 
- 
+## PS： 两套护眼样式 CSS 代码
+
+建议在 `styletweaks` 目录下新建两个独立的文件，方便日夜自由切换。
+
+### 方案 1：日间练习本/豆沙绿（浅色护眼）
+
+新建文件：`eye_care_green.css`
+
+```css
+html, body {
+    background-color: #C7EDCC !important; /* 经典豆沙绿 / 练习本护眼底色 */
+    color: #1A1A1A !important;            /* 深灰正文字体，保持阅读对比度 */
+}
+```
+
+*备选浅色系*：
+
+- 清新浅绿：`#CCE8CF`
+- 羊皮纸暖绿：`#D8E5D8`
+
+### 方案 2：夜间暗绿护眼（深色护眼）
+
+新建文件：`dark_green_mode.css`
+
+```css
+html, body {
+    background-color: #1B3320 !important; /* 深绿护眼底色，柔和不刺眼 */
+    color: #D8E6DC !important;            /* 柔和浅绿灰字体，不刺目 */
+}
+```
+
